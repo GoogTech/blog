@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-09T07:50:53.674Z</updated>
+  <updated>2019-03-09T12:54:33.741Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>桌面应用程序：学生管理系统</title>
+    <link href="http://yoursite.com/2019/03/09/%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Java-swing/"/>
+    <id>http://yoursite.com/2019/03/09/学生管理系统-Java-swing/</id>
+    <published>2019-03-09T12:04:26.000Z</published>
+    <updated>2019-03-09T12:54:33.741Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="学生管理系统"><a href="#学生管理系统" class="headerlink" title="学生管理系统"></a>学生管理系统</h3><ul><li><strong>登录界面</strong></li></ul><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="img/Java_swing/Student_management_system/Login_Interface.PNG" alt title>                </div>                <div class="image-caption"></div>            </figure><ul><li><strong>系统主界面</strong></li></ul><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="img/Java_swing/Student_management_system/Main_Interface.PNG" alt title>                </div>                <div class="image-caption"></div>            </figure><ul><li><strong>Download the source code</strong> , <a href="https://github.com/YUbuntu0109/Student-management-system---Java-swing" target="_blank" rel="noopener">Look forward to your contribution ~</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;学生管理系统&quot;&gt;&lt;a href=&quot;#学生管理系统&quot; class=&quot;headerlink&quot; title=&quot;学生管理系统&quot;&gt;&lt;/a&gt;学生管理系统&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;登录界面&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;
+      
+    
+    </summary>
+    
+    
+      <category term="Java MySQL" scheme="http://yoursite.com/tags/Java-MySQL/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
