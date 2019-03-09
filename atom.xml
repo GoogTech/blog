@@ -5,9 +5,9 @@
   <subtitle>My Personal blog website —— be founded on March 9, 2018</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://yubuntu0109.github.io/"/>
-  <updated>2019-03-09T13:51:08.249Z</updated>
-  <id>https://yubuntu0109.github.io/</id>
+  <link href="https://github.com/YUbuntu0109/YUbuntu0109.github.io/"/>
+  <updated>2019-03-09T14:17:55.980Z</updated>
+  <id>https://github.com/YUbuntu0109/YUbuntu0109.github.io/</id>
   
   <author>
     <name>Huang Yuhui</name>
@@ -18,12 +18,12 @@
   
   <entry>
     <title>桌面应用程序：学生管理系统</title>
-    <link href="https://yubuntu0109.github.io/2019/03/09/%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Java-swing/"/>
-    <id>https://yubuntu0109.github.io/2019/03/09/学生管理系统-Java-swing/</id>
+    <link href="https://github.com/YUbuntu0109/YUbuntu0109.github.io/2019/03/09/%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Java-swing/"/>
+    <id>https://github.com/YUbuntu0109/YUbuntu0109.github.io/2019/03/09/学生管理系统-Java-swing/</id>
     <published>2019-03-09T12:04:26.000Z</published>
-    <updated>2019-03-09T13:51:08.249Z</updated>
+    <updated>2019-03-09T14:17:55.980Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="学生管理系统"><a href="#学生管理系统" class="headerlink" title="学生管理系统"></a>学生管理系统</h3><ul><li><strong>登录界面</strong></li></ul><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/master/img/Java/Student_management_system/Login_Interface.PNG" alt title>                </div>                <div class="image-caption"></div>            </figure><ul><li><strong>系统主界面</strong></li></ul><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/master/img/Java/Student_management_system/Main_Interface.PNG" alt title>                </div>                <div class="image-caption"></div>            </figure><ul><li><strong>Download the source code</strong> , <a href="https://github.com/YUbuntu0109/Student-management-system---Java-swing" target="_blank" rel="noopener">Look forward to your contribution ~</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<h3 id="学生管理系统"><a href="#学生管理系统" class="headerlink" title="学生管理系统"></a>学生管理系统</h3><ul><li><strong>登录界面</strong></li></ul><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="blob/master/img/Java/Student_management_system/Login_Interface.PNG" alt title>                </div>                <div class="image-caption"></div>            </figure><ul><li><strong>系统主界面</strong></li></ul><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="blob/master/img/Java/Student_management_system/Main_Interface.PNG" alt title>                </div>                <div class="image-caption"></div>            </figure><ul><li><strong>Download the source code</strong> , <a href="https://github.com/YUbuntu0109/Student-management-system---Java-swing">Look forward to your contribution ~</a></li></ul>]]></content>
     
     <summary type="html">
     
@@ -38,20 +38,20 @@
     </summary>
     
     
-      <category term="Java" scheme="https://yubuntu0109.github.io/tags/Java/"/>
+      <category term="Java" scheme="https://github.com/YUbuntu0109/YUbuntu0109.github.io/tags/Java/"/>
     
-      <category term="MySQL" scheme="https://yubuntu0109.github.io/tags/MySQL/"/>
+      <category term="MySQL" scheme="https://github.com/YUbuntu0109/YUbuntu0109.github.io/tags/MySQL/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="https://yubuntu0109.github.io/2019/03/09/hello-world/"/>
-    <id>https://yubuntu0109.github.io/2019/03/09/hello-world/</id>
+    <link href="https://github.com/YUbuntu0109/YUbuntu0109.github.io/2019/03/09/hello-world/"/>
+    <id>https://github.com/YUbuntu0109/YUbuntu0109.github.io/2019/03/09/hello-world/</id>
     <published>2019-03-08T16:00:00.000Z</published>
     <updated>2019-03-09T13:08:42.551Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
     
     <summary type="html">
     
@@ -63,7 +63,7 @@
     </summary>
     
     
-      <category term="Hi Hexo" scheme="https://yubuntu0109.github.io/tags/Hi-Hexo/"/>
+      <category term="Hi Hexo" scheme="https://github.com/YUbuntu0109/YUbuntu0109.github.io/tags/Hi-Hexo/"/>
     
   </entry>
   
