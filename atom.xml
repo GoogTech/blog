@@ -5,9 +5,9 @@
   <subtitle>My Personal blog website —— be founded on March 9, 2018</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
-  <updated>2019-03-09T13:40:30.954Z</updated>
-  <id>http://yoursite.com/</id>
+  <link href="https://yubuntu0109.github.io/"/>
+  <updated>2019-03-09T13:51:08.249Z</updated>
+  <id>https://yubuntu0109.github.io/</id>
   
   <author>
     <name>Huang Yuhui</name>
@@ -18,12 +18,12 @@
   
   <entry>
     <title>桌面应用程序：学生管理系统</title>
-    <link href="http://yoursite.com/2019/03/09/%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Java-swing/"/>
-    <id>http://yoursite.com/2019/03/09/学生管理系统-Java-swing/</id>
+    <link href="https://yubuntu0109.github.io/2019/03/09/%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Java-swing/"/>
+    <id>https://yubuntu0109.github.io/2019/03/09/学生管理系统-Java-swing/</id>
     <published>2019-03-09T12:04:26.000Z</published>
-    <updated>2019-03-09T13:40:30.954Z</updated>
+    <updated>2019-03-09T13:51:08.249Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="学生管理系统"><a href="#学生管理系统" class="headerlink" title="学生管理系统"></a>学生管理系统</h3><ul><li><strong>登录界面</strong></li></ul><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="YUbuntu0109.github.io/img/Java/Student_management_system/Login_Interface.PNG" alt title>                </div>                <div class="image-caption"></div>            </figure><ul><li><strong>系统主界面</strong></li></ul><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="YUbuntu0109.github.io/img/Java/Student_management_system/Main_Interface.PNG" alt title>                </div>                <div class="image-caption"></div>            </figure><ul><li><strong>Download the source code</strong> , <a href="https://github.com/YUbuntu0109/Student-management-system---Java-swing" target="_blank" rel="noopener">Look forward to your contribution ~</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<h3 id="学生管理系统"><a href="#学生管理系统" class="headerlink" title="学生管理系统"></a>学生管理系统</h3><ul><li><strong>登录界面</strong></li></ul><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/master/img/Java/Student_management_system/Login_Interface.PNG" alt title>                </div>                <div class="image-caption"></div>            </figure><ul><li><strong>系统主界面</strong></li></ul><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/master/img/Java/Student_management_system/Main_Interface.PNG" alt title>                </div>                <div class="image-caption"></div>            </figure><ul><li><strong>Download the source code</strong> , <a href="https://github.com/YUbuntu0109/Student-management-system---Java-swing" target="_blank" rel="noopener">Look forward to your contribution ~</a></li></ul>]]></content>
     
     <summary type="html">
     
@@ -38,16 +38,16 @@
     </summary>
     
     
-      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+      <category term="Java" scheme="https://yubuntu0109.github.io/tags/Java/"/>
     
-      <category term="MySQL" scheme="http://yoursite.com/tags/MySQL/"/>
+      <category term="MySQL" scheme="https://yubuntu0109.github.io/tags/MySQL/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2019/03/09/hello-world/"/>
-    <id>http://yoursite.com/2019/03/09/hello-world/</id>
+    <link href="https://yubuntu0109.github.io/2019/03/09/hello-world/"/>
+    <id>https://yubuntu0109.github.io/2019/03/09/hello-world/</id>
     <published>2019-03-08T16:00:00.000Z</published>
     <updated>2019-03-09T13:08:42.551Z</updated>
     
@@ -63,7 +63,7 @@
     </summary>
     
     
-      <category term="Hi Hexo" scheme="http://yoursite.com/tags/Hi-Hexo/"/>
+      <category term="Hi Hexo" scheme="https://yubuntu0109.github.io/tags/Hi-Hexo/"/>
     
   </entry>
   
