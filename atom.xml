@@ -5,9 +5,9 @@
   <subtitle>My Personal blog website —— be founded on March 9, 2018</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://github.com/YUbuntu0109/YUbuntu0109.github.io/"/>
+  <link href="http://yoursite.com/"/>
   <updated>2019-03-10T16:28:49.642Z</updated>
-  <id>https://github.com/YUbuntu0109/YUbuntu0109.github.io/</id>
+  <id>http://yoursite.com/</id>
   
   <author>
     <name>Huang Yuhui</name>
@@ -18,12 +18,12 @@
   
   <entry>
     <title>水果贪吃蛇游戏</title>
-    <link href="https://github.com/YUbuntu0109/YUbuntu0109.github.io/2019/03/10/%E6%B0%B4%E6%9E%9C%E8%B4%AA%E5%90%83%E8%9B%87%E6%B8%B8%E6%88%8F/"/>
-    <id>https://github.com/YUbuntu0109/YUbuntu0109.github.io/2019/03/10/水果贪吃蛇游戏/</id>
+    <link href="http://yoursite.com/2019/03/10/%E6%B0%B4%E6%9E%9C%E8%B4%AA%E5%90%83%E8%9B%87%E6%B8%B8%E6%88%8F/"/>
+    <id>http://yoursite.com/2019/03/10/水果贪吃蛇游戏/</id>
     <published>2019-03-10T14:34:41.000Z</published>
     <updated>2019-03-10T16:28:49.642Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="Games-Gluttonous-snack-2-1-0"><a href="#Games-Gluttonous-snack-2-1-0" class="headerlink" title="Games-Gluttonous snack 2.1.0"></a>Games-Gluttonous snack 2.1.0</h2><h3 id="闲时写了一个贪吃蛇游戏-目前的版本是：2-1-0-每个版本的功能详情见我的该游戏仓库-源码注释写的很详细哟"><a href="#闲时写了一个贪吃蛇游戏-目前的版本是：2-1-0-每个版本的功能详情见我的该游戏仓库-源码注释写的很详细哟" class="headerlink" title="闲时写了一个贪吃蛇游戏,目前的版本是：2.1.0. 每个版本的功能详情见我的该游戏仓库 (源码注释写的很详细哟)"></a>闲时写了一个贪吃蛇游戏,目前的版本是：2.1.0. 每个版本的功能详情见我的该游戏仓库 <code>(源码注释写的很详细哟)</code></h3><ul><li><strong>游戏截图</strong></li><li><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="/YUbuntu0109/YUbuntu0109.github.io/2019/03/10/水果贪吃蛇游戏/Gluttonous_snack-2.1.0.PNG" alt title>                </div>                <div class="image-caption"></div>            </figure></li></ul><ul><li><strong>Download the source code</strong> , <a href="https://github.com/YUbuntu0109/Gluttonous-Snake">Have a good time to you ~</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="Games-Gluttonous-snack-2-1-0"><a href="#Games-Gluttonous-snack-2-1-0" class="headerlink" title="Games-Gluttonous snack 2.1.0"></a>Games-Gluttonous snack 2.1.0</h2><h3 id="闲时写了一个贪吃蛇游戏-目前的版本是：2-1-0-每个版本的功能详情见我的该游戏仓库-源码注释写的很详细哟"><a href="#闲时写了一个贪吃蛇游戏-目前的版本是：2-1-0-每个版本的功能详情见我的该游戏仓库-源码注释写的很详细哟" class="headerlink" title="闲时写了一个贪吃蛇游戏,目前的版本是：2.1.0. 每个版本的功能详情见我的该游戏仓库 (源码注释写的很详细哟)"></a>闲时写了一个贪吃蛇游戏,目前的版本是：2.1.0. 每个版本的功能详情见我的该游戏仓库 <code>(源码注释写的很详细哟)</code></h3><ul><li><strong>游戏截图</strong></li><li><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="/2019/03/10/水果贪吃蛇游戏/Gluttonous_snack-2.1.0.PNG" alt title>                </div>                <div class="image-caption"></div>            </figure></li></ul><ul><li><strong>Download the source code</strong> , <a href="https://github.com/YUbuntu0109/Gluttonous-Snake" target="_blank" rel="noopener">Have a good time to you ~</a></li></ul>]]></content>
     
     <summary type="html">
     
@@ -35,18 +35,18 @@
     </summary>
     
     
-      <category term="Java swing" scheme="https://github.com/YUbuntu0109/YUbuntu0109.github.io/tags/Java-swing/"/>
+      <category term="Java swing" scheme="http://yoursite.com/tags/Java-swing/"/>
     
   </entry>
   
   <entry>
     <title>桌面应用程序：学生管理系统</title>
-    <link href="https://github.com/YUbuntu0109/YUbuntu0109.github.io/2019/03/09/%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Java-swing/"/>
-    <id>https://github.com/YUbuntu0109/YUbuntu0109.github.io/2019/03/09/学生管理系统-Java-swing/</id>
+    <link href="http://yoursite.com/2019/03/09/%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-Java-swing/"/>
+    <id>http://yoursite.com/2019/03/09/学生管理系统-Java-swing/</id>
     <published>2019-03-09T12:04:26.000Z</published>
     <updated>2019-03-10T16:24:14.269Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="学生管理系统2-1-0-每个版本的功能详情见我的该项目仓库-文档注释写的非常详细哟"><a href="#学生管理系统2-1-0-每个版本的功能详情见我的该项目仓库-文档注释写的非常详细哟" class="headerlink" title="学生管理系统2.1.0. 每个版本的功能详情见我的该项目仓库. (文档注释写的非常详细哟)"></a>学生管理系统2.1.0. 每个版本的功能详情见我的该项目仓库. <code>(文档注释写的非常详细哟)</code></h3><ul><li><p><strong>登录界面</strong></p></li><li><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="/YUbuntu0109/YUbuntu0109.github.io/2019/03/09/学生管理系统-Java-swing/Login_Interface.PNG" alt title>                </div>                <div class="image-caption"></div>            </figure></li></ul><ul><li><p><strong>系统主界面</strong></p></li><li><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="/YUbuntu0109/YUbuntu0109.github.io/2019/03/09/学生管理系统-Java-swing/Main_Interface.PNG" alt title>                </div>                <div class="image-caption"></div>            </figure></li></ul><ul><li><strong>Download the source code</strong> , <a href="https://github.com/YUbuntu0109/Student-management-system---Java-swing">Look forward to your contribution ~</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<h3 id="学生管理系统2-1-0-每个版本的功能详情见我的该项目仓库-文档注释写的非常详细哟"><a href="#学生管理系统2-1-0-每个版本的功能详情见我的该项目仓库-文档注释写的非常详细哟" class="headerlink" title="学生管理系统2.1.0. 每个版本的功能详情见我的该项目仓库. (文档注释写的非常详细哟)"></a>学生管理系统2.1.0. 每个版本的功能详情见我的该项目仓库. <code>(文档注释写的非常详细哟)</code></h3><ul><li><p><strong>登录界面</strong></p></li><li><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="/2019/03/09/学生管理系统-Java-swing/Login_Interface.PNG" alt title>                </div>                <div class="image-caption"></div>            </figure></li></ul><ul><li><p><strong>系统主界面</strong></p></li><li><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="/2019/03/09/学生管理系统-Java-swing/Main_Interface.PNG" alt title>                </div>                <div class="image-caption"></div>            </figure></li></ul><ul><li><strong>Download the source code</strong> , <a href="https://github.com/YUbuntu0109/Student-management-system---Java-swing" target="_blank" rel="noopener">Look forward to your contribution ~</a></li></ul>]]></content>
     
     <summary type="html">
     
@@ -58,20 +58,20 @@
     </summary>
     
     
-      <category term="Java" scheme="https://github.com/YUbuntu0109/YUbuntu0109.github.io/tags/Java/"/>
+      <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
     
-      <category term="MySQL" scheme="https://github.com/YUbuntu0109/YUbuntu0109.github.io/tags/MySQL/"/>
+      <category term="MySQL" scheme="http://yoursite.com/tags/MySQL/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="https://github.com/YUbuntu0109/YUbuntu0109.github.io/2019/03/09/hello-world/"/>
-    <id>https://github.com/YUbuntu0109/YUbuntu0109.github.io/2019/03/09/hello-world/</id>
+    <link href="http://yoursite.com/2019/03/09/hello-world/"/>
+    <id>http://yoursite.com/2019/03/09/hello-world/</id>
     <published>2019-03-08T16:00:00.000Z</published>
     <updated>2019-03-09T13:08:42.551Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
     
     <summary type="html">
     
@@ -83,7 +83,7 @@
     </summary>
     
     
-      <category term="Hi Hexo" scheme="https://github.com/YUbuntu0109/YUbuntu0109.github.io/tags/Hi-Hexo/"/>
+      <category term="Hi Hexo" scheme="http://yoursite.com/tags/Hi-Hexo/"/>
     
   </entry>
   
