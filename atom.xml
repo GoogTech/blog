@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-18T14:54:09.340Z</updated>
+  <updated>2019-03-31T03:22:01.350Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,81 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>全国计算机等级考试-三级数据库技术</title>
+    <link href="http://yoursite.com/2019/03/31/%E5%85%A8%E5%9B%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AD%89%E7%BA%A7%E8%80%83%E8%AF%95-%E4%B8%89%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8A%80%E6%9C%AF/"/>
+    <id>http://yoursite.com/2019/03/31/全国计算机等级考试-三级数据库技术/</id>
+    <published>2019-03-31T02:46:51.000Z</published>
+    <updated>2019-03-31T03:22:01.350Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="NCRE-National-Computer-Rank-Examination-——-三级数据库技术篇"><a href="#NCRE-National-Computer-Rank-Examination-——-三级数据库技术篇" class="headerlink" title="NCRE(National Computer Rank Examination) —— 三级数据库技术篇"></a>NCRE(National Computer Rank Examination) —— 三级<code>数据库技术</code>篇</h3><h4 id="来来来-先欣赏一下昨天去看樱花时拍的风景-语文学的不好的我只能用超级美来形容啦啊哈哈哈-づ｡◕ᴗᴗ◕｡-づ"><a href="#来来来-先欣赏一下昨天去看樱花时拍的风景-语文学的不好的我只能用超级美来形容啦啊哈哈哈-づ｡◕ᴗᴗ◕｡-づ" class="headerlink" title="来来来,先欣赏一下昨天去看樱花时拍的风景,语文学的不好的我只能用超级美来形容啦啊哈哈哈 (づ｡◕ᴗᴗ◕｡)づ"></a>来来来,先欣赏一下昨天去看樱花时拍的风景,语文学的不好的我只能用超级美来形容啦啊哈哈哈 (づ｡◕ᴗᴗ◕｡)づ</h4><ul><li><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="/2019/03/31/全国计算机等级考试-三级数据库技术/Scenery.jpg" alt title>                </div>                <div class="image-caption"></div>            </figure></li><li><p><strong><code>敲黑板：三级数据库技术题目也不难,较二级概念题多一些 ! 勿慌 ✧⁺⸜(●˙▾˙●)⸝⁺✧</code></strong></p></li><li><p><em><code>开门见山,先感受一下哥哥带来的学习笔记,详细到感动自己的那种..ヾ(❀^ω^)ﾉﾞ</code></em></p></li><li><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="/2019/03/31/全国计算机等级考试-三级数据库技术/Database-technology-doc.PNG" alt title>                </div>                <div class="image-caption"></div>            </figure></li><li><h4 id="笔记共记录了17张卷子所有题目的解析及易错点-毕竟有30分呢嘿嘿-还有一些小笔记就不一一展示了啦-づ｡◕ᴗᴗ◕｡-づ"><a href="#笔记共记录了17张卷子所有题目的解析及易错点-毕竟有30分呢嘿嘿-还有一些小笔记就不一一展示了啦-づ｡◕ᴗᴗ◕｡-づ" class="headerlink" title="笔记共记录了17张卷子所有题目的解析及易错点,毕竟有30分呢嘿嘿..)还有一些小笔记就不一一展示了啦 (づ｡◕ᴗᴗ◕｡)づ"></a>笔记共记录了<code>17</code>张卷子所有题目的解析及易错点,毕竟有<code>30</code>分呢嘿嘿..)还有一些小笔记就不一一展示了啦 (づ｡◕ᴗᴗ◕｡)づ</h4></li></ul><ul><li><strong>笔记的下载链接 :</strong> , <a href="https://github.com/YUbuntu0109/NCRE" target="_blank" rel="noopener">Good luck to you ~</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;NCRE-National-Computer-Rank-Examination-——-三级数据库技术篇&quot;&gt;&lt;a href=&quot;#NCRE-National-Computer-Rank-Examination-——-三级数据库技术篇&quot; class=&quot;headerlin
+      
+    
+    </summary>
+    
+    
+      <category term="NCRE" scheme="http://yoursite.com/tags/NCRE/"/>
+    
+      <category term="SQL Server" scheme="http://yoursite.com/tags/SQL-Server/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>全国计算机等级考试-二级MySQL</title>
+    <link href="http://yoursite.com/2019/03/31/%E5%85%A8%E5%9B%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AD%89%E7%BA%A7%E8%80%83%E8%AF%95-%E4%BA%8C%E7%BA%A7MySQL/"/>
+    <id>http://yoursite.com/2019/03/31/全国计算机等级考试-二级MySQL/</id>
+    <published>2019-03-31T02:10:44.000Z</published>
+    <updated>2019-03-31T03:19:47.780Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="NCRE-National-Computer-Rank-Examination-——-二级MySQL篇"><a href="#NCRE-National-Computer-Rank-Examination-——-二级MySQL篇" class="headerlink" title="NCRE(National Computer Rank Examination) —— 二级MySQL篇"></a>NCRE(National Computer Rank Examination) —— 二级<code>MySQL</code>篇</h3><p><strong><code>敲黑板：二级考试的试题都是在往年的试卷中随机抽取的 ! 勿慌 ✧⁺⸜(●˙▾˙●)⸝⁺✧</code></strong></p><p><em><code>嘿嘿,没想到你点进来啦,其实我大一报考MySQL二级时并没有记笔记,这就尴尬啦..既然你点击近来啦,那就推荐一波学习资源吧 (っ•̀ω•́)っ✎⁾⁾</code></em></p><ul><li><p><em>我在备考时使用的都是<code>未来教育</code>提供的考试模拟系统,如下图示例( 没有打广告哟,是真的挺不错的！ )</em></p></li><li><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="/2019/03/31/全国计算机等级考试-二级MySQL/Test-system.PNG" alt title>                </div>                <div class="image-caption"></div>            </figure></li><li><p><em>很多同学使用的基本都是<code>未来教育</code>的考试模拟系统,可以说和真实考试的系统几乎相似,虽然说<code>2019/3月份的全国计算机等考的考试系统更新了</code>..但题目的基本模块还是没有变化的,如果大家想考<code>二级/三级/四级</code>,真的非常建议使用未来教育的考试模拟系统！至于说能否考过那就要看你自己认真度啦嘿嘿 ~</em></p></li><li><p><strong><code>未来教育的官方网站 :</code></strong> , <a href="http://www.eduexam.cn/" target="_blank" rel="noopener">GO ~</a></p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;NCRE-National-Computer-Rank-Examination-——-二级MySQL篇&quot;&gt;&lt;a href=&quot;#NCRE-National-Computer-Rank-Examination-——-二级MySQL篇&quot; class=&quot;headerlin
+      
+    
+    </summary>
+    
+    
+      <category term="MySQL" scheme="http://yoursite.com/tags/MySQL/"/>
+    
+      <category term="NCRE" scheme="http://yoursite.com/tags/NCRE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>全国计算机等级考试-二级C语言</title>
+    <link href="http://yoursite.com/2019/03/31/%E5%85%A8%E5%9B%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AD%89%E7%BA%A7%E8%80%83%E8%AF%95-%E4%BA%8C%E7%BA%A7C%E8%AF%AD%E8%A8%80/"/>
+    <id>http://yoursite.com/2019/03/31/全国计算机等级考试-二级C语言/</id>
+    <published>2019-03-31T01:45:04.000Z</published>
+    <updated>2019-03-31T03:18:31.004Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="NCRE-National-Computer-Rank-Examination-——-二级C篇"><a href="#NCRE-National-Computer-Rank-Examination-——-二级C篇" class="headerlink" title="NCRE(National Computer Rank Examination) —— 二级C篇"></a>NCRE(National Computer Rank Examination) —— 二级<code>C</code>篇</h3><h4 id="来来来-先欣赏一下昨天去看樱花时拍的风景-语文学的不好的我只能用超级美来形容啦啊哈哈哈-づ｡◕ᴗᴗ◕｡-づ"><a href="#来来来-先欣赏一下昨天去看樱花时拍的风景-语文学的不好的我只能用超级美来形容啦啊哈哈哈-づ｡◕ᴗᴗ◕｡-づ" class="headerlink" title="来来来,先欣赏一下昨天去看樱花时拍的风景,语文学的不好的我只能用超级美来形容啦啊哈哈哈 (づ｡◕ᴗᴗ◕｡)づ"></a>来来来,先欣赏一下昨天去看樱花时拍的风景,语文学的不好的我只能用超级美来形容啦啊哈哈哈 (づ｡◕ᴗᴗ◕｡)づ</h4><ul><li><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="/2019/03/31/全国计算机等级考试-二级C语言/Scenery.jpg" alt title>                </div>                <div class="image-caption"></div>            </figure></li></ul><p><strong><code>敲黑板：二级考试的试题都是在往年的试卷中随机抽取的 ! 勿慌 ✧⁺⸜(●˙▾˙●)⸝⁺✧</code></strong></p><p><em><code>OK ! 说直白一点,二级考试真是的傻白甜,毕竟考试范围都已经给你了,况且还有可能遇到原题呢...</code></em><br><em><code>但是！但是！但是！过程很重要,相信这一切都是你走向春天的必经之路,大家千万不因傲慢而忽略了路边的风景 ！</code></em></p><ul><li><h4 id="下面是我考试前的一些练习题-阔以说将题目要求-运行结果-注意事项-易错点写的的非常的详细啦！-嘿嘿-大家阔以省下买试卷的钱咯-づ｡◕ᴗᴗ◕｡-づ"><a href="#下面是我考试前的一些练习题-阔以说将题目要求-运行结果-注意事项-易错点写的的非常的详细啦！-嘿嘿-大家阔以省下买试卷的钱咯-づ｡◕ᴗᴗ◕｡-づ" class="headerlink" title="下面是我考试前的一些练习题,阔以说将题目要求,运行结果,注意事项,易错点写的的非常的详细啦！( 嘿嘿,大家阔以省下买试卷的钱咯 (づ｡◕ᴗᴗ◕｡)づ )"></a>下面是我考试前的一些练习题,阔以说将<code>题目要求</code>,<code>运行结果</code>,<code>注意事项</code>,<code>易错点</code>写的的非常的详细啦！( 嘿嘿,大家阔以省下买试卷的钱咯 (づ｡◕ᴗᴗ◕｡)づ )</h4></li><li><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="/2019/03/31/全国计算机等级考试-二级C语言/examination-paper.PNG" alt title>                </div>                <div class="image-caption"></div>            </figure></li></ul><ul><li><p><strong>试卷及笔记的下载链接 :</strong> , <a href="https://github.com/YUbuntu0109/NCRE" target="_blank" rel="noopener">Good luck to you ~</a></p></li><li><p><strong>建议多多刷题哟,尽情体验C语言中<code>指针</code>与<code>数据结构及算法</code>的美吧 (っ•̀ω•́)っ✎⁾⁾</strong></p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;NCRE-National-Computer-Rank-Examination-——-二级C篇&quot;&gt;&lt;a href=&quot;#NCRE-National-Computer-Rank-Examination-——-二级C篇&quot; class=&quot;headerlink&quot; title
+      
+    
+    </summary>
+    
+    
+      <category term="NCRE" scheme="http://yoursite.com/tags/NCRE/"/>
+    
+      <category term="C" scheme="http://yoursite.com/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>static keyword</title>
