@@ -1,0 +1,19 @@
+{
+  "name": "hexo-theme-material-indigo",
+  "version": "1.7.2",
+  "description": "Material Design theme for Hexo.",
+  "keywords": [
+    "hexo",
+    "theme",
+    "material design"
+  ],
+  "author": {
+    "name": "Huang Yuhui",
+    "email": "3083968068@qq.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "url": "git+https://github.com/YUbuntu0109",
+    "type": "git"
+  }
+}
