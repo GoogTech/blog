@@ -9,7 +9,7 @@ tags: [Java,Servlet,Tomcat]
 - *Tomcat v9.0 + JDK 11 + Google Chrome*
 
 - *Servlet lifecycle*
-![ ](Servlet-lifecycle/lifecycle.PNG)
+- ![ ](Servlet-lifecycle/lifecycle.png)
 
 ### Servlet 2.5 示例
 
