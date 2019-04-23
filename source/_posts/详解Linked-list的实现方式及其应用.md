@@ -497,7 +497,7 @@ public class ListNode<T> {
 }
 ```
 
-2. *操作循环链表*
+2. *操作循环链表的示例程序*
 ```java
 package pers.huangyuhui.linkedlist;
 
