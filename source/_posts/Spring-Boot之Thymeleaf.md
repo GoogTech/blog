@@ -63,8 +63,8 @@ tags: [Spring Boot]
 - *注意 : 由于默认拼接的路径为`spring.thymeleaf.prefix = classpath:/templates/`,所以在使用替换路径`th:replace`开头请勿添加斜杠,避免部署运行的时候出现路径报错 !*
 
 
-#### 消息表达式 `#{}`
-*即通常的国际化属性 : `#{msg}`,用于获取国际化语言翻译值*
+#### 消息表达式 `&#35;{}`
+*即通常的国际化属性 : `&#35;{msg}`,用于获取国际化语言翻译值*
 ```html
 <title th:text="#{user.title}"></title>
 ```
@@ -142,7 +142,7 @@ tags: [Spring Boot]
 ```html
 <input type="text" th:value="${user.createTime}"/>
 ```
-*此时可以通过时间工具类`#dates`来将日期进行格式化为 : `2018-12-03 23:16:50`*
+*此时可以通过时间工具类`&#35;dates`来将日期进行格式化为 : `2018-12-03 23:16:50`*
 ```html
 <input type="text" th:value="${#dates.format(user.createTime,'yyyy-MM-dd HH:mm:ss')}"/>
 ```
@@ -164,33 +164,33 @@ tags: [Spring Boot]
 ### 内置对象
 
 #### 七大基础对象
-1. *`${#ctx}` : 上下文对象,可用于获取其它内置对象*
-2. *`${#vars}` : 上下文变量*
-3. *`${#locale}` : 上下文区域设置*
-4. *`${#request}` : HttpServletRequest对象*
-5. *`${#response}` : HttpServletResponse对象*
-6. *`${#session}` : HttpSession对象*
-7. *`${#servletContext}` : ServletContext对象*
+1. *`${&#35;ctx}` : 上下文对象,可用于获取其它内置对象*
+2. *`${&#35;vars}` : 上下文变量*
+3. *`${&#35;locale}` : 上下文区域设置*
+4. *`${&#35;request}` : HttpServletRequest对象*
+5. *`${&#35;response}` : HttpServletResponse对象*
+6. *`${&#35;session}` : HttpSession对象*
+7. *`${&#35;servletContext}` : ServletContext对象*
 
 
 #### 常用的工具类
-1. *`#strings` :字符串工具类*
-2. *`#lists` : List工具类*
-3. *`#arrays` : 数组工具类*
-4. *`#sets` : Set工具类*
-5. *`#maps` : 常用Map方法*
-6. *`#objects` : 一般对象类,通常用来判断非空*
-7. *`#bools` : 常用的布尔方法*
-8. *`#execInfo` : 获取页面模板的处理信息*
-9. *`#messages` : 在变量表达式中获取外部消息的方法,与使用`＃{...}`语法获取的方法相同*
-10. *`#uris` : 转义部分URL / URI的方法*
-11. *`#conversions` : 用于执行已配置的转换服务的方法*
-12. *`#dates` : 时间操作和时间格式化等*
-13. *`#calendars` : 用于更复杂时间的格式化*
-14. *`#numbers` : 格式化数字对象的方法*
-15. *`#aggregates` : 在数组或集合上创建聚合的方法*
-16. *`#ids` : 处理可能重复的id属性的方法*
+1. *`&#35;strings` :字符串工具类*
+2. *`&#35;lists` : List工具类*
+3. *`&#35;arrays` : 数组工具类*
+4. *`&#35;sets` : Set工具类*
+5. *`&#35;maps` : 常用Map方法*
+6. *`&#35;objects` : 一般对象类,通常用来判断非空*
+7. *`&#35;bools` : 常用的布尔方法*
+8. *`&#35;execInfo` : 获取页面模板的处理信息*
+9. *`&#35;messages` : 在变量表达式中获取外部消息的方法,与使用`&#35;{...}`语法获取的方法相同*
+10. *`&#35;uris` : 转义部分URL / URI的方法*
+11. *`&#35;conversions` : 用于执行已配置的转换服务的方法*
+12. *`&#35;dates` : 时间操作和时间格式化等*
+13. *`&#35;calendars` : 用于更复杂时间的格式化*
+14. *`&#35;numbers` : 格式化数字对象的方法*
+15. *`&#35;aggregates` : 在数组或集合上创建聚合的方法*
+16. *`&#35;ids` : 处理可能重复的id属性的方法*
 
 
 
-- *thanks a lot : https://www.jianshu.com/p/908b48b10702*
+- *🙂thanks a lot : https://www.jianshu.com/p/908b48b10702*
