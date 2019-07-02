@@ -4,7 +4,7 @@ date: 2019-07-01 10:26:26
 tags: [Spring Boot,MyBatis,Redis]
 ---
 
-## 学习笔记 : Spring Boot拥抱Redis ~
+## 学习笔记 : Spring Boot拥抱MyBatis及Redis ~
 
 ### Spring Boot集成MyBatis
 *下面通过使用`Spring Boot`开发一个基于`SSM`的框架的应用,并通过一个简单的用户信息查询为例,记录如何在Spring Boot中使用`MyBatis` ~*
@@ -15,7 +15,6 @@ create table tb_user
 (
     id     int auto_increment primary key,
     name   varchar(15) not null,
-    gender char        null,
     email  varchar(50) null
 );
 ```
