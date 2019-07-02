@@ -15,6 +15,7 @@ create table tb_user
 (
     id     int auto_increment primary key,
     name   varchar(15) not null,
+    gender char        null,
     email  varchar(50) null
 );
 ```
