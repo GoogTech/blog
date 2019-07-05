@@ -1,6 +1,12 @@
+![](https://img.shields.io/github/followers/YUbuntu0109.svg)
+![](https://img.shields.io/github/forks/YUbuntu0109/YUbuntu0109.github.io.svg)
+![](https://img.shields.io/github/stars/YUbuntu0109/YUbuntu0109.github.io.svg)
+![](https://img.shields.io/github/watchers/YUbuntu0109/YUbuntu0109.github.io.svg)
+![](https://img.shields.io/github/license/YUbuntu0109/YUbuntu0109.github.io.svg)
+
+
 ## 💖💛💙💚 👩‍💻💝💗💜🖤 大二学生的编程学习笔记
 *📒✍开源的目的仅有一个 : 真心希望自己的这些日常学习笔记,心得,项目能够帮助一些同学提高学习效率 ! 注 : 该学习笔记与我的博客同步更新哟~*
-
 
 
 ### 👨‍🎓 个人简介
