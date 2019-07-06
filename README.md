@@ -1,3 +1,6 @@
+![](https://img.shields.io/badge/content-learning%20notes-brightgreen.svg)
+![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.png?v=103)
+![](http://progressed.io/bar/12?title=progress)
 ![](https://img.shields.io/github/followers/YUbuntu0109.svg)
 ![](https://img.shields.io/github/forks/YUbuntu0109/YUbuntu0109.github.io.svg)
 ![](https://img.shields.io/github/stars/YUbuntu0109/YUbuntu0109.github.io.svg)
