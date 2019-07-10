@@ -1,7 +1,7 @@
 ---
 title: Java爬虫之HttpClient
 date: 2019-07-10 18:54:55
-tags: [Java,Crawler]
+tags: [Java,HttpClient]
 ---
 
 ## 学习笔记 : Java爬虫之HttpClient
