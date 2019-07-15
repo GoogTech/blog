@@ -147,6 +147,17 @@
 
 ---
 
+### 📚📝 `网络爬虫`学习笔记
+*`Java`网络爬虫*
+  * [Java爬虫之HttpClient](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Java%E7%88%AC%E8%99%AB%E4%B9%8BHttpClient.md)
+  * [Java爬虫之Jsoup](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Java%E7%88%AC%E8%99%AB%E4%B9%8BJsoup.md)
+  * [Java爬虫之WebMagic](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Java%E7%88%AC%E8%99%AB%E4%B9%8BWebMagic.md)
+  
+*`Java`网络爬虫项目笔记*
+  * [小爬虫 JDBookCrawler-V1.0](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E5%B0%8F%E7%88%AC%E8%99%AB-JDBookCrawler-V1-0.md)
+
+---
+
 ### 📚📝 `全国计算机等级考试`学习笔记
 * 全国计算机等级考试-二级
   * [二级C语言](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E5%85%A8%E5%9B%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AD%89%E7%BA%A7%E8%80%83%E8%AF%95-%E4%BA%8C%E7%BA%A7C%E8%AF%AD%E8%A8%80.md)
