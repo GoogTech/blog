@@ -1,10 +1,10 @@
 ---
 title: '小爬虫:JDBookCrawler-V1.0'
 date: 2019-07-14 13:30:47
-tags: [Java,HttpClient,Jsoup,Crawler]
+tags: [Java,HttpClient,Jsoup,MySQL,Crawler]
 ---
 
-## 爬虫程序笔记 : JDBookCrawler-V1.0
+## 爬虫项目笔记 : JDBookCrawler-V1.0
 *简介 : 最近在学习爬虫技术,浅薄学习`HttpClient`,`Jsoup`后,为了总结知识点既而写了这个小爬虫 : 爬取京东商城书籍数据. 程序已Psuh到GitHub : https://github.com/YUbuntu0109/Crawler-learning/tree/master/BookCrawler-v1.0/bookcrawler*
 
 
