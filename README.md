@@ -148,13 +148,15 @@
 ---
 
 ### 📚📝 `网络爬虫`学习笔记
-*`Java`网络爬虫*
+* `Java`网络爬虫
   * [Java爬虫之HttpClient](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Java%E7%88%AC%E8%99%AB%E4%B9%8BHttpClient.md)
   * [Java爬虫之Jsoup](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Java%E7%88%AC%E8%99%AB%E4%B9%8BJsoup.md)
   * [Java爬虫之WebMagic](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Java%E7%88%AC%E8%99%AB%E4%B9%8BWebMagic.md)
   
-*`Java`网络爬虫项目笔记*
+* `Java`网络爬虫项目笔记
   * [小爬虫 JDBookCrawler-V1.0](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E5%B0%8F%E7%88%AC%E8%99%AB-JDBookCrawler-V1-0.md)
+  * [小爬虫 JDBookCrawler-V2.0](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E5%B0%8F%E7%88%AC%E8%99%AB-JDBookCrawler-V2-0.md)
+  * [小爬虫 JDBookCrawler-V3.0](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E5%B0%8F%E7%88%AC%E8%99%AB-JDBookCrawler-V3-0.md)
 
 ---
 
@@ -169,6 +171,6 @@
 
 ---
 
-### 📚📝 其它
-* `Hexo-blog framework`
+### 📚📝 GitHub
+  * [详解GitHub工作流程](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Understanding-the-GitHub-flow.md)
   * [备份及恢复Hexo博客的详细教程](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Back-up-the-Hexo-blog.md)
