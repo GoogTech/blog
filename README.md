@@ -147,6 +147,15 @@
 
 ---
 
+### 📚📝 `Vue`学习笔记
+* `Vue` 知识笔记
+  * [初始Vue.js](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Hi-Vue.md)
+  * [谈谈Vue的生命周期](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Vue-js%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.md)
+  * [Vue.js的数据响应式原理](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Vue-js%E7%9A%84%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86.md)
+  * [详解Vue的语法](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Vue-js%E7%9A%84%E8%AF%AD%E6%B3%95.md)
+
+---
+
 ### 📚📝 `网络爬虫`学习笔记
 * `Java`网络爬虫
   * [Java爬虫之HttpClient](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Java%E7%88%AC%E8%99%AB%E4%B9%8BHttpClient.md)
