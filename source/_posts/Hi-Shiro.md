@@ -66,7 +66,31 @@ tags: [Java,Shiro]
 ### 案例
 #### 第一个Shiro程序
 *接下来通过一个简单的用户身份验证程序,来感受一下Shiro的魅力吧 !*
-1. *log4j.properties : 日志配置信息*
+1. *pom.xml : Maven依赖*
+```xml
+<dependencies>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.11</version>
+        <scope>test</scope>
+    </dependency>
+    <!-- Shiro核心包 -->
+    <dependency>
+        <groupId>org.apache.shiro</groupId>
+        <artifactId>shiro-core</artifactId>
+        <version>1.3.2</version>
+    </dependency>
+    <!-- slf4j的接口实现 -->
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+        <version>1.7.12</version>
+    </dependency>
+</dependencies>
+```
+
+2. *log4j.properties : 日志配置信息*
 ```t
 log4j.rootLogger=INFO, stdout
 log4j.appender.stdout=org.apache.log4j.ConsoleAppender
@@ -83,13 +107,13 @@ log4j.logger.org.apache.shiro.util.ThreadContext=WARN
 log4j.logger.org.apache.shiro.cache.ehcache.EhCache=WARN
 ```
 
-2. *shiro.ini : 存储用户身份信息(账户=密码)*
+3. *shiro.ini : 存储用户身份信息(账户=密码)*
 ```ini
 [users]
 root=yubuntu0109
 ```
 
-3. *ShiroTest.java : 验证用户登录信息*
+4. *ShiroTest.java : 验证用户登录信息*
 ```java
 package pers.huangyuhui;
 
@@ -140,7 +164,7 @@ public class ShiroTest {
 }
 ```
 
-4. *程序运行结果如下所示 :*
+5. *程序运行结果如下所示 :*
 ```java
 // ·····
 用户身份是否验证成功 :true
@@ -150,9 +174,11 @@ public class ShiroTest {
 
 
 #### 官方入门案例
-1. *log4.properties : 日志配置信息(同上)*
+1. *pom.xml : Maven依赖(同上)*
 
-2. *shiro.ini : 存储具有指定权限的,不同身份的用户信息*
+2. *log4.properties : 日志配置信息(同上)*
+
+3. *shiro.ini : 存储具有指定权限的,不同身份的用户信息*
 ```ini
 # =============================================================================
 # Quickstart INI Realm configuration
@@ -196,7 +222,7 @@ schwartz = lightsaber:*
 goodguy = winnebago:drive:eagle5
 ```
 
-3. *Quickstart.java : 一个简单的入门级程序,教你如何使用Shiro的API*
+4. *Quickstart.java : 一个简单的入门级程序,教你如何使用Shiro的API*
 ```java
 package pers.huangyuhui;
 
