@@ -5,6 +5,11 @@ tags: [Java,Shiro]
 ---
 
 ## 学习笔记 : 详解Shiro登录登出的操作流程
+*在shiro中,用户需要提供principals(身份)和credentials(证明)给shiro,继而来验证用户的身份信息,最常见的princpals和 credentials组合就是用户名 / 密码啦~*
+
+* principals : 身份,即主体的标识属性,如用户名、邮箱等,需唯一. 一个主体可以有多个principals,但只有一个Primary principals,一般是用户名 / 密码 / 手机号
+* credentials : 证明 / 凭证,即只有主体知道的安全值,如密码 / 数字证书等
+
 
 ### 登录登出案例
 *接下来通过一个模拟验证用户登录信息的示例程序,来探究并分析一下Shiro的验证用户身份信息的流程*
