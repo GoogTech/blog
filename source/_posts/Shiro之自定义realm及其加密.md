@@ -1,7 +1,7 @@
 ---
 title: Shiro之自定义realm及其加密
 date: 2019-08-01 18:49:46
-tags: [Java,Shrio]
+tags: [Java,Shiro]
 ---
 
 ## 学习笔记 :  Shiro之自定义realm及其加密
