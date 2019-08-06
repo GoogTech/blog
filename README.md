@@ -144,7 +144,20 @@
 
 * `Spring Boot` 项目笔记
   * [Spring Boot整合MyBatis,集成Redis的简单项目 : 好友备忘录](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Spring-Boot%E9%A1%B9%E7%9B%AE-%E5%A5%BD%E5%8F%8B%E5%A4%87%E5%BF%98%E5%BD%95.md)
+  
+---
 
+### 📚📝 `Shiro`学习笔记
+* `Shiro`知识笔记
+  * [拥抱Shiro ~](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Hi-Shiro.md)
+  * [详解Shiro登录登出的操作流程](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E8%AF%A6%E8%A7%A3Shiro%E7%99%BB%E5%BD%95%E7%99%BB%E5%87%BA%E7%9A%84%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B.md)
+  * [Shiro之自定义realm及其加密](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Shiro%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89realm%E5%8F%8A%E5%85%B6%E5%8A%A0%E5%AF%86.md)
+  * [详解Shiro的用户授权](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Shiro%E4%B9%8B%E7%94%A8%E6%88%B7%E6%8E%88%E6%9D%83.md)
+  * [Shiro的拦截机制](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Shiro%E7%9A%84%E6%8B%A6%E6%88%AA%E5%99%A8%E6%9C%BA%E5%88%B6.md)
+
+* `Shiro`案例笔记
+  * [Shiro整合Web : 一个简单的用户权限控制案例](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Shiro%E6%95%B4%E5%90%88Web-%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E6%A1%88%E4%BE%8B.md)
+  
 ---
 
 ### 📚📝 `Vue`学习笔记
@@ -153,6 +166,12 @@
   * [谈谈Vue的生命周期](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Vue-js%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.md)
   * [Vue.js的数据响应式原理](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Vue-js%E7%9A%84%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86.md)
   * [详解Vue的语法](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Vue-js%E7%9A%84%E8%AF%AD%E6%B3%95.md)
+  * [Vue的自定义指令与过滤器](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Vue-js%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4%E4%B8%8E%E8%BF%87%E6%BB%A4%E5%99%A8.md)
+  * [Vue组件的定义及基本用法](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Vue%E7%BB%84%E4%BB%B6%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95.md)
+
+* `Vue`案例知识笔记
+  * [一个基于Vue.js的简单信息管理页](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8EVue%E7%9A%84%E7%AE%80%E5%8D%95%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E9%A1%B5.md)
+  * [一个基于Vue的简单评论框组件](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/A-simple-comment-component-for-Vue.md)
 
 ---
 
@@ -183,3 +202,4 @@
 ### 📚📝 GitHub
   * [详解GitHub工作流程](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Understanding-the-GitHub-flow.md)
   * [备份及恢复Hexo博客的详细教程](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Back-up-the-Hexo-blog.md)
+  * [如何在fork的仓库中创建一个pull request请求](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/How-to-create-a-pull-request-from-a-fork.md)
