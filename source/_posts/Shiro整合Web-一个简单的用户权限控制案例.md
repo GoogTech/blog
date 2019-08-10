@@ -5,7 +5,7 @@ tags: [Java web,Shiro]
 ---
 
 ## 学习笔记 : Shiro整合Web : 一个简单的用户权限控制案例
-*总结前面`Shiro`的基本学习笔记,继而尝试整合web,来写一个简单的用户权限控制案例( Java web ),用户权限划分如下 :*
+*总结前面`Shiro`的基本学习笔记,继而尝试整合web,来写一个简单的用户权限控制案例( Java web ),用户权限划分如下,该案例的代码仓库 : https://github.com/YUbuntu0109/Shiro-learning/tree/master/basic%20web%20project%20with%20shiro*
 
 * 管理员(admin) : 具有操控部门/员工信息管理页的所有权限
 * 用户(yuhui) : 仅具有部门信息的`view`权限
