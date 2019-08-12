@@ -1,11 +1,11 @@
 ---
-title: 'Shiro整合Web:一个简单的用户权限控制案例'
+title: '一个基础的Web整合Shiro案例'
 date: 2019-08-04 13:15:15
 tags: [Java web,Shiro]
 ---
 
-## 学习笔记 : Shiro整合Web : 一个简单的用户权限控制案例
-*总结前面`Shiro`的基本学习笔记,继而尝试整合web,来写一个简单的用户权限控制案例( Java web ),用户权限划分如下,该案例的代码仓库 : https://github.com/YUbuntu0109/Shiro-learning/tree/master/basic%20web%20project%20with%20shiro*
+## 学习笔记 : 一个基础的Web整合Shiro案例
+*总结前面`Shiro`的基本学习笔记,继而尝试整合web,来写一个基础的Web整合Shiro案例( Java web ),用户权限划分如下,该案例的代码仓库 : https://github.com/YUbuntu0109/Shiro-learning/tree/master/basic%20web%20project%20with%20shiro*
 
 * 管理员(admin) : 具有操控部门/员工信息管理页的所有权限
 * 用户(yuhui) : 仅具有部门信息的`view`权限
@@ -307,7 +307,7 @@ $(function () {
 <body>
 <div class="top">
     <div class="logo">
-        <h3 style="margin-left: 15px">Shiro整合基本web | 一个简单的用户权限控制案例</h3>
+        <h3 style="margin-left: 15px">Shiro整合基本web | 一个基础的Web整合Shiro案例</h3>
     </div>
     <div class="userinfo">
         当前登录用户 : <shiro:principal/>
@@ -614,19 +614,19 @@ public class EmployeeServlet extends HttpServlet {
 
 ### 案例截屏
 *用户登录页面 :*
-![](Shiro整合Web-一个简单的用户权限控制案例\Shiro整合web-用户登录页.PNG)
+![](一个基础的Web整合Shiro案例/Shiro整合web-用户登录页.PNG)
 
 *用户主页面 :*
-![](Shiro整合Web-一个简单的用户权限控制案例\Shiro整合web-用户主页.PNG)
+![](一个基础的Web整合Shiro案例/Shiro整合web-用户主页.PNG)
 
 *管理员(`admin`)身份登录 : 部门信息管理页( 该用户拥有操控部门信息管理页的所有权限 )*
-![](Shiro整合Web-一个简单的用户权限控制案例\Shiro整合web-admin-部门信息管理页.PNG)
+![](一个基础的Web整合Shiro案例/Shiro整合web-admin-部门信息管理页.PNG)
 
 *管理员(`admin`)身份登录 : 员工信息管理页( 该用户拥有操控员工信息管理页的所有权限 )*
-![](Shiro整合Web-一个简单的用户权限控制案例\Shiro整合web-admin-员工信息管理页.PNG)
+![](一个基础的Web整合Shiro案例/Shiro整合web-admin-员工信息管理页.PNG)
 
 *普通用户(`yuhui`)身份登录 : 部门信息管理页( 该用户只具有部门信息管理页的`view`权限 )*
-![](Shiro整合Web-一个简单的用户权限控制案例\Shiro整合web-yuhui-部门信息管理页.PNG)
+![](一个基础的Web整合Shiro案例/Shiro整合web-yuhui-部门信息管理页.PNG)
 
 *普通用户(`yuhui`)身份登录 : 员工信息管理页( 该用户并没有操控员工信息管理页的权限 )*
-![](Shiro整合Web-一个简单的用户权限控制案例\Shiro整合web-yuhui-员工信息管理页.PNG)
+![](一个基础的Web整合Shiro案例/Shiro整合web-yuhui-员工信息管理页.PNG)
