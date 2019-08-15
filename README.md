@@ -155,6 +155,10 @@
   * [详解Shiro的用户授权](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Shiro%E4%B9%8B%E7%94%A8%E6%88%B7%E6%8E%88%E6%9D%83.md)
   * [Shiro的拦截机制](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Shiro%E7%9A%84%E6%8B%A6%E6%88%AA%E5%99%A8%E6%9C%BA%E5%88%B6.md)
   * [详解Shiro的缓存机制](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E8%AF%A6%E8%A7%A3Shiro%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6.md)
+  
+* `Shiro`整合`SSM`知识笔记
+  * [SSM整合Shiro的基本配置](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/SSM%E6%95%B4%E5%90%88Shiro%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE.md)
+  * [详解JSP中Shiro标签的使用](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E8%AF%A6%E8%A7%A3JSP%E4%B8%ADShiro%E6%A0%87%E7%AD%BE%E7%9A%84%E4%BD%BF%E7%94%A8.md)
 
 * `Shiro`整合`Spring Boot`知识笔记
   * [Spring Boot集成Shiro的基本配置](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/SpringBoot%E9%9B%86%E6%88%90Shiro%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE.md)
@@ -162,8 +166,14 @@
   * [Spring Boot项目中Shiro集成EhCache](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/SpringBoot%E4%B8%ADShiro%E9%9B%86%E6%88%90EhCache.md)
 
 * `Shiro`案例笔记
-  * [Shiro整合Web : 一个简单的权限控制案例](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Shiro%E6%95%B4%E5%90%88Web-%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E6%A1%88%E4%BE%8B.md)
-  * [Shiro整合Spring Boot : 一个简单的权限管理案例](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84SpringBoot%E6%95%B4%E5%90%88Shiro%E7%9A%84%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E6%A1%88%E4%BE%8B.md)
+  * [一个基础的JavaWeb整合Shiro案例](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E4%B8%80%E4%B8%AA%E5%9F%BA%E7%A1%80%E7%9A%84Web%E6%95%B4%E5%90%88Shiro%E6%A1%88%E4%BE%8B.md)
+  * [一个基础的SSM整合Shiro案例](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Shiro%E6%95%B4%E5%90%88Web-%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6%E6%A1%88%E4%BE%8B.md)
+  * [一个基础的SpringBoot整合Shiro案例](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84SpringBoot%E6%95%B4%E5%90%88Shiro%E7%9A%84%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E6%A1%88%E4%BE%8B.md)
+
+* `Shiro`项目笔记
+  * [一个入门级别的SSM集成Shiro的后台权限管理系统](https://github.com/YUbuntu0109/Permission)
+  * [一个简洁的Springboot集成Shiro的后台权限管理系统](https://github.com/YUbuntu0109/springboot-shiro)
+  * [一个功能完善的SpringBoot集成Shiro的后台权限管理系统](https://github.com/YUbuntu0109/Shiro-Action)
   
 ---
 
@@ -212,3 +222,11 @@
   * [如何在fork的仓库中创建一个pull request请求](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/How-to-create-a-pull-request-from-a-fork.md)
   * [力推几款为GitHub量身定制的浏览器插件](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E4%B8%BAGitHub%E9%87%8F%E8%BA%AB%E5%AE%9A%E5%88%B6%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6.md)
   * [Git Commit Message 规范](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Git-Commit-Message-%E8%A7%84%E8%8C%83.md)
+  * [GitHub中emoji表情的含义及使用规范](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/GitHub%E4%B8%ADemoji%E8%A1%A8%E6%83%85%E7%9A%84%E5%90%AB%E4%B9%89%E5%8F%8A%E4%BD%BF%E7%94%A8%E8%A7%84%E8%8C%83.md)
+  
+ ---
+ 
+ ### 📚📝 编程工具
+ * Intellij IDEA
+  * [详解Intellij IDEA中的DEBUG功能](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E8%AF%A6%E8%A7%A3Intellij-IDEA%E4%B8%AD%E7%9A%84DEBUG%E5%8A%9F%E8%83%BD.md)
+  * [IDEA为何多处设置JDK,有什么区别呢 ?](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E8%AF%A6%E8%A7%A3%E5%9C%A8IDEA%E4%B8%AD%E5%A4%9A%E5%A4%84%E8%AE%BE%E7%BD%AEJDK%E5%8F%8A%E5%85%B6%E5%8C%BA%E5%88%AB.md)
