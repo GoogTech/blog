@@ -1,10 +1,10 @@
 ---
-title: Java 8中Lambda表达式的基本语法
+title: JDK 8新特性之Lambda表达式的基本语法
 date: 2019-08-17 16:40:31
 tags: [JDK8]
 ---
 
-## 学习笔记 : Java 8中Lambda表达式的基本语法
+## 学习笔记 : JDK 8新特性之Lambda表达式的基本语法
 
 ### 简介
 *Lambda表达式 : 在Java8语言中引入的一种新的语言元素和操作符,这个操作符为`->`,该操作符被称为`Lambda操作符`或`箭头操作符`,它将Lambda分为以下两个部分*
