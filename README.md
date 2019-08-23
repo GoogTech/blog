@@ -50,6 +50,21 @@
   * [DBUtils 工具](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/DBUtils.md)
   * [数据库连接池](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Database-Connection-Pool.md)
   * [简单工厂模式](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Simple-Factory-Pattern.md)
+
+* `JDK` 新特性学习笔记
+  * [JDK 8新特性之Lambda表达式的基本语法](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/JDK-8%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95.md)
+  * [JDK 8新特性之函数式接口的基本使用](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/JDK-8%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8B%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8.md)
+  * [JDK 8新特性之方法引用](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/JDK-8%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8B%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8.md)
+  * [JDK 8新特性之Stream流的基本使用](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/JDK-8%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BStream%E6%B5%81%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8.md)
+  * [JDK 8新特性之Stream流的基本使用案例](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Stream%E6%B5%81%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E7%9A%84%E7%BB%BC%E5%90%88%E6%A1%88%E4%BE%8B.md)
+  * [JDK 8新特性之Optional类的基本使用](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/JDK-8%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BOptional%E7%B1%BB%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8.md)
+  * [JDK 8新特性之默认方法的基本使用](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/JDK-8%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8B%E9%BB%98%E8%AE%A4%E6%96%B9%E6%B3%95%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8.md)
+  * [JDK 9新特性概述](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/JDK-9%E6%96%B0%E7%89%B9%E6%80%A7%E6%A6%82%E8%BF%B0.md)
+  * [JDK 9目录结构的变化及新特性之模块化](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/JDK-9%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E7%9A%84%E5%8F%98%E5%8C%96%E5%8F%8A%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8B%E6%A8%A1%E5%9D%97%E5%8C%96.md)
+  * [JDK 9新特性之REPL( JShell )](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/JDK-9%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BREPL-JShell.md)
+  * [JDK 9新特性详解](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/JDK-9%E6%96%B0%E7%89%B9%E6%80%A7%E8%AF%A6%E8%A7%A3.md)
+  * [JDK 10新特性详解](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/JDK-10%E6%96%B0%E7%89%B9%E6%80%A7%E8%AF%A6%E8%A7%A3.md)
+  * [JDK 11新特性详解](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/JDK-11%E6%96%B0%E7%89%B9%E6%80%A7%E8%AF%A6%E8%A7%A3.md)
     
 * `Java SE` 项目笔记
   * [发送电子邮件程序](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E7%94%B5%E5%AD%90%E9%82%AE%E7%AE%B1%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F.md)  
@@ -138,10 +153,12 @@
   * [拥抱Spring Boot ~](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Hi-Spring-Boot.md)
   * [Spring Boot之基本Web开发](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Spring-Boot%E4%B9%8B%E5%9F%BA%E6%9C%ACWeb%E5%BC%80%E5%8F%91.md)
   * [Spring Boot之整合视图层技术](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Spring-Boot%E4%B9%8B%E6%95%B4%E5%90%88%E8%A7%86%E5%9B%BE%E5%B1%82%E6%8A%80%E6%9C%AF.md)
-  * [Spring Boot之Thymeleaf](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Spring-Boot%E4%B9%8BThymeleaf.md)
+  * [Spring Boot之Thymeleaf的基本语法](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Spring-Boot%E4%B9%8BThymeleaf.md)
+  * [Spring Boot之整合FreeMarker](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/SpringBoot%E6%95%B4%E5%90%88FreeMarker.md)
   * [Spring Boot之文件上传](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Spring-Boot%E4%B9%8B%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0.md)
   * [Spring Boot整合MyBatis,集成Redis](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Spring-Boot%E6%8B%A5%E6%8A%B1MyBatis%E5%8F%8ARedis.md)
-
+  * [项目开发中PO,BO,VO,DTO,POJO,DAO的概念及其作用](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Java%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E4%B8%ADPO-BO-VO-DTO-POJO-DAO%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8F%8A%E5%85%B6%E4%BD%9C%E7%94%A8.md)
+  
 * `Spring Boot` 项目笔记
   * [Spring Boot整合MyBatis,集成Redis的简单项目 : 好友备忘录](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Spring-Boot%E9%A1%B9%E7%9B%AE-%E5%A5%BD%E5%8F%8B%E5%A4%87%E5%BF%98%E5%BD%95.md)
   
@@ -230,3 +247,4 @@
  * Intellij IDEA
   * [详解Intellij IDEA中的DEBUG功能](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E8%AF%A6%E8%A7%A3Intellij-IDEA%E4%B8%AD%E7%9A%84DEBUG%E5%8A%9F%E8%83%BD.md)
   * [IDEA为何多处设置JDK,有什么区别呢 ?](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E8%AF%A6%E8%A7%A3%E5%9C%A8IDEA%E4%B8%AD%E5%A4%9A%E5%A4%84%E8%AE%BE%E7%BD%AEJDK%E5%8F%8A%E5%85%B6%E5%8C%BA%E5%88%AB.md)
+  
