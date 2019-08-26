@@ -6,7 +6,7 @@ tags: [Thymeleaf,jQuery,Ajax,EasyUI,Spring Boot,MyBatis,,MySQL,Maven]
 
 ## A simple project for Spring Boot ~
 - *我的第一个`Spring Boot`小项目 （づ￣3￣）づ╭❤～*
-- *赶紧来学习吧 ! 期待你的`issues`哟(っ•̀ω•́)っ✎⁾⁾~ 该项目地址 : https://github.com/YUbuntu0109/SpringBoot-CURD-Memo*
+- *赶紧来学习吧 ! 期待你的`issues`哟(っ•̀ω•́)っ✎⁾⁾~ 该项目的GitHub仓库地址 : https://github.com/YUbuntu0109/springboot-beginner*
 
 
 ### 项目概述

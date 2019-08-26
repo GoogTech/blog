@@ -6,7 +6,7 @@ tags: [JSP,Servlet,jQuery,Ajax,EasyUI,MySQL]
 
 ## Student Information Management System
 - *我的第一个`Java web`项目 （づ￣3￣）づ╭❤～*
-- *赶紧来学习吧 ! 期待你的`issues`哟(っ•̀ω•́)っ✎⁾⁾~ 该项目地址, : https://github.com/YUbuntu0109/Student-Information-Management-System*
+- *赶紧来学习吧 ! 期待你的`issues`哟(っ•̀ω•́)っ✎⁾⁾~ 该项目的GitHub仓库地址 : https://github.com/YUbuntu0109/SMS*
 
 ### 项目概述
 
