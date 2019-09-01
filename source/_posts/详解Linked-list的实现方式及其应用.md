@@ -1,7 +1,7 @@
 ---
 title: 详解Linked list的实现方式及其应用
 date: 2019-04-19 11:54:07
-tags: [Java,Data Structures and Algorithms]
+tags: [Java,data structures and algorithms]
 ---
 
 ## 链表
