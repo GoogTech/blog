@@ -190,6 +190,9 @@ D-BOOK
 E-BOOK
 ```
 
+#### 示例程序的类图
+![ ](Java设计模式之Iterator模式/Iterator1-ClassDiagram.png)
+
 #### Iterator模式中的角色分析
 * `Iterator( 迭代器 )` : 该角色负责定义按顺序逐个遍历元素的接口( API ),在上述程序中,由`Iterator接口`扮演此角色.
 * `ConcreteIterator( 具体的迭代器 )` : 该角色负责实现`Iterator角色`所定义的接口( API ). 在上述程序中,由`BookShelfIterator类`扮演此角色.
@@ -358,6 +361,9 @@ D-BOOK
 E-BOOK
 all datas : [B-BOOK, C-BOOK, D-BOOK, E-BOOK]
 ```
+
+#### 示例程序的类图
+![ ](Java设计模式之Iterator模式/Iterator2-ClassDiagram.png)
 
 
 
