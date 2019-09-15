@@ -78,6 +78,8 @@
 * `Java` 语言实现
   * [详解Stack的实现方式及其应用](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E8%AF%A6%E8%A7%A3Stack%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.md)
   * [详解Linked list的实现方式及其应用](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E8%AF%A6%E8%A7%A3Linked-list%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.md)
+  * [详解Queue的实现方式及其应用](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/a21f12eadef13f771c5225a1f43d7b96a259d625/source/_posts/%E8%AF%A6%E8%A7%A3Queue%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.md)
+  * [详解Binary Tree的实现方式及其应用](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/a519387ae90ea45dc929c37c98eaf9624600b421/source/_posts/%E8%AF%A6%E8%A7%A3Binary-Tree%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.md)
 
 ---
 
@@ -140,6 +142,7 @@
     * [MyBatis之动态SQL](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/MyBatis-%E5%8A%A8%E6%80%81SQL.md)
     * [MyBatis之关联映射](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/MyBatis%E7%9A%84%E5%85%B3%E8%81%94%E6%98%A0%E5%B0%84.md)
     * [Spring整合MyBatis](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/MyBatis%E4%B8%8ESpring%E7%9A%84%E6%95%B4%E5%90%88.md)
+    * [使用MyBatis完成通用DAO和通用Service](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/15539b19ca90455805a278471c329dea780652df/source/_posts/%E4%BD%BF%E7%94%A8MyBatis%E5%AE%8C%E6%88%90%E9%80%9A%E7%94%A8DAO%E5%92%8C%E9%80%9A%E7%94%A8Service.md)
   
 * `Spring MVC` 知识笔记
     * [拥抱 Spring MVC ~](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Hi-SpringMVC.md)
