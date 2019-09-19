@@ -9,7 +9,7 @@
 
 
 ## 💖💛💙💚 👩‍💻💝💗💜🖤 大二学生的编程学习笔记
-*📒✍开源的目的仅有一个 : 真心希望自己的这些日常学习笔记,心得,项目能够帮助一些同学提高学习效率 ! 注 : 该学习笔记与我的博客同步更新哟~*
+*📒✍开源的目的仅有一个 : 真心希望自己的这些日常学习笔记 , 心得 , 项目能够帮助一些同学提高学习效率 ! 注 : 该学习笔记与我的博客同步更新哟~*
 
 
 
@@ -38,18 +38,16 @@
 
 ### 📚📝 Java SE 学习笔记
 * `Java SE` 知识笔记
-  * [全国计算机等级考试-二级Java](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E5%85%A8%E5%9B%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AD%89%E7%BA%A7%E8%80%83%E8%AF%95-Java.md)
   * [Java 注解](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Java-annotation.md)
   * [Java 反射](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Java-reflection.md)
   * [static 关键字](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/static-keyword.md)  
   * [Java 命名规范](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Naming-Notations.md)
   * [详解Java中对象的引用及赋值](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E8%AF%A6%E8%A7%A3Java%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BC%95%E7%94%A8%E5%8F%8A%E8%B5%8B%E5%80%BC.md)
-  * [详解Stack的实现方式及其应用](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E8%AF%A6%E8%A7%A3Stack%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.md)
-  * [详解Linked list的实现方式及其应用](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E8%AF%A6%E8%A7%A3Linked-list%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.md)
   * [JDBC 常见错误分析](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/JDBC-%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E5%88%86%E6%9E%90.md)
   * [DBUtils 工具](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/DBUtils.md)
   * [数据库连接池](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Database-Connection-Pool.md)
   * [简单工厂模式](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Simple-Factory-Pattern.md)
+  * [一个简单的JDBC基础模板](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/44101be17d81724e619583d1d29a1b246da96af4/source/_posts/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84JDBC%E5%9F%BA%E7%A1%80%E6%A8%A1%E6%9D%BF.md)
 
 * `JDK` 新特性学习笔记
   * [JDK 8新特性之Lambda表达式的基本语法](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/JDK-8%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95.md)
@@ -80,12 +78,24 @@
 * `Java` 语言实现
   * [详解Stack的实现方式及其应用](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E8%AF%A6%E8%A7%A3Stack%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.md)
   * [详解Linked list的实现方式及其应用](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E8%AF%A6%E8%A7%A3Linked-list%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.md)
+  * [详解Queue的实现方式及其应用](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/a21f12eadef13f771c5225a1f43d7b96a259d625/source/_posts/%E8%AF%A6%E8%A7%A3Queue%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.md)
+  * [详解Binary Tree的实现方式及其应用](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/a519387ae90ea45dc929c37c98eaf9624600b421/source/_posts/%E8%AF%A6%E8%A7%A3Binary-Tree%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.md)
 
 ---
 
-### 📚📝 `设计模式`学习笔记
-* `Java` 语言描述
-  * [简单工厂模式](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Simple-Factory-Pattern.md)
+### 📚📝 `Java 23种设计模式`学习笔记
+* [Java设计模式之面向对象的设计原则](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/c47b13ff2385c4f3591e126f7fa716116187bf85/source/_posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99.md)
+* [Java设计模式之`Iterator Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/021cdb23745e248b929ae0e22b1abc73390c7861/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BIterator%E6%A8%A1%E5%BC%8F.md)
+* [Java设计模式之`Adapter Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/f8dbc0386fdd17dfaf0058fa33f4028290dcc3b4/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BAdapter%E6%A8%A1%E5%BC%8F.md)
+* [Java设计模式之`Template Method Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/9b88254d74e6e6d04bba763ef078817a6f84c636/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BTemplate-Method%E6%A8%A1%E5%BC%8F.md)
+* [Java设计模式之`Simple Factory Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/b52f177ef858caf00005c7ef05c8c9cabb935705/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BSimple-Factory-Pattern.md)
+* [Java设计模式之`Factory Method Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/ce1e22e702feb1b05659535db5fbd7ba43102548/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BFactory-Method%E6%A8%A1%E5%BC%8F.md)
+* [Java设计模式之`Abstract Factory Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/7cb23df6082790495e6064a2a0c4fda1f29be752/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BAbstract-Factory-Pattern.md)
+* [Java设计模式之`Singleton Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/944defe30bdb4a2b52af9a6005d96b0ce71488bd/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BSingleton-Pattern.md)
+* [Java设计模式之`Decorator Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/9ce0507ae03c5470b3f983198614aa2f7db9491c/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BDecorator-Pattern.md) [( 延伸阅读 : 继承与委托中的一致性 )](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/85922188f60c9569f9bf2a9505d0cea4b3a49550/source/_posts/Java%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A7%94%E6%89%98%E4%B8%AD%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7.md)
+* [Java设计模式之`Composite Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/d1fd326370b68d55a1b2e834c86da36c4eb7b0d8/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BComposite-Pattern.md)
+* [Java设计模式之`Facade Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/6fd8c64611d82155f0e8e76f3afd5a3daf83c97d/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BFacade-Pattern.md)
+* [updating · · ·]()
 
 ---
 
@@ -132,6 +142,7 @@
     * [MyBatis之动态SQL](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/MyBatis-%E5%8A%A8%E6%80%81SQL.md)
     * [MyBatis之关联映射](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/MyBatis%E7%9A%84%E5%85%B3%E8%81%94%E6%98%A0%E5%B0%84.md)
     * [Spring整合MyBatis](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/MyBatis%E4%B8%8ESpring%E7%9A%84%E6%95%B4%E5%90%88.md)
+    * [使用MyBatis完成通用DAO和通用Service](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/15539b19ca90455805a278471c329dea780652df/source/_posts/%E4%BD%BF%E7%94%A8MyBatis%E5%AE%8C%E6%88%90%E9%80%9A%E7%94%A8DAO%E5%92%8C%E9%80%9A%E7%94%A8Service.md)
   
 * `Spring MVC` 知识笔记
     * [拥抱 Spring MVC ~](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Hi-SpringMVC.md)
