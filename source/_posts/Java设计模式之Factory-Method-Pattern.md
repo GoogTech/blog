@@ -173,7 +173,7 @@ this is some logs about file
 ```
 
 #### 示例程序的类图
-![](Java设计模式之Factory-Method模式/Factory-Method-Pattern-ClassDiagram1.png)
+![](Java设计模式之Factory-Method-Pattern/Factory-Method-Pattern-ClassDiagram1.png)
 
 
 
@@ -272,7 +272,7 @@ this is some logs about file
 ```
 
 #### 示例程序的类图
-![](Java设计模式之Factory-Method模式/Factory-Method-Pattern-ClassDiagram2.png)
+![](Java设计模式之Factory-Method-Pattern/Factory-Method-Pattern-ClassDiagram2.png)
 
 
 
@@ -348,4 +348,4 @@ this is some logs about file
 ```
 
 #### 示例程序的类图
-![](Java设计模式之Factory-Method模式/Factory-Method-Pattern-ClassDiagram3.png)
+![](Java设计模式之Factory-Method-Pattern/Factory-Method-Pattern-ClassDiagram3.png)

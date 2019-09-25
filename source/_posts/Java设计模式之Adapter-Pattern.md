@@ -119,7 +119,7 @@ public class Main {
 ```
 
 #### 示例程序的类图
-![ ](Java设计模式之Adapter模式/Adapter1-ClassDiagram.png)
+![ ](Java设计模式之Adapter-Pattern/Adapter1-ClassDiagram.png)
 
 #### Adapter模式中登场的角色
 * `Target( 目标抽象类 )` : 目标抽象类定义客户所需的接口,可以是一个抽象类或接口,也可以是具体类. 在类适配器中,由于Java语言不支持多重继承,所以它只能是接口.
@@ -236,7 +236,7 @@ public class Main {
 ```
 
 #### 示例程序的类图
-![ ](Java设计模式之Adapter模式/Adapter2-ClassDiagram.png)
+![ ](Java设计模式之Adapter-Pattern/Adapter2-ClassDiagram.png)
 
 
 
@@ -414,7 +414,7 @@ public class MyController {
 ```
 
 #### 示例程序的类图
-![ ](Java设计模式之Adapter模式/Adapter3-ClassDiagram.png)
+![ ](Java设计模式之Adapter-Pattern/Adapter3-ClassDiagram.png)
 
 #### Adapter模式中登场的角色
 * `ServiceInterface( 适配器接口 )` : 该接口中声明了大量的方法.

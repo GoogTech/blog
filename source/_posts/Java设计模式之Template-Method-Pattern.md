@@ -210,7 +210,7 @@ public class Main {
 * `ConcreteClass( 具体类 )` : 该类负责实现AbstrctClass中定义的抽象方法,`这些实现的方法将会在AbstractClass角色的模板方法中别调用.`
 
 #### 示例程序的类图
-![ ](Java设计模式之Template-Method模式/Template-Method1-ClassDiagram.png)
+![ ](Java设计模式之Template-Method-Pattern/Template-Method1-ClassDiagram.png)
 
 
 
@@ -353,4 +353,4 @@ public class Main {
 ```
 
 #### 示例程序的类图
-![ ](Java设计模式之Template-Method模式/Template-Method2-ClassDiagram.png)
+![ ](Java设计模式之Template-Method-Pattern/Template-Method2-ClassDiagram.png)
