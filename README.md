@@ -95,7 +95,9 @@
 * [Java设计模式之`Decorator Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/9ce0507ae03c5470b3f983198614aa2f7db9491c/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BDecorator-Pattern.md) [( 延伸阅读 : 继承与委托中的一致性 )](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/85922188f60c9569f9bf2a9505d0cea4b3a49550/source/_posts/Java%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A7%94%E6%89%98%E4%B8%AD%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7.md)
 * [Java设计模式之`Composite Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/d1fd326370b68d55a1b2e834c86da36c4eb7b0d8/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BComposite-Pattern.md)
 * [Java设计模式之`Facade Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/6fd8c64611d82155f0e8e76f3afd5a3daf83c97d/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BFacade-Pattern.md)
-* [updating · · ·]()
+* [Java设计模式之`Builder Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BBuilder-Pattern.md)
+* [Java设计模式之`Command Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BCommand-Pattern.md)
+* [Java设计模式之`Proxy Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BProxy-Pattern.md)
 
 ---
 
