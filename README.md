@@ -84,20 +84,25 @@
 ---
 
 ### 📚📝 `Java 23种设计模式`学习笔记
-* [Java设计模式之面向对象的设计原则](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/c47b13ff2385c4f3591e126f7fa716116187bf85/source/_posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99.md)
-* [Java设计模式之`Iterator Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/021cdb23745e248b929ae0e22b1abc73390c7861/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BIterator%E6%A8%A1%E5%BC%8F.md)
-* [Java设计模式之`Adapter Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/f8dbc0386fdd17dfaf0058fa33f4028290dcc3b4/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BAdapter%E6%A8%A1%E5%BC%8F.md)
-* [Java设计模式之`Template Method Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/9b88254d74e6e6d04bba763ef078817a6f84c636/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BTemplate-Method%E6%A8%A1%E5%BC%8F.md)
-* [Java设计模式之`Simple Factory Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/b52f177ef858caf00005c7ef05c8c9cabb935705/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BSimple-Factory-Pattern.md)
-* [Java设计模式之`Factory Method Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/ce1e22e702feb1b05659535db5fbd7ba43102548/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BFactory-Method%E6%A8%A1%E5%BC%8F.md)
-* [Java设计模式之`Abstract Factory Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/7cb23df6082790495e6064a2a0c4fda1f29be752/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BAbstract-Factory-Pattern.md)
-* [Java设计模式之`Singleton Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/944defe30bdb4a2b52af9a6005d96b0ce71488bd/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BSingleton-Pattern.md)
-* [Java设计模式之`Decorator Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/9ce0507ae03c5470b3f983198614aa2f7db9491c/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BDecorator-Pattern.md) [( 延伸阅读 : 继承与委托中的一致性 )](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/85922188f60c9569f9bf2a9505d0cea4b3a49550/source/_posts/Java%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A7%94%E6%89%98%E4%B8%AD%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7.md)
-* [Java设计模式之`Composite Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/d1fd326370b68d55a1b2e834c86da36c4eb7b0d8/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BComposite-Pattern.md)
-* [Java设计模式之`Facade Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/6fd8c64611d82155f0e8e76f3afd5a3daf83c97d/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BFacade-Pattern.md)
-* [Java设计模式之`Builder Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BBuilder-Pattern.md)
-* [Java设计模式之`Command Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BCommand-Pattern.md)
-* [Java设计模式之`Proxy Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BProxy-Pattern.md)
+* `Java` 23种设计模式学习笔记
+  * [Java设计模式之面向对象的设计原则](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/c47b13ff2385c4f3591e126f7fa716116187bf85/source/_posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99.md)
+  * [Java设计模式之`Iterator Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/021cdb23745e248b929ae0e22b1abc73390c7861/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BIterator%E6%A8%A1%E5%BC%8F.md)
+  * [Java设计模式之`Adapter Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/f8dbc0386fdd17dfaf0058fa33f4028290dcc3b4/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BAdapter%E6%A8%A1%E5%BC%8F.md)
+  * [Java设计模式之`Template Method Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/9b88254d74e6e6d04bba763ef078817a6f84c636/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BTemplate-Method%E6%A8%A1%E5%BC%8F.md)
+  * [Java设计模式之`Simple Factory Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/b52f177ef858caf00005c7ef05c8c9cabb935705/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BSimple-Factory-Pattern.md)
+  * [Java设计模式之`Factory Method Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/ce1e22e702feb1b05659535db5fbd7ba43102548/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BFactory-Method%E6%A8%A1%E5%BC%8F.md)
+  * [Java设计模式之`Abstract Factory Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/7cb23df6082790495e6064a2a0c4fda1f29be752/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BAbstract-Factory-Pattern.md)
+  * [Java设计模式之`Singleton Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/944defe30bdb4a2b52af9a6005d96b0ce71488bd/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BSingleton-Pattern.md)
+  * [Java设计模式之`Decorator Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/9ce0507ae03c5470b3f983198614aa2f7db9491c/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BDecorator-Pattern.md) [( 延伸阅读 : 继承与委托中的一致性 )](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/85922188f60c9569f9bf2a9505d0cea4b3a49550/source/_posts/Java%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A7%94%E6%89%98%E4%B8%AD%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7.md)
+  * [Java设计模式之`Composite Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/d1fd326370b68d55a1b2e834c86da36c4eb7b0d8/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BComposite-Pattern.md)
+  * [Java设计模式之`Facade Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/6fd8c64611d82155f0e8e76f3afd5a3daf83c97d/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BFacade-Pattern.md)
+  * [Java设计模式之`Builder Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BBuilder-Pattern.md)
+  * [Java设计模式之`Command Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BCommand-Pattern.md)
+  * [Java设计模式之`Proxy Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BProxy-Pattern.md)
+  * [Java设计模式之`Observer Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BObserver-Pattern.md)
+  
+* `Java` 23种设计模式项目笔记
+  * [详解Java 二十三种设计模式( 以上学习笔记的综合项目 )](https://github.com/YUbuntu0109/design-patterns-in-java)
 
 ---
 
