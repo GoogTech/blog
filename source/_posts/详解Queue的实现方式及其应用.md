@@ -1,7 +1,7 @@
 ---
 title: 详解Queue的实现方式及其应用
 date: 2019-08-31 21:37:20
-tags: [Java,data structures and algorithms]
+tags: [Java,Data Structures and Algorithms]
 ---
 
 ## 学习笔记 : 详解Queue的实现方式及其应用

@@ -1,7 +1,7 @@
 ---
 title: 详解Stack的实现方式及其应用
 date: 2019-04-13 10:00:01
-tags: [Java,data structures and algorithms]
+tags: [Java,Data Structures and Algorithms]
 ---
 
 ## 栈

@@ -1,7 +1,7 @@
 ---
 title: 详解Binary Tree的实现方式及其应用
 date: 2019-09-01 21:10:45
-tags: [Java,data structures and algorithms]
+tags: [Java,Data Structures and Algorithms]
 ---
 
 ## 学习笔记 : 详解Binary Tree的实现方式及其应用
