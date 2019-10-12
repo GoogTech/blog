@@ -1,12 +1,19 @@
-![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.png?v=103)
-![](https://img.shields.io/github/commit-activity/m/YUbuntu0109/YUbuntu0109.github.io.svg)
-![](http://progressed.io/bar/12?title=progress)
-![](https://img.shields.io/github/followers/YUbuntu0109.svg)
-![](https://img.shields.io/github/forks/YUbuntu0109/YUbuntu0109.github.io.svg)
-![](https://img.shields.io/github/stars/YUbuntu0109/YUbuntu0109.github.io.svg)
-![](https://img.shields.io/github/watchers/YUbuntu0109/YUbuntu0109.github.io.svg)
-![](https://img.shields.io/github/license/YUbuntu0109/YUbuntu0109.github.io.svg)
+<p align="center">
+	<a href="https://yubuntu0109.github.io/"><img src="https://raw.githubusercontent.com/YUbuntu0109/YUbuntu0109.github.io/430d06191a8297f8d49619597cddbdacefbab7f8/img/logo.png" width="500"></a>
+</p>
 
+
+<p align="center">
+    <img src="https://badges.frapsoft.com/os/v1/open-source.png?v=103"></img>
+    <img src="https://img.shields.io/github/commit-activity/m/YUbuntu0109/YUbuntu0109.github.io.svg"></img>
+    <img src="https://img.shields.io/github/followers/YUbuntu0109.svg"></img>
+    <img src="https://img.shields.io/github/stars/YUbuntu0109/YUbuntu0109.github.io.svg"></img>
+    <img src="https://img.shields.io/github/forks/YUbuntu0109/YUbuntu0109.github.io.svg"></img>
+    <img src="https://img.shields.io/github/watchers/YUbuntu0109/YUbuntu0109.github.io.svg"></img>
+    <img src="https://img.shields.io/github/license/YUbuntu0109/YUbuntu0109.github.io.svg"></img>
+</p>
+
+---
 
 ## 💖💛💙💚 👩‍💻💝💗💜🖤 大二学生的编程学习笔记
 *📒✍开源的目的仅有一个 : 真心希望自己的这些日常学习笔记 , 心得 , 项目能够帮助一些同学提高编程学习效率 ! 注 : 该学习笔记与我的博客网站同步更新哟~*
@@ -264,7 +271,7 @@
  ---
  
  ### 📚📝 编程工具
- * Intellij IDEA
+* Intellij IDEA
   * [详解Intellij IDEA中的DEBUG功能](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E8%AF%A6%E8%A7%A3Intellij-IDEA%E4%B8%AD%E7%9A%84DEBUG%E5%8A%9F%E8%83%BD.md)
   * [IDEA为何多处设置JDK,有什么区别呢 ?](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E8%AF%A6%E8%A7%A3%E5%9C%A8IDEA%E4%B8%AD%E5%A4%9A%E5%A4%84%E8%AE%BE%E7%BD%AEJDK%E5%8F%8A%E5%85%B6%E5%8C%BA%E5%88%AB.md)
   
