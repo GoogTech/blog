@@ -112,6 +112,7 @@
   * [Java设计模式之`Command Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BCommand-Pattern.md)
   * [Java设计模式之`Proxy Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BProxy-Pattern.md)
   * [Java设计模式之`Observer Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BObserver-Pattern.md)
+  * [Java设计模式之`Mediator Pattern`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BMediator-Pattern.md)
   
 * `Java` 23种设计模式项目笔记
   * [详解Java 二十三种设计模式( 以上学习笔记的综合项目 )](https://github.com/YUbuntu0109/design-patterns-in-java)
