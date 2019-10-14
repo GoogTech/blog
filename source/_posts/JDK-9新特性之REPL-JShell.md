@@ -1,7 +1,7 @@
 ---
 title: JDK 9新特性之REPL( JShell )
 date: 2019-08-20 18:24:35
-tags: [JDK9]
+tags: [JDK]
 ---
 
 ## 学习笔记 : JDK 9新特性之REPL( JShell )

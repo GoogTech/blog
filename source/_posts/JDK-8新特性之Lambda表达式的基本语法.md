@@ -1,7 +1,7 @@
 ---
 title: JDK 8新特性之Lambda表达式的基本语法
 date: 2019-08-17 16:40:31
-tags: [JDK8]
+tags: [JDK]
 ---
 
 ## 学习笔记 : JDK 8新特性之Lambda表达式的基本语法

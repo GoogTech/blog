@@ -1,7 +1,7 @@
 ---
 title: JDK 8新特性之Stream流的基本使用案例
 date: 2019-08-19 13:27:27
-tags: [JDK8]
+tags: [JDK]
 ---
 
 ## 学习笔记 : JDK 8新特性之Stream流的基本使用案例
