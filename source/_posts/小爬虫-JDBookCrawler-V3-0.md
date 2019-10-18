@@ -5,16 +5,25 @@ tags: [Java,WebMagic,MyBatis,MySQL,Crawler]
 ---
 
 ## 爬虫项目笔记 : JDBookCrawler-V3.0
-*简介 : `JDBookCrawler 3.0`的爬虫功能基于`JDBookCrawler 2.0`,前端设计参考项目[`SpringBoot-curd-memo`](https://github.com/YUbuntu0109/SpringBoot-CURD-Memo),简单点说`v3.0`等于`v2.0`+`Spring Boot`,😅不尴尬嘻嘻~*
+*简介 : `JDBookCrawler 3.0`的爬虫功能基于`JDBookCrawler 2.0`,前端设计参考项目[`springboot-beginner`](https://github.com/YUbuntu0109/springboot-beginner),简单点说`v3.0`就等于`v2.0` + `springboot`,😅不尴尬嘿嘿嘿~*
 
 
-### 项目概述
-#### 项目结构图
+### 开发环境
+| 工具    | 版本或描述                |    
+| ------- | ------------------------ |    
+| `OS`    | Windows 10               | 
+| `JDK`   |  1.8                     |    
+| `IDE`   | IntelliJ IDEA 2019.1     |    
+| `Maven` | 3.6.0                    |    
+| `MySQL` | 8.0.11                   |
+
+> 本项目的数据库版本为`8.0.11`，请广大版本为`5.0.0+`的同学注意咯：可通过逐个复制表结构来创建该数据库哟 ~
+
+
+### 项目结构图
 ```
 ├─bookcrawler-v3.0
 │  │  crawler.sql
-│  │  mvnw
-│  │  mvnw.cmd
 │  │  pom.xml
 │  │
 │  │
@@ -86,8 +95,8 @@ tags: [Java,WebMagic,MyBatis,MySQL,Crawler]
 │              │      │      validateExtends.js
 │              │      │
 │              │      └─themes
-|              |         |(略..)
-│              │         
+|              |         |
+│              │         |(略..)
 │              │
 |              |        
 │              └─templates
@@ -100,14 +109,16 @@ tags: [Java,WebMagic,MyBatis,MySQL,Crawler]
         BookCrawler-V3.0-Intro.PNG
 ```
 
+> `crawler`包存放的是`JDBookCrawler-v2.0`，既`3.0`使用了`2.0`的爬虫功能，其本身仅加入了页面可视化功能
 
-#### 程序运行指南
+
+### 运行指南
 1. *crawler.sql : 数据库文件*
 ```
 BookCrawler-v3.0/bookcrawler-v3.0/crawler.sql
 ```
 
-2. *BookCrawlerTest.java : 爬虫启动类(`crawler`包存放的是`JDBookCrawler-v2.0`哟 ~)*
+2. *BookCrawlerTest.java : 爬虫启动程序*
 ```java
 package pers.huangyuhui.bookcrawler.crawler;
 
@@ -124,18 +135,18 @@ import pers.huangyuhui.bookcrawler.crawler.util.FileUtils;
  * @website: https://yubuntu0109.github.io/
  */
 public class BookCrawlerTest {
-    //自定义搜索关键字
+    //指定图书关键字
     private static final String KEY_WORD = "网络爬虫";
-    //自定义页码数,每页可爬取三十条数据(注:下一页的页码数为前一页的页码数加二)
+    //指定页码数,每页可爬取三十条数据( 注:下一页的页码数为前一页的页码数加二 )
     private static final int END_PAGE_NUM = 2;
     private static final int CURRENT_PAGE_NUM = 1;
-    //获取项目下存储书籍图片的文件夹路径
+    //指定项目下存储书籍图片的文件夹路径
     private static final String IMAGE_PATH = FileUtils.getDirPath("/static/download/bookImage/");
-    //书籍列表页面的链接
+    //指定JD商城书籍列表页面的链接
     private static final String URL = "https://search.jd.com/Search?keyword=" + KEY_WORD + "&enc=utf-8&page=";
 
     /**
-     * @description: 🕷启动爬虫
+     * @description: 启动爬虫程序
      * @date: 2019-07-15 4:09 PM
      */
     public static void main(String[] args) {
@@ -143,10 +154,10 @@ public class BookCrawlerTest {
     }
 }
 ```
-*启动爬虫后其控制台输出的日志信息请参考JDBookCrawler-v2.0 : https://yubuntu0109.github.io/2019/07/15/%E5%B0%8F%E7%88%AC%E8%99%AB-JDBookCrawler-V2-0/*
 
+> 启动爬虫后其控制台输出的日志信息请参考 : [`JDBookCrawler v2.0`](https://yubuntu0109.github.io/2019/07/15/%E5%B0%8F%E7%88%AC%E8%99%AB-JDBookCrawler-V2-0/)
 
-3. *BookcrawlerApplication.java : 项目启动类(爬虫程序成功运行完成后,就可以启动该项目啦,这操作不尴尬哈哈哈 ~)*
+3. *BookcrawlerApplication.java : 项目启动类( 爬虫程序成功运行完成后，就可以启动该`springboot`项目啦，这操作不尴尬哈哈哈 ~ )*
 ```java
 package pers.huangyuhui.bookcrawler;
 
@@ -156,7 +167,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @project: bookcrawler
- * @description: 项目启动类
+ * @description: springboot项目启动类
  * @author: 黄宇辉
  * @date: 7/11/2019-9:16 PM
  * @version: 3.0
@@ -167,12 +178,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class BookcrawlerApplication {
 
     public static void main(String[] args) { SpringApplication.run(BookcrawlerApplication.class, args); }
-
 }
 ```
 
-4. *成功启动项目后,其项目主页,图书数据管理页如下图所示 :*
+4. *项目成功启动后，其项目主页，图书数据管理页如下图所示 :*
 
-![](https://raw.githubusercontent.com/YUbuntu0109/Crawler-learning/master/BookCrawler-v3.0/demonstration-images/BookCrawler-V3.0-Intro.PNG)
+![ ](https://raw.githubusercontent.com/YUbuntu0109/Crawler-learning/master/BookCrawler-v3.0/demonstration-images/BookCrawler-V3.0-Intro.PNG)
 
-![](https://raw.githubusercontent.com/YUbuntu0109/Crawler-learning/master/BookCrawler-v3.0/demonstration-images/BookCrawler-V3.0-bookList.PNG)
+![ ](https://raw.githubusercontent.com/YUbuntu0109/Crawler-learning/master/BookCrawler-v3.0/demonstration-images/BookCrawler-V3.0-bookList.PNG)
