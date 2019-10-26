@@ -1,7 +1,7 @@
 ---
 title: Git Commit Message 规范
 date: 2019-08-08 19:59:13
-tags: [GitHub]
+tags: [github_]
 ---
 
 ## 学习笔记 : Git Commit Message规范

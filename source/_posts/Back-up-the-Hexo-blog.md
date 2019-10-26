@@ -1,7 +1,7 @@
 ---
 title: Back up the Hexo blog
 date: 2019-04-07 09:55:40
-tags: [Hexo,GitHub]
+tags: [Hexo,github_]
 ---
 
 ## 文章主题 : 备份及恢复`Hexo`博客的详细教程

@@ -1,7 +1,7 @@
 ---
 title: 为GitHub量身定制的浏览器插件
 date: 2019-08-08 08:29:09
-tags: [GitHub]
+tags: [github_]
 ---
 
 ## 力推几款为GitHub量身定制的浏览器插件

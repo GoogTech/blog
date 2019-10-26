@@ -1,7 +1,7 @@
 ---
 title: How to create a pull request from a fork
 date: 2019-07-29 18:03:07
-tags: [GitHub]
+tags: [github_]
 ---
 
 ## 学习笔记 : 如何在`fork`的仓库中创建一个`pull request`请求
