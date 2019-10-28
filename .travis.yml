@@ -1,6 +1,10 @@
 language: node_js
 node_js: stable
 
+# cache:
+#   directories:
+#     - node_modules
+
 # S: Build Lifecycle
 install:
   - npm install hexo-cli -g
@@ -19,8 +23,8 @@ after_script:
   - git config user.name "yubuntu0109"
   - git config user.email "Gentleman_0109@outlook.com"
   - git add .
-  - git commit -m "Travis CI:update the static blog"
-  - git push --force --quiet "https://${YUBUNTU0109_TOKEN}@${https://github.com/YUbuntu0109/YUbuntu0109.github.io}" master:master
+  - git commit -m "update my personal website"
+  - git push --force --quiet "https://${YUBUNTU0109_TOKEN}@${GH_REF}" master:master
 
 # E: Build LifeCycle
 branches:
