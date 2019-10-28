@@ -1,0 +1,31 @@
+language: node_js
+node_js: stable
+
+# S: Build Lifecycle
+install:
+  - npm install hexo-cli -g
+  - npm install
+
+# before_script:
+ # - npm install -g gulp
+
+script:
+  - hexo clean
+  - hexo g
+
+after_script:
+  - cd ./public
+  - git init
+  - git config user.name "yubuntu0109"
+  - git config user.email "Gentleman_0109@outlook.com"
+  - git add .
+  - git commit -m "Travis CI: update the static blog"
+  - git push --force --quiet "https://${YUBUNTU0109_TOKEN}@${https://github.com/YUbuntu0109/YUbuntu0109.github.io}" master:master
+
+# E: Build LifeCycle
+branches:
+  only:
+    - HexoBackup
+env:
+ global:
+   - GH_REF: github.com/YUbuntu0109/YUbuntu0109.github.io.git
