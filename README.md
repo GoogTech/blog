@@ -5,6 +5,7 @@
 
 <p align="center">
     <img src="https://badges.frapsoft.com/os/v1/open-source.png?v=103"></img>
+    <img src="https://travis-ci.com/YUbuntu0109/YUbuntu0109.github.io.svg?branch=HexoBackup"></img>
     <img src="https://img.shields.io/github/commit-activity/m/YUbuntu0109/YUbuntu0109.github.io.svg"></img>
     <img src="https://img.shields.io/github/followers/YUbuntu0109.svg"></img>
     <img src="https://img.shields.io/github/stars/YUbuntu0109/YUbuntu0109.github.io.svg"></img>
@@ -195,7 +196,7 @@
 * `Spring Boot` 项目笔记
   * [Spring Boot 整合 MyBatis 并集成 Redis 的入门项目](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Spring-Boot%E9%A1%B9%E7%9B%AE-%E5%A5%BD%E5%8F%8B%E5%A4%87%E5%BF%98%E5%BD%95.md)
   * [一个简洁的 Springboot 集成 Shiro 的后台权限管理系统](https://github.com/YUbuntu0109/springboot-shiro)
-  * [一个采用前后端分离开发模式实现的多用户博客管理平台](https://github.com/YUbuntu0109/VBlog/tree/master)
+  * [一个采用前后端分离开发模式实现的多用户博客管理平台](https://github.com/YUbuntu0109/VBlog)
   
 ---
 
@@ -241,7 +242,7 @@
 * `Vue`案例知识笔记
   * [一个基于 Vue.js 的简单信息管理页](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8EVue%E7%9A%84%E7%AE%80%E5%8D%95%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E9%A1%B5.md)
   * [一个基于 Vue 的简单评论框组件](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/A-simple-comment-component-for-Vue.md)
-  * [一个采用前后端分离开发模式实现的多用户博客管理平台](https://github.com/YUbuntu0109/VBlog/tree/master)
+  * [一个采用前后端分离开发模式实现的多用户博客管理平台](https://github.com/YUbuntu0109/VBlog)
 
 ---
 
