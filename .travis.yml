@@ -19,7 +19,7 @@ after_script:
   - git config user.name "yubuntu0109"
   - git config user.email "Gentleman_0109@outlook.com"
   - git add .
-  - git commit -m "Travis CI: update the static blog"
+  - git commit -m "Travis CI:update the static blog"
   - git push --force --quiet "https://${YUBUNTU0109_TOKEN}@${https://github.com/YUbuntu0109/YUbuntu0109.github.io}" master:master
 
 # E: Build LifeCycle
