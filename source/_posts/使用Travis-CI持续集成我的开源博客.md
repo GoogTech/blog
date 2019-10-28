@@ -6,4 +6,4 @@ tags: [CI]
 
 ## 学习笔记 : 使用 Travis CI 持续集成我的开源博客
 
-> :rocket: *Travis CI User Documentaiton : https://docs.travis-ci.com/*
+> 🚀 *Travis CI User Documentaiton : https://docs.travis-ci.com/*
