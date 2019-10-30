@@ -147,7 +147,7 @@ hyper_id: false
 canonical: false
 
 # 版权起始年份
-since_year: 2019/3/9
+since_year: 2019
 
 # 用户页面中作者相关的描述性文字，如不需要设为 false
 about: 用户页面中作者相关的描述性文字，如不需要设为： false
