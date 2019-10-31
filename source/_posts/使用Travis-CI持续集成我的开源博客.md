@@ -83,6 +83,17 @@ More details on our build environments are available in our [CI Environment](/us
 
 
 ### Continuous Ingration with my Hexo blog
+*将 Travis CI 持续集成到 Hexo blog 的基本步骤如下,详细信息请参考文章最下方的 `Reference`*
+1. 创建 Travis CI 账户
+2. 生成并配置 Access Token
+3. 创建 .travis.yml 配置文件
+4. 发布新博客( 测试是否成功集成 Travis CI )
+
+> 成功集成 Travis CI 后，往后每写完一篇博客文章后直接 pull 到远程仓库即可( 都已经集成 CI 了，就不要几篇几篇的一起 pull 啦~ )，既不需要再在本地执行将 Markdown 格式编写的博客文章生成 HTML 页面并部署到远程仓库的命令咯! 成功 pull 到远程仓库后，Travis CI 会先逐个测试你的 commit 是否会对 Hexo blog 运行环境造成影响，其后便尝试运行你所定义的脚本( hexo clean + hexo g + · · ·). . . 详情可参考我的 Travis CI 配置文件 : [.travis.yml](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/.travis.yml)
+
+
+
+### Introduce my personal blog
 ⏳ *时间如梭~ 自己现在都已经大三了. 大二时我才开始拥抱 GitHub，并使用 Hexo 加 Github 搭建了一个属于自己的静态博客网站，继而从此养成了写编程学习笔记的好习惯. 此项目包含了我大一到大三所有的编程学习笔记 : 真心希望自己的这些日常学习笔记，心得，及项目能够帮助一些同学提高学习效率！往后无论是读研，还是踏入社会后，我都会将她视为伴我成长的伙伴，一直维护着她，这一切的一切都是为了能够写出更加优美的代码哟~*
 
 ![ ](使用Travis-CI持续集成我的开源博客\Travis-CI-MyBlogWebsite-1.PNG)
@@ -91,7 +102,7 @@ More details on our build environments are available in our [CI Environment](/us
 
 
 
-### reference
+### Reference
 * [Travis CI 持续集成 GitHub 个人博客](https://www.jianshu.com/p/9d056d5ba78e)
 * [持续集成服务 Travis CI 教程](http://www.ruanyifeng.com/blog/2017/12/travis_ci_tutorial.html)
 * [使用 Travis CI 自动部署 Hexo 博客](https://www.bilibili.com/read/cv2884489)
