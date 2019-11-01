@@ -12,7 +12,7 @@
 	    <img src="https://badges.gitter.im/Mutual-learning/community.svg"></img>
     </a>
     <img src="https://img.shields.io/github/commit-activity/m/YUbuntu0109/YUbuntu0109.github.io?color=ff69b4"></img>
-    <img src="http://progressed.io/bar/15?title=progress"></img>
+    <!-- <img src="http://progressed.io/bar/15?title=progress"></img> -->
     <a ref="hexo-theme" href="https://github.com/yscoder/hexo-theme-indigo">
         <img src="https://img.shields.io/badge/hexo%20theme-indigo-green"></img>
     </a>
