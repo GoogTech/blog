@@ -6,12 +6,17 @@
 <p align="center">
     <img src="https://badges.frapsoft.com/os/v1/open-source.png?v=103"></img>
     <a rel="travis-ci" href="https://travis-ci.com/YUbuntu0109/YUbuntu0109.github.io">
-	<img src="https://travis-ci.com/YUbuntu0109/YUbuntu0109.github.io.svg?branch=HexoBackup"></img>
+	    <img src="https://travis-ci.com/YUbuntu0109/YUbuntu0109.github.io.svg?branch=HexoBackup"></img>
     </a>
     <a rel="gitter" href="https://gitter.im/Mutual-learning/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge">
-	<img src="https://badges.gitter.im/Mutual-learning/community.svg"></img>
+	    <img src="https://badges.gitter.im/Mutual-learning/community.svg"></img>
     </a>
-    <img src="https://img.shields.io/github/commit-activity/m/YUbuntu0109/YUbuntu0109.github.io.svg"></img>
+    <img src="https://img.shields.io/github/commit-activity/m/YUbuntu0109/YUbuntu0109.github.io?color=ff69b4"></img>
+    <img src="http://progressed.io/bar/15?title=progress"></img>
+    <a ref="hexo-theme" href="https://github.com/yscoder/hexo-theme-indigo">
+        <img src="https://img.shields.io/badge/hexo%20theme-indigo-green"></img>
+    </a>
+    <img src="https://img.shields.io/github/repo-size/YUbuntu0109/YUbuntu0109.github.io"></img>
     <img src="https://img.shields.io/github/followers/YUbuntu0109.svg"></img>
     <img src="https://img.shields.io/github/stars/YUbuntu0109/YUbuntu0109.github.io.svg"></img>
     <img src="https://img.shields.io/github/forks/YUbuntu0109/YUbuntu0109.github.io.svg"></img>
