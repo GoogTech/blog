@@ -9,7 +9,7 @@
 #    target: _blank    是否跳出，省略则在当前页面打开
 menu:
   home:
-    text: homepage
+    text: Homepage
     url: /
   archives:
     url: /archives
@@ -21,12 +21,16 @@ menu:
   github:
     url:  https://github.com/YUbuntu0109
     target: _blank
-  weibo:
-    url: https://github.com/YUbuntu0109
+  bimobject:
+    text: Bilibili
+    url: https://space.bilibili.com/364361791
     target: _blank
-  link:
-    text: Test
-    url: /custom
+  #link:
+  #  text: Bilibili
+  #  url: https://space.bilibili.com/364361791
+  #weibo:
+  #  url: 
+  #  target: _blank
 
 # 你的头像url
 avatar: /img/my-portrait.jpg
