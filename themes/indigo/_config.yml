@@ -21,13 +21,10 @@ menu:
   github:
     url:  https://github.com/YUbuntu0109
     target: _blank
-  bimobject:
+  link:
     text: Bilibili
     url: https://space.bilibili.com/364361791
     target: _blank
-  #link:
-  #  text: Bilibili
-  #  url: https://space.bilibili.com/364361791
   #weibo:
   #  url: 
   #  target: _blank
