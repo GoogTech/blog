@@ -1,7 +1,7 @@
 ---
-title: 我的GitHub成长之旅
+title: my growth journey of github
 date: 2019-11-03 17:16:54
-tags: [GitHub,life]
+tags: [github_,life]
 ---
 
 # 记录我的 GitHub 成长之旅
@@ -21,13 +21,13 @@ tags: [GitHub,life]
 *看完 Anduin2007 的技术分享视频后，随即便创建了一个属于我自己的 GitHub 账号，因为热爱 Linux( Ubuntu )操作系统，所以创建 GitHub 时就把 GitHub 账户名初始化成了 : `YUbuntu019`，其中 Y 是指我姓名 宇 的汉子首字母，0109 既我的生日嘿嘿~*
 
 *初次安装好 Ubuntu18.04 时立即激动地截下了一张图，一直珍藏到现在嘿嘿~*
-![ ](我的GitHub成长之旅\github-blog-20180922_ubuntu18.04-desktop.PNG)
+![ ](my-growth-journey-of-github\github-blog-20180922_ubuntu18.04-desktop.PNG)
 
 *成功安装 Mac 主题后的样子，太美了吧~*
-![ ](我的GitHub成长之旅\github-blog-20180922_ubuntu18.04-mac-theme.PNG)
+![ ](my-growth-journey-of-github\github-blog-20180922_ubuntu18.04-mac-theme.PNG)
 
 *尝试学习 Shell 时的样子，So cool or right ?*
-![ ](我的GitHub成长之旅\github-blog-20180922_ubuntu18.04-shell.PNG)
+![ ](my-growth-journey-of-github\github-blog-20180922_ubuntu18.04-shell.PNG)
 
 ---
 
@@ -37,7 +37,7 @@ tags: [GitHub,life]
 *从 18年9月22号 下午创建 GitHub 账户到今日为止已经过去五个月咯~*
 
 *我的 GitHub 主页*
-![ ](我的GitHub成长之旅\github-blog-20190222_github-homepage.PNG)
+![ ](my-growth-journey-of-github\github-blog-20190222_github-homepage.PNG)
 
 *记得我当时正在主要做了如下几件事 :*
 * 学习 [Shell 程序设计语言](https://github.com/YUbuntu0109/Linux-Ubuntu)
@@ -54,14 +54,14 @@ tags: [GitHub,life]
 
 *我的 Hexo blog 主页*
 
-![ ](我的GitHub成长之旅\github-blog-20190331_hexoblog-homepage.PNG)
+![ ](my-growth-journey-of-github\github-blog-20190331_hexoblog-homepage.PNG)
 
 ---
 
 ## 2019年06月17号
 *我的 GitHub 主页*
 
-![ ](我的GitHub成长之旅\github-blog-20190617_github-homepage.PNG)
+![ ](my-growth-journey-of-github\github-blog-20190617_github-homepage.PNG)
 
 *从中可以清晰地看出，我当时正在主要做如下几件事 :*
 * 使用 Servlet 写一个项目 : [学生信息管理系统( B/S )](https://github.com/YUbuntu0109/sms)
@@ -73,25 +73,25 @@ tags: [GitHub,life]
 ## 2019年6月21号
 *一直以来，我从B站上获取了很多编程知识，其也是我的知识源泉之一. 今天决定开始在B站上做点力所能及的事情，既做编程技术及项目分享! 由此我的第一个视频便在B站上诞生了嘿嘿~ 其播出后短时间会引来那么多同学的响应与支持是我真心没有想到的，真心为自己的视频可以帮助到其他同学而感动~*
 
-![ ](我的GitHub成长之旅\github-blog-20190621_B-homepage.PNG)
+![ ](my-growth-journey-of-github\github-blog-20190621_B-homepage.PNG)
 
 ---
 
 ## 2019年07月04号
 *大二下学期放暑假前，有很多小伙伴在B站上及QQ群里私信我，向我询问如何高效学习编程知识及其线路规划，想了想. . . 于是我将自己的所有学习笔记整理了一下并上传到了我的静态博客网站仓库中，然后经仔细分类后将其一一列在了 `README.md` 上. 要知道我其实一直在强调一点 : `写博客、做分享、及写项目等是高效学习编程的最好方式！！！`之所以把我日常的学习笔记、小项目开源也是为了向大家证明我是如何从中获益的~*
 
-![ ](我的GitHub成长之旅\github-blog-20190704_hexoblog-opensource1.PNG)
+![ ](my-growth-journey-of-github\github-blog-20190704_hexoblog-opensource1.PNG)
 
-![ ](我的GitHub成长之旅\github-blog-20190704_hexoblog-opensource2.jpg)
+![ ](my-growth-journey-of-github\github-blog-20190704_hexoblog-opensource2.jpg)
 
 ---
 
 ## 2019年07月22号
 *暑假我选择待在家里继续学习编程知识，每天的生活和学校一样 : `while( summer holiday ){ coding，eating and sleeping }. . .` 今天发现我的 Hexo blog 的用户总访问量已成功突破 `10000+` ! 想到自己分享的知识可以让其他同学也从中获益我就感觉很开心呀~*
 
-![ ](我的GitHub成长之旅\github-blog-20190722_hexoblog-homepage1-1w.PNG)
+![ ](my-growth-journey-of-github\github-blog-20190722_hexoblog-homepage1-1w.PNG)
 
-![ ](我的GitHub成长之旅\github-blog-20190722_hexoblog-homepage2-1w.PNG)
+![ ](my-growth-journey-of-github\github-blog-20190722_hexoblog-homepage2-1w.PNG)
 
 *在暑假里我学习的主要内容如下 :*
 * [学习 Vue 前端框架](https://github.com/YUbuntu0109/vue-learning)
@@ -106,16 +106,16 @@ tags: [GitHub,life]
 ## 2019年10月04号
 *今年我的 Hexo blog 的用户总访问量成功突破 `20000+` ! 感谢各位小伙伴一直以来的支持! 我会坚持做分享哒~*
 
-![ ](我的GitHub成长之旅\github-blog-20191004_hexoblog-homepage-2w.PNG)
+![ ](my-growth-journey-of-github\github-blog-20191004_hexoblog-homepage-2w.PNG)
 
 ---
 
 ## 2019年11月02号
 *一觉醒来，发现我的 `GitHub followers` 成功达到 `100+` ! 而且自己开源的博客笔记项目的 `star` 数也达到了 `100` ! 这真的是值得纪念的日子啊，超级开心哟~*
 
-![ ](我的GitHub成长之旅\github-blog-20191102_github-homepage.PNG)
+![ ](my-growth-journey-of-github\github-blog-20191102_github-homepage.PNG)
 
-![ ](我的GitHub成长之旅\github-blog-20191102_hexoblog-opensource1.PNG)
+![ ](my-growth-journey-of-github\github-blog-20191102_hexoblog-opensource1.PNG)
 
 *从大三开学以来，我主要的学习内容如下 :*
 * [坚持写博客，做分享](https://github.com/YUbuntu0109/YUbuntu0109.github.io)
