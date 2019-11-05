@@ -279,19 +279,41 @@
 ---
 
 ### 📚📝 GitHub
+* `GitHub`学习笔记
   * [详解 GitHub 工作流程](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Understanding-the-GitHub-flow.md)
   * [备份及恢复 Hexo 博客的详细教程](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Back-up-the-Hexo-blog.md)
   * [如何在 fork 的仓库中创建一个 pull request 请求](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/How-to-create-a-pull-request-from-a-fork.md)
   * [力推几款为 GitHub 量身定制的浏览器插件](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E4%B8%BAGitHub%E9%87%8F%E8%BA%AB%E5%AE%9A%E5%88%B6%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6.md)
   * [Git Commit Message 规范](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Git-Commit-Message-%E8%A7%84%E8%8C%83.md)
   * [GitHub 中 emoji 表情的含义及使用规范](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/GitHub%E4%B8%ADemoji%E8%A1%A8%E6%83%85%E7%9A%84%E5%90%AB%E4%B9%89%E5%8F%8A%E4%BD%BF%E7%94%A8%E8%A7%84%E8%8C%83.md)
+
+* `GitHub` 使用文档
+  * [GitHub 漫游指南](https://github.com/YUbuntu0109/github)
+  * [GitHub 官方帮助文档](https://help.github.com/en)
+
+---
+
+### 📚📝 CI/CD
+* [使用 Travis CI 持续集成我的 Hexo 开源博客](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E4%BD%BF%E7%94%A8Travis-CI%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E6%88%91%E7%9A%84%E5%BC%80%E6%BA%90%E5%8D%9A%E5%AE%A2.md)
+
+---
+
+### 📚📝 DevOps
+* [What's the DevOps ?](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/What-s-the-DevOps.md)  
   
- ---
+---
  
- ### 📚📝 编程工具
+### 📚📝 Tools
 * `Intellij IDEA`
   * [详解 IDEA 中的 DEBUG 功能](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E8%AF%A6%E8%A7%A3Intellij-IDEA%E4%B8%AD%E7%9A%84DEBUG%E5%8A%9F%E8%83%BD.md)
   * [IDEA 为何多处设置JDK,有什么区别呢 ?](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E8%AF%A6%E8%A7%A3%E5%9C%A8IDEA%E4%B8%AD%E5%A4%9A%E5%A4%84%E8%AE%BE%E7%BD%AEJDK%E5%8F%8A%E5%85%B6%E5%8C%BA%E5%88%AB.md)
   
 * `Maven`
   * [Maven 依赖经常导入失败的解决方案](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Maven%E4%BE%9D%E8%B5%96%E7%BB%8F%E5%B8%B8%E5%AF%BC%E5%85%A5%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.md)
+
+* `Gitter`
+  * [程序员必备社交平台之 Gitter](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BF%85%E5%A4%87%E7%A4%BE%E4%BA%A4%E5%B9%B3%E5%8F%B0%E4%B9%8BGitter.md)
+
+
+
+> :octocat: *[let's witness my growth journey for github together~](https://yubuntu0109.github.io/2019/11/03/my-growth-journey-of-github/)*
