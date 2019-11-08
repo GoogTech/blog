@@ -121,3 +121,18 @@ tags: [github_,life]
 * [坚持写博客，做分享](https://github.com/YUbuntu0109/YUbuntu0109.github.io)
 * [详解 Java 的二十三种设计模式](https://github.com/YUbuntu0109/design-patterns-in-java)
 * [一个基于 Vue + SpringBoot 并采用当下流行的前后端分离开发模式实现的多用户博客管理平台](https://github.com/YUbuntu0109/VBlog)
+
+---
+
+## 2019年11月06号
+*今天在我开源的 [博客项目仓库](https://github.com/YUbuntu0109/YUbuntu0109.github.io) 中创建了两个 project( kanban )，用于高效管理自己学习及项目计划的进程. 我基本所有的编程学习计划都展示在这里啦~ 大家可作为参考创建自己的编程学习计划哟~*
+
+*我的学习进程看板*
+![ ](my-growth-journey-of-github\github-blog-20191106_github-project_learning-plain.PNG)
+
+* 可以看出我最近正在学习 Python v3.7.3
+
+*我的项目进程看板*
+![ ](my-growth-journey-of-github\github-blog-20191106_github-project_project-plain.PNG)
+
+* 可以看出我最近正在参与贡献的项目 : [一个基于 Spring Boot，Shiro，Layui 的权限管理系统](https://github.com/YUbuntu0109/Shiro-Action)
