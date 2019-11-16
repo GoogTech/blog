@@ -51,12 +51,14 @@ tags: [Python]
 
 
 ### 实现一个简单的学生管理系统
-*早上在图书馆花了`2`个小时左右时间看完了 `《Python 快速编程入门》` 书籍的前六章，毕竟我是有编程基础的嘿嘿，况且编程语言之间是相通的. 为了熟悉 Python 函数的基本使用，晚上回到寝室写了一个简单的学生管理系统，相比`hello world implemented by Python`程序是不是有点急啦哈哈哈~ 代码如下所示 :*
+*早上在图书馆花了`2`个小时左右时间看完了 `《Python 快速编程入门》` 书籍的前六章，毕竟我是有编程基础的嘿嘿，况且编程语言之间是相通的. 为了熟悉 Python 函数的基本使用，晚上回到寝室写了一个简单的学生管理系统，相比 `hello world implemented by Python` 程序是不是有点急啦哈哈哈~ 代码如下所示 :*
+
 ```python
 """
 Project name : python-learning
 Description : A SIMPLE STUDENT MANAGEMENT SYSTEM
 Author : 黄宇辉
+Version : 1.0
 Website : https://yubuntu0109.github.io/
 Created on 11/8/2019-6:47 PM
 """
@@ -73,6 +75,7 @@ def print_menu():
     print("2:DELETE THE STUDENT INFORMATION")
     print("3:MODIFY THE STUDENT INFORMATION")
     print("4:DISPLAY ALL OF STUDENT INFORMATIONS")
+    print("5:SAVE ALL OF STUDENT INFORMATIONS")
     print("0:EXIT")
     print("=" * 50)
 
@@ -115,8 +118,34 @@ def show_infos():
         i += 1
 
 
+# SAVE ALL OF STUDENT INFORMATIONS
+def save_data():
+    try:
+        file = open("db.data", "w")
+        file.write(str(student_infos))
+        file.close()
+    except FileNotFoundError:
+        print("CATCH THE EXCEPTION: THE SPECIFIED FILE NOT EXIST!")
+    else:  # so simple and so cool than Java
+        print("SAVE ALL OF STUDENT INFORMATIONS SUCCESSFULLY")
+
+
+# RECOVER ALL OF STUDENT INFORMATIONS
+def recover_data():
+    global student_infos
+    try:
+        file = open("db.data", "wb+")  # create new file if the specified file not exist
+        content = file.read()
+        print(content)  # throw the SyntaxError possibly: unexpected EOF while parsing
+        student_infos = eval(content)
+        file.close()
+    except (SyntaxError, FileNotFoundError) as exception_info:
+        print("CATCH THE EXCEPTION: %s" % exception_info)
+
+
 # MAIN FUNCTION
 def main():
+    recover_data()  # the specified file must store some datas before reading
     while True:
         print_menu()
         key = input("PLEASE ENTER THE SPECIFIED NO OF MENU: ")
@@ -128,6 +157,8 @@ def main():
             modify_info()
         elif key == '4':
             show_infos()
+        elif key == '5':
+            save_data()
         elif key == '0':
             quit_confirm = input("ARE YOU SURE TO QUIT ?( Yes or No ): ")
             if quit_confirm == "Yes":
@@ -136,44 +167,60 @@ def main():
                 print("ERROR : PLEASE ENTER THE RIGHT COMMAND !")
 
 
-# RUN IT
+# RUN
 main()
 ```
 
 *程序运行结果如下所示 :*
 ```
+CATCH THE EXCEPTION: unexpected EOF while parsing (<string>, line 0)
+
 ==================================================
 ### A SIMPLE STUDENT MANAGEMENT SYSTEM v1.0 ###
 1:ADD THE STUDENT INFORMATION
 2:DELETE THE STUDENT INFORMATION
 3:MODIFY THE STUDENT INFORMATION
 4:DISPLAY ALL OF STUDENT INFORMATIONS
+5:SAVE ALL OF STUDENT INFORMATIONS
 0:EXIT
 ==================================================
-
 PLEASE ENTER THE SPECIFIED NO OF MENU: 1
 PLEASE ENTER THE NEW STUDENT'S NAME: 黄宇辉
 PLEASE ENTER THE NEW STUDENT'S SEX: 男
 PLEASE ENTER THE NEW STUDENT'S PHONE: 00000000000
 
+
 ==================================================
 ### A SIMPLE STUDENT MANAGEMENT SYSTEM v1.0 ###
 1:ADD THE STUDENT INFORMATION
 2:DELETE THE STUDENT INFORMATION
 3:MODIFY THE STUDENT INFORMATION
 4:DISPLAY ALL OF STUDENT INFORMATIONS
+5:SAVE ALL OF STUDENT INFORMATIONS
 0:EXIT
 ==================================================
-
 PLEASE ENTER THE SPECIFIED NO OF MENU: 4
 
 ==================================================
 ALL OF STUDENT INFORMATION BE SHOWED AS FOLLOW
 ==================================================
 NO       NAME        SEX     PHONE
-1       黄宇辉        男      00000000000
+1        黄宇辉       男      00000000000
 
-. . . . . . 
+
+==================================================
+### A SIMPLE STUDENT MANAGEMENT SYSTEM v1.0 ###
+1:ADD THE STUDENT INFORMATION
+2:DELETE THE STUDENT INFORMATION
+3:MODIFY THE STUDENT INFORMATION
+4:DISPLAY ALL OF STUDENT INFORMATIONS
+5:SAVE ALL OF STUDENT INFORMATIONS
+0:EXIT
+==================================================
+PLEASE ENTER THE SPECIFIED NO OF MENU: 5
+SAVE ALL OF STUDENT INFORMATIONS SUCCESSFULLY
+
+. . . . . .
 ```
 
 *使用 Python 写完这个简单程序后，让我指间感觉超轻松，这语法太简洁了吧! 符合我的风格嘿嘿~*
