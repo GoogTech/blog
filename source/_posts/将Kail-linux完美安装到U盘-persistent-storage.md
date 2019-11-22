@@ -1,7 +1,7 @@
 ---
 title: 将Kail linux完美安装到U盘( persistent storage )
 date: 2019-11-15 21:03:34
-tags: [Kail Linux]
+tags: [Penetration Testing,Kali Linux]
 ---
 
 ## 将 Kail linux 完美安装到 U 盘( 持久性存储 )
