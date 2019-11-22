@@ -45,7 +45,7 @@ cat sam.hash
 
 
 
-## 使用 chntpw 操作 Windows 密码
+### 使用 chntpw 操作 Windows 密码
 *`chntpw` 是一个 Kali linux 自带的工具，可以用于编辑 Windows 注册表、重置用户密码、将用户提升为管理员，以及其它的一些有用的选项.*
 
 *前 4 步和上述 `使用 samdump2 破解 Windows 密码` 相同. 进入 Windows 用于存放用户账号密码的文件夹下后，运行 `chntpw`*
