@@ -133,8 +133,12 @@
 ---
 
 ### 📚📝 `Linux` 学习笔记
-* [Shell 编程入门](https://github.com/YUbuntu0109/Linux-Ubuntu)
-* [Ubuntu18.04 桌面美化-Mac theme](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Ubuntu18-04-Mac-theme.md)
+* Ubuntu
+  * [Shell 编程入门](https://github.com/YUbuntu0109/Linux-Ubuntu)
+  * [Ubuntu18.04 桌面美化-Mac theme](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Ubuntu18-04-Mac-theme.md)
+
+* Kail
+  * [将 Kail linux 持久化安装到 U 盘](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/9c0604b4db3b3d29e276a966b2589708f7a0f320/source/_posts/%E5%B0%86Kail-linux%E5%AE%8C%E7%BE%8E%E5%AE%89%E8%A3%85%E5%88%B0U%E7%9B%98-persistent-storage.md)
 
 ---
 
@@ -302,7 +306,18 @@
 * [What's the DevOps ?](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/What-s-the-DevOps.md)  
   
 ---
- 
+
+### 📚📝 `渗透测试` 学习笔记
+* [将 Kail linux 持久化安装到 U 盘](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/9c0604b4db3b3d29e276a966b2589708f7a0f320/source/_posts/%E5%B0%86Kail-linux%E5%AE%8C%E7%BE%8E%E5%AE%89%E8%A3%85%E5%88%B0U%E7%9B%98-persistent-storage.md)
+
+---
+
+### 📚📝 `Python 3.7.3` 学习笔记
+* [hello python](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/9c0604b4db3b3d29e276a966b2589708f7a0f320/source/_posts/hello-Python.md)
+* [Python操作 MySQL 数据库之基本的CURD](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/9c0604b4db3b3d29e276a966b2589708f7a0f320/source/_posts/Python%E6%93%8D%E4%BD%9CMySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8B%E5%9F%BA%E6%9C%AC%E7%9A%84CURD.md)
+
+---
+
 ### 📚📝 Tools
 * `Intellij IDEA`
   * [详解 IDEA 中的 DEBUG 功能](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/%E8%AF%A6%E8%A7%A3Intellij-IDEA%E4%B8%AD%E7%9A%84DEBUG%E5%8A%9F%E8%83%BD.md)
