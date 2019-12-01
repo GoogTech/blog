@@ -32,7 +32,7 @@
 ## 💖💛💙💚👩‍💻 大三学生的编程学习笔记 👨‍💻💝💗💜🖤
 *📒✍开源的目的仅有一个 : 真心希望自己的这些日常学习笔记，心得，项目能够帮助一些同学提高编程学习效率，该学习笔记与我的博客网站同步更新哟~ 注 : 本博客所有文章除特别声明外，均采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">`知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议`</a>进行许可 .*
 
-> 浏览所有 [`开源学习笔记`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/tree/HexoBackup/source/_posts) 或 [`我的编程及项目学习计划`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/projects)
+> 浏览所有 [`开源学习笔记`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/tree/HexoBackup/source/_posts) 或 [`我的编程、项目、学习计划及推荐书籍`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/projects)
 
 
 
@@ -304,11 +304,27 @@
 
 ### 📚📝 DevOps
 * [What's the DevOps ?](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/What-s-the-DevOps.md)  
-  
+
 ---
 
 ### 📚📝 `渗透测试` 学习笔记
-* [将 Kail linux 持久化安装到 U 盘](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/9c0604b4db3b3d29e276a966b2589708f7a0f320/source/_posts/%E5%B0%86Kail-linux%E5%AE%8C%E7%BE%8E%E5%AE%89%E8%A3%85%E5%88%B0U%E7%9B%98-persistent-storage.md)
+* `beginner`
+  * [Penetration Testing : 将 Kail linux 持久化安装到 U 盘](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/9c0604b4db3b3d29e276a966b2589708f7a0f320/source/_posts/%E5%B0%86Kail-linux%E5%AE%8C%E7%BE%8E%E5%AE%89%E8%A3%85%E5%88%B0U%E7%9B%98-persistent-storage.md)
+  * [Penetration Testing : 一个简单的 zip 文件密码破解程序](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Penetration-Testing-%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84zip%E6%96%87%E4%BB%B6%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3%E7%A8%8B%E5%BA%8F.md)
+  * [Penetration Testing : 物理攻击之 samdump2 与 chntpw](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Penetration-Testing-%E7%89%A9%E7%90%86%E6%94%BB%E5%87%BB%E4%B9%8Bsamdump2%E4%B8%8Echntpw.md)
+  * [Penetration Testing : 流量捕获之 APR 缓存攻击](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Penetration-Testing-%E6%B5%81%E9%87%8F%E6%8D%95%E8%8E%B7%E4%B9%8BAPR%E7%BC%93%E5%AD%98%E6%94%BB%E5%87%BB.md)
+  * [Penetration Testing : 流量捕获之 DNS 缓存攻击](https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/source/_posts/Penetration-Testing-%E6%B5%81%E9%87%8F%E6%8D%95%E8%8E%B7%E4%B9%8BDNS%E7%BC%93%E5%AD%98%E6%94%BB%E5%87%BB.md)
+
+* `learning`
+  * [penetration testing learning with python](https://github.com/YUbuntu0109/penetration-testing-learning)
+
+* `recommended resources`
+  * [Hacking](https://github.com/ckjbug/Hacking)
+  * [Awesome Hacking](https://github.com/Hack-with-Github/Awesome-Hacking)
+  * [awesome pentest](https://github.com/enaqx/awesome-pentest)
+  * [awesome hacking](https://github.com/carpedm20/awesome-hacking)
+  * [Awesome Hacking Resources](https://github.com/vitalysim/Awesome-Hacking-Resources)
+  * [Awesome Penetration Testing](https://github.com/wtsxDev/Penetration-Testing)
 
 ---
 
