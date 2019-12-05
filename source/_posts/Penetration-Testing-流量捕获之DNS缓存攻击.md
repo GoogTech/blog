@@ -78,6 +78,16 @@ the ip address between the target and the gateway is unordered
 ```
 
 
+### moments
+*a simple dns spoofing with phishing~*
+
+![ ](Penetration-Testing-流量捕获之DNS缓存攻击/penetration-testing_moments_dns-spoofing-with-phishing.png)
+
+*😅 a simple penetration testing in libaray which is so embarrassing . . .*
+
+![ ](Penetration-Testing-流量捕获之DNS缓存攻击/penetration-testing_moments_dns-spoofing-in-library.png)
+
+
 ### recommended tools
 * Ettercap: https://github.com/Ettercap/ettercap
 * Blackeye: https://github.com/thelinuxchoice/blackeye
