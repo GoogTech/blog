@@ -83,7 +83,7 @@ the ip address between the target and the gateway is unordered
 
 ![ ](Penetration-Testing-流量捕获之DNS缓存攻击/penetration-testing_moments_dns-spoofing-with-phishing.png)
 
-*😅 a simple penetration testing in libaray which is so embarrassing . . .*
+*😅 a simple penetration testing in library which is so embarrassing . . .*
 
 ![ ](Penetration-Testing-流量捕获之DNS缓存攻击/penetration-testing_moments_dns-spoofing-in-library.png)
 
