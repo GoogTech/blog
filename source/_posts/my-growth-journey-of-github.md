@@ -132,3 +132,12 @@ tags: [github_,life]
 
 *我的项目进程看板*
 ![ ](my-growth-journey-of-github\github-blog-20191106_github-project_project-plain.PNG)
+
+---
+
+## 2019年12月12号
+*🎉 个人博客网站的用户总访问量成功突破 `30000+` ! （づ￣3￣）づ╭❤～*
+
+![ ](my-growth-journey-of-github\github-blog-20191212_hexoblog-homepage1-3w.PNG)
+
+![ ](my-growth-journey-of-github\github-blog-20191212_hexoblog-homepage2-3w.PNG)
