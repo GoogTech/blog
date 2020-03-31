@@ -34,12 +34,11 @@
 
 > 浏览所有 [`开源学习笔记`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/tree/HexoBackup/source/_posts) 或 [`我的编程、项目、学习计划及推荐书籍`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/projects)
 
-
+---
 
 ### 👨‍🎓 个人简介
 * *姓名 : 黄宇辉*
-* *个人博客网站 : https://yubuntu0109.github.io/*
-* *邮箱 : Gentleman_0109@outlook.com / 3083968068@qq.com*
+* *个人博客网站 : https://ishacker.net/*
 
 ---
 
