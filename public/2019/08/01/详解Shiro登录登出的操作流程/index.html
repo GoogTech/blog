@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>详解Shiro登录登出的操作流程 - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-08-01 13:48">
+      August 1, 2019 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.8k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      27
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="学习笔记-详解Shiro登录登出的操作流程"><a href="#学习笔记-详解Shiro登录登出的操作流程" class="headerlink" title="学习笔记 : 详解Shiro登录登出的操作流程"></a>学习笔记 : 详解Shiro登录登出的操作流程</h2><p><em>在shiro中,用户需要提供principals(身份)和credentials(证明)给shiro,继而来验证用户的身份信息,最常见的princpals和 credentials组合就是用户名 / 密码啦~</em></p>
+<ul>
+<li>principals : 身份,即主体的标识属性,如用户名、邮箱等,需唯一. 一个主体可以有多个principals,但只有一个Primary principals,一般是用户名 / 密码 / 手机号</li>
+<li>credentials : 证明 / 凭证,即只有主体知道的安全值,如密码 / 数字证书等</li>
+</ul>
+<h3 id="登录登出案例"><a href="#登录登出案例" class="headerlink" title="登录登出案例"></a>登录登出案例</h3><p><em>接下来通过一个模拟验证用户登录信息的示例程序,来探究并分析一下Shiro的验证用户身份信息的流程</em></p>
+<ol>
+<li><p><em>pom.xml : Maven依赖</em></p>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
+    <span class="hljs-comment">&lt;!--Junit 单元测试 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.11<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- Shiro核心包 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.shiro<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>shiro-core<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.3.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- slf4j的接口实现 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.slf4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>slf4j-log4j12<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.7.12<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span></code></pre>
+</li>
+<li><p><em>shiro.ini : 存储用户身份信息(账户=密码)</em></p>
+<pre><code class="hljs ini"><span class="hljs-section">[users]</span>
+<span class="hljs-attr">root</span>=yubuntu0109</code></pre>
+</li>
+<li><p><em>ShiroTest.java : 模拟验证用户登录信息(把断点打在<code>currentUser.login(token)</code>)</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui;
+
+<span class="hljs-keyword">import</span> org.apache.shiro.SecurityUtils;
+<span class="hljs-keyword">import</span> org.apache.shiro.authc.AuthenticationException;
+<span class="hljs-keyword">import</span> org.apache.shiro.authc.IncorrectCredentialsException;
+<span class="hljs-keyword">import</span> org.apache.shiro.authc.UnknownAccountException;
+<span class="hljs-keyword">import</span> org.apache.shiro.authc.UsernamePasswordToken;
+<span class="hljs-keyword">import</span> org.apache.shiro.config.IniSecurityManagerFactory;
+<span class="hljs-keyword">import</span> org.apache.shiro.mgt.SecurityManager;
+<span class="hljs-keyword">import</span> org.apache.shiro.subject.Subject;
+<span class="hljs-keyword">import</span> org.apache.shiro.util.Factory;
+<span class="hljs-keyword">import</span> org.junit.Test;
+
+<span class="hljs-comment">/**
+ * Shiro认证测试:验证用户登录信息
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ShiroTest</span> </span>&#123;
+
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testLogin</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-comment">//1:加载配置文件,创建SecurityManager工厂对象</span>
+        Factory&lt;SecurityManager&gt; factory = <span class="hljs-keyword">new</span> IniSecurityManagerFactory(<span class="hljs-string">"classpath:shiro.ini"</span>);
+        <span class="hljs-comment">//2:获得securityManager实例对象</span>
+        SecurityManager securityManager = factory.getInstance();
+        <span class="hljs-comment">//3:将securityManger实例绑定到当前运行环境中,便于访问</span>
+        SecurityUtils.setSecurityManager(securityManager);
+        <span class="hljs-comment">//4:创建当前登录的主体</span>
+        Subject currentUser = SecurityUtils.getSubject();
+        <span class="hljs-comment">//5:绑定主体登录的身份/凭证,既账户及密码</span>
+        UsernamePasswordToken token = <span class="hljs-keyword">new</span> UsernamePasswordToken(<span class="hljs-string">"root"</span>, <span class="hljs-string">"yubuntu0109"</span>);
+        <span class="hljs-comment">//6:主体登录</span>
+        <span class="hljs-keyword">try</span> &#123;
+            currentUser.login(token);
+            System.out.println(<span class="hljs-string">"用户身份是否验证成功 :"</span> + currentUser.isAuthenticated());
+        &#125; <span class="hljs-keyword">catch</span> (UnknownAccountException e) &#123;
+            System.err.println(<span class="hljs-string">"用户账户信息错误 !"</span>);
+        &#125; <span class="hljs-keyword">catch</span> (IncorrectCredentialsException e) &#123;
+            System.err.println(<span class="hljs-string">"用户密码信息错误 !"</span>);
+        &#125; <span class="hljs-keyword">catch</span> (AuthenticationException e) &#123;
+            e.printStackTrace();
+        &#125;
+        <span class="hljs-comment">//8:注销登录</span>
+        currentUser.logout();
+        System.out.println(<span class="hljs-string">"身份身份是否注销成功 :"</span> + !currentUser.isAuthenticated());
+
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>程序运行效果如下所示 :</em></p>
+<pre><code class="hljs java"><span class="hljs-comment">// ······</span>
+用户身份是否验证成功 :<span class="hljs-keyword">true</span>
+<span class="hljs-comment">// ······</span>
+身份身份是否注销成功 :<span class="hljs-keyword">true</span></code></pre>
+
+
+</li>
+</ol>
+<h4 id="案例源码流程图"><a href="#案例源码流程图" class="headerlink" title="案例源码流程图"></a>案例源码流程图</h4><p><em>在分析源码之前,先看一下该案例的源码流程图吧,也便于后面对源码分析的理解~</em><br><img src="/2019/08/01/%E8%AF%A6%E8%A7%A3Shiro%E7%99%BB%E5%BD%95%E7%99%BB%E5%87%BA%E7%9A%84%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B/%E8%AF%A6%E8%A7%A3Shiro%E7%99%BB%E5%BD%95%E7%99%BB%E5%87%BA%E7%9A%84%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B%5CShiro-%E7%99%BB%E5%BD%95%E7%99%BB%E5%87%BA%E6%BA%90%E7%A0%81%E6%B5%81%E7%A8%8B%E5%9B%BE.png" srcset="/img/loading.gif" alt></p>
+<ol>
+<li><em>调用<code>subject.login(AuthenticationToken token)</code>方法进行用户登录,其会自动委托给<code>securityManager.login(Subject subject, AuthenticationToken token)</code>方法进行登录</em></li>
+<li><em><code>securityManager</code>(安全管理器)通过<code>Authenticator</code>(认证器)进行认证</em></li>
+<li><em><code>Authenticator</code>的实现类<code>ModularRealmAuthenticator</code>通过调用<code>realm</code>从<code>shiro.ini</code>配置文件中获取用户真实的信息(账户和密码),这里的Realm(域)可以看成DataSource,即安全数据源</em></li>
+<li><em><code>IniRealm</code>(可通过加载.ini文件生成reaml对象)先根据<code>token</code>中的账号去<code>shiro.ini</code>配置文件中去匹配该账号,如果找不到则<code>ModularRealmAuthenticator</code>返回null,如果找到则继续匹配密码,若匹配成功则认证通过,反之不通过哟~</em> </li>
+<li><em>最后可以使用<code>Subject.logout()</code>进行退出操作</em></li>
+</ol>
+<h3 id="案例源码流程分析"><a href="#案例源码流程分析" class="headerlink" title="案例源码流程分析"></a>案例源码流程分析</h3><ol>
+<li><em>运行上述程序,首先debug(Step into)进入<code>currentUser.login(token)</code>内部,既DelegatingSubject.java. 从源码可以看出 : 与Subject的所有交互都会委托给SecurityManager. 可以把Subject认为是一个门面,SecurityManager才是实际的执行者哟~</em><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">login</span><span class="hljs-params">(AuthenticationToken token)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
+        <span class="hljs-keyword">this</span>.clearRunAsIdentitiesInternal();
+        Subject subject = <span class="hljs-keyword">this</span>.securityManager.login(<span class="hljs-keyword">this</span>, token);
+        <span class="hljs-comment">// ······</span></code></pre>
+
+</li>
+</ol>
+<p><em>继续(Step into)进入<code>this.securityManager.login(this, token);</code>,既DefaultSecurityManager.java. 此时验证用户身份的的操作正式开始</em></p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> Subject <span class="hljs-title">login</span><span class="hljs-params">(Subject subject, AuthenticationToken token)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
+        AuthenticationInfo info;
+        <span class="hljs-keyword">try</span> &#123;
+            info = <span class="hljs-keyword">this</span>.authenticate(token);
+        &#125; <span class="hljs-keyword">catch</span> (AuthenticationException var7) &#123;
+        <span class="hljs-comment">// ······</span></code></pre>
+
+<ol start="2">
+<li><p><em>继续(Step into)进入<code>this.authenticate(token)</code>,既AuthenticatingSecurityManager.java. 从源码可以看出SecurityManager将<code>token</code>委托给了Authenticator(认证器)去执行用户身份的认证操作</em></p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> AuthenticationInfo <span class="hljs-title">authenticate</span><span class="hljs-params">(AuthenticationToken token)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.authenticator.authenticate(token);
+    &#125;</code></pre>
+</li>
+<li><p><em>继续(Step into)进入<code>this.authenticator.authenticate(token)</code>,既AbstractAuthenticator.java. 由<code>info = this.doAuthenticate(token);</code>获取一个AuthenticationInfo对象</em></p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> AuthenticationInfo <span class="hljs-title">authenticate</span><span class="hljs-params">(AuthenticationToken token)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
+       <span class="hljs-keyword">if</span> (token == <span class="hljs-keyword">null</span>) &#123;
+           <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">"Method argument (authentication token) cannot be null."</span>);
+       &#125; <span class="hljs-keyword">else</span> &#123;
+           log.trace(<span class="hljs-string">"Authentication attempt received for token [&#123;&#125;]"</span>, token);
+
+           AuthenticationInfo info;
+           <span class="hljs-keyword">try</span> &#123;
+               info = <span class="hljs-keyword">this</span>.doAuthenticate(token);
+               <span class="hljs-keyword">if</span> (info == <span class="hljs-keyword">null</span>) &#123;
+                   String msg = <span class="hljs-string">"No account information found for authentication token ["</span> + token + <span class="hljs-string">"] by this Authenticator instance.  Please check that it is configured correctly."</span>;
+                   <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> AuthenticationException(msg);
+               &#125;
+       <span class="hljs-comment">// ······</span></code></pre>
+</li>
+<li><p><em>继续(Step into)进入<code>info = this.doAuthenticate(token)</code>,既ModularRealmAuthenticator.java. 然后从系统所加载配置文件所对应的Realms的值中获取(<code>this.getRealms()</code>)一个realms对象,该对象中包含一个<code>users</code>属性,其中包含着用户的身份及凭证信息,例如账号为root,密码为yubuntu0109的用户信息</em></p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> AuthenticationInfo <span class="hljs-title">doAuthenticate</span><span class="hljs-params">(AuthenticationToken authenticationToken)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
+       assertRealmsConfigured();
+       Collection&lt;Realm&gt; realms = getRealms();
+       <span class="hljs-keyword">if</span> (realms.size() == <span class="hljs-number">1</span>) &#123;
+           <span class="hljs-keyword">return</span> doSingleRealmAuthentication(realms.iterator().next(), authenticationToken);
+       &#125; <span class="hljs-keyword">else</span> &#123;
+           <span class="hljs-keyword">return</span> doMultiRealmAuthentication(realms, authenticationToken);
+       &#125;
+   &#125;
+   <span class="hljs-comment">// ······</span></code></pre>
+
+</li>
+</ol>
+<p><em>继续(Step into)进入<code>this.doSingleRealmAuthentication((Realm)realms.iterator().next(), authenticationToken)</code>. 发现其通过<code>realm.getAuthenticationInfo(token)</code>获取一个AuthenticationInfo对象(其中存储着从Realm中获取的用户身份信息)</em></p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> AuthenticationInfo <span class="hljs-title">doSingleRealmAuthentication</span><span class="hljs-params">(Realm realm, AuthenticationToken token)</span> </span>&#123;
+        <span class="hljs-keyword">if</span> (!realm.supports(token)) &#123;
+            String msg = <span class="hljs-string">"Realm ["</span> + realm + <span class="hljs-string">"] does not support authentication token ["</span> +
+                    token + <span class="hljs-string">"].  Please ensure that the appropriate Realm implementation is "</span> +
+                    <span class="hljs-string">"configured correctly or that the realm accepts AuthenticationTokens of this type."</span>;
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> UnsupportedTokenException(msg);
+        &#125;
+        AuthenticationInfo info = realm.getAuthenticationInfo(token);
+        <span class="hljs-keyword">if</span> (info == <span class="hljs-keyword">null</span>) &#123;
+            String msg = <span class="hljs-string">"Realm ["</span> + realm + <span class="hljs-string">"] was unable to find account data for the "</span> +
+                    <span class="hljs-string">"submitted AuthenticationToken ["</span> + token + <span class="hljs-string">"]."</span>;
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> UnknownAccountException(msg);
+        &#125;
+        <span class="hljs-keyword">return</span> info;
+    &#125;</code></pre>
+
+<ol start="5">
+<li><em>继续(Step into)进入<code>realm.getAuthenticationInfo(token)</code>,既AuthenticatingRealm.java</em><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> AuthenticationInfo <span class="hljs-title">getAuthenticationInfo</span><span class="hljs-params">(AuthenticationToken token)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
+
+       AuthenticationInfo info = getCachedAuthenticationInfo(token);
+       <span class="hljs-keyword">if</span> (info == <span class="hljs-keyword">null</span>) &#123;
+           <span class="hljs-comment">//otherwise not cached, perform the lookup:</span>
+           info = doGetAuthenticationInfo(token);
+           log.debug(<span class="hljs-string">"Looked up AuthenticationInfo [&#123;&#125;] from doGetAuthenticationInfo"</span>, info);
+           <span class="hljs-keyword">if</span> (token != <span class="hljs-keyword">null</span> &amp;&amp; info != <span class="hljs-keyword">null</span>) &#123;
+               cacheAuthenticationInfoIfPossible(token, info);
+           &#125;
+       &#125; <span class="hljs-keyword">else</span> &#123;
+           log.debug(<span class="hljs-string">"Using cached authentication info [&#123;&#125;] to perform credentials matching."</span>, info);
+       &#125;
+
+       <span class="hljs-keyword">if</span> (info != <span class="hljs-keyword">null</span>) &#123;
+           assertCredentialsMatch(token, info);
+       &#125; <span class="hljs-keyword">else</span> &#123;
+           log.debug(<span class="hljs-string">"No AuthenticationInfo found for submitted AuthenticationToken [&#123;&#125;].  Returning null."</span>, token);
+       &#125;
+
+       <span class="hljs-keyword">return</span> info;
+   &#125;
+   <span class="hljs-comment">// ······</span></code></pre>
+
+</li>
+</ol>
+<p><em>(Step into)进入<code>doGetAuthenticationInfo(token)</code>,既SimpleAccountRealm.java. 通过<code>getUser(upToken.getUsername())</code>进行验证用户账户信息(稍后验证密码信息),然后返回一个SimpleAccount对象(account,如root),其中包含了凭证信息(credentials,如yubuntu0109)</em></p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> AuthenticationInfo <span class="hljs-title">doGetAuthenticationInfo</span><span class="hljs-params">(AuthenticationToken token)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
+        UsernamePasswordToken upToken = (UsernamePasswordToken) token;
+        SimpleAccount account = getUser(upToken.getUsername());
+
+        <span class="hljs-keyword">if</span> (account != <span class="hljs-keyword">null</span>) &#123;
+
+            <span class="hljs-keyword">if</span> (account.isLocked()) &#123;
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> LockedAccountException(<span class="hljs-string">"Account ["</span> + account + <span class="hljs-string">"] is locked."</span>);
+            &#125;
+            <span class="hljs-keyword">if</span> (account.isCredentialsExpired()) &#123;
+                String msg = <span class="hljs-string">"The credentials for account ["</span> + account + <span class="hljs-string">"] are expired"</span>;
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ExpiredCredentialsException(msg);
+            &#125;
+
+        &#125;
+
+        <span class="hljs-keyword">return</span> account;
+    &#125;
+    <span class="hljs-comment">// ······</span></code></pre>
+
+<p><em><code>getUser(String username)</code>的源码如下所示 :</em></p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> SimpleAccount <span class="hljs-title">getUser</span><span class="hljs-params">(String username)</span> </span>&#123;
+        USERS_LOCK.readLock().lock();
+        <span class="hljs-keyword">try</span> &#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.users.get(username);
+        &#125; <span class="hljs-keyword">finally</span> &#123;
+            USERS_LOCK.readLock().unlock();
+        &#125;
+    &#125;
+    <span class="hljs-comment">// ······</span></code></pre>
+
+<p><em>(step out)退出<code>doGetAuthenticationInfo(AuthenticationToken token)</code>方法,然后(step into)进入<code>assertCredentialsMatch(token, info)</code>方法,其属于AuthenticatingRealm.java. 继而执行验证用户密码信息的操作</em></p>
+<pre><code class="hljs java">protected void assertCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) throws AuthenticationException &#123;
+        CredentialsMatcher cm = getCredentialsMatcher();
+        if (cm != null) &#123;
+            if (!cm.doCredentialsMatch(token, info)) &#123;
+                //not successful - throw an exception to indicate this:
+                String msg = "Submitted credentials for token [" + token + "] did not match the expected credentials.";
+                throw new IncorrectCredentialsException(msg);
+            &#125;
+        &#125; else &#123;
+            throw new AuthenticationException("A CredentialsMatcher must be configured in order to verify " +
+                    "credentials during authentication.  If you do not wish for credentials to be examined, you " +
+                    "can configure an " + AllowAllCredentialsMatcher.class.getName() + " instance.");
+        &#125;
+    &#125;</code></pre>
+
+<p><em>(step into)进入<code>cm.doCredentialsMatch(token, info)</code>,其属于SimpleCredentialsMatcher.java. 观察Shiro是如何验证密码的 : 比较AuthenticationToken(<code>token</code>)与AuthenticationInfo(<code>info</code>)中的用户密码是否相同</em></p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">doCredentialsMatch</span><span class="hljs-params">(AuthenticationToken token, AuthenticationInfo info)</span> </span>&#123;
+        Object tokenCredentials = getCredentials(token);
+        Object accountCredentials = getCredentials(info);
+        <span class="hljs-keyword">return</span> equals(tokenCredentials, accountCredentials);
+    &#125;</code></pre>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Shiro/">Shiro</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/08/01/Shiro%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89realm%E5%8F%8A%E5%85%B6%E5%8A%A0%E5%AF%86/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Shiro之自定义realm及其加密</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/07/31/Hi-Shiro/">
+                        <span class="hidden-mobile">Hi Shiro ~</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "详解Shiro登录登出的操作流程&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

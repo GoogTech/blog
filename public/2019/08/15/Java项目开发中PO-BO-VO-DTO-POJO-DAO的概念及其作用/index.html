@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>Java项目开发中PO,BO,VO,DTO,POJO,DAO的概念及其作用 - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-08-15 15:39">
+      August 15, 2019 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      13
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="学习笔记-Java项目开发中PO-BO-VO-DTO-POJO-DAO的概念及其作用"><a href="#学习笔记-Java项目开发中PO-BO-VO-DTO-POJO-DAO的概念及其作用" class="headerlink" title="学习笔记 : Java项目开发中PO,BO,VO,DTO,POJO,DAO的概念及其作用"></a>学习笔记 : Java项目开发中PO,BO,VO,DTO,POJO,DAO的概念及其作用</h2><p><em>最近参与了GitHub上的一个开源项目 : <a href="https://github.com/YUbuntu0109/springboot-shiro" target="_blank" rel="noopener">一个简洁优美的Springboot集成Shiro的权限管理系统</a>, 项目中无论是模块的划分,还是结构的分层,都让我眼前一亮! 既而代码的功能被理所当然地划分的非常有层次感,可见作者的编程设计水平实属厉害啊~ 下面来一起学习下Java项目开发中 <code>PO</code>, <code>BO</code>, <code>VO</code>, <code>DTO</code>, <code>POJO</code>, <code>DAO</code> 的概念及其作用吧~</em></p>
+<h3 id="PO-bean、entity等命名"><a href="#PO-bean、entity等命名" class="headerlink" title="PO(bean、entity等命名)"></a>PO(bean、entity等命名)</h3><p><em><code>Persistant Object</code>持久对象 : 数据库表中的记录在Java对象中的显示状态. 最形象的理解就是一个<code>PO</code>就是数据库中的一条记录,好处是可以把一条记录作为一个对象处理,可以方便的转为其它对象</em></p>
+<h3 id="BO-service、manager、business等命名"><a href="#BO-service、manager、business等命名" class="headerlink" title="BO(service、manager、business等命名)"></a>BO(service、manager、business等命名)</h3><p><em><code>Business Object</code>业务对象 : 主要作用是把业务逻辑封装为一个对象. 这个对象可以包括一个或多个其它的对象,形象描述为一个对象的形为和动作,当然也有涉及到基它对象的一些形为和动作. 比如处理一个人的业务逻辑,有睡觉,吃饭,工作,上班等等形为,这样处理业务逻辑时,我们就可以针对BO去处理</em></p>
+<h3 id="VO-from也有此写法"><a href="#VO-from也有此写法" class="headerlink" title="VO(from也有此写法)"></a>VO(from也有此写法)</h3><p><em><code>Value Object</code>值对象 : 主要体现在视图的对象,对于一个<code>WEB</code>页面将整个页面的属性封装成一个对象,然后用一个VO对象在控制层与视图层进行传输交换</em></p>
+<h3 id="DTO-经过处理后的PO-可能增加或者减少PO的属性"><a href="#DTO-经过处理后的PO-可能增加或者减少PO的属性" class="headerlink" title="DTO(经过处理后的PO,可能增加或者减少PO的属性)"></a>DTO(经过处理后的PO,可能增加或者减少PO的属性)</h3><p><em><code>Data Transfer Object</code>数据传输对象 : 主要用于远程调用等需要大量传输对象的地方. 比如我们一张表有100个字段,那么对应的PO就有100个属性,但是我们界面上只要显示10个字段,客户端用<code>WEB service</code>来获取数据,没有必要把整个PO对象传递到客户端,这时我们就可以用只有这10个属性的DTO来传递结果到客户端,这样也不会暴露服务端表结构. 到达客户端以后,如果用这个对象来对应界面显示,那此时它的身份就转为VO</em></p>
+<h3 id="POJO-POJO是一种概念或者接口-身份及作用随环境变化而变化"><a href="#POJO-POJO是一种概念或者接口-身份及作用随环境变化而变化" class="headerlink" title="POJO(POJO是一种概念或者接口,身份及作用随环境变化而变化)"></a>POJO(POJO是一种概念或者接口,身份及作用随环境变化而变化)</h3><p><em><code>Plain Ordinary Java Object</code>简单Java对象 : 即POJO是一个简单的普通的Java对象,它不包含业务逻辑或持久逻辑等,但不是JavaBean、EntityBean等,不具有任何特殊角色和不继承或不实现任何其它Java框架的类或接口. POJO有一些Private的参数作为对象的属性. 然后针对每个参数定义了get和set方法作为访问的接口,POJO对象有时也被称为Data对象，大量应用于表现现实中的对象. <code>一个POJO持久化以后就是PO. 直接用它传递、传递过程中就是DTO. 直接用来对应表示层就是VO</code></em></p>
+<p><img src="/2019/08/15/Java%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E4%B8%ADPO-BO-VO-DTO-POJO-DAO%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8F%8A%E5%85%B6%E4%BD%9C%E7%94%A8/Java-POJO-PO-DTO-VO.png" srcset="/img/loading.gif" alt></p>
+<h3 id="DAO-Data-Access-Object数据访问对象"><a href="#DAO-Data-Access-Object数据访问对象" class="headerlink" title="DAO(Data Access Object数据访问对象)"></a>DAO(Data Access Object数据访问对象)</h3><p><em>这个大家最熟悉,和上面几个O区别最大,基本没有互相转化的可能性和必要. 主要用来封装对数据库的访问,通过它可以把POJO持久化为PO,用PO组装出来VO、DTO</em></p>
+<h3 id="Controller-控制层"><a href="#Controller-控制层" class="headerlink" title="Controller(控制层)"></a>Controller(控制层)</h3><p><em>控制层主要由<code>Action / Servlet</code>等构成( 目前Spring MVC则是通过@Controller标签使用 ),此层业务层与视图层打交道的中间层,负责传输VO对象和调用BO层的业务方法,负责视图层请求的数据处理后响应给视图层</em></p>
+<h3 id="View-视图层"><a href="#View-视图层" class="headerlink" title="View(视图层)"></a>View(视图层)</h3><p><em>主要是指由JSP、HTML等文件形成的显示层,总结一下要用具体的X0需要看具体环境及项目架构,在不同的层、不同的应用场合,对象的身份也不一样,而且对象身份的转化也是很自然的. 就像你对老婆来说就是老公,对父母来说就是子女. 设计这些概念的初衷不是为了唬人而是为了更好的理解和处理各种逻辑,让大家能更好的去用面向对象的方式处理问题</em></p>
+<h3 id="上述名词在实际项目的应用举例"><a href="#上述名词在实际项目的应用举例" class="headerlink" title="上述名词在实际项目的应用举例"></a>上述名词在实际项目的应用举例</h3><p><em><code>控制层</code>( controller-action ),<code>业务层/服务层</code>( bo-manager ),<code>实体层</code>( po-entity ),<code>数据访问</code>( dao ),<code>视图对象</code>( Vo-本项目省略 ),<code>视图层</code>( view-jsp/html )</em></p>
+<p><img src="/2019/08/15/Java%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E4%B8%ADPO-BO-VO-DTO-POJO-DAO%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8F%8A%E5%85%B6%E4%BD%9C%E7%94%A8/Java%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%90%84%E4%B8%AA%E5%B1%82%E6%AC%A1%E7%9A%84%E8%AF%A6%E7%BB%86%E5%88%92%E5%88%86.png" srcset="/img/loading.gif" alt></p>
+<p><em><code>在平时开发项目中大家记得要精细设计各层,既而避免后续项目开发中产生不必要的大量重复工作. 如果不是大型系统可简化一些层,毕竟技术是为应用服务哒~</code></em></p>
+<p><em>🙏摘自(获益匪浅,非常感谢) : <a href="https://www.cnblogs.com/EasonJim/p/7967949.html" target="_blank" rel="noopener">https://www.cnblogs.com/EasonJim/p/7967949.html</a></em></p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/08/17/JDK-8%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JDK 8新特性之Lambda表达式的基本语法</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/08/14/SpringBoot%E6%95%B4%E5%90%88FreeMarker/">
+                        <span class="hidden-mobile">SpringBoot整合FreeMarker</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Java项目开发中PO,BO,VO,DTO,POJO,DAO的概念及其作用&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

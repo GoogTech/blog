@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/11/28/Penetration-Testing-%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84zip%E6%96%87%E4%BB%B6%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3%E7%A8%8B%E5%BA%8F/">Penetration Testing : 一个简单的zip文件密码破解程序</a>
+
+      <a href="/2019/11/28/Penetration-Testing-%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84zip%E6%96%87%E4%BB%B6%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3%E7%A8%8B%E5%BA%8F/" class="index-excerpt">
+        
+        
+          
+        
+        <div>intro# author: huangyuhui
+# envir: python 3.7.3
+# date: november 20,2019
+# tested on the os: windows10
+# desc: brute force attack the specified zip file
+# repo address: https://github.com/yubuntu0109/</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-11-28
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Penetration-Testing/">Penetration Testing</a>
+            
+              <a href="/tags/Kali-Linux/">Kali Linux</a>
+            
+              <a href="/tags/Python/">Python</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/11/25/Penetration-Testing-%E6%B5%81%E9%87%8F%E6%8D%95%E8%8E%B7%E4%B9%8BDNS%E7%BC%93%E5%AD%98%E6%94%BB%E5%87%BB/">Penetration Testing : 流量捕获之DNS缓存攻击</a>
+
+      <a href="/2019/11/25/Penetration-Testing-%E6%B5%81%E9%87%8F%E6%8D%95%E8%8E%B7%E4%B9%8BDNS%E7%BC%93%E5%AD%98%E6%94%BB%E5%87%BB/" class="index-excerpt">
+        
+        
+          
+        
+        <div>intro# author: huangyuhui
+# date: november 27,2019
+# envir: 5.2.0-kali2
+# desc: the detailed steps about the dns attack
+# repo address: https://github.com/yubuntu0109/penetration-testing-learning
+# te</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-11-25
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Penetration-Testing/">Penetration Testing</a>
+            
+              <a href="/tags/Kali-Linux/">Kali Linux</a>
+            
+              <a href="/tags/Python/">Python</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/11/25/Penetration-Testing-%E6%B5%81%E9%87%8F%E6%8D%95%E8%8E%B7%E4%B9%8BAPR%E7%BC%93%E5%AD%98%E6%94%BB%E5%87%BB/">Penetration Testing : 流量捕获之APR缓存攻击</a>
+
+      <a href="/2019/11/25/Penetration-Testing-%E6%B5%81%E9%87%8F%E6%8D%95%E8%8E%B7%E4%B9%8BAPR%E7%BC%93%E5%AD%98%E6%94%BB%E5%87%BB/" class="index-excerpt">
+        
+        
+          
+        
+        <div>intro# author: huangyuhui
+# date: november 25,2019
+# envir: 5.2.0-kali2
+# desc: the detailed steps and the simple codes about the dns attack
+# repo address: https://github.com/yubuntu0109/penetration-</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-11-25
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Penetration-Testing/">Penetration Testing</a>
+            
+              <a href="/tags/Kali-Linux/">Kali Linux</a>
+            
+              <a href="/tags/Python/">Python</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/11/22/Penetration-Testing-%E7%89%A9%E7%90%86%E6%94%BB%E5%87%BB%E4%B9%8Bsamdump2%E4%B8%8Echntpw/">Penetration Testing : 物理攻击之samdump2与chntpw</a>
+
+      <a href="/2019/11/22/Penetration-Testing-%E7%89%A9%E7%90%86%E6%94%BB%E5%87%BB%E4%B9%8Bsamdump2%E4%B8%8Echntpw/" class="index-excerpt">
+        
+        
+          
+        
+        <div>Penetration Testing : 物理攻击之 samdump2 与 chntpw使用 samdump2 破解 Windows 密码
+首先将装有 Kali linux 操作系统的 U 盘插入 PC，并通过设置 BLOS 来启动 Kali linux
+
+通过命令查看分区情况，然后将 U 盘挂载到 Windows 操作系统的系统盘. 例如我的系统盘显示为 : /dev/sda2
+fdisk -</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-11-22
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Penetration-Testing/">Penetration Testing</a>
+            
+              <a href="/tags/Kali-Linux/">Kali Linux</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/11/15/%E5%B0%86Kail-linux%E5%AE%8C%E7%BE%8E%E5%AE%89%E8%A3%85%E5%88%B0U%E7%9B%98-persistent-storage/">将Kail linux完美安装到U盘( persistent storage )</a>
+
+      <a href="/2019/11/15/%E5%B0%86Kail-linux%E5%AE%8C%E7%BE%8E%E5%AE%89%E8%A3%85%E5%88%B0U%E7%9B%98-persistent-storage/" class="index-excerpt">
+        
+        
+          
+        
+        <div>将 Kail linux 完美安装到 U 盘( 持久性存储 )( 最近沉迷于 Kail linux 渗透测试与 Python )将 Kail linux 持久化安装到 U 盘的操作非常简单，步骤如下所示 :
+步骤一 : 准备Kail linux镜像及安装工具
+Win32DiskImager
+MiniTool Partition Wizard
+Download Kali Linux Images
+
+</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-11-15
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Penetration-Testing/">Penetration Testing</a>
+            
+              <a href="/tags/Kali-Linux/">Kali Linux</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/11/15/Python%E6%93%8D%E4%BD%9CMySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8B%E5%9F%BA%E6%9C%AC%E7%9A%84CURD/">Python操作MySQL数据库之基本的CURD</a>
+
+      <a href="/2019/11/15/Python%E6%93%8D%E4%BD%9CMySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%8B%E5%9F%BA%E6%9C%AC%E7%9A%84CURD/" class="index-excerpt">
+        
+        
+          
+        
+        <div>学习笔记 : Python 操作 MySQL 数据库之基本的 CURD🐍 学习完 Python 的基础知识后，当然需要进阶地学习关于 Python 的数据库编程知识啦~ 下面是我写的一个操作 MySQL 数据库的基本增删改查，其对于和我一样初学 Python 的同学来说，非常具有参考与学习价值哟~
+
+tb_user : 数据库表结构CREATE TABLE `tb_user` (
+  `id` </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-11-15
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/MySQL/">MySQL</a>
+            
+              <a href="/tags/Python/">Python</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/11/08/hello-Python/">hello Python</a>
+
+      <a href="/2019/11/08/hello-Python/" class="index-excerpt">
+        
+        
+          
+        
+        <div>学习笔记 : hello PythonPython 简介Python ( 英国发音：/ˈpaɪθən/，美国发音：/ˈpaɪθɑːn/ )，是一种面向对象的解释型计算机程序设计语言，由荷兰人 GuidovanRossum 于 1989 年发明，第一个公开发行版发行于 1991 年
+Python 是纯粹的自由软件，源代码和解释器 CPython 遵循 GPL( GNUGeneralPublicLic</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-11-08
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Python/">Python</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/11/03/my-growth-journey-of-github/">my growth journey of github</a>
+
+      <a href="/2019/11/03/my-growth-journey-of-github/" class="index-excerpt">
+        
+        
+          
+        
+        <div>记录我的 GitHub 成长之旅下面很多截图之所以能保留到现在是因为我有一个好习惯 : 珍藏的图片都会被我整齐分类后存放到指定文件夹下嘿嘿~
+2018年02月26号大一下学期，既 2017年12月31号 我向学院提交了转专业生申请表. 我真的真的真的超级喜欢软件工程专业，而不是通信工程专业. 经过一个寒假的焦急等待，幸运的是我终于成功转专业到软件工程，记得那天( 2018年02月26号 )我收到通</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-11-03
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/github/">github_</a>
+            
+              <a href="/tags/life/">life</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/11/01/What-s-the-DevOps/">What&#39;s the DevOps ?</a>
+
+      <a href="/2019/11/01/What-s-the-DevOps/" class="index-excerpt">
+        
+        
+          
+        
+        <div>学习笔记 : What’s the DevOps ?这周在学习 CI/CD( Continuous Integration/Continuous Deployment )时，无意间接触到了 DevOps 这个词! 那么什么是 DevOps 呢? 于是半夜在学校的图书管理系统里检索了这个词语，果然检索出了有很多相关书籍哟~ 幸运的是，经过两天空闲时间的学习让我对 DevOps 有了浅薄的认识，接下来</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-11-01
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/DevOps/">DevOps</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2019/11/01/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BF%85%E5%A4%87%E7%A4%BE%E4%BA%A4%E5%B9%B3%E5%8F%B0%E4%B9%8BGitter/">程序员必备社交平台之Gitter</a>
+
+      <a href="/2019/11/01/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BF%85%E5%A4%87%E7%A4%BE%E4%BA%A4%E5%B9%B3%E5%8F%B0%E4%B9%8BGitter/" class="index-excerpt">
+        
+        
+          
+        
+        <div>学习笔记 : 程序员必备社交平台之Gitter昨天晚上无意间接触到了 Gitter，并创建了我的第一个名为 Mutual learning的聊天室，并将它作为小徽章加入到了我开源的学习笔记项目中. Gitter 里汇集着世界各地的优秀程序开发者及社区，你可以轻易地与他们交流你的想法、代码、问题等. 相信你一定可以从他们的交流中获益匪浅~
+点击小徽章即可进入网页端的聊天室( Mutual learn</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-11-01
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Gitter/">Gitter</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "An elegant Material-Design theme for Hexo&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

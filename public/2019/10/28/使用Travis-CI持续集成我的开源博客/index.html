@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>使用Travis CI持续集成我的开源博客 - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-10-28 17:22">
+      October 28, 2019 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="学习笔记-使用-Travis-CI-持续集成我的-Hexo-开源博客"><a href="#学习笔记-使用-Travis-CI-持续集成我的-Hexo-开源博客" class="headerlink" title="学习笔记 : 使用 Travis CI 持续集成我的 Hexo 开源博客"></a>学习笔记 : 使用 Travis CI 持续集成我的 Hexo 开源博客</h2><h3 id="Travis-CI-for-beginner"><a href="#Travis-CI-for-beginner" class="headerlink" title="Travis CI for beginner"></a>Travis CI for beginner</h3><blockquote>
+<p>The following content from : <a href="https://docs.travis-ci.com/user/for-beginners/" target="_blank" rel="noopener">https://docs.travis-ci.com/user/for-beginners/</a></p>
+</blockquote>
+<h4 id="What-Is-Continuous-Integration-CI"><a href="#What-Is-Continuous-Integration-CI" class="headerlink" title="What Is Continuous Integration (CI)?"></a>What Is Continuous Integration (CI)?</h4><p>Continuous Integration is the practice of merging in small code changes<br>frequently - rather than merging in a large change at the end of a development<br>cycle. The goal is to build healthier software by developing and testing in smaller<br>increments. This is where Travis CI comes in.</p>
+<p>As a continuous integration platform, Travis CI supports your development<br>process by automatically building and testing code changes, providing immediate<br>feedback on the success of the change. Travis CI can also automate other parts<br>of your development process by managing deployments and notifications.  </p>
+<h4 id="CI-Builds-and-Automation-Building-Testing-Deploying"><a href="#CI-Builds-and-Automation-Building-Testing-Deploying" class="headerlink" title="CI Builds and Automation: Building, Testing, Deploying"></a>CI Builds and Automation: Building, Testing, Deploying</h4><p>When you run a build, Travis CI clones your GitHub repository into a brand-new<br>virtual environment, and carries out a series of tasks to build and test your<br>code. If one or more of those tasks fail, the build is considered<br><a href="#breaking-the-build"><em>broken</em></a>. If none of the tasks fail, the build is<br>considered <a href="#breaking-the-build"><em>passed</em></a> and Travis CI can deploy your code<br>to a web server or application host.</p>
+<p>CI builds can also automate other parts of your delivery workflow. This means<br>you can have jobs depend on each other with <a href="/user/build-stages/">Build Stages</a>,<br>set up <a href="/user/notifications/">notifications</a>, prepare<br><a href="/user/deployment/">deployments</a> after builds and many other tasks.</p>
+<h4 id="Builds-Jobs-Stages-and-Phases"><a href="#Builds-Jobs-Stages-and-Phases" class="headerlink" title="Builds, Jobs, Stages and Phases"></a>Builds, Jobs, Stages and Phases</h4><p>In the Travis CI documentation, some common words have specific meanings:</p>
+<ul>
+<li><em>phase</em> - the <a href="/user/job-lifecycle/">sequential steps</a><br>of a job. For example, the <code>install</code> phase, comes before the <code>script</code> phase,<br>which comes before the optional <code>deploy</code> phase.</li>
+<li><em>job</em> - an automated process that clones your repository into a virtual<br>environment and then carries out a series of <em>phases</em> such as compiling your<br>code, running tests, etc. A job fails, if the return code of the <code>script</code> <em>phase</em><br>is non-zero.</li>
+<li><em>build</em> - a group of <em>jobs</em>. For example, a build might have two <em>jobs</em>, each<br>of which tests a project with a different version of a programming language.<br>A <em>build</em> finishes when all of its jobs are finished.</li>
+<li><em>stage</em> - a group of <em>jobs</em> that run in parallel as part of a sequential build<br>process composed of multiple <a href="/user/build-stages/">stages</a>.</li>
+</ul>
+<h4 id="Breaking-the-Build"><a href="#Breaking-the-Build" class="headerlink" title="Breaking the Build"></a>Breaking the Build</h4><p>The build is considered <em>broken</em>, when one or more of its jobs complete with a<br>state that is not <em>passed</em>:</p>
+<ul>
+<li><em>errored</em> - a command in the <code>before_install</code>, <code>install</code>, or <code>before_script</code><br>phase returned a non-zero exit code. The job stops immediately.</li>
+<li><em>failed</em> - a command in the <code>script</code> phase returned a non-zero exit code. The<br>job continues to run until it completes.</li>
+<li><em>canceled</em> - a user cancels the job before it completes.</li>
+</ul>
+<p>Our <a href="/user/common-build-problems/">Common Builds Problems</a> page is a good place<br>to start troubleshooting why your build is broken.</p>
+<h4 id="Infrastructure-and-Environment-Notes"><a href="#Infrastructure-and-Environment-Notes" class="headerlink" title="Infrastructure and Environment Notes"></a>Infrastructure and Environment Notes</h4><p>Travis CI offers a few different infrastructure environments, so you can select<br>the setup that suits your project best:</p>
+<ul>
+<li><em>Ubuntu Linux</em> - these Linux Ubuntu environments run inside full virtual machines, provide plenty of computational resources, and support the use of <code>sudo</code>, <code>setuid</code>, and <code>setgid</code>. Check out more information on the <a href="/user/reference/linux/">Ubuntu Linux Build Environment</a>.</li>
+<li><em>macOS</em> - uses one of several versions of the macOS operating system. This environment is useful for building projects that require the macOS software, such as projects written in Swift. It is not a requirement to use the macOS environment, if you develop on a macOS machine. Here you can find more details on the <a href="/user/reference/osx/">macOS Build Environment</a>.</li>
+<li><em>Windows</em> - currently Windows Server version 1803 is supported. If you want to know more about it, see the <a href="/user/reference/windows/">Windows Build Environment</a>.</li>
+</ul>
+<p>More details on our build environments are available in our <a href="/user/ci-environment/">CI Environment</a> documentation.</p>
+<blockquote>
+<p>🚀 Now that you’ve read the basics, head over to our <a href="/user/tutorial/">Tutorial</a> for details on setting up your first build!  Travis CI User Documentaiton : <a href="https://docs.travis-ci.com/" target="_blank" rel="noopener">https://docs.travis-ci.com/</a> and the open source address of docs: <a href="https://github.com/travis-ci/docs-travis-ci-com" target="_blank" rel="noopener">https://github.com/travis-ci/docs-travis-ci-com</a></p>
+</blockquote>
+<h3 id="Continuous-Ingration-with-my-Hexo-blog"><a href="#Continuous-Ingration-with-my-Hexo-blog" class="headerlink" title="Continuous Ingration with my Hexo blog"></a>Continuous Ingration with my Hexo blog</h3><p><em>将 Travis CI 持续集成到 Hexo blog 的基本步骤如下,详细信息请参考文章最下方的 <code>Reference</code></em></p>
+<ol>
+<li>创建 Travis CI 账户</li>
+<li>生成并配置 Access Token</li>
+<li>创建 .travis.yml 配置文件</li>
+<li>发布新博客( 测试是否成功集成 Travis CI )</li>
+</ol>
+<blockquote>
+<p>成功集成 Travis CI 后，往后每写完一篇博客文章后直接 pull 到远程仓库即可( 都已经集成 CI 了，就不要几篇几篇的一起 pull 啦~ )，既不需要再在本地执行将 Markdown 格式编写的博客文章生成 HTML 页面并部署到远程仓库的命令咯! 成功 pull 到远程仓库后，Travis CI 会先逐个测试你的 commit 是否会对 Hexo blog 运行环境造成影响，其后便尝试运行你所定义的脚本( hexo clean + hexo g + · · ·). . . 详情可参考我的 Travis CI 配置文件 : <a href="https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/.travis.yml" target="_blank" rel="noopener">.travis.yml</a></p>
+</blockquote>
+<h3 id="Introduce-my-personal-blog"><a href="#Introduce-my-personal-blog" class="headerlink" title="Introduce my personal blog"></a>Introduce my personal blog</h3><p>⏳ <em>时间如梭~ 自己现在都已经大三了. 大二时我才开始拥抱 GitHub，并使用 Hexo 加 Github 搭建了一个属于自己的静态博客网站，继而从此养成了写编程学习笔记的好习惯. 此项目包含了我大一到大三所有的编程学习笔记 : 真心希望自己的这些日常学习笔记，心得，及项目能够帮助一些同学提高学习效率！往后无论是读研，还是踏入社会后，我都会将她视为伴我成长的伙伴，一直维护着她，这一切的一切都是为了能够写出更加优美的代码哟~ <a href="https://github.com/YUbuntu0109/YUbuntu0109.github.io" target="_blank" rel="noopener">https://github.com/YUbuntu0109/YUbuntu0109.github.io</a></em></p>
+<p><img src="/2019/10/28/%E4%BD%BF%E7%94%A8Travis-CI%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E6%88%91%E7%9A%84%E5%BC%80%E6%BA%90%E5%8D%9A%E5%AE%A2/%E4%BD%BF%E7%94%A8Travis-CI%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E6%88%91%E7%9A%84%E5%BC%80%E6%BA%90%E5%8D%9A%E5%AE%A2%5CTravis-CI-MyBlogWebsite-1.PNG" srcset="/img/loading.gif" alt=" "></p>
+<p><img src="/2019/10/28/%E4%BD%BF%E7%94%A8Travis-CI%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E6%88%91%E7%9A%84%E5%BC%80%E6%BA%90%E5%8D%9A%E5%AE%A2/%E4%BD%BF%E7%94%A8Travis-CI%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E6%88%91%E7%9A%84%E5%BC%80%E6%BA%90%E5%8D%9A%E5%AE%A2%5CTravis-CI-MyBlogWebsite-2.PNG" srcset="/img/loading.gif" alt=" "></p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li><a href="https://www.jianshu.com/p/9d056d5ba78e" target="_blank" rel="noopener">Travis CI 持续集成 GitHub 个人博客</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2017/12/travis_ci_tutorial.html" target="_blank" rel="noopener">持续集成服务 Travis CI 教程</a></li>
+<li><a href="https://www.bilibili.com/read/cv2884489" target="_blank" rel="noopener">使用 Travis CI 自动部署 Hexo 博客</a></li>
+</ul>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/CI/">CI</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/11/01/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BF%85%E5%A4%87%E7%A4%BE%E4%BA%A4%E5%B9%B3%E5%8F%B0%E4%B9%8BGitter/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">程序员必备社交平台之Gitter</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/10/21/Maven%E4%BE%9D%E8%B5%96%E7%BB%8F%E5%B8%B8%E5%AF%BC%E5%85%A5%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+                        <span class="hidden-mobile">Maven依赖经常导入失败的解决方案</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "使用Travis CI持续集成我的开源博客&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>Database Connection Pool - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-05-28 20:57">
+      May 28, 2019 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      26
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="学习笔记-数据库连接池"><a href="#学习笔记-数据库连接池" class="headerlink" title="学习笔记 : 数据库连接池"></a>学习笔记 : 数据库连接池</h2><p><em>简介 : 在JDBC编程中,每次创建和断开<code>Connection</code>对象都会消耗一定的时间和IO资源.为了避免频繁地创建数据库连接,工程师们提出了<code>数据库连接池</code>技术,其负责分配,管理和释放数据库连接,它允许应用程序重复使用现有的数据库连接,而不是重新建立连接 !</em></p>
+<h3 id="DataSource-接口"><a href="#DataSource-接口" class="headerlink" title="DataSource 接口"></a>DataSource 接口</h3><p><em>简介 : 为了获取数据库连接对象(Connection),JDBC提供了<code>javax.sql.DataSource</code>接口,它负责与数据库建立连接,并定义了返回值为Connection对象的方法. 人们习惯性地把实现了该接口的类称为<code>数据源</code>,在数据源中存储了所有建立数据库连接的信息.</em></p>
+<ul>
+<li><em><code>数据源中包含数据库库连接池,如果数据是水,数据库就是水库,数据源就是连接水库的管道,终端用户看到的数据集是管道里流出来的水.</code></em></li>
+</ul>
+<h3 id="DBCP-数据源"><a href="#DBCP-数据源" class="headerlink" title="DBCP 数据源"></a>DBCP 数据源</h3><p><em>简介 : <code>DBCP</code>是数据库连接池(DataBase Connection Pool)的简称,是Apache组织下的开源连接池实现.其jar包中包含两个核心的类,分别是<code>BasicDataSourceFactory</code>和<code>BasicDataSource</code>.</em></p>
+<ol>
+<li><em>BasicDataSource : 为DataSource的实现类,主要包含设置数据源对象的方法.</em></li>
+<li><em>BasicDataSourceFactory : 为创建BasicDataSource对象的工厂类,它主要包含一个返回值为BasicDataSource对象的方法<code>createDataSource()</code>,该方法通过读取配置文件的信息生成数据源对象并返回给调用者.</em></li>
+</ol>
+<h4 id="使用BasicDataSource类创建数据源对象"><a href="#使用BasicDataSource类创建数据源对象" class="headerlink" title="使用BasicDataSource类创建数据源对象"></a>使用BasicDataSource类创建数据源对象</h4><ol>
+<li><p><em>示例程序如下</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.dbcp.test;
+
+<span class="hljs-keyword">import</span> java.sql.Connection;
+<span class="hljs-keyword">import</span> java.sql.DatabaseMetaData;
+<span class="hljs-keyword">import</span> java.sql.SQLException;
+
+<span class="hljs-keyword">import</span> javax.sql.DataSource;
+
+<span class="hljs-keyword">import</span> org.apache.commons.dbcp2.BasicDataSource;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: DBCPTest
+ * <span class="hljs-doctag">@Description</span>: 通过BasicDataSource类直接创建数据源对象
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: May 29, 2019 9:25:36 PM
+ *
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DBCPTest</span> </span>&#123;
+
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> DataSource dataSource = <span class="hljs-keyword">null</span>;
+
+	<span class="hljs-keyword">static</span> &#123;
+		<span class="hljs-comment">// 获取DBCP数据源实现类对象</span>
+		BasicDataSource basicDataSource = <span class="hljs-keyword">new</span> BasicDataSource();
+
+		<span class="hljs-comment">// 设置连接数据库需要的配置信息</span>
+		basicDataSource.setDriverClassName(<span class="hljs-string">"com.mysql.cj.jdbc.Driver"</span>);
+		basicDataSource.setUrl(<span class="hljs-string">"jdbc:mysql://localhost/MyBatis?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true"</span>);
+		basicDataSource.setUsername(<span class="hljs-string">"xxxxxx"</span>);
+		basicDataSource.setPassword(<span class="hljs-string">"xxxxxx"</span>);
+
+		<span class="hljs-comment">// 设置连接池的参数</span>
+		basicDataSource.setInitialSize(<span class="hljs-number">5</span>);
+
+		dataSource = basicDataSource;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> SQLException </span>&#123;
+		<span class="hljs-comment">// 获取数据库连接对象</span>
+		Connection connection = dataSource.getConnection();
+		<span class="hljs-comment">// 获取数据库连接信息</span>
+		DatabaseMetaData databaseMetaData = connection.getMetaData();
+		<span class="hljs-comment">// 打印数据库连接信息</span>
+		System.out.println(<span class="hljs-string">"URL: "</span> + databaseMetaData.getURL() + <span class="hljs-string">"\nUser name: "</span> + databaseMetaData.getUserName()
+				+ <span class="hljs-string">"\nDirver name: "</span> + databaseMetaData.getDriverName() + <span class="hljs-string">"\n"</span>);
+	&#125;
+&#125;</code></pre>
+</li>
+<li><p><em>程序运行结果如下</em></p>
+<pre><code class="hljs less"><span class="hljs-attribute">URL </span>: <span class="hljs-attribute">jdbc</span>:<span class="hljs-attribute">mysql</span>:<span class="hljs-comment">//localhost/MyBatis?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true</span>
+User <span class="hljs-attribute">name </span>: xxxxxx<span class="hljs-variable">@localhost</span>
+Dirver <span class="hljs-attribute">name </span>: MySQL Connector/J</code></pre>
+
+
+</li>
+</ol>
+<h4 id="通过读取配置文件创建数据源对象"><a href="#通过读取配置文件创建数据源对象" class="headerlink" title="通过读取配置文件创建数据源对象"></a>通过读取配置文件创建数据源对象</h4><ol>
+<li><p><em>db.properties : 数据源文件</em></p>
+<pre><code class="hljs t">#database configuration information
+driverClassName=com.mysql.cj.jdbc.Driver
+url=jdbc:mysql://LOCALHOST/MyBatis?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true
+username=xxxxxx
+password=xxxxxx
+#DBCP configuration information
+initialSize=5
+maxIdle=10</code></pre>
+</li>
+<li><p><em>DBCPTest2.java : 测试类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.dbcp.test;
+
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.io.InputStream;
+<span class="hljs-keyword">import</span> java.sql.Connection;
+<span class="hljs-keyword">import</span> java.sql.DatabaseMetaData;
+<span class="hljs-keyword">import</span> java.sql.SQLException;
+<span class="hljs-keyword">import</span> java.util.Properties;
+
+<span class="hljs-keyword">import</span> javax.sql.DataSource;
+
+<span class="hljs-keyword">import</span> org.apache.commons.dbcp2.BasicDataSourceFactory;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: DBCPTest2
+ * <span class="hljs-doctag">@Description</span>: 通过读取配置文件创建数据源对象
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: May 29, 2019 9:45:15 PM
+ *
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DBCPTest2</span> </span>&#123;
+
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> DataSource dataSource = <span class="hljs-keyword">null</span>;
+	<span class="hljs-keyword">static</span> &#123;
+		<span class="hljs-comment">// 新建一个配置文件对象</span>
+		Properties properties = <span class="hljs-keyword">new</span> Properties();
+
+		<span class="hljs-comment">// 通过类加载器找到文件路径并读取配置文件</span>
+		InputStream inputStream = <span class="hljs-keyword">new</span> DBCPTest2().getClass().getClassLoader().getResourceAsStream(<span class="hljs-string">"db.properties"</span>);
+		<span class="hljs-keyword">try</span> &#123;
+			<span class="hljs-comment">// 把文件以输入流的形式加载到配置对象中</span>
+			properties.load(inputStream);
+			<span class="hljs-comment">// 创建数据源对象</span>
+			dataSource = BasicDataSourceFactory.createDataSource(properties);
+		&#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+			e.printStackTrace();
+		&#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
+			e.printStackTrace();
+		&#125;
+
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> SQLException </span>&#123;
+		<span class="hljs-comment">// 获取数据库连接对象</span>
+		Connection connection = dataSource.getConnection();
+		<span class="hljs-comment">// 获取数据库连接信息</span>
+		DatabaseMetaData databaseMetaData = connection.getMetaData();
+		<span class="hljs-comment">// 打印数据库连接信息</span>
+		System.out.println(<span class="hljs-string">"URL: "</span> + databaseMetaData.getURL() + <span class="hljs-string">"\nUser name: "</span> + databaseMetaData.getUserName()
+				+ <span class="hljs-string">"\nDirver name: "</span> + databaseMetaData.getDriverName() + <span class="hljs-string">"\nDriver version: "</span>
+				+ databaseMetaData.getDriverVersion());
+	&#125;
+
+&#125;</code></pre>
+</li>
+<li><p><em>程序运行结果如下</em></p>
+<pre><code class="hljs less"><span class="hljs-attribute">URL </span>: <span class="hljs-attribute">jdbc</span>:<span class="hljs-attribute">mysql</span>:<span class="hljs-comment">//LOCALHOST/MyBatis?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true</span>
+User <span class="hljs-attribute">name </span>: xxxxxx<span class="hljs-variable">@localhost</span>
+Dirver <span class="hljs-attribute">name </span>: MySQL Connector/J
+Driver <span class="hljs-attribute">version </span>: mysql-connector-java-<span class="hljs-number">8.0</span>.<span class="hljs-number">11</span> (<span class="hljs-attribute">Revision</span>: <span class="hljs-number">6</span>d4eaa273bc181b4cf1c8ad0821a2227f116fedf)</code></pre>
+
+
+
+</li>
+</ol>
+<h3 id="C3P0-数据源"><a href="#C3P0-数据源" class="headerlink" title="C3P0 数据源"></a>C3P0 数据源</h3><p><em>简介 : <code>C3P0</code>实现了DataSource数据源接口,支持JDBC2,JDBC3的标准规范,易于扩展并且性能优越,著名的开源框架<code>Hibernate</code>和<code>Spring</code>使用的都是该数据源. C3P0中DataSource接口的实现类为<code>ComboPooledDataSource</code>,它是C3P0的核心类.</em></p>
+<h4 id="使用ComboPooledDataSource类创建数据库源对象"><a href="#使用ComboPooledDataSource类创建数据库源对象" class="headerlink" title="使用ComboPooledDataSource类创建数据库源对象"></a>使用ComboPooledDataSource类创建数据库源对象</h4><ol>
+<li><p><em>示例程序如下</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.c3p0.test;
+
+<span class="hljs-keyword">import</span> java.beans.PropertyVetoException;
+<span class="hljs-keyword">import</span> java.sql.Connection;
+<span class="hljs-keyword">import</span> java.sql.DatabaseMetaData;
+<span class="hljs-keyword">import</span> java.sql.SQLException;
+
+<span class="hljs-keyword">import</span> javax.sql.DataSource;
+
+<span class="hljs-keyword">import</span> com.mchange.v2.c3p0.ComboPooledDataSource;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: ComboPooledDataSourceTest
+ * <span class="hljs-doctag">@Description</span>: 通过ComboPooledDataSource类直接创建数据源对象
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: May 29, 2019 10:04:46 PM
+ *
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ComboPooledDataSourceTest</span> </span>&#123;
+
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> DataSource dataSource = <span class="hljs-keyword">null</span>;
+
+	<span class="hljs-comment">// 初始化c3p0数据源</span>
+	<span class="hljs-keyword">static</span> &#123;
+		ComboPooledDataSource comboPooledDataSource = <span class="hljs-keyword">new</span> ComboPooledDataSource();
+		<span class="hljs-keyword">try</span> &#123;
+			comboPooledDataSource.setDriverClass(<span class="hljs-string">"com.mysql.cj.jdbc.Driver"</span>);
+		&#125; <span class="hljs-keyword">catch</span> (PropertyVetoException e) &#123;
+			e.printStackTrace();
+		&#125;
+		comboPooledDataSource.setJdbcUrl(
+				<span class="hljs-string">"jdbc:mysql://localhost/MyBatis?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true"</span>);
+		comboPooledDataSource.setUser(<span class="hljs-string">"xxxxxx"</span>);
+		comboPooledDataSource.setPassword(<span class="hljs-string">"xxxxxx"</span>);
+		<span class="hljs-comment">// 设置连接池的参数</span>
+		comboPooledDataSource.setInitialPoolSize(<span class="hljs-number">5</span>);
+		comboPooledDataSource.setMaxPoolSize(<span class="hljs-number">15</span>);
+
+		dataSource = comboPooledDataSource;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> SQLException </span>&#123;
+
+		<span class="hljs-comment">// 获取数据库连接对象</span>
+		Connection connection = dataSource.getConnection();
+		<span class="hljs-comment">// 获取数据库连接信息</span>
+		DatabaseMetaData databaseMetaData = connection.getMetaData();
+		<span class="hljs-comment">// 输出数据库连接信息</span>
+		System.out.println(<span class="hljs-string">"URL: "</span> + databaseMetaData.getURL() + <span class="hljs-string">"\nUser name: "</span> + databaseMetaData.getUserName()
+				+ <span class="hljs-string">"\nDirver name: "</span> + databaseMetaData.getDriverName() + <span class="hljs-string">"\nDriver version: "</span>
+				+ databaseMetaData.getDriverVersion());
+
+	&#125;
+&#125;</code></pre>
+</li>
+<li><p><em>程序运行结果如下</em></p>
+<pre><code class="hljs less"><span class="hljs-attribute">URL </span>: <span class="hljs-attribute">jdbc</span>:<span class="hljs-attribute">mysql</span>:<span class="hljs-comment">//localhost/MyBatis?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true</span>
+User <span class="hljs-attribute">name </span>: xxxxxx<span class="hljs-variable">@localhost</span>
+Dirver <span class="hljs-attribute">name </span>: MySQL Connector/J
+Driver <span class="hljs-attribute">version </span>: mysql-connector-java-<span class="hljs-number">8.0</span>.<span class="hljs-number">11</span> (<span class="hljs-attribute">Revision</span>: <span class="hljs-number">6</span>d4eaa273bc181b4cf1c8ad0821a2227f116fedf)</code></pre>
+
+
+</li>
+</ol>
+<h4 id="通过配置文件创建数据源对象"><a href="#通过配置文件创建数据源对象" class="headerlink" title="通过配置文件创建数据源对象"></a>通过配置文件创建数据源对象</h4><ol>
+<li><p><em>c3p0-config.xml : 数据源配置文件</em></p>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">c3p0-config</span>&gt;</span>
+	<span class="hljs-comment">&lt;!-- 默认配置:在没有指定配置时默认使用该配置创建c3p0数据源对象 --&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">default-config</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"user"</span>&gt;</span>root<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span>&gt;</span>GoodTime<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"driverClass"</span>&gt;</span>com.mysql.cj.jdbc.Driver<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"jdbcUrl"</span>&gt;</span>
+			jdbc:mysql://LOCALHOST/MyBatis?useSSL=false&amp;amp;serverTimezone=UTC&amp;amp;allowPublicKeyRetrieval=true
+		<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"checkoutTimeout"</span>&gt;</span>30000<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"initialPoolSize"</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"maxIdleTime"</span>&gt;</span>100<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"maxPoolSize"</span>&gt;</span>100<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"minPoolSize"</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"maxStatements"</span>&gt;</span>200<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">default-config</span>&gt;</span>
+
+	<span class="hljs-comment">&lt;!-- 自定义配置 --&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">named-config</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"yu"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"user"</span>&gt;</span>root<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span>&gt;</span>GoodTime<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"driverClass"</span>&gt;</span>com.mysql.cj.jdbc.Driver<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"jdbcUrl"</span>&gt;</span>
+			jdbc:mysql://LOCALHOST/MyBatis?useSSL=false&amp;amp;serverTimezone=UTC&amp;amp;allowPublicKeyRetrieval=true
+		<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"initiaPoolSize"</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"maxPoolSize"</span>&gt;</span>15<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">named-config</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">c3p0-config</span>&gt;</span></code></pre>
+</li>
+<li><p><em>ComboPooledDataSourceTest2.java : 测试类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.c3p0.test;
+
+<span class="hljs-keyword">import</span> java.sql.Connection;
+<span class="hljs-keyword">import</span> java.sql.DatabaseMetaData;
+<span class="hljs-keyword">import</span> java.sql.SQLException;
+
+<span class="hljs-keyword">import</span> javax.sql.DataSource;
+
+<span class="hljs-keyword">import</span> com.mchange.v2.c3p0.ComboPooledDataSource;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ComboPooledDataSourceTest2</span> </span>&#123;
+
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> DataSource dataSource = <span class="hljs-keyword">null</span>;
+
+	<span class="hljs-comment">// 初始化C3P0数据源</span>
+	<span class="hljs-keyword">static</span> &#123;
+		<span class="hljs-comment">// 使用c3p0-config.xml配置文件中的named-config节点中name属性的值</span>
+		ComboPooledDataSource comboPooledDataSource = <span class="hljs-keyword">new</span> ComboPooledDataSource(<span class="hljs-string">"yu"</span>);
+		dataSource = comboPooledDataSource;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> SQLException </span>&#123;
+
+		<span class="hljs-comment">// 获取数据库对象</span>
+		Connection connection = dataSource.getConnection();
+		<span class="hljs-comment">// 获取数据库连接信息</span>
+		DatabaseMetaData databaseMetaData = connection.getMetaData();
+		<span class="hljs-comment">// 输出数据库配置信息</span>
+		System.out.println(<span class="hljs-string">"URL: "</span> + databaseMetaData.getURL() + <span class="hljs-string">"\nUser name: "</span> + databaseMetaData.getUserName()
+				+ <span class="hljs-string">"\nDirver name: "</span> + databaseMetaData.getDriverName() + <span class="hljs-string">"\nDriver version: "</span>
+				+ databaseMetaData.getDriverVersion());
+
+	&#125;
+&#125;</code></pre>
+</li>
+<li><p><em>程序运行结果</em></p>
+<pre><code class="hljs less"><span class="hljs-attribute">URL </span>: <span class="hljs-attribute">jdbc</span>:<span class="hljs-attribute">mysql</span>:<span class="hljs-comment">//LOCALHOST/MyBatis?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true</span>
+User <span class="hljs-attribute">name </span>: xxxxxx<span class="hljs-variable">@localhost</span>
+Dirver <span class="hljs-attribute">name </span>: MySQL Connector/J
+Driver <span class="hljs-attribute">version </span>: mysql-connector-java-<span class="hljs-number">8.0</span>.<span class="hljs-number">11</span> (<span class="hljs-attribute">Revision</span>: <span class="hljs-number">6</span>d4eaa273bc181b4cf1c8ad0821a2227f116fedf)</code></pre></li>
+</ol>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/JDBC/">JDBC</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/05/28/Spring-MVC%E4%B9%8B%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Spring MVC之文件上传与下载</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/05/23/SSM%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/">
+                        <span class="hidden-mobile">SSM框架整合</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Database Connection Pool&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

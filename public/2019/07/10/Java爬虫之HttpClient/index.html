@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>Java爬虫之HttpClient - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-07-10 18:54">
+      July 10, 2019 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.8k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      28
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="学习笔记-Java爬虫之HttpClient"><a href="#学习笔记-Java爬虫之HttpClient" class="headerlink" title="学习笔记 : Java爬虫之HttpClient"></a>学习笔记 : Java爬虫之HttpClient</h2><p><em>简介 : <code>HttpClient</code>是Apache Jakarta Common下的子项目,用于提供高效的,功能丰富的支持HTTP协议的客户编程工具包,其主要功能如下:</em></p>
+<ol>
+<li><em>实现了所有HTTP的方法 : GET,POST,PUT,HEAD ..</em></li>
+<li><em>支持自动重定向</em></li>
+<li><em>支持HTTPS协议</em></li>
+<li><em>支持代理服务器</em></li>
+</ol>
+<h3 id="实现爬虫"><a href="#实现爬虫" class="headerlink" title="实现爬虫"></a>实现爬虫</h3><p><em>传统实现 : 爬取静态网页</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.crawler.HttpClient_Demo;
+
+<span class="hljs-keyword">import</span> java.io.BufferedReader;
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.io.InputStreamReader;
+<span class="hljs-keyword">import</span> java.net.URL;
+<span class="hljs-keyword">import</span> java.nio.charset.StandardCharsets;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: crawler_learning
+ * <span class="hljs-doctag">@description</span>: 下载网页的基本方法:使用java.net.URL
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 7/8/2019-11:16 AM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BasicCrawler</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;
+        URL pageURL = <span class="hljs-keyword">new</span> URL(<span class="hljs-string">"https://yubuntu0109.github.io/"</span>);
+        <span class="hljs-comment">//创建数据流</span>
+        BufferedReader reader = <span class="hljs-keyword">new</span> BufferedReader(<span class="hljs-keyword">new</span> InputStreamReader(pageURL.openStream(), StandardCharsets.UTF_8));
+        <span class="hljs-comment">//获取网页内容</span>
+        String line;
+        StringBuilder pageBuffer = <span class="hljs-keyword">new</span> StringBuilder();
+        <span class="hljs-keyword">while</span> ((line = reader.readLine()) != <span class="hljs-keyword">null</span>) &#123;
+            pageBuffer.append(line);
+        &#125;
+        <span class="hljs-comment">//释放资源</span>
+        reader.close();
+        System.out.println(pageBuffer.toString());
+    &#125;
+&#125;</code></pre>
+
+<p><em>HttpClient实现 : 爬取静态网页</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.crawler.HttpClient_Demo;
+
+<span class="hljs-keyword">import</span> org.apache.http.HttpEntity;
+<span class="hljs-keyword">import</span> org.apache.http.client.methods.CloseableHttpResponse;
+<span class="hljs-keyword">import</span> org.apache.http.client.methods.HttpGet;
+<span class="hljs-keyword">import</span> org.apache.http.impl.client.CloseableHttpClient;
+<span class="hljs-keyword">import</span> org.apache.http.impl.client.HttpClients;
+<span class="hljs-keyword">import</span> org.apache.http.util.EntityUtils;
+
+<span class="hljs-keyword">import</span> java.io.IOException;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: crawler_learning
+ * <span class="hljs-doctag">@description</span>: 下载网页的基本方法:使用HttpClient
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 7/2/2019-10:42 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HttpClientCrawler</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+
+        <span class="hljs-comment">//指定待爬取的网页链接并设置Header信息</span>
+        HttpGet httpGet = <span class="hljs-keyword">new</span> HttpGet(<span class="hljs-string">"https://www.bilibili.com/"</span>);
+        httpGet.setHeader(<span class="hljs-string">"User-Agent"</span>, <span class="hljs-string">"xxxxxx"</span>);
+
+        <span class="hljs-comment">//创建HttpClient对象</span>
+        <span class="hljs-keyword">try</span> (CloseableHttpClient httpClient = HttpClients.createDefault()) &#123;
+            <span class="hljs-comment">//发起请求,获取响应</span>
+            <span class="hljs-keyword">try</span> (CloseableHttpResponse response = httpClient.execute(httpGet)) &#123;
+                <span class="hljs-comment">//解析响应,获取数据</span>
+                <span class="hljs-keyword">if</span> (response.getStatusLine().getStatusCode() == <span class="hljs-number">200</span>) &#123;
+                    HttpEntity httpEntity = response.getEntity(); <span class="hljs-comment">//获取响应体</span>
+                    String content = EntityUtils.toString(httpEntity, <span class="hljs-string">"utf-8"</span>);<span class="hljs-comment">//获取静态页面</span>
+
+                    System.out.println(content);
+                &#125;
+            &#125;
+        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+
+
+<h3 id="GET请求"><a href="#GET请求" class="headerlink" title="GET请求"></a>GET请求</h3><p><em>无参GET请求 : 爬取B站静态网页</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.crawler.HttpClient_Get;
+
+<span class="hljs-keyword">import</span> org.apache.http.HttpEntity;
+<span class="hljs-keyword">import</span> org.apache.http.client.methods.CloseableHttpResponse;
+<span class="hljs-keyword">import</span> org.apache.http.client.methods.HttpGet;
+<span class="hljs-keyword">import</span> org.apache.http.impl.client.CloseableHttpClient;
+<span class="hljs-keyword">import</span> org.apache.http.impl.client.HttpClients;
+<span class="hljs-keyword">import</span> org.apache.http.util.EntityUtils;
+
+<span class="hljs-keyword">import</span> java.io.IOException;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: crawler_learning
+ * <span class="hljs-doctag">@description</span>: 学习使用无参HttpGet():爬取B站静态网页
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 7/8/2019-12:26 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GetTest</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        <span class="hljs-comment">//指定待爬取网页的链接并设置Header信息</span>
+        HttpGet httpGet = <span class="hljs-keyword">new</span> HttpGet(<span class="hljs-string">"https://www.bilibili.com/"</span>);
+        httpGet.setHeader(<span class="hljs-string">"User-Agent"</span>, <span class="hljs-string">"x-x-x-x-x-x"</span>);
+
+        <span class="hljs-comment">//创建HttpClient对象</span>
+        <span class="hljs-keyword">try</span> (CloseableHttpClient httpClient = HttpClients.createDefault()) &#123;
+            <span class="hljs-comment">//发起请求,获取响应</span>
+            <span class="hljs-keyword">try</span> (CloseableHttpResponse response = httpClient.execute(httpGet)) &#123;
+                <span class="hljs-comment">//解析响应,获取数据</span>
+                <span class="hljs-keyword">if</span> (response.getStatusLine().getStatusCode() == <span class="hljs-number">200</span>) &#123;
+                    HttpEntity httpEntity = response.getEntity(); <span class="hljs-comment">//获取响应体</span>
+                    String content = EntityUtils.toString(httpEntity, <span class="hljs-string">"utf-8"</span>);<span class="hljs-comment">//获取静态页面</span>
+                    System.out.println(content);
+                &#125;
+            &#125;
+        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+<p><em>有参GET请求 : 爬取B站中搜索关键字为jsoup的网页内容</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.crawler.HttpClient_Get;
+
+<span class="hljs-keyword">import</span> org.apache.http.HttpEntity;
+<span class="hljs-keyword">import</span> org.apache.http.client.methods.CloseableHttpResponse;
+<span class="hljs-keyword">import</span> org.apache.http.client.methods.HttpGet;
+<span class="hljs-keyword">import</span> org.apache.http.client.utils.URIBuilder;
+<span class="hljs-keyword">import</span> org.apache.http.impl.client.CloseableHttpClient;
+<span class="hljs-keyword">import</span> org.apache.http.impl.client.HttpClients;
+<span class="hljs-keyword">import</span> org.apache.http.util.EntityUtils;
+
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.net.URISyntaxException;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: crawler_learning
+ * <span class="hljs-doctag">@description</span>: 学习使用有参HttpGet(URI uri):爬取B站中搜索关键字为jsoup的网页内容
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 7/8/2019-1:12 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GetParamTest</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> URISyntaxException, IOException </span>&#123;
+
+        <span class="hljs-comment">//设置HttpGet参数</span>
+        URIBuilder uriBuilder = <span class="hljs-keyword">new</span> URIBuilder(<span class="hljs-string">"https://search.bilibili.com/all"</span>);
+        uriBuilder.setParameter(<span class="hljs-string">"keyword"</span>, <span class="hljs-string">"jsoup"</span>);
+        <span class="hljs-comment">//指定待爬取的网页链接并设置Header信息</span>
+        HttpGet httpGet = <span class="hljs-keyword">new</span> HttpGet(uriBuilder.build());
+        httpGet.setHeader(<span class="hljs-string">"User-Agent"</span>, <span class="hljs-string">"x-x-x-x-x-x"</span>);
+        <span class="hljs-comment">//创建HttpClient对象</span>
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        <span class="hljs-comment">//发起请求,获取响应</span>
+        CloseableHttpResponse response = httpClient.execute(httpGet);
+        <span class="hljs-comment">//解析响应,获取数据</span>
+        <span class="hljs-keyword">if</span> (response.getStatusLine().getStatusCode() == <span class="hljs-number">200</span>) &#123;
+            HttpEntity httpEntity = response.getEntity(); <span class="hljs-comment">//获取响应体</span>
+            String content = EntityUtils.toString(httpEntity, <span class="hljs-string">"utf-8"</span>);<span class="hljs-comment">//获取静态页面</span>
+            System.out.println(content);
+        &#125;
+        <span class="hljs-comment">//释放资源</span>
+        response.close();
+        httpClient.close();
+    &#125;
+
+&#125;</code></pre>
+
+
+
+<h3 id="POST请求"><a href="#POST请求" class="headerlink" title="POST请求"></a>POST请求</h3><p><em>无参POST请求 : 爬取CSDN静态网页</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.crawler.HttpClient_Post;
+
+<span class="hljs-keyword">import</span> org.apache.http.HttpEntity;
+<span class="hljs-keyword">import</span> org.apache.http.client.methods.CloseableHttpResponse;
+<span class="hljs-keyword">import</span> org.apache.http.client.methods.HttpGet;
+<span class="hljs-keyword">import</span> org.apache.http.client.methods.HttpPost;
+<span class="hljs-keyword">import</span> org.apache.http.impl.client.CloseableHttpClient;
+<span class="hljs-keyword">import</span> org.apache.http.impl.client.HttpClients;
+<span class="hljs-keyword">import</span> org.apache.http.util.EntityUtils;
+
+<span class="hljs-keyword">import</span> java.io.IOException;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: crawler_learning
+ * <span class="hljs-doctag">@description</span>: 学习使用无参HttpPost():爬取CSDN静态网页
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 7/8/2019-12:26 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PostTest</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+
+        <span class="hljs-comment">//指定待爬取的网页并设置Header信息</span>
+        HttpPost httpPost = <span class="hljs-keyword">new</span> HttpPost(<span class="hljs-string">"https://www.csdn.net/"</span>);
+        httpPost.setHeader(<span class="hljs-string">"User-Agent"</span>, <span class="hljs-string">"x-x-x-x-x-x"</span>);
+
+        <span class="hljs-comment">//创建HttpClient对象</span>
+        <span class="hljs-keyword">try</span> (CloseableHttpClient httpClient = HttpClients.createDefault()) &#123;
+            <span class="hljs-comment">//发起请求,获取响应</span>
+            <span class="hljs-keyword">try</span> (CloseableHttpResponse response = httpClient.execute(httpPost)) &#123;
+                <span class="hljs-comment">//解析响应,获取数据</span>
+                <span class="hljs-keyword">if</span> (response.getStatusLine().getStatusCode() == <span class="hljs-number">200</span>) &#123;
+                    HttpEntity httpEntity = response.getEntity(); <span class="hljs-comment">//获取响应体</span>
+                    String content = EntityUtils.toString(httpEntity, <span class="hljs-string">"utf-8"</span>);<span class="hljs-comment">//获取静态页面</span>
+                    System.out.println(content);
+                &#125;
+            &#125;
+        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+<p><em>有参POST请求 : 爬取B站中搜索关键字为jsoup的网页内容(注:其并不支持POST,既只做演示)</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.crawler.HttpClient_Post;
+
+<span class="hljs-keyword">import</span> org.apache.http.HttpEntity;
+<span class="hljs-keyword">import</span> org.apache.http.NameValuePair;
+<span class="hljs-keyword">import</span> org.apache.http.client.entity.UrlEncodedFormEntity;
+<span class="hljs-keyword">import</span> org.apache.http.client.methods.CloseableHttpResponse;
+<span class="hljs-keyword">import</span> org.apache.http.client.methods.HttpPost;
+<span class="hljs-keyword">import</span> org.apache.http.impl.client.CloseableHttpClient;
+<span class="hljs-keyword">import</span> org.apache.http.impl.client.HttpClients;
+<span class="hljs-keyword">import</span> org.apache.http.message.BasicNameValuePair;
+<span class="hljs-keyword">import</span> org.apache.http.util.EntityUtils;
+
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: crawler_learning
+ * <span class="hljs-doctag">@description</span>: 学习使用有参HttpPost(String uri):爬取B站中搜索关键字为jsoup的网页内容(注:其并不支持POST,既只做演示)
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 7/8/2019-1:12 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PostParamTest</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;
+
+        <span class="hljs-comment">//指定待爬取的网页链接</span>
+        HttpPost httpPost = <span class="hljs-keyword">new</span> HttpPost(<span class="hljs-string">"https://search.bilibili.com/all"</span>);
+        <span class="hljs-comment">//封装表单中的参数</span>
+        List&lt;NameValuePair&gt; params = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+        params.add(<span class="hljs-keyword">new</span> BasicNameValuePair(<span class="hljs-string">"keyword"</span>, <span class="hljs-string">"jsoup"</span>));<span class="hljs-comment">//设置请求参数</span>
+        UrlEncodedFormEntity formEntity = <span class="hljs-keyword">new</span> UrlEncodedFormEntity(params, <span class="hljs-string">"utf-8"</span>);<span class="hljs-comment">//创建表单中的Entity对象</span>
+        httpPost.setEntity(formEntity);<span class="hljs-comment">//将表单的Entity对象到Post请求中</span>
+        httpPost.setHeader(<span class="hljs-string">"User-Agent"</span>, <span class="hljs-string">"x-x-x-x-x-x"</span>);<span class="hljs-comment">//设置Header信息</span>
+        <span class="hljs-comment">//创建HttpClient对象</span>
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        <span class="hljs-comment">//发起请求,返回响应</span>
+        CloseableHttpResponse response = httpClient.execute(httpPost);
+        <span class="hljs-comment">//解析响应,获取数据</span>
+        <span class="hljs-keyword">if</span> (response.getStatusLine().getStatusCode() == <span class="hljs-number">200</span>) &#123;
+            HttpEntity httpEntity = response.getEntity(); <span class="hljs-comment">//获取响应体</span>
+            String content = EntityUtils.toString(httpEntity, <span class="hljs-string">"utf-8"</span>);<span class="hljs-comment">//获取静态页面</span>
+            System.out.println(content);
+        &#125;
+        <span class="hljs-comment">//释放资源</span>
+        response.close();
+        httpClient.close();
+
+    &#125;
+
+&#125;</code></pre>
+
+
+
+<h3 id="HttpClient连接池"><a href="#HttpClient连接池" class="headerlink" title="HttpClient连接池"></a>HttpClient连接池</h3><p><em>学习使用HttpClient连接池</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.crawler.HttpClient_ConnPool;
+
+<span class="hljs-keyword">import</span> org.apache.http.HttpEntity;
+<span class="hljs-keyword">import</span> org.apache.http.client.methods.CloseableHttpResponse;
+<span class="hljs-keyword">import</span> org.apache.http.client.methods.HttpGet;
+<span class="hljs-keyword">import</span> org.apache.http.impl.client.CloseableHttpClient;
+<span class="hljs-keyword">import</span> org.apache.http.impl.client.HttpClients;
+<span class="hljs-keyword">import</span> org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+<span class="hljs-keyword">import</span> org.apache.http.util.EntityUtils;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: crawler_learning
+ * <span class="hljs-doctag">@description</span>: 学习使用HttpClient连接池
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 7/8/2019-3:45 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PoolTest</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        <span class="hljs-comment">//创建连接池管理器</span>
+        PoolingHttpClientConnectionManager phccm = <span class="hljs-keyword">new</span> PoolingHttpClientConnectionManager();
+        phccm.setMaxTotal(<span class="hljs-number">100</span>);<span class="hljs-comment">//最大连接数</span>
+        phccm.setDefaultMaxPerRoute(<span class="hljs-number">10</span>);<span class="hljs-comment">//每个主机的最大连接数</span>
+
+        doGet(phccm);
+    &#125;
+
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@description</span>: 爬取B站静态网页
+     * <span class="hljs-doctag">@param</span>: phccm
+     * <span class="hljs-doctag">@date</span>: 2019-07-08 4:15 PM
+     * <span class="hljs-doctag">@return</span>: void
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(PoolingHttpClientConnectionManager phccm)</span> </span>&#123;
+        <span class="hljs-comment">//指定待爬取网页的url</span>
+        HttpGet httpGet = <span class="hljs-keyword">new</span> HttpGet(<span class="hljs-string">"https://www.bilibili.com/"</span>);
+        httpGet.setHeader(<span class="hljs-string">"User-Agent"</span>, <span class="hljs-string">"x-x-x-x-x-x"</span>);
+        <span class="hljs-comment">//创建HttpClient对象:每次从连接池中获取HttpClient对象</span>
+        CloseableHttpClient httpClient = HttpClients.custom().setConnectionManager(phccm).build();
+        <span class="hljs-comment">//发起请求,获取响应</span>
+        <span class="hljs-keyword">try</span> (CloseableHttpResponse response = httpClient.execute(httpGet)) &#123;
+            <span class="hljs-comment">//解析响应,获取数据</span>
+            <span class="hljs-keyword">if</span> (response.getStatusLine().getStatusCode() == <span class="hljs-number">200</span>) &#123;
+                HttpEntity httpEntity = response.getEntity(); <span class="hljs-comment">//获取响应体</span>
+                String content = EntityUtils.toString(httpEntity, <span class="hljs-string">"utf-8"</span>);<span class="hljs-comment">//获取静态页面</span>
+                System.out.println(content);
+            &#125;
+        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
+            e.printStackTrace();
+        &#125;
+        <span class="hljs-comment">//httpClient.close(); //由PoolingHttpClientConnectionManager管理</span>
+    &#125;
+&#125;</code></pre>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/HttpClient/">HttpClient</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/07/10/Java%E7%88%AC%E8%99%AB%E4%B9%8BJsoup/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Java爬虫之Jsoup</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/07/01/Spring-Boot%E6%8B%A5%E6%8A%B1MyBatis%E5%8F%8ARedis/">
+                        <span class="hidden-mobile">Spring-Boot拥抱MyBatis及Redis ~</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Java爬虫之HttpClient&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>Java设计模式之Mediator Pattern - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-10-10 12:24">
+      October 10, 2019 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      31
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="学习笔记-Java设计模式之Mediator-Pattern"><a href="#学习笔记-Java设计模式之Mediator-Pattern" class="headerlink" title="学习笔记 : Java设计模式之Mediator Pattern"></a>学习笔记 : Java设计模式之Mediator Pattern</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p><em>中介者设计模式 : 定义一个对象来封装一系列对象的交互. 中介者模式使各个用户对象之间不需要显示地相互引用,从而使其耦合松散,而且用户可以独立地改变它们之间的交互. (  Mediator Pattern : Define an object that encapsulates how a set of objects interact. Mediator promotes loose coupling by keeping objects from referring to each other explicitly,and it lets you vary their interaction independently. )</em></p>
+<blockquote>
+<p>中介者模式又称为调停者模式,它是一种对象行为模式. 在中介者设计模式中,通过引入中介者来简化对象之间的复杂交互,中介者模式是迪米特法则的一个典型应用</p>
+</blockquote>
+<h3 id="角色分析"><a href="#角色分析" class="headerlink" title="角色分析"></a>角色分析</h3><ol>
+<li><em><code>Mediator( 抽象中介者 )</code> : 它定义一个接口,该接口用于与各同事对象之间进行通信.</em></li>
+<li><em><code>ConcreteMediator( 具体中介者 )</code> : 它是抽象中介者的子类,通过协调各个同事对象来实现协作行为,它维持了对各个同事对象的引用.</em></li>
+<li><em><code>Colleague( 抽象同事类 )</code> : 它定义各个同事类公有的方法,并声明了一些抽象方法供子类实现,同时它维持了一个对抽象中介者类的引用,其子类可以通过该引用与中介者通信.</em></li>
+<li><em><code>ConcreteColleague( 具体同时类 )</code> : 它是抽象同事类的子类,每一个同事对象在需要和其他同事对象通信时先与中介者通信,通过中介者间接完成与其他同事类的通信; 在具体同事类中实现了在抽象同事类中声明的抽象方法.</em></li>
+</ol>
+<h3 id="程序示例"><a href="#程序示例" class="headerlink" title="程序示例"></a>程序示例</h3><p><em>下面是一个使用中介者模式的简单示例程序 : 设计一个 CRM 桌面系统,其中包含一个客户信息管理模块,其界面组件之间存在复杂的交互关系,如果删除一个客户,则从客户列表中( List )中删掉对应的项,客户选择组合框( ComboBox )中的客户名称也将减少一个; 如果增加一个客户信息,则客户列表中将增加一个客户,并且组合框中也将增加一项. 为了更好地处理界面组件之间的交互,现使用中介者模式设计该系系统~</em></p>
+<ol>
+<li><p><em>Mediator.java : 抽象中介者类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_1;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 抽象中介者类
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 10/10/2019-12:49 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Mediator</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">componentChanged</span><span class="hljs-params">(Component component)</span></span>;
+&#125;</code></pre>
+</li>
+<li><p><em>ConcreteMediator.java : 具体中介者类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_1;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 具体中介者类
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 10/10/2019-12:50 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConcreteMediator</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Mediator</span> </span>&#123;
+
+    <span class="hljs-comment">//维持对各个同事对象的引用</span>
+    <span class="hljs-keyword">public</span> List list;
+    <span class="hljs-keyword">public</span> Button addButton;
+    <span class="hljs-keyword">public</span> TextBox userNameTextBox;
+    <span class="hljs-keyword">public</span> ComboBox comboBox;
+
+    <span class="hljs-comment">//封装同事对象之间的交互</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">componentChanged</span><span class="hljs-params">(Component component)</span> </span>&#123;
+        <span class="hljs-comment">//单击按钮</span>
+        <span class="hljs-keyword">if</span> (component == addButton) &#123;
+            System.out.println(<span class="hljs-string">"--- 点击增加信息按钮 ---"</span>);
+            list.update();
+            comboBox.update();
+            userNameTextBox.update();
+        &#125;
+        <span class="hljs-comment">//从列表框选择客户</span>
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (component == list) &#123;
+            System.out.println(<span class="hljs-string">"\n--- 从列表框选择客户 ---"</span>);
+            list.select();
+            userNameTextBox.setText();
+        &#125;
+        <span class="hljs-comment">//从组合框选择客户</span>
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (component == comboBox) &#123;
+            System.out.println(<span class="hljs-string">"\n--- 从组合框选择客户 ---"</span>);
+            comboBox.select();
+            userNameTextBox.setText();
+        &#125;
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>Component.java : 抽象组件类, 充当抽象同事类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_1;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 抽象组件类, 充当抽象同事类
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 10/10/2019-12:51 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Component</span> </span>&#123;
+
+    <span class="hljs-keyword">protected</span> Mediator mediator;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setMediator</span><span class="hljs-params">(Mediator mediator)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.mediator = mediator;
+    &#125;
+
+    <span class="hljs-comment">//转发调用</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">changed</span><span class="hljs-params">()</span> </span>&#123;
+        mediator.componentChanged(<span class="hljs-keyword">this</span>);
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">()</span></span>;
+&#125;</code></pre>
+</li>
+<li><p><em>Button.java : 按钮类, 充当具体同事类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_1;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 按钮类, 充当具体同事类
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 10/10/2019-12:51 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Button</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-comment">//System.out.println("点击添加信息按钮");</span>
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>List.java : 列表框类, 充当具体同事类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_1;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 列表框类, 充当具体同事类
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 10/10/2019-12:52 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">List</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"列表框增加一项: 黄宇辉"</span>);
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">select</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"列表框选中项: 黄浩然"</span>);
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>ComboBox.java : 组合框类, 充当具体同事类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_1;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 组合框类, 充当具体同事类
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 10/10/2019-12:55 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ComboBox</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"组合框增加一项: 黄宇辉"</span>);
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">select</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"组合框选中项: 黄浩然"</span>);
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>TextBox.java : 文本框, 充当具体同事类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_1;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 文本框, 充当具体同事类
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 10/10/2019-12:56 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TextBox</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"客户信息增加成功后文本框被清空"</span>);
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setText</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"文本框显示: 黄浩然"</span>);
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>Client.java : 客户端测试类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_1;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 客户端测试类
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 10/10/2019-12:58 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Client</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        <span class="hljs-comment">//定义中介者对象</span>
+        ConcreteMediator mediator = <span class="hljs-keyword">new</span> ConcreteMediator();
+
+        <span class="hljs-comment">//定义同事对象</span>
+        List list = <span class="hljs-keyword">new</span> List();
+        Button addButton = <span class="hljs-keyword">new</span> Button();
+        ComboBox comboBox = <span class="hljs-keyword">new</span> ComboBox();
+        TextBox userNameTextBox = <span class="hljs-keyword">new</span> TextBox();
+
+        <span class="hljs-comment">//关联中介者</span>
+        list.setMediator(mediator);
+        comboBox.setMediator(mediator);
+        addButton.setMediator(mediator);
+        userNameTextBox.setMediator(mediator);
+
+        <span class="hljs-comment">//初始化具体同事类</span>
+        mediator.list = list;
+        mediator.comboBox = comboBox;
+        mediator.addButton = addButton;
+        mediator.userNameTextBox = userNameTextBox;
+
+        <span class="hljs-comment">//通过中介者进行通信</span>
+        addButton.changed(); <span class="hljs-comment">//点击添加客户信息按钮</span>
+        list.changed(); <span class="hljs-comment">//从列表框中选择客户</span>
+        comboBox.changed(); <span class="hljs-comment">//从组合框中选择客户</span>
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>程序运行结果如下所示 :</em></p>
+<pre><code class="hljs brainfuck">--<span class="hljs-literal">-</span> <span class="hljs-comment">点击增加信息按钮</span> --<span class="hljs-literal">-</span>
+<span class="hljs-comment">列表框增加一项:</span> <span class="hljs-comment">黄宇辉</span>
+<span class="hljs-comment">组合框增加一项:</span> <span class="hljs-comment">黄宇辉</span>
+<span class="hljs-comment">客户信息增加成功后文本框被清空</span>
+
+--<span class="hljs-literal">-</span> <span class="hljs-comment">从列表框选择客户</span> --<span class="hljs-literal">-</span>
+<span class="hljs-comment">列表框选中项:</span> <span class="hljs-comment">黄浩然</span>
+<span class="hljs-comment">文本框显示:</span> <span class="hljs-comment">黄浩然</span>
+
+--<span class="hljs-literal">-</span> <span class="hljs-comment">从组合框选择客户</span> --<span class="hljs-literal">-</span>
+<span class="hljs-comment">组合框选中项:</span> <span class="hljs-comment">黄浩然</span>
+<span class="hljs-comment">文本框显示:</span> <span class="hljs-comment">黄浩然</span></code></pre>
+
+</li>
+</ol>
+<h4 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h4><p><img src="/2019/10/10/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BMediator-Pattern/Mediator-Pattern-ClassDiagram-1.png" srcset="/img/loading.gif" alt=" "></p>
+<h3 id="程序示例-扩展"><a href="#程序示例-扩展" class="headerlink" title="程序示例-扩展"></a>程序示例-扩展</h3><p><em>对上述示例程序进行改进,使客户信息管理窗口下端能够及时显示当前系统中客户信息的总数. 由于上述案例使用了中介者设计模式,所以在原有系统中增加新的组件( 既新的同事类 )将变得很容易,解决方案 : 首先增加一个 Label 类,其次增加一个 ConcreteMediator 的子类 SubConcreteMediator 来实现对 Label 对象的引用,然后在新增的中介者类 SubConcreteMediator 中通过覆盖 componentChanged() 方法实现所有组件( 包括新增Lable组件 )之间的交互. 既原有组件类无需做任何修改,客户端代码仅需做少量修改,其更加符合开闭原则~</em></p>
+<ol>
+<li><p><em>Label.java : 文本标签类, 具体同事类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_2;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 文本标签类, 具体同事类
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 10/10/2019-1:30 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Label</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;
+    
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"[ 文本标签内容改变,客户信息总数: +1 ]"</span>);
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>SubConcreteMediator.java : 在新增的该中介者类, 通过覆写componentChanged()方法来实现所有组件(包括新增Label组件)之间的交互</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_2;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 在新增的该中介者类, 通过覆写componentChanged()方法来实现所有组件(包括新增Label组件)之间的交互
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 10/10/2019-1:30 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SubConcreteMediator</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ConcreteMediator</span> </span>&#123;
+
+    <span class="hljs-comment">//增加对Label对象的引用</span>
+    <span class="hljs-keyword">public</span> Label label;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">componentChanged</span><span class="hljs-params">(Component component)</span> </span>&#123;
+        <span class="hljs-comment">//super.componentChanged(component);</span>
+        <span class="hljs-comment">//单击按钮</span>
+        <span class="hljs-keyword">if</span> (component == addButton) &#123;
+            System.out.println(<span class="hljs-string">"--- 点击增加信息按钮 ---"</span>);
+            list.update();
+            comboBox.update();
+            userNameTextBox.update();
+            label.update(); <span class="hljs-comment">//更新文本标签</span>
+        &#125;
+        <span class="hljs-comment">//从列表框选择客户</span>
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (component == list) &#123;
+            System.out.println(<span class="hljs-string">"\n--- 从列表框选择客户 ---"</span>);
+            list.select();
+            userNameTextBox.setText();
+        &#125;
+        <span class="hljs-comment">//从组合框选择客户</span>
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (component == comboBox) &#123;
+            System.out.println(<span class="hljs-string">"\n--- 从组合框选择客户 ---"</span>);
+            comboBox.select();
+            userNameTextBox.setText();
+        &#125;
+
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>Client.java : 客户端测试类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_2;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 客户端测试类
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 10/10/2019-12:58 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Client</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        <span class="hljs-comment">//定义中介者对象</span>
+        SubConcreteMediator mediator = <span class="hljs-keyword">new</span> SubConcreteMediator();
+
+        <span class="hljs-comment">//定义同事对象</span>
+        List list = <span class="hljs-keyword">new</span> List();
+        Label label = <span class="hljs-keyword">new</span> Label();
+        Button addButton = <span class="hljs-keyword">new</span> Button();
+        ComboBox comboBox = <span class="hljs-keyword">new</span> ComboBox();
+        TextBox userNameTextBox = <span class="hljs-keyword">new</span> TextBox();
+
+        <span class="hljs-comment">//关联中介者</span>
+        list.setMediator(mediator);
+        label.setMediator(mediator);
+        comboBox.setMediator(mediator);
+        addButton.setMediator(mediator);
+        userNameTextBox.setMediator(mediator);
+
+        <span class="hljs-comment">//初始化具体同事类</span>
+        mediator.list = list;
+        mediator.label = label;
+        mediator.comboBox = comboBox;
+        mediator.addButton = addButton;
+        mediator.userNameTextBox = userNameTextBox;
+
+        <span class="hljs-comment">//通过中介者进行通信</span>
+        addButton.changed(); <span class="hljs-comment">//点击添加客户按钮</span>
+        list.changed(); <span class="hljs-comment">//从列表框中选择客户</span>
+        comboBox.changed(); <span class="hljs-comment">//从组合框中选择客户</span>
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>程序运行结果如下所示 :</em></p>
+<pre><code class="hljs brainfuck">--<span class="hljs-literal">-</span> <span class="hljs-comment">点击增加信息按钮</span> --<span class="hljs-literal">-</span>
+<span class="hljs-comment">列表框增加一项:</span> <span class="hljs-comment">黄宇辉</span>
+<span class="hljs-comment">组合框增加一项:</span> <span class="hljs-comment">黄宇辉</span>
+<span class="hljs-comment">客户信息增加成功后文本被清空</span>
+<span class="hljs-title">[</span> <span class="hljs-comment">文本标签内容改变</span><span class="hljs-string">,</span><span class="hljs-comment">客户信息总数:</span> <span class="hljs-literal">+</span><span class="hljs-comment">1</span> <span class="hljs-title">]</span>
+
+--<span class="hljs-literal">-</span> <span class="hljs-comment">从列表框选择客户</span> --<span class="hljs-literal">-</span>
+<span class="hljs-comment">列表框选中项:</span> <span class="hljs-comment">赵艳春</span>
+<span class="hljs-comment">文本框显示:</span> <span class="hljs-comment">赵艳春</span>
+
+--<span class="hljs-literal">-</span> <span class="hljs-comment">从组合框选择客户</span> --<span class="hljs-literal">-</span>
+<span class="hljs-comment">组合框选中项:</span> <span class="hljs-comment">赵艳春</span>
+<span class="hljs-comment">文本框显示:</span> <span class="hljs-comment">赵艳春</span></code></pre>
+
+</li>
+</ol>
+<h4 id="类图-1"><a href="#类图-1" class="headerlink" title="类图"></a>类图</h4><p><img src="/2019/10/10/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BMediator-Pattern/Mediator-Pattern-ClassDiagram-2.png" srcset="/img/loading.gif" alt=" "></p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/design-and-pattern/">design and pattern</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/10/14/JDK-12%E6%96%B0%E7%89%B9%E6%80%A7%E8%AF%A6%E8%A7%A3/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">详解JDK 12中的新特性</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/09/28/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BObserver-Pattern/">
+                        <span class="hidden-mobile">Java设计模式之Observer Pattern</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Java设计模式之Mediator Pattern&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

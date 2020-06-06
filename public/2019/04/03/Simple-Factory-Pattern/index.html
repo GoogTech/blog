@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>Simple Factory Pattern - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-04-03 12:29">
+      April 3, 2019 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      24
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="简单工厂模式结构与实现"><a href="#简单工厂模式结构与实现" class="headerlink" title="简单工厂模式结构与实现"></a>简单工厂模式结构与实现</h2><h3 id="简单工厂模式结构"><a href="#简单工厂模式结构" class="headerlink" title="简单工厂模式结构"></a>简单工厂模式结构</h3><ol>
+<li><code>Factory</code>(工厂角色) : 工厂角色既工厂类,它是简单工厂模式的核心,负责实现创建所有产品实例的内部逻辑.工厂类还可以被外界直接调用,创建所需的产品对象.在工厂类中提供了静态的工厂方法<code>factoryMethod()</code>,它的返回类型为抽象产品类型<code>Product</code>.</li>
+<li><code>Product</code>(抽象产品角色) : 它是工厂类创建的所有对象的父类,封装了各种产品对象的公有方法,它的引入将提高系统的灵活性,使得在工厂类中只需定义一个通用的工厂方法,因为所有创建的具体产品对象都是其子类对象.</li>
+<li><code>ConcreteProduct</code>(具体产品角色) : 它是简单的工厂模式的创建目标,所有被创建的对象都充当这个角色的某个具体类的实例,每一个具体产品角色都继承了抽象产品的角色.需要实现在抽象产品中声明的抽象方法.</li>
+</ol>
+<h3 id="实例说明"><a href="#实例说明" class="headerlink" title="实例说明"></a>实例说明</h3><pre><code class="hljs gcode">某软件公司要基于Java语言开发一套图表库,该图表库可以为应用程序提供多种不同外观的图表,例如柱状图<span class="hljs-comment">(HistogramChart)</span>,饼状图<span class="hljs-comment">(PieChart)</span>
+折线图<span class="hljs-comment">(LineChart)</span>等..该软件公司图表库设计人员希望为应用系统人员提供一套灵活易用的图标库,通过设置不同的参数即可得到不同类型的图表.
+而且可以较为方便的对图表库进行扩展,以便能够在将来增加一些新类型的图表.</code></pre>
+<h4 id="下述用简单工厂模式来设计该图表库"><a href="#下述用简单工厂模式来设计该图表库" class="headerlink" title="下述用简单工厂模式来设计该图表库"></a>下述用简单工厂模式来设计该图表库</h4><ul>
+<li><p><em>(1)Chart : 抽象图表接口,充当抽象产品类.</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Chart</span> </span>&#123;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span></span>;
+&#125;</code></pre>
+</li>
+<li><p><em>(2)HistogramChart : 柱状图类,充当具体产品类.</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HistogramChart</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Chart</span> </span>&#123;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">HistogramChart</span><span class="hljs-params">()</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"Create the histogram chart ."</span>);
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"Display the histogram chart ."</span>);
+	&#125;
+
+&#125;</code></pre>
+</li>
+<li><p><em>(3)PieChart : 饼状体类,充当具体产品类.</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PieChart</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Chart</span> </span>&#123;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">PieChart</span><span class="hljs-params">()</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"Create the pie chart ."</span>);
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"Display the pie chart ."</span>);
+	&#125;
+
+&#125;</code></pre>
+</li>
+<li><p><em>(4)LineChart : 折线图类,充当具体产品类.</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LineChart</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Chart</span> </span>&#123;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">LineChart</span><span class="hljs-params">()</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"Create the line chart ."</span>);
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"Display the line chart ."</span>);
+	&#125;
+
+&#125;</code></pre>
+</li>
+<li><p><em>(5)ChartFactory : 图表工厂类,充当工厂类.</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChartFactory</span> </span>&#123;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Chart <span class="hljs-title">getChart</span><span class="hljs-params">(String chartType)</span> </span>&#123;
+
+		Chart chart = <span class="hljs-keyword">null</span>;
+		<span class="hljs-keyword">if</span> (chartType.equalsIgnoreCase(<span class="hljs-string">"histogram"</span>)) &#123;
+			chart = <span class="hljs-keyword">new</span> HistogramChart();
+			System.out.println(<span class="hljs-string">"Initialize the histogram chart ."</span>);
+		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (chartType.equalsIgnoreCase(<span class="hljs-string">"pie"</span>)) &#123;
+			chart = <span class="hljs-keyword">new</span> PieChart();
+			System.out.println(<span class="hljs-string">"Initialize the pie chart ."</span>);
+		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (chartType.equalsIgnoreCase(<span class="hljs-string">"line"</span>)) &#123;
+			chart = <span class="hljs-keyword">new</span> LineChart();
+			System.out.println(<span class="hljs-string">"Initialize the line chart ."</span>);
+		&#125; <span class="hljs-keyword">else</span> &#123;
+			System.err.println(<span class="hljs-string">"error : Please chakout your object name. "</span>);
+		&#125;
+		<span class="hljs-keyword">return</span> chart;
+	&#125;
+&#125;</code></pre>
+</li>
+<li><p><em>(6)SimpleFactoryPatternTest : 客户端测试类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SimpleFactoryPatternTest</span> </span>&#123;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+
+		Chart chart = ChartFactory.getChart(<span class="hljs-string">"histogram"</span>);
+		chart.display();
+		Chart chart2 = ChartFactory.getChart(<span class="hljs-string">"pie"</span>);
+		chart2.display();
+		Chart chart3 = ChartFactory.getChart(<span class="hljs-string">"line"</span>);
+		chart3.display();
+
+		<span class="hljs-comment">/*##The result be shown as followed:##
+
+		 Create the histogram chart . 
+          Initialize the histogram chart . 
+          Display the histogram chart .
+		  
+		  Create the pie chart .  
+		  Initialize the pie chart .
+          Display the pie chart .
+         
+		  Create the line chart .  
+          Initialize the line chart .
+          Display the line chart .
+
+		*/</span>
+	&#125;
+&#125;</code></pre>
+
+</li>
+</ul>
+<h4 id="不难发现-上述示例中在创建具体Chart对象时必须通过修改客户端代码中静态工厂方法的参数来更换具体产品对象-客户端代码需要重新编译-这对于客户端而言违反了开闭原则-下面介绍一种常用的解决方案-可以实现在不修改客户端代码的前提下能让客户端能够更换具体产品对象"><a href="#不难发现-上述示例中在创建具体Chart对象时必须通过修改客户端代码中静态工厂方法的参数来更换具体产品对象-客户端代码需要重新编译-这对于客户端而言违反了开闭原则-下面介绍一种常用的解决方案-可以实现在不修改客户端代码的前提下能让客户端能够更换具体产品对象" class="headerlink" title="不难发现,上述示例中在创建具体Chart对象时必须通过修改客户端代码中静态工厂方法的参数来更换具体产品对象.客户端代码需要重新编译,这对于客户端而言违反了开闭原则.下面介绍一种常用的解决方案,可以实现在不修改客户端代码的前提下能让客户端能够更换具体产品对象."></a>不难发现,上述示例中在创建具体<code>Chart</code>对象时必须通过修改客户端代码中静态工厂方法的参数来更换具体产品对象.客户端代码需要重新编译,这对于客户端而言违反了<code>开闭原则</code>.下面介绍一种常用的解决方案,可以实现在不修改客户端代码的前提下能让客户端能够更换具体产品对象.</h4><ul>
+<li><p><em>首先可以将静态的工厂方法的参数存储在<code>XML</code>格式的配置文件中(<code>config.xml</code>).如下所示 :</em></p>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">config</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">chartType</span>&gt;</span>histograma<span class="hljs-tag">&lt;/<span class="hljs-name">chartType</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">config</span>&gt;</span></code></pre>
+</li>
+<li><p><em>再通过一个工具类<code>XML Util</code>来读取配置文件中的字符串参数,<code>XMLUtil</code>类的代码如下 :</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">XMLUtil</span> </span>&#123;
+
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> String path = <span class="hljs-string">"src\\objctConfig.xml"</span>;
+
+	<span class="hljs-comment">// 该方法用于从XML配置文件中提取图表类型,并返回类型名.</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">getChartType</span><span class="hljs-params">()</span> </span>&#123;
+
+		<span class="hljs-comment">// 创建文档对象.</span>
+		DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+		<span class="hljs-keyword">try</span> &#123;
+			DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+			Document document;
+			document = documentBuilder.parse(<span class="hljs-keyword">new</span> File(path));
+
+			<span class="hljs-comment">// 获取包含图标类型的文本节点.</span>
+			NodeList nodeList = document.getElementsByTagName(<span class="hljs-string">"chartType"</span>);
+			Node node = nodeList.item(<span class="hljs-number">0</span>).getFirstChild();
+
+			String chartType = node.getNodeValue().trim();
+			<span class="hljs-keyword">return</span> chartType;
+
+		&#125; <span class="hljs-keyword">catch</span> (ParserConfigurationException e) &#123;
+			<span class="hljs-comment">// TODO Auto-generated catch block</span>
+			e.printStackTrace();
+		&#125; <span class="hljs-keyword">catch</span> (SAXException e) &#123;
+			<span class="hljs-comment">// TODO Auto-generated catch block</span>
+			e.printStackTrace();
+		&#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+			<span class="hljs-comment">// TODO Auto-generated catch block</span>
+			e.printStackTrace();
+		&#125;
+
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+	&#125;
+&#125;</code></pre>
+</li>
+<li><p><strong>在引入配置文件和工具类<code>XMLUtil</code>之后,客户端代码<code>SimpleFactoryPatternTest.java</code>修改如下 :</strong></p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SimpleFactoryPatternTest</span> </span>&#123;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+		<span class="hljs-comment">/*
+		 * 通过读取配置文件中的参数来初始化指定的对象.
+		 */</span>
+		String chartType = XMLUtil.getChartType();
+		Chart chart = ChartFactory.getChart(chartType);
+
+		chart.display();
+
+		<span class="hljs-comment">/*##The result be shown as followed:##
+
+		   Create the histogram chart .  
+           Initialize the histogram chart .
+		   Display the histogram chart .
+
+		 */</span>
+	&#125;
+&#125;</code></pre></li>
+<li><p><strong>不难发现,在上述客户端代码中并不包含任何与具体图标对象相关的信息,如果需要更换具体图标对象,只需要修改配置文件<code>config.xml</code>,无须修改任何原代码,既而符合<code>开闭原则</code></strong></p>
+</li>
+<li><p><em><code>开闭原则</code> : 是面向对象的可复用设计的第一块基石,它是最重要的面向对象设计原则.开闭原则由<code>Bertrand Meyer</code>于1998年提出,其定义如下 :</em></p>
+<pre><code class="hljs mipsasm">开闭原则 : 软件实体应当对扩展开放,对修改关闭.
+Open-<span class="hljs-keyword">Closed </span>Principle(OCP) : Software entities <span class="hljs-keyword">should </span><span class="hljs-keyword">be </span>open for <span class="hljs-keyword">extension,but </span><span class="hljs-keyword">closed </span>for modification.
+
+在开闭原则的定义中,软件实体可以指一个软件模块,一个由多个类组成的局部结构或一个独立的类,开闭原则就是指软件实体应尽量在不修改
+原有代码的情况下进行扩展.</code></pre>
+
+
+</li>
+</ul>
+<h3 id="简单工厂模式优-缺点与适用环境"><a href="#简单工厂模式优-缺点与适用环境" class="headerlink" title="简单工厂模式优/缺点与适用环境"></a>简单工厂模式优/缺点与适用环境</h3><h4 id="简单工厂模式的优点"><a href="#简单工厂模式的优点" class="headerlink" title="简单工厂模式的优点"></a>简单工厂模式的优点</h4><ol>
+<li>工厂类包含必要的判断逻辑,可以决定在什么时候创建哪一个产品类的实例,客户端可以避免直接创建产品对象的职责.而仅仅’消费’产品,简单工厂模式实现了对象创建和使用的分离.</li>
+<li>客户端无须知道所创建的具体产品的类名.只需要知道具体产品类所对应的参数即可,对于一些复杂的类名,通过简单工厂模式可以在一定程度上减少使用者的记忆量.</li>
+<li>通过引入配置文件,可以在不修改任何客户端代码的情况下更换和增加新的具体产品类,在一定程序上提高了系统的灵活性.</li>
+</ol>
+<h4 id="简单工厂模式的缺点"><a href="#简单工厂模式的缺点" class="headerlink" title="简单工厂模式的缺点"></a>简单工厂模式的缺点</h4><ol>
+<li>由于工厂类集中了所有产品的创建逻辑,职责过重,一旦不能正常工作,整个系统都要受到影响.</li>
+<li>使用简单工厂模式势必会增加系统中类的个数(引入了新的工厂类),增加了系统的复杂度和理解难度.</li>
+<li>系统扩展困难,一旦添加新产品就不得不修改工厂逻辑,在新产品类型较多时有可能造成工厂逻辑过于复杂,不利于系统的扩展和维护.</li>
+<li>简单工厂模式由于使用了静态工厂方法,造成工厂角色无法形成基于继承的等级结构.</li>
+</ol>
+<h4 id="简单工厂模式的适用环境"><a href="#简单工厂模式的适用环境" class="headerlink" title="简单工厂模式的适用环境"></a>简单工厂模式的适用环境</h4><ol>
+<li>工厂类负责创建的对象比较少,由于创建的对象比较少,不会造成工厂方法中的业务逻辑过于复杂.</li>
+<li>客户端只知道传入工厂类的参数,对于如何创建对象并不关心.</li>
+</ol>
+<ul>
+<li><em>参考书籍《 Java设计模式 》 作者: 刘伟 (可以说本书的代码示例写的非常用心,很适合初学者参考)</em></li>
+</ul>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Design-Pattern/">Design Pattern</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/04/04/jQuery-selector/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">jQuery selector</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/04/02/Spring-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
+                        <span class="hidden-mobile">Spring 依赖注入</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Simple Factory Pattern&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

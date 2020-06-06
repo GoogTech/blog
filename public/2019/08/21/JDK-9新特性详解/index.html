@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>详解JDK 9中的新特性 - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-08-21 10:15">
+      August 21, 2019 am
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      35
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="学习笔记-详解JDK-9中的新特性"><a href="#学习笔记-详解JDK-9中的新特性" class="headerlink" title="学习笔记 : 详解JDK 9中的新特性"></a>学习笔记 : 详解JDK 9中的新特性</h2><p><em>由于 JDK9 中下面两个特性很重要,所有小哥我就单独分开写啦~</em></p>
+<ul>
+<li>详解JDK 9中的新特性 : <a href="https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/824e4435b7805308c25cf6d4bc9d12dfe57c3acb/source/_posts/JDK-9%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E7%9A%84%E5%8F%98%E5%8C%96%E5%8F%8A%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8B%E6%A8%A1%E5%9D%97%E5%8C%96.md" target="_blank" rel="noopener">JDK 9目录结构的变化及新特性之模块化</a> </li>
+<li>详解JDK 9中的新特性 : <a href="https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/5d65a860c457559e757af21b4aac423d6f7e912f/source/_posts/JDK-9%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BREPL-JShell.md" target="_blank" rel="noopener">JDK 9新特性之REPL(JShell)</a></li>
+</ul>
+<h3 id="接口的私有方法"><a href="#接口的私有方法" class="headerlink" title="接口的私有方法"></a>接口的私有方法</h3><p><em>Java 8 中规定接口中的方法除了抽象方法之外,还可以定义静态和默认的方法. 一定程度上扩展了接口的功能,此时的接口更像是一个抽象类. 而在 Java 9 中,接口更加的灵活和强大,连方法的访问权限修饰符都可以声明为 private 的了,此时方法将不会成为你对外暴露的 API 的一部分,话说这个语法的改进不应该在 Java 8 中就施行的嘛~ 示例程序如下 :</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.jdk9;
+
+<span class="hljs-keyword">import</span> org.junit.Test;
+
+<span class="hljs-comment">//注:其方法的默认权限为public哟</span>
+<span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">MyInterface</span> </span>&#123;
+    <span class="hljs-comment">//jdk 8</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title">defaultMethod</span><span class="hljs-params">()</span> </span>&#123;
+        privateMethod();
+        System.out.println(<span class="hljs-string">"this is default method"</span>);
+    &#125;
+
+    <span class="hljs-comment">//jdk 8</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">staticMethod</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"this is static method"</span>);
+    &#125;
+
+    <span class="hljs-comment">//jdk 9</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">privateMethod</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"this is private method"</span>);
+    &#125;
+&#125;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: jdk-learnig
+ * <span class="hljs-doctag">@description</span>: 测试JDK8及JDK9中的接口新语法
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 8/21/2019-10:26 AM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Grammar</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">MyInterface</span> </span>&#123;
+
+    <span class="hljs-comment">//@Override</span>
+    <span class="hljs-comment">//public void defaultMethod() &#123;</span>
+    <span class="hljs-comment">//    System.out.println("override the default method");</span>
+    <span class="hljs-comment">//&#125;</span>
+
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;
+        MyInterface.staticMethod();
+        <span class="hljs-keyword">new</span> Grammar().defaultMethod();
+    &#125;
+&#125;</code></pre>
+
+<p><em>程序运行结果如下所示 :</em></p>
+<pre><code class="hljs oxygene">this <span class="hljs-keyword">is</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">method</span>
+<span class="hljs-title">this</span> <span class="hljs-title">is</span> <span class="hljs-title">private</span> <span class="hljs-title">method</span>
+<span class="hljs-title">this</span> <span class="hljs-title">is</span> <span class="hljs-title">default</span> <span class="hljs-title">method</span></span></code></pre>
+
+
+<h3 id="钻石操作符的使用升级"><a href="#钻石操作符的使用升级" class="headerlink" title="钻石操作符的使用升级"></a>钻石操作符的使用升级</h3><p><em>与匿名实现类共同使用钻石操作符( diamond operator )在 Java 8 中如下的操作是会报错的,编译报错信息 : <code>Cannot use &quot;&lt;&gt;&quot; with anonymous inner classes</code>,在IDEA中将 Language level 调成 Java 9 即可解决编译错误啦</em></p>
+<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testComparator</span><span class="hljs-params">()</span> </span>&#123;
+    Comparator&lt;Integer&gt; comparator = <span class="hljs-keyword">new</span> Comparator&lt;&gt;() &#123;
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compare</span><span class="hljs-params">(Integer o1, Integer o2)</span> </span>&#123;
+            <span class="hljs-keyword">return</span> Integer.compare(o1, o2);
+        &#125;
+    &#125;;
+    System.out.println(comparator.compare(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>));
+&#125;
+
+<span class="hljs-comment">//简化代码:(JDK8)Lambda表达式写法</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testComparatorWithLambda</span><span class="hljs-params">()</span> </span>&#123;
+    Comparator&lt;Integer&gt; comparator = (o1, o2) -&gt; Integer.compare(o1, o2);
+    System.out.println(comparator.compare(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>));
+&#125;
+
+<span class="hljs-comment">//简化代码:(JDK8)方法引用写法</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testComparatorWithMethodRef</span><span class="hljs-params">()</span> </span>&#123;
+    Comparator&lt;Integer&gt; comparator = Integer::compare;
+    System.out.println(comparator.compare(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>));
+&#125;</code></pre>
+
+
+<h3 id="改进的-try-with-resourcs"><a href="#改进的-try-with-resourcs" class="headerlink" title="改进的 try-with-resourcs"></a>改进的 try-with-resourcs</h3><p><em>在 Java 7 中可以实现资源的自动关闭,但是<code>要求必须将需要自动关闭的所有资源必须在try子句中进行初始化</code>,否则编译不通过. 而在 Java 9 中可以将需要自动关闭的资源的实例放在 try 的小括号外哟,程序示例如下所示 :</em></p>
+<pre><code class="hljs java"><span class="hljs-comment">//JDK7版本之前释放资源的写法</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testTry</span><span class="hljs-params">()</span> </span>&#123;
+    InputStreamReader reader = <span class="hljs-keyword">null</span>;
+    <span class="hljs-keyword">try</span> &#123;
+        reader = <span class="hljs-keyword">new</span> InputStreamReader(System.in);
+        <span class="hljs-keyword">char</span>[] buffer = <span class="hljs-keyword">new</span> <span class="hljs-keyword">char</span>[<span class="hljs-number">50</span>];
+        <span class="hljs-keyword">int</span> len;
+        <span class="hljs-keyword">if</span> ((len = reader.read(buffer)) != -<span class="hljs-number">1</span>) &#123;
+            String s = <span class="hljs-keyword">new</span> String(buffer, <span class="hljs-number">0</span>, len);
+            System.out.println(s);
+        &#125;
+    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+        e.printStackTrace();
+    &#125; <span class="hljs-keyword">finally</span> &#123;
+        <span class="hljs-keyword">if</span> (reader != <span class="hljs-keyword">null</span>) &#123;
+            <span class="hljs-keyword">try</span> &#123;
+                reader.close();
+            &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+                e.printStackTrace();
+            &#125;
+        &#125;
+    &#125;
+&#125;
+
+<span class="hljs-comment">//JDK7版本释放资源的写法</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testTryWithJDK7</span><span class="hljs-params">()</span> </span>&#123;
+    <span class="hljs-keyword">try</span> (InputStreamReader reader = <span class="hljs-keyword">new</span> InputStreamReader(System.in)) &#123;
+        <span class="hljs-comment">//reader = null; //注意:此时reader已被为设置为常量,既而不能修改</span>
+        <span class="hljs-keyword">char</span>[] buffer = <span class="hljs-keyword">new</span> <span class="hljs-keyword">char</span>[<span class="hljs-number">50</span>];
+        <span class="hljs-keyword">int</span> len;
+        <span class="hljs-keyword">if</span> ((len = reader.read(buffer)) != -<span class="hljs-number">1</span>) &#123;
+            String s = <span class="hljs-keyword">new</span> String(buffer, <span class="hljs-number">0</span>, len);
+            System.out.println(s);
+        &#125;
+    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+        e.printStackTrace();
+    &#125;
+&#125;
+
+<span class="hljs-comment">//JDK9版本优化了JDK7释放资源的写法</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testTryWithJDK9</span><span class="hljs-params">()</span> </span>&#123;
+    InputStreamReader reader = <span class="hljs-keyword">new</span> InputStreamReader(System.in);
+    OutputStreamWriter writer = <span class="hljs-keyword">new</span> OutputStreamWriter(System.out);<span class="hljs-comment">//unused</span>
+    <span class="hljs-keyword">try</span> (reader; writer) &#123;
+        <span class="hljs-keyword">char</span>[] buffer = <span class="hljs-keyword">new</span> <span class="hljs-keyword">char</span>[<span class="hljs-number">50</span>];
+        <span class="hljs-keyword">int</span> len;
+        <span class="hljs-keyword">if</span> ((len = reader.read(buffer)) != -<span class="hljs-number">1</span>) &#123;
+            String s = <span class="hljs-keyword">new</span> String(buffer, <span class="hljs-number">0</span>, len);
+            System.out.println(s);
+        &#125;
+    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+        e.printStackTrace();
+    &#125;
+&#125;</code></pre>
+
+
+<h3 id="String存储结构的变更"><a href="#String存储结构的变更" class="headerlink" title="String存储结构的变更"></a>String存储结构的变更</h3><p><em>从很多不同应用程序收集的信息表明,发现字符串是堆使用的主要组成部分. 而且,大多数字符串对象只包含一个字符,这样的字符只需要一个字节的存储空间,既而导致这些字符串对象的内部char数组中有一半的空间被闲置</em></p>
+<ul>
+<li>JDK9 之前 String 底层使用 char 数组存储数据 <code>private final char value[]</code></li>
+<li>JDK9 将 String 底层存储数据改为 byte 数组存储数据 <code>private final byte[] value</code></li>
+<li>StringBuffer 和 StringBuilder 也同样做了变更,将以往 char 数组改为 byte 数组</li>
+</ul>
+<h3 id="快速创建只读集合"><a href="#快速创建只读集合" class="headerlink" title="快速创建只读集合"></a>快速创建只读集合</h3><p><em>JDK9在 List、Set 和 Map 集合中新增 of 静态方法,快速创建只读集合,程序示例如下所示 :</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.jdk9;
+
+<span class="hljs-keyword">import</span> org.junit.Test;
+
+<span class="hljs-keyword">import</span> java.util.*;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: jdk-learnig
+ * <span class="hljs-doctag">@description</span>: 快速创建只读集合
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 8/21/2019-1:19 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CollectionTest</span> </span>&#123;
+
+    <span class="hljs-comment">//在JDK9之前创建只读集合</span>
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;
+        List&lt;String&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+        list.add(<span class="hljs-string">"A"</span>);
+        list.add(<span class="hljs-string">"B"</span>);
+        list.add(<span class="hljs-string">"C"</span>);
+        <span class="hljs-comment">//将List集合设为只读</span>
+        list = Collections.unmodifiableList(list);
+        System.out.println(list);
+
+        Set&lt;String&gt; set = <span class="hljs-keyword">new</span> HashSet&lt;&gt;();
+        set.add(<span class="hljs-string">"E"</span>);
+        set.add(<span class="hljs-string">"F"</span>);
+        set.add(<span class="hljs-string">"G"</span>);
+        <span class="hljs-comment">//将Set集合设为只读</span>
+        set = Collections.unmodifiableSet(set);
+        System.out.println(set);
+
+        Map&lt;String, String&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+        map.put(<span class="hljs-string">"k1"</span>, <span class="hljs-string">"v1"</span>);
+        map.put(<span class="hljs-string">"k2"</span>, <span class="hljs-string">"v2"</span>);
+        map.put(<span class="hljs-string">"k3"</span>, <span class="hljs-string">"v3"</span>);
+        <span class="hljs-comment">//将Map集合设为只读</span>
+        map = Collections.unmodifiableMap(map);
+        System.out.println(map);
+    &#125;
+
+    <span class="hljs-comment">//在JDK9中,可以使用of方法直接快速创建只读集合</span>
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testWithJDK9</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-comment">//创建List只读集合</span>
+        List&lt;String&gt; list = List.of(<span class="hljs-string">"A"</span>, <span class="hljs-string">"B"</span>, <span class="hljs-string">"C"</span>);
+        System.out.println(list);
+        <span class="hljs-comment">//创建Set只读集合</span>
+        Set&lt;String&gt; set = Set.of(<span class="hljs-string">"E"</span>, <span class="hljs-string">"F"</span>, <span class="hljs-string">"G"</span>);
+        System.out.println(set);
+        <span class="hljs-comment">//创建List只读集合</span>
+        Map&lt;String, String&gt; map = Map.of(<span class="hljs-string">"k1"</span>, <span class="hljs-string">"v1"</span>, <span class="hljs-string">"k2"</span>, <span class="hljs-string">"v2"</span>, <span class="hljs-string">"k3"</span>, <span class="hljs-string">"v3"</span>);
+        System.out.println(map);
+    &#125;
+&#125;</code></pre>
+
+<p><em>程序运行结果相同,如下所示 :</em></p>
+<pre><code class="hljs routeros">[A, B, C]
+[E, F, G]
+&#123;<span class="hljs-attribute">k1</span>=v1, <span class="hljs-attribute">k2</span>=v2, <span class="hljs-attribute">k3</span>=v3&#125;</code></pre>
+
+
+<h3 id="增强的-InputStream-API"><a href="#增强的-InputStream-API" class="headerlink" title="增强的 InputStream API"></a>增强的 InputStream API</h3><p><em>InputStream 终于有了一个非常有用的方法 : <code>transferTo</code>, 可以用来将数据直接传输到 OutputStream,这是在处理原始数据流时非常常见的一种用法,示例代码如下所示 :</em></p>
+<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testTransferTo</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> FileNotFoundException </span>&#123;
+    ClassLoader classLoader = <span class="hljs-keyword">this</span>.getClass().getClassLoader();
+    InputStream is = classLoader.getResourceAsStream(<span class="hljs-string">"from.txt"</span>);
+    OutputStream os = <span class="hljs-keyword">new</span> FileOutputStream(<span class="hljs-string">"to.txt"</span>);
+    <span class="hljs-keyword">try</span> (is; os) &#123;
+        <span class="hljs-keyword">assert</span> is != <span class="hljs-keyword">null</span>;
+        is.transferTo(os);
+    &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+        e.printStackTrace();
+    &#125;
+&#125;</code></pre>
+
+
+<h3 id="增强的-Stream-API"><a href="#增强的-Stream-API" class="headerlink" title="增强的 Stream API"></a>增强的 Stream API</h3><p><em>Java 的 Stream API 是 Java 标准款最好的改进之一,让开发者能够快速运算,从而能够有效的利用数据并行计算. Java 8 提供的Stream能够利用多核架构实现声明式的数据处理. 而在 Java 9 中,Stream API 变得更好,Stream 接口中添加了4个新方法 ( <code>takeWhile</code>, <code>dropWhile</code>, <code>ofNullable</code>, <code>iterate的重载方法</code> ), 及为你提供一个 Predicate( 判断条件 )来指定什么时候结束迭代. 除了对 Stream 本身的扩展, Optional 和 Stream 之间的结合也得到了改进,现在可以通过 Optional 的新对象 stream() 来将一个 Optional 对象转换为一个可能为空的 Stream 对象. 程序示例如下所示 :</em></p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testStream</span><span class="hljs-params">()</span> </span>&#123;
+
+    <span class="hljs-comment">//takeWhile: 可以用于从Stream中获取一部分数据,接受一个Predicate来进行选择,在有序的Stream中,takeWhile返回从头开始的尽可能多的元素</span>
+    List&lt;Integer&gt; list = Arrays.asList(<span class="hljs-number">45</span>, <span class="hljs-number">43</span>, <span class="hljs-number">76</span>, <span class="hljs-number">87</span>, <span class="hljs-number">42</span>, <span class="hljs-number">77</span>, <span class="hljs-number">90</span>, <span class="hljs-number">73</span>, <span class="hljs-number">67</span>, <span class="hljs-number">88</span>);
+    list.stream().takeWhile((x) -&gt; x &lt; <span class="hljs-number">80</span>).forEach(System.out::println);
+    <span class="hljs-comment">//运行结果 : 45 43 76</span>
+    <span class="hljs-comment">//从返回结果可以看出:takeWhile将会按照list集合有序的从45开始到第一个不符合条件为止的所有结果</span>
+
+    <span class="hljs-comment">//dropWhile: dropWhile方法刚好与takeWhile想法,返回剩余的元素</span>
+    List&lt;Integer&gt; list2 = Arrays.asList(<span class="hljs-number">45</span>, <span class="hljs-number">43</span>, <span class="hljs-number">76</span>, <span class="hljs-number">87</span>, <span class="hljs-number">42</span>, <span class="hljs-number">77</span>, <span class="hljs-number">90</span>, <span class="hljs-number">73</span>, <span class="hljs-number">67</span>, <span class="hljs-number">88</span>);
+    list2.stream().dropWhile((x) -&gt; x &lt; <span class="hljs-number">80</span>).forEach(System.out::println);
+    <span class="hljs-comment">//运行结果 :87 42 77 90 73 67 88</span>
+    <span class="hljs-comment">//从返回结果可以看出:dropWhile方法刚好和takeWhile方法形成互补,按照list集合有序的返回从第一个不满足条件元素开始到最后为止的所有结果</span>
+
+
+    <span class="hljs-comment">//ofNullable: 在JDK8中Stream不能完全为null,否则会报空指针异常. 而在JDK9中ofNullable方法允许创建一个为空的Stream</span>
+    <span class="hljs-comment">//Stream&lt;Object&gt; stream1 = Stream.of(null);</span>
+    <span class="hljs-comment">//System.out.println(stream1.count());//NullPointerException</span>
+    <span class="hljs-comment">//不报异常,允许这样写</span>
+    Stream&lt;String&gt; stringStream = Stream.of(<span class="hljs-string">"AA"</span>, <span class="hljs-string">"BB"</span>, <span class="hljs-keyword">null</span>);
+    System.out.println(stringStream.count()); <span class="hljs-comment">//程序运行结果:3</span>
+    <span class="hljs-comment">//不报异常,允许这样写</span>
+    List&lt;String&gt; list3 = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+    list3.add(<span class="hljs-string">"A"</span>);
+    list3.add(<span class="hljs-keyword">null</span>);
+    System.out.println(list3.stream().count()); <span class="hljs-comment">//程序运行结果:2</span>
+    <span class="hljs-comment">//ofNullable():允许值为 null</span>
+    Stream&lt;Object&gt; stream = Stream.ofNullable(<span class="hljs-keyword">null</span>);
+    System.out.println(stream.count()); <span class="hljs-comment">//程序运行结果:0</span>
+    Stream&lt;String&gt; stream2 = Stream.ofNullable(<span class="hljs-string">"Hello World"</span>);
+    System.out.println(stream2.count()); <span class="hljs-comment">//程序运行结果:1</span>
+
+    <span class="hljs-comment">//iterate()的重载方法</span>
+    <span class="hljs-comment">//JDK8 使用iterate方法,需配合limit截止</span>
+    Stream.iterate(<span class="hljs-number">1</span>, (x) -&gt; x + <span class="hljs-number">1</span>).limit(<span class="hljs-number">10</span>).forEach(System.out::print);
+    <span class="hljs-comment">//JDK9 使用iterate的重载方法可以直接使用Predicate来截止</span>
+    Stream.iterate(<span class="hljs-number">1</span>, (x) -&gt; x &lt;= <span class="hljs-number">10</span>, (x) -&gt; x + <span class="hljs-number">1</span>).forEach(System.out::print);
+    <span class="hljs-comment">//程序运行结果:12345678910</span>
+
+&#125;</code></pre>
+
+
+<h3 id="改进的-Optional-类"><a href="#改进的-Optional-类" class="headerlink" title="改进的 Optional 类"></a>改进的 Optional 类</h3><p><em>Optional 类是在JDK8中新增的类,主要是为了解决空指针异常. 在JDK9中对这个类进行了改进,主要是新增了三个方法 : <code>stream</code>, <code>ifPresentOrElse</code> 和 <code>or</code></em></p>
+<ul>
+<li><code>stream</code> : 将 Optional转为一个 Stream,如果 Optional 没有值就返回一个 Stream.empty</li>
+<li><code>ifPresentOrElse</code> : 如果 Optional 包含值,则对其包含的值调用函数 action,即 action.accept(value),这与 ifPresent 一致.与 ifPresent 方法的区别在于 ifPresentOrElse 还有第二个参数 emptyAction. 如果 Optional 不包含值,那么 ifPresentOrElse 便会调用 emptyAction,即 emptyAction.run()</li>
+<li><code>or</code> : 如果 Optional 有值,返回 Optional 指定的值,否则返回一个预设的值</li>
+</ul>
+<h3 id="全新的-HTTP-客服端-API"><a href="#全新的-HTTP-客服端-API" class="headerlink" title="全新的 HTTP 客服端 API"></a>全新的 HTTP 客服端 API</h3><p><em>JDK9 中有新的方式来处理 HTTP 调用. 它提供了一个新的HTTP客户端(HttpClient),它将替代仅适用于 blocking 模式的HttpURLConnection( HttpURLConnection是在HTTP 1.0的时代创建的,并使用了协议无关的方法 ),并提供对 WebSocket 和 HTTP/2 的支持. 此外,HTTP 客户端还提供 API 来处理 HTTP/2 的特性,比如流和服务器推送等功能. 全新的 HTTP 客户端 API 可以从 jdk.incubator.httpclient 模块中获取. 因为在默认情况下,这个模块是不能根据 classpath 获取的,需要使用<code>add modules</code>命令选项配置这个模块,将这个模块添加到 classpath中</em></p>
+<h3 id="javadoc-的-HTML5-支持"><a href="#javadoc-的-HTML5-支持" class="headerlink" title="javadoc 的 HTML5 支持"></a>javadoc 的 HTML5 支持</h3><p><em>JDK8 生成的 java 帮助文档是在 HTML4 中,而HTML4 已经是很久的标准了. JDK9 的 javadoc 现支持HTML5 标准</em></p>
+<p><em>更多 JDK9 的新特性描述请参阅 : <a href="https://docs.oracle.com/javase/9/whatsnew/toc.htm" target="_blank" rel="noopener">What’s New in JDK9</a></em></p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/JDK/">JDK</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/08/21/JDK-10%E6%96%B0%E7%89%B9%E6%80%A7%E8%AF%A6%E8%A7%A3/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">详解JDK 10中的新特性</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/08/20/JDK-9%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BREPL-JShell/">
+                        <span class="hidden-mobile">JDK 9新特性之REPL( JShell )</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "详解JDK 9中的新特性&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

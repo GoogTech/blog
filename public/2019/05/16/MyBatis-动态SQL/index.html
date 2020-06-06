@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>MyBatis:动态SQL - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-05-16 15:01">
+      May 16, 2019 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      34
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="学习笔记-MyBatis之动态SQL"><a href="#学习笔记-MyBatis之动态SQL" class="headerlink" title="学习笔记 : MyBatis之动态SQL"></a>学习笔记 : MyBatis之动态SQL</h2><p><em>简介 : MyBatis提供的对SQL语句动态组装的功能解决了开发人员在使用JDBC或其他的框架进行数据库开发时,需要手动拼装SQL的繁琐问题.</em></p>
+<h3 id="动态SQL元素"><a href="#动态SQL元素" class="headerlink" title="动态SQL元素"></a>动态SQL元素</h3><p><em>动态SQL是MyBatis强大特性之一,<code>MyBatis 3</code>采用了功能强大的基于<code>OGNL</code>的表达式来完成动态SQL,其主要元素如下.</em></p>
+<ol>
+<li><code>&lt;if&gt;</code> : 判断语句,用于单条分支判断.</li>
+<li><code>&lt;choose&gt;(&lt;when&gt;,&lt;otherwise&gt;)</code> : 相当于Java中的swith…case…default语句,用于多条件分支判断.</li>
+<li><code>&lt;where&gt;,&lt;trim&gt;,&lt;set&gt;</code> : 辅助元元素,用于处理一些SQL拼装,特殊字符问题.</li>
+<li><code>&lt;foreach&gt;</code> : 循环语句,常用于in语句等列举条件中.</li>
+<li><code>&lt;bind&gt;</code> : 从<code>OGNL</code>表达式中创建一个变量,并将其绑定到上下文,常用于模糊查询的sql中. </li>
+</ol>
+<ul>
+<li><em>扩展 : <code>OGNL</code>是Object-Graph Navigation Language的缩写,它是一种功能强大的表达式语言,通过它简单一致的表达式语法,可以存取对象的任意属性,调用对象的方法,遍历整个对象的结构图,实现字段类型转化等功能.它使用相同的表达式去存取对象的属性.这样可以更好的取得数据.</em></li>
+</ul>
+<h3 id="应用案例"><a href="#应用案例" class="headerlink" title="应用案例"></a>应用案例</h3><p><em>下面通过一个操作客户信息的综合案例来学习SQL动态元素 (っ•̀ω•́)っ✎⁾⁾ ~</em></p>
+<ol>
+<li><p><em>客户信息表结构</em></p>
+<pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> t_customer (
+
+	<span class="hljs-keyword">id</span> <span class="hljs-built_in">INT</span>(<span class="hljs-number">32</span>) PRIMARY <span class="hljs-keyword">KEY</span> AUTO_INCREMENT,
+	username <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+	jobs <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">45</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+	phone <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">16</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>
+	
+)</code></pre>
+</li>
+<li><p><em>db.properties : 数据库配置文件</em></p>
+<pre><code class="hljs t">#database configuration information
+jdbc.driver=com.mysql.cj.jdbc.Driver
+jdbc.url=jdbc:mysql://LOCALHOST/MyBatis?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true
+jdbc.username=root
+jdbc.password=GoodTime</code></pre>
+</li>
+<li><p><em>mybatis-config.xml : MyBatis核心配置文件</em></p>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>
+	<span class="hljs-comment">&lt;!-- 数据库配置文件 --&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">properties</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">"db.properties"</span> /&gt;</span>
+	<span class="hljs-comment">&lt;!-- 配置环境.默认环境id为MySQL --&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">environments</span> <span class="hljs-attr">default</span>=<span class="hljs-string">"MySQL"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">environment</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"MySQL"</span>&gt;</span>
+			<span class="hljs-comment">&lt;!-- 使用JDBC事务管理 --&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">transactionManager</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"JDBC"</span> /&gt;</span>
+			<span class="hljs-comment">&lt;!-- 数据库连接池 --&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">dataSource</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"POOLED"</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"driver"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;jdbc.driver&#125;"</span> /&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"url"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;jdbc.url&#125;"</span> /&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;jdbc.username&#125;"</span> /&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;jdbc.password&#125;"</span> /&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">dataSource</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">environment</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">environments</span>&gt;</span>
+	<span class="hljs-comment">&lt;!-- 将SQL映射文件注册到全局配置文件中 --&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">mappers</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">"pers/huangyuhui/mybatis/mapper/CustomerMapper.xml"</span> /&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">mappers</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></code></pre>
+</li>
+<li><p><em>Customer.java : 封装客户信息</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mybatis.bean;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: Customer
+ * <span class="hljs-doctag">@Description</span>: 客户信息实体表
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: May 18, 2019 11:37:59 AM
+ *
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> </span>&#123;
+
+	<span class="hljs-keyword">private</span> Integer id;
+	<span class="hljs-keyword">private</span> String username;
+	<span class="hljs-keyword">private</span> String job;
+	<span class="hljs-keyword">private</span> String phone;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">getId</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> id;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setId</span><span class="hljs-params">(Integer id)</span> </span>&#123;
+		<span class="hljs-keyword">this</span>.id = id;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getUsername</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> username;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setUsername</span><span class="hljs-params">(String username)</span> </span>&#123;
+		<span class="hljs-keyword">this</span>.username = username;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getJob</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> job;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setJob</span><span class="hljs-params">(String job)</span> </span>&#123;
+		<span class="hljs-keyword">this</span>.job = job;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getPhone</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> phone;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setPhone</span><span class="hljs-params">(String phone)</span> </span>&#123;
+		<span class="hljs-keyword">this</span>.phone = phone;
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-string">"Customer [id="</span> + id + <span class="hljs-string">", username="</span> + username + <span class="hljs-string">", job="</span> + job + <span class="hljs-string">", phone="</span> + phone + <span class="hljs-string">"]"</span>;
+	&#125;
+
+&#125;</code></pre>
+</li>
+<li><p><em>CustomerMapper.xml : 操作’t_customer’数据表的映射文件</em></p>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">"pers.huangyuhui.mybatis.mapper.CustomerMapper"</span>&gt;</span>
+
+	<span class="hljs-comment">&lt;!-- (&lt;if&gt;)将客户名和职业组合作为查询客户信息列表的条件 --&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"findCustomerByNameAndJob"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"pers.huangyuhui.mybatis.bean.Customer"</span> 
+				<span class="hljs-attr">resultType</span>=<span class="hljs-string">"pers.huangyuhui.mybatis.bean.Customer"</span>&gt;</span>
+		select id,username,job,phone from t_customer where 1=1
+		<span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">"username!=null and username!=''"</span>&gt;</span>
+			and username like concat('%',#&#123;username&#125;,'%')
+		<span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">"job!=null and job!=''"</span>&gt;</span>
+			and job=#&#123;job&#125;
+		<span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+	
+	<span class="hljs-comment">&lt;!-- (&lt;where&gt;+&lt;if&gt;)将客户名和职业组合作为查询客户信息列表的条件 --&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"findCustomerByNameAndJob_where"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"pers.huangyuhui.mybatis.bean.Customer"</span> 
+				<span class="hljs-attr">resultType</span>=<span class="hljs-string">"pers.huangyuhui.mybatis.bean.Customer"</span>&gt;</span>
+		select id,username,job,phone from t_customer
+		<span class="hljs-tag">&lt;<span class="hljs-name">where</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">"username!=null and username!=''"</span>&gt;</span>
+				and username like concat('%',#&#123;username&#125;,'%')
+			<span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">"job!=null and job!=''"</span>&gt;</span>
+				and job=#&#123;job&#125;
+			<span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">where</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+	
+	<span class="hljs-comment">&lt;!-- (&lt;trim&gt;+&lt;if&gt;)将客户名和职业组合作为查询客户信息列表的条件 --&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"findCustomerByNameAndJob_trim"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"pers.huangyuhui.mybatis.bean.Customer"</span> 
+				<span class="hljs-attr">resultType</span>=<span class="hljs-string">"pers.huangyuhui.mybatis.bean.Customer"</span>&gt;</span>
+		select id,username,job,phone from t_customer
+		<span class="hljs-tag">&lt;<span class="hljs-name">trim</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">"where"</span> <span class="hljs-attr">prefixOverrides</span>=<span class="hljs-string">"and"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">"username!=null and username!=''"</span>&gt;</span>
+				and username like concat('%',#&#123;username&#125;,'%')
+			<span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">"job!=null and job!=''"</span>&gt;</span>
+				and job=#&#123;job&#125;
+			<span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">trim</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+	
+	<span class="hljs-comment">&lt;!-- (&lt;where&gt;+&lt;when&gt;+&lt;otherwise&gt;)将客户名或职业其中一项作为查询客户信息的条件 --&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"findCustomerByNameOrJob"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"pers.huangyuhui.mybatis.bean.Customer"</span> 
+				<span class="hljs-attr">resultType</span>=<span class="hljs-string">"pers.huangyuhui.mybatis.bean.Customer"</span>&gt;</span>
+		select id,username,job,phone from t_customer
+		<span class="hljs-tag">&lt;<span class="hljs-name">where</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">choose</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">when</span> <span class="hljs-attr">test</span>=<span class="hljs-string">"username!=null and username!=''"</span>&gt;</span>
+					and username like concat('%',#&#123;username&#125;,'%')
+				<span class="hljs-tag">&lt;/<span class="hljs-name">when</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">when</span> <span class="hljs-attr">test</span>=<span class="hljs-string">"job!=null and job!=''"</span>&gt;</span>
+					and job = #&#123;job&#125;
+				<span class="hljs-tag">&lt;/<span class="hljs-name">when</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">otherwise</span>&gt;</span>
+					and phone is not null
+				<span class="hljs-tag">&lt;/<span class="hljs-name">otherwise</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">choose</span>&gt;</span>	
+		<span class="hljs-tag">&lt;/<span class="hljs-name">where</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+	
+	<span class="hljs-comment">&lt;!-- (&lt;set&gt;+&lt;if&gt;)根据id更新客户信息 --&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">update</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"updateCustomer"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"pers.huangyuhui.mybatis.bean.Customer"</span>&gt;</span>
+		update t_customer
+		<span class="hljs-tag">&lt;<span class="hljs-name">set</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">"username !=null and username !=''"</span>&gt;</span>
+				username=#&#123;username&#125;
+			<span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">"job !=null and job !=''"</span>&gt;</span>
+				job=#&#123;job&#125;
+			<span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">"phone !=null and phone !=''"</span>&gt;</span>
+				phone=#&#123;phone&#125;
+			<span class="hljs-tag">&lt;/<span class="hljs-name">if</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">set</span>&gt;</span>
+		where id = #&#123;id&#125;
+	<span class="hljs-tag">&lt;/<span class="hljs-name">update</span>&gt;</span>
+	
+	<span class="hljs-comment">&lt;!-- (&lt;foreach&gt;)根据客户id批量查询客户信息 --&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"findCustomerByIds"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"List"</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">"pers.huangyuhui.mybatis.bean.Customer"</span>&gt;</span>
+		select id,username,job,phone from t_customer where id in
+		<span class="hljs-tag">&lt;<span class="hljs-name">foreach</span> <span class="hljs-attr">item</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">index</span>=<span class="hljs-string">"index"</span> <span class="hljs-attr">collection</span>=<span class="hljs-string">"list"</span> <span class="hljs-attr">open</span>=<span class="hljs-string">"("</span> <span class="hljs-attr">separator</span>=<span class="hljs-string">","</span> <span class="hljs-attr">close</span>=<span class="hljs-string">")"</span>&gt;</span>
+			#&#123;id&#125;
+		<span class="hljs-tag">&lt;/<span class="hljs-name">foreach</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+		
+	<span class="hljs-comment">&lt;!-- (&lt;bind&gt;)替换$&#123;&#125;,防止SQL注入问题.根据客户名模糊查询客户信息 --&gt;</span>	
+	<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"findCustomerByName"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"pers.huangyuhui.mybatis.bean.Customer"</span> 
+				<span class="hljs-attr">resultType</span>=<span class="hljs-string">"pers.huangyuhui.mybatis.bean.Customer"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">bind</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"pattern_username"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">" '%'  + _parameter.getUsername + '%' "</span>/&gt;</span>
+		select id,username,job,phone from t_customer where username like #&#123;pattern_username&#125;
+	<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre>
+</li>
+<li><p><em>MyBatisUtils.java : MyBatis工具类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mybatis.util;
+
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.io.Reader;
+
+<span class="hljs-keyword">import</span> org.apache.ibatis.io.Resources;
+<span class="hljs-keyword">import</span> org.apache.ibatis.session.SqlSession;
+<span class="hljs-keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;
+<span class="hljs-keyword">import</span> org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: MyBatisUtils
+ * <span class="hljs-doctag">@Description</span>: MyBatis工具类
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: May 18, 2019 11:43:31 AM
+ *
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyBatisUtils</span> </span>&#123;
+
+	<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">MyBatisUtils</span><span class="hljs-params">()</span> </span>&#123;
+
+	&#125;
+
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> SqlSessionFactory sqlSessionFactory = <span class="hljs-keyword">null</span>;
+
+	<span class="hljs-keyword">static</span> &#123;
+		<span class="hljs-comment">// 使用MyBatis提供的Resources类加载MyBatis的配置文件</span>
+		<span class="hljs-keyword">try</span> (Reader reader = Resources.getResourceAsReader(<span class="hljs-string">"mybatis-config.xml"</span>);) &#123;
+			<span class="hljs-comment">// 构建SqlSessionFactory工厂</span>
+			sqlSessionFactory = <span class="hljs-keyword">new</span> SqlSessionFactoryBuilder().build(reader);
+		&#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+			e.printStackTrace();
+		&#125;
+	&#125;
+
+	<span class="hljs-comment">// 获取SqlSession对象的静态方法</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> SqlSession <span class="hljs-title">getSession</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> sqlSessionFactory.openSession();
+	&#125;
+&#125;</code></pre>
+</li>
+<li><p><em>MyBatisTest.java : 测试类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mybatis.test;
+
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-keyword">import</span> org.apache.ibatis.session.SqlSession;
+<span class="hljs-keyword">import</span> org.junit.BeforeClass;
+<span class="hljs-keyword">import</span> org.junit.Ignore;
+<span class="hljs-keyword">import</span> org.junit.Test;
+
+<span class="hljs-keyword">import</span> pers.huangyuhui.mybatis.bean.Customer;
+<span class="hljs-keyword">import</span> pers.huangyuhui.mybatis.util.MyBatisUtils;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: MyBatisTest
+ * <span class="hljs-doctag">@Description</span>: 测试
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: May 18, 2019 8:41:39 AM
+ *
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyBatisTest</span> </span>&#123;
+
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Customer customer;
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> String namespace = <span class="hljs-string">"pers.huangyuhui.mybatis.mapper.CustomerMapper."</span>;
+
+	<span class="hljs-meta">@BeforeClass</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;
+		customer = <span class="hljs-keyword">new</span> Customer();
+	&#125;
+
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@Ignore</span>
+	<span class="hljs-comment">// 将客户名和职业组合作为查询客户信息列表的条件</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">findCustomerByNameAndJobTest</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-comment">// 获取SqlSession对象</span>
+		SqlSession sqlSession = MyBatisUtils.getSession();
+
+		<span class="hljs-comment">// 封装需要组合查询的条件</span>
+		customer.setUsername(<span class="hljs-string">"YUbuntu0109"</span>);
+		customer.setJob(<span class="hljs-string">"programmer"</span>);
+
+		<span class="hljs-comment">// 执行SqlSession的查询方法,并返回结果集</span>
+		List&lt;Customer&gt; customers = sqlSession.selectList(namespace + <span class="hljs-string">"findCustomerByNameAndJob"</span>, customer);
+
+		<span class="hljs-comment">// 输出查询结果信息</span>
+		<span class="hljs-keyword">for</span> (Customer customer : customers) &#123;
+			System.out.println(customer);
+		&#125;
+
+		<span class="hljs-comment">// 关闭SqlSession</span>
+		sqlSession.close();
+
+	&#125;
+
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@Ignore</span>
+	<span class="hljs-comment">// 将客户名或职业其中一项作为查询客户信息的条件</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">findCustomerByNameOrJobTest</span><span class="hljs-params">()</span> </span>&#123;
+		SqlSession sqlSession = MyBatisUtils.getSession();
+
+		customer.setUsername(<span class="hljs-string">"YUbuntu0109"</span>);
+		customer.setJob(<span class="hljs-string">"student"</span>);
+
+		List&lt;Customer&gt; customers = sqlSession.selectList(namespace + <span class="hljs-string">"findCustomerByNameOrJob"</span>, customer);
+		<span class="hljs-keyword">for</span> (Customer customer : customers) &#123;
+			System.out.println(customer);
+		&#125;
+
+		sqlSession.close();
+	&#125;
+
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@Ignore</span>
+	<span class="hljs-comment">// 根据客户id更新客户信息</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updateCustomerTest</span><span class="hljs-params">()</span> </span>&#123;
+		SqlSession sqlSession = MyBatisUtils.getSession();
+
+		customer.setId(<span class="hljs-number">1</span>);
+		customer.setPhone(<span class="hljs-string">"15711111111"</span>);
+
+		<span class="hljs-keyword">int</span> rows = sqlSession.update(namespace + <span class="hljs-string">"updateCustomer"</span>, customer);
+		<span class="hljs-keyword">if</span> (rows &gt; <span class="hljs-number">0</span>) &#123;
+			System.out.println(<span class="hljs-string">"成功更新了 "</span> + rows + <span class="hljs-string">" 条数据哟 ~"</span>);
+		&#125; <span class="hljs-keyword">else</span> &#123;
+			System.out.println(<span class="hljs-string">"数据更新操作失败 !"</span>);
+		&#125;
+
+		sqlSession.commit();
+		sqlSession.close();
+
+	&#125;
+
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@Ignore</span>
+	<span class="hljs-comment">// 根据客户id批量查询客户信息</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">findCustomerByIdsTest</span><span class="hljs-params">()</span> </span>&#123;
+		SqlSession sqlSession = MyBatisUtils.getSession();
+
+		<span class="hljs-comment">// 创建List集合,封装查询id</span>
+		List&lt;Integer&gt; ids = <span class="hljs-keyword">new</span> ArrayList&lt;Integer&gt;();
+		ids.add(<span class="hljs-number">1</span>);
+		ids.add(<span class="hljs-number">2</span>);
+		ids.add(<span class="hljs-number">3</span>);
+
+		<span class="hljs-comment">// 查询id为1,2,3的客户信息</span>
+		List&lt;Customer&gt; customers = sqlSession.selectList(namespace + <span class="hljs-string">"findCustomerByIds"</span>, ids);
+		<span class="hljs-keyword">for</span> (Customer customer : customers) &#123;
+			System.out.println(customer);
+		&#125;
+
+		sqlSession.close();
+
+	&#125;
+
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-meta">@Ignore</span>
+	<span class="hljs-comment">// 根据客户名模糊查询客户信息</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">findCustomerByNameTest</span><span class="hljs-params">()</span> </span>&#123;
+
+		SqlSession sqlSession = MyBatisUtils.getSession();
+		customer.setUsername(<span class="hljs-string">"Y"</span>);
+
+		List&lt;Customer&gt; customers = sqlSession.selectList(namespace + <span class="hljs-string">"findCustomerByName"</span>, customer);
+		<span class="hljs-keyword">for</span> (Customer customer : customers) &#123;
+			System.out.println(customer);
+		&#125;
+
+		sqlSession.close();
+
+	&#125;
+
+&#125;</code></pre>
+</li>
+<li><p><em>log4j.properties : 日志配置文件</em></p>
+<pre><code class="hljs t">#Global configuration
+log4j.rootLogger=DEBUG,stdout
+#Log configuration
+log4j.logger.pers.huangyuhui.mybatis.test=TRACE
+#Console configuration
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.layout.ConversionPattern=%5p [%t] - %m%n</code></pre></li>
+</ol>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/MyBatis/">MyBatis</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/05/16/Hi-SpringMVC/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hi SpringMVC ~</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/05/16/Spring-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%BC%80%E5%8F%91/">
+                        <span class="hidden-mobile">Spring:数据库开发</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "MyBatis:动态SQL&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

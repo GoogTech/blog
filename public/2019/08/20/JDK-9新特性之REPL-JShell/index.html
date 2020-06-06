@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>JDK 9新特性之REPL( JShell ) - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-08-20 18:24">
+      August 20, 2019 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      26
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="学习笔记-JDK-9新特性之REPL-JShell"><a href="#学习笔记-JDK-9新特性之REPL-JShell" class="headerlink" title="学习笔记 : JDK 9新特性之REPL( JShell )"></a>学习笔记 : JDK 9新特性之REPL( JShell )</h2><h3 id="产生背景"><a href="#产生背景" class="headerlink" title="产生背景"></a>产生背景</h3><p><em>像 Python 和 Scala之类的语言早就有交互式编程环境 REPL( read-evaluate-print-loop )了,以交互式的方式对语句和表达式进行求值,开发者只需要输入一些代码,就可以在编译前获得对程序的反馈. 而之前的 Java 版本想要执行代码,必须创建文件,声明类,提供测试方法才可以实现,而现在使用 JShell( 既写既的,快速运行 ) 就可以摆脱这种困扰咯~</em></p>
+<h3 id="实现目标"><a href="#实现目标" class="headerlink" title="实现目标"></a>实现目标</h3><ul>
+<li>Java9 终于拥有了 REPL 工具 JShell : 既而可以让 Java 可以像脚本语言一样运行,从控制台启动 JShell,利用 JShell 在没有创建类的情况下直接声明变量,计算表达式,执行语句. 既开发时可以在命令行里直接运行Java的代码,而无需再创建 Java 文件,无需再使用 <code>public static void main(String[]args)</code>这句废话</li>
+<li>JShell 也可以从文件中加载语句或将语句保存到文件中</li>
+<li>JShell 也可以是 tab 键进行自动补全和自动添加分号</li>
+</ul>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><p><em>JShell 中的命令和代码片段是不一样的,命令都是以前导的反斜杠 <code>/</code> 开头,比如要显示所有已经定义的变量,可以使用 <code>/var</code>, 要显示所有已经定义的方法,可以使用 <code>/methods</code>,要显示所有已经定义的类型,可以使用 <code>/types</code>, 要显示所有输入的代码片段,可以使用 <code>/list</code> · · ·</em></p>
+<p><em>进入JShell命令行环境 :</em></p>
+<pre><code class="hljs s">C:\Users\Administrator
+λ jshell
+|  Welcome to JShell -- Version 11.0.2
+|  For an introduction type: /help intro
+
+jshell&gt;</code></pre>
+
+<p><em>输入<code>/help</code>可以查看 JShell 相关的命令 :</em></p>
+<pre><code class="hljs s">jshell&gt; /help                                                                                     
+|  Type a Java language expression, statement, or declaration.                                    
+|  Or type one of the following commands:                                                         
+|  /list [&lt;name or id&gt;|-all|-start]                                                               
+|       list the source you have typed                                                            
+|  /edit &lt;name or id&gt;                                                                             
+|       edit a source entry                                                                       
+|  /drop &lt;name or id&gt;                                                                             
+|       delete a source entry                                                                     
+|  /save [-all|-history|-start] &lt;file&gt;                                                            
+|       Save snippet source to a file                                                             
+|  /open &lt;file&gt;                                                                                   
+|       open a file as source input                                                               
+|  /vars [&lt;name or id&gt;|-all|-start]                                                               
+|       list the declared variables and their values                                              
+|  /methods [&lt;name or id&gt;|-all|-start]                                                            
+|       list the declared methods and their signatures                                            
+|  /types [&lt;name or id&gt;|-all|-start]                                                              
+|       list the type declarations                                                                
+|  /imports                                                                                       
+|       list the imported items                                                                   
+|  /exit [&lt;integer-expression-snippet&gt;]                                                           
+|       exit the jshell tool                                                                      
+|  /env [-class-path &lt;path&gt;] [-module-path &lt;path&gt;] [-add-modules &lt;modules&gt;] ...                   
+|       view or change the evaluation context                                                     
+|  /reset [-class-path &lt;path&gt;] [-module-path &lt;path&gt;] [-add-modules &lt;modules&gt;]...                  
+|       reset the jshell tool                                                                     
+|  /reload [-restore] [-quiet] [-class-path &lt;path&gt;] [-module-path &lt;path&gt;]...                      
+|       reset and replay relevant history -- current or previous (-restore)                       
+|  /history [-all]                                                                                
+|       history of what you have typed                                                            
+|  /help [&lt;command&gt;|&lt;subject&gt;]                                                                    
+|       get information about using the jshell tool                                               
+|  /set editor|start|feedback|mode|prompt|truncation|format ...                                   
+|       set configuration information                                                             
+|  /? [&lt;command&gt;|&lt;subject&gt;]                                                                       
+|       get information about using the jshell tool                                               
+|  /!                                                                                             
+|       rerun last snippet -- see /help rerun                                                     
+|  /&lt;id&gt;                                                                                          
+|       rerun snippets by ID or ID range -- see /help rerun                                       
+|  /-&lt;n&gt;                                                                                          
+|       rerun n-th previous snippet -- see /help rerun                                            
+|                                                                                                 
+|  For more information type &apos;/help&apos; followed by the name of a                                    
+|  command or a subject.                                                                          
+|  For example &apos;/help /list&apos; or &apos;/help intro&apos;.                                                    
+|                                                                                                 
+|  Subjects:                                                                                      
+|                                                                                                 
+|  intro                                                                                          
+|       an introduction to the jshell tool                                                        
+|  id                                                                                             
+|       a description of snippet IDs and how use them                                             
+|  shortcuts                                                                                      
+|       a description of keystrokes for snippet and command completion,                           
+|       information access, and automatic code generation                                         
+|  context                                                                                        
+|       a description of the evaluation context options for /env /reload and /reset               
+|  rerun                                                                                          
+|       a description of ways to re-evaluate previously entered snippets                          
+                                                                                                  
+jshell&gt;</code></pre>
+
+<p><em>JShell 命令的自动补全功能 :</em></p>
+<pre><code class="hljs s">jshell&gt; /
+/!          /?          /drop       /edit       /env        /exit       /help       /history    /imports
+/list       /methods    /open       /reload     /reset      /save       /set        /types      /vars
+
+&lt;press tab again to see synopsis&gt;
+
+jshell&gt; /</code></pre>
+
+<p><em><code>System.out.</code>后按下 Tab 键,就会列出当前类的所有的 public 方法的列表哟</em></p>
+<pre><code class="hljs s">jshell&gt; System.out.
+append(        checkError()   close()        equals(        flush()        format(        getClass()
+hashCode()     notify()       notifyAll()    print(         printf(        println(       toString()
+wait(          write(
+
+jshell&gt;</code></pre>
+
+<p><em>实例 : 在 JShell 中使用 Stream 流过滤并遍历输出数组元素 :</em></p>
+<pre><code class="hljs s">jshell&gt; public void streamDemo()&#123;
+   ...&gt; String[]array = &#123;&quot;a&quot;,&quot;bc&quot;,&quot;bcd&quot;,&quot;abcd&quot;&#125;;
+   ...&gt; Stream.of(array).filter(e-&gt;e.startsWith(&quot;a&quot;)).filter(e-&gt;e.length()&gt;3).forEach(System.out::println);
+   ...&gt; &#125;
+|  created method streamDemo()
+
+jshell&gt; streamDemo();
+abcd</code></pre>
+
+<p><em>例如使用<code>/imports</code>命令用于查看已导入的包 :</em></p>
+<pre><code class="hljs s">jshell&gt; /imports
+|    import java.io.*
+|    import java.math.*
+|    import java.net.*
+|    import java.nio.file.*
+|    import java.util.*
+|    import java.util.concurrent.*
+|    import java.util.function.*
+|    import java.util.prefs.*
+|    import java.util.regex.*
+|    import java.util.stream.*
+
+jshell&gt;</code></pre>
+
+<p><em>列出到目前为止当前 <code>session</code> 里所有有效的代码片段 :</em></p>
+<pre><code class="hljs s">jshell&gt; /list
+
+   1 : System.out.println(&quot;demo&quot;);
+   2 : public void streamDemo()&#123;
+       String[]array = &#123;&quot;a&quot;,&quot;bc&quot;,&quot;bcd&quot;,&quot;abcd&quot;&#125;;
+       Stream.of(array)
+       .filter(e-&gt;e.startsWith(&quot;a&quot;))
+       .filter(e-&gt;e.length()&gt;3)
+       .forEach(System.out::println);
+       &#125;
+   3 : streamDemo();
+
+jshell&gt;</code></pre>
+
+<p><em>列出到目前为止当前 session 里所有方法 :</em></p>
+<pre><code class="hljs s">jshell&gt; /method
+|    void StreamDemo()</code></pre>
+
+<p><em>在 JShell 中可以启用 JShell Edit Pad 编辑器来写更加便捷地书写 Java 代码,只需要输入命令<code>/edit</code>,代码编辑完成后,先点击”Accept”按钮,再点击”Exit”按钮,继而退出编辑器</em><br><img src="/2019/08/20/JDK-9%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BREPL-JShell/JShell-Edit-Pad-Demo.PNG" srcset="/img/loading.gif" alt></p>
+<p><em>调用已修改的程序,其运行结果如下所示 :</em></p>
+<pre><code class="hljs s">jshell&gt; /edit
+|  created method streamDemo()
+
+jshell&gt; /edit
+|  modified method streamDemo()
+|    update overwrote method streamDemo()
+
+jshell&gt; streamDemo();
+2
+
+jshell&gt;</code></pre>
+
+<p><em>JShell Edit Pad 编辑器功能非常有限,仅能提供一些最基础的功能,不过好消息是 JShell 可以配置外部的代码编辑器,只需要使用 <code>/edit</code> 设置外部编辑器的完整路径即可,例如使用 VS Code 来作为外部的代码编辑器</em></p>
+<pre><code class="hljs s">jshell&gt; /set editor /Visual Studio Code/Microsoft VS Code/Code.exe
+|  Editor set to: /Visual Studio Code/Microsoft VS Code/Code.exe</code></pre>
+
+<p><em>从外部加载源代码 : 如果在外部已经有写好的 Java 文件,则可以使用 <code>/open</code> 命令导入到 JShell 环境中,例如现在有一个Test.java文件</em></p>
+<pre><code class="hljs s">jshell&gt; /open /Java/Test.java
+
+jshell&gt; /methods
+|    int add(int,int)
+|    int sub(int,int)
+
+jshell&gt; add(1,2);
+$5 ==&gt; 3
+
+jshell&gt;</code></pre>
+
+<p><em>JShell 命令缩写,例如 <code>/list</code> 的缩写为 <code>/l</code>,例如 <code>/list -all</code> 的缩写为 <code>/l -a</code>. 例如,我们可以使用 <code>/l -a</code> 来代替 <code>list -all</code> 输出所有的代码片段 :</em></p>
+<pre><code class="hljs s">jshell&gt; /l -a                                                                     
+                                                                                  
+  s1 : import java.io.*;                                                          
+  s2 : import java.math.*;                                                        
+  s3 : import java.net.*;                                                         
+  s4 : import java.nio.file.*;                                                    
+  s5 : import java.util.*;                                                        
+  s6 : import java.util.concurrent.*;                                             
+  s7 : import java.util.function.*;                                               
+  s8 : import java.util.prefs.*;                                                  
+  s9 : import java.util.regex.*;                                                  
+ s10 : import java.util.stream.*;                                                 
+   1 : System.out.println(&quot;demo&quot;);                                                
+   2 : public void StreamDemo()&#123;                                                  
+       String[]array = &#123;&quot;a&quot;,&quot;bc&quot;,&quot;bcd&quot;,&quot;abcd&quot;&#125;;                                   
+       Stream.of(array)                                                           
+       .filter(e-&gt;e.startsWith(&quot;a&quot;))                                              
+       .filter(e-&gt;e.length()&gt;3)                                                   
+       .forEach(System.out::println);                                             
+       &#125;                                                                          
+   3 : StreamDemo();                                                              
+   4 : public void streamDemo() &#123;                                                 
+           String[] array = &#123;&quot;a&quot;, &quot;bc&quot;, &quot;abc&quot;, &quot;bcd&quot;, &quot;abcd&quot;&#125;;                    
+           long count = Stream.of(array)                                          
+        .filter(element -&gt; element.startsWith(&quot;a&quot;))                               
+        .filter(element -&gt; element.length()&gt;3)                                    
+        .count();                                                                 
+           System.out.println(count);                                             
+       &#125;                                                                          
+   5 : public void streamDemo() &#123;                                                 
+           String[] array = &#123;&quot;a&quot;, &quot;bc&quot;, &quot;abc&quot;, &quot;bcd&quot;, &quot;abcd&quot;, &quot;abcde&quot;&#125;;           
+           long count = Stream.of(array)                                          
+        .skip(1)                                                                  
+        .filter(element -&gt; element.startsWith(&quot;a&quot;))                               
+        .filter(element -&gt; element.length()&gt;3)                                    
+        .count();                                                                 
+           System.out.println(count);                                             
+       &#125;                                                                          
+   6 : streamDemo();                                                              
+                                                                                  
+jshell&gt;</code></pre>
+
+<p><em>退出 JShell</em></p>
+<pre><code class="hljs s">jshell&gt; /exit
+|  Goodbye</code></pre>
+
+
+
+<p><em>更多 JShell 的详细介绍请参考 : <a href="https://docs.oracle.com/javase/9/jshell/introduction-jshell.htm" target="_blank" rel="noopener">官方介绍文档</a></em></p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/JDK/">JDK</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/08/21/JDK-9%E6%96%B0%E7%89%B9%E6%80%A7%E8%AF%A6%E8%A7%A3/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">详解JDK 9中的新特性</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/08/20/JDK-9%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E7%9A%84%E5%8F%98%E5%8C%96%E5%8F%8A%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8B%E6%A8%A1%E5%9D%97%E5%8C%96/">
+                        <span class="hidden-mobile">JDK 9目录结构的变化及新特性之模块化</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "JDK 9新特性之REPL( JShell )&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

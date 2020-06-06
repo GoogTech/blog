@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>Java annotation - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-04-14 09:43">
+      April 14, 2019 am
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.8k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      38
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="Java注解-元数据"><a href="#Java注解-元数据" class="headerlink" title="Java注解 (元数据)"></a>Java注解 (元数据)</h2><h3 id="注解的概念及作用"><a href="#注解的概念及作用" class="headerlink" title="注解的概念及作用"></a>注解的概念及作用</h3><ul>
+<li><p><em>从JDK1.5开始,Java支持在源文件中嵌入补充信息,这类信息被称为<code>注解(annotation)</code>.注解不会改变程序的动作,因此也就不会改变程序的语义,但是在开发和部署期间,各种工具可以使用这类信息,例如: 源代码生成器可以处理注解! 注: <code>如果没有注解信息处理流程(如:通过反射查询注解),则注解毫无意义 !</code></em></p>
+</li>
+<li><p><em>说明: 其实术语<code>元数据(metadata)</code>,但是<code>注解</code>这个名称更具有描述性并且更常用.</em></p>
+</li>
+</ul>
+<h3 id="声明注解"><a href="#声明注解" class="headerlink" title="声明注解"></a>声明注解</h3><ul>
+<li><em>注解是一种代码级别的说明.它与<code>类</code>,<code>接口</code>,<code>枚举</code>在同一个层次,它可以声明在<code>包</code>,<code>类</code>,<code>字段</code>,<code>方法</code>,<code>局部变量</code>,<code>方法参数</code>等的前面,用来对这些元素进行说明,注释..</em></li>
+</ul>
+<h3 id="注解的分类"><a href="#注解的分类" class="headerlink" title="注解的分类"></a>注解的分类</h3><ol>
+<li>特殊的注解 : <code>标记注解</code>,<code>单成员注解</code>.</li>
+<li><code>内置注解</code>.</li>
+<li><code>类型注解</code>.</li>
+<li><code>重复注解</code>.</li>
+</ol>
+<h3 id="内置注解"><a href="#内置注解" class="headerlink" title="内置注解"></a>内置注解</h3><h4 id="内置注解分类"><a href="#内置注解分类" class="headerlink" title="内置注解分类"></a>内置注解分类</h4><ol>
+<li><em><code>java.lang.annotation</code>包下的注解分别是 : <code>@Retention</code>,<code>@Documnetd</code>,<code>@Target</code>,<code>@Inherited</code></em></li>
+</ol>
+<ul>
+<li><em>以上四个注解被称为<code>元注解</code>,其作用是负责注解其它的注解,用来提供对其它<code>annotation</code>类型做说明.</em></li>
+</ul>
+<ol start="2">
+<li><em><code>java.lang</code>包下注解分别是 : <code>@Override</code>,<code>@Deprecated</code>,<code>@FunctionalInterface</code>,<code>@SafeVarargs</code>,<code>@SuppressWarnings</code></em></li>
+</ol>
+<ul>
+<li><em>注意: <code>JDK8</code>在<code>java.lang.annotation</code>中添加了<code>Repeatable</code>和<code>Native</code>注解.其中<code>Repeatable</code>支持重复注解,<code>Native</code>用于注解本机代码可以访问的域变量.</em></li>
+</ul>
+<h4 id="内置注解-非元注解"><a href="#内置注解-非元注解" class="headerlink" title="内置注解 : 非元注解"></a>内置注解 : <code>非元注解</code></h4><ul>
+<li><em><code>@SuppressWarnings</code>注解使用详解如下图所示</em><br><img src="/2019/04/14/Java-annotation/SuppressWarnings.PNG" srcset="/img/loading.gif" alt=" "></li>
+</ul>
+<ol>
+<li><em><code>@Override</code>,<code>@Deprecated</code>,<code>@SafeVarargs</code>,<code>SuppressWarnings</code>程序示例</em><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.annotation.built_in_annotation;
+
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: Built_in_annotations
+ * <span class="hljs-doctag">@Description</span>: 非元注解
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: Apr 14, 2019 9:36:20 AM
+ * 
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Built_in_annotations</span>&lt;<span class="hljs-title">T</span>&gt; </span>&#123;
+
+	<span class="hljs-meta">@SuppressWarnings</span>(<span class="hljs-string">"unused"</span>)
+	<span class="hljs-keyword">private</span> T[] args;
+
+	<span class="hljs-comment">// Type safety: Potential heap pollution via varargs parameter args..</span>
+	<span class="hljs-comment">// @SafeVarargs: 为标记注解,只能用于方法和构造方法,指示没有发生与可变长度参数相关的不安全动作.</span>
+	<span class="hljs-meta">@SafeVarargs</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Built_in_annotations</span><span class="hljs-params">(T... args)</span> </span>&#123;
+		<span class="hljs-keyword">this</span>.args = args;
+	&#125;
+
+	<span class="hljs-comment">// @SafeVarargs: 该注解只能用于varargs方法或者声明为static或final的构造方法.</span>
+	<span class="hljs-meta">@SafeVarargs</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title">safeVarargsTest</span><span class="hljs-params">(T... args)</span> </span>&#123;
+
+		<span class="hljs-keyword">for</span> (<span class="hljs-meta">@SuppressWarnings</span>(<span class="hljs-string">"unused"</span>)
+		T t : args) &#123;
+			System.out.println(args);
+		&#125;
+	&#125;
+
+	<span class="hljs-comment">// @Override: 用于确保超类方法被真正地重写,而不是简单地重载.</span>
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.toString();
+	&#125;
+
+	<span class="hljs-comment">// @Deprecated: 为标记注解,用于指示声明是过时的,并且已经被更新到的形式取代.</span>
+	<span class="hljs-meta">@Deprecated</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">deprecatedTest</span><span class="hljs-params">()</span> </span>&#123;
+
+	&#125;
+
+	<span class="hljs-comment">// @SuppressWarnings: 用于抑制一个或多个编译器可能会报告的警告.使用以字符串形式表示的名称来指定要被抑制的警告.</span>
+	<span class="hljs-meta">@SuppressWarnings</span>(<span class="hljs-string">"rawtypes"</span>)
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">supressWarningsTest</span><span class="hljs-params">()</span> </span>&#123;
+
+		<span class="hljs-meta">@SuppressWarnings</span>(<span class="hljs-string">"unused"</span>)
+		ArrayList arrayList = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+	&#125;
+
+&#125;</code></pre></li>
+<li><em><code>@FunctionalInterface</code>程序示例</em><pre><code class="hljs java"><span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: functionalInterface
+ * <span class="hljs-doctag">@Description</span>: `学习<span class="hljs-doctag">@functionalInterface</span>注解`
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: Apr 14, 2019 10:39:46 AM
+ * 
+ */</span>
+<span class="hljs-comment">//`Java8`为函数式接口引入了一个新注解`@FunctionalInterface`,其主要用于编译错误检查,</span>
+<span class="hljs-comment">//加上该注释后当你写的接口不符合函数式定义时,编译器就会报错 !</span>
+<span class="hljs-comment">//注意: 是否添加`@FunctionalInterface`对于接口是不是函数式接口没有影响,</span>
+<span class="hljs-comment">//该注释只是提醒`编译器`去检查该接口是否仅仅包含一个抽象方法.</span>
+<span class="hljs-meta">@FunctionalInterface</span>
+<span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">functionalInterface</span> </span>&#123;
+
+	<span class="hljs-comment">// 注意: 函数式接口中只能有一个抽象方法 !</span>
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">myLambda</span><span class="hljs-params">(String message)</span></span>;
+
+	<span class="hljs-comment">// 函数式接口里是可以包含默认方法,因为默认方法不是抽象方法,其有一个默认实现,</span>
+    <span class="hljs-comment">//所以是符合函数式接口的定义的.</span>
+	<span class="hljs-function"><span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title">defaultMethod</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-comment">// method body..</span>
+	&#125;
+
+	<span class="hljs-comment">// 函数式接口里是可以包含静态方法,因为静态方法不能是抽象方法,是一个已经实现了的方法,</span>
+    <span class="hljs-comment">//所以是符合函数式接口的定义的.</span>
+	<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">staticMethod</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-comment">// method body..</span>
+	&#125;
+
+	<span class="hljs-comment">// 函数式接口里是可以包含Object里的public方法,这些方法对于函数式接口来说,</span>
+	<span class="hljs-comment">// 不被当成是抽象方法(虽然它们是抽象方法).因为任何一个函数式接口的实现,默认都继承了Object类,</span>
+    <span class="hljs-comment">//其包含了来自java.lang.Object里对这些抽象方法的实现!</span>
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Object object)</span></span>;
+
+&#125;
+
+<span class="hljs-comment">//使用`@FunctionalInterface`注解的函数式接口继而可以使用`Lambda`表示式来表示该接口的一个实现.</span>
+<span class="hljs-comment">//(Java8 之前一般是使用匿名类实现的).</span>
+<span class="hljs-comment">//functionalInterface  f = message-&gt;System.out.println();</span></code></pre>
+
+</li>
+</ol>
+<h4 id="内置注解-元注解"><a href="#内置注解-元注解" class="headerlink" title="内置注解 : 元注解"></a>内置注解 : <code>元注解</code></h4><ul>
+<li><em>使用<code>@Target</code>,<code>@Retention</code>自定义注解</em><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.lang.annotation.ElementType;
+<span class="hljs-keyword">import</span> java.lang.annotation.Retention;
+<span class="hljs-keyword">import</span> java.lang.annotation.RetentionPolicy;
+<span class="hljs-keyword">import</span> java.lang.annotation.Target;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: MyTarget_annotation
+ * <span class="hljs-doctag">@Description</span>: 自定义注解
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: Apr 14, 2019 11:12:54 AM
+ * 
+ */</span>
+
+<span class="hljs-meta">@Target</span>(&#123; ElementType.TYPE, ElementType.METHOD, ElementType.FIELD, ElementType.LOCAL_VARIABLE,
+		ElementType.CONSTRUCTOR &#125;)<span class="hljs-comment">//用于指定可以应用注解的声明类型,被设计为只能注解其它注解.</span>
+<span class="hljs-meta">@Retention</span>(RetentionPolicy.CLASS)<span class="hljs-comment">//指定保留策略.</span>
+<span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> MyTarget_annotation &#123;
+
+	<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">id</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> -1</span>; <span class="hljs-comment">//使用默认值</span>
+
+	<span class="hljs-function">String <span class="hljs-title">name</span><span class="hljs-params">()</span></span>;
+
+	String[] address() <span class="hljs-keyword">default</span> &#123; <span class="hljs-string">"null"</span> &#125;;
+
+&#125;</code></pre></li>
+<li><em>使用自定义注解</em><pre><code class="hljs java"><span class="hljs-keyword">import</span> pers.huangyuhui.annotation.myannotation.MyTarget_annotation;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: TargetTest
+ * <span class="hljs-doctag">@Description</span>: 使用自定义注解
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: Apr 14, 2019 11:38:23 AM
+ * 
+ */</span>
+<span class="hljs-meta">@MyTarget</span>_annotation(name = <span class="hljs-string">""</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TargetTest</span> </span>&#123;
+
+	<span class="hljs-comment">// 由于声明的注解类型包含 : `CONSTRUCTOR`, 所以可以在构造方法前使用.</span>
+	<span class="hljs-meta">@MyTarget</span>_annotation(name = <span class="hljs-string">""</span>)
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">TargetTest</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-comment">// TODO Auto-generated constructor stub</span>
+	&#125;
+
+	<span class="hljs-comment">// 由于声明的注解类型包含 : `FIELD`, 所以可以在域变量前使用.</span>
+	<span class="hljs-meta">@MyTarget</span>_annotation(name = <span class="hljs-string">""</span>)
+	<span class="hljs-keyword">private</span> String s;
+
+	<span class="hljs-comment">// 由于声明的注解类型包含 : `METHOD`, 所以可以在方法前使用.</span>
+	<span class="hljs-meta">@MyTarget</span>_annotation(id = <span class="hljs-number">1</span>, name = <span class="hljs-string">"YUbuntu0109"</span>, address = <span class="hljs-string">"my address"</span>) <span class="hljs-comment">// 显式的定义注解值</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testMethod</span><span class="hljs-params">()</span> </span>&#123;
+
+		<span class="hljs-comment">// 由于声明的注解类型包含 : `LOCAL_VARIABLE`, 所以可以在局部变量前使用.</span>
+		<span class="hljs-meta">@SuppressWarnings</span>(<span class="hljs-string">"unused"</span>)
+		<span class="hljs-meta">@MyTarget</span>_annotation(name = <span class="hljs-string">""</span>)
+		<span class="hljs-keyword">int</span> i;
+	&#125;
+
+&#125;</code></pre>
+
+</li>
+</ul>
+<h3 id="使用反射获取注解"><a href="#使用反射获取注解" class="headerlink" title="使用反射获取注解"></a>使用反射获取注解</h3><ol>
+<li>通过<code>反射</code>获取方法关联的注解</li>
+</ol>
+<ul>
+<li><p><em>首先自定义一个注解</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.annotation.myannotation;
+<span class="hljs-keyword">import</span> java.lang.annotation.ElementType;
+<span class="hljs-keyword">import</span> java.lang.annotation.Retention;
+<span class="hljs-keyword">import</span> java.lang.annotation.RetentionPolicy;
+<span class="hljs-keyword">import</span> java.lang.annotation.Target;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: MyAnnotation
+ * <span class="hljs-doctag">@Description</span>: 自定义注解,用于通过反射获取注解信息的测试
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: Apr 14, 2019 5:52:05 PM
+ * 
+ */</span>
+
+<span class="hljs-meta">@Retention</span>(RetentionPolicy.RUNTIME)<span class="hljs-comment">//指定保留策略</span>
+<span class="hljs-meta">@Target</span>(&#123; ElementType.METHOD, ElementType.TYPE &#125;)
+<span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> MyAnnotation &#123;
+
+	<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">id</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> 1</span>;
+
+	<span class="hljs-function">String <span class="hljs-title">name</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> "<span class="hljs-keyword">default</span> value"</span>;
+&#125;</code></pre>
+</li>
+<li><p><em>通过反射获取自定义注解信息</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">import</span> java.lang.reflect.Method;
+
+<span class="hljs-keyword">import</span> pers.huangyuhui.annotation.myannotation.MyAnnotation;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: getAnnotationInfo
+ * <span class="hljs-doctag">@Description</span>: 通过反射获取方法关联的注解
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: Apr 14, 2019 5:45:32 PM
+ * 
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">getAnnotationInfo</span> </span>&#123;
+
+	<span class="hljs-meta">@MyAnnotation</span>(name = <span class="hljs-string">"Hello annotation !"</span>)
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">fun</span><span class="hljs-params">(<span class="hljs-keyword">double</span> d, String s)</span> </span>&#123;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+		getAnnotationInfo getInfo = <span class="hljs-keyword">new</span> getAnnotationInfo();
+
+		<span class="hljs-comment">// 获取Class对象</span>
+		Class&lt;?&gt; class1 = getInfo.getClass();
+		<span class="hljs-keyword">try</span> &#123;
+			<span class="hljs-comment">// 通过调用Class泛型类提供的`getMethod`方法获取与方法相关的信息</span>
+			Method method = class1.getMethod(<span class="hljs-string">"fun"</span>, <span class="hljs-keyword">double</span><span class="hljs-class">.<span class="hljs-keyword">class</span>, <span class="hljs-title">String</span>.<span class="hljs-title">class</span>)</span>;
+			<span class="hljs-comment">// 通过调用`getAnnotation`获取与对象相关联的特定注解</span>
+			MyAnnotation annotatioin = method.getAnnotation(MyAnnotation<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+
+			System.out.println(<span class="hljs-string">"id : "</span> + annotatioin.id() + <span class="hljs-string">"\nname : "</span> + annotatioin.name());
+
+		&#125; <span class="hljs-keyword">catch</span> (NoSuchMethodException | SecurityException e) &#123;
+			e.printStackTrace();
+		&#125;
+
+	&#125;
+
+&#125;</code></pre>
+</li>
+<li><p><em>程序运行结果如下</em></p>
+<pre><code class="hljs java">id : <span class="hljs-number">1</span> 
+name : Hello annotation !</code></pre>
+</li>
+</ul>
+<ol start="2">
+<li>通过<code>反射</code>获取所有注解</li>
+</ol>
+<ul>
+<li><p><em>首先自定义一个注解</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.annotation.myannotation;
+
+<span class="hljs-keyword">import</span> java.lang.annotation.Retention;
+<span class="hljs-keyword">import</span> java.lang.annotation.RetentionPolicy;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: MyAnnotation2
+ * <span class="hljs-doctag">@Description</span>: 自定义注解,用于反射获取注解信息的测试
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: Apr 14, 2019 6:09:15 PM
+ * 
+ */</span>
+<span class="hljs-meta">@Retention</span>(RetentionPolicy.RUNTIME)
+<span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> MyAnnotation2 &#123;
+
+	<span class="hljs-function">String <span class="hljs-title">description</span><span class="hljs-params">()</span></span>;
+&#125;</code></pre>
+</li>
+<li><p><em>通过反射获取自定义<code>注解</code>信息</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.annotation.reflect;
+
+<span class="hljs-keyword">import</span> java.lang.annotation.Annotation;
+<span class="hljs-keyword">import</span> java.lang.reflect.Method;
+
+<span class="hljs-keyword">import</span> pers.huangyuhui.annotation.myannotation.MyAnnotation;
+<span class="hljs-keyword">import</span> pers.huangyuhui.annotation.myannotation.MyAnnotation2;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: getAllAnnotationInfo
+ * <span class="hljs-doctag">@Description</span>: 通过反射机制获取所有注解
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: Apr 14, 2019 6:10:29 PM
+ * 
+ */</span>
+
+<span class="hljs-meta">@MyAnnotation</span>()
+<span class="hljs-meta">@MyAnnotation</span>2(description = <span class="hljs-string">"Test class"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">getAllAnnotationInfo</span> </span>&#123;
+
+	<span class="hljs-meta">@MyAnnotation</span>(id = <span class="hljs-number">1</span>, name = <span class="hljs-string">"Hello annotation !"</span>)
+	<span class="hljs-meta">@MyAnnotation</span>2(description = <span class="hljs-string">"Test method"</span>)
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">fun</span><span class="hljs-params">()</span> </span>&#123;
+
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> NoSuchMethodException, SecurityException </span>&#123;
+		getAllAnnotationInfo allAnnotationInfo = <span class="hljs-keyword">new</span> getAllAnnotationInfo();
+
+		<span class="hljs-comment">// 通过`getAnnoations`获取该类所有注解信息</span>
+		Annotation annotation[] = allAnnotationInfo.getClass().getAnnotations();
+
+		System.out.println(<span class="hljs-string">"`getAllAnnotationInfo`类的所有注解 : "</span>);
+		<span class="hljs-keyword">for</span> (Annotation info : annotation) &#123;
+			System.out.println(info);
+		&#125;
+
+		System.out.println();
+		<span class="hljs-comment">// 通过调用Class泛型类提供的`getMethod`方法获取与方法相关的信息</span>
+		Method method = allAnnotationInfo.getClass().getMethod(<span class="hljs-string">"fun"</span>);
+		<span class="hljs-comment">// 通过调用`getAnnotation`获取与对象相关联的特定注解</span>
+		annotation = method.getAnnotations();
+
+		System.out.println(<span class="hljs-string">"方法`fun()`的所有注解 : "</span>);
+		<span class="hljs-keyword">for</span> (Annotation info : annotation) &#123;
+			System.out.println(info);
+		&#125;
+
+	&#125;
+
+&#125;</code></pre></li>
+<li><p><em>程序运行结果如下</em></p>
+<pre><code class="hljs java">`getAllAnnotationInfo`类的所有注解 : 
+<span class="hljs-meta">@pers</span>.huangyuhui.annotation.myannotation.MyAnnotation(name=<span class="hljs-string">"default value"</span>, id=<span class="hljs-number">1</span>)
+<span class="hljs-meta">@pers</span>.huangyuhui.annotation.myannotation.MyAnnotation2(description=<span class="hljs-string">"Test class"</span>)
+
+方法`fun()`的所有注解 : 
+<span class="hljs-meta">@pers</span>.huangyuhui.annotation.myannotation.MyAnnotation(name=<span class="hljs-string">"Hello annotation !"</span>, id=<span class="hljs-number">1</span>)
+<span class="hljs-meta">@pers</span>.huangyuhui.annotation.myannotation.MyAnnotation2(description=<span class="hljs-string">"Test method"</span>)</code></pre>
+
+</li>
+</ul>
+<h3 id="标记注解"><a href="#标记注解" class="headerlink" title="标记注解"></a>标记注解</h3><ul>
+<li><em>编写示例程序来判断<code>标记注解</code>是否存在</em><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.lang.annotation.Retention;
+<span class="hljs-keyword">import</span> java.lang.annotation.RetentionPolicy;
+<span class="hljs-keyword">import</span> java.lang.reflect.Method;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: TagTest
+ * <span class="hljs-doctag">@Description</span>: 标记注解
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: Apr 14, 2019 6:57:26 PM
+ * 
+ */</span>
+
+<span class="hljs-meta">@Retention</span>(RetentionPolicy.RUNTIME)
+<span class="hljs-meta">@interface</span> MyMarker_annotation &#123;
+
+&#125;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MarketTest</span> </span>&#123;
+
+	<span class="hljs-meta">@MyMarker</span><span class="hljs-function">_annotation
+	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">fun</span><span class="hljs-params">()</span> </span>&#123;
+		MarketTest marketTest = <span class="hljs-keyword">new</span> MarketTest();
+
+		<span class="hljs-keyword">try</span> &#123;
+
+			<span class="hljs-comment">// 通过调用Class泛型类提供的`getMethod`方法获取与该方法相关的信息</span>
+			Method method = marketTest.getClass().getMethod(<span class="hljs-string">"fun"</span>);
+			<span class="hljs-comment">// 通过使用`AnnotatedElement`接口的`isAnnotationPresent`方法来确定自定义注解中是否存在`标记注解`</span>
+			<span class="hljs-keyword">if</span> (method.isAnnotationPresent(MyMarker_annotation<span class="hljs-class">.<span class="hljs-keyword">class</span>)) </span>&#123;
+				System.out.println(<span class="hljs-string">"存在标记注解 !"</span>);
+			&#125;
+		&#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;
+			System.err.println(<span class="hljs-string">"Method not found !"</span>);
+		&#125;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+		fun();
+	&#125;
+&#125;</code></pre></li>
+<li><em>程序运行结果如下</em><pre><code class="hljs erlang-repl">存在标记注解 !</code></pre></li>
+<li><em><code>说明</code> : 因为<code>标记注解没有成员</code>,所以应用标记注解时,后面不需要有圆括号.如果提供空的圆括号,也不会报错,但不是必需的.类似地,对于所有成员都使用<code>默认值(default)</code>的注解也可以没有圆括号.</em></li>
+</ul>
+<h3 id="重复注解"><a href="#重复注解" class="headerlink" title="重复注解"></a>重复注解</h3><ul>
+<li><p><em>要创建<code>重复注解</code>,必须创建<code>容器注解</code></em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.annotation.myannotation;
+
+<span class="hljs-keyword">import</span> java.lang.annotation.Retention;
+<span class="hljs-keyword">import</span> java.lang.annotation.RetentionPolicy;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: MyReapeatable_annotation
+ * <span class="hljs-doctag">@Description</span>: `重复注解`的容器注解
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: Apr 14, 2019 8:08:21 PM
+ * 
+ */</span>
+<span class="hljs-meta">@Retention</span>(RetentionPolicy.RUNTIME)
+<span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> MyReapeatable_annotation &#123;
+
+	<span class="hljs-comment">// `value`成员指定的是重复注解类型的数组</span>
+	MyAnnotation[] value();
+&#125;</code></pre>
+</li>
+<li><p><em>创建<code>重复注解</code></em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.annotation.myannotation;
+
+<span class="hljs-keyword">import</span> java.lang.annotation.Repeatable;
+<span class="hljs-keyword">import</span> java.lang.annotation.Retention;
+<span class="hljs-keyword">import</span> java.lang.annotation.RetentionPolicy;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: MyAnnotation
+ * <span class="hljs-doctag">@Description</span>: 重复注解
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: Apr 14, 2019 5:52:05 PM
+ * 
+ */</span>
+
+<span class="hljs-comment">//指定`@Repeatable`注解的`value`成员值为容器注解 : `MyReapeatable_annotation`</span>
+<span class="hljs-meta">@Repeatable</span>(MyReapeatable_annotation<span class="hljs-class">.<span class="hljs-keyword">class</span>)
+@<span class="hljs-title">Retention</span>(<span class="hljs-title">RetentionPolicy</span>.<span class="hljs-title">RUNTIME</span>)
+<span class="hljs-title">public</span> @<span class="hljs-title">interface</span> <span class="hljs-title">MyAnnotation</span> </span>&#123;
+
+	<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">id</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> 1</span>;
+
+	<span class="hljs-function">String <span class="hljs-title">name</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> "<span class="hljs-keyword">default</span> value"</span>;
+&#125;</code></pre>
+</li>
+<li><p><em>通过反射获取<code>重复注解</code>信息</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.annotation.myannotation_test;
+
+<span class="hljs-keyword">import</span> java.lang.annotation.Annotation;
+<span class="hljs-keyword">import</span> java.lang.reflect.Method;
+
+<span class="hljs-keyword">import</span> pers.huangyuhui.annotation.myannotation.MyAnnotation;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: RepeatTest
+ * <span class="hljs-doctag">@Description</span>: 通过反射获取`重复注解`的信息
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: Apr 14, 2019 7:58:54 PM
+ * 
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RepeatTest</span> </span>&#123;
+
+	<span class="hljs-meta">@MyAnnotation</span>
+	<span class="hljs-meta">@MyAnnotation</span>(id=<span class="hljs-number">2</span>)
+	<span class="hljs-meta">@MyAnnotation</span>(id=<span class="hljs-number">3</span>,name=<span class="hljs-string">"YUbuntu0109"</span>)
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testMethod</span><span class="hljs-params">()</span> </span>&#123;
+
+		RepeatTest repeatTest = <span class="hljs-keyword">new</span> RepeatTest();
+
+		<span class="hljs-keyword">try</span> &#123;
+			
+			<span class="hljs-comment">// 获取Class对象</span>
+			Class&lt;?&gt; class1 = repeatTest.getClass();
+			
+			<span class="hljs-comment">// 通过调用Class泛型类提供的`getMethod`方法获取与该方法相关的信息</span>
+			Method method = class1.getMethod(<span class="hljs-string">"testMethod"</span>);
+			
+			<span class="hljs-comment">// `getAnnotation`用于获取与指定对象关联的特定注解</span>
+			<span class="hljs-comment">// Annotation annotation = method.getAnnotation(MyReapeatable_annotation.class);</span>
+			<span class="hljs-comment">// System.out.println(annotation);</span>
+
+			<span class="hljs-comment">// 使用`getAnnotationsByType`来获取`MyAnnotation`重复注解</span>
+			Annotation[] annotations = method.getAnnotationsByType(MyAnnotation<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+			<span class="hljs-keyword">for</span> (Annotation info : annotations) &#123;
+				System.out.println(info);
+			&#125;
+
+		&#125; <span class="hljs-keyword">catch</span> (NoSuchMethodException e) &#123;
+			System.err.println(<span class="hljs-string">"Error : Method not found !"</span>);
+		&#125;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+		testMethod();
+	&#125;
+&#125;</code></pre></li>
+<li><p><em>程序运行结果如下</em></p>
+<pre><code class="hljs java">
+<span class="hljs-comment">//程序运行结果 :</span>
+<span class="hljs-meta">@pers</span>.huangyuhui.annotation.myannotation.MyReapeatable_annotation(value=&#123;
+
+<span class="hljs-meta">@pers</span>.huangyuhui.annotation.myannotation.MyAnnotation(name=<span class="hljs-string">"default value"</span>, id=<span class="hljs-number">1</span>), 
+<span class="hljs-meta">@pers</span>.huangyuhui.annotation.myannotation.MyAnnotation(name=<span class="hljs-string">"default value"</span>, id=<span class="hljs-number">2</span>), 
+<span class="hljs-meta">@pers</span>.huangyuhui.annotation.myannotation.MyAnnotation(name=<span class="hljs-string">"YUbuntu0109"</span>, id=<span class="hljs-number">3</span>)
+
+&#125;)
+
+<span class="hljs-comment">//程序运行结果(使用`getAnnotationsByType`来获取`MyAnnotation`重复注解) : </span>
+<span class="hljs-meta">@pers</span>.huangyuhui.annotation.myannotation.MyAnnotation(name=<span class="hljs-string">"default value"</span>, id=<span class="hljs-number">1</span>)
+<span class="hljs-meta">@pers</span>.huangyuhui.annotation.myannotation.MyAnnotation(name=<span class="hljs-string">"default value"</span>, id=<span class="hljs-number">2</span>)
+<span class="hljs-meta">@pers</span>.huangyuhui.annotation.myannotation.MyAnnotation(name=<span class="hljs-string">"YUbuntu0109"</span>, id=<span class="hljs-number">3</span>)</code></pre></li>
+</ul>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/04/15/Java-reflection/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Java reflection</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/04/13/%E8%AF%A6%E8%A7%A3Stack%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/">
+                        <span class="hidden-mobile">详解Stack的实现方式及其应用</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Java annotation&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

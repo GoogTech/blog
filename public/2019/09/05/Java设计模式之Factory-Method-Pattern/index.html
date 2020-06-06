@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>Java设计模式之Factory Method模式 - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-09-05 09:23">
+      September 5, 2019 am
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      25
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="学习笔记-Java设计模式之Factory-Method模式"><a href="#学习笔记-Java设计模式之Factory-Method模式" class="headerlink" title="学习笔记 : Java设计模式之Factory Method模式"></a>学习笔记 : Java设计模式之Factory Method模式</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p><em>工厂方法模式 : 定义一个用于创建对象的接口,但是让子类决定将哪一个类实例化. 工厂方法模式让一个类的实例化延迟到其子类. ( Factory Method Pattern : Definde an interface for creating an object,but let subclasses decides which class to instantiate. Factory Method lets a class defer instantiation to sublclasses )</em></p>
+<ul>
+<li>工厂方法模式是简单工厂模式的延伸,它继承了简单工厂模式的优点,同时还弥补了简单工厂模式的缺陷,使其更好地符合开闭原则的要求. 工厂方法模式简称为工厂模式( Factory Pattern ),又可称为虚拟构造器模式( Virtual Constructor Pattern )或多态工厂模式( Polymorphic Factory Pattern ). 其为一种类创建型模式哟 ~</li>
+</ul>
+<h3 id="Factory-Method模式中的角色"><a href="#Factory-Method模式中的角色" class="headerlink" title="Factory Method模式中的角色"></a>Factory Method模式中的角色</h3><ol>
+<li><em><code>Product (抽象产品)</code> : 它是定义产品的接口,是工厂方法模式所创建对象的超类型,也是产品对象的公共父类.</em></li>
+<li><em><code>ConcreteProduct (具体产品)</code> : 它实现了抽象产品接口,某种类型的具体产品由专门的具体工厂创建,具体工厂和具体产品间一一对象.</em></li>
+<li><em><code>Factory (抽象工厂)</code> : 在抽象工厂类中声明了工厂方法( Factory Method ),用于返回一个产品. 抽象工厂是工厂方法模式的核心,所有创建对象的工厂类都必须实现该接口.</em></li>
+<li><em><code>ConcreteFactory (具体工厂)</code> : 它是抽象工厂类的子类,实现了在抽象工厂中声明的工厂方法,并由客户端调用,返回一个具体产品类的实例.</em></li>
+</ol>
+<h3 id="程序示例-简洁版"><a href="#程序示例-简洁版" class="headerlink" title="程序示例-简洁版"></a>程序示例-简洁版</h3><p><em>下面是一个实现了Factory Method模式的简单示例程序,该示例程序的功能( 模拟 )是为了提高多种日志记录器之间切换的灵活性.</em></p>
+<ol>
+<li><p><em>Logger接口 : 日志记录器接口, 充当抽象产品角色</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method1;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 日志记录器接口, 充当抽象产品角色
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 9/5/2019-9:26 AM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Logger</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">writeLog</span><span class="hljs-params">()</span></span>;
+&#125;</code></pre>
+</li>
+<li><p><em>DatabaseLogger类 : 数据库日志记录器, 充当具体产品角色</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method1;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-pattern
+ * <span class="hljs-doctag">@description</span>: 数据库日志记录器, 充当具体产品角色
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 9/5/2019-9:27 AM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DatabaseLogger</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Logger</span> </span>&#123;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">writeLog</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"this is some logs about database"</span>);
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>FileLogger类 : 文件日志记录器, 充当具体产品角色</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method1;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 文件日志记录器, 充当具体产品角色
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 9/5/2019-9:30 AM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileLogger</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Logger</span> </span>&#123;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">writeLog</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"this is some logs about file"</span>);
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>LoggerFactory类 : 日志记录器工厂接口, 充当抽象工厂角色</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method1;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 日志记录器工厂接口, 充当抽象工厂角色
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 9/5/2019-9:33 AM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">LoggerFactory</span> </span>&#123;
+    <span class="hljs-function">Logger <span class="hljs-title">createLogger</span><span class="hljs-params">()</span></span>;
+&#125;</code></pre>
+</li>
+<li><p><em>DatabaseLoggerFactory类 : 数据库日志记录器工厂类, 充当具体工厂角色</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method1;
+
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 数据库日志记录器工厂类, 充当具体工厂角色
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 9/5/2019-9:36 AM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DatabaseLoggerFactory</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">LoggerFactory</span> </span>&#123;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Logger <span class="hljs-title">createLogger</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> DatabaseLogger();
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>FileLoggerFactory类 : 文件日志记录器工厂类, 充当具体工厂角色</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method1;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 文件日志记录器工厂类, 充当具体工厂角色
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 9/5/2019-9:38 AM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileLoggerFactory</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">LoggerFactory</span> </span>&#123;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Logger <span class="hljs-title">createLogger</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> FileLogger();
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>Client类 : 客户端测试类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method1;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 客户端测试类
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 9/5/2019-9:39 AM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Client</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        LoggerFactory databaseLoggerFactory = <span class="hljs-keyword">new</span> DatabaseLoggerFactory();
+        Logger databaseLogger = databaseLoggerFactory.createLogger();
+        databaseLogger.writeLog();
+
+        LoggerFactory fileLoggerFactory = <span class="hljs-keyword">new</span> FileLoggerFactory();
+        Logger fileLogger = fileLoggerFactory.createLogger();
+        fileLogger.writeLog();
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>程序运行结果如下所示 :</em></p>
+<pre><code class="hljs applescript">this <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span> logs <span class="hljs-keyword">about</span> database
+this <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span> logs <span class="hljs-keyword">about</span> <span class="hljs-built_in">file</span></code></pre>
+
+</li>
+</ol>
+<h4 id="示例程序的类图"><a href="#示例程序的类图" class="headerlink" title="示例程序的类图"></a>示例程序的类图</h4><p><img src="/2019/09/05/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BFactory-Method-Pattern/Factory-Method-Pattern-ClassDiagram1.png" srcset="/img/loading.gif" alt></p>
+<h3 id="示例程序-工厂方法的重载"><a href="#示例程序-工厂方法的重载" class="headerlink" title="示例程序-工厂方法的重载"></a>示例程序-工厂方法的重载</h3><p><em>下述示例代码文件同上述<code>示例程序-简洁版</code>,既只需修改部分代码即可哟~</em></p>
+<ol>
+<li><p><em>LoggerFactory接口 : 日志记录器工厂接口, 充当抽象工厂角色(工厂方法的重载)</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method2;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 日志记录器工厂接口, 充当抽象工厂角色(工厂方法的重载)
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 9/5/2019-9:33 AM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">LoggerFactory</span> </span>&#123;
+    <span class="hljs-function">Logger <span class="hljs-title">createLogger</span><span class="hljs-params">()</span></span>;
+
+    <span class="hljs-function">Logger <span class="hljs-title">createLogger</span><span class="hljs-params">(String args)</span></span>;
+
+    <span class="hljs-function">Logger <span class="hljs-title">createLogger</span><span class="hljs-params">(Object obj)</span></span>;
+&#125;</code></pre>
+</li>
+<li><p><em>DatabaseLoggerFactory类 : 数据库日志记录器工厂类, 充当具体工厂角色(工厂方法的重载)</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method2;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 数据库日志记录器工厂类, 充当具体工厂角色(工厂方法的重载)
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 9/5/2019-9:36 AM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DatabaseLoggerFactory</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">LoggerFactory</span> </span>&#123;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Logger <span class="hljs-title">createLogger</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> DatabaseLogger();
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> pers.huangyuhui.factory_method.factory_method2.<span class="hljs-function">Logger <span class="hljs-title">createLogger</span><span class="hljs-params">(String args)</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"使用参数"</span> + args + <span class="hljs-string">"作为连接字符串来连接数据库,代码省略 ···"</span>);
+        Logger logger = <span class="hljs-keyword">new</span> DatabaseLogger();
+        <span class="hljs-comment">//初始化数据库日志记录器,代码省略 ···</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> DatabaseLogger();
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> pers.huangyuhui.factory_method.factory_method2.<span class="hljs-function">Logger <span class="hljs-title">createLogger</span><span class="hljs-params">(Object obj)</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"使用封装在"</span> + obj.toString() + <span class="hljs-string">"中的连接字符串来连接数据库,代码省略 ···"</span>);
+        Logger logger = <span class="hljs-keyword">new</span> DatabaseLogger();
+        <span class="hljs-comment">//使用封装在参数obj中的数据来初始化数据库日志记录器，代码省略 ···</span>
+        <span class="hljs-keyword">return</span> logger;
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>Client类 : 客户端测试类-(工厂方法的重载)</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method2;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 客户端测试类-(工厂方法的重载)
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 9/5/2019-9:39 AM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Client</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        LoggerFactory databaseLoggerFactory = <span class="hljs-keyword">new</span> DatabaseLoggerFactory();
+        Logger databaseLogger = databaseLoggerFactory.createLogger(<span class="hljs-string">"database-connection-info"</span>);
+        databaseLogger.writeLog();
+
+        LoggerFactory fileLoggerFactory = <span class="hljs-keyword">new</span> FileLoggerFactory();
+        Logger fileLogger = fileLoggerFactory.createLogger();
+        fileLogger.writeLog();
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>程序运行结果如下所示 :</em></p>
+<pre><code class="hljs pgsql">使用参数<span class="hljs-keyword">database</span>-<span class="hljs-keyword">connection</span>-<span class="hljs-keyword">info</span>作为连接字符串来连接数据库,代码省略 ···
+this <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span> logs about <span class="hljs-keyword">database</span>
+this <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span> logs about file</code></pre>
+
+</li>
+</ol>
+<h4 id="示例程序的类图-1"><a href="#示例程序的类图-1" class="headerlink" title="示例程序的类图"></a>示例程序的类图</h4><p><img src="/2019/09/05/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BFactory-Method-Pattern/Factory-Method-Pattern-ClassDiagram2.png" srcset="/img/loading.gif" alt></p>
+<h3 id="示例程序-工厂方法的隐藏"><a href="#示例程序-工厂方法的隐藏" class="headerlink" title="示例程序-工厂方法的隐藏"></a>示例程序-工厂方法的隐藏</h3><p><em>下述示例代码文件同上述<code>示例程序-简洁版</code>,既只需修改部分代码即可哟~</em></p>
+<ol>
+<li><p><em>LoggerFactory类 : 日志记录器工厂接口, 充当抽象工厂角色(工厂方法的隐藏)</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method3;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 日志记录器工厂接口, 充当抽象工厂角色(工厂方法的隐藏)
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 9/5/2019-9:33 AM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LoggerFactory</span> </span>&#123;
+
+    <span class="hljs-comment">//工厂方法的隐藏</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">writeLog</span><span class="hljs-params">()</span> </span>&#123;
+        Logger logger = <span class="hljs-keyword">this</span>.createLogger();
+        logger.writeLog();
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> Logger <span class="hljs-title">createLogger</span><span class="hljs-params">()</span></span>;
+&#125;</code></pre>
+</li>
+<li><p><em>DatabaseLoggerFactory类 : 数据库日志记录器工厂类, 充当具体工厂角色</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DatabaseLoggerFactory</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">LoggerFactory</span> </span>&#123; · · · · · ·</code></pre>
+</li>
+<li><p><em>FileLoggerFactory类 : 文件日志记录器工厂类, 充当具体工厂角色</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileLoggerFactory</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">LoggerFactory</span> </span>&#123; · · · · · ·</code></pre>
+</li>
+<li><p><em>Client类 : 客户端测试类(工厂方法的隐藏)</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method3;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 客户端测试类(工厂方法的隐藏)
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 9/5/2019-9:39 AM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Client</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        <span class="hljs-keyword">new</span> DatabaseLoggerFactory().writeLog();
+        <span class="hljs-comment">//LoggerFactory databaseLoggerFactory = new DatabaseLoggerFactory();</span>
+        <span class="hljs-comment">//Logger databaseLogger = databaseLoggerFactory.createLogger();</span>
+        <span class="hljs-comment">//databaseLogger.writeLog();</span>
+
+        <span class="hljs-keyword">new</span> FileLoggerFactory().writeLog();
+        <span class="hljs-comment">//LoggerFactory fileLoggerFactory = new FileLoggerFactory();</span>
+        <span class="hljs-comment">//Logger fileLogger = fileLoggerFactory.createLogger();</span>
+        <span class="hljs-comment">//fileLogger.writeLog();</span>
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>程序运行结果如下所示 :</em></p>
+<pre><code class="hljs applescript">this <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span> logs <span class="hljs-keyword">about</span> database
+this <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span> logs <span class="hljs-keyword">about</span> <span class="hljs-built_in">file</span></code></pre>
+
+</li>
+</ol>
+<h4 id="示例程序的类图-2"><a href="#示例程序的类图-2" class="headerlink" title="示例程序的类图"></a>示例程序的类图</h4><p><img src="/2019/09/05/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BFactory-Method-Pattern/Factory-Method-Pattern-ClassDiagram3.png" srcset="/img/loading.gif" alt></p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/design-and-pattern/">design and pattern</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/09/06/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BSimple-Factory-Pattern/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Java设计模式之Simple Factory Pattern</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/09/04/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84JDBC%E5%9F%BA%E7%A1%80%E6%A8%A1%E6%9D%BF/">
+                        <span class="hidden-mobile">一个简单的JDBC基础模板</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Java设计模式之Factory Method模式&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>自定义EL函数防止HTML注入 - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-04-22 18:19">
+      April 22, 2019 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      876 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h3 id="学习笔记-自定义EL函数防止HTML注入"><a href="#学习笔记-自定义EL函数防止HTML注入" class="headerlink" title="学习笔记 : 自定义EL函数防止HTML注入"></a>学习笔记 : 自定义<code>EL</code>函数防止<code>HTML</code>注入</h3><h4 id="防止HTML注入前"><a href="#防止HTML注入前" class="headerlink" title="防止HTML注入前"></a>防止<code>HTML</code>注入前</h4><ol>
+<li><p><em><code>JSP</code>程序代码</em></p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
+    <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>`HTML`注入<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">align</span>=<span class="hljs-string">"center"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"ResultServlet"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+						<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
+							姓 名: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"username"</span>/&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+						<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+						<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
+							留 言: <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">rows</span>=<span class="hljs-string">"6"</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">"50"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"message"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+						<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+			    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"submit"</span>/&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+</li>
+<li><p><em><code>Servlet</code>程序代码</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.el.test;
+
+<span class="hljs-keyword">import</span> java.io.IOException;
+
+<span class="hljs-keyword">import</span> javax.servlet.ServletException;
+<span class="hljs-keyword">import</span> javax.servlet.annotation.WebServlet;
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServlet;
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: ResultServlet
+ * <span class="hljs-doctag">@Description</span>: 跳转页面
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: Apr 21, 2019 3:03:53 PM
+ * 
+ */</span>
+<span class="hljs-meta">@WebServlet</span>(<span class="hljs-string">"/ResultServlet"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ResultServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
+
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">6692198599916433288L</span>;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doPost</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
+
+		req.setCharacterEncoding(<span class="hljs-string">"UTF-8"</span>);
+		String name = req.getParameter(<span class="hljs-string">"username"</span>);
+		String message = req.getParameter(<span class="hljs-string">"message"</span>);
+		req.setAttribute(<span class="hljs-string">"name"</span>, name);
+		req.setAttribute(<span class="hljs-string">"message"</span>, message);
+		req.getRequestDispatcher(<span class="hljs-string">"result.jsp"</span>).forward(req, resp);
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
+		<span class="hljs-keyword">this</span>.doPost(req, resp);
+	&#125;
+
+&#125;</code></pre>
+</li>
+<li><p><em>所跳转的<code>JSP</code>页面的程序代码</em></p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
+    <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>HTML注入<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">align</span>=<span class="hljs-string">"center"</span>&gt;</span>
+			用户名: $&#123;name &#125;<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+			留言内容: $&#123;message &#125;
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+</li>
+<li><p><em>运行结果示例图</em></p>
+</li>
+</ol>
+<ul>
+<li><em><code>JSP</code>页面</em><br><img src="/2019/04/22/%E8%87%AA%E5%AE%9A%E4%B9%89EL%E5%87%BD%E6%95%B0%E9%98%B2%E6%AD%A2HTML%E6%B3%A8%E5%85%A5/JSP-HTMLInjection.PNG" srcset="/img/loading.gif" alt=" "></li>
+<li><em><code>HTML</code>注入结果</em><br><img src="/2019/04/22/%E8%87%AA%E5%AE%9A%E4%B9%89EL%E5%87%BD%E6%95%B0%E9%98%B2%E6%AD%A2HTML%E6%B3%A8%E5%85%A5/JSP-HTMLInjectionResult1.PNG" srcset="/img/loading.gif" alt=" "></li>
+</ul>
+<h4 id="防止HTML注入后"><a href="#防止HTML注入后" class="headerlink" title="防止HTML注入后"></a>防止<code>HTML</code>注入后</h4><ol>
+<li><p><em>过滤<code>HTML</code>中特殊字符的程序代码</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.el.util;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: HTMLFilter
+ * <span class="hljs-doctag">@Description</span>: 过滤特殊字符
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: Apr 21, 2019 3:42:04 PM
+ * 
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HTMLFilter</span> </span>&#123;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">filter</span><span class="hljs-params">(String message)</span> </span>&#123;
+		<span class="hljs-keyword">if</span> (message == <span class="hljs-keyword">null</span>) &#123;
+			<span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+		&#125;
+
+		<span class="hljs-comment">// copy</span>
+		<span class="hljs-keyword">char</span> content[] = <span class="hljs-keyword">new</span> <span class="hljs-keyword">char</span>[message.length()];
+		message.getChars(<span class="hljs-number">0</span>, message.length(), content, <span class="hljs-number">0</span>);
+
+		StringBuffer result = <span class="hljs-keyword">new</span> StringBuffer(content.length + <span class="hljs-number">50</span>);
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; content.length; i++) &#123;
+
+			<span class="hljs-keyword">switch</span> (content[i]) &#123;
+			<span class="hljs-keyword">case</span> <span class="hljs-string">'&lt;'</span>:
+				result.append(<span class="hljs-string">"&amp;lt;"</span>);
+				<span class="hljs-keyword">break</span>;
+			<span class="hljs-keyword">case</span> <span class="hljs-string">'&gt;'</span>:
+				result.append(<span class="hljs-string">"&amp;gt;"</span>);
+				<span class="hljs-keyword">break</span>;
+			<span class="hljs-keyword">case</span> <span class="hljs-string">'&amp;'</span>:
+				result.append(<span class="hljs-string">"&amp;amp;"</span>);
+				<span class="hljs-keyword">break</span>;
+			<span class="hljs-keyword">case</span> <span class="hljs-string">'"'</span>:
+				result.append(<span class="hljs-string">"&amp;quot;"</span>);
+				<span class="hljs-keyword">break</span>;
+			<span class="hljs-keyword">default</span>:
+				result.append(content[i]);
+			&#125;
+
+		&#125;
+		<span class="hljs-keyword">return</span> result.toString();
+	&#125;
+&#125;</code></pre>
+</li>
+<li><p><em>描述自定义<code>EL</code>函数的<code>mytaglib.tld</code>文件</em></p>
+</li>
+</ol>
+<ul>
+<li><em><code>&lt;taglib&gt;</code>元素是tld文件的根元素,用于声明该JSP文件使用了标签库,不需要对其进行修改,只需要从目录<code>&lt;Tomacat安装目录&gt;\webapps\examples\WEB-INF\jsp2\jsp2-example-taglib.tld</code>中复制即可.</em></li>
+</ul>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">taglib</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://java.sun.com/xml/ns/j2ee"</span>
+    <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
+    <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"</span>
+    <span class="hljs-attr">version</span>=<span class="hljs-string">"2.0"</span>&gt;</span>
+    
+    <span class="hljs-tag">&lt;<span class="hljs-name">description</span>&gt;</span>A tag library exercising SimpleTag handlers.<span class="hljs-tag">&lt;/<span class="hljs-name">description</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tlib-version</span>&gt;</span>1.0<span class="hljs-tag">&lt;/<span class="hljs-name">tlib-version</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">short-name</span>&gt;</span>SimpleTagLibrary<span class="hljs-tag">&lt;/<span class="hljs-name">short-name</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">uri</span>&gt;</span>https://yubuntu0109.github.io<span class="hljs-tag">&lt;/<span class="hljs-name">uri</span>&gt;</span>
+    
+    <span class="hljs-tag">&lt;<span class="hljs-name">function</span>&gt;</span>
+    	<span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>filter<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
+    	<span class="hljs-tag">&lt;<span class="hljs-name">function-class</span>&gt;</span>
+    		pers.huangyuhui.el.util.HTMLFilter
+    	<span class="hljs-tag">&lt;/<span class="hljs-name">function-class</span>&gt;</span>
+    	<span class="hljs-tag">&lt;<span class="hljs-name">function-signature</span>&gt;</span>
+    		java.lang.String filter(java.lang.String)
+    	<span class="hljs-tag">&lt;/<span class="hljs-name">function-signature</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">function</span>&gt;</span>
+ 
+<span class="hljs-tag">&lt;/<span class="hljs-name">taglib</span>&gt;</span></code></pre>
+
+<ol start="3">
+<li><p><em><code>JSP</code>页面的程序代码</em></p>
+<pre><code class="html"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">page</span> <span class="attr">language</span>=<span class="string">"java"</span> <span class="attr">contentType</span>=<span class="string">"text/html; charset=UTF-8"</span></span>
+<span class="tag"> <span class="attr">pageEncoding</span>=<span class="string">"UTF-8"</span>%&gt;</span>
+&lt;%-- uri: 既tld文件中&lt;uri&gt;元素的内容.  prefix: 为引用的tld文件定义一个"代号"(作为自定义EL函数的前缀) --%&gt;
+<span class="tag">&lt;<span class="name">%@taglib</span> <span class="attr">prefix</span>=<span class="string">"demo"</span> <span class="attr">uri</span>=<span class="string">"https://yubuntu0109.github.io"</span> %&gt;</span>
+<span class="meta">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;<span class="name">html</span>&gt;</span>
+ <span class="tag">&lt;<span class="name">head</span>&gt;</span>
+     <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span>
+     <span class="tag">&lt;<span class="name">title</span>&gt;</span>防止`HTML`注入<span class="tag">&lt;/<span class="name">title</span>&gt;</span>
+ <span class="tag">&lt;/<span class="name">head</span>&gt;</span>
+ <span class="tag">&lt;<span class="name">body</span>&gt;</span>
+     <span class="tag">&lt;<span class="name">div</span> <span class="attr">align</span>=<span class="string">"center"</span>&gt;</span>
+         姓名: ${name }<span class="tag">&lt;<span class="name">br</span>&gt;</span>
+         留言内容: ${demo:filter(message) }
+     <span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+ <span class="tag">&lt;/<span class="name">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="name">html</span>&gt;</span></code></pre>
+</li>
+<li><p><em>运行效果示例图</em><br><img src="/2019/04/22/%E8%87%AA%E5%AE%9A%E4%B9%89EL%E5%87%BD%E6%95%B0%E9%98%B2%E6%AD%A2HTML%E6%B3%A8%E5%85%A5/JSP-HTMLInjectionResult2.PNG" srcset="/img/loading.gif" alt=" "></p>
+</li>
+</ol>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/JSP/">JSP</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/04/23/VOA-One-in-Five-Deaths-Linked-to-Unhealthy-Diet/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">VOA:One in Five Deaths Linked to Unhealthy Diet</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/04/22/VOA-Paris-Notre-Dame-Cathedral-Burning/">
+                        <span class="hidden-mobile">VOA:Paris`Notre-Dame Cathedral Burning</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "自定义EL函数防止HTML注入&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

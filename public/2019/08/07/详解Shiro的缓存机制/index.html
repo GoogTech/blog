@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>详解Shiro的缓存机制 - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-08-07 12:12">
+      August 7, 2019 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="学习笔记-详解Shiro的缓存机制"><a href="#学习笔记-详解Shiro的缓存机制" class="headerlink" title="学习笔记 : 详解Shiro的缓存机制"></a>学习笔记 : 详解Shiro的缓存机制</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p><em>Shiro作为一个开源的权限框架,其组件化的设计思想使得开发者可以根据具体业务场景灵活地实现权限管理方案,权限粒度的控制非常方便,Shiro框架的架构图如下所示 :</em></p>
+<p><img src="/2019/08/07/%E8%AF%A6%E8%A7%A3Shiro%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/Shiro-framework-%E6%9E%B6%E6%9E%84%E5%9B%BE.png" srcset="/img/loading.gif" alt></p>
+<p><em>从上图我们可以很清晰地看到,<code>CacheManager</code>也是Shiro架构中的主要组件之一,Shiro正是通过CacheManager组件实现权限数据缓存.<br><code>当权限信息存放在数据库中时,对于每次前端的访问请求都需要进行一次数据库查询</code>. 特别是在大量使用shiro的jsp标签的场景下,对应前端的一个页面访问请求会同时出现很多的权限查询操作,这对于权限信息变化不是很频繁的场景,每次前端页面访问都进行大量的权限数据库查询是非常不经济的! 因此非常有必要对权限数据使用缓存方案~</em></p>
+<h3 id="Shiro权限数据的缓存方式"><a href="#Shiro权限数据的缓存方式" class="headerlink" title="Shiro权限数据的缓存方式"></a>Shiro权限数据的缓存方式</h3><p><em>关于shiro权限数据的缓存方式,可以分为以下两类 :</em> </p>
+<ol>
+<li><em>将权限数据缓存到集中式存储中间件中,比如redis或者memcached</em></li>
+<li><em>将权限数据缓存到本地</em></li>
+</ol>
+<h3 id="如何在Shiro中使用缓存"><a href="#如何在Shiro中使用缓存" class="headerlink" title="如何在Shiro中使用缓存"></a>如何在Shiro中使用缓存</h3><p><em>根据Shiro官方的说法,虽然缓存在权限框架中非常重要,但是如果实现一套完整的缓存机制会使得Shiro偏离了核心的功能(认证和授权). 因此Shiro只提供了一个可以支持具体缓存实现(如 : <code>Hazelcast</code>, <code>Ehcache</code>, <code>OSCache</code>, <code>Terracotta</code>, <code>Coherence</code>, <code>GigaSpaces</code>, <code>JBossCache</code> 等)的抽象API接口,这样就允许Shiro用户根据自己的需求灵活地选择具体的CacheManager,当然,其实Shiro也自带了一个本地内存CacheManager(<code>org.apache.shiro.cache.MemoryConstrainedCacheManager</code>),Shiro的缓存组件类图如下所示 :</em></p>
+<p><img src="/2019/08/07/%E8%AF%A6%E8%A7%A3Shiro%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/Shiro-%E7%BC%93%E5%AD%98%E7%BB%84%E4%BB%B6%E7%B1%BB%E5%9B%BE.jpg" srcset="/img/loading.gif" alt></p>
+<p><em>从Shiro缓存组件类图可以看到,Shiro提供的缓存抽象API接口正是 : <code>org.apache.shiro.cache.CacheManager</code>,那么我们应该如何配置和使用CacheManager呢 ? 如下我们以使用Shiro提供的<code>MemoryConstrainedCacheManager</code>组件为例进行说明. 我们知道,SecurityManager是Shiro的核心控制器,我们来看一下其类图 :</em></p>
+<p><img src="/2019/08/07/%E8%AF%A6%E8%A7%A3Shiro%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/Shiro-SecurityManager%E7%B1%BB%E5%9B%BE.jpg" srcset="/img/loading.gif" alt></p>
+<p><em><code>org.apache.shiro.mgt.CachingSecurityManager</code>是Shiro中SecurityManager接口的基础抽象类,我们来看一下其源码结构(如下所示),<code>发现在CachingSecurityManager中存在一个CacheManager类型的成员变量</code></em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CachingSecurityManager</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">SecurityManager</span>, <span class="hljs-title">Destroyable</span>, <span class="hljs-title">CacheManagerAware</span>, <span class="hljs-title">EventBusAware</span> </span>&#123;
+
+    <span class="hljs-comment">/**
+     * The CacheManager to use to perform caching operations to enhance performance.  Can be null.
+     */</span>
+    <span class="hljs-keyword">private</span> CacheManager cacheManager;
+
+    <span class="hljs-comment">/**
+     * The EventBus to use to use to publish and receive events of interest during Shiro's lifecycle.
+     * <span class="hljs-doctag">@since</span> 1.3
+     */</span>
+    <span class="hljs-keyword">private</span> EventBus eventBus;
+
+    <span class="hljs-comment">/**
+     * Default no-arg constructor that will automatically attempt to initialize a default cacheManager
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CachingSecurityManager</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-comment">//use a default event bus:</span>
+        setEventBus(<span class="hljs-keyword">new</span> DefaultEventBus());
+    &#125;
+
+    <span class="hljs-comment">// ······</span>
+&#125;</code></pre>
+
+
+<p><em>另外,接口<code>org.apache.shiro.realm.Realm</code>定义了权限数据的存储方式,其类图如下所示 :</em></p>
+<p><img src="/2019/08/07/%E8%AF%A6%E8%A7%A3Shiro%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/Shiro-Realm%E7%B1%BB%E5%9B%BE.jpg" srcset="/img/loading.gif" alt></p>
+<p><em>显然,<code>org.apache.shiro.realm.CachingRealm</code>是Shiro中Realm接口的基础实现类,我们同样来看一下其源码结构(如下所示),<code>发现同样在CachingRealm也存在一个CacheManager类型的成员变量</code></em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CachingRealm</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Realm</span>, <span class="hljs-title">Nameable</span>, <span class="hljs-title">CacheManagerAware</span>, <span class="hljs-title">LogoutAware</span> </span>&#123;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Logger log = LoggerFactory.getLogger(CachingRealm<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+
+    <span class="hljs-comment">//TODO - complete JavaDoc</span>
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> AtomicInteger INSTANCE_COUNT = <span class="hljs-keyword">new</span> AtomicInteger();
+
+    <span class="hljs-comment">/*--------------------------------------------
+    |    I N S T A N C E   V A R I A B L E S    |
+    ============================================*/</span>
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> cachingEnabled;
+    <span class="hljs-keyword">private</span> CacheManager cacheManager;
+
+    <span class="hljs-comment">/**
+     * Default no-argument constructor that defaults
+     * &#123;<span class="hljs-doctag">@link</span> #isCachingEnabled() cachingEnabled&#125; (for general caching) to &#123;<span class="hljs-doctag">@code</span> true&#125; and sets a
+     * default &#123;<span class="hljs-doctag">@link</span> #getName() name&#125; based on the class name.
+     * &lt;p/&gt;
+     * Note that while in general, caching may be enabled by default, subclasses have control over
+     * if specific caching is enabled.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CachingRealm</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.cachingEnabled = <span class="hljs-keyword">true</span>;
+        <span class="hljs-keyword">this</span>.name = getClass().getName() + <span class="hljs-string">"_"</span> + INSTANCE_COUNT.getAndIncrement();
+    &#125;
+
+    <span class="hljs-comment">// ······</span>
+&#125;</code></pre>
+
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p><em>从以上分析我们知道Shiro支持在2个地方定义缓存管理器,既可以在SecurityManager中定义,也可以在Realm中定义,任选其一即可. 通常我们都会自定义Realm实现,例如将权限数据存放在数据库中,那么在Realm实现中定义缓存管理器再合适不过了</em></p>
+<p><em>那么我们不禁要问了 :</em></p>
+<ul>
+<li>第一 : 为什么Shiro要设计成既可以在Realm,也可以在SecurityManager中设置缓存管理器呢 ?</li>
+<li>第二 : 分别在Realm和SecurityManager定义的缓存管理器,他们有什么区别或联系吗 ?</li>
+</ul>
+<p><em>怀着种种疑问让我们追踪一下<code>org.apache.shiro.mgt.RealmSecurityManae</code>的源码实现,如下所示 :</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RealmSecurityManager</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">CachingSecurityManager</span> </span>&#123;
+
+    <span class="hljs-comment">/**
+     * Sets the internal &#123;<span class="hljs-doctag">@link</span> #getCacheManager CacheManager&#125; on any internal configured
+     * &#123;<span class="hljs-doctag">@link</span> #getRealms Realms&#125; that implement the &#123;<span class="hljs-doctag">@link</span> org.apache.shiro.cache.CacheManagerAware CacheManagerAware&#125; interface.
+     * &lt;p/&gt;
+     * This method is called after setting a cacheManager on this securityManager via the
+     * &#123;<span class="hljs-doctag">@link</span> #setCacheManager(org.apache.shiro.cache.CacheManager) setCacheManager&#125; method to allow it to be propagated
+     * down to all the internal Realms that would need to use it.
+     * &lt;p/&gt;
+     * It is also called after setting one or more realms via the &#123;<span class="hljs-doctag">@link</span> #setRealm setRealm&#125; or
+     * &#123;<span class="hljs-doctag">@link</span> #setRealms setRealms&#125; methods to allow these newly available realms to be given the cache manager
+     * already in use.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">applyCacheManagerToRealms</span><span class="hljs-params">()</span> </span>&#123;
+        CacheManager cacheManager = getCacheManager();
+        Collection&lt;Realm&gt; realms = getRealms();
+        <span class="hljs-keyword">if</span> (cacheManager != <span class="hljs-keyword">null</span> &amp;&amp; realms != <span class="hljs-keyword">null</span> &amp;&amp; !realms.isEmpty()) &#123;
+            <span class="hljs-keyword">for</span> (Realm realm : realms) &#123;
+                <span class="hljs-keyword">if</span> (realm <span class="hljs-keyword">instanceof</span> CacheManagerAware) &#123;
+                    ((CacheManagerAware) realm).setCacheManager(cacheManager);
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+
+    <span class="hljs-comment">// ······</span>
+&#125;</code></pre>
+
+<p><em>这下恍然大悟了吧 ! <code>从源码可以分析出其实在SecurityManager中设置的CacheManager都会给Realm使用,即真正使用CacheManager的组件是Realm</code></em></p>
+<p><em>🙏摘自(获益匪浅,非常感谢) : <a href="https://www.cnblogs.com/nuccch/p/8044226.html" target="_blank" rel="noopener">https://www.cnblogs.com/nuccch/p/8044226.html</a></em></p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Shiro/">Shiro</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/08/07/%E4%B8%80%E4%B8%AA%E5%9F%BA%E7%A1%80%E7%9A%84SpringBoot%E6%95%B4%E5%90%88Shiro%E6%A1%88%E4%BE%8B/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">一个基础的SpringBoot整合Shiro案例</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/08/07/SpringBoot%E4%B8%ADShiro%E9%9B%86%E6%88%90EhCache/">
+                        <span class="hidden-mobile">SpringBoot中Shiro集成EhCache</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "详解Shiro的缓存机制&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

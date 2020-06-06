@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>SpringBoot集成Shiro的基本配置 - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-08-06 15:13">
+      August 6, 2019 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      29
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="学习笔记-SpringBoot集成Shiro的基本配置"><a href="#学习笔记-SpringBoot集成Shiro的基本配置" class="headerlink" title="学习笔记 : SpringBoot集成Shiro的基本配置"></a>学习笔记 : SpringBoot集成Shiro的基本配置</h2><p><em>Spring集成Shiro一般通过的 xml 配置,比较繁琐,而Spring Boot集成Shiro相对简单,只需要配置两个类 : ShiroConfiguration类及继承AuthorizingRealm的Realm类,如下所示 :</em></p>
+<ol>
+<li><em><code>ShiroConfig</code> : 顾名思义就是对Shiro的一些配置,相对于Spring中的xml配置. 包括 : 包括过滤器(ShiroFilter)、安全事务管理器(SecurityManager)、密码凭证匹配器(CredentialsMatcher)、缓冲管理器(EhCacheManager)、aop注解支持(authorizationAttributeSourceAdvisor)、等等</em></li>
+<li><em><code>CustomRealm</code> : 自定义的CustomRealm继承自AuthorizingRealm,重写了父类中的doGetAuthorizationInfo(授权认证)、doGetAuthenticationInfo(登陆认证)这两个方法</em></li>
+</ol>
+<h3 id="基本的配置"><a href="#基本的配置" class="headerlink" title="基本的配置"></a>基本的配置</h3><p><em>以下示例代码摘自 : <a href="https://github.com/YUbuntu0109/Shiro-learning/tree/master/spring%20boot%20project%20with%20shiro" target="_blank" rel="noopener">一个简单的SpringBoot集成Shiro的权限管理案例</a></em></p>
+<h4 id="Shiro的基本配置信息"><a href="#Shiro的基本配置信息" class="headerlink" title="Shiro的基本配置信息"></a>Shiro的基本配置信息</h4><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.ss.shiro;
+
+<span class="hljs-keyword">import</span> at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+<span class="hljs-keyword">import</span> net.sf.ehcache.CacheManager;
+<span class="hljs-keyword">import</span> org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+<span class="hljs-keyword">import</span> org.apache.shiro.cache.ehcache.EhCacheManager;
+<span class="hljs-keyword">import</span> org.apache.shiro.mgt.SecurityManager;
+<span class="hljs-keyword">import</span> org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+<span class="hljs-keyword">import</span> org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.Bean;
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;
+
+<span class="hljs-keyword">import</span> java.util.LinkedHashMap;
+<span class="hljs-keyword">import</span> java.util.Map;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: springboot-shiro
+ * <span class="hljs-doctag">@description</span>: Shiro配置信息
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 8/5/2019-7:41 AM
+ * <span class="hljs-doctag">@version</span>: 1.1
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-meta">@Configuration</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ShiroConfig</span> </span>&#123;
+
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@description</span>: 配置过滤器
+     * <span class="hljs-doctag">@param</span>: securityManager
+     * <span class="hljs-doctag">@date</span>: 2019-08-05 7:59 AM
+     * <span class="hljs-doctag">@return</span>: org.apache.shiro.spring.web.ShiroFilterFactoryBean
+     */</span>
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> ShiroFilterFactoryBean <span class="hljs-title">shiroFilterFactoryBean</span><span class="hljs-params">(SecurityManager securityManager)</span> </span>&#123;
+        ShiroFilterFactoryBean shiroFilterFactoryBean = <span class="hljs-keyword">new</span> ShiroFilterFactoryBean();
+        <span class="hljs-comment">//设置安全管理器</span>
+        shiroFilterFactoryBean.setSecurityManager(securityManager);
+        <span class="hljs-comment">//设置自定义过滤器</span>
+        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap());
+        <span class="hljs-comment">//设置用户登录页,默认: http://localhost:8080/login.jsp</span>
+        shiroFilterFactoryBean.setLoginUrl(<span class="hljs-string">"/loginView"</span>);
+        <span class="hljs-comment">//设置用户未授权操作提示页</span>
+        shiroFilterFactoryBean.setUnauthorizedUrl(<span class="hljs-string">"/unauthorizedView"</span>);
+        <span class="hljs-keyword">return</span> shiroFilterFactoryBean;
+    &#125;
+
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@description</span>: 初始化自定义Realm
+     * <span class="hljs-doctag">@param</span>: credentialsMatcher
+     * <span class="hljs-doctag">@date</span>: 2019-08-05 7:50 AM
+     * <span class="hljs-doctag">@return</span>: pers.huangyuhui.ss.shiro.UserRealm
+     */</span>
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> UserRealm <span class="hljs-title">userRealm</span><span class="hljs-params">(HashedCredentialsMatcher hashedCredentialsMatcher)</span> </span>&#123;
+        UserRealm userRealm = <span class="hljs-keyword">new</span> UserRealm();
+        <span class="hljs-comment">//设置凭证匹配器</span>
+        userRealm.setCredentialsMatcher(hashedCredentialsMatcher);
+        <span class="hljs-keyword">return</span> userRealm;
+    &#125;
+
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@description</span>: 安全事务管理器
+     * <span class="hljs-doctag">@param</span>: credentialsMatcher
+     * <span class="hljs-doctag">@date</span>: 2019-08-05 7:53 AM
+     * <span class="hljs-doctag">@return</span>: org.apache.shiro.web.mgt.DefaultWebSecurityManager
+     */</span>
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> SecurityManager <span class="hljs-title">securityManager</span><span class="hljs-params">(UserRealm userRealm, EhCacheManager ehCacheManager)</span> </span>&#123;
+        DefaultWebSecurityManager defaultWebSecurityManager = <span class="hljs-keyword">new</span> DefaultWebSecurityManager();
+        <span class="hljs-comment">//关联自定义realm</span>
+        defaultWebSecurityManager.setRealm(userRealm);
+        <span class="hljs-comment">//关联缓存管理</span>
+        defaultWebSecurityManager.setCacheManager(ehCacheManager);
+        <span class="hljs-keyword">return</span> defaultWebSecurityManager;
+    &#125;
+
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@description</span>: 哈希密码匹配器:比较用户登录时输入的密码,跟数据库密码配合盐值salt解密后是否一致
+     * <span class="hljs-doctag">@date</span>: 2019-08-05 9:01 PM
+     * <span class="hljs-doctag">@return</span>: org.apache.shiro.authc.credential.HashedCredentialsMatcher
+     */</span>
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> HashedCredentialsMatcher <span class="hljs-title">hashedCredentialsMatcher</span><span class="hljs-params">()</span> </span>&#123;
+        HashedCredentialsMatcher hashedCredentialsMatcher = <span class="hljs-keyword">new</span> HashedCredentialsMatcher();
+        hashedCredentialsMatcher.setHashAlgorithmName(<span class="hljs-string">"md5"</span>); <span class="hljs-comment">//散列算法</span>
+        hashedCredentialsMatcher.setHashIterations(<span class="hljs-number">3</span>); <span class="hljs-comment">//散列的次数</span>
+        hashedCredentialsMatcher.setStoredCredentialsHexEncoded(<span class="hljs-keyword">true</span>); <span class="hljs-comment">//默认是true:Hex编码.false:Base64编码</span>
+        <span class="hljs-keyword">return</span> hashedCredentialsMatcher;
+    &#125;
+
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@description</span>: 设置缓存管理, 缓存用户及其权限信息
+     * <span class="hljs-doctag">@date</span>: 2019-08-07 7:51 AM
+     * <span class="hljs-doctag">@return</span>: org.apache.shiro.cache.ehcache.EhCacheManager
+     */</span>
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> EhCacheManager <span class="hljs-title">ehCacheManager</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-comment">//注意:myEhcache对应ehcache-shiro.xml中的'&lt;ehcache name="myEhcache"&gt;'</span>
+        CacheManager cacheManager = CacheManager.getCacheManager(<span class="hljs-string">"myEhcache"</span>);
+        <span class="hljs-keyword">if</span> (cacheManager == <span class="hljs-keyword">null</span>) &#123;
+            cacheManager = CacheManager.create();
+        &#125;
+        EhCacheManager ehCacheManager = <span class="hljs-keyword">new</span> EhCacheManager();
+        ehCacheManager.setCacheManager(cacheManager);
+        <span class="hljs-keyword">return</span> ehCacheManager;
+    &#125;
+
+
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@description</span>: 设置资源的权限控制
+     * <span class="hljs-doctag">@date</span>: 2019-08-05 8:31 AM
+     * <span class="hljs-doctag">@return</span>: java.util.Map
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> Map&lt;String, String&gt; <span class="hljs-title">filterChainDefinitionMap</span><span class="hljs-params">()</span> </span>&#123;
+        Map&lt;String, String&gt; filterMap = <span class="hljs-keyword">new</span> LinkedHashMap&lt;&gt;();
+        <span class="hljs-comment">//需身份认证</span>
+        filterMap.put(<span class="hljs-string">"/stuListView"</span>, <span class="hljs-string">"authc"</span>);
+        filterMap.put(<span class="hljs-string">"/teaListView"</span>, <span class="hljs-string">"authc"</span>);
+        <span class="hljs-comment">//无需身份认证:防止验证用户登录信息操作被'filterMap.put("/**", "authc")'拦截</span>
+        filterMap.put(<span class="hljs-string">"/login"</span>, <span class="hljs-string">"anon"</span>);
+        <span class="hljs-comment">//注销过滤器:其具体的注销逻辑代码Shiro已经替我们实现了哟</span>
+        filterMap.put(<span class="hljs-string">"/logout"</span>, <span class="hljs-string">"logout"</span>);
+        <span class="hljs-comment">//角色过滤:需要用户拥有'admin'角色</span>
+        filterMap.put(<span class="hljs-string">"/teaListView"</span>, <span class="hljs-string">"roles[admin]"</span>);
+        <span class="hljs-comment">//权限过滤:除身份认证外,还需要用户拥有对stuListView资源的view权限</span>
+        filterMap.put(<span class="hljs-string">"/stuListView"</span>, <span class="hljs-string">"perms[stuListView:view]"</span>);
+        filterMap.put(<span class="hljs-string">"/teaListView"</span>, <span class="hljs-string">"perms[teaListView:view]"</span>);
+        <span class="hljs-comment">//拦截需要登录(用户认证)方可访问的资源(一般将/**放在最下边,不然会导致所有url都被拦截哟)</span>
+        filterMap.put(<span class="hljs-string">"/**"</span>, <span class="hljs-string">"authc"</span>);
+        <span class="hljs-keyword">return</span> filterMap;
+    &#125;
+
+
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@description</span>: 配置ShiroDialect, 用于thymeleaf和shiro标签配合使用
+     * <span class="hljs-doctag">@date</span>: 2019-08-05 6:37 PM
+     * <span class="hljs-doctag">@return</span>: at.pollux.thymeleaf.shiro.dialect.ShiroDialect
+     */</span>
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> ShiroDialect <span class="hljs-title">shiroDialect</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ShiroDialect();
+    &#125;
+
+&#125;</code></pre>
+
+<p><em>ehcache-shiro.xml : EhCache缓存框架的配置文件</em></p>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ehcache</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
+         <span class="hljs-attr">xsi:noNamespaceSchemaLocation</span>=<span class="hljs-string">"http://ehcache.org/ehcache.xsd"</span>
+         <span class="hljs-attr">updateCheck</span>=<span class="hljs-string">"false"</span>
+         <span class="hljs-attr">name</span>=<span class="hljs-string">"myEhcache"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">diskStore</span> <span class="hljs-attr">path</span>=<span class="hljs-string">"java.io.tmpdir"</span>/&gt;</span>
+    <span class="hljs-comment">&lt;!-- 授权信息缓存 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">cache</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"authorizationCache"</span>
+           <span class="hljs-attr">maxEntriesLocalHeap</span>=<span class="hljs-string">"2000"</span>
+           <span class="hljs-attr">timeToIdleSeconds</span>=<span class="hljs-string">"1800"</span>
+           <span class="hljs-attr">timeToLiveSeconds</span>=<span class="hljs-string">"1800"</span>
+           <span class="hljs-attr">overflowToDisk</span>=<span class="hljs-string">"false"</span>
+           <span class="hljs-attr">statistics</span>=<span class="hljs-string">"true"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">cache</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- 身份信息缓存 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">cache</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"authenticationCache"</span>
+           <span class="hljs-attr">maxEntriesLocalHeap</span>=<span class="hljs-string">"2000"</span>
+           <span class="hljs-attr">timeToIdleSeconds</span>=<span class="hljs-string">"1800"</span>
+           <span class="hljs-attr">timeToLiveSeconds</span>=<span class="hljs-string">"1800"</span>
+           <span class="hljs-attr">overflowToDisk</span>=<span class="hljs-string">"false"</span>
+           <span class="hljs-attr">statistics</span>=<span class="hljs-string">"true"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">cache</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- Session缓存 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">cache</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"activeSessionCache"</span>
+           <span class="hljs-attr">maxEntriesLocalHeap</span>=<span class="hljs-string">"2000"</span>
+           <span class="hljs-attr">timeToIdleSeconds</span>=<span class="hljs-string">"1800"</span>
+           <span class="hljs-attr">timeToLiveSeconds</span>=<span class="hljs-string">"1800"</span>
+           <span class="hljs-attr">overflowToDisk</span>=<span class="hljs-string">"false"</span>
+           <span class="hljs-attr">statistics</span>=<span class="hljs-string">"true"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">cache</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- 缓存半小时 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">cache</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"halfHour"</span>
+           <span class="hljs-attr">maxElementsInMemory</span>=<span class="hljs-string">"10000"</span>
+           <span class="hljs-attr">maxElementsOnDisk</span>=<span class="hljs-string">"100000"</span>
+           <span class="hljs-attr">timeToIdleSeconds</span>=<span class="hljs-string">"1800"</span>
+           <span class="hljs-attr">timeToLiveSeconds</span>=<span class="hljs-string">"1800"</span>
+           <span class="hljs-attr">overflowToDisk</span>=<span class="hljs-string">"false"</span>
+           <span class="hljs-attr">diskPersistent</span>=<span class="hljs-string">"false"</span>/&gt;</span>
+    <span class="hljs-comment">&lt;!-- 缓存一小时 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">cache</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"hour"</span>
+           <span class="hljs-attr">maxElementsInMemory</span>=<span class="hljs-string">"10000"</span>
+           <span class="hljs-attr">maxElementsOnDisk</span>=<span class="hljs-string">"100000"</span>
+           <span class="hljs-attr">timeToIdleSeconds</span>=<span class="hljs-string">"3600"</span>
+           <span class="hljs-attr">timeToLiveSeconds</span>=<span class="hljs-string">"3600"</span>
+           <span class="hljs-attr">overflowToDisk</span>=<span class="hljs-string">"false"</span>
+           <span class="hljs-attr">diskPersistent</span>=<span class="hljs-string">"false"</span>/&gt;</span>
+    <span class="hljs-comment">&lt;!-- 缓存一天 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">cache</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"oneDay"</span>
+           <span class="hljs-attr">maxElementsInMemory</span>=<span class="hljs-string">"10000"</span>
+           <span class="hljs-attr">maxElementsOnDisk</span>=<span class="hljs-string">"100000"</span>
+           <span class="hljs-attr">timeToIdleSeconds</span>=<span class="hljs-string">"86400"</span>
+           <span class="hljs-attr">timeToLiveSeconds</span>=<span class="hljs-string">"86400"</span>
+           <span class="hljs-attr">overflowToDisk</span>=<span class="hljs-string">"false"</span>
+           <span class="hljs-attr">diskPersistent</span>=<span class="hljs-string">"false"</span>/&gt;</span>
+
+    <span class="hljs-comment">&lt;!--
+         name: 缓存名称。
+         maxElementsInMemory: 缓存最大个数
+         eternal: 对象是否永久有效,一但设置了,timeout将不起作用
+         timeToIdleSeconds: 设置对象在失效前的允许闲置时间(单位：秒). 仅当eternal=false对象不是永久有效时使用,可选属性,默认值是0,也就是可闲置时间无穷大
+         timeToLiveSeconds: 设置对象在失效前允许存活时间(单位：秒). 最大时间介于创建时间和失效时间之间. 仅当eternal=false对象不是永久有效时使用,默认是0,也就是对象存活时间无穷大
+         overflowToDisk: 当内存中对象数量达到maxElementsInMemory时,Ehcache将会对象写到磁盘中
+         diskSpoolBufferSizeMB: 这个参数设置DiskStore(磁盘缓存)的缓存区大小,默认是30MB. 每个Cache都应该有自己的一个缓冲区
+         maxElementsOnDisk: 硬盘最大缓存个数
+         diskPersistent: 是否缓存虚拟机重启期数据 Whether the disk store persists between restarts of the Virtual Machine. The default value is false.
+         diskExpiryThreadIntervalSeconds: 磁盘失效线程运行时间间隔,默认是120秒
+         memoryStoreEvictionPolicy: 当达到maxElementsInMemory限制时,Ehcache将会根据指定的策略去清理内存. 默认策略是LRU(最近最少使用). 你可以设置为FIFO(先进先出)或是LFU(较少使用)
+         clearOnFlush: 内存数量最大时是否清除
+     --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">defaultCache</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"defaultCache"</span>
+                  <span class="hljs-attr">maxElementsInMemory</span>=<span class="hljs-string">"10000"</span>
+                  <span class="hljs-attr">timeToIdleSeconds</span>=<span class="hljs-string">"600"</span>
+                  <span class="hljs-attr">timeToLiveSeconds</span>=<span class="hljs-string">"600"</span>
+                  <span class="hljs-attr">overflowToDisk</span>=<span class="hljs-string">"false"</span>
+                  <span class="hljs-attr">maxElementsOnDisk</span>=<span class="hljs-string">"100000"</span>
+                  <span class="hljs-attr">diskPersistent</span>=<span class="hljs-string">"false"</span>
+                  <span class="hljs-attr">diskExpiryThreadIntervalSeconds</span>=<span class="hljs-string">"120"</span>
+                  <span class="hljs-attr">memoryStoreEvictionPolicy</span>=<span class="hljs-string">"LRU"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">defaultCache</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ehcache</span>&gt;</span></code></pre>
+
+
+<h4 id="自定义Realm"><a href="#自定义Realm" class="headerlink" title="自定义Realm"></a>自定义Realm</h4><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.ss.shiro;
+
+<span class="hljs-keyword">import</span> org.apache.shiro.SecurityUtils;
+<span class="hljs-keyword">import</span> org.apache.shiro.authc.*;
+<span class="hljs-keyword">import</span> org.apache.shiro.authz.AuthorizationInfo;
+<span class="hljs-keyword">import</span> org.apache.shiro.authz.SimpleAuthorizationInfo;
+<span class="hljs-keyword">import</span> org.apache.shiro.realm.AuthorizingRealm;
+<span class="hljs-keyword">import</span> org.apache.shiro.subject.PrincipalCollection;
+<span class="hljs-keyword">import</span> org.apache.shiro.subject.Subject;
+<span class="hljs-keyword">import</span> org.apache.shiro.util.ByteSource;
+<span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
+<span class="hljs-keyword">import</span> pers.huangyuhui.ss.bean.Permission;
+<span class="hljs-keyword">import</span> pers.huangyuhui.ss.bean.Role;
+<span class="hljs-keyword">import</span> pers.huangyuhui.ss.bean.User;
+<span class="hljs-keyword">import</span> pers.huangyuhui.ss.service.UserService;
+
+<span class="hljs-keyword">import</span> java.util.Collection;
+<span class="hljs-keyword">import</span> java.util.HashSet;
+<span class="hljs-keyword">import</span> java.util.Set;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: springboot-shiro
+ * <span class="hljs-doctag">@description</span>: 配置自定义Realm
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 8/5/2019-7:45 AM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserRealm</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AuthorizingRealm</span> </span>&#123;
+
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-keyword">private</span> UserService userService;
+
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@description</span>: 授权认证:提供用户信息,返回权限信息
+     * <span class="hljs-doctag">@param</span>: principalCollection
+     * <span class="hljs-doctag">@date</span>: 2019-08-06 6:02 PM
+     * <span class="hljs-doctag">@return</span>: org.apache.shiro.authz.AuthorizationInfo
+     */</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> AuthorizationInfo <span class="hljs-title">doGetAuthorizationInfo</span><span class="hljs-params">(PrincipalCollection principalCollection)</span> </span>&#123;
+        System.err.println(<span class="hljs-string">"------------&gt; 授权认证 ------------&gt;"</span>);
+        <span class="hljs-comment">//获取当前登录的用户信息</span>
+        Subject currentUser = SecurityUtils.getSubject();
+        User u = (User) currentUser.getPrincipal();
+        <span class="hljs-comment">//从数据库中获取用户所拥有的角色及权限信息</span>
+        User user = userService.findByName(u.getUsername());
+        <span class="hljs-keyword">if</span> (user != <span class="hljs-keyword">null</span>) &#123;
+            SimpleAuthorizationInfo info = <span class="hljs-keyword">new</span> SimpleAuthorizationInfo();
+            <span class="hljs-comment">//用于存储用户的角色及权限信息</span>
+            Collection&lt;String&gt; rolesCollection = <span class="hljs-keyword">new</span> HashSet&lt;&gt;();
+            Collection&lt;String&gt; permissionsCollection = <span class="hljs-keyword">new</span> HashSet&lt;&gt;();
+            Set&lt;Role&gt; roles = user.getRoles(); <span class="hljs-comment">//获取用户Role的Set集合</span>
+            <span class="hljs-comment">//通过遍历用户所拥有的角色,来获取其对应的权限信息</span>
+            <span class="hljs-keyword">for</span> (Role role : roles) &#123;
+                rolesCollection.add(role.getName()); <span class="hljs-comment">//将每一个role的name封装到集合中</span>
+                Set&lt;Permission&gt; permissionSet = role.getPermissions(); <span class="hljs-comment">//获取每一个role所对应的permission的set集合</span>
+                <span class="hljs-comment">//遍历用户所拥有的权限信息</span>
+                <span class="hljs-keyword">for</span> (Permission permission : permissionSet) &#123;
+                    permissionsCollection.add(permission.getName()); <span class="hljs-comment">//将每一个permission的name封装到集合中</span>
+                &#125;
+                info.addStringPermissions(permissionsCollection); <span class="hljs-comment">//为用户授权</span>
+            &#125;
+            info.addRoles(rolesCollection); <span class="hljs-comment">//为用户授予角色</span>
+            System.out.println(<span class="hljs-string">"[roles]------------&gt;"</span> + rolesCollection.toString());
+            System.out.println(<span class="hljs-string">"[permissions]------------&gt;"</span> + permissionsCollection.toString());
+            <span class="hljs-keyword">return</span> info;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    &#125;
+
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@description</span>: 登录认证:提供帐户信息,返回认证信息
+     * <span class="hljs-doctag">@param</span>: authenticationToken
+     * <span class="hljs-doctag">@date</span>: 2019-08-06 6:12 PM
+     * <span class="hljs-doctag">@return</span>: org.apache.shiro.authc.AuthenticationInfo
+     */</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> AuthenticationInfo <span class="hljs-title">doGetAuthenticationInfo</span><span class="hljs-params">(AuthenticationToken authenticationToken)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
+        System.err.println(<span class="hljs-string">"------------&gt; 开始认证 ------------&gt;"</span>);
+        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
+        <span class="hljs-comment">//从数据库中获取用户信息</span>
+        User user = userService.findByName(token.getUsername());
+        <span class="hljs-comment">//验证账户信息</span>
+        <span class="hljs-keyword">if</span> (user == <span class="hljs-keyword">null</span>) &#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>; <span class="hljs-comment">//it's will be throw a UnknownAccountException</span>
+        &#125;
+        <span class="hljs-comment">//验证密码信息</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> SimpleAuthenticationInfo(user, user.getPassword(), ByteSource.Util.bytes(user.getUsername()), <span class="hljs-keyword">this</span>.getName());
+    &#125;
+&#125;</code></pre>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Shiro/">Shiro</a>
+                    
+                      <a class="hover-with-bg" href="/tags/SpringBoot/">SpringBoot</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/08/06/Thymeleaf%E6%95%B4%E5%90%88Shiro%E6%A0%87%E7%AD%BE/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Thymeleaf整合Shiro标签</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/08/04/%E4%B8%80%E4%B8%AA%E5%9F%BA%E7%A1%80%E7%9A%84Web%E6%95%B4%E5%90%88Shiro%E6%A1%88%E4%BE%8B/">
+                        <span class="hidden-mobile">一个基础的Web整合Shiro案例</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "SpringBoot集成Shiro的基本配置&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

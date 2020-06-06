@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>jQuery 过滤器学习笔记 - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-04-10 09:59">
+      April 10, 2019 am
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      50
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="jQuery-初学过滤器总结"><a href="#jQuery-初学过滤器总结" class="headerlink" title="jQuery 初学过滤器总结"></a>jQuery 初学过滤器总结</h2><h3 id="jQuery-过滤器分类"><a href="#jQuery-过滤器分类" class="headerlink" title="jQuery 过滤器分类"></a>jQuery 过滤器分类</h3><ul>
+<li><em>基础过滤器</em></li>
+<li><em>内容过滤器</em></li>
+<li><em>子元素过滤器</em></li>
+<li><em>可见性过滤器</em></li>
+</ul>
+<h3 id="jQuery-基础过滤器"><a href="#jQuery-基础过滤器" class="headerlink" title="jQuery 基础过滤器"></a>jQuery 基础过滤器</h3><ol>
+<li><em><code>:header</code> : 过滤器用于筛选所有标题元素.从’h1’到’h6’均在此选择范围内.</em></li>
+<li><em><code>:eq()</code> : 过滤器用于选择指定序号为’n’的元素,序号从0开始.</em></li>
+<li><em><code>gt()</code> : 过滤器用于选择大于序号为’n’的元素,序号从0开始.</em></li>
+<li><em><code>lt()</code> : 过滤器用于选择所有小于序号为’n’的元素,序号从0开始.</em></li>
+<li><em><code>:first</code> : 过滤器用于筛选第一个符合条件的元素.</em></li>
+<li><em><code>:last</code> : 过滤器用于筛选最后一个符合条件的元素.</em></li>
+<li><em><code>even</code> : 过滤器用于筛选符合条件的偶数个元素.</em></li>
+<li><em><code>odd</code> : 过滤器用于筛选符合条件的奇数个元素.</em></li>
+<li><em><code>not()</code> : 过滤器用于筛选所有不符合条件的元素.</em></li>
+</ol>
+<ul>
+<li><em>jQuery 基础过滤器示例</em><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>jQuery 基础过滤器总结<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../../../jQuerySource/jquery-1.12.4.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="handlebars"><span class="xml">
+			<span class="hljs-comment">&lt;!--':header' : 过滤器用于筛选所有标题元素.从&lt;h1&gt;到&lt;h6&gt;均在此选择范围内 --&gt;</span>
+			$(document).ready(function() &#123;
+				$(":header").css("background-color", "palegreen");
+			&#125;);
+
+			<span class="hljs-comment">&lt;!--':eq()' : 过滤器用于选择指定序号为'n'的元素,序号从0开始 --&gt;</span>
+			<span class="hljs-comment">&lt;!--'gt()' : 过滤器用于选择大于序号为'n'的元素,序号从0开始 --&gt;</span>
+			<span class="hljs-comment">&lt;!--'lt()' : 过滤器用于选择所有小于序号为'n'的元素,序号从0开始 --&gt;</span>
+			$(document).ready(function() &#123;
+				//'equal' : 影响的是第三行的列表选项元素<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>.
+				$("li:eq(2)").css("border", "1px solid #00FFFF");
+				//'less than' : 影响的是第三行之后的所有列表选项.
+				$("li:gt(2)").css("border", "1px solid blue");
+				//'greater than' : 影响的是第三行之前的所有列表选项.
+				$("li:lt(2)").css("border", "1px solid red");
+			&#125;);
+
+			<span class="hljs-comment">&lt;!--':first' : 过滤器用于筛选第一个符合条件的元素 --&gt;</span>
+			<span class="hljs-comment">&lt;!--':last' : 过滤器用于筛选最后一个符合条件的元素 --&gt;</span>
+			$(document).ready(function() &#123;
+				//':first()' : 过滤器用于筛选第一个符合条件的元素.
+				$("p:first").css("border", "1px solid lawngreen");
+				//':last()'  : 过滤器用于筛选最后一个符合条件的元素.
+				$("p:last").css("background-color", "bisque");
+			&#125;);
+
+			<span class="hljs-comment">&lt;!--'even' : 过滤器用于筛选符合条件的偶数个元素 --&gt;</span>
+			<span class="hljs-comment">&lt;!--'odd' : 过滤器用于筛选符合条件的奇数个元素 --&gt;</span>
+			$(document).ready(function() &#123;
+				//':even' : 过滤器用于筛选符合条件的偶数个元素.
+				$("div#even_old tr:even").css("background-color", "lightblue");
+				//':odd' : 过滤器用于筛选符合条件的奇数个元素.
+				$("div#even_old tr:odd").css("background-color", "silver");
+			&#125;);
+
+			<span class="hljs-comment">&lt;!--'not()' : 过滤器用于筛选所有不符合条件的元素 --&gt;</span>
+			$(document).ready(function() &#123;
+				//注意:为避免冲突不能同时使用两行该过滤器,如果要同时除去两个段落元素可以使用如下语法规则.
+				$(":not(div#eq_gt_lt ul li,div#first_last p)").css("border", "0.5px solid magenta");
+			&#125;);
+		</span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span>&gt;</span><span class="css">
+			<span class="hljs-selector-tag">div</span> &#123;
+				<span class="hljs-attribute">width</span>: <span class="hljs-number">160px</span>;
+				<span class="hljs-attribute">height</span>: <span class="hljs-number">180px</span>;
+				<span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;
+				<span class="hljs-attribute">float</span>: left;
+				<span class="hljs-attribute">margin</span>: <span class="hljs-number">10px</span>;
+			&#125;
+
+			<span class="hljs-selector-tag">ul</span> &#123;
+				<span class="hljs-attribute">width</span>: <span class="hljs-number">80px</span>;
+				<span class="hljs-attribute">height</span>: auto;
+			&#125;
+		</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">center</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>jQuery 基础过滤器总结<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">center</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"eq_gt_lt"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>第一章<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>第二章<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>第三章<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>第四章<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>第五章<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"first_last"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>第一个段落元素<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>第二个段落元素<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>第三个段落元素<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"even_old"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"test"</span> <span class="hljs-attr">border</span>=<span class="hljs-string">"1"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"160"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"180"</span>&gt;</span>
+				<span class="hljs-comment">&lt;!-- &lt;caption&gt;table&lt;/caption&gt; --&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Header<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Header<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+
+				<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></li>
+<li><em>jQuery 基础过滤器示例图</em><br><img src="/2019/04/10/jQuery-%E8%BF%87%E6%BB%A4%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/jQuery-%E5%9F%BA%E7%A1%80%E8%BF%87%E6%BB%A4%E5%99%A8%E7%A4%BA%E4%BE%8B%E5%9B%BE.PNG" srcset="/img/loading.gif" alt=" "></li>
+</ul>
+<h3 id="jQuery-内容过滤器"><a href="#jQuery-内容过滤器" class="headerlink" title="jQuery 内容过滤器"></a>jQuery 内容过滤器</h3><ol>
+<li><em><code>:parent()</code> : 用于选择包含子节点(子元素和文本)的元素,和<code>:empty()</code>恰相反哟.</em></li>
+<li><em><code>:empty()</code> : 用于选择未包含子节点(子元素和文本的元素).</em></li>
+<li><em><code>:contains()</code> : 用于筛选出所有包含指定文本内容的元素.</em></li>
+<li><em><code>:has()</code> : 用于选择包含指定选择器的元素.</em></li>
+</ol>
+<ul>
+<li><p><em>jQuery 内容过滤器示例</em></p>
+<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>jQuery 内容过滤器总结<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../../../jQuerySource/jquery-1.12.4.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="handlebars"><span class="xml">
+			<span class="hljs-comment">&lt;!--':contains()' : 用于筛选出所有包含指定文本内容的元素 --&gt;</span>
+			$(document).ready(function() &#123;
+				$("p:contains('瘦西湖')").css("color", "red");
+			&#125;);
+
+			<span class="hljs-comment">&lt;!--':empty()' : 用于选择未包含子节点(子元素和文本的元素) --&gt;</span>
+			$(document).ready(function() &#123;
+				$("div#empty td:empty").css("background", "darkgray");
+			&#125;);
+
+			<span class="hljs-comment">&lt;!--':parent()' : 用于选择包含子节点(子元素和文本)的元素,和':empty()'恰相反哟 --&gt;</span>
+			$(document).ready(function() &#123;
+				$("div#parent td:parent").css("background-color", "lightblue");
+			&#125;);
+
+			<span class="hljs-comment">&lt;!--':has()' : 用于选择包含指定选择器的元素 --&gt;</span>
+			$(document).ready(function() &#123;
+				//选择包含<span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>标签的<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>元素.
+				$("p:has(strong)").css("background", "khaki");
+			&#125;);
+		</span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span>&gt;</span><span class="css">
+			<span class="hljs-selector-tag">div</span> &#123;
+				<span class="hljs-attribute">width</span>: <span class="hljs-number">150px</span>;
+				<span class="hljs-attribute">height</span>: <span class="hljs-number">230px</span>;
+				<span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;
+				<span class="hljs-attribute">float</span>: left;
+				<span class="hljs-attribute">margin</span>: <span class="hljs-number">10px</span>;
+			&#125;
+		</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">center</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>jQuery 内容过滤器总结<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">center</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"contains"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>大明寺<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>瘦西湖北门<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>观音山<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>瘦西湖南门<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>扬州动植物园<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>瘦西湖东门<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"empty"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">border</span>=<span class="hljs-string">"1"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"150"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"230"</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Header<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Header<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"parent"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">border</span>=<span class="hljs-string">"1"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"150"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"230"</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Header<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>Header<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Data<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"has"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>这是段落元素..<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>这是<span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>段落<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>元素..<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>这是<span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>段落<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>元素..<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>这是段落元素..<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>这是段落元素..<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+</li>
+<li><p><em>jQuery 内容过滤器示例图</em><br><img src="/2019/04/10/jQuery-%E8%BF%87%E6%BB%A4%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/jQuery-%E5%86%85%E5%AE%B9%E8%BF%87%E6%BB%A4%E5%99%A8%E7%A4%BA%E4%BE%8B%E5%9B%BE.PNG" srcset="/img/loading.gif" alt=" "></p>
+</li>
+</ul>
+<h3 id="jQuery-子过滤器"><a href="#jQuery-子过滤器" class="headerlink" title="jQuery 子过滤器"></a>jQuery 子过滤器</h3><ol>
+<li><em><code>:nth-child</code> : 用于筛选页面上每个父元素中的第’n’个子元素.序号从1开始计数</em></li>
+<li><em><code>:first-child</code> : 过滤器用于筛选页面上每个父元素中的第一个子元素.</em></li>
+<li><em><code>:last-child</code> : 过滤器用于筛选页面上每个父元素中的最后一个子元素.</em></li>
+<li><em><code>:only</code> : 用于筛选所有在父元素中有且只有一个的子元素.</em></li>
+</ol>
+<ul>
+<li><p><em>jQuery 子过滤器示例</em></p>
+<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>jQuery 子过滤器总结<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../../../jQuerySource/jquery-1.12.4.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="javascript">
+			&lt;!--<span class="hljs-string">':first-child'</span> : 过滤器用于筛选页面上每个父元素中的第一个子元素 --&gt;
+			$(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+				$(<span class="hljs-string">"div#firstChild ul li:first-child"</span>).css(&#123;
+					<span class="hljs-attr">fontWeight</span>: <span class="hljs-string">"bold"</span>,
+					<span class="hljs-attr">color</span>: <span class="hljs-string">"red"</span>
+				&#125;);
+			&#125;);
+			
+			<span class="xml"><span class="hljs-comment">&lt;!--':last-child' : 过滤器用于筛选页面上每个父元素中的最后一个子元素 --&gt;</span>
+			$(document).ready(function() &#123;
+				$("div#lastChild p:last-child").css(&#123;
+					fontWeight: "bold",
+					color: "#0000FF"
+				&#125;);
+			&#125;);
+			
+			<span class="hljs-comment">&lt;!--':only' : 用于筛选所有在父元素中有且只有一个的子元素 --&gt;</span>
+			$(document).ready(function() &#123;
+				$("div#onlyChild ul li:only-child").css(&#123;
+					fontWeight: "bold",
+					color: "chartreuse"
+				&#125;);
+			&#125;);
+			<span class="hljs-comment">&lt;!--':nth-child' : 用于筛选页面上每个父元素中的第'n'个子元素.序号从1开始计数 --&gt;</span>
+// 			$(document).ready(function() &#123;
+// 				//筛选奇数项子元素.
+// 				$("ul#item01 li:nth-child(odd)").css("color", "red");
+// 				//选择第一个子元素.
+// 				$("ul#item02 li:nth-child(2)").css("color", "red");
+// 				//选择第3n+2个子元素.
+// 				$("ul#item03 li:nth-child(3n+2)").css("color", "red);
+// 			&#125;);
+		</span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span>&gt;</span><span class="css">
+			<span class="hljs-selector-tag">div</span> &#123;
+				<span class="hljs-attribute">width</span>: <span class="hljs-number">150px</span>;
+				<span class="hljs-attribute">height</span>: <span class="hljs-number">180px</span>;
+				<span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;
+				<span class="hljs-attribute">float</span>: left;
+				<span class="hljs-attribute">margin</span>: <span class="hljs-number">10px</span>;
+			&#125;
+
+			<span class="hljs-selector-tag">ul</span> &#123;
+				<span class="hljs-attribute">float</span>: left;
+			&#125;
+		</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">center</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>jQuery 子过滤器总结<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">center</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"firstChild"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Apple<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Pear<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Grape<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Milk<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Bread<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Coffee<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"lastChild"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>段落元素01..<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>段落元素02..<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>段落元素03..<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>段落元素05..<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"onlyChild"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>第一个子元素<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>第二个子元素<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>唯一的子元素<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+				无标签的文本内容..
+			<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"nthChild"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"item01"</span>&gt;</span>
+				<span class="hljs-comment">&lt;!-- li:nth-child(odd): 筛选奇数项元素 --&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"item02"</span>&gt;</span>
+				<span class="hljs-comment">&lt;!-- li:nth-child(2): 筛选第2个元素 --&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>a<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>b<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>c<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>d<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>e<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"item03"</span>&gt;</span>
+				<span class="hljs-comment">&lt;!-- li:nth-child(3n+2): 筛选第3n+2个元素 --&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+</li>
+<li><p><em>jQuery 子过滤器示例图</em><br><img src="/2019/04/10/jQuery-%E8%BF%87%E6%BB%A4%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/jQuery-%E5%AD%90%E8%BF%87%E6%BB%A4%E5%99%A8%E7%A4%BA%E4%BE%8B%E5%9B%BE.PNG" srcset="/img/loading.gif" alt=" "></p>
+</li>
+</ul>
+<h3 id="jQuery-可见性过滤器"><a href="#jQuery-可见性过滤器" class="headerlink" title="jQuery 可见性过滤器"></a>jQuery 可见性过滤器</h3><ol>
+<li><em><code>:hidden</code> : 过滤器用于筛选出所有处于隐藏状态的元素.</em></li>
+<li><em><code>:visible</code> : 过滤器用于筛选出所有处于可见状态的元素.</em></li>
+</ol>
+<ul>
+<li><p><em>jQuery 可见性过滤器示例</em></p>
+<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>jQuery 可见性选择器<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../../../jQuerySource/jquery-1.12.4.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="actionscript">
+			&lt;!--<span class="hljs-string">':hidden'</span> : 过滤器用于筛选出所有处于隐藏状态的元素 --&gt;
+			&lt;!--<span class="hljs-string">':visible'</span> : 过滤器用于筛选出所有处于可见状态的元素 --&gt;
+			$(document).ready(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>&#123;
+
+				<span class="hljs-comment">//选择处于隐藏状态的div元素.</span>
+				<span class="hljs-comment">//find(selector): 用于查找处于可见状态的元素.该方法可以返回符合条件的元素的对象数组.</span>
+				<span class="hljs-keyword">var</span> hideDiv = $(<span class="hljs-string">"body"</span>).find(<span class="hljs-string">"div:hidden"</span>);
+
+				<span class="hljs-comment">//选择处于隐藏状态的input元素.</span>
+				<span class="hljs-comment">//$(div#test01): 表示在id="test01"的div元素中查找.</span>
+				<span class="hljs-keyword">var</span> hideInput = $(<span class="hljs-string">"div#test01"</span>).find(<span class="hljs-string">"input:hidden"</span>);
+
+				<span class="hljs-comment">//选择处于可见状态的input元素.</span>
+				<span class="hljs-keyword">var</span> visbleInput = $(<span class="hljs-string">"div.test02"</span>).find(<span class="hljs-string">"input:visible"</span>);
+
+				<span class="hljs-comment">//选择处于可见状态的div元素.</span>
+				<span class="hljs-keyword">var</span> visbleDiv = $(<span class="hljs-string">"body"</span>).find(<span class="hljs-string">"div:visible"</span>);
+
+				window.alert(<span class="hljs-string">"处于隐藏状态的div元素有:"</span> + hideDiv.length +
+					<span class="hljs-string">"个!\n处于隐藏状态的input元素有:"</span> + hideInput.length + <span class="hljs-string">"个 !"</span> +
+					<span class="hljs-string">"\n处于显示状态的div元素有 : "</span> + visbleDiv.length + <span class="hljs-string">"个!"</span> +
+					<span class="hljs-string">"\n处于显示状态的input元素有 : "</span> + visbleInput.length + <span class="hljs-string">"个!"</span>);
+			&#125;);
+		</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span>
+		<span class="hljs-comment">&lt;!-- 隐藏状态的div元素 --&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"display: none"</span>&gt;</span>display:none<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-comment">&lt;!-- 显示状态的div元素 --&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"test01"</span>&gt;</span>
+			<span class="hljs-comment">&lt;!-- 隐藏状态的input元素 --&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"hidden"</span> /&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-comment">&lt;!-- 显示状态的div元素 --&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"test02"</span>&gt;</span>
+			<span class="hljs-comment">&lt;!-- 显示状态的input元素 --&gt;</span>
+			name : <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"username"</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+			password: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"userpassword"</span> /&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+</li>
+<li><p><em>jQuery 可见性过滤器示例图</em><br><img src="/2019/04/10/jQuery-%E8%BF%87%E6%BB%A4%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/jQuery-%E5%8F%AF%E8%A7%81%E6%80%A7%E8%BF%87%E6%BB%A4%E5%99%A8%E7%A4%BA%E4%BE%8B%E5%9B%BE.PNG" srcset="/img/loading.gif" alt=" "></p>
+</li>
+</ul>
+<ul>
+<li><em>Ok,学习笔记很简约,毕竟初学<code>jQuery</code>嘛.后期会不断更新我学习<code>jQuery</code>的学习笔记的(っ•̀ω•́)っ✎⁾⁾ ~ 最近养成了晨跑和夜跑的好习惯,也改掉了熬夜及大量饮咖啡的坏习惯,只想证明: 我会努力让自己更喜欢自己 !让你们喜欢我(✪ω✪) ~</em> </li>
+</ul>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/jQuery/">jQuery</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/04/12/A-simple-MVC-example/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">A simple MVC example</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/04/08/Java-Servlet-API/">
+                        <span class="hidden-mobile">Java Servlet API</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "jQuery 过滤器学习笔记&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

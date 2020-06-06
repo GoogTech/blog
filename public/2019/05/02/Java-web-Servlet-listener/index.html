@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>Java web:Servlet listener - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-05-02 09:31">
+      May 2, 2019 am
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.8k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      44
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="学习笔记-Java-web之Servlet事件监听器"><a href="#学习笔记-Java-web之Servlet事件监听器" class="headerlink" title="学习笔记 : Java web之Servlet事件监听器"></a>学习笔记 : Java web之Servlet事件监听器</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p><em><code>Servlet</code>事件监听器可以监听<code>ServletContext</code>,<code>HttpSession</code>,<code>ServletRequest</code>等域对象的创建和销毁过程,监听这些域对象属性的修改以及感知绑定到HttpSession域中某个对象的状态.根据监听事件的不同可以将其分为三类,具体如下 :</em></p>
+<ol>
+<li><em>用于监听域对象创建和销毁的事件监听器 : ServletContextListener,HttpSessionListener,ServletRequestListener interface</em></li>
+<li><em>用于监听域对象属性增加和删除的事件监听器 : ServletContextAttributeListener,HttpSessionAttributeListener,ServletRequestAttributeListener interface</em></li>
+<li><em>用于监听绑定到HttpSession域中某个对象状态的事件监听器 : HttpSessionBindingListener,HttpSessionActivationListener interface</em></li>
+</ol>
+<h3 id="监听域对象的生命周期"><a href="#监听域对象的生命周期" class="headerlink" title="监听域对象的生命周期"></a>监听域对象的生命周期</h3><p><em>简介 : 在Web应用程序的运行期间,Web容器会创建和销毁三个比较的重要的对象: <code>ServletContext</code>,<code>HttpSession</code>,<code>ServletRequest</code>,这些对象被称为域对象,为了监听这些域对象的生命周期,Servlet API中提供了三个对应的接口: ServletContextListener,HttpSessionListener,ServletRequestListener.</em></p>
+<h4 id="案例-监听域对象的生命周期"><a href="#案例-监听域对象的生命周期" class="headerlink" title="案例-监听域对象的生命周期"></a>案例-监听域对象的生命周期</h4><p><em>示例代码如下所示</em></p>
+<pre><code class="hljs java"><span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: MyServletListener
+ * <span class="hljs-doctag">@Description</span>: 监听域对象的生命周期
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: May 3, 2019 3:17:56 PM
+ * 
+ */</span>
+<span class="hljs-meta">@WebListener</span>(value=<span class="hljs-string">"/MyServletListener"</span>)<span class="hljs-comment">//Servlet 3.0</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyServletListener</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ServletContextListener</span>, <span class="hljs-title">ServletRequestListener</span>, <span class="hljs-title">HttpSessionListener</span> </span>&#123;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">contextInitialized</span><span class="hljs-params">(ServletContextEvent sce)</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"ServletContext object be initialized !"</span>);
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">contextDestroyed</span><span class="hljs-params">(ServletContextEvent sce)</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"ServletContext object be destroyed !"</span>);
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">requestInitialized</span><span class="hljs-params">(ServletRequestEvent sre)</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"ServletRequest object be initialized !"</span>);
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">requestDestroyed</span><span class="hljs-params">(ServletRequestEvent sre)</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"ServletRequest object be destroyed !"</span>);
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sessionCreated</span><span class="hljs-params">(HttpSessionEvent se)</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"HttpSession object be initialized !"</span>);
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sessionDestroyed</span><span class="hljs-params">(HttpSessionEvent se)</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"HttpSession object be destroyed !"</span>);
+	&#125;
+
+&#125;</code></pre>
+<p><em>为了查看HttpSessionListener和ServletRequestListener监听器的运行效果,可以新建一个index.jsp页面,当运行Tomcat服务器第一次访问index.jsp时,Web容器除了为这次请求创建了<code>ServletRequest</code>对象外,还创建了与这个浏览器对应的<code>HttpSession</code>对象,当这两个对象在被创建时,Web容器会调用监听器MyServeltListener中相应的方法,当Web服务器完成这次请求后,<code>ServletRequest对象会随之销毁.</code>需要注意的是: 如果刷新index.jsp页面,会再次触发<code>ServletRequestListener</code>监听器接口中的方法,继而创建新的ServletRequest对象,但不会创建新的HttpSession对象,这是因为<code>Web容器会为每次访问请求创建一个新的ServletRequest对象,而对于同一个浏览器在会话期间的后续访问是不会再创建新的HttpSession对象的.</code></em></p>
+<h4 id="案例-统计当前在线人数"><a href="#案例-统计当前在线人数" class="headerlink" title="案例-统计当前在线人数"></a>案例-统计当前在线人数</h4><p><em>案例描述 : 通常情况下,当一个用户在进入某个网站时服务器就会为其创建一个HttpSessionListener对象,当用户离开网站时HttpSessionListener对象就会别销毁.因此,可以使用实现了<code>HttpSessionListener</code>接口的监听器来统计网站的在线人数.</em></p>
+<ol>
+<li><p><em>login.jsp : 用于显示当前在线人数.</em></p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
+    <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>HttpSessionListener案例: 统计当前在线人数<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">align</span>=<span class="hljs-string">"center"</span>&gt;</span>当前在线人数为: <span class="hljs-tag">&lt;<span class="hljs-name">%=application.getAttribute("count")%</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"&lt;%=response.encodeURL("</span><span class="hljs-attr">logout.jsp</span>")%&gt;</span>"&gt;退出登录<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+</li>
+<li><p><em>CountListener.java : 用于统计当前在线人数.</em></p>
+<pre><code class="hljs java"><span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: CountListener
+ * <span class="hljs-doctag">@Description</span>: 统计在线人数
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: May 3, 2019 3:40:59 PM
+ * 
+ */</span>
+<span class="hljs-meta">@WebListener</span>(value = <span class="hljs-string">"/CountListener"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CountListener</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">HttpSessionListener</span> </span>&#123;
+
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;<span class="hljs-comment">// 在线人数</span>
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-comment">// Session对象创建时count++</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sessionCreated</span><span class="hljs-params">(HttpSessionEvent se)</span> </span>&#123;
+		count++;
+		ServletContext servletContext = se.getSession().getServletContext();
+		servletContext.setAttribute(<span class="hljs-string">"count"</span>, Integer.valueOf(count));
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-comment">// Session对象销毁时count--</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sessionDestroyed</span><span class="hljs-params">(HttpSessionEvent se)</span> </span>&#123;
+		count--;
+		ServletContext servletContext = se.getSession().getServletContext();
+		servletContext.setAttribute(<span class="hljs-string">"count"</span>, Integer.valueOf(count));
+	&#125;
+
+&#125;</code></pre>
+</li>
+<li><p><em>logout.jsp : 用于注销用户登录.</em></p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
+    <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>HttpSessionListener案例: 统计当前在线人数<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">%</span>
+			<span class="hljs-attr">session.invalidate</span>();// 使当前的<span class="hljs-attr">Session</span>失效
+		%&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">align</span>=<span class="hljs-string">"center"</span>&gt;</span>你已退出本系统<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+
+
+</li>
+</ol>
+<h3 id="监听域对象中的属性变更"><a href="#监听域对象中的属性变更" class="headerlink" title="监听域对象中的属性变更"></a>监听域对象中的属性变更</h3><p><em>简介 : Servlet API 中提供了三个用于监听某个域对象属性变更的接口: <code>ServletContextAttributelistener</code>,<code>HttpSessionAttributerListener</code>和<code>ServletRequestAttributeListener</code>.这三个接口都定义了相同名称的方法,分别用于处理被监听对象属性的增加,删除和替换.</em></p>
+<h4 id="案例-监听域对象的属性变更"><a href="#案例-监听域对象的属性变更" class="headerlink" title="案例-监听域对象的属性变更"></a>案例-监听域对象的属性变更</h4><ol>
+<li><p><em>attribute.jsp : 设置各个域对象的属性.</em></p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
+    <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>案例:监听域对象的属性变更<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">align</span>=<span class="hljs-string">"center"</span>&gt;</span>测试域对象属性信息监听器的页面<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">%</span>
+			<span class="hljs-attr">getServletContext</span>()<span class="hljs-attr">.setAttribute</span>("<span class="hljs-attr">name</span>", "<span class="hljs-attr">YUbuntu0109</span>");
+			<span class="hljs-attr">getServletContext</span>()<span class="hljs-attr">.setAttribute</span>("<span class="hljs-attr">name</span>", "<span class="hljs-attr">https:</span>//<span class="hljs-attr">YUbuntu0109.github.io</span>");
+			<span class="hljs-attr">getServletContext</span>()<span class="hljs-attr">.removeAttribute</span>("<span class="hljs-attr">name</span>");
+			
+			<span class="hljs-attr">session.setAttribute</span>("<span class="hljs-attr">name</span>", "<span class="hljs-attr">YUbuntu0109</span>");
+			<span class="hljs-attr">session.setAttribute</span>("<span class="hljs-attr">name</span>","<span class="hljs-attr">https:</span>//<span class="hljs-attr">YUbuntu0109.github.io</span>");
+			<span class="hljs-attr">session.removeAttribute</span>("<span class="hljs-attr">name</span>");
+			
+			<span class="hljs-attr">request.setAttribute</span>("<span class="hljs-attr">name</span>", "<span class="hljs-attr">YUbuntu0109</span>");
+			<span class="hljs-attr">request.setAttribute</span>("<span class="hljs-attr">name</span>", "<span class="hljs-attr">https:</span>//<span class="hljs-attr">YUbuntu0109.github.io</span>");
+			<span class="hljs-attr">request.removeAttribute</span>("<span class="hljs-attr">name</span>");		
+		%&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+</li>
+<li><p><em>MyAttributeListener.java : 用于监听各个域对象属性的变更.</em></p>
+<pre><code class="hljs java"><span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: MyAttributeListener
+ * <span class="hljs-doctag">@Description</span>: 监听域对象的属性变更
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: May 3, 2019 4:18:40 PM
+ * 
+ */</span>
+
+<span class="hljs-meta">@WebListener</span>(<span class="hljs-string">"/MyAttributeListener"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyAttributeListener</span>
+		<span class="hljs-keyword">implements</span> <span class="hljs-title">ServletContextAttributeListener</span>, <span class="hljs-title">HttpSessionAttributeListener</span>, <span class="hljs-title">ServletRequestAttributeListener</span> </span>&#123;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">attributeAdded</span><span class="hljs-params">(ServletContextAttributeEvent event)</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"ServletContext 添加属性: name="</span> + event.getServletContext().getAttribute(event.getName()));
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">attributeReplaced</span><span class="hljs-params">(ServletContextAttributeEvent event)</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"ServletContext 替换属性: name="</span> + event.getServletContext().getAttribute(event.getName()));
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">attributeRemoved</span><span class="hljs-params">(ServletContextAttributeEvent event)</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"ServletContext 移除属性: "</span> + event.getName());
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">attributeAdded</span><span class="hljs-params">(ServletRequestAttributeEvent srae)</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"HttpRequest 添加属性: name="</span> + srae.getServletRequest().getAttribute(srae.getName()));
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">attributeReplaced</span><span class="hljs-params">(ServletRequestAttributeEvent srae)</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"HttpRequest 替换属性: name="</span> + srae.getServletRequest().getAttribute(srae.getName()));
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">attributeRemoved</span><span class="hljs-params">(ServletRequestAttributeEvent srae)</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"HttpRequest 移除属性: "</span> + srae.getName());
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">attributeAdded</span><span class="hljs-params">(HttpSessionBindingEvent event)</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"HttpSession 添加属性: name="</span> + event.getSession().getAttribute(event.getName()));
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">attributeReplaced</span><span class="hljs-params">(HttpSessionBindingEvent event)</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"HttpSession 替换属性: name="</span> + event.getSession().getAttribute(event.getName()));
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">attributeRemoved</span><span class="hljs-params">(HttpSessionBindingEvent event)</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"HttpSession 移除属性: "</span> + event.getName());
+	&#125;
+&#125;</code></pre>
+</li>
+<li><p><em>程序运行结果如下所示.</em></p>
+<pre><code class="hljs delphi">ServletContext 添加属性: <span class="hljs-keyword">name</span>=YUbuntu0109
+ServletContext 替换属性: <span class="hljs-keyword">name</span>=https:<span class="hljs-comment">//YUbuntu0109.github.io</span>
+ServletContext 移除属性: <span class="hljs-keyword">name</span>
+HttpSession 添加属性: <span class="hljs-keyword">name</span>=YUbuntu0109
+HttpSession 替换属性: <span class="hljs-keyword">name</span>=https:<span class="hljs-comment">//YUbuntu0109.github.io</span>
+HttpSession 移除属性: <span class="hljs-keyword">name</span>
+HttpRequest 添加属性: <span class="hljs-keyword">name</span>=YUbuntu0109
+HttpRequest 替换属性: <span class="hljs-keyword">name</span>=https:<span class="hljs-comment">//YUbuntu0109.github.io</span>
+HttpRequest 移除属性: <span class="hljs-keyword">name</span></code></pre>
+
+</li>
+</ol>
+<h4 id="案例-统计当前在线人数名单"><a href="#案例-统计当前在线人数名单" class="headerlink" title="案例-统计当前在线人数名单"></a>案例-统计当前在线人数名单</h4><p><em>案例描述 : 在上述<code>统计当前在线人数</code>的案例中,实际上统计的是Web应用当前的所有会话的数目.它无法统计所有所有在线用户的具体名单! 下面我们通过使用<code>HttpSessionBindingListener</code>接口不仅可以统计在线用户的数量,还可以统计在线用户的名单.</em></p>
+<ol>
+<li><p><em>login.jsp : 用户登录页面.</em></p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
+    <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>案例:统计登录用户的在线名单<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">align</span>=<span class="hljs-string">"center"</span>&gt;</span>用户登录页面<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">hr</span>/&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"LoginServlet"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"280px"</span> <span class="hljs-attr">cellpadding</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">align</span>=<span class="hljs-string">"center"</span>&gt;</span>
+					 <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+					 	<span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"30"</span> <span class="hljs-attr">align</span>=<span class="hljs-string">"center"</span>&gt;</span>用户名<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					 	<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"userName"</span>/&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					 <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+					 <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+					 	<span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"30"</span> <span class="hljs-attr">align</span>=<span class="hljs-string">"center"</span>&gt;</span>密&amp;nbsp;码<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					 	<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"userPassword"</span>/&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					 <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+					 <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+					 	<span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"50"</span> <span class="hljs-attr">colspan</span>=<span class="hljs-string">"2"</span> <span class="hljs-attr">align</span>=<span class="hljs-string">"center"</span>&gt;</span>
+					 		<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"登录"</span>/&gt;</span>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+					 		<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"reset"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"重置"</span>/&gt;</span>
+					 		<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"font-size:13px;color:red"</span>&gt;</span>$&#123;errorMsg &#125;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+					 	<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					 <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+</li>
+<li><p><em>User.java : 封装用户信息.</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.servletlistener.example.onlinenumber2;
+
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpSessionBindingEvent;
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpSessionBindingListener;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: User
+ * <span class="hljs-doctag">@Description</span>: 封装用户信息
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: May 4, 2019 9:10:47 AM
+ * 
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">HttpSessionBindingListener</span> </span>&#123;
+
+	<span class="hljs-keyword">private</span> String id;
+	<span class="hljs-keyword">private</span> String username;
+	<span class="hljs-keyword">private</span> String password;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">User</span><span class="hljs-params">(String id, String name, String password)</span> </span>&#123;
+		<span class="hljs-keyword">this</span>.id = id;
+		<span class="hljs-keyword">this</span>.username = name;
+		<span class="hljs-keyword">this</span>.password = password;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getId</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> id;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setId</span><span class="hljs-params">(String id)</span> </span>&#123;
+		<span class="hljs-keyword">this</span>.id = id;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getUsername</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> username;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setUsername</span><span class="hljs-params">(String username)</span> </span>&#123;
+		<span class="hljs-keyword">this</span>.username = username;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getPassword</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> password;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setPassword</span><span class="hljs-params">(String password)</span> </span>&#123;
+		<span class="hljs-keyword">this</span>.password = password;
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">valueBound</span><span class="hljs-params">(HttpSessionBindingEvent event)</span> </span>&#123;
+		<span class="hljs-comment">// System.out.println("将新用户添加到在线名单 : " + event.getName() + "=" + event.getValue());</span>
+		OnlineUser.getInstance().addUser(<span class="hljs-keyword">this</span>);
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">valueUnbound</span><span class="hljs-params">(HttpSessionBindingEvent event)</span> </span>&#123;
+		<span class="hljs-comment">// System.out.println("从在线名单中移除该用户 : " + event.getName() + "=" + event.getValue());</span>
+		OnlineUser.getInstance().removeUser(<span class="hljs-keyword">this</span>);
+	&#125;
+
+&#125;</code></pre>
+</li>
+<li><p><em>OnlineUser.java : 用于存储和获取在线用户列表.</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.servletlistener.example.onlinenumber2;
+
+<span class="hljs-keyword">import</span> java.util.HashMap;
+<span class="hljs-keyword">import</span> java.util.Map;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: OnlineUser
+ * <span class="hljs-doctag">@Description</span>: 存储及获取在线用户列表
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: May 4, 2019 9:14:09 AM
+ * 
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OnlineUser</span> </span>&#123;
+
+	<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">OnlineUser</span><span class="hljs-params">()</span> </span>&#123;
+
+	&#125;
+
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> OnlineUser instance = <span class="hljs-keyword">new</span> OnlineUser();
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> OnlineUser <span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> instance;
+	&#125;
+
+	<span class="hljs-keyword">private</span> Map&lt;String, String&gt; userMap = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+
+	<span class="hljs-comment">// 将用户添加至在线列表</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addUser</span><span class="hljs-params">(User user)</span> </span>&#123;
+		userMap.put(user.getId(), user.getUsername());
+
+	&#125;
+
+	<span class="hljs-comment">// 将用户从在线列表中移除</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">removeUser</span><span class="hljs-params">(User user)</span> </span>&#123;
+		userMap.remove(user.getId());
+	&#125;
+
+	<span class="hljs-comment">// 返回在线的用户列表</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;String, String&gt; <span class="hljs-title">getOnlineUsers</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> userMap;
+	&#125;
+&#125;</code></pre>
+</li>
+<li><p><em>LoginServlet.java : 处理用户登录请求.</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.servletlistener.example.onlinenumber2;
+
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.util.Map;
+<span class="hljs-keyword">import</span> java.util.UUID;
+
+<span class="hljs-keyword">import</span> javax.servlet.ServletException;
+<span class="hljs-keyword">import</span> javax.servlet.annotation.WebServlet;
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServlet;
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: LoginServlet
+ * <span class="hljs-doctag">@Description</span>: 处理用户登录请求
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: May 4, 2019 9:30:23 AM
+ *
+ */</span>
+<span class="hljs-meta">@WebServlet</span>(<span class="hljs-string">"/LoginServlet"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LoginServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">LoginServlet</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">super</span>();
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span>
+			<span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
+
+		request.setCharacterEncoding(<span class="hljs-string">"utf-8"</span>);
+		String username = request.getParameter(<span class="hljs-string">"userName"</span>);
+		String password = request.getParameter(<span class="hljs-string">"userPassword"</span>);
+
+		<span class="hljs-keyword">if</span> (username != <span class="hljs-keyword">null</span> &amp;&amp; !username.trim().equals(<span class="hljs-string">""</span>)) &#123;
+			User user = <span class="hljs-keyword">new</span> User(UUID.randomUUID().toString(), username, password);
+			request.getSession().setAttribute(<span class="hljs-string">"user"</span>, user);
+
+			Map&lt;String, String&gt; onlineUsers = OnlineUser.getInstance().getOnlineUsers();
+			request.setAttribute(<span class="hljs-string">"onlineUsers"</span>, onlineUsers);
+
+			request.getRequestDispatcher(<span class="hljs-string">"/showOnlineUsers.jsp"</span>).forward(request, response);
+
+		&#125; <span class="hljs-keyword">else</span> &#123;
+
+			request.setAttribute(<span class="hljs-string">"errorMsg"</span>, <span class="hljs-string">"用户名不能为空 !"</span>);
+			request.getRequestDispatcher(<span class="hljs-string">"/login.jsp"</span>).forward(request, response);
+		&#125;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doPost</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span>
+			<span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
+		doGet(request, response);
+	&#125;
+
+&#125;</code></pre>
+</li>
+<li><p><em>LogoutServlet.java : 注销用户登录信息.</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.servletlistener.example.onlinenumber2;
+
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.util.Map;
+
+<span class="hljs-keyword">import</span> javax.servlet.ServletException;
+<span class="hljs-keyword">import</span> javax.servlet.annotation.WebServlet;
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServlet;
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: LogoutServlet
+ * <span class="hljs-doctag">@Description</span>: 注销用户登录信息
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: May 4, 2019 9:54:27 AM
+ *
+ */</span>
+<span class="hljs-meta">@WebServlet</span>(<span class="hljs-string">"/LogoutServlet"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LogoutServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">LogoutServlet</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">super</span>();
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span>
+			<span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
+
+		request.getSession().removeAttribute(<span class="hljs-string">"user"</span>);
+
+		Map&lt;String, String&gt; onlineUsers = OnlineUser.getInstance().getOnlineUsers();
+		request.setAttribute(<span class="hljs-string">"onlineUsers"</span>, onlineUsers);
+		request.getRequestDispatcher(<span class="hljs-string">"/showOnlineUsers.jsp"</span>).forward(request, response);
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doPost</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span>
+			<span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
+		doGet(request, response);
+	&#125;
+
+&#125;</code></pre>
+</li>
+<li><p><em>showOnlineUsers.jsp : 显示所有用户的登录信息以及当前登录的用户.</em></p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
+    <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">%@taglib</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">"c"</span> <span class="hljs-attr">uri</span>=<span class="hljs-string">"http://java.sun.com/jsp/jstl/core"</span> %&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>应用案例:统计登录用户的在线名单<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">align</span>=<span class="hljs-string">"center"</span>&gt;</span>用户在线名单如下所示<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">c:choose</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">c:when</span> <span class="hljs-attr">test</span>=<span class="hljs-string">"$&#123;sessionScope.user == null &#125;"</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"$&#123;pageContext.request.contextPath &#125;/login.jsp"</span>&gt;</span>登录<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">c:when</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">c:otherwise</span>&gt;</span>
+					你已成功登录! 欢迎你: $&#123;sessionScope.user.username &#125;
+				 	<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"$&#123;pageContext.request.contextPath &#125;/LogoutServlet"</span>&gt;</span>退出<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">c:otherwise</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">c:choose</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">hr</span>/&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">c:forEach</span> <span class="hljs-attr">var</span>=<span class="hljs-string">"user"</span> <span class="hljs-attr">items</span>=<span class="hljs-string">"$&#123;requestScope.onlineUsers &#125;"</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">align</span>=<span class="hljs-string">'center'</span>&gt;</span>用户名: $&#123;user.value&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">c:forEach</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+</li>
+<li><p><em>程序运行效果示例图.</em><br><img src="/2019/05/02/Java-web-Servlet-listener/Servlet%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC%E5%99%A8%E6%A1%88%E4%BE%8B-%E7%BB%9F%E8%AE%A1%E5%BD%93%E5%89%8D%E5%9C%A8%E7%BA%BF%E4%BA%BA%E6%95%B0%E5%90%8D%E5%8D%95.PNG" srcset="/img/loading.gif" alt=" "></p>
+</li>
+</ol>
+<h3 id="感知被HttpSession绑定的事件监听器"><a href="#感知被HttpSession绑定的事件监听器" class="headerlink" title="感知被HttpSession绑定的事件监听器"></a>感知被HttpSession绑定的事件监听器</h3><p><em>暂略写 ..</em></p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java-web/">Java web</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/05/02/Java-web-Cookie-and-Session/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Java web:Cookie and Session</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/05/02/Java-web-Filter/">
+                        <span class="hidden-mobile">Java web:Filter</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Java web:Servlet listener&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

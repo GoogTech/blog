@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>Java设计模式之Composite Pattern - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-09-11 12:11">
+      September 11, 2019 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      32
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="学习笔记-Java设计模式之Composite-Pattern"><a href="#学习笔记-Java设计模式之Composite-Pattern" class="headerlink" title="学习笔记 : Java设计模式之Composite Pattern"></a>学习笔记 : Java设计模式之Composite Pattern</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p><em><code>组合设计模式</code> : 组合多个对象形成树形结构以表示具有<code>部分-整体</code>关系的层次结构. 组合模式让客户端可以统一对待单个对象和组合对象. (Composite Pattern : Compose objects into tree structures to pepresent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uninformly.)</em></p>
+<ul>
+<li>扩 : 组合模式又称<code>部分-整体( Part-Whole )</code>模式,属于对象结构型模式,它将对象组织到树形结构中,可以用来描述整体与部分的关系</li>
+</ul>
+<h3 id="组合模式中的角色"><a href="#组合模式中的角色" class="headerlink" title="组合模式中的角色"></a>组合模式中的角色</h3><ol>
+<li><em><code>Component( 抽象构件 )</code> : 它可以是接口或抽象类,为叶子构件和容器构件对象声明接口,在该角色中可以包含所有子类共有行为的声明和实现. 在抽象构件中定义了访问及管理它的子构件的方法,如增加,删除,获取子构件等.</em></li>
+<li><em><code>Leaf( 叶子构件 )</code> : 它在组合结构中表示叶子结点对象,叶子节点没有子结点,它实现了在抽象构件中定义的行为. 对于那些访问及管理子构件的方法,可以通过抛出异常,提示错误等方式进行处理.</em></li>
+<li><em><code>Composite( 容器构件 )</code> : 它在组合结构中表示容器节点对象,<code>容器结点包含子结点,其子结点可以是叶子结点,也可以是容器结点</code>,它提供了一个集合用于存储子结点,实现了在抽象构件中定义的行为,包括哪些访问及管理子构件的方法,在其业务方法中可以递归调用其自子结点的业务方法.</em></li>
+</ol>
+<ul>
+<li>扩 : 组合模式的关键在于定义了一个抽象构件类,它既可以代表<code>叶子</code>,又可以代表<code>容器</code>,客户端针对该抽象构件类进行编程,无须知道它到底表示的叶子还是容器,可以对其进行统一处理. 同时容器对象与抽象构件类之间还建立一个<code>聚合关联关系</code>,在容器对象中既可以包含叶子,又可以包含容器,以此实现递归组合,形成一个<code>树形结构</code>.</li>
+</ul>
+<h3 id="适用环境"><a href="#适用环境" class="headerlink" title="适用环境"></a>适用环境</h3><p><em>Java SE中的 AWT 和 Swing 包的设计就基于组合模式,在这些界面包中为用户提供了大量的容器构件,如 Container( 容器构件 ) 和成员构件,如 Checkbox, Button, TextComponent( 一些叶子构件 )等,其都继承自 Componet 抽象类( 抽象构件 )</em></p>
+<h3 id="示例程序1"><a href="#示例程序1" class="headerlink" title="示例程序1"></a>示例程序1</h3><p><em>下面是一个使用组合设计模式的简单示例程序,这段示例程序的功能为列出文件夹及其中文件的名称及大小~</em></p>
+<ol>
+<li><p><em>Entry抽象类 : 表示目录条目的抽象类, 充当Component角色</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_1;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 表示目录条目的抽象类, 充当Component角色
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 9/11/2019-12:16 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Entry</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span></span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getSize</span><span class="hljs-params">()</span></span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Entry <span class="hljs-title">add</span><span class="hljs-params">(Entry entry)</span> <span class="hljs-keyword">throws</span> FileTreatMentException </span>&#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> FileTreatMentException();
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printList</span><span class="hljs-params">()</span> </span>&#123;
+        printList(<span class="hljs-string">""</span>);
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printList</span><span class="hljs-params">(String prefix)</span></span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> getName() + <span class="hljs-string">" ("</span> + getSize() + <span class="hljs-string">")"</span>;
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>File类 : 表示文件的类, 充当Leaf角色</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_1;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 表示文件的类, 充当Leaf角色
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 9/11/2019-12:22 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">File</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Entry</span> </span>&#123;
+
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> size;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">File</span><span class="hljs-params">(String name, <span class="hljs-keyword">int</span> size)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.name = name;
+        <span class="hljs-keyword">this</span>.size = size;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> name;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getSize</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> size;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printList</span><span class="hljs-params">(String prefix)</span> </span>&#123;
+        System.out.println(prefix + <span class="hljs-string">"/"</span> + <span class="hljs-keyword">this</span>.toString());
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>Directory类 : 表示文件夹的类, 充当Composite角色</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_1;
+
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 表示文件夹的类, 充当Composite角色
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 9/11/2019-12:25 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Directory</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Entry</span> </span>&#123;
+
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> ArrayList&lt;Entry&gt; directory = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Directory</span><span class="hljs-params">(String name)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.name = name;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> name;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getSize</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">var</span> size = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (Entry entry : directory) &#123;
+            size += entry.getSize();
+        &#125;
+        <span class="hljs-keyword">return</span> size;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Entry <span class="hljs-title">add</span><span class="hljs-params">(Entry entry)</span> </span>&#123;
+        directory.add(entry);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printList</span><span class="hljs-params">(String prefix)</span> </span>&#123;
+        System.out.println(prefix + <span class="hljs-string">"/"</span> + <span class="hljs-keyword">this</span>.toString());
+        <span class="hljs-keyword">for</span> (Entry entry : directory) &#123;
+            entry.printList(prefix + <span class="hljs-string">"/"</span> + name);
+        &#125;
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>FileTreatMentException类 : 自定义异常类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_1;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 自定义异常类
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 9/11/2019-12:19 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileTreatMentException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">RuntimeException</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">FileTreatMentException</span><span class="hljs-params">()</span> </span>&#123;
+
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">FileTreatMentException</span><span class="hljs-params">(String msg)</span> </span>&#123;
+        <span class="hljs-keyword">super</span>(msg);
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>Client类 : 客户端测试类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_1;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 客户端测试类
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 9/11/2019-12:36 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Client</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        <span class="hljs-keyword">try</span> &#123;
+            System.out.println(<span class="hljs-string">"------ Making Root Entries ------"</span>);
+            Directory rootdir = <span class="hljs-keyword">new</span> Directory(<span class="hljs-string">"root"</span>);
+            Directory bindir = <span class="hljs-keyword">new</span> Directory(<span class="hljs-string">"bin"</span>);
+            Directory temdir = <span class="hljs-keyword">new</span> Directory(<span class="hljs-string">"tmp"</span>);
+            Directory usrdir = <span class="hljs-keyword">new</span> Directory(<span class="hljs-string">"usr"</span>);
+            rootdir.add(bindir);
+            rootdir.add(temdir);
+            rootdir.add(usrdir);
+            bindir.add(<span class="hljs-keyword">new</span> File(<span class="hljs-string">"demo1.class"</span>, <span class="hljs-number">10000</span>));
+            bindir.add(<span class="hljs-keyword">new</span> File(<span class="hljs-string">"demo2.class"</span>, <span class="hljs-number">20000</span>));
+            rootdir.printList();
+
+            System.out.println(<span class="hljs-string">"\n"</span> + <span class="hljs-string">"------ Making User Entries ------"</span>);
+            Directory demoDir1 = <span class="hljs-keyword">new</span> Directory(<span class="hljs-string">"demoDir1"</span>);
+            Directory demoDir2 = <span class="hljs-keyword">new</span> Directory(<span class="hljs-string">"demoDir2"</span>);
+            Directory demoDir3 = <span class="hljs-keyword">new</span> Directory(<span class="hljs-string">"demoDir3"</span>);
+            usrdir.add(demoDir1);
+            usrdir.add(demoDir2);
+            usrdir.add(demoDir3);
+            demoDir1.add(<span class="hljs-keyword">new</span> File(<span class="hljs-string">"demo.html"</span>, <span class="hljs-number">100</span>));
+            demoDir1.add(<span class="hljs-keyword">new</span> File(<span class="hljs-string">"demo.java"</span>, <span class="hljs-number">200</span>));
+            demoDir2.add(<span class="hljs-keyword">new</span> File(<span class="hljs-string">"demo.txt"</span>, <span class="hljs-number">300</span>));
+            demoDir3.add(<span class="hljs-keyword">new</span> File(<span class="hljs-string">"demo.doc"</span>, <span class="hljs-number">400</span>));
+            demoDir3.add(<span class="hljs-keyword">new</span> File(<span class="hljs-string">"demo.mail"</span>, <span class="hljs-number">500</span>));
+            rootdir.printList();
+        &#125; <span class="hljs-keyword">catch</span> (FileTreatMentException e) &#123;
+            e.printStackTrace();
+        &#125;
+
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>程序运行结果如下所示 :</em></p>
+<pre><code class="hljs crystal">------ Making Root Entries ------
+<span class="hljs-regexp">/root (30000)
+/root</span><span class="hljs-regexp">/bin (30000)
+/root</span><span class="hljs-regexp">/bin/demo</span>1<span class="hljs-class">.<span class="hljs-keyword">class</span> (10000)</span>
+<span class="hljs-regexp">/root/bin</span><span class="hljs-regexp">/demo2.class (20000)
+/root</span><span class="hljs-regexp">/tmp (0)
+/root</span><span class="hljs-regexp">/usr (0)
+
+------ Making User Entries ------
+/root</span> (<span class="hljs-number">31500</span>)
+<span class="hljs-regexp">/root/bin</span> (<span class="hljs-number">30000</span>)
+<span class="hljs-regexp">/root/bin</span><span class="hljs-regexp">/demo1.class (10000)
+/root</span><span class="hljs-regexp">/bin/demo</span>2<span class="hljs-class">.<span class="hljs-keyword">class</span> (20000)</span>
+<span class="hljs-regexp">/root/tmp</span> (<span class="hljs-number">0</span>)
+<span class="hljs-regexp">/root/usr</span> (<span class="hljs-number">1500</span>)
+<span class="hljs-regexp">/root/usr</span><span class="hljs-regexp">/demoDir1 (300)
+/root</span><span class="hljs-regexp">/usr/demo</span>Dir1/demo.html (<span class="hljs-number">100</span>)
+<span class="hljs-regexp">/root/usr</span><span class="hljs-regexp">/demoDir1/demo</span>.java (<span class="hljs-number">200</span>)
+<span class="hljs-regexp">/root/usr</span><span class="hljs-regexp">/demoDir2 (300)
+/root</span><span class="hljs-regexp">/usr/demo</span>Dir2/demo.txt (<span class="hljs-number">300</span>)
+<span class="hljs-regexp">/root/usr</span><span class="hljs-regexp">/demoDir3 (900)
+/root</span><span class="hljs-regexp">/usr/demo</span>Dir3/demo.doc (<span class="hljs-number">400</span>)
+<span class="hljs-regexp">/root/usr</span><span class="hljs-regexp">/demoDir3/demo</span>.mail (<span class="hljs-number">500</span>)</code></pre>
+
+</li>
+</ol>
+<h4 id="示例程序的类图"><a href="#示例程序的类图" class="headerlink" title="示例程序的类图"></a>示例程序的类图</h4><p><img src="/2019/09/11/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BComposite-Pattern/Composite-Pattern-ClassDiagram1.png" srcset="/img/loading.gif" alt></p>
+<h3 id="示例程序2"><a href="#示例程序2" class="headerlink" title="示例程序2"></a>示例程序2</h3><p><em>下面是一个使用组合设计模式的简单示例程序 : 写一个模拟杀毒( Antivirus )程序,该程序既可以对某个文件夹( Folder )杀毒,也可以对某个指定的文件( File )杀毒,而且该杀毒程序还可以根据各类文件的特点为不同类型(文本文件,图像文件,音频文件等)的文件提供不同的杀毒方式.</em></p>
+<ol>
+<li><p><em>AbstractFile抽象类 : 抽象文件类, 充当抽象构件类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_2;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 抽象文件类, 充当抽象构件类
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 9/11/2019-1:19 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AbstractFile</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span></span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">killVirus</span><span class="hljs-params">()</span></span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(AbstractFile file)</span> </span>&#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> FileTreatMentException();
+    &#125;
+
+&#125;</code></pre>
+</li>
+<li><p><em>TextFile类 : 文本文件类, 充当叶子构件类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_2;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 文本文件类, 充当叶子构件类
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 9/11/2019-1:31 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TextFile</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AbstractFile</span> </span>&#123;
+
+    <span class="hljs-keyword">private</span> String name;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">TextFile</span><span class="hljs-params">(String name)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.name = name;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> name;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">killVirus</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"——————&gt; 对文本文件[ "</span> + name + <span class="hljs-string">" ]进行杀毒"</span>);
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>ImageFile类 : 图像文件类, 充当叶子构件类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_2;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 图像文件类, 充当叶子构件类
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 9/11/2019-1:27 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ImageFile</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AbstractFile</span> </span>&#123;
+
+    <span class="hljs-keyword">private</span> String name;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ImageFile</span><span class="hljs-params">(String name)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.name = name;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> name;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">killVirus</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"——————&gt; 对图像文件[ "</span> + name + <span class="hljs-string">" ]进行杀毒"</span>);
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>Folder类 : 文件夹类, 充当容器构件类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_2;
+
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 文件夹类, 充当容器构件类
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 9/11/2019-1:38 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Folder</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AbstractFile</span> </span>&#123;
+
+    <span class="hljs-keyword">private</span> String name;
+    <span class="hljs-keyword">private</span> ArrayList&lt;AbstractFile&gt; directory = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Folder</span><span class="hljs-params">(String name)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.name = name;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> name;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(AbstractFile file)</span> </span>&#123;
+        directory.add(file);
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">killVirus</span><span class="hljs-params">()</span> </span>&#123;
+        System.out.println(<span class="hljs-string">"======&gt; 对文件夹[ "</span> + name + <span class="hljs-string">" ]进行杀毒"</span>);
+        <span class="hljs-comment">//递归调用成员构件的killVirus方法</span>
+        <span class="hljs-keyword">for</span> (AbstractFile abstractFile : directory) &#123;
+            abstractFile.killVirus();
+        &#125;
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>FileTreatMentException类 : 自定义异常类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_2;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 自定义异常类
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 9/11/2019-12:19 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileTreatMentException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">RuntimeException</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">FileTreatMentException</span><span class="hljs-params">()</span> </span>&#123;
+
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">FileTreatMentException</span><span class="hljs-params">(String msg)</span> </span>&#123;
+        <span class="hljs-keyword">super</span>(msg);
+    &#125;
+&#125;</code></pre>
+</li>
+<li><p><em>Client类 : 客户端测试类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_2;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: design-patterns
+ * <span class="hljs-doctag">@description</span>: 客户端测试类
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 9/11/2019-1:44 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Client</span> </span>&#123;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        AbstractFile folder = <span class="hljs-keyword">new</span> Folder(<span class="hljs-string">"my-folder"</span>);
+        AbstractFile textFolder = <span class="hljs-keyword">new</span> Folder(<span class="hljs-string">"text-folder"</span>);
+        AbstractFile imageFolder = <span class="hljs-keyword">new</span> Folder(<span class="hljs-string">"image-folder"</span>);
+        AbstractFile file = <span class="hljs-keyword">new</span> TextFile(<span class="hljs-string">"demo.text"</span>);
+        AbstractFile image = <span class="hljs-keyword">new</span> ImageFile(<span class="hljs-string">"demo.jpg"</span>);
+        textFolder.add(file);
+        imageFolder.add(image);
+        folder.add(textFolder);
+        folder.add(imageFolder);
+        folder.killVirus();
+    &#125;
+
+&#125;</code></pre>
+</li>
+<li><p><em>示例程序的运行结果如下所示 :</em></p>
+<pre><code class="hljs inform7">======&gt; 对文件夹<span class="hljs-comment">[ my-folder ]</span>进行杀毒
+======&gt; 对文件夹<span class="hljs-comment">[ text-folder ]</span>进行杀毒
+——————&gt; 对文本文件<span class="hljs-comment">[ demo.text ]</span>进行杀毒
+======&gt; 对文件夹<span class="hljs-comment">[ image-folder ]</span>进行杀毒
+——————&gt; 对图像文件<span class="hljs-comment">[ demo.jpg ]</span>进行杀毒</code></pre>
+
+</li>
+</ol>
+<h4 id="示例程序的类图-1"><a href="#示例程序的类图-1" class="headerlink" title="示例程序的类图"></a>示例程序的类图</h4><p><img src="/2019/09/11/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BComposite-Pattern/Composite-Pattern-ClassDiagram2.png" srcset="/img/loading.gif" alt></p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/design-and-pattern/">design and pattern</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/09/12/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BFacade-Pattern/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Java设计模式之Facade Pattern</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/09/09/Java%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A7%94%E6%89%98%E4%B8%AD%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7/">
+                        <span class="hidden-mobile">Java继承与委托中的一致性</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Java设计模式之Composite Pattern&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>Java爬虫之WebMagic - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-07-12 19:58">
+      July 12, 2019 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      26
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="学习笔记-Java爬虫之WebMagic"><a href="#学习笔记-Java爬虫之WebMagic" class="headerlink" title="学习笔记 :  Java爬虫之WebMagic"></a>学习笔记 :  Java爬虫之WebMagic</h2><p><em>简介 : <code>WebMagic</code>是一款简单灵活的爬虫框架,WebMagic的结构分为<code>Downloader</code>、<code>PageProcessor</code>、<code>Scheduler</code>、<code>Pipeline</code>四大组件,并由Spider将它们彼此组织起来. 这四大组件对应爬虫生命周期中的下载、处理、管理和持久化等功能. 而<code>Spider</code>则将这几个组件组织起来，让它们可以互相交互，流程化的执行，可以认为Spider是一个大的容器，它也是WebMagic逻辑的核心. Little book of WebMagic : <a href="http://webmagic.io/docs/zh/" target="_blank" rel="noopener">http://webmagic.io/docs/zh/</a></em></p>
+<p><em>WebMagic总体架构图如下所示 :</em></p>
+<p><img src="/2019/07/12/Java%E7%88%AC%E8%99%AB%E4%B9%8BWebMagic/WebMagic-%E6%80%BB%E4%BD%93%E6%9E%B6%E6%9E%84%E5%9B%BE.jpg" srcset="/img/loading.gif" alt=" "></p>
+<h3 id="WebMagic的四个组件"><a href="#WebMagic的四个组件" class="headerlink" title="WebMagic的四个组件"></a>WebMagic的四个组件</h3><h4 id="Downloader"><a href="#Downloader" class="headerlink" title="Downloader"></a>Downloader</h4><p><em>Downloader负责从互联网上下载页面,以便后续处理. WebMagic默认使用了<code>Apache HttpClient</code>作为下载工具</em></p>
+<h4 id="PageProcessor"><a href="#PageProcessor" class="headerlink" title="PageProcessor"></a>PageProcessor</h4><p><em>PageProcessor负责解析页面,抽取有用信息,以及发现新的链接,WebMagic使用<code>Jsoup</code>作为HTML解析工具,并基于其开发了解析<code>XPath</code>的工具<code>Xsoup</code>. 注意 : 在这四个组件中,PageProcessor对于每个站点每个页面都不一样,是需要使用者定制的部分 .</em></p>
+<h4 id="Scheduler"><a href="#Scheduler" class="headerlink" title="Scheduler"></a>Scheduler</h4><p><em>Scheduler负责管理待抓取的URL,以及一些去重的工作. WebMagic默认提供了<code>JDK的内存队列</code>来管理URL,并用集合来进行去重. 也支持使用Redis进行分布式管理 .</em></p>
+<h4 id="Pipeline"><a href="#Pipeline" class="headerlink" title="Pipeline"></a>Pipeline</h4><p><em>Pipeline负责抽取结果的处理,包括计算、持久化到文件、数据库等.. WebMagic默认提供了<code>输出到控制台</code>和<code>保存到文件</code>两种结果处理方案. Pipeline定义了结果保存的方式,如果你要保存到指定数据库,则需要编写对应的Pipeline. 对于一类需求一般只需编写一个Pipeline .</em></p>
+<h3 id="用于数据流转的对象"><a href="#用于数据流转的对象" class="headerlink" title="用于数据流转的对象"></a>用于数据流转的对象</h3><h4 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h4><p><em><code>Request</code>是对URL地址的一层封装,一个Request对应一个URL地址. 它是PageProcessor与Downloader交互的载体,也是PageProcessor控制Downloader唯一方式. 除了URL本身外,它还包含一个<code>Key-Value</code>结构的字段<code>extra</code>. 你可以在extra中保存一些特殊的属性,然后在其他地方读取,以完成不同的功能。例如附加上一个页面的一些信息等 .</em></p>
+<h4 id="Page"><a href="#Page" class="headerlink" title="Page"></a>Page</h4><p><em>Page代表了从Downloader下载到的一个页面——可能是HTML,也可能是JSON或者其他文本格式的内容. <code>Page为WebMagic抽取过程的核心对象</code>,它提供一些方法可供抽取、结果保存等 ..</em></p>
+<h4 id="ResultItems"><a href="#ResultItems" class="headerlink" title="ResultItems"></a>ResultItems</h4><p><em>ResultItems相当于一个<code>Map</code>,它保存PageProcessor处理的结果,供Pipeline使用. 它的API与Map很类似,值得注意的是它有一个字段<code>skip</code>,若设置为true,则不应被Pipeline处理 .</em></p>
+<h3 id="控制爬虫运转的引擎-Spider"><a href="#控制爬虫运转的引擎-Spider" class="headerlink" title="控制爬虫运转的引擎-Spider"></a>控制爬虫运转的引擎-Spider</h3><p><em><code>Spider</code>是WebMagic内部流程的核心. <code>Downloader</code>、<code>PageProcessor</code>、<code>Scheduler</code>、<code>Pipeline</code>都是Spider的一个属性,这些属性是可以自由设置的,通过设置这个属性可以实现不同的功能. Spider也是WebMagic操作的入口,它封装了爬虫的创建、启动、停止、多线程等功能 .. 注意 : 一般来说,对于编写一个爬虫,PageProcessor是需要编写的部分,而Spider则是创建和控制爬虫的入口哟 ~</em></p>
+<h3 id="WebMagic入门程序"><a href="#WebMagic入门程序" class="headerlink" title="WebMagic入门程序"></a>WebMagic入门程序</h3><p><em>获取我博客中的个人姓名信息,示例程序如下 :</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.crawler.WebMagic_Demo;
+
+<span class="hljs-keyword">import</span> us.codecraft.webmagic.Page;
+<span class="hljs-keyword">import</span> us.codecraft.webmagic.Site;
+<span class="hljs-keyword">import</span> us.codecraft.webmagic.Spider;
+<span class="hljs-keyword">import</span> us.codecraft.webmagic.processor.PageProcessor;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: crawler_learning
+ * <span class="hljs-doctag">@description</span>: 第一个WebMagic小爬虫:爬取博客中的个人姓名
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 7/10/2019-3:54 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FirstDemo</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">PageProcessor</span> </span>&#123;
+
+    <span class="hljs-comment">//可以对爬虫进行一些配置,包括编码,抓取间隔,超时时间,重试次数等..</span>
+    <span class="hljs-keyword">private</span> Site site = Site.me();
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">process</span><span class="hljs-params">(Page page)</span> </span>&#123;
+        <span class="hljs-comment">//解析Page,并将其结果存放到ResultItem中</span>
+        page.putField(<span class="hljs-string">"name"</span>, page.getHtml().css(<span class="hljs-string">"aside#menu hgroup.introduce h5"</span>, <span class="hljs-string">"text"</span>));
+        System.out.println(page.getResultItems().toString());
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Site <span class="hljs-title">getSite</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> site;
+    &#125;
+
+    <span class="hljs-comment">//WebMagic默认将爬取结果输出到控制台</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        Spider.create(<span class="hljs-keyword">new</span> FirstDemo())
+                .addUrl(<span class="hljs-string">"https://yubuntu0109.github.io/"</span>)
+                .run();
+    &#125;
+&#125;</code></pre>
+
+<p><em>程序运行结果 :</em></p>
+<pre><code class="hljs angelscript"><span class="hljs-number">19</span><span class="hljs-number">-07</span><span class="hljs-number">-13</span> <span class="hljs-number">15</span>:<span class="hljs-number">58</span>:<span class="hljs-number">11</span>,<span class="hljs-number">084</span> INFO  us.codecraft.webmagic.Spider(Spider.java:<span class="hljs-number">306</span>) ## Spider yubuntu0109.github.io started!
+
+<span class="hljs-number">19</span><span class="hljs-number">-07</span><span class="hljs-number">-13</span> <span class="hljs-number">15</span>:<span class="hljs-number">58</span>:<span class="hljs-number">12</span>,<span class="hljs-number">210</span> INFO  us.codecraft.webmagic.downloader.HttpClientDownloader(HttpClientDownloader.java:<span class="hljs-number">86</span>) ## downloading page success https:<span class="hljs-comment">//yubuntu0109.github.io/</span>
+
+ResultItems&#123;fields=&#123;name=黄宇辉&#125;, request=Request&#123;url=<span class="hljs-string">'https://yubuntu0109.github.io/'</span>, method=<span class="hljs-string">'null'</span>, extras=<span class="hljs-literal">null</span>, priority=<span class="hljs-number">0</span>, headers=&#123;&#125;, cookies=&#123;&#125;&#125;, skip=<span class="hljs-literal">false</span>&#125;
+<span class="hljs-keyword">get</span> page: https:<span class="hljs-comment">//yubuntu0109.github.io/</span>
+
+name:	黄宇辉      &lt;----------WebMagic默认将爬取结果输出到控制台
+
+<span class="hljs-number">19</span><span class="hljs-number">-07</span><span class="hljs-number">-13</span> <span class="hljs-number">15</span>:<span class="hljs-number">58</span>:<span class="hljs-number">17</span>,<span class="hljs-number">405</span> INFO  us.codecraft.webmagic.Spider(Spider.java:<span class="hljs-number">338</span>) ## Spider yubuntu0109.github.io closed! <span class="hljs-number">1</span> pages downloaded.
+
+Process finished with exit code <span class="hljs-number">0</span></code></pre>
+
+
+<h3 id="WebMagic抽取元素功能"><a href="#WebMagic抽取元素功能" class="headerlink" title="WebMagic抽取元素功能"></a>WebMagic抽取元素功能</h3><p><em><code>CSS</code> : 爬取博客个人姓名信息的元素标签</em></p>
+<pre><code class="hljs java">page.putField(<span class="hljs-string">"name"</span>, page.getHtml().css(<span class="hljs-string">"aside#menu hgroup.introduce h5"</span>));</code></pre>
+<p><em>程序运行结果 :</em></p>
+<pre><code class="hljs angelscript">name:	&lt;h5 <span class="hljs-keyword">class</span>="<span class="hljs-symbol">nickname</span>"&gt;黄宇辉&lt;/<span class="hljs-symbol">h5</span>&gt;</code></pre>
+
+<p><em><code>CSS</code> : 爬取博客个人姓名信息</em></p>
+<pre><code class="hljs java">page.putField(<span class="hljs-string">"name"</span>, page.getHtml().css(<span class="hljs-string">"aside#menu hgroup.introduce h5"</span>, <span class="hljs-string">"text"</span>));</code></pre>
+<p><em>程序运行结果 :</em></p>
+<pre><code class="hljs applescript"><span class="hljs-built_in">name</span>:	黄宇辉</code></pre>
+
+<p><em><code>CSS</code> : 爬取博客首页所有文章标题</em></p>
+<pre><code class="hljs java">page.putField(<span class="hljs-string">"title"</span>, page.getHtml().css(<span class="hljs-string">"div.container h3 a"</span>, <span class="hljs-string">"text"</span>).all());</code></pre>
+<p><em>程序运行结果 :</em></p>
+<pre><code class="hljs mipsasm"><span class="hljs-symbol">title:</span>	
+[
+    <span class="hljs-keyword">Java爬虫之Jsoup, </span>
+    <span class="hljs-keyword">Java爬虫之HttpClient,
+</span>    Spring-<span class="hljs-keyword">Boot拥抱MyBatis及Redis </span>~, 
+    Spring <span class="hljs-keyword">Boot之文件上传与下载,
+</span>    Spring <span class="hljs-keyword">Boot项目:好友备忘录, </span>
+    Spring <span class="hljs-keyword">Boot之Thymeleaf, </span>
+    Spring <span class="hljs-keyword">Boot之整合视图层技术, </span>
+    Spring <span class="hljs-keyword">Boot之基本Web开发, </span>
+    Hi Redis ~, 
+    Hi Spring <span class="hljs-keyword">Boot </span>~
+]</code></pre>
+
+<hr>
+<p><em><code>XPath</code> : 爬取博客首页所有文章标题的元素标签</em></p>
+<pre><code class="hljs java">page.putField(<span class="hljs-string">"title"</span>, page.getHtml().xpath(<span class="hljs-string">"//div[@class=container]/ul/li/article/h3/a"</span>).all());</code></pre>
+<p><em>程序运行结果 :</em></p>
+<pre><code class="hljs java">title:	
+[
+    &lt;a class="post-title-link" href="/2019/07/10/Java爬虫之Jsoup/"&gt;Java爬虫之Jsoup&lt;/a&gt;, 
+    &lt;a class="post-title-link" href="/2019/07/10/Java爬虫之HttpClient/"&gt;Java爬虫之HttpClient&lt;/a&gt;, 
+    &lt;a class="post-title-link" href="/2019/07/01/Spring-Boot拥抱MyBatis及Redis/"&gt;Spring-Boot拥抱MyBatis及Redis ~&lt;/a&gt;, 
+    &lt;a class="post-title-link" href="/2019/06/30/Spring-Boot之文件上传/"&gt;Spring Boot之文件上传与下载&lt;/a&gt;, 
+    &lt;a class="post-title-link" href="/2019/06/30/Spring-Boot项目-好友备忘录/"&gt;Spring Boot项目:好友备忘录&lt;/a&gt;, 
+    &lt;a class="post-title-link" href="/2019/06/27/Spring-Boot之Thymeleaf/"&gt;Spring Boot之Thymeleaf&lt;/a&gt;, 
+    &lt;a class="post-title-link" href="/2019/06/26/Spring-Boot之整合视图层技术/"&gt;Spring Boot之整合视图层技术&lt;/a&gt;, 
+    &lt;a class="post-title-link" href="/2019/06/26/Spring-Boot之基本Web开发/"&gt;Spring Boot之基本Web开发&lt;/a&gt;, 
+    &lt;a class="post-title-link" href="/2019/06/25/Hi-Redis/"&gt;Hi Redis ~&lt;/a&gt;, 
+    &lt;a class="post-title-link" href="/2019/06/23/Hi-Spring-Boot/"&gt;Hi Spring Boot ~&lt;/a&gt;
+]</code></pre>
+
+<hr>
+<p><em><code>Regex</code> : 爬取博客首页含’Java’关键字的文章标题</em></p>
+<pre><code class="hljs java">page.putField(<span class="hljs-string">"title"</span>, page.getHtml().css(<span class="hljs-string">"div.container h3 a"</span>, <span class="hljs-string">"text"</span>).regex(<span class="hljs-string">".*Java.*"</span>).all());</code></pre>
+<p><em>程序运行结果 :</em></p>
+<pre><code class="hljs apache"><span class="hljs-attribute">title</span>:<span class="hljs-meta">	[Java爬虫之Jsoup, Java爬虫之HttpClient]</span></code></pre>
+
+<hr>
+<p><em><code>Link</code> : 爬取博客首页含’Java’关键字的文章链接</em></p>
+<pre><code class="hljs java"><span class="hljs-comment">//获取博客首页中包含'Hi'关键字的文章链接</span>
+page.addTargetRequests(page.getHtml().css(<span class="hljs-string">"div.container h3 a"</span>).links().regex(<span class="hljs-string">".*Hi.*"</span>).all());
+<span class="hljs-comment">//根据文章链接获取该文章标题</span>
+page.putField(<span class="hljs-string">"blog-title"</span>, page.getHtml().css(<span class="hljs-string">"div.post-content h2"</span>, <span class="hljs-string">"text"</span>).all());</code></pre>
+<p><em>程序运行结果 :</em></p>
+<pre><code class="hljs angelscript"><span class="hljs-number">19</span><span class="hljs-number">-07</span><span class="hljs-number">-13</span> <span class="hljs-number">16</span>:<span class="hljs-number">52</span>:<span class="hljs-number">15</span>,<span class="hljs-number">233</span> INFO  us.codecraft.webmagic.downloader.HttpClientDownloader(HttpClientDownloader.java:<span class="hljs-number">86</span>) 
+## downloading page success https:<span class="hljs-comment">//yubuntu0109.github.io/2019/06/25/Hi-Redis/</span>
+<span class="hljs-keyword">get</span> page: https:<span class="hljs-comment">//yubuntu0109.github.io/2019/06/25/Hi-Redis/</span>
+blog-title:	[学习笔记 : 拥抱Redis ~]
+
+<span class="hljs-number">19</span><span class="hljs-number">-07</span><span class="hljs-number">-13</span> <span class="hljs-number">16</span>:<span class="hljs-number">52</span>:<span class="hljs-number">20</span>,<span class="hljs-number">490</span> INFO  us.codecraft.webmagic.downloader.HttpClientDownloader(HttpClientDownloader.java:<span class="hljs-number">86</span>) 
+## downloading page success https:<span class="hljs-comment">//yubuntu0109.github.io/2019/06/23/Hi-Spring-Boot/</span>
+<span class="hljs-keyword">get</span> page: https:<span class="hljs-comment">//yubuntu0109.github.io/2019/06/23/Hi-Spring-Boot/</span>
+blog-title:	[学习笔记 : 拥抱Spring Boot]</code></pre>
+
+<hr>
+<h3 id="WebMagic自定义配置"><a href="#WebMagic自定义配置" class="headerlink" title="WebMagic自定义配置"></a>WebMagic自定义配置</h3><p><em>对爬虫进行一些配置</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Site site = Site.me()
+        .setCharset(<span class="hljs-string">"utf-8"</span>)<span class="hljs-comment">//字符编码</span>
+        .setTimeOut(<span class="hljs-number">10000</span>)<span class="hljs-comment">//超时时间-10s</span>
+        .setRetrySleepTime(<span class="hljs-number">2000</span>)<span class="hljs-comment">//重试间隔时间-2s</span>
+        .setRetryTimes(<span class="hljs-number">5</span>);<span class="hljs-comment">//重试次数</span></code></pre>
+
+<p><em>将爬取的数据存储到指定文件夹中</em></p>
+<pre><code class="hljs java">Spider.create(<span class="hljs-keyword">new</span> PipelineDemo()).addPipeline(<span class="hljs-keyword">new</span> FilePipeline(<span class="hljs-string">"D:\\WebMagic-Pipeline-Demo\\Data\\"</span>)) ..</code></pre>
+
+<p><em>设置处理爬虫的线程数</em></p>
+<pre><code class="hljs java">Spider.create(<span class="hljs-keyword">new</span> ThreadDemo()).thread(<span class="hljs-number">5</span>)..</code></pre>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/WebMagic/">WebMagic</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/07/14/%E5%B0%8F%E7%88%AC%E8%99%AB-JDBookCrawler-V1-0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">小爬虫:JDBookCrawler-V1.0</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/07/10/Java%E7%88%AC%E8%99%AB%E4%B9%8BJsoup/">
+                        <span class="hidden-mobile">Java爬虫之Jsoup</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Java爬虫之WebMagic&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

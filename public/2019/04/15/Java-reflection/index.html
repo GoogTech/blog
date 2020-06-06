@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>Java reflection - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-04-15 08:39">
+      April 15, 2019 am
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      48
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="Java-Reflection"><a href="#Java-Reflection" class="headerlink" title="Java Reflection"></a>Java Reflection</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p><em><code>Reflection(反射)</code>是被认为<code>动态语言</code>的关键,反射机制允许程序在执行期间借助于<code>Reflection API</code>取得任何类的内部信息,并能直接操作任意对象的内部属性及方法.</em>  </p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p><em>动态代理</em></p>
+<h3 id="反射机制提供的功能"><a href="#反射机制提供的功能" class="headerlink" title="反射机制提供的功能"></a>反射机制提供的功能</h3><ol>
+<li>在运行时判断任意一个对象所属的类.</li>
+<li>在运行时构造人任意一个类的对象.</li>
+<li>在运行时判断任意一个类所具有的成员变量和方法.</li>
+<li>在运行时调用任意一个对象的成员变量和方法.</li>
+<li>生成<code>动态代理</code>(体现<code>动态语言</code>的特性).</li>
+</ol>
+<h4 id="反射相关的主要API"><a href="#反射相关的主要API" class="headerlink" title="反射相关的主要API"></a>反射相关的主要<code>API</code></h4><ul>
+<li><em>java.lang.Class : 代表一个类.</em></li>
+<li><em>java.lang.reflect.Method : 代表类的方法.</em></li>
+<li><em>java.lang.reflect.Field : 代表类的成员变量.</em></li>
+<li><em>java.lang.reflect.Constructor : 代表类的构造方法.</em></li>
+<li><em>…</em></li>
+</ul>
+<h4 id="反射的简单应用示例"><a href="#反射的简单应用示例" class="headerlink" title="反射的简单应用示例"></a>反射的简单应用示例</h4><ol>
+<li><em>首先创建一个存储用户信息的类</em><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.bean;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: UserInfo
+ * <span class="hljs-doctag">@Description</span>: 用户信息
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: Apr 15, 2019 9:03:40 AM
+ * 
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserInfo</span> </span>&#123;
+
+	<span class="hljs-keyword">public</span> String name;
+	<span class="hljs-keyword">private</span> String sex;
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">UserInfo</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">super</span>();
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">UserInfo</span><span class="hljs-params">(String name, String sex, <span class="hljs-keyword">int</span> age)</span> </span>&#123;
+		<span class="hljs-keyword">super</span>();
+		<span class="hljs-keyword">this</span>.name = name;
+		<span class="hljs-keyword">this</span>.sex = sex;
+		<span class="hljs-keyword">this</span>.age = age;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> name;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>&#123;
+		<span class="hljs-keyword">this</span>.name = name;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getSex</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> sex;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setSex</span><span class="hljs-params">(String sex)</span> </span>&#123;
+		<span class="hljs-keyword">this</span>.sex = sex;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getAge</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> age;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> age)</span> </span>&#123;
+		<span class="hljs-keyword">this</span>.age = age;
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-string">"UserInfo [name="</span> + name + <span class="hljs-string">", sex="</span> + sex + <span class="hljs-string">", age="</span> + age + <span class="hljs-string">"]"</span>;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">showClassInfo</span><span class="hljs-params">()</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"ClassInfo: Store the user information ."</span>);
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">introduce</span><span class="hljs-params">(String s)</span> </span>&#123;
+		System.out.println(s + <span class="hljs-string">"  my name is: "</span> + name + <span class="hljs-string">"  age: "</span> + age + <span class="hljs-string">"  sex: "</span> + sex);
+	&#125;
+
+&#125;</code></pre></li>
+<li><em>其次利用<code>反射</code>获取该类中的信息</em><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.bean.test;
+
+<span class="hljs-keyword">import</span> java.lang.reflect.Field;
+<span class="hljs-keyword">import</span> java.lang.reflect.InvocationTargetException;
+<span class="hljs-keyword">import</span> java.lang.reflect.Method;
+
+<span class="hljs-keyword">import</span> org.junit.Ignore;
+<span class="hljs-keyword">import</span> org.junit.jupiter.api.Test;
+
+<span class="hljs-keyword">import</span> pers.huangyuhui.reflection.bean.UserInfo;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: UserInfoTest
+ * <span class="hljs-doctag">@Description</span>: 用`反射`获取`UserInfo`类中信息
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: Apr 15, 2019 9:10:08 AM
+ * 
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestUseInfoByReflection</span> </span>&#123;
+
+	<span class="hljs-comment">// 不使用反射 : 创建`UserInfo`类对象,并调用其中的属性及方法</span>
+	<span class="hljs-comment">// @Test</span>
+	<span class="hljs-meta">@Ignore</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">commonTest</span><span class="hljs-params">()</span> </span>&#123;
+		UserInfo userInfo = <span class="hljs-keyword">new</span> UserInfo();
+		userInfo.setName(<span class="hljs-string">"Java reflection"</span>);
+		userInfo.setAge(<span class="hljs-number">1</span>);
+		userInfo.setSex(<span class="hljs-string">"Male"</span>);
+		userInfo.showClassInfo();
+		userInfo.introduce(<span class="hljs-string">"Hello !"</span>);
+	&#125;
+
+	<span class="hljs-comment">// 使用反射: 创建`UserInfo`类对象,并调用其中的属性及方法</span>
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">reflectionTest</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InstantiationException, IllegalAccessException, NoSuchFieldException,
+			SecurityException, NoSuchMethodException, IllegalArgumentException, InvocationTargetException </span>&#123;
+
+		<span class="hljs-comment">// 下述两行代码体现了: `UserInfo userInfo = new UserInfo();`的工作</span>
+		Class&lt;UserInfo&gt; class1 = UserInfo<span class="hljs-class">.<span class="hljs-keyword">class</span></span>;
+		<span class="hljs-comment">// 创建运行时类`UserInfo`类的对象</span>
+		UserInfo userInfo = class1.newInstance();
+
+		System.out.println(userInfo);
+
+		<span class="hljs-comment">/*
+		 * 通过`getField`调用别`public`修饰的`name`属性并为其赋值
+		 */</span>
+		java.lang.reflect.Field fieldName = class1.getField(<span class="hljs-string">"name"</span>);<span class="hljs-comment">// `name`被`public`修饰,否则抛出: NoSuchFieldException</span>
+		fieldName.set(userInfo, <span class="hljs-string">"Java reflection"</span>);
+
+		System.out.println(userInfo);
+
+		<span class="hljs-comment">/*
+		 * 通过`getField`调用被`private`修饰的`age,sex`属性并为其赋值
+		 */</span>
+		Field fieldAge = class1.getDeclaredField(<span class="hljs-string">"age"</span>);
+		Field fieldSex = class1.getDeclaredField(<span class="hljs-string">"sex"</span>);
+		<span class="hljs-comment">// 将此对象的 accessible 标志设置为指示的布尔值.值为 true 则指示反射的对象在使用时应该取消 Java 语言访问检查.</span>
+		<span class="hljs-comment">// 值为 false 则指示反射的对象应该实施 Java 语言访问检查.实际上setAccessible是启用和禁用访问安全检查的开关,</span>
+		<span class="hljs-comment">// 并不是为true就能访问为false就不能访问 ! false时使用对象会抛出 : IllegalAccessException .</span>
+		<span class="hljs-comment">// 由于JDK的安全检查耗时较多,所以通过`setAccessible(true)`的方式关闭安全检查就可以达到提升反射速度的目的 .</span>
+		fieldAge.setAccessible(<span class="hljs-keyword">true</span>);
+		fieldSex.setAccessible(<span class="hljs-keyword">true</span>);
+		fieldAge.set(userInfo, <span class="hljs-number">2</span>);
+		fieldSex.set(userInfo, <span class="hljs-string">"male"</span>);
+
+		System.out.println(userInfo);
+
+		<span class="hljs-comment">/*
+		 * 通过``调用对象指定的方法
+		 */</span>
+		java.lang.reflect.Method method = class1.getMethod(<span class="hljs-string">"showClassInfo"</span>);
+		<span class="hljs-comment">// return: the result of dispatching the method represented bythis object on obj</span>
+		<span class="hljs-comment">// with parameters args.</span>
+		method.invoke(userInfo);
+		Method method2 = class1.getMethod(<span class="hljs-string">"introduce"</span>, String<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+		method2.invoke(userInfo, <span class="hljs-string">"Hello !"</span>);
+
+	&#125;
+&#125;</code></pre></li>
+<li><em>程序运行结果如下</em><pre><code class="hljs java">UserInfo [name=<span class="hljs-keyword">null</span>, sex=<span class="hljs-keyword">null</span>, age=<span class="hljs-number">0</span>]
+UserInfo [name=Java reflection, sex=<span class="hljs-keyword">null</span>, age=<span class="hljs-number">0</span>]
+UserInfo [name=Java reflection, sex=male, age=<span class="hljs-number">2</span>]
+ClassInfo: Store the user information .
+Hello !  my name is: Java reflection  age: <span class="hljs-number">2</span>  sex: male</code></pre>
+
+</li>
+</ol>
+<h3 id="详解反射的源头-Class"><a href="#详解反射的源头-Class" class="headerlink" title="详解反射的源头 : Class"></a>详解反射的源头 : <code>Class</code></h3><p><em>在<code>Object</code>类中定义了以下的方法,此方法被所有子类继承 :</em></p>
+<pre><code class="hljs java"><span class="hljs-meta">@HotSpotIntrinsicCandidate</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> Class&lt;?&gt; getClass();</code></pre>
+<p><em>该返回值的类型是一个<code>Class</code>类,此类是<code>Java反射</code>的源头,实际上所谓的反射从程序的运行结果来看也也很理解,既: <code>可以通过对象反射求出类的名称.</code></em></p>
+<ul>
+<li><em>正常方式 : 引入需要的<code>包类</code>名称 ——&gt; 通过<code>new</code>实例化 ——&gt; 取得实例化对象</em></li>
+<li><em>反射方式 : 实例化对象 ——&gt; <code>getClass()</code> ——&gt; 得到完整的<code>包类</code>名称</em></li>
+</ul>
+<h4 id="getClass-的使用"><a href="#getClass-的使用" class="headerlink" title="getClass()的使用"></a><code>getClass()</code>的使用</h4><ol>
+<li><em>示例程序如下</em><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.bean.test;
+
+<span class="hljs-keyword">import</span> org.junit.jupiter.api.Test;
+<span class="hljs-keyword">import</span> pers.huangyuhui.reflection.bean.UserInfo;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: TestUserInfoByReflection2
+ * <span class="hljs-doctag">@Description</span>: 学习反射源头: `Class`类
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: Apr 15, 2019 11:58:34 AM
+ * 
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestUserInfoByReflection2</span> </span>&#123;
+
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getClassTest</span><span class="hljs-params">()</span> </span>&#123;
+
+		UserInfo userInfo = <span class="hljs-keyword">new</span> UserInfo();
+		<span class="hljs-comment">// getClass() return: The Class object that represents the runtimeclass of this object.</span>
+		<span class="hljs-comment">// 通过`运行时类`的对象,调用其`getClass()`返回其运行时类</span>
+		Class&lt;?&gt; class1 = userInfo.getClass();
+		System.out.println(class1);
+	&#125;
+&#125;</code></pre></li>
+<li><em>程序运行结果如下</em><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">pers</span>.<span class="hljs-title">huangyuhui</span>.<span class="hljs-title">reflection</span>.<span class="hljs-title">bean</span>.<span class="hljs-title">UserInfo</span> //`运行时`类</span></code></pre></li>
+</ol>
+<ul>
+<li><em><code>运行时类</code> : example.java ——<code>编译器(javac.exe)</code>——&gt; example.class ——<code>JVM类加载器</code>——&gt; example.class被加载到内存(此时<code>example.class</code>就是一个<code>运行时类</code>,存放在<code>缓存区</code>,且运行时类本身就是一个<code>Class</code>实例并只加载一次 !)</em></li>
+</ul>
+<h4 id="获取Class类的实例的四种方式"><a href="#获取Class类的实例的四种方式" class="headerlink" title="获取Class类的实例的四种方式"></a>获取<code>Class</code>类的实例的四种方式</h4><p><em>获取<code>Class</code>类的实例后我们可以进行如下的操作:</em></p>
+<ol>
+<li>创建对应的运行时类的对象.</li>
+<li>调用对应的运行时类的完整结构( 属性,方法,构造器 ).</li>
+<li>获取对应的运行时类的完整结构( 属性,方法,构造器,父类,所在的包,异常,注解… ).</li>
+</ol>
+<p><em>获取<code>Class</code>类实例的四种方式的示例程序如下</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.bean.test;
+
+<span class="hljs-keyword">import</span> org.junit.Test;
+<span class="hljs-keyword">import</span> pers.huangyuhui.reflection.bean.UserInfo;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: GetClassObj
+ * <span class="hljs-doctag">@Description</span>: 获取`Class`类实例的四种方式
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: Apr 15, 2019 12:34:21 PM
+ * 
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GetClassObj</span> </span>&#123;
+
+	<span class="hljs-comment">// @Test</span>
+	<span class="hljs-comment">// 第一种方式: 通过调用运行时类本身的`.class`属性</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">firstWayTest</span><span class="hljs-params">()</span> </span>&#123;
+
+		Class&lt;UserInfo&gt; class1 = UserInfo<span class="hljs-class">.<span class="hljs-keyword">class</span></span>;
+		Class&lt;String&gt; class2 = String<span class="hljs-class">.<span class="hljs-keyword">class</span></span>;
+
+		<span class="hljs-comment">// the result: class pers.huangyuhui.reflection.bean.UserInfo</span>
+		System.out.println(class1);
+		<span class="hljs-comment">// the result: class java.lang.String</span>
+		System.out.println(class2);
+
+	&#125;
+
+	<span class="hljs-comment">// @Test</span>
+	<span class="hljs-comment">// 第二种方式: 通过`运行时类`的对象获取</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">secondWayTest</span><span class="hljs-params">()</span> </span>&#123;
+
+		UserInfo userInfo = <span class="hljs-keyword">new</span> UserInfo();
+		Class&lt;? extends UserInfo&gt; class1 = userInfo.getClass();
+
+		<span class="hljs-comment">// getName() return: the name of the class or interfacerepresented by this object.</span>
+		<span class="hljs-comment">// the result: pers.huangyuhui.reflection.bean.UserInfo</span>
+		System.out.println(class1.getName());
+
+	&#125;
+
+	<span class="hljs-comment">// @Test</span>
+	<span class="hljs-comment">// 第三种方式: 通过`Class`的静态方法获取</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">thirdWayTest</span><span class="hljs-params">()</span>
+			<span class="hljs-keyword">throws</span> ClassNotFoundException, NoSuchMethodException, SecurityException, NoSuchFieldException </span>&#123;
+
+		String className = <span class="hljs-string">"pers.huangyuhui.reflection.bean.UserInfo"</span>;
+		Class&lt;?&gt; class1 = Class.forName(className);
+
+		<span class="hljs-comment">// the result: public java.lang.String</span>
+		<span class="hljs-comment">// pers.huangyuhui.reflection.bean.UserInfo.name</span>
+		System.out.println(class1.getField(<span class="hljs-string">"name"</span>));
+	&#125;
+
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-comment">// 第四种方式: 通过类加载器获取</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">fourthWayTest</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> ClassNotFoundException, NoSuchMethodException, SecurityException </span>&#123;
+
+		String className = <span class="hljs-string">"pers.huangyuhui.reflection.bean.UserInfo"</span>;
+
+		ClassLoader classLoader = <span class="hljs-keyword">this</span>.getClass().getClassLoader();
+		<span class="hljs-comment">// Invoking this method is equivalentto invoking loadClass(name,false).</span>
+		Class&lt;?&gt; class1 = classLoader.loadClass(className);
+
+		<span class="hljs-comment">// the result: public void pers.huangyuhui.reflection.bean.UserInfo.introduce(java.lang.String)</span>
+		System.out.println(class1.getMethod(<span class="hljs-string">"introduce"</span>, String<span class="hljs-class">.<span class="hljs-keyword">class</span>))</span>;
+	&#125;
+
+&#125;</code></pre>
+
+<h3 id="类加载器ClassLoader"><a href="#类加载器ClassLoader" class="headerlink" title="类加载器ClassLoader"></a>类加载器<code>ClassLoader</code></h3><h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><p><em>类加载器的作用:把<code>类(class)</code>装载进内存.如下示例</em></p>
+<pre><code class="hljs java">Java源文件(*.java) ——Java编译器——&gt; 字节码文件(*<span class="hljs-class">.<span class="hljs-keyword">class</span>) ——类加载器+字节码效验器+解释器——&gt; 操作系统平台</span></code></pre>
+<p><em><code>JVM</code>规范定义了两种类型的类加载器:<code>启动类加载器(bootstrap)</code>和<code>用户自定义加载器(user-defined class loader)</code>.JVM在运行时会产生<code>三个类加载器</code></em></p>
+<ol>
+<li>引导类加载器.</li>
+</ol>
+<ul>
+<li><em><code>JVM</code>自带的类加载器,负责Java平台核心库,用来加载核心类库,该加载器无法直接获取.</em></li>
+</ul>
+<ol start="2">
+<li>扩展类加载器.</li>
+</ol>
+<ul>
+<li><em>负责<code>jar包</code>或将指定目录下的<code>jar包</code>装入工作库.</em></li>
+</ul>
+<ol start="3">
+<li>系统类加载器.</li>
+</ol>
+<ul>
+<li><em>负责<code>java-classpath</code>或<code>java.class.path</code>所指的目录下的类与<code>jar</code>包装入工作.(最常用)</em></li>
+</ul>
+<p><em><code>三个类加载器</code>的示例程序如下</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.classloader;
+
+<span class="hljs-keyword">import</span> org.junit.Test;
+<span class="hljs-keyword">import</span> pers.huangyuhui.reflection.bean.UserInfo;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: ClassLoader
+ * <span class="hljs-doctag">@Description</span>: 类加载器`Classloader`
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: Apr 15, 2019 5:37:30 PM
+ * 
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestClassLoader</span> </span>&#123;
+
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">systemClassLoaderTest</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> ClassNotFoundException </span>&#123;
+
+		<span class="hljs-comment">/*
+		 * 获取`系统类加载器`
+		 */</span>
+		ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+		<span class="hljs-comment">// getName() Returns: name of this class loader,or null if this class loader is</span>
+		<span class="hljs-comment">// not named.</span>
+		<span class="hljs-comment">// the result: jdk.internal.loader.ClassLoaders$AppClassLoader@28c97a5</span>
+		System.out.println(classLoader);
+
+		<span class="hljs-comment">/*
+		 * 获取`系统类加载器`的父类加载器(`平台类加载器: getPlatformClassLoader`)
+		 */</span>
+		ClassLoader classLoader2 = classLoader.getParent();
+		<span class="hljs-comment">// the result: jdk.internal.loader.ClassLoaders$PlatformClassLoader@7bedc48a</span>
+		System.out.println(classLoader2);
+
+		<span class="hljs-comment">/*
+		 * 查看自定义类`UserInfo`由哪个加载器加载
+		 */</span>
+		Class&lt;UserInfo&gt; class1 = UserInfo<span class="hljs-class">.<span class="hljs-keyword">class</span></span>;
+		ClassLoader classLoader3 = class1.getClassLoader();
+		<span class="hljs-comment">// the result: jdk.internal.loader.ClassLoaders$AppClassLoader@28c97a5</span>
+		<span class="hljs-comment">// 由运行结果可知,该自定义类被`系统加载器`加载</span>
+		System.out.println(classLoader3);
+
+		<span class="hljs-comment">/*
+		 * 查看`java.lang.Object`(核心类库)由哪一个加载器加载
+		 */</span>
+		Class&lt;?&gt; class2 = Class.forName(<span class="hljs-string">"java.lang.Object"</span>);
+		ClassLoader classLoader4 = class2.getClassLoader();
+		<span class="hljs-comment">// the result: null</span>
+		<span class="hljs-comment">// 运行结果为`null`,说明该类被`引导类加载器`加载 !</span>
+		<span class="hljs-comment">// `引导类加载器`: `JVM`自带的类加载器,负责Java平台核心库,用来加载核心类库,该加载器无法直接获取</span>
+		System.out.println(classLoader4);
+
+	&#125;
+&#125;</code></pre>
+
+<h4 id="类的加载过程"><a href="#类的加载过程" class="headerlink" title="类的加载过程"></a>类的加载过程</h4><p><em>当程序主动使用某个类时,如果该类还未被<code>加载</code>到内存中,则系统会通知如下三个步骤来对该类进行初始化.</em></p>
+<ol>
+<li>类的加载 : 将类的<code>Class</code>文件读入到内存,并为之创建一个<code>java.lang.Class</code>对象,此过程由类加载器完成.</li>
+<li>类的链接 : 将类的<code>二进制</code>数据合并到<code>JRE</code>中.</li>
+<li>类的初始化 : <code>JVM</code>负责对类进行初始化.</li>
+</ol>
+<h4 id="类加载器的应用"><a href="#类加载器的应用" class="headerlink" title="类加载器的应用"></a>类加载器的应用</h4><ol>
+<li><p><em>利用<code>ClassLoader</code>读取指定<code>包</code>下的配置文件(如果不使用类加载器配置文件只能放在<code>项目</code>目录下..).程序示例如下 :</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.classloader;
+
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.io.InputStream;
+<span class="hljs-keyword">import</span> java.util.Properties;
+
+<span class="hljs-keyword">import</span> org.junit.Test;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: ReadConfigFileInfo
+ * <span class="hljs-doctag">@Description</span>: 利用`ClassLoad`
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: Apr 15, 2019 6:29:39 PM
+ * 
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ReadConfigFileInfo</span> </span>&#123;
+
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">classLoaderTest</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;
+
+		Properties properties = <span class="hljs-keyword">new</span> Properties();
+
+		<span class="hljs-comment">// 如果不使用`ClassLoader`,读取当前工程下的配置文件的方式如下:</span>
+		<span class="hljs-comment">// FileInputStream fileInputStream = new FileInputStream(new File("user.properties"));</span>
+
+		ClassLoader classLoader = <span class="hljs-keyword">this</span>.getClass().getClassLoader();
+		<span class="hljs-comment">// return: An input stream for reading the resource.</span>
+		InputStream inputStream = classLoader
+				.getResourceAsStream(<span class="hljs-string">"pers\\huangyuhui\\reflection\\classloader\\user.properties"</span>);
+
+		<span class="hljs-comment">// Reads a property list (key and element pairs) from the inputbyte stream.</span>
+		properties.load(inputStream);
+
+		System.out.println(<span class="hljs-string">"singer: "</span> + properties.getProperty(<span class="hljs-string">"singer"</span>) + <span class="hljs-string">"\nsong: "</span> + properties.getProperty(<span class="hljs-string">"song"</span>));
+
+	&#125;
+
+&#125;</code></pre></li>
+<li><p><em>在<code>pers.huangyuhui.reflection.classloader</code>包下创建配置文件<code>user.properties</code></em></p>
+<pre><code class="hljs java">singer=Justin Bieber
+song=Love yourself</code></pre>
+</li>
+<li><p><em>程序运行结果如下</em></p>
+<pre><code class="hljs java">singer: Justin Bieber
+song: Love yourself</code></pre>
+
+</li>
+</ol>
+<h3 id="newInstance-创建运行时类的对象"><a href="#newInstance-创建运行时类的对象" class="headerlink" title="newInstance()创建运行时类的对象"></a><code>newInstance()</code>创建运行时类的对象</h3><h4 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h4><p><em>创建类的对象: 调用<code>Class</code>对象的<code>newInstance()</code>方法,要求如下：</em></p>
+<ol>
+<li>类必须有一个无参数的构造器.</li>
+<li>类的构造器的访问权限需要足够.</li>
+</ol>
+<h4 id="示例程序"><a href="#示例程序" class="headerlink" title="示例程序"></a>示例程序</h4><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.newinstance;
+
+<span class="hljs-keyword">import</span> org.junit.Test;
+
+<span class="hljs-keyword">import</span> pers.huangyuhui.reflection.bean.UserInfo;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: NewInstanceTest
+ * <span class="hljs-doctag">@Description</span>: 使用`newInstance()`创建运行时类的对象
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: Apr 16, 2019 10:08:37 PM
+ * 
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NewInstanceTest</span> </span>&#123;
+
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InstantiationException, IllegalAccessException, ClassNotFoundException </span>&#123;
+
+		String className = <span class="hljs-string">"pers.huangyuhui.reflection.bean.UserInfo"</span>;
+		Class&lt;?&gt; class1 = Class.forName(className);
+
+		<span class="hljs-meta">@SuppressWarnings</span>(<span class="hljs-string">"deprecation"</span>)
+		<span class="hljs-comment">// 使用`newInstance()`创建对应的运行时类的对象时实际上是调用了运行时类的空参构造器.</span>
+		UserInfo userInfo = (UserInfo) class1.newInstance();
+
+		<span class="hljs-comment">// the result: UserInfo [name=null, sex=null, age=0]</span>
+		System.out.println(userInfo);
+	&#125;
+
+&#125;</code></pre>
+
+<h3 id="通过反射调用类的完整结构"><a href="#通过反射调用类的完整结构" class="headerlink" title="通过反射调用类的完整结构"></a>通过反射调用类的<code>完整结构</code></h3><ol>
+<li>获取属性</li>
+</ol>
+<ul>
+<li><em>略</em></li>
+</ul>
+<ol start="2">
+<li>获取方法</li>
+</ol>
+<ul>
+<li><em>略</em></li>
+</ul>
+<ol start="3">
+<li>获取构造器</li>
+</ol>
+<ul>
+<li><em>略</em></li>
+</ul>
+<h3 id="反射的应用之动态代理"><a href="#反射的应用之动态代理" class="headerlink" title="反射的应用之动态代理"></a>反射的应用之<code>动态代理</code></h3><h4 id="动态代理介绍"><a href="#动态代理介绍" class="headerlink" title="动态代理介绍"></a><code>动态代理</code>介绍</h4><ol>
+<li>概念</li>
+</ol>
+<p><em>动态代理是指客户通过代理类来调用其它对象的方法,并且是在程序运行时根据需要动态创建目标类的代理对象.</em><br>2. 使用场合<br><em>调试及远程方法调用等..</em><br>3. 设计模式的原理<br><em>使用一个代理将对象包装起来,然后使用该代理对象取代原始对象.任何对原始对象的调用都要通过代理.代理对象决定是否以及何时将方法调用转到原始对象上.</em></p>
+<h4 id="静态代理程序示例"><a href="#静态代理程序示例" class="headerlink" title="静态代理程序示例"></a><code>静态代理</code>程序示例</h4><p><em>为了与动态代理相比较,静态代理程序示例如下.不难发现: 如果添加不同接口则需要不同的代理类来完成其代理!很繁琐!!</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.proxy;
+
+<span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">ClothFactory</span> </span>&#123;
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">createCloth</span><span class="hljs-params">()</span></span>;
+&#125;
+
+<span class="hljs-comment">//被代理类</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NikeClothFactory</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ClothFactory</span> </span>&#123;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">createCloth</span><span class="hljs-params">()</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"Create the cloth .."</span>);
+	&#125;
+&#125;
+
+<span class="hljs-comment">//代理类</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProxyFactory</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ClothFactory</span> </span>&#123;
+
+	NikeClothFactory nikeClothFactory;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ProxyFactory</span><span class="hljs-params">(NikeClothFactory nike)</span> </span>&#123;
+		<span class="hljs-keyword">this</span>.nikeClothFactory = nike;
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">createCloth</span><span class="hljs-params">()</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"This is static proxy .."</span>);
+		nikeClothFactory.createCloth();
+	&#125;
+
+&#125;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: StaticProxy
+ * <span class="hljs-doctag">@Description</span>: 静态代理
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: Apr 18, 2019 10:31:27 AM
+ * 
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StaticProxy</span> </span>&#123;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+
+		NikeClothFactory nikeClothFactory = <span class="hljs-keyword">new</span> NikeClothFactory();
+		ProxyFactory proxyFactory = <span class="hljs-keyword">new</span> ProxyFactory(nikeClothFactory);
+		proxyFactory.createCloth();
+
+		<span class="hljs-comment">//程序运行结果如下所示 :</span>
+		<span class="hljs-comment">// This is static proxy ..</span>
+		<span class="hljs-comment">// Create the cloth ..</span>
+	&#125;
+&#125;</code></pre>
+
+<h4 id="动态代理程序示例"><a href="#动态代理程序示例" class="headerlink" title="动态代理程序示例"></a><code>动态代理</code>程序示例</h4><ul>
+<li><em><code>反射</code>是动态语言的关键,程序示例如下 :</em><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.proxy;
+
+<span class="hljs-keyword">import</span> java.lang.reflect.InvocationHandler;
+<span class="hljs-keyword">import</span> java.lang.reflect.Method;
+<span class="hljs-keyword">import</span> java.lang.reflect.Proxy;
+
+<span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Subjet</span> </span>&#123;
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">action</span><span class="hljs-params">()</span></span>;
+&#125;
+
+<span class="hljs-comment">//被代理类</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RealSubject</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Subjet</span> </span>&#123;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">action</span><span class="hljs-params">()</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"被代理类执行的动作 .."</span>);
+	&#125;
+&#125;
+
+<span class="hljs-comment">//实现动态代理的核心类</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyInvocationHandler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">InvocationHandler</span> </span>&#123;
+
+	Object obj;<span class="hljs-comment">// 实现了接口的被代理类的对象的声明</span>
+
+	<span class="hljs-comment">// 给被代理的对象实例化</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">dynamicInit</span><span class="hljs-params">(Object object)</span> </span>&#123;
+		<span class="hljs-keyword">this</span>.obj = object;
+		<span class="hljs-comment">// `动态`地创建指定代理类的对象并返回</span>
+		<span class="hljs-keyword">return</span> Proxy.newProxyInstance(obj.getClass().getClassLoader(), obj.getClass().getInterfaces(), <span class="hljs-keyword">this</span>);
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-comment">// 当通过代理类的对象发起对被重写的方法调用时,都会转换为对如下`invoke`方法的调用</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;
+
+		Object object = method.invoke(obj, args);
+		<span class="hljs-keyword">return</span> object;
+	&#125;
+
+&#125;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: DynamicProxy
+ * <span class="hljs-doctag">@Description</span>: 动态代理
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: Apr 18, 2019 11:03:54 AM
+ * 
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DynamicProxy</span> </span>&#123;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+
+		MyInvocationHandler myInvocationHandler = <span class="hljs-keyword">new</span> MyInvocationHandler();
+		RealSubject realSubject = <span class="hljs-keyword">new</span> RealSubject();
+
+		<span class="hljs-comment">// `dynamicInit`方法动态的返回一个同样实现了 `Real ...`所在类实现的接口`Subject`的代理类的对象</span>
+		Object object = myInvocationHandler.dynamicInit(realSubject);
+		<span class="hljs-comment">// 此时`subject`为代理类的对象</span>
+		Subjet subjet = (Subjet) object;
+		<span class="hljs-comment">// 调用`action`时会转到对`InvocationHandler`接口的实现类的`invoke`方法的调用</span>
+		subjet.action();
+
+		<span class="hljs-comment">// 为证明动态代理的特性,再实现一个接口的代理类的对象</span>
+		NikeClothFactory nikeClothFactory = <span class="hljs-keyword">new</span> NikeClothFactory();
+		ClothFactory clothFactory = (ClothFactory) myInvocationHandler.dynamicInit(nikeClothFactory);
+		clothFactory.createCloth();
+
+		<span class="hljs-comment">//程序运行结果如下所示 :</span>
+		<span class="hljs-comment">//被代理类执行的动作 ..</span>
+		<span class="hljs-comment">//Create the cloth ..</span>
+	&#125;
+
+&#125;</code></pre></li>
+</ul>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/04/15/Naming-Notations/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Naming Notations</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/04/14/Java-annotation/">
+                        <span class="hidden-mobile">Java annotation</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Java reflection&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

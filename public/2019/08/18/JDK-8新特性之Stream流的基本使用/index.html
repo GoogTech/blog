@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>JDK 8新特性之Stream流的基本使用 - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-08-18 21:09">
+      August 18, 2019 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      35
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="学习笔记-JDK-8新特性之Stream流的基本使用"><a href="#学习笔记-JDK-8新特性之Stream流的基本使用" class="headerlink" title="学习笔记 : JDK 8新特性之Stream流的基本使用"></a>学习笔记 : JDK 8新特性之Stream流的基本使用</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p><em>Java 8 API添加了一个新的抽象称为<code>Stream流</code>,其让你以一种声明的方式处理数据. Stream 使用一种类似用 SQL 语句从数据库查询数据的直观方式来提供一种对 Java 集合运算和表达的高阶抽象. 其 API 可以极大提高Java程序员的生产力,让程序员写出高效率、干净、简洁的代码. 其把将要处理的元素集合看作一种流, 流在管道中传输, 并且可以在管道的节点上进行处理, 比如筛选,排序,聚合等, 元素流在管道中经过中间操作 (intermediate operation) 的处理,最后由最终操作 (terminal operation) 得到前面处理的结果</em></p>
+<pre><code class="hljs brainfuck"><span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span>       <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span>   <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span>   <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">+</span>   <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span>
+<span class="hljs-comment">|</span> <span class="hljs-comment">stream</span> <span class="hljs-comment">of</span> <span class="hljs-comment">elements</span> <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt; <span class="hljs-comment">|filter</span><span class="hljs-literal">+</span><span class="hljs-literal">-</span>&gt; <span class="hljs-comment">|sorted</span><span class="hljs-literal">+</span><span class="hljs-literal">-</span>&gt; <span class="hljs-comment">|map</span><span class="hljs-literal">+</span><span class="hljs-literal">-</span>&gt; <span class="hljs-comment">|collect|</span>
+<span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span>       <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span>   <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span>   <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">+</span>   <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span></code></pre>
+
+<p><em>以上的流程可以转换Java代码 :</em></p>
+<pre><code class="hljs java">List&lt;Integer&gt; transactionsIds = 
+widgets.stream()
+        .filter(b -&gt; b.getColor() == RED)
+        .sorted((x,y) -&gt; x.getWeight() - y.getWeight())
+        .mapToInt(Widget::getWeight)
+        .sum();</code></pre>
+
+
+<h4 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h4><p><em>Stream (流) 是一个来自数据源的元素队列并支持聚合操作 :</em></p>
+<ul>
+<li>元素是特定类型的对象,形成一个队列. Java中的<code>Stream并不会存储元素,而是按需计算</code></li>
+<li>数据源,流的来源可以是集合,数组,I/O channel,产生器generator等</li>
+<li>聚合操作,类似SQL语句一样的操作,比如filter, map, reduce, find, match, sorted等</li>
+</ul>
+<p><em>和以前的Collection操作不同， Stream操作还有如下两个基础的特征 :</em></p>
+<ul>
+<li><code>Pipelining</code> : 中间操作都会返回流对象本身, 这样多个操作可以串联成一个管道,如同流式风格(fluent style), 这样做可以对操作进行优化,比如延迟执行(laziness)和短路(short-circuiting)</li>
+<li><code>内部迭代</code> : 以前对集合遍历都是通过Iterator或者For-Each的方式, 显式的在集合外部进行迭代,这叫做外部迭代. Stream则提供了内部迭代的方式,通过<code>访问者模式(Visitor)</code>实现</li>
+</ul>
+<p><em>当使用一个流的时候,通常包括三个基本步骤 : 获取一个数据源(source) -&gt; 数据转换 -&gt; 执行操作获取想要的结果,每次转换原有 Stream 对象不改变,返回一个新的 Stream 对象(可以有多次转换),这就允许对其操作可以像链条一样排列,变成一个管道. <code>注 : Steam流属于管道流,既只能被消费/使用一次哟</code></em></p>
+<h4 id="获取Stream流的方式"><a href="#获取Stream流的方式" class="headerlink" title="获取Stream流的方式"></a>获取Stream流的方式</h4><p><em><code>java.util.stream.Stream&lt;T&gt;</code>是Java8新加入的最常用的流接口 (注 : 这并不是一个函数式接口哟),获取一个流非常简单,有以下几种常用的方式 :</em></p>
+<ol>
+<li><em>所有的<code>Collection</code>集合都可以通过stream默认方法获取流</em></li>
+<li><em>通过<code>Stream</code>接口的静态方法<code>of</code>可以获取数组对应的流</em></li>
+</ol>
+<h4 id="Stream流的常用方法"><a href="#Stream流的常用方法" class="headerlink" title="Stream流的常用方法"></a>Stream流的常用方法</h4><p><em>Stream流模型的操作很丰富,其方法可以划分为两类 :</em></p>
+<ol>
+<li><em><code>延迟方法</code> : 返回值类型仍然是<code>Stream</code>接口自身类型的方法,因此支持链式调用( 除了终结方法外,其余方法均为延迟方法 )</em></li>
+<li><em><code>终结方法</code> : 返回值类型不再是<code>Stream</code>接口自身类型的方法,因此不再支持类似<code>StringBuilder</code>那样的链式调用,终结方法例如<code>count</code>和<code>forEach</code></em></li>
+</ol>
+<h4 id="程序示例-对比"><a href="#程序示例-对比" class="headerlink" title="程序示例(对比)"></a>程序示例(对比)</h4><p><em>话不多说,来对比一下传统遍历并过滤集合与使用Stream流遍历并过滤集合的代码,感受下Stream流的美~</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.Stream;
+
+<span class="hljs-keyword">import</span> org.junit.Test;
+
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: jdk-learnig
+ * <span class="hljs-doctag">@description</span>: 使用Stream流遍历并过滤集合
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 8/18/2019-9:10 PM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StreamTest</span> </span>&#123;
+
+    <span class="hljs-comment">//传统方式:遍历并过滤集合</span>
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;
+        List&lt;String&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+        list.add(<span class="hljs-string">"a"</span>);
+        list.add(<span class="hljs-string">"bc"</span>);
+        list.add(<span class="hljs-string">"abc"</span>);
+        list.add(<span class="hljs-string">"bcd"</span>);
+        list.add(<span class="hljs-string">"abcd"</span>);
+        <span class="hljs-comment">//元素内容过滤</span>
+        List&lt;String&gt; list_a = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+        <span class="hljs-keyword">for</span> (String s : list) &#123;
+            <span class="hljs-keyword">if</span> (s.startsWith(<span class="hljs-string">"a"</span>)) &#123;
+                list_a.add(s);
+            &#125;
+        &#125;
+        <span class="hljs-comment">//元素长度过滤</span>
+        List&lt;String&gt; list_len = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+        <span class="hljs-keyword">for</span> (String s : list_a) &#123;
+            <span class="hljs-keyword">if</span> (s.length() &gt; <span class="hljs-number">3</span>) &#123;
+                list_len.add(s);
+            &#125;
+        &#125;
+        <span class="hljs-comment">//打印集合元素</span>
+        <span class="hljs-keyword">for</span> (String s : list_len) &#123;
+            System.out.println(s); <span class="hljs-comment">//结果:abcd</span>
+        &#125;
+    &#125;
+
+    <span class="hljs-comment">//使用Steam流:遍历并过滤集合</span>
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testWithStream</span><span class="hljs-params">()</span> </span>&#123;
+        List&lt;String&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+        list.add(<span class="hljs-string">"a"</span>);
+        list.add(<span class="hljs-string">"bc"</span>);
+        list.add(<span class="hljs-string">"abc"</span>);
+        list.add(<span class="hljs-string">"bcd"</span>);
+        list.add(<span class="hljs-string">"abcd"</span>);
+        <span class="hljs-comment">//过滤集合元素后输出</span>
+        list.stream()
+                .filter(name -&gt; name.startsWith(<span class="hljs-string">"a"</span>)) <span class="hljs-comment">//元素内容过滤</span>
+                .filter(name -&gt; name.length() &gt; <span class="hljs-number">3</span>) <span class="hljs-comment">//元素长度过滤</span>
+                <span class="hljs-comment">//.forEach(name -&gt; System.out.println(name));</span>
+                .forEach(System.out::println); <span class="hljs-comment">//结果:abcd</span>
+
+    &#125;
+
+&#125;</code></pre>
+
+
+<h3 id="获取Stream流的两种方式"><a href="#获取Stream流的两种方式" class="headerlink" title="获取Stream流的两种方式"></a>获取Stream流的两种方式</h3><p><em>获取流的两种方式 : 一将集合装换为Stream流, 二将数组转换为Stream流</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.Stream;
+
+<span class="hljs-keyword">import</span> java.util.*;
+<span class="hljs-keyword">import</span> java.util.stream.Stream;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@project</span>: jdk-learnig
+ * <span class="hljs-doctag">@description</span>: 获取流的两种方式:将集合装换为Stream流,及将数组转换为Stream流
+ * <span class="hljs-doctag">@author</span>: 黄宇辉
+ * <span class="hljs-doctag">@date</span>: 8/19/2019-8:30 AM
+ * <span class="hljs-doctag">@version</span>: 1.0
+ * <span class="hljs-doctag">@website</span>: https://yubuntu0109.github.io/
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GetStreamWay</span> </span>&#123;
+
+    <span class="hljs-comment">//将List集合装换为Stream流</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testList</span><span class="hljs-params">()</span> </span>&#123;
+        List&lt;String&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+        Stream&lt;String&gt; stream = list.stream();
+    &#125;
+
+    <span class="hljs-comment">//将Set集合转换为Stream流</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testSet</span><span class="hljs-params">()</span> </span>&#123;
+        Set&lt;String&gt; set = <span class="hljs-keyword">new</span> HashSet&lt;&gt;();
+        Stream&lt;String&gt; stream = set.stream();
+    &#125;
+
+    <span class="hljs-comment">//将Map集合转换为Stream流</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testMap</span><span class="hljs-params">()</span> </span>&#123;
+        Map&lt;Integer, String&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();
+
+        <span class="hljs-comment">//分别获取并存储键与值</span>
+        Set&lt;Integer&gt; integers = map.keySet();
+        Collection&lt;String&gt; values = map.values();
+        <span class="hljs-comment">//将存储键与值的集合转换为Stream流</span>
+        Stream&lt;Integer&gt; key = integers.stream();
+        Stream&lt;String&gt; value = values.stream();
+
+        <span class="hljs-comment">//获取键值对(键与值映射关系),并将其转换为Stream流</span>
+        Set&lt;Map.Entry&lt;Integer, String&gt;&gt; entries = map.entrySet();
+        Stream&lt;Map.Entry&lt;Integer, String&gt;&gt; entry = entries.stream();
+    &#125;
+
+    <span class="hljs-comment">//将数组转换为Stream流</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testArray</span><span class="hljs-params">()</span> </span>&#123;
+        String[] array = &#123;<span class="hljs-string">"a"</span>, <span class="hljs-string">"ab"</span>, <span class="hljs-string">"bc"</span>, <span class="hljs-string">"abc"</span>, <span class="hljs-string">"bcd"</span>, <span class="hljs-string">"abcd"</span>&#125;;
+        Stream&lt;String&gt; stream = Stream.of(array);
+    &#125;
+
+    <span class="hljs-comment">// ······</span>
+
+&#125;</code></pre>
+
+
+<h3 id="forEach方法"><a href="#forEach方法" class="headerlink" title="forEach方法"></a>forEach方法</h3><p><em>该方法接收一个<code>Consumer</code>接口函数,会将每一个流元素交给该函数进行处理</em></p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">forEach</span><span class="hljs-params">(Consumer&lt;? <span class="hljs-keyword">super</span> T&gt; action)</span></span>;</code></pre>
+
+<h4 id="复习Consumer接口"><a href="#复习Consumer接口" class="headerlink" title="复习Consumer接口"></a>复习Consumer接口</h4><p><em>此前已学过<code>java.util.function.Consumer&lt;T&gt;</code>函数式接口,该接口是一个消费型接口,其中唯一的抽象方法如下,意为消费一个指定泛型的数据</em></p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">accept</span><span class="hljs-params">(T t)</span></span>;</code></pre>
+
+<h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><p><em>遍历输出数组中的元素</em></p>
+<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testForEach</span><span class="hljs-params">()</span> </span>&#123;
+    String[] array = &#123;<span class="hljs-string">"a"</span>, <span class="hljs-string">"bc"</span>, <span class="hljs-string">"abc"</span>, <span class="hljs-string">"bcd"</span>, <span class="hljs-string">"abcd"</span>&#125;;
+
+    <span class="hljs-comment">//第一种方式</span>
+    Stream&lt;String&gt; stream = Arrays.stream(array);
+    stream.forEach(element -&gt; System.out.println(element));
+
+    <span class="hljs-comment">//第二种方式</span>
+    Stream&lt;String&gt; stream2 = Stream.of(array);
+    stream2.forEach(System.out::println);
+&#125;</code></pre>
+
+
+<h3 id="filter方法"><a href="#filter方法" class="headerlink" title="filter方法"></a>filter方法</h3><p><em>可以通过<code>filter</code>方法将一个流转换成另一个子集流,该接口接收一个<code>Predicate</code>函数式接口参数( 可以是一个Lambda或方法引用 )作为筛选条件</em></p>
+<h4 id="复习Predicate接口"><a href="#复习Predicate接口" class="headerlink" title="复习Predicate接口"></a>复习Predicate接口</h4><p><em>此前已学过<code>java.util.function.Predicate&lt;T&gt;</code>函数式接口,其中唯一的抽象方法如下,该方法将会产生一个boolean值结果,代表指定的条件是否满足,如果结果为true,那么Stream流的<code>filter</code>方法将会留用元素,反之舍弃</em></p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">test</span><span class="hljs-params">(T t)</span></span>;</code></pre>
+
+<h4 id="基本使用-1"><a href="#基本使用-1" class="headerlink" title="基本使用"></a>基本使用</h4><p><em>延迟方法与终结方法结合使用 : 过滤并遍历数组元素</em></p>
+<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testFilter</span><span class="hljs-params">()</span> </span>&#123;
+    String[] array = &#123;<span class="hljs-string">"a"</span>, <span class="hljs-string">"bc"</span>, <span class="hljs-string">"abc"</span>, <span class="hljs-string">"bcd"</span>, <span class="hljs-string">"abcd"</span>&#125;;
+    Stream.of(array)
+            .filter(element -&gt; element.startsWith(<span class="hljs-string">"a"</span>))
+            .filter(element -&gt; element.length() &gt; <span class="hljs-number">3</span>)
+            .forEach(System.out::println); <span class="hljs-comment">//abcd</span>
+&#125;</code></pre>
+
+
+<h3 id="map方法"><a href="#map方法" class="headerlink" title="map方法"></a>map方法</h3><p><em>如果需要将流中的元素映射到另一个流中,则可以使用<code>map</code>方法,方法签名如下,该接口需要一个函数式接口参数,可以将当前流中的T类型数据转换为另一种R类型的流</em></p>
+<pre><code class="hljs java">&lt;R&gt; <span class="hljs-function">Stream&lt;R&gt; <span class="hljs-title">map</span><span class="hljs-params">(function&lt;? <span class="hljs-keyword">super</span> T,? extends R&gt; mapper)</span></span>;</code></pre>
+
+<h4 id="复习Function接口"><a href="#复习Function接口" class="headerlink" title="复习Function接口"></a>复习Function接口</h4><p><em>此前已学过<code>java.util.function.Function&lt;T, R&gt;</code>函数式接口,其中唯一的抽象方法如下,其可以将一种 T 类型转换为 R 类型,而这种转换的动作称为<code>映射</code></em></p>
+<pre><code class="hljs java"><span class="hljs-function">R <span class="hljs-title">apply</span><span class="hljs-params">(T t)</span></span>;</code></pre>
+
+<h4 id="基本使用-2"><a href="#基本使用-2" class="headerlink" title="基本使用"></a>基本使用</h4><p><em>将String类型的数组元素装换为Integer类型并输出</em></p>
+<pre><code class="hljs java"><span class="hljs-comment">//Lambda表达式写法</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testMapWithLambda</span><span class="hljs-params">()</span> </span>&#123;
+    String[] array = &#123;<span class="hljs-string">"1"</span>, <span class="hljs-string">"2"</span>, <span class="hljs-string">"3"</span>, <span class="hljs-string">"4"</span>, <span class="hljs-string">"5"</span>&#125;;
+    Stream&lt;String&gt; stream = Stream.of(array);
+    Stream&lt;Integer&gt; stream2 = stream.map((String string) -&gt; &#123;
+        <span class="hljs-keyword">return</span> Integer.valueOf(string);
+    &#125;);
+    stream2.forEach(element -&gt; System.out.println(element));
+&#125;
+
+<span class="hljs-comment">//Lambda表达式简写</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testMapWithSimpleLambda</span><span class="hljs-params">()</span> </span>&#123;
+    String[] array = &#123;<span class="hljs-string">"1"</span>, <span class="hljs-string">"2"</span>, <span class="hljs-string">"3"</span>, <span class="hljs-string">"4"</span>, <span class="hljs-string">"5"</span>&#125;;
+    Stream.of(array)
+            .map(string -&gt; Integer.valueOf(string))
+            .forEach(element -&gt; System.out.println(element));
+&#125;
+
+<span class="hljs-comment">//方法引用写法</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testMapWithMethodRef</span><span class="hljs-params">()</span> </span>&#123;
+    String[] array = &#123;<span class="hljs-string">"1"</span>, <span class="hljs-string">"2"</span>, <span class="hljs-string">"3"</span>, <span class="hljs-string">"4"</span>, <span class="hljs-string">"5"</span>&#125;;
+    Stream.of(array)
+            .map(Integer::valueOf)
+            .forEach(System.out::println);
+&#125;</code></pre>
+
+
+<h3 id="count方法"><a href="#count方法" class="headerlink" title="count方法"></a>count方法</h3><p><em>正如就集合<code>Collection</code>当中的<code>size</code>方法一样,Stream流提供了<code>count</code>方法来计数元素个数,该方法返回一个long值代表元素个数(不再像同旧集合为int值). 注 : 该方法为终结方法哟~</em></p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">long</span> <span class="hljs-title">count</span><span class="hljs-params">()</span></span>;</code></pre>
+
+<h4 id="基本使用-3"><a href="#基本使用-3" class="headerlink" title="基本使用"></a>基本使用</h4><p><em>统计数组中以”a”开头的元素个数</em></p>
+<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testCount</span><span class="hljs-params">()</span> </span>&#123;
+    String[] array = &#123;<span class="hljs-string">"a"</span>, <span class="hljs-string">"bc"</span>, <span class="hljs-string">"abc"</span>, <span class="hljs-string">"bcd"</span>, <span class="hljs-string">"abcd"</span>&#125;;
+    <span class="hljs-keyword">long</span> count = Stream.of(array).filter(element -&gt; element.startsWith(<span class="hljs-string">"a"</span>)).count();
+    System.out.println(count);
+&#125;</code></pre>
+
+
+<h3 id="limit方法"><a href="#limit方法" class="headerlink" title="limit方法"></a>limit方法</h3><p><em><code>limit</code>方法可以对流进行截取,如果集合当前长度大于参数则进行截取,否则不进行操作</em></p>
+<pre><code class="hljs java"><span class="hljs-function">Stream&lt;T&gt; <span class="hljs-title">limit</span><span class="hljs-params">(<span class="hljs-keyword">long</span> maxSize)</span></span>;</code></pre>
+
+<h4 id="基本使用-4"><a href="#基本使用-4" class="headerlink" title="基本使用"></a>基本使用</h4><p><em>截取数组中的前三个元素并输出</em></p>
+<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testLimit</span><span class="hljs-params">()</span> </span>&#123;
+    String[] array = &#123;<span class="hljs-string">"a"</span>, <span class="hljs-string">"bc"</span>, <span class="hljs-string">"abc"</span>, <span class="hljs-string">"bcd"</span>, <span class="hljs-string">"abcd"</span>&#125;;
+    Stream.of(array).limit(<span class="hljs-number">3</span>).forEach(System.out::println);
+&#125;</code></pre>
+
+
+<h3 id="skip方法"><a href="#skip方法" class="headerlink" title="skip方法"></a>skip方法</h3><p><em>如果希望跳过前几个元素,可以使用<code>skip</code>方法获取一个截取之后的流. 如果流的当前长度大于n,则跳过前n个,否则将会的到一个长度为0的空流</em></p>
+<pre><code class="hljs java"><span class="hljs-function">Stream&lt;T&gt; <span class="hljs-title">skip</span><span class="hljs-params">(<span class="hljs-keyword">long</span> n)</span></span>;</code></pre>
+
+<h4 id="基本使用-5"><a href="#基本使用-5" class="headerlink" title="基本使用"></a>基本使用</h4><p><em>使用<code>skip</code>方法跳过数组中的前三个元素并输出</em></p>
+<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testSkip</span><span class="hljs-params">()</span> </span>&#123;
+    String[] array = &#123;<span class="hljs-string">"a"</span>, <span class="hljs-string">"bc"</span>, <span class="hljs-string">"abc"</span>, <span class="hljs-string">"bcd"</span>, <span class="hljs-string">"abcd"</span>&#125;;
+    Stream.of(array).skip(<span class="hljs-number">3</span>).forEach(System.out::println);
+&#125;</code></pre>
+
+
+<h3 id="concat方法"><a href="#concat方法" class="headerlink" title="concat方法"></a>concat方法</h3><p><em>如果有两个流,希望合并称为一个流,那么可以使用Stream接口的静态方法<code>concat</code>. 注 : 这是一个静态方法,不用与<code>java.lang.String</code>中的<code>concat</code>方法哟</em></p>
+<pre><code class="hljs java"><span class="hljs-function">Stream&lt;T&gt; <span class="hljs-title">skip</span><span class="hljs-params">(<span class="hljs-keyword">long</span> n)</span></span>;</code></pre>
+
+<h4 id="基本使用-6"><a href="#基本使用-6" class="headerlink" title="基本使用"></a>基本使用</h4><p><em>通过合并两个数组中的元素得到新的流,并输出合并后的数组元素</em></p>
+<pre><code class="hljs java"><span class="hljs-comment">//Lambda表达式写法</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testConcat</span><span class="hljs-params">()</span> </span>&#123;
+    String[] array1 = &#123;<span class="hljs-string">"a"</span>, <span class="hljs-string">"abc"</span>&#125;;
+    String[] array2 = &#123;<span class="hljs-string">"abcd"</span>, <span class="hljs-string">"abcde"</span>&#125;;
+    Stream&lt;String&gt; stream1 = Stream.of(array1);
+    Stream&lt;String&gt; stream2 = Stream.of(array2);
+    Stream&lt;Serializable&gt; concatStream = Stream.concat(stream1, stream2);
+    concatStream.forEach(System.out::println);
+&#125;
+
+<span class="hljs-comment">//简写</span>
+<span class="hljs-meta">@Test</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testSimpleConcat</span><span class="hljs-params">()</span> </span>&#123;
+    String[] array1 = &#123;<span class="hljs-string">"a"</span>, <span class="hljs-string">"abc"</span>&#125;;
+    String[] array2 = &#123;<span class="hljs-string">"abcd"</span>, <span class="hljs-string">"abcde"</span>&#125;;
+    Stream.concat(Stream.of(array1), Stream.of(array2)).forEach(System.out::println);
+&#125;</code></pre>
+
+
+
+<p><em>参考《Java 8 Stream》 : <a href="https://www.runoob.com/java/java8-streams.html" target="_blank" rel="noopener">https://www.runoob.com/java/java8-streams.html</a></em></p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/JDK/">JDK</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/08/19/JDK-8%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BStream%E6%B5%81%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JDK 8新特性之Stream流的基本使用案例</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/08/18/JDK-8%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8B%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8/">
+                        <span class="hidden-mobile">JDK 8新特性之方法引用</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "JDK 8新特性之Stream流的基本使用&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

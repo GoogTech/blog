@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>Hi MyBatis ~ - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-05-09 21:02">
+      May 9, 2019 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="学习笔记-初识MyBatis"><a href="#学习笔记-初识MyBatis" class="headerlink" title="学习笔记 : 初识MyBatis"></a>学习笔记 : 初识MyBatis</h2><p><em>简介 : <code>MyBatis</code>的前身是<code>iBATIS</code>,是Clinton Begin在2001年发起的一个开源项目,最初侧重于密码软件的开发,后来发展成为一款基于Java的持久层框架.2004年,Clinton将iBATIS的名字和源码捐赠给了Apache软件基金会.2010年,核心开发团队决定离开Apache软件基金会,并且将iBATIS该名为MyBatis.</em></p>
+<h3 id="MyBatis-工作原理"><a href="#MyBatis-工作原理" class="headerlink" title="MyBatis 工作原理"></a>MyBatis 工作原理</h3><p><em>MyBatis框架执行流程图如下所示 :</em></p>
+<p><img src="/2019/05/09/Hi-MyBatis/MyBatis%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%9B%BE.png" srcset="/img/loading.gif" alt=" "></p>
+<p><em>从MyBatis框架执行流程图中可得知,MyBatis框架在操作数据库时,大体经过了8个步骤.下面对每一步进行详解哟 ~</em></p>
+<ol>
+<li><p>读取MyBatis配置文件<code>mybatis-config.xml</code>.其作为MyBatis的全局配置文件,配置了MyBatis的运行环境等信息,其中主要内容是获取数据库连接.</p>
+</li>
+<li><p>加载映射配置文件<code>Mapper.xml</code>.既SQL映射文件,该文件配置了操作数据库的SQL语句,需要在<code>mybatis-config.xml</code>中加载才能执行.<code>mybatis-config.xml</code>可以加载多个配置文件,每个配置文件对应数据库中的一张表.</p>
+</li>
+<li><p>构建会话工厂.通过MyBatis的环境等配置信息构建会话工厂<code>SqlSessionFactory</code>.</p>
+</li>
+<li><p>创建<code>SqlSession</code>对象.由会话工厂创建SqlSession对象,该对象中包含了执行SQL的所有方法.</p>
+</li>
+<li><p>MyBatis底层定义了一个<code>Executor</code>接口来操作数据库,它会根据<code>SqlSession</code>传递的参数动态地生成需要执行的SQL语句,同时负责查询缓存的维护.</p>
+</li>
+<li><p>在<code>Executor</code>接口的执行方法中,包含一个<code>MappedStatement</code>类型的参数,该参数是对映射信息的封装,用于存储要映射的SQL语句的id,参数等.. <code>Mapper.xml</code>文件中一个SQL对应一个MappedStatement对象,SQL的id既是MappedStatement的id.</p>
+</li>
+<li><p>输入参数映射,其过程类似于JDBC编程中对preparedStatement对象设置参数的过程.</p>
+</li>
+<li><p>输出参数映射,其过程类似于JDBC编程中对结果的解析处理过程.</p>
+</li>
+</ol>
+<h3 id="MyBatis-入门程序"><a href="#MyBatis-入门程序" class="headerlink" title="MyBatis 入门程序"></a>MyBatis 入门程序</h3><ol>
+<li><p><em>User.java : 一个简单Java bean</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mybatis.bean;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: User
+ * <span class="hljs-doctag">@Description</span>: 封装用户信息
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: May 9, 2019 5:07:23 PM
+ *
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;
+
+	<span class="hljs-keyword">private</span> Integer id;
+	<span class="hljs-keyword">private</span> String name;
+	<span class="hljs-keyword">private</span> String gender;
+	<span class="hljs-keyword">private</span> String email;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">getId</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> id;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setId</span><span class="hljs-params">(Integer id)</span> </span>&#123;
+		<span class="hljs-keyword">this</span>.id = id;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> name;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>&#123;
+		<span class="hljs-keyword">this</span>.name = name;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getGender</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> gender;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setGender</span><span class="hljs-params">(String gender)</span> </span>&#123;
+		<span class="hljs-keyword">this</span>.gender = gender;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getEmail</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> email;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setEmail</span><span class="hljs-params">(String email)</span> </span>&#123;
+		<span class="hljs-keyword">this</span>.email = email;
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-string">"User [id="</span> + id + <span class="hljs-string">", name="</span> + name + <span class="hljs-string">", gender="</span> + gender + <span class="hljs-string">", email="</span> + email + <span class="hljs-string">"]"</span>;
+	&#125;
+
+&#125;</code></pre>
+</li>
+<li><p><em>db.properties : 数据库配置信息文件.</em></p>
+<pre><code class="hljs t">#database configuration information
+jdbc.driver=com.mysql.cj.jdbc.Driver
+jdbc.url=jdbc:mysql://LOCALHOST/MyBatis?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true
+jdbc.username=root
+jdbc.password=GoodTime</code></pre>
+</li>
+<li><p><em>mybatis-config.xml : MyBatis核心配置文件</em></p>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>
+	<span class="hljs-comment">&lt;!-- 读取数据库配置文件 --&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">properties</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">"db.properties"</span> /&gt;</span>
+	<span class="hljs-comment">&lt;!-- 配置环境-默认环境id为MySQL --&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">environments</span> <span class="hljs-attr">default</span>=<span class="hljs-string">"MySQL"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">environment</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"MySQL"</span>&gt;</span>
+			<span class="hljs-comment">&lt;!-- 使用JDBC事务管理 --&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">transactionManager</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"JDBC"</span> /&gt;</span>
+			<span class="hljs-comment">&lt;!-- 数据库连接池 --&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">dataSource</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"POOLED"</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"driver"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;jdbc.driver&#125;"</span> /&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"url"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;jdbc.url&#125;"</span> /&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;jdbc.username&#125;"</span> /&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"$&#123;jdbc.password&#125;"</span> /&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">dataSource</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">environment</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">environments</span>&gt;</span>
+	<span class="hljs-comment">&lt;!-- 将sql映射文件注册到全局配置文件中 --&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">mappers</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">"UserMapper.xml"</span> /&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">mappers</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></code></pre>
+</li>
+<li><p><em>UserTest.java : 测试类</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mybatis.bean.test;
+
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.io.InputStream;
+
+<span class="hljs-keyword">import</span> org.apache.ibatis.io.Resources;
+<span class="hljs-keyword">import</span> org.apache.ibatis.session.SqlSession;
+<span class="hljs-keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;
+<span class="hljs-keyword">import</span> org.apache.ibatis.session.SqlSessionFactoryBuilder;
+<span class="hljs-keyword">import</span> org.junit.jupiter.api.Test;
+
+<span class="hljs-keyword">import</span> pers.huangyuhui.mybatis.bean.User;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: UserTest
+ * <span class="hljs-doctag">@Description</span>: Test Mybatis
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: May 9, 2019 5:26:52 PM
+ *
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserTest</span> </span>&#123;
+
+	InputStream inputStream;
+	SqlSessionFactory sqlSessionFactory;
+	SqlSession sqlSession;
+
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;
+
+		<span class="hljs-keyword">try</span> &#123;
+			<span class="hljs-comment">// 读取配置文件</span>
+			inputStream = Resources.getResourceAsStream(<span class="hljs-string">"mybatis-config.xml"</span>);
+			<span class="hljs-comment">// 根据配置文件构建会话工厂对象</span>
+			SqlSessionFactory sqlSessionFactory = <span class="hljs-keyword">new</span> SqlSessionFactoryBuilder().build(inputStream);
+			<span class="hljs-comment">// 通过SqlSessionFactory创建SqlSession</span>
+			sqlSession = sqlSessionFactory.openSession();
+			<span class="hljs-comment">// 执行映射文件中定义的SQL并返回映射结果</span>
+			User user = sqlSession.selectOne(<span class="hljs-string">"Namespace.UserInfoMapper.SelectUserInfoByID"</span>, <span class="hljs-number">1</span>);
+
+			System.out.println(user);
+
+		&#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+			e.printStackTrace();
+		&#125; <span class="hljs-keyword">finally</span> &#123;
+			sqlSession.close();
+		&#125;
+
+	&#125;
+&#125;</code></pre>
+</li>
+<li><p><em>log4j.properties : 日志文件(便于查看MyBatis操作数据库的过程).</em></p>
+<pre><code class="hljs t">#Global configuration
+log4j.rootLogger=DEBUG,stdout
+#Log configuration
+log4j.logger.pers.huangyuhui.mybatis.bean.test=TRACE
+#Console configuration
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.layout.ConversionPattern=%5p [%t] - %m%n</code></pre>
+</li>
+<li><p><em>程序运行结果如下所示</em></p>
+<pre><code class="hljs routeros">Logging initialized using <span class="hljs-string">'class org.apache.ibatis.logging.log4j.Log4jImpl'</span> adapter.
+PooledDataSource forcefully closed/removed all connections.
+PooledDataSource forcefully closed/removed all connections.
+PooledDataSource forcefully closed/removed all connections.
+PooledDataSource forcefully closed/removed all connections.
+Opening JDBC<span class="hljs-built_in"> Connection
+</span>Created<span class="hljs-built_in"> connection </span>1238080693.
+Setting autocommit <span class="hljs-keyword">to</span> <span class="hljs-literal">false</span> on JDBC<span class="hljs-built_in"> Connection </span>[com.mysql.cj.jdbc.ConnectionImpl@49cb9cb5]
+
+==&gt;  Preparing: select id,name,gender,email <span class="hljs-keyword">from</span> Test_MyBatis where id = ? 
+==&gt; Parameters: 1(Integer)
+&lt;==      Total: 1<span class="hljs-built_in">
+User </span>[<span class="hljs-attribute">id</span>=1, <span class="hljs-attribute">name</span>=YUbuntu0109, <span class="hljs-attribute">gender</span>=M, <span class="hljs-attribute">email</span>=Gentleman_0109@outlook.com]
+
+Resetting autocommit <span class="hljs-keyword">to</span> <span class="hljs-literal">true</span> on JDBC<span class="hljs-built_in"> Connection </span>[com.mysql.cj.jdbc.ConnectionImpl@49cb9cb5]
+Closing JDBC<span class="hljs-built_in"> Connection </span>[com.mysql.cj.jdbc.ConnectionImpl@49cb9cb5]
+Returned<span class="hljs-built_in"> connection </span>1238080693 <span class="hljs-keyword">to</span> pool.</code></pre></li>
+</ol>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/MyBatis/">MyBatis</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/05/12/VOA-Facebook-Co-founder-Calls-for-New-Laws-Limiting-Big-Tech/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">VOA:Facebook Co-founder Calls for New Laws Limiting Big Tech</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/05/09/Hi-Spring/">
+                        <span class="hidden-mobile">Hi Spring ~</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Hi MyBatis ~&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

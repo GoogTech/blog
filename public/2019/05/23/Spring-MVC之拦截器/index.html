@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>Spring MVC之拦截器 - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-05-23 22:05">
+      May 23, 2019 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.8k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      46
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="学习笔记-Spring-MVC之拦截器"><a href="#学习笔记-Spring-MVC之拦截器" class="headerlink" title="学习笔记 : Spring MVC之拦截器"></a>学习笔记 : Spring MVC之拦截器</h2><p><em>简介 : Spring MVC中的拦截器(<code>Interceptor</code>)类似于Servlet中的过滤器(<code>Filter</code>),主要用于拦截用户请求并做相应的处理,例如通过拦截器可以进行权限验证,记录请求信息的日志,判断用户是否登录等..要使用Spring MVC中的拦截器,就需要对拦截器类进行定义和配置,通常拦截器类可以通过两种方式来定义,如下所示 :</em></p>
+<ol>
+<li>实现<code>HandlerInterceptor</code>接口,或继承HandlerInterceptor接口的实现类,如<code>HandlerInterceptorAdapter</code>.</li>
+<li>实现<code>WebRequestInterceptor</code>接口,或继承WebRequestInterceptor接口的实现类.</li>
+</ol>
+<h3 id="拦截器的执行流程"><a href="#拦截器的执行流程" class="headerlink" title="拦截器的执行流程"></a>拦截器的执行流程</h3><h4 id="单个拦截器的执行流程"><a href="#单个拦截器的执行流程" class="headerlink" title="单个拦截器的执行流程"></a>单个拦截器的执行流程</h4><ol>
+<li><p><em>web.xml</em></p>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
+	<span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee"</span>
+	<span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"</span>
+	<span class="hljs-attr">id</span>=<span class="hljs-string">"WebApp_ID"</span> <span class="hljs-attr">version</span>=<span class="hljs-string">"4.0"</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">display-name</span>&gt;</span>springmvc_filter<span class="hljs-tag">&lt;/<span class="hljs-name">display-name</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">welcome-file-list</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">welcome-file</span>&gt;</span>index.jsp<span class="hljs-tag">&lt;/<span class="hljs-name">welcome-file</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">welcome-file-list</span>&gt;</span>
+
+	<span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span>
+		<span class="hljs-comment">&lt;!-- 设置前端过滤器 --&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>spring_mvc<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-class</span>&gt;</span>
+		<span class="hljs-comment">&lt;!-- 初始化时加载配置文件 --&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>contextConfigLocation<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>classpath:springmvc-config.xml<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span>
+		<span class="hljs-comment">&lt;!-- 容器启动时立即加载Servlet --&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">load-on-startup</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">load-on-startup</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">servlet</span>&gt;</span>
+
+	<span class="hljs-tag">&lt;<span class="hljs-name">servlet-mapping</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>spring_mvc<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre>
+</li>
+<li><p><em>CustomInterceptor.java : 自定义拦截器</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.filter.interceptor;
+
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;
+
+<span class="hljs-keyword">import</span> org.springframework.web.servlet.HandlerInterceptor;
+<span class="hljs-keyword">import</span> org.springframework.web.servlet.ModelAndView;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: CustomInterceptor
+ * <span class="hljs-doctag">@Description</span>: 拦截器
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: May 23, 2019 9:23:19 PM
+ *
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomInterceptor</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">HandlerInterceptor</span> </span>&#123;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">preHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span>
+			<span class="hljs-keyword">throws</span> Exception </span>&#123;
+		System.out.println(<span class="hljs-string">"------ this is preHandle1 ------"</span>);
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">postHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler,
+			ModelAndView modelAndView)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
+		System.out.println(<span class="hljs-string">"------ this is postHandle1 ------"</span>);
+
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">afterCompletion</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span>
+			<span class="hljs-keyword">throws</span> Exception </span>&#123;
+		System.out.println(<span class="hljs-string">"------ this is afterCompletion1 ------"</span>);
+	&#125;
+&#125;</code></pre>
+</li>
+<li><p><em>springmvc-config.xml : Spring MVC配置文件</em></p>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>
+	<span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
+	<span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">"http://www.springframework.org/schema/context"</span>
+	<span class="hljs-attr">xmlns:mvc</span>=<span class="hljs-string">"http://www.springframework.org/schema/mvc"</span>
+	<span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd"</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- 指定需要扫描的包 --&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">"pers.huangyuhui.springmvc.filter.controller"</span> /&gt;</span>
+
+	<span class="hljs-comment">&lt;!-- 定义视图解析器 --&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"viewResolver"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span>
+		<span class="hljs-comment">&lt;!-- 设置前缀 --&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"prefix"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"/WEB-INF/view/"</span> /&gt;</span>
+		<span class="hljs-comment">&lt;!-- 设置后缀 --&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"suffix"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">".jsp"</span> /&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
+	
+	<span class="hljs-comment">&lt;!-- 配置拦截器 --&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">mvc:interceptors</span>&gt;</span>
+		<span class="hljs-comment">&lt;!-- 拦截所有请求 --&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"pers.huangyuhui.springmvc.filter.interceptor.CustomInterceptor"</span> /&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">mvc:interceptors</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
+</li>
+<li><p><em>MyController.java : 控制器</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.filter.controller;
+
+<span class="hljs-keyword">import</span> org.springframework.stereotype.Controller;
+<span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: MyController
+ * <span class="hljs-doctag">@Description</span>: 控制器
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: May 23, 2019 9:20:31 PM
+ *
+ */</span>
+<span class="hljs-meta">@Controller</span>
+<span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/myFilter"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyController</span> </span>&#123;
+
+	<span class="hljs-comment">/**
+	 * <span class="hljs-doctag">@Title</span>: singleFilter
+	 * <span class="hljs-doctag">@Description</span>: 测试单个拦截器的执行流程
+	 * <span class="hljs-doctag">@return</span>: String
+	 */</span>
+	<span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/singleFilter"</span>)
+	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">singleFilter</span><span class="hljs-params">()</span> </span>&#123;
+
+		System.out.println(<span class="hljs-string">"test my filter ~"</span>);
+		<span class="hljs-keyword">return</span> <span class="hljs-string">"index"</span>;
+	&#125;
+
+&#125;</code></pre>
+</li>
+<li><p><em>新建<code>WebContent/WEB-INF/view/index.jsp</code>(仅测试)</em></p>
+</li>
+<li><p><em>将项目发布到Tomcat服务器并启动,在浏览器中访问地址: <code>http://localhost:8080/springmvc_filter/myFilter/singleFilter</code> 即可得到程序运行结果,如下所示 :</em></p>
+<pre><code class="hljs routeros">------ this is preHandle1 ------
+test my<span class="hljs-built_in"> filter </span>~
+------ this is postHandle1 ------
+------ this is afterCompletion1 ------</code></pre>
+
+
+</li>
+</ol>
+<h4 id="多个拦截器的执行流程"><a href="#多个拦截器的执行流程" class="headerlink" title="多个拦截器的执行流程"></a>多个拦截器的执行流程</h4><ol>
+<li><p><em>web.xml(同上..)</em></p>
+</li>
+<li><p><em>CustomInterceptor.java : 第一个自定义拦截器</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.filter.interceptor;
+
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;
+
+<span class="hljs-keyword">import</span> org.springframework.web.servlet.HandlerInterceptor;
+<span class="hljs-keyword">import</span> org.springframework.web.servlet.ModelAndView;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: CustomInterceptor
+ * <span class="hljs-doctag">@Description</span>: 自定义拦截器
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: May 23, 2019 9:23:19 PM
+ *
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomInterceptor</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">HandlerInterceptor</span> </span>&#123;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">preHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span>
+			<span class="hljs-keyword">throws</span> Exception </span>&#123;
+		System.out.println(<span class="hljs-string">"------ this is preHandle1 ------"</span>);
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">postHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler,
+			ModelAndView modelAndView)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
+		System.out.println(<span class="hljs-string">"------ this is postHandle1 ------"</span>);
+
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">afterCompletion</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span>
+			<span class="hljs-keyword">throws</span> Exception </span>&#123;
+		System.out.println(<span class="hljs-string">"------ this is afterCompletion1 ------"</span>);
+	&#125;
+&#125;</code></pre>
+</li>
+<li><p><em>CustomInterceptor2.java : 第二个自定义拦截器</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.filter.interceptor;
+
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;
+
+<span class="hljs-keyword">import</span> org.springframework.web.servlet.HandlerInterceptor;
+<span class="hljs-keyword">import</span> org.springframework.web.servlet.ModelAndView;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: CustomInterceptor2
+ * <span class="hljs-doctag">@Description</span>: 自定义拦截器
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: May 29, 2019 3:46:30 PM
+ *
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomInterceptor2</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">HandlerInterceptor</span> </span>&#123;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">preHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span>
+			<span class="hljs-keyword">throws</span> Exception </span>&#123;
+		System.out.println(<span class="hljs-string">"------ this is preHandle2 ------"</span>);
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">postHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler,
+			ModelAndView modelAndView)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
+		System.out.println(<span class="hljs-string">"------ this is postHandle2 ------"</span>);
+
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">afterCompletion</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span>
+			<span class="hljs-keyword">throws</span> Exception </span>&#123;
+		System.out.println(<span class="hljs-string">"------ this is afterCompletion2------"</span>);
+	&#125;
+&#125;</code></pre>
+</li>
+<li><p><em>springmvc-config.xml : Spring MVC配置文件</em></p>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>
+	<span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
+	<span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">"http://www.springframework.org/schema/context"</span>
+	<span class="hljs-attr">xmlns:mvc</span>=<span class="hljs-string">"http://www.springframework.org/schema/mvc"</span>
+	<span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd"</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- 指定需要扫描的包 --&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">"pers.huangyuhui.springmvc.filter.controller"</span> /&gt;</span>
+
+	<span class="hljs-comment">&lt;!-- 定义视图解析器 --&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"viewResolver"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span>
+		<span class="hljs-comment">&lt;!-- 设置前缀 --&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"prefix"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"/WEB-INF/view/"</span> /&gt;</span>
+		<span class="hljs-comment">&lt;!-- 设置后缀 --&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"suffix"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">".jsp"</span> /&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
+
+	<span class="hljs-comment">&lt;!-- 配置拦截器1 --&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">mvc:interceptors</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">mvc:interceptor</span>&gt;</span>
+			<span class="hljs-comment">&lt;!--拦截所有路径下的请求  --&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">mvc:mapping</span> <span class="hljs-attr">path</span>=<span class="hljs-string">"/**"</span>/&gt;</span>
+			<span class="hljs-comment">&lt;!-- 拦截指定路径的请求 --&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"pers.huangyuhui.springmvc.filter.interceptor.CustomInterceptor"</span> /&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">mvc:interceptor</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">mvc:interceptors</span>&gt;</span>
+	
+	<span class="hljs-comment">&lt;!-- 配置拦截器2 --&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">mvc:interceptors</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">mvc:interceptor</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">mvc:mapping</span> <span class="hljs-attr">path</span>=<span class="hljs-string">"/**"</span>/&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"pers.huangyuhui.springmvc.filter.interceptor.CustomInterceptor2"</span> /&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">mvc:interceptor</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">mvc:interceptors</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
+</li>
+<li><p><em>MyController.java : 控制器</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.filter.controller;
+
+<span class="hljs-keyword">import</span> org.springframework.stereotype.Controller;
+<span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: MyController
+ * <span class="hljs-doctag">@Description</span>: 控制器
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: May 23, 2019 9:20:31 PM
+ *
+ */</span>
+<span class="hljs-meta">@Controller</span>
+<span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/myFilter"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyController</span> </span>&#123;
+
+	<span class="hljs-comment">/**
+	 * <span class="hljs-doctag">@Title</span>: doubleFilter
+	 * <span class="hljs-doctag">@Description</span>: 测试多个拦截器的执行流程
+	 * <span class="hljs-doctag">@return</span>: String
+	 */</span>
+	<span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/doubleFilter"</span>)
+	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">doubleFilter</span><span class="hljs-params">()</span> </span>&#123;
+		System.out.println(<span class="hljs-string">"test my filter ~"</span>);
+		<span class="hljs-keyword">return</span> <span class="hljs-string">"index"</span>;
+	&#125;
+
+&#125;</code></pre></li>
+<li><p><em>新建<code>WebContent/WEB-INF/view/index.jsp</code>(仅测试)</em></p>
+</li>
+<li><p><em>将项目发布到Tomcat服务器并启动,在浏览器中访问地址: <code>http://localhost:8080/springmvc_filter/myFilter/doubleFilter</code> 即可得到程序运行结果,如下所示 :</em></p>
+<pre><code class="hljs kotlin">------ <span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> preHandle1 ------
+------ <span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> preHandle2 ------
+test my filter ~
+------ <span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> postHandle2 ------
+------ <span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> postHandle1 ------
+------ <span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> afterCompletion2------
+------ <span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> afterCompletion1 ------</code></pre>
+
+
+
+</li>
+</ol>
+<h3 id="应用案例"><a href="#应用案例" class="headerlink" title="应用案例"></a>应用案例</h3><p><em>简介 : 通过拦截器来完成一个用户登录权限验证案例.在本案例中,要求如下 :</em></p>
+<ul>
+<li><em>只有登录后的用户才能访问系统主页面,如果没有登录系统而直接访问主页面,则其请求会被拦截器所拦截,并转发到登录页面,同时在登录页面提出提示信息.</em></li>
+<li><em>如果用户名或密码错误,会在登录页面给出相应的提示信息.</em> </li>
+<li><em>当已登录的用户在系统主页中单击”退出”按钮时,系统将会退回到登录页面.</em></li>
+</ul>
+<ol>
+<li><p><em>web.xml : 略..</em></p>
+</li>
+<li><p><em>User.java : 用户信息</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.filter.bean;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: User
+ * <span class="hljs-doctag">@Description</span>: 用户信息
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: May 24, 2019 8:43:49 AM
+ *
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;
+
+	<span class="hljs-keyword">private</span> Integer id;
+	<span class="hljs-keyword">private</span> String name;
+	<span class="hljs-keyword">private</span> String password;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">getId</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> id;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setId</span><span class="hljs-params">(Integer id)</span> </span>&#123;
+		<span class="hljs-keyword">this</span>.id = id;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> name;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>&#123;
+		<span class="hljs-keyword">this</span>.name = name;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getPassword</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> password;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setPassword</span><span class="hljs-params">(String password)</span> </span>&#123;
+		<span class="hljs-keyword">this</span>.password = password;
+	&#125;
+
+&#125;</code></pre>
+</li>
+<li><p><em>login.jsp : 用户登录页面</em></p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>应用案例-实现用户登录权限验证<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">align</span>=<span class="hljs-string">"center"</span>&gt;</span>用户登录页面  ($&#123;msg &#125;)<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">align</span>=<span class="hljs-string">"center"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"$&#123;pageContext.request.contextPath &#125;/login"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>用户名<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"name"</span>/&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">tr</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"50px"</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>密码<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+					<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span>/&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+				<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">align</span>=<span class="hljs-string">"center"</span>&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"margin-left:33px"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>  <span class="hljs-attr">value</span>=<span class="hljs-string">"登录"</span>/&gt;</span>
+				<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"reset"</span>  <span class="hljs-attr">value</span>=<span class="hljs-string">"重置"</span>/&gt;</span>
+			<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+</li>
+<li><p><em>main.jsp : 系统主页面</em></p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>应用案例-实现用户登录权限验证<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">align</span>=<span class="hljs-string">"center"</span>&gt;</span>用户主页面<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">hr</span>/&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>当前用户 $&#123;USER_SESSION.name &#125;<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"$&#123;pageContext.request.contextPath &#125;/logout"</span>&gt;</span>退出<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+</li>
+<li><p><em>UserController.java : 控制器</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.filter.controller;
+
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpSession;
+
+<span class="hljs-keyword">import</span> org.springframework.stereotype.Controller;
+<span class="hljs-keyword">import</span> org.springframework.ui.Model;
+<span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.GetMapping;
+<span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.PostMapping;
+<span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;
+
+<span class="hljs-keyword">import</span> pers.huangyuhui.springmvc.filter.bean.User;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: UserController
+ * <span class="hljs-doctag">@Description</span>: 控制器
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: May 24, 2019 8:45:24 AM
+ *
+ */</span>
+<span class="hljs-meta">@Controller</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserController</span> </span>&#123;
+
+	<span class="hljs-comment">/**
+	 * <span class="hljs-doctag">@Title</span>: toLogin
+	 * <span class="hljs-doctag">@Description</span>: 跳转到用户登录页面
+	 * <span class="hljs-doctag">@param</span>: null
+	 * <span class="hljs-doctag">@return</span>: String
+	 */</span>
+	<span class="hljs-comment">// @RequestMapping(value = "/login", method = RequestMethod.GET)</span>
+	<span class="hljs-meta">@GetMapping</span>(value = <span class="hljs-string">"/login"</span>) <span class="hljs-comment">// 组合注解</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toLogin</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-string">"login"</span>;
+	&#125;
+
+	<span class="hljs-comment">/**
+	 * <span class="hljs-doctag">@Title</span>: login
+	 * <span class="hljs-doctag">@Description</span>: 用户登录
+	 * <span class="hljs-doctag">@param</span>: user
+	 * <span class="hljs-doctag">@param</span>: model
+	 * <span class="hljs-doctag">@param</span>: session
+	 * <span class="hljs-doctag">@return</span>: String
+	 */</span>
+	<span class="hljs-comment">// @RequestMapping(value = "/login", method = RequestMethod.POST)</span>
+	<span class="hljs-meta">@PostMapping</span>(value = <span class="hljs-string">"/login"</span>)
+	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">login</span><span class="hljs-params">(User user, Model model, HttpSession session)</span> </span>&#123;
+
+		<span class="hljs-comment">// 获取用户名及密码</span>
+		String username = user.getName();
+		String password = user.getPassword();
+
+		<span class="hljs-comment">// 此处模拟从数据库中获取用户名和密码后进行判断</span>
+		<span class="hljs-keyword">if</span> ((username != <span class="hljs-keyword">null</span> &amp;&amp; username.equals(<span class="hljs-string">"YUbuntu0109"</span>)) &amp;&amp; (password != <span class="hljs-keyword">null</span> &amp;&amp; password.equals(<span class="hljs-string">"demo"</span>))) &#123;
+			<span class="hljs-comment">// 将用户对象添加到Sessoin</span>
+			session.setAttribute(<span class="hljs-string">"USER_SESSION"</span>, user);
+			<span class="hljs-comment">// 重定向到主页面</span>
+			<span class="hljs-keyword">return</span> <span class="hljs-string">"redirect:main"</span>;
+
+		&#125;
+		model.addAttribute(<span class="hljs-string">"msg"</span>, <span class="hljs-string">"用户名或密码错误,请重新登录哟 !"</span>);
+
+		<span class="hljs-keyword">return</span> <span class="hljs-string">"login"</span>;
+	&#125;
+
+	<span class="hljs-comment">/**
+	 * <span class="hljs-doctag">@Title</span>: toMain
+	 * <span class="hljs-doctag">@Description</span>: 跳转到用户主页
+	 * <span class="hljs-doctag">@param</span>: null
+	 * <span class="hljs-doctag">@return</span>: String
+	 */</span>
+	<span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">"/main"</span>)
+	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toMain</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-string">"main"</span>;
+	&#125;
+
+	<span class="hljs-comment">/**
+	 * <span class="hljs-doctag">@Title</span>: logout
+	 * <span class="hljs-doctag">@Description</span>: 退出登录
+	 * <span class="hljs-doctag">@param</span>: session
+	 * <span class="hljs-doctag">@return</span>: String
+	 */</span>
+	<span class="hljs-meta">@RequestMapping</span>(value = <span class="hljs-string">"/logout"</span>)
+	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">logout</span><span class="hljs-params">(HttpSession session)</span> </span>&#123;
+		<span class="hljs-comment">// 清除Session</span>
+		session.invalidate();
+		<span class="hljs-comment">// 重定向到登录页面</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-string">"redirect:login"</span>;
+
+	&#125;
+
+&#125;</code></pre>
+</li>
+<li><p><em>LoginInterceptor.java : 自定义拦截器</em></p>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.filter.interceptor;
+
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpSession;
+
+<span class="hljs-keyword">import</span> org.springframework.web.servlet.HandlerInterceptor;
+<span class="hljs-keyword">import</span> org.springframework.web.servlet.ModelAndView;
+
+<span class="hljs-keyword">import</span> pers.huangyuhui.springmvc.filter.bean.User;
+
+<span class="hljs-comment">/**
+ * <span class="hljs-doctag">@ClassName</span>: MyInterceptor
+ * <span class="hljs-doctag">@Description</span>: 用户登录拦截器
+ * <span class="hljs-doctag">@author</span>: HuangYuhui
+ * <span class="hljs-doctag">@date</span>: May 24, 2019 8:59:20 AM
+ *
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LoginInterceptor</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">HandlerInterceptor</span> </span>&#123;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">preHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span>
+			<span class="hljs-keyword">throws</span> Exception </span>&#123;
+
+		<span class="hljs-comment">// 获取请求的URL</span>
+		String url = request.getRequestURI();
+		<span class="hljs-comment">// 除了login.jsp可以公开访问外,其它URL都进行拦截控制</span>
+		<span class="hljs-keyword">if</span> (url.indexOf(<span class="hljs-string">"/login"</span>) &gt;= <span class="hljs-number">0</span>) &#123;
+			<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+		&#125;
+
+		<span class="hljs-comment">// 获取Session</span>
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute(<span class="hljs-string">"USER_SESSION"</span>);
+		<span class="hljs-comment">// 判断Session中是否有用户数据</span>
+		<span class="hljs-keyword">if</span> (user != <span class="hljs-keyword">null</span>) &#123;
+			<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+		&#125;
+
+		<span class="hljs-comment">// 对不符合条件的给出提示信息并转发到登录页面</span>
+		request.setAttribute(<span class="hljs-string">"msg"</span>, <span class="hljs-string">"你尚未登录,请先登录哟 !"</span>);
+		request.getRequestDispatcher(<span class="hljs-string">"/WEB-INF/view/login.jsp"</span>).forward(request, response);
+
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">postHandle</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler,
+			ModelAndView modelAndView)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
+		System.out.println(<span class="hljs-string">"this is postHandle"</span>);
+
+	&#125;
+
+	<span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">afterCompletion</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span>
+			<span class="hljs-keyword">throws</span> Exception </span>&#123;
+		System.out.println(<span class="hljs-string">"this is afterCompletion"</span>);
+	&#125;
+&#125;</code></pre>
+</li>
+<li><p><em>将项目发布到Tomcat服务器并启动,在浏览器中访问地址: <code>http://localhost:8080/springmvc_filter/main</code> 其页面如下:</em></p>
+</li>
+</ol>
+<p><img src="/2019/05/23/Spring-MVC%E4%B9%8B%E6%8B%A6%E6%88%AA%E5%99%A8/SpringMVC_Filter-login.PNG" srcset="/img/loading.gif" alt=" "></p>
+<p><em>登录成功后,其页面如下 :</em></p>
+<p><img src="/2019/05/23/Spring-MVC%E4%B9%8B%E6%8B%A6%E6%88%AA%E5%99%A8/SpringMVC_Filter-main.PNG" srcset="/img/loading.gif" alt=" "></p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Spring-MVC/">Spring MVC</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/05/23/SSM%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SSM框架整合</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/05/22/Spring-MVC%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/">
+                        <span class="hidden-mobile">Spring MVC之数据绑定</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Spring MVC之拦截器&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
