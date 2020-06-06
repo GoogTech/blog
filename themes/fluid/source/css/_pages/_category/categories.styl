@@ -1,0 +1,56 @@
+.category
+
+  &:not(:last-child)
+    margin-bottom 1rem
+
+  &-sub
+    pass
+
+  &-item
+    font-size 1.25rem
+    font-weight bold
+    display flex
+    align-items center
+
+  &-subitem
+    font-size 1rem
+    font-weight bold
+
+  &-collapse
+    margin-left: 1.25rem
+    width 100%
+
+  &-count
+    font-size .9rem
+    font-weight initial
+    min-width 1.3em
+    line-height 1.3em
+    display flex
+    align-items center
+
+    i
+      padding-right  .25rem
+
+    span
+      width 2rem
+
+  &-item-action
+
+    &:not(.collapsed) > i
+      transform rotate(90deg)
+      transform-origin center center
+
+    i
+      transition transform .3s ease-out
+      display inline-block
+      margin-left .25rem
+
+    &:hover
+      z-index 1
+      color #495057
+      text-decoration none
+      background-color $link-hover-bg-color
+
+  .row
+    margin-left 0
+    margin-right 0

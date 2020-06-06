@@ -1,0 +1,18 @@
+<% if (page.total > 1){ %>
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <%- paginator({
+        prev_text: '<i class="iconfont icon-arrowleft"></i>',
+        next_text: '<i class="iconfont icon-arrowright"></i>',
+        mid_size: 2,
+        escape: false
+      }) %>
+    </span>
+  </nav>
+  <% var point = theme.scroll_down_arrow.scroll_after_turning_page ? '#board' : '' %>
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '<%- point %>';
+    }
+  </script>
+<% } %>

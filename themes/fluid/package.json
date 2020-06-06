@@ -1,0 +1,41 @@
+{
+  "name": "hexo-theme-fluid",
+  "version": "1.8.1",
+  "description": "An elegant Material-Design theme for Hexo.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "lint": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fluid-dev/hexo-theme-fluid.git"
+  },
+  "keywords": [
+    "hexo",
+    "theme",
+    "fluid",
+    "material"
+  ],
+  "author": "fluid-dev (https://github.com/fluid-dev)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fluid-dev/hexo-theme-fluid/issues"
+  },
+  "homepage": "https://hexo.fluid-dev.com/docs",
+  "engines": {
+    "node": ">=8.10.0"
+  },
+  "devDependencies": {
+    "ejs-lint": "^1.1.0",
+    "gulp": "^4.0.2",
+    "gulp-eslint": "^6.0.0",
+    "gulp-shell": "^0.8.0",
+    "husky": "^4.2.5",
+    "js-yaml": "^3.13.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  }
+}
