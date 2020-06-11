@@ -365,6 +365,7 @@ about:  # 关于页需要手动创建，具体请见：https://hexo.fluid-dev.co
     - { class: 'iconfont icon-youtube-fill', link: 'https://www.youtube.com/channel/UCQ2-QI7IYSSX2tpOjmjBatw', tip: 'Youtube' }
     - { class: 'iconfont icon-bilibili-fill', link: 'https://space.bilibili.com/364361791', tip: 'BiliBili' }
     - { class: 'iconfont icon-bug', link: 'https://anonymous.ishacker.net', tip: 'anonymous.ishacker.net' }
+    - { class: 'iconfont icon-mail', link: '', tip: 'ishacker.net@gmail.com' }
     - { class: 'iconfont icon-qq-fill', qrcode: '/img/qq.JPG' }  # 添加 qrcode 后，点击不再跳转，而是悬浮二维码，需要指定 image
 
 
