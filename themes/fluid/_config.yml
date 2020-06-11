@@ -11,9 +11,9 @@
 # 全局
 # Site
 #---------------------------
-favicon: /img/favicon.png # 网站标签页的 icon
+favicon: /img/favicon.png # 网站标签页的 icon(已停用:favicon-useless.png)
 
-apple_touch_icon: /img/favicon.png # 用于苹果设备的 icon
+apple_touch_icon: /img/favicon.png # 用于苹果设备的 icon(已停用:favicon-useless.png)
 
 title_join_string: ' - '  # 浏览器标签页中的标题分隔符，效果： 文章名 - 站点名
 
@@ -38,8 +38,8 @@ fun_features: # 一些好玩的功能
     visible: hover # 默认悬浮显示，可选：hover（鼠标在元素上悬浮时显示） | always（一直显示） | touch（移动端触摸显示）
     icon: "" # 可选：§ | # | ❡ 等，留空则为默认效果
   mouse_click:  # 鼠标点击动效
-    enable: false
-    style: values # 目前设置两个值：values（价值观词汇） | love（爱心）
+    enable: true
+    style: love # 目前设置两个值：values（价值观词汇） | love（爱心）
 
 color:  # 主题颜色配置，不一定能每一处都生效，可能会被局部样式覆盖，这种情况建议用自定义 css 解决。配色可以在这获得启发： https://www.webdesignrankings.com/resources/lolcolors/
   body_bg_color: "#eee"             # body 背景色
@@ -104,7 +104,7 @@ version:  # 主题版本相关
 # Header
 #---------------------------
 navbar:
-  blog_title: Fluid # 导航栏左侧的标题，为空则按 hexo config.title 显示
+  blog_title: ANONYMOUS # 导航栏左侧的标题，为空则按 hexo config.title 显示
   ground_glass:  # 导航栏毛玻璃特效，实验性功能，可能会造成页面滚动掉帧和抖动，部分浏览器不支持会自动不生效
     enable: false
     px: 3  # 模糊像素，只能为数字，数字越大模糊度越高
@@ -112,10 +112,10 @@ navbar:
   menu:  # 可自行增减，key 用来关联 languages/*.yml，如不存在关联则显示 key 本身的值；icon 是 css class，可以省略；增加 name 可以强制显示指定名称
     - { key: 'home', link: '/', icon: 'iconfont icon-home-fill' }
     - { key: 'archive', link: '/archives/', icon: 'iconfont icon-archive-fill' }
-    - { key: 'category', link: '/categories/', icon: 'iconfont icon-category-fill' }
+   #- { key: 'category', link: '/categories/', icon: 'iconfont icon-category-fill' }
     - { key: 'tag', link: '/tags/', icon: 'iconfont icon-tags-fill' }
     - { key: 'about', link: '/about/', icon: 'iconfont icon-user-fill' }
-    #- { key: 'links', link: '/links/', icon: 'iconfont icon-link-fill' }  # 友链页，把前面#去掉即可展示
+   #- { key: 'links', link: '/links/', icon: 'iconfont icon-link-fill' }  # 友链页，把前面#去掉即可展示
 
 search: # 搜索栏，基于 hexo-generator-search 插件，若已安装其他搜索插件请关闭此功能，以避免生成多余的索引文件。
   enable: true
@@ -138,7 +138,7 @@ banner_parallax: true  # 头图滚动视差
 #---------------------------
 footer:
   statistics:  # 展示网站的 PV、UV 统计数
-    enable: false
+    enable: true
     source: "busuanzi"  # 统计数据来源，可选：busuanzi | leancloud，使用 leancloud 需要在 web_analytics 中设置 api 参数，使用 busuanzi 注意可能间歇抽风
     pv_format: "总访问量 {} 次"  # 显示的文本，{}是数字的占位符（必须包含)，下同
     uv_format: "总访客数 {} 人"
@@ -164,7 +164,7 @@ index:
   post_default_img: '' # 默认的文章封面图，当没有指定 index_img 时会使用该图片，若都为空则不显示任何图片
   slogan:  # 首页副标题的独立设置
     enable: true  # 为 false 则不显示任何内容
-    text: 'An elegant Material-Design theme for Hexo'  # 为空则按 hexo config.subtitle 显示
+    text: '☕ Hey guys welcome back, coffee time !'  # 为空则按 hexo config.subtitle 显示
   auto_excerpt:
     enable: true
   post_url_target: _self  # available: _blank | _self
@@ -356,13 +356,16 @@ about:  # 关于页需要手动创建，具体请见：https://hexo.fluid-dev.co
   banner_img_height: 60  # available: 0 - 100
   banner_mask_alpha: 0.3  # available: 0 - 1.0
   subtitle:  # 打字机内容
-  avatar: /img/avatar.png # 头像
-  name: myname
-  introduce: '一句简短的介绍' # 支持 HTML
+  avatar: /img/avatar.jpg # 头像
+  name: 黄宇辉
+  introduce: 'Follow Your Heart And Stay Hungry Stay Foolish' # 支持 HTML
   icons: # 更多图标可从 https://hexo.fluid-dev.com/docs/icon/ 查找，class 代表图标的 css class
-    - { class: 'iconfont icon-github-fill', link: 'https://github.com', tip: 'GitHub' }
-    - { class: 'iconfont icon-douban-fill', link: 'https://douban.com', tip: '豆瓣' }
-    - { class: 'iconfont icon-wechat-fill', qrcode: '/img/favicon.png' }  # 添加 qrcode 后，点击不再跳转，而是悬浮二维码，需要指定 image
+    - { class: 'iconfont icon-github-fill', link: 'https://github.com/YUbuntu0109', tip: 'GitHub' }
+    - { class: 'iconfont icon-twitter-fill', link: 'https://twitter.com/ishacker_net', tip: 'Twitter' }
+    - { class: 'iconfont icon-youtube-fill', link: 'https://www.youtube.com/channel/UCQ2-QI7IYSSX2tpOjmjBatw', tip: 'Youtube' }
+    - { class: 'iconfont icon-bilibili-fill', link: 'https://space.bilibili.com/364361791', tip: 'BiliBili' }
+    - { class: 'iconfont icon-bug', link: 'https://anonymous.ishacker.net', tip: 'anonymous.ishacker.net' }
+    - { class: 'iconfont icon-qq-fill', qrcode: '/img/qq.JPG' }  # 添加 qrcode 后，点击不再跳转，而是悬浮二维码，需要指定 image
 
 
 #---------------------------
