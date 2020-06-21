@@ -1,7 +1,6 @@
 <p align="center">
-	<a href="https://yubuntu0109.github.io/"><img src="https://raw.githubusercontent.com/YUbuntu0109/YUbuntu0109.github.io/430d06191a8297f8d49619597cddbdacefbab7f8/img/logo.png" width="500"></a>
+	<a href="https://ishacker.net/"><img src="https://yubuntu0109.github.io/2020/06/21/image-repo/logo.png" width="500"></a>
 </p>
-
 
 <p align="center">
     <img src="https://badges.frapsoft.com/os/v1/open-source.png?v=103"></img>
