@@ -28,7 +28,10 @@
 
 ---
 
-## 💖💛💙💚👩‍💻 大三学生的编程学习笔记 👨‍💻💝💗💜🖤
+<p align="center">
+  💖💛💙💚👩‍💻 大三学生的编程学习笔记 👨‍💻💝💗💜🖤
+</p>
+
 *📒✍开源的目的仅有一个 : 真心希望自己的这些日常学习笔记，心得，项目能够帮助一些同学提高编程学习效率，该学习笔记与我的博客网站同步更新哟~ 注 : 本博客所有文章除特别声明外，均采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">`知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议`</a>进行许可 .*
 
 > 浏览所有 [`开源学习笔记`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/tree/HexoBackup/source/_posts) 或 [`我的编程、项目、学习计划及推荐书籍`](https://github.com/YUbuntu0109/YUbuntu0109.github.io/projects)
@@ -37,7 +40,8 @@
 
 ### 👨‍🎓 个人简介
 * *姓名 : 黄宇辉*
-* *个人博客网站 : https://ishacker.net/*
+* *Blog : https://ishacker.net/*
+* *Twitter : https://twitter.com/ishacker_net*
 
 ---
 
