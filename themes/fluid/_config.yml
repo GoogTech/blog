@@ -361,6 +361,7 @@ about:  # 关于页需要手动创建，具体请见：https://hexo.fluid-dev.co
   introduce: 'Follow Your Heart And Stay Hungry Stay Foolish' # 支持 HTML
   icons: # 更多图标可从 https://hexo.fluid-dev.com/docs/icon/ 查找，class 代表图标的 css class
     - { class: 'iconfont icon-github-fill', link: 'https://github.com/YUbuntu0109', tip: 'GitHub' }
+    - { class: 'iconfont icon-docker', link: 'https://hub.docker.com/u/yubuntu0109', tip: 'Docker' }
     - { class: 'iconfont icon-twitter-fill', link: 'https://twitter.com/ishacker_net', tip: 'Twitter' }
     - { class: 'iconfont icon-youtube-fill', link: 'https://www.youtube.com/channel/UCQ2-QI7IYSSX2tpOjmjBatw', tip: 'Youtube' }
     - { class: 'iconfont icon-bilibili-fill', link: 'https://space.bilibili.com/364361791', tip: 'BiliBili' }
