@@ -57,7 +57,7 @@ OK
 
 ### 教程
 *在这里你可以提前体验并学习以下 Redis 的使用 : http://try.redis.io/*
-![ ](Ubuntu18-04-安装Redis及基本使用/try.redIs.io.PNG)
+![ ](Ubuntu18-04-安装Redis及基本使用/try.redis.io.PNG)
 
 
 
