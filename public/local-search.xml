@@ -4,6 +4,29 @@
   
   
   <entry>
+    <title>解决每当Hexo博客更新后需要重新填]写域名的尴尬</title>
+    <link href="/2020/06/22/%E8%A7%A3%E5%86%B3%E6%AF%8F%E5%BD%93Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E5%90%8E%E9%9C%80%E8%A6%81%E9%87%8D%E6%96%B0%E5%A1%AB%E5%86%99%E5%9F%9F%E5%90%8D%E7%9A%84%E5%B0%B4%E5%B0%AC/"/>
+    <url>/2020/06/22/%E8%A7%A3%E5%86%B3%E6%AF%8F%E5%BD%93Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E5%90%8E%E9%9C%80%E8%A6%81%E9%87%8D%E6%96%B0%E5%A1%AB%E5%86%99%E5%9F%9F%E5%90%8D%E7%9A%84%E5%B0%B4%E5%B0%AC/</url>
+    
+    <content type="html"><![CDATA[<ol><li><em>在 Hexo 博客文件夹中的 <code>source</code> 目录下( 不是hexo根目录哟 )创建一个名为 <code>CNAME</code>文件，然后文件中写入你的域名，例如我的博客域名 : <code>ishacker.net</code></em></li></ol><p><img src="/2020/06/22/%E8%A7%A3%E5%86%B3%E6%AF%8F%E5%BD%93Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E5%90%8E%E9%9C%80%E8%A6%81%E9%87%8D%E6%96%B0%E5%A1%AB%E5%86%99%E5%9F%9F%E5%90%8D%E7%9A%84%E5%B0%B4%E5%B0%AC/hexo-source-cname.PNG" srcset="/img/loading.gif" alt=" "></p><ol start="2"><li><em>执行 Hexo 博文生成命令 : <code>hexo g</code>，然后通过 <code>hexo d</code> 或 <code>git push origin</code> 等方式将 Hexo 博客部署到 Github 即可.</em></li></ol>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Hexo</tag>
+      
+      <tag>GitHub</tag>
+      
+      <tag>domain name</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>SSH远程连接服务器的两种方式</title>
     <link href="/2020/06/22/SSH%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F/"/>
     <url>/2020/06/22/SSH%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F/</url>
