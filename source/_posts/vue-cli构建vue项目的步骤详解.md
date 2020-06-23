@@ -77,6 +77,22 @@ $ npm run dev
 *项目默认会在 8080 端口启动，如果端口有占用，会自动调整端口. 打开浏览器输入 : `http://localhost:8080` 就会看到构建的 vue 项目主页，如下图所示*
 ![ ](vue-cli构建vue项目的步骤详解/localhost-8080.PNG)
 
+### 安装vue的辅助工具
+如果项目可以正常启动，即可继续安装你所需的vue辅助工具 :
+```shell
+# 路由管理模块
+npm install vue-router --save
+# 状态管理模块
+npm install vuex --save
+# 网路请求模块
+npm install vue-resource --save
+# 安装element-ui
+cnpm install element-ui --save
+# 安装axios
+cnpm install axios --save
+# ...
+```
+
 
 ### 参考
 > [Vue项目创建详解](https://www.cnblogs.com/aizai846/archive/2020/04/05/12634878.html)
