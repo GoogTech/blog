@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>Docker镜像及容器的基本命令 - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>ANONYMOUS</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-06-23 16:49">
+      June 23, 2020 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      55
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="Docker帮助命令"><a href="#Docker帮助命令" class="headerlink" title="Docker帮助命令"></a>Docker帮助命令</h2><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看docker的版本信息</span>
+<span class="hljs-meta">$</span><span class="bash"> docker version</span>
+<span class="hljs-meta">#</span><span class="bash"> 查看docker的系统信息</span>
+<span class="hljs-meta">$</span><span class="bash"> docker info</span>
+<span class="hljs-meta">#</span><span class="bash"> 查看docker帮助命令</span>
+<span class="hljs-meta">$</span><span class="bash"> docker --<span class="hljs-built_in">help</span></span></code></pre>
+
+
+<h2 id="Docker镜像命令"><a href="#Docker镜像命令" class="headerlink" title="Docker镜像命令"></a>Docker镜像命令</h2><h3 id="docker-images-查看镜像"><a href="#docker-images-查看镜像" class="headerlink" title="docker images : 查看镜像"></a>docker images : 查看镜像</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> docs</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker images --help
+
+Usage:  docker images [OPTIONS] [REPOSITORY[:TAG]]
+
+List images
+
+Options:
+  -a, --all             Show all images (default hides intermediate images)
+      --digests         Show digests
+  -f, --filter filter   Filter output based on conditions provided
+      --format string   Pretty-print images using a Go template
+      --no-trunc        Don't truncate output
+  -q, --quiet           Only show numeric IDs
+<span class="hljs-meta">
+#</span><span class="bash"> image</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+hello-world         latest              bf756fb1ae65        5 months ago        13.3kB
+<span class="hljs-meta">
+#</span><span class="bash"> image -a</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker images -a
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+hello-world         latest              bf756fb1ae65        5 months ago        13.3kB
+<span class="hljs-meta">
+#</span><span class="bash"> image -q</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker images -q
+bf756fb1ae65</code></pre>
+
+
+<h3 id="docker-search-搜索镜像"><a href="#docker-search-搜索镜像" class="headerlink" title="docker search : 搜索镜像"></a>docker search : 搜索镜像</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> docs</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker search --help
+
+Usage:  docker search [OPTIONS] TERM
+
+Search the Docker Hub for images
+
+Options:
+  -f, --filter filter   Filter output based on conditions provided
+      --format string   Pretty-print search using a Go template
+      --limit int       Max number of search results (default 25)
+      --no-trunc        Don't truncate output
+<span class="hljs-meta">
+#</span><span class="bash"> 如同在dockerhub网页上搜索: https://hub.docker.com/search?q=mysql&amp;<span class="hljs-built_in">type</span>=image</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker search mysql
+NAME                              DESCRIPTION                                     STARS               OFFICIAL          AUTOMATED
+mysql                             MySQL is a widely used, open-source relation…   9662                [OK]
+mariadb                           MariaDB is a community-developed fork of MyS…   3514                [OK]
+. . . . . .
+<span class="hljs-meta">
+
+#</span><span class="bash"> STARS &gt; 9000</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker search mysql --filter=STARS=9000
+NAME                DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED
+mysql               MySQL is a widely used, open-source relation…   9662                [OK]</code></pre>
+
+
+<h3 id="docker-pull-下载镜像"><a href="#docker-pull-下载镜像" class="headerlink" title="docker pull : 下载镜像"></a>docker pull : 下载镜像</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> docs</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker pull --help
+
+Usage:  docker pull [OPTIONS] NAME[:TAG|@DIGEST]
+
+Pull an image or a repository from a registry
+
+Options:
+  -a, --all-tags                Download all tagged images in the repository
+      --disable-content-trust   Skip image verification (default true)
+      --platform string         Set platform if server is multi-platform capable
+  -q, --quiet                   Suppress verbose output
+<span class="hljs-meta">
+#</span><span class="bash"> download mysql and the default tag is latest</span>
+<span class="hljs-meta">#</span><span class="bash"> or download mysql and the tag is 5.7: docker pull mysql[:tag]</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker pull mysql 
+Using default tag: latest
+latest: Pulling from library/mysql
+8559a31e96f4: Pull complete
+d51ce1c2e575: Pull complete
+c2344adc4858: Pull complete
+fcf3ceff18fc: Pull complete
+16da0c38dc5b: Pull complete
+b905d1797e97: Pull complete
+4b50d1c6b05c: Pull complete
+c75914a65ca2: Pull complete
+1ae8042bdd09: Pull complete
+453ac13c00a3: Pull complete
+9e680cd72f08: Pull complete
+a6b5dc864b6c: Pull complete
+Digest: sha256:8b7b328a7ff6de46ef96bcf83af048cb00a1c86282bfca0cb119c84568b4caf6
+Status: Downloaded newer image for mysql:latest
+docker.io/library/mysql:latest # docker pull mysql == docker pull docker.io/library/mysql:latest
+<span class="hljs-meta">
+#</span><span class="bash"> list all images</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+mysql               latest              be0dbf01a0f3        2 weeks ago         541MB
+hello-world         latest              bf756fb1ae65        5 months ago        13.3kB</code></pre>
+
+
+<h3 id="docker-rmi-删除镜像"><a href="#docker-rmi-删除镜像" class="headerlink" title="docker rmi : 删除镜像"></a>docker rmi : 删除镜像</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> docs</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker rmi --help
+
+Usage:  docker rmi [OPTIONS] IMAGE [IMAGE...]
+
+Remove one or more images
+
+Options:
+  -f, --force      Force removal of the image
+      --no-prune   Do not delete untagged parents
+<span class="hljs-meta">
+#</span><span class="bash"> list all images      </span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+mysql               latest              be0dbf01a0f3        2 weeks ago         541MB
+hello-world         latest              bf756fb1ae65        5 months ago        13.3kB
+<span class="hljs-meta">
+#</span><span class="bash"> delete the image by id: rmi -f [IMAGE ID]</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker rmi -f bf756fb1ae65 # hello-world
+Untagged: hello-world:latest
+Untagged: hello-world@sha256:d58e752213a51785838f9eed2b7a498ffa1cb3aa7f946dda11af39286c3db9a9
+Deleted: sha256:bf756fb1ae65adf866bd8c456593cd24beb6a0a061dedf42b26a993176745f6b
+<span class="hljs-meta">
+#</span><span class="bash"> list all images</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+mysql               latest              be0dbf01a0f3        2 weeks ago         541MB</code></pre>
+
+<ul>
+<li>删除指定id的镜像 : <code>docker rmi -f 容器id</code></li>
+<li>批量删除指定id的镜像 : <code>docker rmi -f 容器id, 容器id, 容器id</code></li>
+<li>删除全部镜像，其中 <code>docker images -aq</code> 的功能为列出全部镜像的id : <code>docker rmi -f $(docker images -aq)</code></li>
+</ul>
+<h2 id="Docker容器命令"><a href="#Docker容器命令" class="headerlink" title="Docker容器命令"></a>Docker容器命令</h2><h3 id="新建容器并启动"><a href="#新建容器并启动" class="headerlink" title="新建容器并启动"></a>新建容器并启动</h3><ol>
+<li><p>有了镜像之后才可以创建容器，所以首先我们需要先下载一个镜像，这里我选择版本为 18.04 的 Ubuntu 镜像 :</p>
+<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> download</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker pull ubuntu:18.04
+18.04: Pulling from library/ubuntu
+d7c3167c320d: Pull complete
+131f805ec7fd: Pull complete
+322ed380e680: Pull complete
+6ac240b13098: Pull complete
+Digest: sha256:86510528ab9cd7b64209cbbe6946e094a6d10c6db21def64a93ebdd20011de1d
+Status: Downloaded newer image for ubuntu:18.04
+docker.io/library/ubuntu:18.04
+<span class="hljs-meta">
+#</span><span class="bash"> check</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              18.04               8e4ce0a6ce69        6 days ago          64.2MB
+mysql               latest              be0dbf01a0f3        2 weeks ago         541MB</code></pre>
+</li>
+<li><p>查看容器命令帮助文档</p>
+<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> docs</span>
+ubuntu@VM-0-4-ubuntu:~$ docker run --help
+
+Usage:  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+Run a command in a new container
+
+Options:
+      --add-host list                  Add a custom host-to-IP mapping (host:ip)
+  -a, --attach list                    Attach to STDIN, STDOUT or STDERR
+      --blkio-weight uint16            Block IO (relative weight), between 10 and 1000, or 0 to disable (default 0)
+      --blkio-weight-device list       Block IO weight (relative device weight) (default [])
+      --cap-add list                   Add Linux capabilities
+      --cap-drop list                  Drop Linux capabilities
+      --cgroup-parent string           Optional parent cgroup for the container
+      --cidfile string                 Write the container ID to the file
+      --cpu-period int                 Limit CPU CFS (Completely Fair Scheduler) period
+      --cpu-quota int                  Limit CPU CFS (Completely Fair Scheduler) quota
+      --cpu-rt-period int              Limit CPU real-time period in microseconds
+      --cpu-rt-runtime int             Limit CPU real-time runtime in microseconds
+  -c, --cpu-shares int                 CPU shares (relative weight)
+      --cpus decimal                   Number of CPUs
+      --cpuset-cpus string             CPUs in which to allow execution (0-3, 0,1)
+      --cpuset-mems string             MEMs in which to allow execution (0-3, 0,1)
+  -d, --detach                         Run container in background and print container ID
+      --detach-keys string             Override the key sequence for detaching a container
+      --device list                    Add a host device to the container
+      --device-cgroup-rule list        Add a rule to the cgroup allowed devices list
+      --device-read-bps list           Limit read rate (bytes per second) from a device (default [])
+      --device-read-iops list          Limit read rate (IO per second) from a device (default [])
+      --device-write-bps list          Limit write rate (bytes per second) to a device (default [])
+      --device-write-iops list         Limit write rate (IO per second) to a device (default [])
+      --disable-content-trust          Skip image verification (default true)
+      --dns list                       Set custom DNS servers
+      --dns-option list                Set DNS options
+      --dns-search list                Set custom DNS search domains
+      --domainname string              Container NIS domain name
+      --entrypoint string              Overwrite the default ENTRYPOINT of the image
+  -e, --env list                       Set environment variables
+      --env-file list                  Read in a file of environment variables
+      --expose list                    Expose a port or a range of ports
+      --gpus gpu-request               GPU devices to add to the container ('all' to pass all GPUs)
+      --group-add list                 Add additional groups to join
+      --health-cmd string              Command to run to check health
+      --health-interval duration       Time between running the check (ms|s|m|h) (default 0s)
+      --health-retries int             Consecutive failures needed to report unhealthy
+      --health-start-period duration   Start period for the container to initialize before starting
+                                       health-retries countdown (ms|s|m|h) (default 0s)
+      --health-timeout duration        Maximum time to allow one check to run (ms|s|m|h) (default 0s)
+      --help                           Print usage
+  -h, --hostname string                Container host name
+      --init                           Run an init inside the container that forwards signals and reaps processes
+  -i, --interactive                    Keep STDIN open even if not attached
+      --ip string                      IPv4 address (e.g., 172.30.100.104)
+      --ip6 string                     IPv6 address (e.g., 2001:db8::33)
+      --ipc string                     IPC mode to use
+      --isolation string               Container isolation technology
+      --kernel-memory bytes            Kernel memory limit
+  -l, --label list                     Set meta data on a container
+      --label-file list                Read in a line delimited file of labels
+      --link list                      Add link to another container
+      --link-local-ip list             Container IPv4/IPv6 link-local addresses
+      --log-driver string              Logging driver for the container
+      --log-opt list                   Log driver options
+      --mac-address string             Container MAC address (e.g., 92:d0:c6:0a:29:33)
+  -m, --memory bytes                   Memory limit
+      --memory-reservation bytes       Memory soft limit
+      --memory-swap bytes              Swap limit equal to memory plus swap: '-1' to enable unlimited swap
+      --memory-swappiness int          Tune container memory swappiness (0 to 100) (default -1)
+      --mount mount                    Attach a filesystem mount to the container
+      --name string                    Assign a name to the container
+      --network network                Connect a container to a network
+      --network-alias list             Add network-scoped alias for the container
+      --no-healthcheck                 Disable any container-specified HEALTHCHECK
+      --oom-kill-disable               Disable OOM Killer
+      --oom-score-adj int              Tune host's OOM preferences (-1000 to 1000)
+      --pid string                     PID namespace to use
+      --pids-limit int                 Tune container pids limit (set -1 for unlimited)
+      --platform string                Set platform if server is multi-platform capable
+      --privileged                     Give extended privileges to this container
+  -p, --publish list                   Publish a container's port(s) to the host
+  -P, --publish-all                    Publish all exposed ports to random ports
+      --read-only                      Mount the container's root filesystem as read only
+      --restart string                 Restart policy to apply when a container exits (default "no")
+      --rm                             Automatically remove the container when it exits
+      --runtime string                 Runtime to use for this container
+      --security-opt list              Security Options
+      --shm-size bytes                 Size of /dev/shm
+      --sig-proxy                      Proxy received signals to the process (default true)
+      --stop-signal string             Signal to stop a container (default "SIGTERM")
+      --stop-timeout int               Timeout (in seconds) to stop a container
+      --storage-opt list               Storage driver options for the container
+      --sysctl map                     Sysctl options (default map[])
+      --tmpfs list                     Mount a tmpfs directory
+  -t, --tty                            Allocate a pseudo-TTY
+      --ulimit ulimit                  Ulimit options (default [])
+  -u, --user string                    Username or UID (format: &lt;name|uid&gt;[:&lt;group|gid&gt;])
+      --userns string                  User namespace to use
+      --uts string                     UTS namespace to use
+  -v, --volume list                    Bind mount a volume
+      --volume-driver string           Optional volume driver for the container
+      --volumes-from list              Mount volumes from the specified container(s)
+  -w, --workdir string                 Working directory inside the container</code></pre>
+
+</li>
+</ol>
+<p><code>docker run [可选参数] image</code>，其参数说明如下所示 :</p>
+<ul>
+<li>–name=”customName”   容器命名</li>
+<li>–d                   后台方式运行</li>
+<li>–it                  交互方式运行<ul>
+<li>docker run -it ubuntu /bin/bash # 启动并进入容器</li>
+</ul>
+</li>
+<li>-p                    指定容器的端口<ul>
+<li>-p ip:主机端口:容器端口</li>
+<li>-p 主机端口:容器端口</li>
+<li>-p 容器端口</li>
+<li>容器端口</li>
+</ul>
+</li>
+<li>-P                    随机指定端口</li>
+</ul>
+<ol start="3">
+<li>测试<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 启动并进入容器</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker run -it ubuntu /bin/bash
+<span class="hljs-meta">
+#</span><span class="bash"> 查看容器中的内容</span>
+root@a90466e5e8cb:/# ls -la
+total 56
+drwxr-xr-x   1 root root 4096 Jun 23 22:09 .
+drwxr-xr-x   1 root root 4096 Jun 23 22:09 ..
+-rwxr-xr-x   1 root root    0 Jun 23 22:09 .dockerenv
+lrwxrwxrwx   1 root root    7 Jun  6 01:18 bin -&gt; usr/bin
+drwxr-xr-x   2 root root 4096 Apr 15 11:09 boot
+drwxr-xr-x   5 root root  360 Jun 23 22:09 dev
+drwxr-xr-x   1 root root 4096 Jun 23 22:09 etc
+drwxr-xr-x   2 root root 4096 Apr 15 11:09 home
+lrwxrwxrwx   1 root root    7 Jun  6 01:18 lib -&gt; usr/lib
+lrwxrwxrwx   1 root root    9 Jun  6 01:18 lib32 -&gt; usr/lib32
+lrwxrwxrwx   1 root root    9 Jun  6 01:18 lib64 -&gt; usr/lib64
+lrwxrwxrwx   1 root root   10 Jun  6 01:18 libx32 -&gt; usr/libx32
+drwxr-xr-x   2 root root 4096 Jun  6 01:18 media
+drwxr-xr-x   2 root root 4096 Jun  6 01:18 mnt
+drwxr-xr-x   2 root root 4096 Jun  6 01:18 opt
+dr-xr-xr-x 116 root root    0 Jun 23 22:09 proc
+drwx------   2 root root 4096 Jun  6 01:21 root
+drwxr-xr-x   1 root root 4096 Jun 17 01:20 run
+lrwxrwxrwx   1 root root    8 Jun  6 01:18 sbin -&gt; usr/sbin
+drwxr-xr-x   2 root root 4096 Jun  6 01:18 srv
+dr-xr-xr-x  13 root root    0 Jun 23 22:09 sys
+drwxrwxrwt   2 root root 4096 Jun  6 01:21 tmp
+drwxr-xr-x   1 root root 4096 Jun  6 01:18 usr
+drwxr-xr-x   1 root root 4096 Jun  6 01:21 var
+<span class="hljs-meta">
+#</span><span class="bash"> 退出容器</span>
+root@a90466e5e8cb:/# exit
+exit
+ubuntu@VM-0-4-ubuntu:~$</code></pre>
+
+
+</li>
+</ol>
+<h3 id="列出所有运行的容器"><a href="#列出所有运行的容器" class="headerlink" title="列出所有运行的容器"></a>列出所有运行的容器</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看所有正在运行的容器(无)</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS      NAMES
+<span class="hljs-meta">
+#</span><span class="bash"> 查看曾经运行过的容器</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS      NAMES
+a90466e5e8cb        ubuntu              "/bin/bash"         6 minutes ago       Exited (0) 4 minutes ago               objective_goldstine
+9849ee4d02bf        ubuntu              "/bin/bash"         9 minutes ago       Exited (0) 6 minutes ago               vibrant_sinoussi
+aaaee4577665        bf756fb1ae65        "/hello"            14 hours ago        Exited (0) 14 hours ago                modest_ardinghelli
+d9dbd1de7f99        bf756fb1ae65        "/hello"            40 hours ago        Exited (0) 40 hours ago                laughing_cerf
+8001fae4d389        bf756fb1ae65        "/hello"            2 days ago          Exited (0) 2 days ago                  naughty_hoover
+6afccb969d87        bf756fb1ae65        "/hello"            2 days ago          Exited (0) 2 days ago                  silly_pare
+<span class="hljs-meta">
+#</span><span class="bash"> 查看一个最近创建的容器( n=? )</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker ps -a -n=1
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                       PORTS      NAMES
+a90466e5e8cb        ubuntu              "/bin/bash"         11 minutes ago      Exited (0) 9 minutes ago                objective_goldstine
+<span class="hljs-meta">
+#</span><span class="bash"> 查看所有容器的编号( 结合 -a 与 -q )</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker ps -aq
+a90466e5e8cb
+9849ee4d02bf
+aaaee4577665
+d9dbd1de7f99
+8001fae4d389
+6afccb969d87</code></pre>
+
+
+<h3 id="退出容器"><a href="#退出容器" class="headerlink" title="退出容器"></a>退出容器</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 1. <span class="hljs-built_in">exit</span>: 直接停止并退出容器</span>
+<span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的容器(无)</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS              NAMES
+<span class="hljs-meta">
+#</span><span class="bash"> 查看所有镜像</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              latest              74435f89ab78        6 days ago          73.9MB
+ubuntu              18.04               8e4ce0a6ce69        6 days ago          64.2MB
+mysql               latest              be0dbf01a0f3        2 weeks ago         541MB
+<span class="hljs-meta">
+#</span><span class="bash"> 启动并进入容器</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker run -it ubuntu /bin/bash
+root@3b93a1830f1e:/# ls
+bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+<span class="hljs-meta">
+#</span><span class="bash"> <span class="hljs-built_in">exit</span></span>
+root@3b93a1830f1e:/# exit
+exit
+ubuntu@VM-0-4-ubuntu:~$
+<span class="hljs-meta">
+#</span><span class="bash"> 查看当前正在运行的容器(无)</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS              NAMES
+
+---
+<span class="hljs-meta">
+#</span><span class="bash"> 2. Ctrl + P + Q: 退出后容器不停止</span>
+<span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的容器(无)</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS              NAMES
+<span class="hljs-meta">
+#</span><span class="bash"> 启动并进入容器</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker run -it ubuntu /bin/bash
+root@3b93a1830f1e:/# ls
+bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+<span class="hljs-meta">
+#</span><span class="bash"> Ctrl + P + Q</span>
+ubuntu@VM-0-4-ubuntu:~$
+<span class="hljs-meta">
+#</span><span class="bash"> 再次查看当前正在运行的容器</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS              NAMES
+8715a6647cba        ubuntu              "/bin/bash"         58 seconds ago      Up 56 seconds                          eager_villani</code></pre>
+
+
+<h3 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h3><ul>
+<li><code>docker rm 容器id</code> : 根据id删除指定的容器，如果要删除运行中的容器需要使用命令 <code>docker rm -f 容器id</code></li>
+<li><code>docker rm -f $(docker ps -aq)</code> : 根据id删除所有的容器，其中<code>docker ps -aq</code> 的作用为查出所有容器的id</li>
+</ul>
+<h3 id="容器的启动和停止"><a href="#容器的启动和停止" class="headerlink" title="容器的启动和停止"></a>容器的启动和停止</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 1. docker start 容器id : 启动容器</span>
+<span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的容器(无)</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS              NAMES
+<span class="hljs-meta">
+#</span><span class="bash"> 查看容器的运行历史记录</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                          PORTS   NAMES
+cceb83ac32f9        hello-world         "/hello"            11 minutes ago      Exited (0) 11 minutes ago               laughing_gates
+8715a6647cba        ubuntu              "/bin/bash"         25 minutes ago      Exited (0) About a minute ago           eager_villani
+3b93a1830f1e        ubuntu              "/bin/bash"         2 hours ago         Exited (0) 2 hours ago                  wizardly_goldberg
+<span class="hljs-meta">
+#</span><span class="bash"> 运行id为8715a6647cba的容器            </span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker start 8715a6647cba
+8715a6647cba
+<span class="hljs-meta">
+#</span><span class="bash"> 再次查看当前正在运行的容器，发现id为8715a6647cba的容器已经开始运行</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS
+ NAMES
+8715a6647cba        ubuntu              "/bin/bash"         26 minutes ago      Up 4 seconds
+ eager_villani
+
+---
+<span class="hljs-meta">
+#</span><span class="bash"> 2. docker restart 容器id : 重启容器</span>
+
+---
+<span class="hljs-meta">
+#</span><span class="bash"> 3. docker stop 容器id : 停止容器</span>
+<span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的容器</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+8715a6647cba        ubuntu              "/bin/bash"         30 minutes ago      Up 4 minutes                            eager_villani
+<span class="hljs-meta">
+#</span><span class="bash"> 停止id为8715a6647cba的容器</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker stop 8715a6647cba
+8715a6647cba
+<span class="hljs-meta">
+#</span><span class="bash"> 再次查看当前正在运行的容器</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
+---
+<span class="hljs-meta">
+#</span><span class="bash"> 4. docker <span class="hljs-built_in">kill</span> 容器id : 强制停止容器</span></code></pre>
+
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><blockquote>
+<p><a href="https://docs.docker.com/engine/reference/commandline/docker/" target="_blank" rel="noopener">Docker Base Command</a></p>
+</blockquote>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Docker/">Docker</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/06/24/Docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Docker常用命令</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/22/%E8%A7%A3%E5%86%B3%E6%AF%8F%E5%BD%93Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E5%90%8E%E9%9C%80%E8%A6%81%E9%87%8D%E6%96%B0%E5%A1%AB%E5%86%99%E5%9F%9F%E5%90%8D%E7%9A%84%E5%B0%B4%E5%B0%AC/">
+                        <span class="hidden-mobile">解决每当Hexo博客更新后需要重新填]写域名的尴尬</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Docker镜像及容器的基本命令&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
