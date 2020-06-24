@@ -1,7 +1,7 @@
 ---
 title: Docker安装并部署nginx
 date: 2020-06-24 13:25:07
-tags: [Docker]
+tags: [Docker,Nginx]
 ---
 
 ### 1.搜索nginx镜像
@@ -49,7 +49,7 @@ hello-world         latest              bf756fb1ae65        5 months ago        
 
 ### 3. 启动nginx
 ```shell
-# 以后台运行的方式启动nginx : docker run -d <image id>
+# 以后台运行的方式启动nginx : docker run -d <image name>
 # -d : 后台运行， 
 # --name : 为容器起别名
 # -p 8888:88 : 暴露端口，-p 宿主机端口:容器内部端口
@@ -178,3 +178,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 
 # nginx 被关闭后则不能访问 http://ip:8888
 ```
+
+
+### 思考
+> 以后部署项目后，如果每次修改配置都要进入容器中感觉是不是非常麻烦 ?  所以我们要做的是 : 在容器外部提供一个映射路径，进而使得在外部放置的项目能够自动同步到内部容器中.  那么该怎么实现这个想法呢 ? ( 嘿嘿... 目前我也不知道该如何实现这个想法，等我回来更新吧哈哈哈哈 )
