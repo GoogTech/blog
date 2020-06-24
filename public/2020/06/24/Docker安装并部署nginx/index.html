@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>Docker安装并部署nginx - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>ANONYMOUS</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-06-24 13:25">
+      June 24, 2020 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      22
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h3 id="1-搜索nginx镜像"><a href="#1-搜索nginx镜像" class="headerlink" title="1.搜索nginx镜像"></a>1.搜索nginx镜像</h3><pre><code class="hljs shell">ubuntu@VM-0-4-ubuntu:~$ sudo docker search nginx
+NAME                               DESCRIPTION                                     STARS               OFFICIAL             AUTOMATED
+nginx                              Official build of Nginx.                        13374               [OK]
+jwilder/nginx-proxy                Automated Nginx reverse proxy for docker con…   1828                [OK]
+richarvey/nginx-php-fpm            Container running Nginx + PHP-FPM capable of…   778                 [OK]
+
+. . . . . .</code></pre>
+
+<h3 id="2-下载nginx镜像"><a href="#2-下载nginx镜像" class="headerlink" title="2.下载nginx镜像"></a>2.下载nginx镜像</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看本地所有镜像</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              latest              74435f89ab78        7 days ago          73.9MB
+ubuntu              18.04               8e4ce0a6ce69        7 days ago          64.2MB
+mysql               latest              be0dbf01a0f3        2 weeks ago         541MB
+hello-world         latest              bf756fb1ae65        5 months ago        13.3kB
+<span class="hljs-meta">
+#</span><span class="bash"> 从远程仓库中下载 nginx 镜像</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker pull nginx
+Using default tag: latest
+latest: Pulling from library/nginx
+8d69e59170f7: Pull complete
+3f9f1ec1d262: Pull complete
+d1f5ff4f210d: Pull complete
+1e22bfa8652e: Pull complete
+Digest: sha256:21f32f6c08406306d822a0e6e8b7dc81f53f336570e852e25fbe1e3e3d0d0133
+Status: Downloaded newer image for nginx:latest
+docker.io/library/nginx:latest
+<span class="hljs-meta">
+#</span><span class="bash"> 再次查看本地所有镜像，验证是否下载成功</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              latest              74435f89ab78        7 days ago          73.9MB
+ubuntu              18.04               8e4ce0a6ce69        7 days ago          64.2MB
+nginx               latest              2622e6cca7eb        2 weeks ago         132MB
+mysql               latest              be0dbf01a0f3        2 weeks ago         541MB
+hello-world         latest              bf756fb1ae65        5 months ago        13.3kB</code></pre>
+
+<h3 id="3-启动nginx"><a href="#3-启动nginx" class="headerlink" title="3. 启动nginx"></a>3. 启动nginx</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 以后台运行的方式启动nginx : docker run -d &lt;image name&gt;</span>
+<span class="hljs-meta">#</span><span class="bash"> -d : 后台运行， </span>
+<span class="hljs-meta">#</span><span class="bash"> --name : 为容器起别名</span>
+<span class="hljs-meta">#</span><span class="bash"> -p 8888:88 : 暴露端口，-p 宿主机端口:容器内部端口</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker run -d --name MyNginx -p 8888:80 nginx
+8438eaf75dbdcae96602fd91035cf550e8a3a4634bfc17a92e63f2325fc15064
+<span class="hljs-meta">
+#</span><span class="bash"> 查看当前正在运行的容器，验证 nginx 服务是否已启动</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS              NAMES
+8438eaf75dbd        nginx               "/docker-entrypoint.…"   9 seconds ago       Up 7 seconds        0.0.0.0:8888-&gt;80/tcp   MyNginx
+<span class="hljs-meta">
+#</span><span class="bash"> 使用 curl &lt;ip:port&gt; 进行本地测试，从返回的结果发现 nginx 部署成功 </span>
+<span class="hljs-meta">#</span><span class="bash"> 也可以通过外网访问连接 http://ip:8888 来测试，如下图所示</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo curl localhost:8888
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
+    body &#123;
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    &#125;
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
+
+&lt;p&gt;For online documentation and support please refer to
+&lt;a href="http://nginx.org/"&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+Commercial support is available at
+&lt;a href="http://nginx.com/"&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<p><em>通过外网访问连接 <a href="http://ip:8888" target="_blank" rel="noopener">http://ip:8888</a> 来测试 nginx 是否部署成功</em></p>
+<p><img src="/2020/06/24/Docker%E5%AE%89%E8%A3%85%E5%B9%B6%E9%83%A8%E7%BD%B2nginx/docker-deploy-nginx.PNG" srcset="/img/loading.gif" alt=" "></p>
+<h3 id="4-修改nginx配置"><a href="#4-修改nginx配置" class="headerlink" title="4. 修改nginx配置"></a>4. 修改nginx配置</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的容器</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker ps                                                                               
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                   NAMES
+8438eaf75dbd        nginx               "/docker-entrypoint.…"   14 minutes ago      Up 14 minutes       0.0.0.0:8888 80/tcp     MyNginx                  
+<span class="hljs-meta">
+#</span><span class="bash"> 根据容器 NAME 进入当前正在运行的 nginx 容器( docker <span class="hljs-built_in">exec</span> -it : 特征为进入容器后开启一个新的终端 )</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker exec -it MyNginx /bin/bash       
+<span class="hljs-meta">
+#</span><span class="bash"> 查找 nginx 的配置文件目录</span>
+root@8438eaf75dbd:/# whereis nginx                                                                                   
+nginx: /usr/sbin/nginx /usr/lib/nginx /etc/nginx /usr/share/nginx       
+<span class="hljs-meta">
+#</span><span class="bash"> 进入 nginx 中用于存储 html 的文件目录</span>
+root@8438eaf75dbd:/# cd /usr/share/nginx/
+root@8438eaf75dbd:/usr/share/nginx# cd html/                                                                         
+root@8438eaf75dbd:/usr/share/nginx/html# ls                                                                          
+50x.html  index.html                 
+<span class="hljs-meta">
+#</span><span class="bash"> 查看 index.html 文件中的内容</span>
+root@8438eaf75dbd:/usr/share/nginx/html# cat index.html                                                              
+&lt;!DOCTYPE html&gt;                                                                                                      
+&lt;html&gt;                                                                                                               
+&lt;head&gt;                                                                                                               
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;                                                                                     
+&lt;style&gt;                                                                                                              
+    body &#123;                                                                                                           
+        width: 35em;                                                                                                 
+        margin: 0 auto;                                                                                              
+        font-family: Tahoma, Verdana, Arial, sans-serif;                                                             
+    &#125;                                                                                                                
+&lt;/style&gt;                                                                                                             
+&lt;/head&gt;                                                                                                              
+&lt;body&gt;                                                                                                               
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;                                                                                           
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and                                          
+working. Further configuration is required.&lt;/p&gt;                                                                      
+                                                                                                                     
+&lt;p&gt;For online documentation and support please refer to                                                              
+&lt;a href="http://nginx.org/"&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;                                                                      
+Commercial support is available at                                                                                   
+&lt;a href="http://nginx.com/"&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;                                                                       
+                                                                                                                     
+&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;                                                                           
+&lt;/body&gt;                                                                                                              
+&lt;/html&gt;                         
+<span class="hljs-meta">
+#</span><span class="bash"> 重写 index.html 中内容</span>
+root@8438eaf75dbd:/usr/share/nginx/html# echo "&lt;h1 align="center"&gt;hey guy welcome back,coffee time&lt;/h1&gt;" &gt; index.html          
+<span class="hljs-meta">
+#</span><span class="bash"> 再次查看 index.html 中的内容</span>
+root@8438eaf75dbd:/usr/share/nginx/html# cat index.html
+&lt;h1 align=center&gt;hey guy welcome back,coffee time&lt;/h1&gt;
+<span class="hljs-meta">
+#</span><span class="bash"> 使用 curl &lt;ip:port&gt; 进行本地测试，从返回的结果发现修改 index.html 后 nginx 依旧部署成功( 配置文件可动态修改 )</span>
+<span class="hljs-meta">#</span><span class="bash"> 也可以通过外网访问连接 http://ip:8888 来测试，如下图所示</span>
+root@8438eaf75dbd:/usr/share/nginx/html# curl http://49.233.79.152:8888
+&lt;h1 align=center&gt;hey guy welcome back,coffee time&lt;/h1&gt;</code></pre>
+
+<p><em>通过外网访问连接 <a href="http://ip:8888" target="_blank" rel="noopener">http://ip:8888</a> 来测试修改 index.html 后 nginx 是否部署成功( 配置文件可动态修改 )</em><br><img src="/2020/06/24/Docker%E5%AE%89%E8%A3%85%E5%B9%B6%E9%83%A8%E7%BD%B2nginx/docker-deploy-nginx-modify-index.PNG" srcset="/img/loading.gif" alt=" "></p>
+<h3 id="5-停止nginx运行"><a href="#5-停止nginx运行" class="headerlink" title="5. 停止nginx运行"></a>5. 停止nginx运行</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的容器</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                  NAMES
+8438eaf75dbd        nginx               "/docker-entrypoint.…"   38 minutes ago      Up 38 minutes       0.0.0.0:8888-&gt;80/tcp   MyNginx
+<span class="hljs-meta">
+#</span><span class="bash"> 根据id停止指定容器的运行</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker stop 8438eaf75dbd
+8438eaf75dbd
+<span class="hljs-meta">
+#</span><span class="bash"> 再次查看当前正在运行的容器，验证 nginx 是否被关闭</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+<span class="hljs-meta">
+#</span><span class="bash"> nginx 被关闭后则不能访问 http://ip:8888</span></code></pre>
+
+
+<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><blockquote>
+<p>以后部署项目后，如果每次修改配置都要进入容器中感觉是不是非常麻烦 ?  所以我们要做的是 : 在容器外部提供一个映射路径，进而使得在外部放置的项目能够自动同步到内部容器中.  那么该怎么实现这个想法呢 ? ( 嘿嘿… 目前我也不知道该如何实现这个想法，等我回来更新吧哈哈哈哈 )</p>
+</blockquote>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Docker/">Docker</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Nginx/">Nginx</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/06/24/Docker%E5%AE%89%E8%A3%85%E5%B9%B6%E9%83%A8%E7%BD%B2tomcat/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Docker安装并数据tomcat</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/24/Docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+                        <span class="hidden-mobile">Docker常用命令</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Docker安装并部署nginx&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
