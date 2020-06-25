@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -189,7 +189,7 @@
             
             <article class="markdown-body">
               <h2 id="学习笔记-Shiro的拦截机制"><a href="#学习笔记-Shiro的拦截机制" class="headerlink" title="学习笔记 : Shiro的拦截机制"></a>学习笔记 : Shiro的拦截机制</h2><h3 id="默认拦截器"><a href="#默认拦截器" class="headerlink" title="默认拦截器"></a>默认拦截器</h3><p><em>Shiro内置了很多默认的拦截器,比如身份验证、授权等相关的.更多默认拦截器可以参考 <code>org.apache.shiro.web.filter.mgt.DefaultFilter</code>中的枚举拦截器,如下所示 :</em></p>
-<pre><code class="hljs java"><span class="hljs-comment">/**
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**
  * Enum representing all of the default Shiro Filter instances available to web applications.  
  * Each filter instance is typically accessible 
  * in configuration the &#123;<span class="hljs-doctag">@link</span> #name() name&#125; of the enum constant.
@@ -241,7 +241,7 @@
         &#125;
         <span class="hljs-keyword">return</span> filters;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><img src="/2019/08/03/Shiro%E7%9A%84%E6%8B%A6%E6%88%AA%E5%99%A8%E6%9C%BA%E5%88%B6/Shiro-ShiroFilter.jpg" srcset="/img/loading.gif" alt></p>
 <table>

@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -191,7 +191,7 @@
               <h2 id="学习笔记-SSM整合"><a href="#学习笔记-SSM整合" class="headerlink" title="学习笔记 : SSM整合"></a>学习笔记 : SSM整合</h2><h3 id="整合环境搭建"><a href="#整合环境搭建" class="headerlink" title="整合环境搭建"></a>整合环境搭建</h3><p><em>简介 : 由于Spring MVC是Spring框架中的一个模块,所以Spring MVC与Spring之间不存在整合问题,因此SSM整合主要只涉及Spring与MyBatis的整合.下面通过客户id查询数据表中指定的客户信息的简单案例来演示SSM整合思路 ~</em></p>
 <h3 id="编写配置文件"><a href="#编写配置文件" class="headerlink" title="编写配置文件"></a>编写配置文件</h3><ol>
 <li><p><em>db.properties : 数据库配置文件</em></p>
-<pre><code class="hljs t">#
+<div class="hljs"><pre><code class="hljs t">#
 #database configuration information
 #
 jdbc.driver=com.mysql.cj.jdbc.Driver
@@ -203,10 +203,10 @@ jdbc.password=xxxxxx
 #
 jdbc.maxTotal=30    #最大连接数
 jdbc.maxIdle=10     #最大空闲连接数
-jdbc.initialSize=5  #初始化连接数</code></pre>
+jdbc.initialSize=5  #初始化连接数</code></pre></div>
 </li>
 <li><p><em>applicationContext.xml : Spring核心配置文件</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>
 	<span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
 	<span class="hljs-attr">xmlns:aop</span>=<span class="hljs-string">"http://www.springframework.org/schema/aop"</span>
@@ -263,10 +263,10 @@ jdbc.initialSize=5  #初始化连接数</code></pre>
 	<span class="hljs-comment">&lt;!-- 扫描Service --&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">"pers.huangyuhui.ssm.service"</span>/&gt;</span>
 	
-<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>mybatis-config.xml : MyBatis核心配置文件</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>
@@ -281,10 +281,10 @@ jdbc.initialSize=5  #初始化连接数</code></pre>
 		<span class="hljs-comment">&lt;!-- 使用Mapper接口动态代理开发时,如果完全遵循了编写规范,那么该配置文件中无需以下映射文件 --&gt;</span>
         <span class="hljs-comment">&lt;!-- &lt;mapper resource="pers/huangyuhui/ssm/dao/CustomerDao.xml"/&gt; --&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">mappers</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>web.xml</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
 	<span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee"</span>
 	<span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"</span>
@@ -355,7 +355,7 @@ jdbc.initialSize=5  #初始化连接数</code></pre>
 		<span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>dev<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">context-param</span>&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre></div>
 
 
 
@@ -364,17 +364,17 @@ jdbc.initialSize=5  #初始化连接数</code></pre>
 <h3 id="整合应用测试"><a href="#整合应用测试" class="headerlink" title="整合应用测试"></a>整合应用测试</h3><p><em>上述已经了SSM框架整合环境的搭建工作,接下来开始整合开发工作 ~</em></p>
 <ol>
 <li><p><em>t_customer.sql : 客户信息表</em></p>
-<pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> t_customer (
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> t_customer (
 
 	<span class="hljs-keyword">id</span> <span class="hljs-built_in">INT</span>(<span class="hljs-number">20</span>) PRIMARY <span class="hljs-keyword">KEY</span> AUTO_INCREMENT,
 	<span class="hljs-keyword">name</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">10</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
 	job <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">10</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
 	phone <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">12</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>
 	
-)</code></pre>
+)</code></pre></div>
 </li>
 <li><p><em>Customer.java : 持久化类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.ssm.po;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.ssm.po;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: Customer
@@ -427,10 +427,10 @@ jdbc.initialSize=5  #初始化连接数</code></pre>
 		<span class="hljs-keyword">return</span> <span class="hljs-string">"Customer [id="</span> + id + <span class="hljs-string">", name="</span> + name + <span class="hljs-string">", job="</span> + job + <span class="hljs-string">", phone="</span> + phone + <span class="hljs-string">"]"</span>;
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>CustomerDao.java : Dao层</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.ssm.dao;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.ssm.dao;
 
 <span class="hljs-keyword">import</span> pers.huangyuhui.ssm.po.Customer;
 
@@ -450,10 +450,10 @@ jdbc.initialSize=5  #初始化连接数</code></pre>
 	 * <span class="hljs-doctag">@return</span>: Customer
 	 */</span>
 	<span class="hljs-function"><span class="hljs-keyword">public</span> Customer <span class="hljs-title">findCustomerById</span><span class="hljs-params">(Integer id)</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>CustomerDao.xml : 接口对应的映射文件</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">"pers.huangyuhui.ssm.dao.CustomerDao"</span>&gt;</span>
@@ -462,10 +462,10 @@ jdbc.initialSize=5  #初始化连接数</code></pre>
 		select id,name,job,phone from t_customer where id = #&#123;id&#125;
 	<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>CustomerService.java : Service层</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.ssm.service;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.ssm.service;
 
 <span class="hljs-keyword">import</span> pers.huangyuhui.ssm.po.Customer;
 
@@ -486,10 +486,10 @@ jdbc.initialSize=5  #初始化连接数</code></pre>
 	 * <span class="hljs-doctag">@return</span>: Customer
 	 */</span>
 	<span class="hljs-function"><span class="hljs-keyword">public</span> Customer <span class="hljs-title">findCustomerById</span><span class="hljs-params">(Integer id)</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>CustomerServiceImpl.java : CustomerService的实现类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.ssm.service.impl;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.ssm.service.impl;
 
 <span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
 <span class="hljs-keyword">import</span> org.springframework.stereotype.Service;
@@ -520,10 +520,10 @@ jdbc.initialSize=5  #初始化连接数</code></pre>
 		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.customerDao.findCustomerById(id);
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>CustomerController.java : 控制器</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.ssm.controller;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.ssm.controller;
 
 <span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
 <span class="hljs-keyword">import</span> org.springframework.stereotype.Controller;
@@ -562,10 +562,10 @@ jdbc.initialSize=5  #初始化连接数</code></pre>
 		<span class="hljs-comment">// 返回客户信息展示页面</span>
 		<span class="hljs-keyword">return</span> <span class="hljs-string">"customerInfo"</span>;
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>WebContent/WEB-INF/<code>view/customerInfo.jsp</code> : 展示客户信息页面</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -588,24 +588,24 @@ jdbc.initialSize=5  #初始化连接数</code></pre>
 			<span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>$&#123;customer.phone &#125;<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>log4j.properties : 日志文件</em></p>
-<pre><code class="hljs t">#Global configuration
+<div class="hljs"><pre><code class="hljs t">#Global configuration
 log4j.rootLogger=DEBUG,stdout
 #Log configuration
 log4j.logger.pers.huangyuhui.ssm.controller=TRACE
 #Console configuration
 log4j.appender.stdout=org.apache.log4j.ConsoleAppender
 log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
-log4j.appender.stdout.layout.layout.ConversionPattern=%5p [%t] - %m%n</code></pre>
+log4j.appender.stdout.layout.layout.ConversionPattern=%5p [%t] - %m%n</code></pre></div>
 </li>
 <li><p><em>将项目发布到Tomcat并启动,在浏览器中访问地址: <code>http://localhost:8080/ssm_01/findCustomerById?id=1</code>,其页面显示效果如下图所示.</em></p>
 </li>
 </ol>
 <p><img src="/2019/05/23/SSM%E6%A1%86%E6%9E%B6%E6%95%B4%E5%90%88/SSM%E6%95%B4%E5%90%88%E6%A1%88%E4%BE%8B.PNG" srcset="/img/loading.gif" alt=" "><br><em>由图可知,通过浏览器成功查出了<code>t_customer</code>表中id为1的客户信息.继而证明<code>SSM</code>框架整合成功!ヾ(◍°∇°◍)ﾉﾞ</em></p>
 <ol start="10">
-<li><em>Console输出的主要日志信息如下 :</em><pre><code class="hljs routeros">DispatcherServlet with name <span class="hljs-string">'spring_mvc'</span> processing <span class="hljs-builtin-name">GET</span> request <span class="hljs-keyword">for</span> [/ssm_01/findCustomerById]
+<li><em>Console输出的主要日志信息如下 :</em><div class="hljs"><pre><code class="hljs routeros">DispatcherServlet with name <span class="hljs-string">'spring_mvc'</span> processing <span class="hljs-builtin-name">GET</span> request <span class="hljs-keyword">for</span> [/ssm_01/findCustomerById]
 
 Looking up handler method <span class="hljs-keyword">for</span> path /findCustomerById
 
@@ -655,7 +655,7 @@ Added model object <span class="hljs-string">'org.springframework.validation.Bin
 
 Forwarding <span class="hljs-keyword">to</span><span class="hljs-built_in"> resource </span>[/WEB-INF/view/customerInfo.jsp] <span class="hljs-keyword">in</span> InternalResourceView <span class="hljs-string">'customerInfo'</span>
 
-Successfully completed request</code></pre></li>
+Successfully completed request</code></pre></div></li>
 </ol>
 
             </article>
@@ -667,9 +667,9 @@ Successfully completed request</code></pre></li>
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Spring/">Spring</a>
-                    
                       <a class="hover-with-bg" href="/tags/MyBatis/">MyBatis</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Spring/">Spring</a>
                     
                       <a class="hover-with-bg" href="/tags/Spring-MVC/">Spring MVC</a>
                     

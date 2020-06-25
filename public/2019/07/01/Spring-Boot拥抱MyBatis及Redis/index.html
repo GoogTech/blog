@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -191,16 +191,16 @@
               <h2 id="学习笔记-Spring-Boot拥抱MyBatis及Redis"><a href="#学习笔记-Spring-Boot拥抱MyBatis及Redis" class="headerlink" title="学习笔记 : Spring Boot拥抱MyBatis及Redis ~"></a>学习笔记 : Spring Boot拥抱MyBatis及Redis ~</h2><h3 id="Spring-Boot集成MyBatis"><a href="#Spring-Boot集成MyBatis" class="headerlink" title="Spring Boot集成MyBatis"></a>Spring Boot集成MyBatis</h3><p><em>下面通过使用<code>Spring Boot</code>开发一个基于<code>SSM</code>的框架的应用,并通过一个简单的用户信息查询为例,记录如何在Spring Boot中使用<code>MyBatis</code> ~</em></p>
 <ol>
 <li><p><em>tb_user.sql : 用户信息数据表</em></p>
-<pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> tb_user
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> tb_user
 (
     <span class="hljs-keyword">id</span>     <span class="hljs-built_in">int</span> auto_increment primary <span class="hljs-keyword">key</span>,
     <span class="hljs-keyword">name</span>   <span class="hljs-built_in">varchar</span>(<span class="hljs-number">15</span>) <span class="hljs-keyword">not</span> <span class="hljs-literal">null</span>,
     gender <span class="hljs-built_in">char</span>        <span class="hljs-literal">null</span>,
     email  <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>) <span class="hljs-literal">null</span>
-);</code></pre>
+);</code></pre></div>
 </li>
 <li><p><em>pom.xml</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://maven.apache.org/POM/4.0.0"</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
          <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span>
@@ -256,10 +256,10 @@
         <span class="hljs-tag">&lt;/<span class="hljs-name">plugins</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>SpringbootRedisApplication.java : Spring Boot启动类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.redis;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.redis;
 
 <span class="hljs-keyword">import</span> org.springframework.boot.SpringApplication;
 <span class="hljs-keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -271,19 +271,19 @@
         SpringApplication.run(SpringbootRedisApplication<span class="hljs-class">.<span class="hljs-keyword">class</span>, <span class="hljs-title">args</span>)</span>;
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>application.properties : Spring Boot配置文件</em></p>
-<pre><code class="hljs t">#JDBC-Connection Configuration Information
+<div class="hljs"><pre><code class="hljs t">#JDBC-Connection Configuration Information
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.datasource.url=jdbc:mysql://localhost:3306/test?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true
 spring.datasource.username=xxxxxx
 spring.datasource.password=xxxxxx
 #Logging Configuration Information
-logging.level.pers.huangyuhui.redis=debug</code></pre>
+logging.level.pers.huangyuhui.redis=debug</code></pre></div>
 </li>
 <li><p><em>User.java : 用户信息实体类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.redis.bean;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.redis.bean;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: springboot_redis
@@ -302,10 +302,10 @@ logging.level.pers.huangyuhui.redis=debug</code></pre>
 
     <span class="hljs-comment">//getter and setter</span>
     ······
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>UserMapper.java : 操控用户数据表信息</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.redis.dao;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.redis.dao;
 
 <span class="hljs-keyword">import</span> org.apache.ibatis.annotations.Mapper;
 <span class="hljs-keyword">import</span> org.apache.ibatis.annotations.Select;
@@ -331,10 +331,10 @@ logging.level.pers.huangyuhui.redis=debug</code></pre>
     <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> 7/1/2019 根据id删除指定用户信息</span>
     <span class="hljs-meta">@Delete</span>(<span class="hljs-string">"Delete from tb_user where id = #&#123;id&#125;"</span>)
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">deleteById</span><span class="hljs-params">(Integer id)</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>UserService.java : 操控用户信息</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.redis.service;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.redis.service;
 
 <span class="hljs-keyword">import</span> pers.huangyuhui.redis.bean.User;
 
@@ -355,10 +355,10 @@ logging.level.pers.huangyuhui.redis=debug</code></pre>
 
      <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> 7/1/2019 根据id删除指定用户信息</span>
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">delete</span><span class="hljs-params">(Integer id)</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>UserServiceImpl.java : UserService.java的实现类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.redis.service.impl;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.redis.service.impl;
 
 <span class="hljs-keyword">import</span> org.springframework.stereotype.Service;
 <span class="hljs-keyword">import</span> org.springframework.transaction.annotation.Transactional;
@@ -395,10 +395,10 @@ logging.level.pers.huangyuhui.redis=debug</code></pre>
         userMapper.deleteById(id);
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>UserController.java : 用户信息控制器</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.redis.controller;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.redis.controller;
 
 <span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
 <span class="hljs-keyword">import</span> org.springframework.stereotype.Controller;
@@ -444,10 +444,10 @@ logging.level.pers.huangyuhui.redis=debug</code></pre>
     <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/deleteUser/&#123;id&#125;"</span>)
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">deleteUser</span><span class="hljs-params">(@PathVariable Integer id)</span> </span>&#123; userService.delete(id); &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>userList.html : 用户信息列表页面 (将EasyUI框架的资源文件拷贝到src/main/resource下的static文件夹下,并在static文件夹中创建<code>userList.html</code>页面文件)</em></p>
-<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
@@ -478,13 +478,13 @@ logging.level.pers.huangyuhui.redis=debug</code></pre>
 <span class="hljs-comment">&lt;!-- 用户信息列表 --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"graid"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>启动Spring Boot项目,在浏览器中输入访问地址 : <code>http://localhost:8080/userList.html</code>后,显示效果参考下图 :</em><br><img src="/2019/07/01/Spring-Boot%E6%8B%A5%E6%8A%B1MyBatis%E5%8F%8ARedis/UserListView.PNG" srcset="/img/loading.gif" alt=" "></p>
 </li>
 </ol>
 <p><em>紧接着刷新页面三次,其控制台打印的日志信息如下所示,发现每刷新一次页面都会执行一次查询数据库操作,<code>但如果将列表数据缓冲到Redis后,会发现控制台只会出现一次查询数据库的日志信息哟 !</code></em></p>
-<pre><code class="hljs angelscript"><span class="hljs-number">2019</span><span class="hljs-number">-07</span><span class="hljs-number">-01</span> <span class="hljs-number">11</span>:<span class="hljs-number">41</span>:<span class="hljs-number">49.868</span> DEBUG <span class="hljs-number">7844</span> --- [nio<span class="hljs-number">-8080</span>-exec<span class="hljs-number">-3</span>] p.h.redis.dao.UserMapper.selectAll       : ==&gt;  Preparing: select * <span class="hljs-keyword">from</span> tb_user 
+<div class="hljs"><pre><code class="hljs angelscript"><span class="hljs-number">2019</span><span class="hljs-number">-07</span><span class="hljs-number">-01</span> <span class="hljs-number">11</span>:<span class="hljs-number">41</span>:<span class="hljs-number">49.868</span> DEBUG <span class="hljs-number">7844</span> --- [nio<span class="hljs-number">-8080</span>-exec<span class="hljs-number">-3</span>] p.h.redis.dao.UserMapper.selectAll       : ==&gt;  Preparing: select * <span class="hljs-keyword">from</span> tb_user 
 <span class="hljs-number">2019</span><span class="hljs-number">-07</span><span class="hljs-number">-01</span> <span class="hljs-number">11</span>:<span class="hljs-number">41</span>:<span class="hljs-number">49.869</span> DEBUG <span class="hljs-number">7844</span> --- [nio<span class="hljs-number">-8080</span>-exec<span class="hljs-number">-3</span>] p.h.redis.dao.UserMapper.selectAll       : ==&gt; Parameters: 
 <span class="hljs-number">2019</span><span class="hljs-number">-07</span><span class="hljs-number">-01</span> <span class="hljs-number">11</span>:<span class="hljs-number">41</span>:<span class="hljs-number">49.871</span> DEBUG <span class="hljs-number">7844</span> --- [nio<span class="hljs-number">-8080</span>-exec<span class="hljs-number">-3</span>] p.h.redis.dao.UserMapper.selectAll       : &lt;==      Total: <span class="hljs-number">5</span>
 
@@ -496,43 +496,43 @@ logging.level.pers.huangyuhui.redis=debug</code></pre>
 <span class="hljs-number">2019</span><span class="hljs-number">-07</span><span class="hljs-number">-01</span> <span class="hljs-number">11</span>:<span class="hljs-number">41</span>:<span class="hljs-number">57.251</span> DEBUG <span class="hljs-number">7844</span> --- [nio<span class="hljs-number">-8080</span>-exec<span class="hljs-number">-7</span>] p.h.redis.dao.UserMapper.selectAll       : ==&gt; Parameters: 
 <span class="hljs-number">2019</span><span class="hljs-number">-07</span><span class="hljs-number">-01</span> <span class="hljs-number">11</span>:<span class="hljs-number">41</span>:<span class="hljs-number">57.256</span> DEBUG <span class="hljs-number">7844</span> --- [nio<span class="hljs-number">-8080</span>-exec<span class="hljs-number">-7</span>] p.h.redis.dao.UserMapper.selectAll       : &lt;==      Total: <span class="hljs-number">5</span>
 
-Process finished with exit code <span class="hljs-number">-1</span></code></pre>
+Process finished with exit code <span class="hljs-number">-1</span></code></pre></div>
 
 
 
 <h3 id="Spring-Boot集成Redis"><a href="#Spring-Boot集成Redis" class="headerlink" title="Spring Boot集成Redis"></a>Spring Boot集成Redis</h3><p><em>Redis是一个完全开源的,遵守BSD协议的,内存中的数据结构存储,它既可以作为<code>数据库</code>,也可以作为<code>缓存</code>和<code>消息代理</code>. 通常在企业中常将其作为缓存使用哟~ 接下来在Spring Boot集成MyBatis示例程序基础上将列表数据缓存到Redis中,详细步骤如下 :</em></p>
 <ol>
 <li><p><em>在<code>pom.xml</code>中添加Spring Boot支持Redis的依赖</em></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></li>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div></li>
 <li><p><em>在<code>SpringbootRedisApplication.java</code>中添加<code>@EnableCaching</code>注解来开启缓存</em></p>
-<pre><code class="hljs java"><span class="hljs-meta">@SpringBootApplication</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootApplication</span>
 <span class="hljs-meta">@EnableCaching</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SpringbootRedisApplication</span> </span>&#123;
     <span class="hljs-comment">//······</span>
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>在业务逻辑类<code>UserServiceImpl.java</code>的方法上添加<code>@Cacheable</code>注解来支持Redis缓存</em></p>
-<pre><code class="hljs java"><span class="hljs-meta">@Override</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Override</span>
 <span class="hljs-meta">@Cacheable</span>(value = <span class="hljs-string">"UserCatch"</span>, key = <span class="hljs-string">"'user.selectAll'"</span>)
 <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;User&gt; <span class="hljs-title">findAll</span><span class="hljs-params">()</span> </span>&#123;
     <span class="hljs-keyword">return</span> userMapper.selectAll();
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>为便于数据的传输,将实体类<code>User.java</code>实现序列化接口Serializable</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span> </span>&#123;
     <span class="hljs-comment">//······</span>
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>在<code>application.properties</code>中指定<code>Redis</code>缓存主机地址及端口号. 我使用的是Windows的Redis发行版哟,其学习笔记 : <a href="https://yubuntu0109.github.io/2019/06/25/Hi-Redis/">https://yubuntu0109.github.io/2019/06/25/Hi-Redis/</a></em></p>
-<pre><code class="hljs t">#Redis Configuration Infromation
+<div class="hljs"><pre><code class="hljs t">#Redis Configuration Infromation
 spring.redis.host=localhost
-spring.redis.port=6379</code></pre>
+spring.redis.port=6379</code></pre></div>
 </li>
 <li><p><em>启动Redis服务,并启动Spring Boot项目,在浏览器地址栏中输入访问地址 : <code>http://localhost:8080/userList.html</code>后,不断刷新页面,其控制台打印的日志信息如下,结论 : 在没有使用Redis缓存之前,每刷新一次页面,都会执行一次查询数据库的操作,添加缓存后,会发现日志信息中只出现了一次查询语句,这也就说明所配置的Redis缓存已经生效啦 ~</em></p>
-<pre><code class="hljs angelscript"><span class="hljs-number">2019</span><span class="hljs-number">-07</span><span class="hljs-number">-01</span> <span class="hljs-number">12</span>:<span class="hljs-number">43</span>:<span class="hljs-number">06.945</span>  INFO <span class="hljs-number">1984</span> --- [nio<span class="hljs-number">-8080</span>-exec<span class="hljs-number">-1</span>] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet <span class="hljs-string">'dispatcherServlet'</span>
+<div class="hljs"><pre><code class="hljs angelscript"><span class="hljs-number">2019</span><span class="hljs-number">-07</span><span class="hljs-number">-01</span> <span class="hljs-number">12</span>:<span class="hljs-number">43</span>:<span class="hljs-number">06.945</span>  INFO <span class="hljs-number">1984</span> --- [nio<span class="hljs-number">-8080</span>-exec<span class="hljs-number">-1</span>] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet <span class="hljs-string">'dispatcherServlet'</span>
 
 <span class="hljs-number">2019</span><span class="hljs-number">-07</span><span class="hljs-number">-01</span> <span class="hljs-number">12</span>:<span class="hljs-number">43</span>:<span class="hljs-number">06.946</span>  INFO <span class="hljs-number">1984</span> --- [nio<span class="hljs-number">-8080</span>-exec<span class="hljs-number">-1</span>] o.s.web.servlet.DispatcherServlet        : Initializing Servlet <span class="hljs-string">'dispatcherServlet'</span>
 
@@ -550,21 +550,21 @@ spring.redis.port=6379</code></pre>
 <span class="hljs-number">2019</span><span class="hljs-number">-07</span><span class="hljs-number">-01</span> <span class="hljs-number">12</span>:<span class="hljs-number">43</span>:<span class="hljs-number">07.836</span> DEBUG <span class="hljs-number">1984</span> --- [nio<span class="hljs-number">-8080</span>-exec<span class="hljs-number">-7</span>] p.h.redis.dao.UserMapper.selectAll       : &lt;==      Total: <span class="hljs-number">7</span>
 
 
-Process finished with exit code <span class="hljs-number">-1</span></code></pre>
+Process finished with exit code <span class="hljs-number">-1</span></code></pre></div>
 
 
 </li>
 </ol>
 <h4 id="清除Redis缓存"><a href="#清除Redis缓存" class="headerlink" title="清除Redis缓存"></a>清除Redis缓存</h4><p><em>当执行添加,更新和删除操作后,数据库中的数据会发生变化,继而Redis缓存中的数据同样也需要进行相应的变化,为了保证Redis缓存中的数据与数据库中的一致,通常需要在执行<code>添加</code>,<code>更新</code>和<code>删除</code>操作之前清除缓存,然后再下一次执行查询操作时,将新的数据存储到Redis缓存中 .</em></p>
 <p><em>若要实现清除缓存的功能,只需在相应的方法中使用<code>@CacheEvict</code>注解即可,下面以案例程序中的删除用户功能为例,在用户业务逻辑类的<code>deleteUser()</code>方法上添加<code>@CacheEvict</code>注解 :</em></p>
-<pre><code class="hljs java"><span class="hljs-meta">@Override</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Override</span>
 <span class="hljs-meta">@CacheEvict</span>(value = <span class="hljs-string">"UserCatch"</span>, key = <span class="hljs-string">"'user.selectAll'"</span>)
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">delete</span><span class="hljs-params">(Integer id)</span> </span>&#123;
     userMapper.deleteById(id);
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><em>重启Spring Boot项目,在浏览器地址栏中输入访问地址 : <code>http://localhost:8080/user/deleteUser/5</code>, <code>../6</code> , <code>../7</code>删除id为5,6,7的用户信息后再查询用户列表信息 : <code>http://localhost:8080/userList.html</code>,其控制台打印的日志信息如下 :</em></p>
-<pre><code class="hljs angelscript"><span class="hljs-number">2019</span><span class="hljs-number">-07</span><span class="hljs-number">-01</span> <span class="hljs-number">18</span>:<span class="hljs-number">13</span>:<span class="hljs-number">45.143</span> DEBUG <span class="hljs-number">14764</span> --- [nio<span class="hljs-number">-8080</span>-exec<span class="hljs-number">-1</span>] p.h.redis.dao.UserMapper.deleteById      : ==&gt;  Preparing: Delete <span class="hljs-keyword">from</span> tb_user where id = ? 
+<div class="hljs"><pre><code class="hljs angelscript"><span class="hljs-number">2019</span><span class="hljs-number">-07</span><span class="hljs-number">-01</span> <span class="hljs-number">18</span>:<span class="hljs-number">13</span>:<span class="hljs-number">45.143</span> DEBUG <span class="hljs-number">14764</span> --- [nio<span class="hljs-number">-8080</span>-exec<span class="hljs-number">-1</span>] p.h.redis.dao.UserMapper.deleteById      : ==&gt;  Preparing: Delete <span class="hljs-keyword">from</span> tb_user where id = ? 
 <span class="hljs-number">2019</span><span class="hljs-number">-07</span><span class="hljs-number">-01</span> <span class="hljs-number">18</span>:<span class="hljs-number">13</span>:<span class="hljs-number">45.160</span> DEBUG <span class="hljs-number">14764</span> --- [nio<span class="hljs-number">-8080</span>-exec<span class="hljs-number">-1</span>] p.h.redis.dao.UserMapper.deleteById      : ==&gt; Parameters: <span class="hljs-number">5</span>(Integer)
 <span class="hljs-number">2019</span><span class="hljs-number">-07</span><span class="hljs-number">-01</span> <span class="hljs-number">18</span>:<span class="hljs-number">13</span>:<span class="hljs-number">45.162</span> DEBUG <span class="hljs-number">14764</span> --- [nio<span class="hljs-number">-8080</span>-exec<span class="hljs-number">-1</span>] p.h.redis.dao.UserMapper.deleteById      : &lt;==    Updates: <span class="hljs-number">1</span>
 
@@ -583,7 +583,7 @@ Process finished with exit code <span class="hljs-number">-1</span></code></pre>
 <span class="hljs-number">2019</span><span class="hljs-number">-07</span><span class="hljs-number">-01</span> <span class="hljs-number">18</span>:<span class="hljs-number">15</span>:<span class="hljs-number">47.353</span> DEBUG <span class="hljs-number">14764</span> --- [nio<span class="hljs-number">-8080</span>-exec<span class="hljs-number">-4</span>] p.h.redis.dao.UserMapper.selectAll       : ==&gt; Parameters: 
 <span class="hljs-number">2019</span><span class="hljs-number">-07</span><span class="hljs-number">-01</span> <span class="hljs-number">18</span>:<span class="hljs-number">15</span>:<span class="hljs-number">47.377</span> DEBUG <span class="hljs-number">14764</span> --- [nio<span class="hljs-number">-8080</span>-exec<span class="hljs-number">-4</span>] p.h.redis.dao.UserMapper.selectAll       : &lt;==      Total: <span class="hljs-number">4</span>
 
-Process finished with exit code <span class="hljs-number">-1</span></code></pre>
+Process finished with exit code <span class="hljs-number">-1</span></code></pre></div>
 
             </article>
             <hr>
@@ -594,11 +594,11 @@ Process finished with exit code <span class="hljs-number">-1</span></code></pre>
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
+                      <a class="hover-with-bg" href="/tags/Redis/">Redis</a>
+                    
                       <a class="hover-with-bg" href="/tags/MyBatis/">MyBatis</a>
                     
                       <a class="hover-with-bg" href="/tags/Spring-Boot/">Spring Boot</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Redis/">Redis</a>
                     
                   </div>
                 

@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -190,30 +190,30 @@
             <article class="markdown-body">
               <h2 id="学习笔记-Thymeleaf的常用语法"><a href="#学习笔记-Thymeleaf的常用语法" class="headerlink" title="学习笔记 : Thymeleaf的常用语法"></a>学习笔记 : Thymeleaf的常用语法</h2><p><em>简介 : Thymeleaf是一种用于Web和独立环境的现代服务器端的Java模板引擎. Thymeleaf的主要目标是将优雅的自然模板带到开发工作流程中,并将HTML在浏览器中正确显示,并且可以作为静态原型,让开发团队能更容易地协作. Thymeleaf能够处理HTML,XML,JavaScript,CSS甚至纯文本 .</em></p>
 <h3 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h3><h4 id="变量表达式"><a href="#变量表达式" class="headerlink" title="变量表达式 ${}"></a>变量表达式 <code>${}</code></h4><p><em>使用方法 : 直接使用<code>th:xx = &quot;${}&quot;</code>获取对象属性</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"userForm"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"userForm"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"$&#123;user.id&#125;"</span>/&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"$&#123;user.username&#125;"</span>/&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"$&#123;user.password&#125;"</span>/&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"hello"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;user.username&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"$&#123;user.username&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
 
 
 <h4 id="选择变量表达式"><a href="#选择变量表达式" class="headerlink" title="选择变量表达式 *{}"></a>选择变量表达式 <code>*{}</code></h4><p><em>使用方法 : 首先通过<code>th:object</code>获取对象,然后使用`th:xx = “</em>{}”`获取对象属性*</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"userForm"</span> <span class="hljs-attr">th:object</span>=<span class="hljs-string">"$&#123;user&#125;"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"userForm"</span> <span class="hljs-attr">th:object</span>=<span class="hljs-string">"$&#123;user&#125;"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"id"</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"*&#123;id&#125;"</span>/&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"*&#123;username&#125;"</span>/&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"*&#123;password&#125;"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></code></pre></div>
 
 
 <h4 id="链接表达式"><a href="#链接表达式" class="headerlink" title="链接表达式 @{}"></a>链接表达式 <code>@{}</code></h4><p><em>使用方法 : 通过链接表达式<code>@{}</code>直接拿到应用路径,然后拼接静态资源路径</em></p>
-<pre><code class="hljs html"><span class="hljs-comment">&lt;!-- 访问项目路径下的user并传递id,name等参数 --&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- 访问项目路径下的user并传递id,name等参数 --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;~/user(id=1,name=demo)&#125;"</span>&gt;</span>demo<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> 
 
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/webjars/jquery/jquery.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;/webjars/bootstrap/css/bootstrap.css&#125;"</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">th:href</span>=<span class="hljs-string">"@&#123;/webjars/bootstrap/css/bootstrap.css&#125;"</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span>&gt;</span></code></pre></div>
 
 
 <h4 id="片段表达式"><a href="#片段表达式" class="headerlink" title="片段表达式 ~{}"></a>片段表达式 <code>~{}</code></h4><ol>
@@ -222,77 +222,77 @@
 <li><em><code>~{::selector}</code> : 表示在当前页寻找</em></li>
 </ol>
 <p><em>使用方法 : 首先通过<code>th:fragment</code>定制片段,然后通过<code>th:replace</code>填写片段路径和片段名</em></p>
-<pre><code class="hljs html"><span class="hljs-comment">&lt;!-- /views/common/head.html--&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- /views/common/head.html--&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span> <span class="hljs-attr">th:fragment</span>=<span class="hljs-string">"static"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">th:src</span>=<span class="hljs-string">"@&#123;/webjars/jquery/3.3.1/jquery.js&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
 <span class="hljs-comment">&lt;!-- /views/your.html --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">th:replace</span>=<span class="hljs-string">"~&#123;common/head::static&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">th:replace</span>=<span class="hljs-string">"~&#123;common/head::static&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
 <ul>
 <li><em>注意 : 由于默认拼接的路径为<code>spring.thymeleaf.prefix = classpath:/templates/</code>,所以在使用替换路径<code>th:replace</code>开头请勿添加斜杠,避免部署运行的时候出现路径报错 !</em></li>
 </ul>
 <h4 id="消息表达式-amp-35"><a href="#消息表达式-amp-35" class="headerlink" title="消息表达式 &amp;#35;{}"></a>消息表达式 <code>&amp;#35;{}</code></h4><p><em>即通常的国际化属性 : <code>&amp;#35;{msg}</code>,用于获取国际化语言翻译值</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">title</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"#&#123;user.title&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></code></pre>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">title</span> <span class="hljs-attr">th:text</span>=<span class="hljs-string">"#&#123;user.title&#125;"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></code></pre></div>
 
 
 <h4 id="其它表达式"><a href="#其它表达式" class="headerlink" title="其它表达式"></a>其它表达式</h4><p><em>在基础语法中,默认支持字符串连接、数学运算、布尔逻辑和三目运算等..</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"name"</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"$&#123;'I am '+(user.name!=null?user.name:'NoBody')&#125;"</span>/&gt;</span></code></pre>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"name"</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"$&#123;'I am '+(user.name!=null?user.name:'NoBody')&#125;"</span>/&gt;</span></code></pre></div>
 
 
 
 <h3 id="常用语法"><a href="#常用语法" class="headerlink" title="常用语法"></a>常用语法</h3><h4 id="迭代循环"><a href="#迭代循环" class="headerlink" title="迭代循环"></a>迭代循环</h4><p><em>想要遍历List集合很简单,配合<code>th:each</code>即可快速完成迭代</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">th:each</span>=<span class="hljs-string">"user:$&#123;userList&#125;"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">th:each</span>=<span class="hljs-string">"user:$&#123;userList&#125;"</span>&gt;</span>
     账号: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"$&#123;user.username&#125;"</span>/&gt;</span>
     密码: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"$&#123;user.password&#125;"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
 
 <p><em>在集合的迭代过程还可以获取状态变量,只需在变量后面指定状态变量名即可,状态变量可用于获取集合的下标/序号、总数、是否为单数/偶数行、是否为第一个/最后一个</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">th:each</span>=<span class="hljs-string">"user,stat:$&#123;userList&#125;"</span> <span class="hljs-attr">th:class</span>=<span class="hljs-string">"$&#123;stat.even&#125;?'even':'odd'"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">th:each</span>=<span class="hljs-string">"user,stat:$&#123;userList&#125;"</span> <span class="hljs-attr">th:class</span>=<span class="hljs-string">"$&#123;stat.even&#125;?'even':'odd'"</span>&gt;</span>
     下标: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"$&#123;stat.index&#125;"</span>/&gt;</span>
     序号: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"$&#123;stat.count&#125;"</span>/&gt;</span>
     账号: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"$&#123;user.username&#125;"</span>/&gt;</span>
     密码: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"$&#123;user.password&#125;"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
 
 <p><em>如果缺省状态变量名,则迭代器会默认帮我们生成以变量名开头的状态变量 xxStat</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">th:each</span>=<span class="hljs-string">"user:$&#123;userList&#125;"</span> <span class="hljs-attr">th:class</span>=<span class="hljs-string">"$&#123;userStat.even&#125;?'even':'odd'"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">th:each</span>=<span class="hljs-string">"user:$&#123;userList&#125;"</span> <span class="hljs-attr">th:class</span>=<span class="hljs-string">"$&#123;userStat.even&#125;?'even':'odd'"</span>&gt;</span>
     下标：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"$&#123;userStat.index&#125;"</span>/&gt;</span>
     序号：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"$&#123;userStat.count&#125;"</span>/&gt;</span>
     账号：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"$&#123;user.username&#125;"</span>/&gt;</span>
     密码：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"$&#123;user.password&#125;"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
 
 
 <h4 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h4><h5 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h5><p><em>其语法为 : <code>th:if</code>,通常用于动态页面的初始化</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">th:if</span>=<span class="hljs-string">"$&#123;userList&#125;"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">th:if</span>=<span class="hljs-string">"$&#123;userList&#125;"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>exist...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
 <p><em>如果想取反则可以使用<code>unless</code></em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">th:unless</span>=<span class="hljs-string">"$&#123;userList&#125;"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">th:unless</span>=<span class="hljs-string">"$&#123;userList&#125;"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>not exist...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
 
 <h5 id="switch语句"><a href="#switch语句" class="headerlink" title="switch语句"></a>switch语句</h5><p><em>其语法中需要<code>th:switch</code>与<code>th:case</code>结合使用,通常用于动态页面的初始化</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">th:switch</span>=<span class="hljs-string">"$&#123;num&#125;"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">th:switch</span>=<span class="hljs-string">"$&#123;num&#125;"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">th:case</span>=<span class="hljs-string">"1"</span>&gt;</span>num=1<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">th:case</span>=<span class="hljs-string">"2"</span>&gt;</span>num=2<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">th:case</span>=<span class="hljs-string">"3"</span>&gt;</span>num=3<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span></span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span></span></code></pre></div>
 
 
 <h4 id="日期格式化"><a href="#日期格式化" class="headerlink" title="日期格式化"></a>日期格式化</h4><p><em>使用默认的日期格式(toString方法)并不是我们预期的格式 : <code>Mon Dec 03 23:16:50 CST 2018</code></em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"$&#123;user.createTime&#125;"</span>/&gt;</span></code></pre>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"$&#123;user.createTime&#125;"</span>/&gt;</span></code></pre></div>
 <p><em>此时可以通过时间工具类<code>&amp;#35;dates</code>来将日期进行格式化为 : <code>2018-12-03 23:16:50</code></em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"$&#123;#dates.format(user.createTime,'yyyy-MM-dd HH:mm:ss')&#125;"</span>/&gt;</span></code></pre>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">th:value</span>=<span class="hljs-string">"$&#123;#dates.format(user.createTime,'yyyy-MM-dd HH:mm:ss')&#125;"</span>/&gt;</span></code></pre></div>
 
 
 <h4 id="内联写法"><a href="#内联写法" class="headerlink" title="内联写法"></a>内联写法</h4><ol>
 <li><em>内联写法 : 解决 JS无法获取服务端返回的变量的尴尬 ~</em></li>
-<li><em>使用方法 : 标准格式为: <code>[[${xx}]]</code>,其可以读取服务端变量,也可以调用内置对象的方法.例如获取用户变量和应用路径:</em><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">th:inline</span>=<span class="hljs-string">"javascript"</span>&gt;</span><span class="javascript">
+<li><em>使用方法 : 标准格式为: <code>[[${xx}]]</code>,其可以读取服务端变量,也可以调用内置对象的方法.例如获取用户变量和应用路径:</em><div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">th:inline</span>=<span class="hljs-string">"javascript"</span>&gt;</span><span class="javascript">
     <span class="hljs-keyword">var</span> user = [[$&#123;user&#125;]];<span class="hljs-string">`
     var APP_PATH = [[<span class="hljs-subst">$&#123;#request.getContextPath()&#125;</span>]];
     var LANG_COUNTRY = [[<span class="hljs-subst">$&#123;#locale.getLanguage()+<span class="hljs-string">'_'</span>+#locale.getCountry()&#125;</span>]];
-</span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+</span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre></div>
 
 
 

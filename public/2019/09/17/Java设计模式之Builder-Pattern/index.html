@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -201,7 +201,7 @@
 <h3 id="示例程序"><a href="#示例程序" class="headerlink" title="示例程序"></a>示例程序</h3><p><em>下面是一个使用了建造者设计模式的简单示例程序,其概述为 : 无论是何种游戏角色,都需要逐步创建其组成部分,再将各组成部分配装成一个完整的游戏角色.</em></p>
 <ol>
 <li><p><em>Actor类 : 游戏角色类, 充当复杂产品对象</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.builder_pattern.builder_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.builder_pattern.builder_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -258,10 +258,10 @@
                 <span class="hljs-string">", costume='"</span> + costume + <span class="hljs-string">'\''</span> +
                 <span class="hljs-string">'&#125;'</span>;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>ActorBuilder抽象类 : 游戏角色建造者, 充当抽象建造者</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.builder_pattern.builder_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.builder_pattern.builder_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -286,10 +286,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> Actor <span class="hljs-title">createActor</span><span class="hljs-params">()</span> </span>&#123;
         <span class="hljs-keyword">return</span> actor;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>HeroBuilder类 : 英雄角色建造者, 充当具体建造者</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.builder_pattern.builder_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.builder_pattern.builder_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -319,10 +319,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buildCostume</span><span class="hljs-params">()</span> </span>&#123;
         actor.setCostume(<span class="hljs-string">"盔甲"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>AngelBuilder类 : 天使角色建造者, 充当具体建造类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.builder_pattern.builder_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.builder_pattern.builder_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -353,10 +353,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buildCostume</span><span class="hljs-params">()</span> </span>&#123;
         actor.setCostume(<span class="hljs-string">"裙子"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>ActorController类 : 角色控制器, 充当指挥者</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.builder_pattern.builder_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.builder_pattern.builder_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -378,10 +378,10 @@
         actor = actorBuilder.createActor();
         <span class="hljs-keyword">return</span> actor;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Client类 : 客户端测试类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.builder_pattern.builder_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.builder_pattern.builder_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -406,12 +406,12 @@
         Actor actor_angel = actorController.construct(angel);
         System.out.println(actor_angel);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>示例程序的运行结果如下所示 :</em></p>
-<pre><code class="hljs routeros">Actor&#123;<span class="hljs-attribute">type</span>=<span class="hljs-string">'英雄'</span>, <span class="hljs-attribute">sex</span>=<span class="hljs-string">'男'</span>, <span class="hljs-attribute">face</span>=<span class="hljs-string">'英俊'</span>, <span class="hljs-attribute">costume</span>=<span class="hljs-string">'盔甲'</span>&#125;
+<div class="hljs"><pre><code class="hljs routeros">Actor&#123;<span class="hljs-attribute">type</span>=<span class="hljs-string">'英雄'</span>, <span class="hljs-attribute">sex</span>=<span class="hljs-string">'男'</span>, <span class="hljs-attribute">face</span>=<span class="hljs-string">'英俊'</span>, <span class="hljs-attribute">costume</span>=<span class="hljs-string">'盔甲'</span>&#125;
 ------------------------------
-Actor&#123;<span class="hljs-attribute">type</span>=<span class="hljs-string">'天使'</span>, <span class="hljs-attribute">sex</span>=<span class="hljs-string">'女'</span>, <span class="hljs-attribute">face</span>=<span class="hljs-string">'漂亮'</span>, <span class="hljs-attribute">costume</span>=<span class="hljs-string">'裙子'</span>&#125;</code></pre>
+Actor&#123;<span class="hljs-attribute">type</span>=<span class="hljs-string">'天使'</span>, <span class="hljs-attribute">sex</span>=<span class="hljs-string">'女'</span>, <span class="hljs-attribute">face</span>=<span class="hljs-string">'漂亮'</span>, <span class="hljs-attribute">costume</span>=<span class="hljs-string">'裙子'</span>&#125;</code></pre></div>
 
 </li>
 </ol>
@@ -419,7 +419,7 @@ Actor&#123;<span class="hljs-attribute">type</span>=<span class="hljs-string">'�
 <h3 id="示例程序-简化版"><a href="#示例程序-简化版" class="headerlink" title="示例程序-简化版"></a>示例程序-简化版</h3><p><em>为了简化系统结构,可以将 Director 和抽象建造者 Builder 进行合并,在 Builder 中提供逐步构建复杂产品对象的 construct() 方法. 由于 Builder 类通常是抽象类,因此可以将 construct() 方法定义为静态方法,以便客户端能够直接调用. 除此之外还有一种更简单的处理方法,既将 construct() 方法中的参数去掉,直接在construct()方法中调用 buildPartX() 方法.( 以下示例程序是基于上述示例程序进行简化的 )</em></p>
 <ol>
 <li><p><em>Actor类 : 游戏角色类, 充当复杂产品对象</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.builder_pattern.builder_pattern_2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.builder_pattern.builder_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -476,10 +476,10 @@ Actor&#123;<span class="hljs-attribute">type</span>=<span class="hljs-string">'�
                 <span class="hljs-string">", costume='"</span> + costume + <span class="hljs-string">'\''</span> +
                 <span class="hljs-string">'&#125;'</span>;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>ActorBuilder抽象类 : 游戏角色建造者, 充当抽象建造者(省略Director并简化construct方法)</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.builder_pattern.builder_pattern_2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.builder_pattern.builder_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -513,10 +513,10 @@ Actor&#123;<span class="hljs-attribute">type</span>=<span class="hljs-string">'�
         <span class="hljs-keyword">this</span>.buildCostume();
         <span class="hljs-keyword">return</span> actor;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>HeroBuilder类 : 英雄角色建造者, 充当具体建造者</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.builder_pattern.builder_pattern_2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.builder_pattern.builder_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -546,10 +546,10 @@ Actor&#123;<span class="hljs-attribute">type</span>=<span class="hljs-string">'�
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buildCostume</span><span class="hljs-params">()</span> </span>&#123;
         actor.setCostume(<span class="hljs-string">"盔甲"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>AngelBuilder类 : 天使角色建造者, 充当具体建造类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.builder_pattern.builder_pattern_2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.builder_pattern.builder_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -580,10 +580,10 @@ Actor&#123;<span class="hljs-attribute">type</span>=<span class="hljs-string">'�
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buildCostume</span><span class="hljs-params">()</span> </span>&#123;
         actor.setCostume(<span class="hljs-string">"裙子"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Client类 : 客户端测试类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.builder_pattern.builder_pattern_2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.builder_pattern.builder_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -604,12 +604,12 @@ Actor&#123;<span class="hljs-attribute">type</span>=<span class="hljs-string">'�
         Actor angel = <span class="hljs-keyword">new</span> AngelBuilder().construct();
         System.out.println(angel);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>示例程序的运行结果如下所示 :</em></p>
-<pre><code class="hljs routeros">Actor&#123;<span class="hljs-attribute">type</span>=<span class="hljs-string">'英雄'</span>, <span class="hljs-attribute">sex</span>=<span class="hljs-string">'男'</span>, <span class="hljs-attribute">face</span>=<span class="hljs-string">'英俊'</span>, <span class="hljs-attribute">costume</span>=<span class="hljs-string">'盔甲'</span>&#125;
+<div class="hljs"><pre><code class="hljs routeros">Actor&#123;<span class="hljs-attribute">type</span>=<span class="hljs-string">'英雄'</span>, <span class="hljs-attribute">sex</span>=<span class="hljs-string">'男'</span>, <span class="hljs-attribute">face</span>=<span class="hljs-string">'英俊'</span>, <span class="hljs-attribute">costume</span>=<span class="hljs-string">'盔甲'</span>&#125;
 ------------------------------
-Actor&#123;<span class="hljs-attribute">type</span>=<span class="hljs-string">'天使'</span>, <span class="hljs-attribute">sex</span>=<span class="hljs-string">'女'</span>, <span class="hljs-attribute">face</span>=<span class="hljs-string">'漂亮'</span>, <span class="hljs-attribute">costume</span>=<span class="hljs-string">'裙子'</span>&#125;</code></pre>
+Actor&#123;<span class="hljs-attribute">type</span>=<span class="hljs-string">'天使'</span>, <span class="hljs-attribute">sex</span>=<span class="hljs-string">'女'</span>, <span class="hljs-attribute">face</span>=<span class="hljs-string">'漂亮'</span>, <span class="hljs-attribute">costume</span>=<span class="hljs-string">'裙子'</span>&#125;</code></pre></div>
 
 </li>
 </ol>

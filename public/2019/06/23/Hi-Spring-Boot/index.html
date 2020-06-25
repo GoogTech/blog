@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -199,7 +199,7 @@
 </ul>
 <h3 id="第一个Spring-Boot程序"><a href="#第一个Spring-Boot程序" class="headerlink" title="第一个Spring Boot程序"></a>第一个Spring Boot程序</h3><ol>
 <li><p><em>DemoApplication.java : Spring boot启动类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.demo;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.demo;
 
 <span class="hljs-keyword">import</span> org.springframework.boot.SpringApplication;
 <span class="hljs-keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -211,10 +211,10 @@
         SpringApplication.run(DemoApplication<span class="hljs-class">.<span class="hljs-keyword">class</span>, <span class="hljs-title">args</span>)</span>;
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>MyController.java : Spring mvc控制器</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.demo.controller;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.demo.controller;
 
 <span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.GetMapping;
 <span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RestController;
@@ -234,7 +234,7 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">hello</span><span class="hljs-params">()</span> </span>&#123;
         <span class="hljs-keyword">return</span> <span class="hljs-string">"Hi Spring Boot! it's so simple ~"</span>;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>启动项目的方式有三种,如下所示. 启动成功后在浏览器中输入:<code>http://localhost:8080/hello</code>即可看到如下图的运行结果.</em></p>
 </li>

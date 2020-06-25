@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -191,37 +191,37 @@
               <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><em>Secure Shell(<code>SSH</code>) 是由 IETF(The Internet Engineering Task Force) 制定的建立在应用层基础上的安全网络协议。它是专为远程登录会话( 甚至可以用Windows远程登录Linux服务器进行文件互传 )和其他网络服务提供安全性的协议，可有效弥补网络中的漏洞。通过SSH，可以把所有传输的数据进行加密，也能够防止 DNS 欺骗和 IP 欺骗。还有一个额外的好处就是传输的数据是经过压缩的，所以可以加快传输的速度。目前已经成为Linux系统的标准配置.</em></p>
 <h2 id="SSH的安装"><a href="#SSH的安装" class="headerlink" title="SSH的安装"></a>SSH的安装</h2><ol>
 <li><p>SSH分为客户端 <code>openssh-client</code> 和服务器 <code>openssh-server</code>，首先利用以下命令确认电脑上是否安装了客户端和服务器.</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> dpkg -l | grep ssh</span>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> dpkg -l | grep ssh</span>
 <span class="hljs-meta">
 #</span><span class="bash"> 如果没有安装则可以通过以下命令进行安装</span>
 <span class="hljs-meta">$</span><span class="bash"> sudo apt-get install openssh-client </span>
-<span class="hljs-meta">$</span><span class="bash"> sudo apt-get install openssh-server</span></code></pre>
+<span class="hljs-meta">$</span><span class="bash"> sudo apt-get install openssh-server</span></code></pre></div>
 </li>
 <li><p>检查 ssh-server 是否已经启动了.</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> ps -e | grep ssh</span>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> ps -e | grep ssh</span>
 <span class="hljs-meta">
 #</span><span class="bash"> 如果没有启动可以通过以下命令来启动</span>
 <span class="hljs-meta">$</span><span class="bash"> sudo /etc/init.d/ssh start </span>
 <span class="hljs-meta">#</span><span class="bash"> 停止和重启ssh服务的命令如下所示 </span>
 sudo /etc/init.d/ssh stop 
-sudo /etc/init.d/ssh restart</code></pre>
+sudo /etc/init.d/ssh restart</code></pre></div>
 
 
 </li>
 </ol>
 <h2 id="SSH远程登录的两种方式"><a href="#SSH远程登录的两种方式" class="headerlink" title="SSH远程登录的两种方式"></a>SSH远程登录的两种方式</h2><h3 id="方式一-口令登录"><a href="#方式一-口令登录" class="headerlink" title="方式一 : 口令登录"></a>方式一 : 口令登录</h3><p><em>命令格式为 : <code>ssh 客户端用户名@服务器ip地址</code></em></p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> ssh &lt;remote_username&gt;@&lt;remoteserver.ip&gt;</span>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> ssh &lt;remote_username&gt;@&lt;remoteserver.ip&gt;</span>
 <span class="hljs-meta">#</span><span class="bash"> 如果客户机的用户名和服务器的用户名相同,登录时可以省略用户名</span>
 <span class="hljs-meta">$</span><span class="bash"> ssh &lt;remoteserver.ip&gt;</span>
 <span class="hljs-meta">#</span><span class="bash"> 如果需要调用图形界面程序可以使用 -X 选项</span>
 <span class="hljs-meta">$</span><span class="bash"> ssh -X 123&lt;remote_username&gt;@&lt;remoteserver.ip&gt;</span>
 <span class="hljs-meta">#</span><span class="bash"> SSH服务的默认端口是22,我们可以使用 -p 选项来修改端口号</span>
-<span class="hljs-meta">$</span><span class="bash"> ssh -p 123 &lt;remote_username&gt;@&lt;remoteserver.ip&gt;</span></code></pre>
+<span class="hljs-meta">$</span><span class="bash"> ssh -p 123 &lt;remote_username&gt;@&lt;remoteserver.ip&gt;</span></code></pre></div>
 
 
 <h3 id="方式二-公钥登录"><a href="#方式二-公钥登录" class="headerlink" title="方式二 : 公钥登录"></a>方式二 : 公钥登录</h3><p><em>每次登录远程主机都需要输入密码是很不方便，如果想要省去这一步骤，可以利用密钥对进行连接，还可以提高安全性.</em></p>
 <ol>
-<li>首先在本机生成密钥对<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> ssh-keygen -t rsa <span class="hljs-comment"># -t表示类型选项,这里采用 rsa 加密算法</span></span></code></pre>
+<li>首先在本机生成密钥对<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> ssh-keygen -t rsa <span class="hljs-comment"># -t表示类型选项,这里采用 rsa 加密算法</span></span></code></pre></div>
 <blockquote>
 <p>然后根据提示一步步的按enter键即可( 其中有一个提示是要求设置私钥口令passphrase，不设置则为空。这里看心情吧，如果不放心私钥的安全可以设置一下)，执行结束以后会在 <code>/home/当前用户目录</code> 下生成一个 <code>.ssh</code> 文件夹,其中包含 <code>私钥文件 id_rsa</code> 和 <code>公钥文件 id_rsa.pub</code></p>
 </blockquote>
@@ -229,30 +229,30 @@ sudo /etc/init.d/ssh restart</code></pre>
 </ol>
 <h4 id="将公钥复制到远程主机-方法-A"><a href="#将公钥复制到远程主机-方法-A" class="headerlink" title="将公钥复制到远程主机: 方法 A"></a>将公钥复制到远程主机: 方法 A</h4><ol start="2">
 <li><p>将公钥复制到远程主机中( <code>但由于Windows上没有ssh-copy-id，我们可以使用方法 B</code> )</p>
-<pre><code class="hljs applescript">$ ssh-<span class="hljs-keyword">copy</span>-<span class="hljs-built_in">id</span> &lt;remote_username&gt;@&lt;remoteserver.ip&gt;</code></pre>
+<div class="hljs"><pre><code class="hljs applescript">$ ssh-<span class="hljs-keyword">copy</span>-<span class="hljs-built_in">id</span> &lt;remote_username&gt;@&lt;remoteserver.ip&gt;</code></pre></div>
 <blockquote>
 <p>使用 ssh-copy-id 命令将公钥复制到远程主机. ssh-copy-id会将公钥写到远程主机的 <code>~/.ssh/authorized_key</code> 文件中. 经过以上两个步骤，以后再登录这个远程主机就不用再输入密码咯 !</p>
 </blockquote>
 </li>
 <li><p>测试</p>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 再次登录远程服务器时只需输入私钥密码即可.</span>
-ssh &lt;remote_username&gt;@&lt;remoteserver.ip&gt;</code></pre>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 再次登录远程服务器时只需输入私钥密码即可.</span>
+ssh &lt;remote_username&gt;@&lt;remoteserver.ip&gt;</code></pre></div>
 
 </li>
 </ol>
 <h4 id="将公钥复制到远程主机-方法-B"><a href="#将公钥复制到远程主机-方法-B" class="headerlink" title="将公钥复制到远程主机: 方法 B"></a>将公钥复制到远程主机: 方法 B</h4><ol start="2">
 <li><p>首先将ssh key的公钥上传到远程主机</p>
-<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> scp &lt;windows上的公钥&gt; &lt;远程主机用户名&gt;@&lt;远程主机ip或者域名&gt;:~/.ssh/id_rsa.win.pub</span>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> scp &lt;windows上的公钥&gt; &lt;远程主机用户名&gt;@&lt;远程主机ip或者域名&gt;:~/.ssh/id_rsa.win.pub</span>
 <span class="hljs-meta">#</span><span class="bash"> 举例</span>
-<span class="hljs-meta">$</span><span class="bash"> scp C:\Users\&lt;Windows_User&gt;\.ssh\id_rsa.pub &lt;remote_username&gt;@&lt;remoteserver.ip&gt;:~/.ssh/id_rsa.win.pub</span></code></pre>
+<span class="hljs-meta">$</span><span class="bash"> scp C:\Users\&lt;Windows_User&gt;\.ssh\id_rsa.pub &lt;remote_username&gt;@&lt;remoteserver.ip&gt;:~/.ssh/id_rsa.win.pub</span></code></pre></div>
 </li>
 <li><p>登录到远程主机，在远程主机上将windows的key添加到authorized_keys文件中.</p>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> &gt;&gt; : 将id_rsa.win.pub中的内容写入到authorized_keys文件中</span>
-<span class="hljs-meta">$</span><span class="bash"> cat ~/.ssh/id_rsa.win.pub &gt;&gt; ~/.ssh/authorized_keys</span></code></pre>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> &gt;&gt; : 将id_rsa.win.pub中的内容写入到authorized_keys文件中</span>
+<span class="hljs-meta">$</span><span class="bash"> cat ~/.ssh/id_rsa.win.pub &gt;&gt; ~/.ssh/authorized_keys</span></code></pre></div>
 </li>
 <li><p>测试</p>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 再次登录远程服务器时只需输入私钥密码即可.</span>
-ssh &lt;remote_username&gt;@&lt;remoteserver.ip&gt;</code></pre>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 再次登录远程服务器时只需输入私钥密码即可.</span>
+ssh &lt;remote_username&gt;@&lt;remoteserver.ip&gt;</code></pre></div>
 
 
 </li>

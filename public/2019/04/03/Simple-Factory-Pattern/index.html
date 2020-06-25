@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -193,18 +193,18 @@
 <li><code>Product</code>(抽象产品角色) : 它是工厂类创建的所有对象的父类,封装了各种产品对象的公有方法,它的引入将提高系统的灵活性,使得在工厂类中只需定义一个通用的工厂方法,因为所有创建的具体产品对象都是其子类对象.</li>
 <li><code>ConcreteProduct</code>(具体产品角色) : 它是简单的工厂模式的创建目标,所有被创建的对象都充当这个角色的某个具体类的实例,每一个具体产品角色都继承了抽象产品的角色.需要实现在抽象产品中声明的抽象方法.</li>
 </ol>
-<h3 id="实例说明"><a href="#实例说明" class="headerlink" title="实例说明"></a>实例说明</h3><pre><code class="hljs gcode">某软件公司要基于Java语言开发一套图表库,该图表库可以为应用程序提供多种不同外观的图表,例如柱状图<span class="hljs-comment">(HistogramChart)</span>,饼状图<span class="hljs-comment">(PieChart)</span>
+<h3 id="实例说明"><a href="#实例说明" class="headerlink" title="实例说明"></a>实例说明</h3><div class="hljs"><pre><code class="hljs gcode">某软件公司要基于Java语言开发一套图表库,该图表库可以为应用程序提供多种不同外观的图表,例如柱状图<span class="hljs-comment">(HistogramChart)</span>,饼状图<span class="hljs-comment">(PieChart)</span>
 折线图<span class="hljs-comment">(LineChart)</span>等..该软件公司图表库设计人员希望为应用系统人员提供一套灵活易用的图标库,通过设置不同的参数即可得到不同类型的图表.
-而且可以较为方便的对图表库进行扩展,以便能够在将来增加一些新类型的图表.</code></pre>
+而且可以较为方便的对图表库进行扩展,以便能够在将来增加一些新类型的图表.</code></pre></div>
 <h4 id="下述用简单工厂模式来设计该图表库"><a href="#下述用简单工厂模式来设计该图表库" class="headerlink" title="下述用简单工厂模式来设计该图表库"></a>下述用简单工厂模式来设计该图表库</h4><ul>
 <li><p><em>(1)Chart : 抽象图表接口,充当抽象产品类.</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Chart</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Chart</span> </span>&#123;
 
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>(2)HistogramChart : 柱状图类,充当具体产品类.</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HistogramChart</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Chart</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HistogramChart</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Chart</span> </span>&#123;
 
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">HistogramChart</span><span class="hljs-params">()</span> </span>&#123;
 		System.out.println(<span class="hljs-string">"Create the histogram chart ."</span>);
@@ -214,10 +214,10 @@
 		System.out.println(<span class="hljs-string">"Display the histogram chart ."</span>);
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>(3)PieChart : 饼状体类,充当具体产品类.</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PieChart</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Chart</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PieChart</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Chart</span> </span>&#123;
 
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">PieChart</span><span class="hljs-params">()</span> </span>&#123;
 		System.out.println(<span class="hljs-string">"Create the pie chart ."</span>);
@@ -227,10 +227,10 @@
 		System.out.println(<span class="hljs-string">"Display the pie chart ."</span>);
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>(4)LineChart : 折线图类,充当具体产品类.</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LineChart</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Chart</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LineChart</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Chart</span> </span>&#123;
 
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">LineChart</span><span class="hljs-params">()</span> </span>&#123;
 		System.out.println(<span class="hljs-string">"Create the line chart ."</span>);
@@ -240,10 +240,10 @@
 		System.out.println(<span class="hljs-string">"Display the line chart ."</span>);
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>(5)ChartFactory : 图表工厂类,充当工厂类.</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChartFactory</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChartFactory</span> </span>&#123;
 
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Chart <span class="hljs-title">getChart</span><span class="hljs-params">(String chartType)</span> </span>&#123;
 
@@ -262,10 +262,10 @@
 		&#125;
 		<span class="hljs-keyword">return</span> chart;
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>(6)SimpleFactoryPatternTest : 客户端测试类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SimpleFactoryPatternTest</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SimpleFactoryPatternTest</span> </span>&#123;
 
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
 
@@ -292,19 +292,19 @@
 
 		*/</span>
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 </li>
 </ul>
 <h4 id="不难发现-上述示例中在创建具体Chart对象时必须通过修改客户端代码中静态工厂方法的参数来更换具体产品对象-客户端代码需要重新编译-这对于客户端而言违反了开闭原则-下面介绍一种常用的解决方案-可以实现在不修改客户端代码的前提下能让客户端能够更换具体产品对象"><a href="#不难发现-上述示例中在创建具体Chart对象时必须通过修改客户端代码中静态工厂方法的参数来更换具体产品对象-客户端代码需要重新编译-这对于客户端而言违反了开闭原则-下面介绍一种常用的解决方案-可以实现在不修改客户端代码的前提下能让客户端能够更换具体产品对象" class="headerlink" title="不难发现,上述示例中在创建具体Chart对象时必须通过修改客户端代码中静态工厂方法的参数来更换具体产品对象.客户端代码需要重新编译,这对于客户端而言违反了开闭原则.下面介绍一种常用的解决方案,可以实现在不修改客户端代码的前提下能让客户端能够更换具体产品对象."></a>不难发现,上述示例中在创建具体<code>Chart</code>对象时必须通过修改客户端代码中静态工厂方法的参数来更换具体产品对象.客户端代码需要重新编译,这对于客户端而言违反了<code>开闭原则</code>.下面介绍一种常用的解决方案,可以实现在不修改客户端代码的前提下能让客户端能够更换具体产品对象.</h4><ul>
 <li><p><em>首先可以将静态的工厂方法的参数存储在<code>XML</code>格式的配置文件中(<code>config.xml</code>).如下所示 :</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">config</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">chartType</span>&gt;</span>histograma<span class="hljs-tag">&lt;/<span class="hljs-name">chartType</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">config</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">config</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>再通过一个工具类<code>XML Util</code>来读取配置文件中的字符串参数,<code>XMLUtil</code>类的代码如下 :</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">XMLUtil</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">XMLUtil</span> </span>&#123;
 
 	<span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> String path = <span class="hljs-string">"src\\objctConfig.xml"</span>;
 
@@ -338,10 +338,10 @@
 
 		<span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><strong>在引入配置文件和工具类<code>XMLUtil</code>之后,客户端代码<code>SimpleFactoryPatternTest.java</code>修改如下 :</strong></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SimpleFactoryPatternTest</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SimpleFactoryPatternTest</span> </span>&#123;
 
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
 		<span class="hljs-comment">/*
@@ -360,15 +360,15 @@
 
 		 */</span>
 	&#125;
-&#125;</code></pre></li>
+&#125;</code></pre></div></li>
 <li><p><strong>不难发现,在上述客户端代码中并不包含任何与具体图标对象相关的信息,如果需要更换具体图标对象,只需要修改配置文件<code>config.xml</code>,无须修改任何原代码,既而符合<code>开闭原则</code></strong></p>
 </li>
 <li><p><em><code>开闭原则</code> : 是面向对象的可复用设计的第一块基石,它是最重要的面向对象设计原则.开闭原则由<code>Bertrand Meyer</code>于1998年提出,其定义如下 :</em></p>
-<pre><code class="hljs mipsasm">开闭原则 : 软件实体应当对扩展开放,对修改关闭.
+<div class="hljs"><pre><code class="hljs mipsasm">开闭原则 : 软件实体应当对扩展开放,对修改关闭.
 Open-<span class="hljs-keyword">Closed </span>Principle(OCP) : Software entities <span class="hljs-keyword">should </span><span class="hljs-keyword">be </span>open for <span class="hljs-keyword">extension,but </span><span class="hljs-keyword">closed </span>for modification.
 
 在开闭原则的定义中,软件实体可以指一个软件模块,一个由多个类组成的局部结构或一个独立的类,开闭原则就是指软件实体应尽量在不修改
-原有代码的情况下进行扩展.</code></pre>
+原有代码的情况下进行扩展.</code></pre></div>
 
 
 </li>

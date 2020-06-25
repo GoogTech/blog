@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -194,7 +194,7 @@
 <p><em>前些天学习数据结构与算法时特意写了一篇名为<code>详解Linked-list的实现方式及其应用</code>的文章,其中<code>循环链表</code>的代码中就淋漓尽致地体现了Java中<code>对象</code>的引用与赋值</em></p>
 <ol start="2">
 <li><p><em>循环链表的实现</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.linkedlist;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.linkedlist;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: CircularLinkedList
@@ -414,10 +414,10 @@
 		System.out.println(<span class="hljs-string">"the length of the list: "</span> + list.getLength(headNode));
 
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行结果</em></p>
-<pre><code class="hljs java">the origin node: 
+<div class="hljs"><pre><code class="hljs java">the origin node: 
 ### [headNode]-address : pers.huangyuhui.linkedlist.ListNode@16f65612
 
 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; headNode(1)
@@ -446,14 +446,14 @@ delete the fourth node:
 ### [headNode]-address : pers.huangyuhui.linkedlist.ListNode@7c53a9eb
 
 100 -&gt; 1 -&gt; 2 -&gt; 3 -&gt; headNode(100)
-the length of the list: 4</code></pre>
+the length of the list: 4</code></pre></div>
 
 
 </li>
 </ol>
 <h3 id="基本数据类型作为参数传递"><a href="#基本数据类型作为参数传递" class="headerlink" title="基本数据类型作为参数传递"></a>基本数据类型作为参数传递</h3><ol>
 <li><p><em>示例程序</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">test</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">test</span> </span>&#123;
 
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
 		<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;
@@ -465,10 +465,10 @@ the length of the list: 4</code></pre>
 	<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">change</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span> </span>&#123;
 		i = <span class="hljs-number">5</span>;
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行结果</em></p>
-<pre><code class="hljs java">before change, i=1
+<div class="hljs"><pre><code class="hljs java">before change, i=1
 after change, i=1
 ```  
 
@@ -495,18 +495,18 @@ public class test &#123;
 		stringBuffer.append(" world !");
 
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行结果</em></p>
-<pre><code class="hljs java">before change: Hello
-after change: Hello world !</code></pre>
+<div class="hljs"><pre><code class="hljs java">before change: Hello
+after change: Hello world !</code></pre></div>
 </li>
 <li><p><em>探究结论</em></p>
 </li>
 </ol>
 <p><em>从上述程序运行结果可知<code>sb</code>所指的对象的值被改变了!那么我们是否就可以认为Java中的对象作为参数传递时,传递的是该对象的引用呢 <code>?</code> 那我们再来看第二个示例程序.</em></p>
 <ol start="4">
-<li><em>第二个示例程序</em><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">test</span> </span>&#123;
+<li><em>第二个示例程序</em><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">test</span> </span>&#123;
 
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
 
@@ -521,27 +521,27 @@ after change: Hello world !</code></pre>
 		stringBuffer.append(<span class="hljs-string">" world !"</span>);
 
 	&#125;
-&#125;</code></pre></li>
+&#125;</code></pre></div></li>
 <li><em>程序运行结果</em></li>
 </ol>
 <p><em>如果上面的<code>推论</code>:(Java中对象作为参数传递时,实际传递的是该对象的引用)是正确的,那么在调用<code>change</code>函数后,原对象的值应该会被改变,既变为:<code>Hi World !</code>,但是,该程序的运行结果如下 !!!</em></p>
-<pre><code class="hljs java">before change: Hello
-after change: Hello</code></pre>
+<div class="hljs"><pre><code class="hljs java">before change: Hello
+after change: Hello</code></pre></div>
 <p><em>可知原对象(<code>sb</code>)的值并没有被改变,这是为什么呢? 下面让我们来<code>分析</code>一下其中的原因吧嘿嘿 ~</em></p>
 <ol start="6">
 <li>结论分析</li>
 </ol>
 <p><em>当我们执行<code>StringBuffer sb = new StringBuffer(&quot;Hello&quot;)</code>时,我们便创建了一个指向新建对象<code>new StringBuffer(&quot;Hello&quot;)</code>的引用<code>sb</code>,如下所示.</em></p>
-<pre><code class="hljs apache"><span class="hljs-attribute">sb</span> ——————&gt;<span class="hljs-meta"> [Hello]</span></code></pre>
+<div class="hljs"><pre><code class="hljs apache"><span class="hljs-attribute">sb</span> ——————&gt;<span class="hljs-meta"> [Hello]</span></code></pre></div>
 
 <p><em>在<code>第二个示例程序</code>中,当我们调用<code>change</code>函数后,实际上,形参<code>stringBuffer</code>也指向了实参<code>sb</code>所指的对象! 如下所示.</em></p>
-<pre><code class="hljs java">sb ——————&gt; [Hello] &lt;—————— stringBuffer</code></pre>
+<div class="hljs"><pre><code class="hljs java">sb ——————&gt; [Hello] &lt;—————— stringBuffer</code></pre></div>
 <p><em>那么当我们执行<code>stringBuffer.append(&quot;world!&quot;)</code>后,便通过对象的引用(<code>stringBuffer</code>)修改了对象的值,使之修改成了: <code>Hello world !</code>,如下所示:</em></p>
-<pre><code class="hljs angelscript">sb ——————&gt; [Hello world !] &lt;—————— <span class="hljs-built_in">string</span>Buffer</code></pre>
+<div class="hljs"><pre><code class="hljs angelscript">sb ——————&gt; [Hello world !] &lt;—————— <span class="hljs-built_in">string</span>Buffer</code></pre></div>
 
 <p><em>但是在<code>第二个示例程序</code>中的<code>change</code>函数中,我们又新建了一个对象:<code>new StringBuffer(&quot;Hi&quot;)</code>(该操作实际上是在内存中开辟了一块在原对象地址之外的<code>新区域</code>),这让形参<code>stringBuffer</code>实际指向了这个新建的对象,并将新对象的值设置为了<code>Hi world !</code>,如下所示:</em></p>
-<pre><code class="hljs apache"><span class="hljs-attribute">sb</span> ——————&gt;<span class="hljs-meta"> [Hello]</span>
-<span class="hljs-attribute">stringBuffer</span> ——————&gt;<span class="hljs-meta"> [Hi World !]</span></code></pre>
+<div class="hljs"><pre><code class="hljs apache"><span class="hljs-attribute">sb</span> ——————&gt;<span class="hljs-meta"> [Hello]</span>
+<span class="hljs-attribute">stringBuffer</span> ——————&gt;<span class="hljs-meta"> [Hi World !]</span></code></pre></div>
 <ul>
 <li><em>综上所述,可以得出结论: <code>在Java中,当对象作为参数传递时,实际上传递的是一份&quot;引用&quot;的拷贝 !</code></em></li>
 </ul>

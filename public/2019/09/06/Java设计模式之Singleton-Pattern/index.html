@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -195,7 +195,7 @@
 <li><em>必须自行向系统提供这个实例</em></li>
 </ol>
 <h3 id="示例程序-饿汉式单例"><a href="#示例程序-饿汉式单例" class="headerlink" title="示例程序-饿汉式单例"></a>示例程序-饿汉式单例</h3><p><em>饿汉式单例类( Eager Singleton )是最简单的单例类,既类被加载时静态变量 instance 就会被初始化,程序示例如下所示 :</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.singleton_pattern.eager_singleton;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.singleton_pattern.eager_singleton;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -216,11 +216,11 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> EagerSingleton <span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>&#123;
         <span class="hljs-keyword">return</span> instance;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><em>注 : 从资源利用效率的角度来讲饿汉式单例不及懒汉式单例,而且系统加载时由于需要创建饿汉式单例对象,加载时间可能比较长.</em></p>
 <h3 id="程序示例-懒汉式单例"><a href="#程序示例-懒汉式单例" class="headerlink" title="程序示例-懒汉式单例"></a>程序示例-懒汉式单例</h3><p><em>与饿汉式单例不同的是,懒汉式单例类( Lazy Singleton )在第一次被引用时才会将自己实例化,当单例类被加载时并不会将自己实例化, 示例程序如下所示 :</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.singleton_pattern.lazy_singleton;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.singleton_pattern.lazy_singleton;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -252,11 +252,11 @@
         &#125;
         <span class="hljs-keyword">return</span> instance;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><em>注 : 由于<code>volatile</code>关键字会屏蔽Java虚拟机所做的一切代码优化,继而可能会导致系统的运行效率降低,因此即使使用双重检查锁定来实现单例模式也不是一种完美的实现方法哟~</em></p>
 <h3 id="示例程序-内部类实现单例"><a href="#示例程序-内部类实现单例" class="headerlink" title="示例程序-内部类实现单例"></a>示例程序-内部类实现单例</h3><p><em>饿汉式单例不能实现延迟加载,不管将来用不用始终占据内存. 懒汉式单例类线程安全控制繁琐,而且性能受影响. 为了克服这些问题,在Java语言中可以通过使用 Initialization on Demand Holder( <code>IoDH</code> )技术来实现单例模式,示例程序如下所示 :</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.singleton_pattern.IoDH_singleton;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.singleton_pattern.IoDH_singleton;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -280,7 +280,7 @@
         <span class="hljs-keyword">return</span> HolderClass.instance;
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><em>注 : 通过使用<code>IoDH</code>既可以实现延迟加载,又可以保证线程安全,不影响系统性能,既其为一种最好的Java语言单例模式实现方式,其缺点为很多面向对象语言并不支持IoDH哟~</em></p>
 

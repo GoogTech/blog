@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -191,11 +191,11 @@
               <h2 id="学习笔记-Git-Commit-Message规范"><a href="#学习笔记-Git-Commit-Message规范" class="headerlink" title="学习笔记 : Git Commit Message规范"></a>学习笔记 : Git Commit Message规范</h2><p><em>Git Commit Message 应该清晰明了,要用精简的语言说明本次提交的目的,其主要作用是为了后续的搜索、版本的回滚、合并冲突的追溯等操作~</em></p>
 <h3 id="规范介绍"><a href="#规范介绍" class="headerlink" title="规范介绍"></a>规范介绍</h3><p><em>这次主要介绍 AngularJS 的规范,它是由 Google 推出的一套提交消息规范标准,也是目前使用范围最广的规范,比较合理和系统化,并且还有配套的工具可以供我们使用,规范执行方案如下 :</em></p>
 <p><img src="/2019/08/08/Git-Commit-Message-%E8%A7%84%E8%8C%83/git-commit-message-mindmap.png" srcset="/img/loading.gif" alt></p>
-<h3 id="格式要求"><a href="#格式要求" class="headerlink" title="格式要求"></a>格式要求</h3><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">type</span>&gt;</span>(<span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>): <span class="hljs-tag">&lt;<span class="hljs-name">subject</span>&gt;</span>
+<h3 id="格式要求"><a href="#格式要求" class="headerlink" title="格式要求"></a>格式要求</h3><div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">type</span>&gt;</span>(<span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>): <span class="hljs-tag">&lt;<span class="hljs-name">subject</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">BLANK</span> <span class="hljs-attr">LINE</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">BLANK</span> <span class="hljs-attr">LINE</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">footer</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;<span class="hljs-name">footer</span>&gt;</span></code></pre></div>
 <ul>
 <li>消息只占用一行,任何行都不能超过 100 个字符</li>
 <li>允许使用 GitHub 以及各种 Git 工具阅读消息</li>
@@ -265,13 +265,13 @@
 <li>结尾不加句号( . )</li>
 </ul>
 <h4 id="Body"><a href="#Body" class="headerlink" title="Body"></a>Body</h4><p><em>Body 部分是对本次 commit 的详细描述,可以分成多行. 下面是一个范例 :</em></p>
-<pre><code class="hljs livecodeserver">More <span class="hljs-keyword">detailed</span> explanatory <span class="hljs-keyword">text</span>, <span class="hljs-keyword">if</span> necessary.  Wrap <span class="hljs-keyword">it</span> <span class="hljs-built_in">to</span> 
+<div class="hljs"><pre><code class="hljs livecodeserver">More <span class="hljs-keyword">detailed</span> explanatory <span class="hljs-keyword">text</span>, <span class="hljs-keyword">if</span> necessary.  Wrap <span class="hljs-keyword">it</span> <span class="hljs-built_in">to</span> 
 about <span class="hljs-number">72</span> <span class="hljs-keyword">characters</span> <span class="hljs-keyword">or</span> so. 
 
 Further paragraphs come <span class="hljs-keyword">after</span> blank <span class="hljs-keyword">lines</span>.
 
 - Bullet points are okay, too
-- Use <span class="hljs-keyword">a</span> hanging indent</code></pre>
+- Use <span class="hljs-keyword">a</span> hanging indent</code></pre></div>
 <p><em>有两个注意点 :</em></p>
 <ul>
 <li>使用第一人称现在时,比如使用change而不是changed或changes</li>
@@ -280,7 +280,7 @@ Further paragraphs come <span class="hljs-keyword">after</span> blank <span clas
 <h4 id="Footer"><a href="#Footer" class="headerlink" title="Footer"></a>Footer</h4><p><em>Footer 部分只用于两种情况 :</em></p>
 <ol>
 <li><p><em>不兼容变动 : 如果当前代码与上一个版本不兼容,则 Footer 部分以<code>BREAKING CHANGE</code>开头,后面是对变动的描述、以及变动理由和迁移方法,示例如下 :</em></p>
-<pre><code class="hljs sql">BREAKING <span class="hljs-keyword">CHANGE</span>: isolate <span class="hljs-keyword">scope</span> bindings definition has changed.
+<div class="hljs"><pre><code class="hljs sql">BREAKING <span class="hljs-keyword">CHANGE</span>: isolate <span class="hljs-keyword">scope</span> bindings definition has changed.
 
     <span class="hljs-keyword">To</span> migrate the code follow the example below:
 
@@ -296,19 +296,19 @@ Further paragraphs come <span class="hljs-keyword">after</span> blank <span clas
       myAttr: <span class="hljs-string">'@'</span>,
     &#125;
 
-    The removed <span class="hljs-string">`inject`</span> wasn<span class="hljs-string">'t generaly useful for directives so there should be no code using it.</span></code></pre>
+    The removed <span class="hljs-string">`inject`</span> wasn<span class="hljs-string">'t generaly useful for directives so there should be no code using it.</span></code></pre></div>
 </li>
 <li><p><em>关闭 Issue : 如果当前 commit 针对某个issue,那么可以在 Footer 部分关闭这个 issue :</em></p>
-<pre><code class="hljs mipsasm"><span class="hljs-keyword">Closes </span><span class="hljs-comment">#234</span></code></pre></li>
+<div class="hljs"><pre><code class="hljs mipsasm"><span class="hljs-keyword">Closes </span><span class="hljs-comment">#234</span></code></pre></div></li>
 </ol>
 <p><em>也可以一次关闭多个 issue :</em></p>
-<pre><code class="hljs angelscript">Closes #<span class="hljs-number">123</span>, #<span class="hljs-number">245</span>, #<span class="hljs-number">992</span></code></pre>
+<div class="hljs"><pre><code class="hljs angelscript">Closes #<span class="hljs-number">123</span>, #<span class="hljs-number">245</span>, #<span class="hljs-number">992</span></code></pre></div>
 
 
 <h4 id="Revert"><a href="#Revert" class="headerlink" title="Revert"></a>Revert</h4><p><em>还有一种特殊情况,如果当前 commit 用于撤销以前的 commit,则必须以<code>revert:</code>开头，后面跟着被撤销 Commit 的 Header,示例如下 :</em></p>
-<pre><code class="hljs pgsql">revert: feat(pencil): <span class="hljs-keyword">add</span> <span class="hljs-string">'graphiteWidth'</span> <span class="hljs-keyword">option</span>
+<div class="hljs"><pre><code class="hljs pgsql">revert: feat(pencil): <span class="hljs-keyword">add</span> <span class="hljs-string">'graphiteWidth'</span> <span class="hljs-keyword">option</span>
 
-This reverts <span class="hljs-keyword">commit</span> <span class="hljs-number">667</span>ecc1654a317a13331b17617d973392f415f02.</code></pre>
+This reverts <span class="hljs-keyword">commit</span> <span class="hljs-number">667</span>ecc1654a317a13331b17617d973392f415f02.</code></pre></div>
 <p><em>Body部分的格式是固定的，必须写成<code>This reverts commit &amp;lt;hash&gt;</code>,其中的<code>hash</code>是被撤销 commit 的<code>SHA</code>标识符。</em></p>
 <p><em>✨规范参考链接 :</em></p>
 <ul>

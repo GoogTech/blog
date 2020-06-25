@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -190,85 +190,85 @@
             <article class="markdown-body">
               <h2 id="学习笔记-详解JSP中Shiro标签的使用"><a href="#学习笔记-详解JSP中Shiro标签的使用" class="headerlink" title="学习笔记 : 详解JSP中Shiro标签的使用"></a>学习笔记 : 详解JSP中Shiro标签的使用</h2><p><em>Apache Shiro provides a Subject-aware JSP/GSP tag library that allows you to control your JSP, JSTL or GSP page output based on the current Subject’s state. This is quite useful for personalizing views based on the identity and authorization state of the current user viewing the web page. For more information, please refer to : <a href="http://shiro.apache.org/web.html#Web-taglibrary" target="_blank" rel="noopener">http://shiro.apache.org/web.html#Web-taglibrary</a></em></p>
 <h3 id="Tag-Library-Configuration"><a href="#Tag-Library-Configuration" class="headerlink" title="Tag Library Configuration"></a>Tag Library Configuration</h3><p><em>The Tag Library Descriptor (TLD) file is bundled in shiro-web.jar in the <code>META-INF/shiro.tld</code> file. To use any of the tags, add the following line to the top of your JSP page (or wherever you define page directives) :</em></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">taglib</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">"shiro"</span> <span class="hljs-attr">uri</span>=<span class="hljs-string">"http://shiro.apache.org/tags"</span> %&gt;</span></code></pre>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">taglib</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">"shiro"</span> <span class="hljs-attr">uri</span>=<span class="hljs-string">"http://shiro.apache.org/tags"</span> %&gt;</span></code></pre></div>
 <ul>
 <li>We’ve used the shiro prefix to indicate the shiro tag library namespace, but you can assign whatever name you like.</li>
 </ul>
 <h3 id="shiro-authenicated"><a href="#shiro-authenicated" class="headerlink" title="shiro : authenicated"></a>shiro : authenicated</h3><p><em>表示认证已通过,但不包括<code>remember me</code>登录的</em></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">shiro:authenticated</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">shiro:authenticated</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>用户身份验证已通过<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">shiro:authenticated</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">shiro:authenticated</span>&gt;</span></code></pre></div>
 
 <p><em>说明 : 只有已通过用户认证,但不是通过记住我(<code>remember me</code>)浏览才会看到标签内的内容</em></p>
 <h3 id="shiro-guest"><a href="#shiro-guest" class="headerlink" title="shiro : guest"></a>shiro : guest</h3><p><em>表示是游客身份,没有登录</em></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">shiro:guest</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">shiro:guest</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>您当前是游客,<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/login.jsp"</span> &gt;</span>请登录<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">shiro:guest</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">shiro:guest</span>&gt;</span></code></pre></div>
 
 <p><em>说明 : 只有是没有登录过,以游客的身份浏览才会看到标签内的内容</em></p>
 <h3 id="shiro-hasAnyRoles"><a href="#shiro-hasAnyRoles" class="headerlink" title="shiro : hasAnyRoles"></a>shiro : hasAnyRoles</h3><p><em>表示拥有这些角色中其中一个</em></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">shiro:hasAnyRoles</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"admin,user"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">shiro:hasAnyRoles</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"admin,user"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>这是拥有admin或者是user角色的用户<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">shiro:hasAnyRoles</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">shiro:hasAnyRoles</span>&gt;</span></code></pre></div>
 
 <p><em>说明 : 只有成功登录后,且具有admin或者user角色的用户才会看到标签内的内容. name属性中可以填写多个角色名称，以逗号( , )分隔</em></p>
 <h3 id="shiro-hasPermission"><a href="#shiro-hasPermission" class="headerlink" title="shiro : hasPermission"></a>shiro : hasPermission</h3><p><em>表示拥有某一权限</em></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">shiro:hasPermission</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"admin:add"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">shiro:hasPermission</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"admin:add"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>这个用户拥有admin:add的权限<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">shiro:hasPermission</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">shiro:hasPermission</span>&gt;</span></code></pre></div>
 
 <p><em>说明 : 只有成功登录后,且具有admin:add权限的用户才可以看到标签内的内容,name属性中只能填写一个权限的名称</em></p>
 <h3 id="shiro-hashRole"><a href="#shiro-hashRole" class="headerlink" title="shiro : hashRole"></a>shiro : hashRole</h3><p><em>表示拥有某一角色</em></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">shiro:hasRole</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"admin"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">shiro:hasRole</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"admin"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>这个用户拥有的角色是admin<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">shiro:hasRole</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">shiro:hasRole</span>&gt;</span></code></pre></div>
 
 <p><em>说明 : 只有成功登录后,且具有admin角色的用户才可以看到标签内的内容,name属性中只能填写一个角色的名称</em></p>
 <h3 id="shiro-lacksPermission"><a href="#shiro-lacksPermission" class="headerlink" title="shiro : lacksPermission"></a>shiro : lacksPermission</h3><p><em>表示不拥有某一角色</em></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">shiro:lacksPermission</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"admin:delete"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">shiro:lacksPermission</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"admin:delete"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>这个用户不拥有admin:delete的权限<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">shiro:lacksPermission</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">shiro:lacksPermission</span>&gt;</span></code></pre></div>
 
 <p><em>说明 : 只有成功登录后,且不具有admin:delete权限的用户才可以看到标签内的内容,name属性中只能填写一个权限的名称</em></p>
 <h3 id="shiro-lacksRole"><a href="#shiro-lacksRole" class="headerlink" title="shiro : lacksRole"></a>shiro : lacksRole</h3><p><em>表示不拥有某一角色</em></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">shiro:lacksRole</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"admin"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">shiro:lacksRole</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"admin"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>这个用户不拥有admin的角色<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">shiro:lacksRole</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">shiro:lacksRole</span>&gt;</span></code></pre></div>
 
 <p><em>说明 : 只有成功登录后，且不具有admin角色的用户才可以看到标签内的内容,name属性中只能填写一个角色的名称</em></p>
 <h3 id="shiro-notAuthenticated"><a href="#shiro-notAuthenticated" class="headerlink" title="shiro : notAuthenticated"></a>shiro : notAuthenticated</h3><p><em>表示没有通过验证</em></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">shiro:notAuthenticated</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">shiro:notAuthenticated</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>用户身份验证没有通过<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">shiro:notAuthenticated</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">shiro:notAuthenticated</span>&gt;</span></code></pre></div>
 
 <p><em>说明 : 只有没有通过验证的才可以看到标签内的内容,包括通过记住我(<code>remember me</code>)登录的</em></p>
 <h3 id="shiro-principal"><a href="#shiro-principal" class="headerlink" title="shiro : principal"></a>shiro : principal</h3><p><em>表示用户的身份 : 取值取的是你登录的时候,在Realm实现类中的<code>SimpleAuthenticationInfo(Object principal, Object hashedCredentials, ByteSource credentialsSalt, String realmName)</code>放的第一个参数哟~ 例如 :</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> SimpleAuthenticationInfo(user, user.getPassword(), ByteSource.Util.bytes(user.getUsername()), <span class="hljs-keyword">this</span>.getName());</code></pre>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> SimpleAuthenticationInfo(user, user.getPassword(), ByteSource.Util.bytes(user.getUsername()), <span class="hljs-keyword">this</span>.getName());</code></pre></div>
 
 <ol>
 <li><p><em>如果第一个放的是username或者是一个值,那么就可以直接用</em></p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--取到username--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">shiro:</span> <span class="hljs-attr">principal</span>/&gt;</span></code></pre>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--取到username--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">shiro:</span> <span class="hljs-attr">principal</span>/&gt;</span></code></pre></div>
 </li>
 <li><p><em>如果第一个参数放的是对象,比如放User对象. 那么如果要取其中某一个值,可以通过property属性来指定</em></p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--需要指定property--&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">shiro:principal</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"username"</span>/&gt;</span></code></pre>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--需要指定property--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">shiro:principal</span> <span class="hljs-attr">property</span>=<span class="hljs-string">"username"</span>/&gt;</span></code></pre></div>
 
 
 </li>
 </ol>
 <h3 id="shiro-user"><a href="#shiro-user" class="headerlink" title="shiro : user"></a>shiro : user</h3><p><em>表示已登录</em></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">shiro:user</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">shiro:user</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>欢迎[<span class="hljs-tag">&lt;<span class="hljs-name">shiro:principal</span>/&gt;</span>],<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/logout.jsp"</span>&gt;</span>退出<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">shiro:user</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">shiro:user</span>&gt;</span></code></pre></div>
 
 <p><em>说明 : 只有已经登录(包含通过记住我(<code>remember me</code>)登录的)的用户才可以看到标签内的内容. 一般和标签<code>shiro : principal</code>一起用,来做显示用户的名称</em></p>
 <h3 id="标签嵌套"><a href="#标签嵌套" class="headerlink" title="标签嵌套"></a>标签嵌套</h3><p><em>shiro的jsp标签可以嵌套使用,可以根据业务的具体场景进行使用. 例如一个按钮需要排除不是admin或user角色的用户才可以显示,则可以像如下这样实现 :</em></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">shiro:lacksRole</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"admin"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">shiro:lacksRole</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"admin"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">shiro:lacksRole</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"user"</span>&gt;</span> 
         <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>这个用户不拥有admin或user的角色<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">shiro:lacksRole</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">shiro:lacksRole</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">shiro:lacksRole</span>&gt;</span></code></pre></div>
 
 
 

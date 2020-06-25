@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -231,14 +231,14 @@
 </blockquote>
 <ol>
 <li><p>安装 JDK</p>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> install jdk</span>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> install jdk</span>
 sudo apt install openjdk-8-jdk-headless
 <span class="hljs-meta">
 #</span><span class="bash"> check</span>
-java -version</code></pre>
+java -version</code></pre></div>
 </li>
 <li><p>安装 MySQL8.0+</p>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> the installation package as follows you need to download it</span>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> the installation package as follows you need to download it</span>
 <span class="hljs-meta">#</span><span class="bash"> decompress the installation package</span>
 sudo dpkg -i mysql-apt-config_0.8.10-1_all.deb
 <span class="hljs-meta">
@@ -249,24 +249,24 @@ sudo apt update
 sudo apt install mysql-server 
 <span class="hljs-meta">
 #</span><span class="bash"> run mysql</span>
-mysql -u root -p</code></pre>
+mysql -u root -p</code></pre></div>
 </li>
 <li><p>安装 Redis</p>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> install redis server</span>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> install redis server</span>
 sudo apt-get install redis-server
 <span class="hljs-meta">
 #</span><span class="bash"> check redis server status</span>
 netstat -nlt|grep 6379
 <span class="hljs-meta">
 #</span><span class="bash"> <span class="hljs-built_in">test</span></span>
-redis-cli</code></pre>
+redis-cli</code></pre></div>
 </li>
 <li><p>导入 <code>vueblog.sql</code> 数据库</p>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> mysql -u root -p &lt; vueblog.sql</span>
-mysql -u root -p &lt; 'the specified path of database file'</code></pre>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> mysql -u root -p &lt; vueblog.sql</span>
+mysql -u root -p &lt; 'the specified path of database file'</code></pre></div>
 </li>
 <li><p>运行项目</p>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> <span class="hljs-built_in">kill</span> the specified server port:8080</span>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> <span class="hljs-built_in">kill</span> the specified server port:8080</span>
 kill -9 $(netstat -nlp | grep :8080 | awk '&#123;print $7&#125;' | awk -F"/" '&#123; print $1 &#125;')
 <span class="hljs-meta">
 #</span><span class="bash"> run</span>
@@ -274,13 +274,13 @@ kill -9 $(netstat -nlp | grep :8080 | awk '&#123;print $7&#125;' | awk -F"/" '&#
 nuhup -jar vueblog-0.0.1-SNAPSHOT.jar &gt; vsblog.file 2&gt;&amp;1 &amp;
 <span class="hljs-meta">
 #</span><span class="bash"> <span class="hljs-built_in">test</span></span>
-http://ip:8080/</code></pre>
+http://ip:8080/</code></pre></div>
 </li>
 <li><p>绑定域名</p>
 </li>
 </ol>
 <p><em>忽略端口号，例如 : <a href="http://vue.iblog.run:8080" target="_blank" rel="noopener">http://vue.iblog.run:8080</a> -&gt; <a href="http://vue.iblog.run" target="_blank" rel="noopener">http://vue.iblog.run</a></em></p>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> first you need install the nginx</span>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> first you need install the nginx</span>
 sudo apt install nginx
 <span class="hljs-meta">
 #</span><span class="bash"> vim /etc/nginx/nginx.conf</span>
@@ -303,19 +303,19 @@ nginx -t
 nginx -s reload
 <span class="hljs-meta">
 #</span><span class="bash"> <span class="hljs-built_in">test</span></span>
-http://vue.iblog.run</code></pre>
+http://vue.iblog.run</code></pre></div>
 
 
 <h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><h4 id="若需本地运行该项目，请修改如下配置"><a href="#若需本地运行该项目，请修改如下配置" class="headerlink" title="若需本地运行该项目，请修改如下配置 :"></a>若需本地运行该项目，请修改如下配置 :</h4><ol>
 <li><p>前端 : <code>axios.js</code></p>
-<pre><code class="hljs js"><span class="hljs-comment">// 自定义全局请求头(后台)</span>
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">// 自定义全局请求头(后台)</span>
 <span class="hljs-comment">// axios.defaults.baseURL = "http://49.233.79.152:8080"</span>
-axios.defaults.baseURL = <span class="hljs-string">"http://localhost:8080"</span></code></pre>
+axios.defaults.baseURL = <span class="hljs-string">"http://localhost:8080"</span></code></pre></div>
 </li>
 <li><p>后端 : <code>application.yml</code></p>
-<pre><code class="hljs js">redis-manager:
+<div class="hljs"><pre><code class="hljs js">redis-manager:
 	<span class="hljs-comment">// host: 49.233.79.152:6379</span>
-	host: <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>:<span class="hljs-number">6379</span></code></pre>
+	host: <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>:<span class="hljs-number">6379</span></code></pre></div>
 
 </li>
 </ol>

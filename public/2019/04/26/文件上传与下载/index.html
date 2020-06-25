@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -195,7 +195,7 @@
 <h5 id="ServletFileUpload-Class"><a href="#ServletFileUpload-Class" class="headerlink" title="ServletFileUpload Class"></a>ServletFileUpload Class</h5><p><em><code>ServletFileUpload</code>类是Apache组件处理文件上传的核心高级类,通过使用<code>parseRequest(HttpServletRequest)</code>方法可以将HTML中每个表单提交的数据封装成一个<code>FileItem</code>对象,然后以List列表的形式返回.</em></p>
 <h4 id="文件上传案例"><a href="#文件上传案例" class="headerlink" title="文件上传案例"></a>文件上传案例</h4><ol>
 <li><p><em>JSP页面代码</em></p>
-<pre><code class="hljs html">&lt;%@ page language="java" contentType="text/html; charset=UTF-8"
+<div class="hljs"><pre><code class="hljs html">&lt;%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%&gt;
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -237,10 +237,10 @@
 			&lt;/div&gt;
 		&lt;/form&gt;
 	&lt;/body&gt;
-&lt;/html&gt;</code></pre>
+&lt;/html&gt;</code></pre></div>
 </li>
 <li><p><em>Servlet类 : 获取表单及其上传文件的信息..</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.file.servlet;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.file.servlet;
 
 <span class="hljs-keyword">import</span> java.io.File;
 <span class="hljs-keyword">import</span> java.io.FileNotFoundException;
@@ -347,7 +347,7 @@
 		doGet(request, response);
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行结果 : 略..</em></p>
 </li>
@@ -359,17 +359,17 @@
 <li>将读取的内容通过输出流写到目标文件中.</li>
 </ol>
 <ul>
-<li><em><code>HTTP</code>中设置两个响应消息头,具体如下.</em><pre><code class="hljs java"><span class="hljs-comment">//设定接收程序处理数据的方式</span>
+<li><em><code>HTTP</code>中设置两个响应消息头,具体如下.</em><div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">//设定接收程序处理数据的方式</span>
 Content-Disposition: attachment;filename=
 <span class="hljs-comment">//设定实体内容的MIME类型</span>
-Content-Type: application/x-msdownload</code></pre>
+Content-Type: application/x-msdownload</code></pre></div>
 
 
 </li>
 </ul>
 <h4 id="文件下载案例"><a href="#文件下载案例" class="headerlink" title="文件下载案例"></a>文件下载案例</h4><ol>
 <li><p><em>JSP页面代码</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
     <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
@@ -383,10 +383,10 @@ Content-Type: application/x-msdownload</code></pre>
 				Click to download this file ..
 			<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>Servlet类 : 设置所要下载的文件以及文件在浏览器中打开的方式.</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.file.servlet;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.file.servlet;
 
 <span class="hljs-keyword">import</span> java.io.IOException;
 <span class="hljs-keyword">import</span> java.io.InputStream;
@@ -449,7 +449,7 @@ Content-Type: application/x-msdownload</code></pre>
 		doGet(request, response);
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行结果 : 略..</em></p>
 </li>

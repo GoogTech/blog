@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -202,7 +202,7 @@
 </ol>
 <h3 id="Redis临时服务"><a href="#Redis临时服务" class="headerlink" title="Redis临时服务"></a>Redis临时服务</h3><ol>
 <li><p><em>进入Redis安装包目录,启动Redis临时服务的命令为 : <code>redis-server redis.windows.conf</code>  ,通过该命令可以创建Redis临时服务,既Services列表中不会出现Redis的服务名及其状态,关闭从此窗口既关闭Redis服务.</em></p>
-<pre><code class="hljs maxima">E:\MS-Redis\Redis
+<div class="hljs"><pre><code class="hljs maxima">E:\MS-Redis\Redis
 λ redis-server.exe redis.windows.conf
                 <span class="hljs-symbol">_</span>.<span class="hljs-symbol">_</span>
            <span class="hljs-symbol">_</span>.-``<span class="hljs-symbol">__</span> ''-.<span class="hljs-symbol">_</span>
@@ -224,21 +224,21 @@
 
 [<span class="hljs-number">3796</span>] <span class="hljs-number">25</span> Jun <span class="hljs-number">17</span>:<span class="hljs-number">20</span>:<span class="hljs-number">55.403</span> # Server started, Redis version <span class="hljs-number">3.2</span><span class="hljs-number">.100</span>
 [<span class="hljs-number">3796</span>] <span class="hljs-number">25</span> Jun <span class="hljs-number">17</span>:<span class="hljs-number">20</span>:<span class="hljs-number">55.403</span> * DB loaded from disk: <span class="hljs-number">0.000</span> seconds
-[<span class="hljs-number">3796</span>] <span class="hljs-number">25</span> Jun <span class="hljs-number">17</span>:<span class="hljs-number">20</span>:<span class="hljs-number">55.403</span> * The server <span class="hljs-built_in">is</span> now ready to accept connections on port <span class="hljs-number">6379</span></code></pre>
+[<span class="hljs-number">3796</span>] <span class="hljs-number">25</span> Jun <span class="hljs-number">17</span>:<span class="hljs-number">20</span>:<span class="hljs-number">55.403</span> * The server <span class="hljs-built_in">is</span> now ready to accept connections on port <span class="hljs-number">6379</span></code></pre></div>
 </li>
 <li><p><em>启动Redis服务后再开启一个<code>cmder</code>窗口,运行客户端程序</em></p>
-<pre><code class="hljs t">E:\MS-Redis\Redis
+<div class="hljs"><pre><code class="hljs t">E:\MS-Redis\Redis
 λ redis-cli.exe # 运行客户端程序的命令
 127.0.0.1:6379&gt; set firstKey HelloRedis~
 OK
 127.0.0.1:6379&gt; get firstKey
-&quot;HelloRedis~&quot;</code></pre>
+&quot;HelloRedis~&quot;</code></pre></div>
 
 
 </li>
 </ol>
 <h3 id="Redis默认服务安装"><a href="#Redis默认服务安装" class="headerlink" title="Redis默认服务安装"></a>Redis默认服务安装</h3><p><em>进入Redis安装包目录,执行将Redis注册为服务的命令,执行该命令后Services列表中将出现<code>Redis</code>服务,但此时该服务并非启动状态,需要执行Redis启动命令来启动服务,启动服务后,即可运行客户端程序哟 ~</em></p>
-<pre><code class="hljs t">E:\MS-Redis\Redis 
+<div class="hljs"><pre><code class="hljs t">E:\MS-Redis\Redis 
 λ redis-server --service-install redis.windows.conf # 将Redis注册为服务的命令
 
 E:\MS-Redis\Redis
@@ -259,7 +259,7 @@ E:\MS-Redis\Redis
 
 E:\MS-Redis\Redis
 λ redis-server --service-uninstall # 卸载服务命令
-[11968] 25 Jun 18:13:44.417 # Redis service successfully uninstalled.</code></pre>
+[11968] 25 Jun 18:13:44.417 # Redis service successfully uninstalled.</code></pre></div>
 
 
 <ul>

@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -189,7 +189,7 @@
             
             <article class="markdown-body">
               <h2 id="学习笔记-JDK-8新特性之默认方法的基本使用"><a href="#学习笔记-JDK-8新特性之默认方法的基本使用" class="headerlink" title="学习笔记 : JDK 8新特性之默认方法的基本使用"></a>学习笔记 : JDK 8新特性之默认方法的基本使用</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p><em>Java 8 新增了接口的默认方法,简单点说既默认方法就是接口可以有实现方法,而且不需要实现类去实现其方法. 我们只需在方法名前面加个 default 关键字即可实现默认方法的定义哟~ 那为什么要引入这个特性呢 ? 解答如下 :</em></p>
-<pre><code class="hljs routeros">首先,之前的接口是个双刃剑,好处是面向抽象而不是面向具体编程. 缺陷是当需要修改接口时候,需要修改全部实现该接口的类,目前的 java 8 之前的集合框架没有 <span class="hljs-keyword">foreach</span> 方法,通常能想到的解决办法是在JDK里给相关的接口添加新的方法及实现. 然而,对于已经发布的版本,是没法在给接口添加新方法的同时不影响已有的实现. 所以引进的默认方法,他们的目的是为了解决接口的修改与现有的实现不兼容的问题
+<div class="hljs"><pre><code class="hljs routeros">首先,之前的接口是个双刃剑,好处是面向抽象而不是面向具体编程. 缺陷是当需要修改接口时候,需要修改全部实现该接口的类,目前的 java 8 之前的集合框架没有 <span class="hljs-keyword">foreach</span> 方法,通常能想到的解决办法是在JDK里给相关的接口添加新的方法及实现. 然而,对于已经发布的版本,是没法在给接口添加新方法的同时不影响已有的实现. 所以引进的默认方法,他们的目的是为了解决接口的修改与现有的实现不兼容的问题
 ``` 
 
 *接口默认方法的`类优先`原则 : 若一个接口中定义了一个默认方法,而另一个父类或接口中又定义了一个同名的方法时,可分为情况 :*
@@ -202,11 +202,11 @@ public<span class="hljs-built_in"> interface </span>Vehicle &#123;
   <span class="hljs-built_in"> default </span>void <span class="hljs-builtin-name">print</span>()&#123;
       System.out.println(<span class="hljs-string">"this is a car"</span>);
    &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 <h3 id="多个默认方法"><a href="#多个默认方法" class="headerlink" title="多个默认方法"></a>多个默认方法</h3><p><em>一个接口有默认方法,考虑这样的情况,一个类实现了多个接口,且这些接口有相同的默认方法,以下实例说明了这种情况的解决方法 :</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Vehicle</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Vehicle</span> </span>&#123;
    <span class="hljs-function"><span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">()</span></span>&#123;
       System.out.println(<span class="hljs-string">"this is a car"</span>);
    &#125;
@@ -216,25 +216,25 @@ public<span class="hljs-built_in"> interface </span>Vehicle &#123;
    <span class="hljs-function"><span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">()</span></span>&#123;
       System.out.println(<span class="hljs-string">"this is a brougham"</span>);
    &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><em>第一个解决方案是创建自己的默认方法,来覆盖重写接口的默认方法 :</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Car</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Vehicle</span>, <span class="hljs-title">FourWheeler</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Car</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Vehicle</span>, <span class="hljs-title">FourWheeler</span> </span>&#123;
    <span class="hljs-function"><span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">()</span></span>&#123;
       System.out.println(<span class="hljs-string">"this is a motorcycle"</span>);
    &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><em>第二种解决方案可以使用 super 来调用指定接口的默认方法 :</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Car</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Vehicle</span>, <span class="hljs-title">FourWheeler</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Car</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Vehicle</span>, <span class="hljs-title">FourWheeler</span> </span>&#123;
    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">()</span></span>&#123;
       Vehicle.<span class="hljs-keyword">super</span>.print();
    &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 <h3 id="静态默认方法"><a href="#静态默认方法" class="headerlink" title="静态默认方法"></a>静态默认方法</h3><p><em>Java 8 的另一个特性是接口可以声明( 并且可以提供实现 )静态方法,例如 :</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Vehicle</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Vehicle</span> </span>&#123;
    <span class="hljs-function"><span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">()</span></span>&#123;
       System.out.println(<span class="hljs-string">"this is a car"</span>);
    &#125;
@@ -242,11 +242,11 @@ public<span class="hljs-built_in"> interface </span>Vehicle &#123;
    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">blowHorn</span><span class="hljs-params">()</span></span>&#123;
       System.out.println(<span class="hljs-string">"sound the horn"</span>);
    &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 <h3 id="默认方法实例"><a href="#默认方法实例" class="headerlink" title="默认方法实例"></a>默认方法实例</h3><p><em>通过以下代码来了解下关于默认方法的使用吧~</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.jdk8.method;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.jdk8.method;
 
 
 <span class="hljs-keyword">import</span> org.junit.Test;
@@ -291,13 +291,13 @@ public<span class="hljs-built_in"> interface </span>Vehicle &#123;
         Vehicle vehicle = <span class="hljs-keyword">new</span> Car();
         vehicle.print();
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><em>程序运行结果如下所示 :</em></p>
-<pre><code class="hljs kotlin"><span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> a car
+<div class="hljs"><pre><code class="hljs kotlin"><span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> a car
 <span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> a brougham
 sound the horn
-<span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> a motorcycle</code></pre>
+<span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> a motorcycle</code></pre></div>
 
 
 

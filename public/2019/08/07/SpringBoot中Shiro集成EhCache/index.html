@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -190,7 +190,7 @@
             <article class="markdown-body">
               <h2 id="学习笔记-SpringBoot项目中Shiro集成EhCache"><a href="#学习笔记-SpringBoot项目中Shiro集成EhCache" class="headerlink" title="学习笔记 : SpringBoot项目中Shiro集成EhCache"></a>学习笔记 : SpringBoot项目中Shiro集成EhCache</h2><p><em>示例程序摘自 : <a href="https://github.com/YUbuntu0109/Shiro-learning/tree/master/spring%20boot%20project%20with%20shiro" target="_blank" rel="noopener">一个简单的SpringBoot整合Shiro的权限管理案例</a></em></p>
 <h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><p><em>Shiro-learning/spring boot project with shiro/springboot-shiro/pom.xml</em></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
     <span class="hljs-comment">&lt;!-- Shiro --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.shiro<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
@@ -203,10 +203,10 @@
         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>shiro-ehcache<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.4.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span></code></pre></div>
 
 <h3 id="创建EhCache缓存配置文件"><a href="#创建EhCache缓存配置文件" class="headerlink" title="创建EhCache缓存配置文件"></a>创建EhCache缓存配置文件</h3><p><em>Shiro-learning/spring boot project with shiro/springboot-shiro/src/main/resources/ehcache-shiro.xml</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">ehcache</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
          <span class="hljs-attr">xsi:noNamespaceSchemaLocation</span>=<span class="hljs-string">"http://ehcache.org/ehcache.xsd"</span>
          <span class="hljs-attr">updateCheck</span>=<span class="hljs-string">"false"</span>
@@ -285,10 +285,10 @@
                   <span class="hljs-attr">diskExpiryThreadIntervalSeconds</span>=<span class="hljs-string">"120"</span>
                   <span class="hljs-attr">memoryStoreEvictionPolicy</span>=<span class="hljs-string">"LRU"</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">defaultCache</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">ehcache</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ehcache</span>&gt;</span></code></pre></div>
 
 <h3 id="配置Shiro缓存"><a href="#配置Shiro缓存" class="headerlink" title="配置Shiro缓存"></a>配置Shiro缓存</h3><p><em>Shiro-learning/spring boot project with shiro/springboot-shiro/src/main/java/pers/huangyuhui/ss/shiro/ShiroConfig.java</em></p>
-<pre><code class="hljs java"><span class="hljs-comment">/**
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: springboot-shiro
  * <span class="hljs-doctag">@description</span>: Shiro配置信息
  * <span class="hljs-doctag">@author</span>: 黄宇辉
@@ -333,13 +333,13 @@
     &#125;
 
     <span class="hljs-comment">// ······</span>
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><p><em>如果使用的EhCache版本超过了2.5.0,那么<code>&lt;ehcache name=&quot;myEhcache&quot;&gt;</code>的配置就显得非常重要了,不然EhCache会自动加载默认的名字 : <code>_default_</code>,且EhCache2.5以后只允许创建单例的CacheManager(缓存管理器),所以应注意避免重复加载CacheManager哟 : 创建ehCacheManager的时先判断是否已存在cacheManager,没有的情况下再进行创建,判断的关键为<code>ehcache-shiro.xml</code>(缓存配置文件)中配置的<code>name</code>属性,可通过该属性来判断cacheManager是否加载了,示例代码如下 :</em></p>
-<pre><code class="hljs java">CacheManager cacheManager = CacheManager.getCacheManager(<span class="hljs-string">"myEhcache"</span>);
+<div class="hljs"><pre><code class="hljs java">CacheManager cacheManager = CacheManager.getCacheManager(<span class="hljs-string">"myEhcache"</span>);
     <span class="hljs-keyword">if</span> (cacheManager == <span class="hljs-keyword">null</span>) &#123;
         cacheManager = CacheManager.create();
-    &#125;</code></pre>
+    &#125;</code></pre></div>
 
 
 

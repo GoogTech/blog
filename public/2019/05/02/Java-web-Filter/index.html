@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -189,22 +189,22 @@
             
             <article class="markdown-body">
               <h2 id="学习笔记-Java-web之过滤器"><a href="#学习笔记-Java-web之过滤器" class="headerlink" title="学习笔记 : Java web之过滤器"></a>学习笔记 : Java web之过滤器</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p><em><code>Filter</code>被称作过滤器或者拦截器,作为Servlet 2.3中新增的技术,可以实现用户在访问某个目标资源之前,对访问的请求和响应进行相应处理.其基本功能就是对Servlet容器调用<code>Servlet</code>的过程进行拦截,从而在Servlet响应处理前后实现一些特殊功能. Filter过滤器实现了<code>javax.servlet.Filter</code>接口.在Filter接口中定义了三个方法,其代表Filter的生命周期,如下所示 :</em></p>
-<pre><code class="hljs java"><span class="hljs-comment">// 用于初始化过滤器</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 用于初始化过滤器</span>
 init(FilterConfig filterConfig);
 <span class="hljs-comment">// 客户端请求时被调用(Filter所有的工作都集中在此方法中)</span>
 doFilter(ServletRequest request,ServletResponse response,FilterChain chain);
 <span class="hljs-comment">// 在Web应用程序卸载时被调用</span>
-destory();</code></pre>
+destory();</code></pre></div>
 
 
 <h3 id="Filter-annotation"><a href="#Filter-annotation" class="headerlink" title="Filter annotation"></a>Filter annotation</h3><p><em>简介 : <code>Servlet3.0</code>提供<code>@WebFilter注解</code>将一个实现了<code>javax.servlet.Filter</code>接口的类定义为过滤器,继而当我们在Web应用中使用过滤器时无需在web.xml文件中配置Filter映射 !</em></p>
-<h4 id="注解示例-拦截用户的所有请求"><a href="#注解示例-拦截用户的所有请求" class="headerlink" title="注解示例-拦截用户的所有请求"></a>注解示例-拦截用户的所有请求</h4><pre><code class="hljs java"><span class="hljs-meta">@WebFilter</span>(filterName=<span class="hljs-string">"/MyFilter"</span> , urlPatterns= <span class="hljs-string">"/*"</span>)
+<h4 id="注解示例-拦截用户的所有请求"><a href="#注解示例-拦截用户的所有请求" class="headerlink" title="注解示例-拦截用户的所有请求"></a>注解示例-拦截用户的所有请求</h4><div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@WebFilter</span>(filterName=<span class="hljs-string">"/MyFilter"</span> , urlPatterns= <span class="hljs-string">"/*"</span>)
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyFilter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Filter</span> </span>&#123;
     ···
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h4 id="注解示例-拦截不同方式的访问请求"><a href="#注解示例-拦截不同方式的访问请求" class="headerlink" title="注解示例-拦截不同方式的访问请求"></a>注解示例-拦截不同方式的访问请求</h4><p><em>描述 : 根据被Servlet容器调用的方式来拦截指定的资源.其调用方式如下所示 :</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> javax.servlet;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> javax.servlet;
 
 <span class="hljs-comment">/**
  * Enumeration of filter dispatcher types.
@@ -217,12 +217,12 @@ destory();</code></pre>
     REQUEST,
     ASYNC,
     ERROR
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><em>下面以<code>FORWARD</code>(如果目标资源是通过<code>RequestDispatcher</code>的<code>forward()</code>方法访问时,该过滤器将会被调用)为例,演示Filter对转发请求的过滤效果.</em></p>
 <ol>
 <li><p><em>ServletTest : 将请求转发给index.jsp页面.</em></p>
-<pre><code class="hljs java"><span class="hljs-meta">@WebServlet</span>(<span class="hljs-string">"/ServletTest"</span>)
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@WebServlet</span>(<span class="hljs-string">"/ServletTest"</span>)
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ServletTest</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
 	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;
 
@@ -241,10 +241,10 @@ destory();</code></pre>
 		doGet(request, response);
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>FilterTest.java : 拦截index.jsp页面.</em></p>
-<pre><code class="hljs java"><span class="hljs-comment">// Servlet 3.0</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// Servlet 3.0</span>
 <span class="hljs-meta">@WebFilter</span>(filterName = <span class="hljs-string">"/FilterTest"</span>, urlPatterns = <span class="hljs-string">"/index.jsp"</span>, dispatcherTypes = &#123; DispatcherType.FORWARD &#125;) 																				
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FilterTest</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Filter</span> </span>&#123;
 
@@ -263,7 +263,7 @@ destory();</code></pre>
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">(FilterConfig fConfig)</span> <span class="hljs-keyword">throws</span> ServletException </span>&#123;
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 </li>
@@ -272,7 +272,7 @@ destory();</code></pre>
 <h4 id="getInitParameter-String-name"><a href="#getInitParameter-String-name" class="headerlink" title="getInitParameter(String name)"></a>getInitParameter(String name)</h4><p><em>描述 : 下面以接口FilterConfig接口中的<code>getInitParameter(String name)</code>方法为例,演示FilterConfig接口的作用.</em></p>
 <ol>
 <li><p><em>FilterConfigTest.java : 获取注解中指定名称的初始化参数值.</em></p>
-<pre><code class="hljs java"><span class="hljs-comment">// 使用注解为该Filter设置初始化参数: initParams= &#123;@WebInitParam(name="encoding",value="utf-8")&#125;</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 使用注解为该Filter设置初始化参数: initParams= &#123;@WebInitParam(name="encoding",value="utf-8")&#125;</span>
 <span class="hljs-meta">@WebFilter</span>(filterName = <span class="hljs-string">"/FilterConfigTest"</span>, urlPatterns = <span class="hljs-string">"/MyServlet"</span>, initParams = &#123;
 		<span class="hljs-meta">@WebInitParam</span>(name = <span class="hljs-string">"encoding"</span>, value = <span class="hljs-string">"utf-8"</span>) &#125;)
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FilterConfigTest</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Filter</span> </span>&#123;
@@ -299,10 +299,10 @@ destory();</code></pre>
 		<span class="hljs-keyword">this</span>.filterConfig = fConfig;
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>FilterConfigTest.java : 获取web.xml中指定名称的初始化参数值(代码同FilterConfigTest.java),web.xml中的配置信息如下 :</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
 	<span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee"</span>
 	<span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"</span>
@@ -330,7 +330,7 @@ destory();</code></pre>
 		<span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/MyServlet<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">filter-mapping</span>&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre></div>
 
 
 </li>
@@ -338,7 +338,7 @@ destory();</code></pre>
 <h3 id="Filter-application"><a href="#Filter-application" class="headerlink" title="Filter application"></a>Filter application</h3><h4 id="Filter-实现用户自动登录"><a href="#Filter-实现用户自动登录" class="headerlink" title="Filter 实现用户自动登录"></a>Filter 实现用户自动登录</h4><p><em>案例描述 : 使用Cookie实现用户自动登录后,当客户端访问服务器的Servlet时,所有的Servelt都需要对用户的Cookie信息进行校验,这样势必会导致在Servlet程序中书写大量重复的代码.为了解决这个问题,可以在Filter程序中实现Cookie的校验.由于Filter可以对服务器的所有请求进行拦截,因此,一旦请求通过Filter程序,就相当于用户信息校验通过,然后Servelt程序就可以根据获取到的用户信息实现自动登录功能了.</em></p>
 <ol>
 <li><p><em>User.java : 封装用户的信息.</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.filter.example.autologin;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.filter.example.autologin;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: User
@@ -374,10 +374,10 @@ destory();</code></pre>
 		<span class="hljs-keyword">this</span>.password = password;
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>login.jsp : 用户登录页面.</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
     <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
@@ -417,10 +417,10 @@ destory();</code></pre>
 				<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
 			<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>LoginServlet.java : 处理用户的登录请求.</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.filter.example.autologin;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.filter.example.autologin;
 
 <span class="hljs-keyword">import</span> java.io.IOException;
 <span class="hljs-keyword">import</span> javax.servlet.ServletException;
@@ -478,10 +478,10 @@ destory();</code></pre>
 		doGet(request, response);
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>LoginServlet.java : 注销用户的登录信息.</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.filter.example.autologin;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.filter.example.autologin;
 
 <span class="hljs-keyword">import</span> java.io.IOException;
 <span class="hljs-keyword">import</span> javax.servlet.ServletException;
@@ -525,10 +525,10 @@ destory();</code></pre>
 		doGet(request, response);
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>AutoLoginFilter.java : 拦截用户登录的访问请求.</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.filter.example.autologin;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.filter.example.autologin;
 
 <span class="hljs-keyword">import</span> java.io.IOException;
 
@@ -591,7 +591,7 @@ destory();</code></pre>
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">(FilterConfig fConfig)</span> <span class="hljs-keyword">throws</span> ServletException </span>&#123;
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 </ol>
 

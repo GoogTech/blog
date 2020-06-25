@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -190,17 +190,17 @@
             <article class="markdown-body">
               <h2 id="学习笔记-Shiro之自定义realm及其加密"><a href="#学习笔记-Shiro之自定义realm及其加密" class="headerlink" title="学习笔记 :  Shiro之自定义realm及其加密"></a>学习笔记 :  Shiro之自定义realm及其加密</h2><h3 id="自定义Realm"><a href="#自定义Realm" class="headerlink" title="自定义Realm"></a>自定义Realm</h3><p><em><code>Realm</code> : 域,Shiro从Realm获取安全数据(如用户、角色、权限),就是说SecurityManager要验证用户身份,那么它需要从Realm获取相应的用户进行比较以确定用户身份是否合法. 也需要从Realm得到用户相应的角色 / 权限进行验证用户是否能进行操作,可以把Realm看成 DataSource,即安全数据源. 如我们之前的ini配置方式使用的是<code>org.apache.shiro.realm.text.IniRealm</code>接口</em></p>
 <p><em>org.apache.shiro.realm.Realm接口如下所示 :</em></p>
-<pre><code class="hljs java"><span class="hljs-comment">//返回一个唯一的Realm名字</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">//返回一个唯一的Realm名字</span>
 <span class="hljs-function">String <span class="hljs-title">getName</span><span class="hljs-params">()</span></span>; 
 <span class="hljs-comment">//判断此Realm是否支持此Token</span>
 <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">supports</span><span class="hljs-params">(AuthenticationToken token)</span></span>; 
 <span class="hljs-comment">//根据Token获取认证信息</span>
-<span class="hljs-function">AuthenticationInfo <span class="hljs-title">getAuthenticationInfo</span><span class="hljs-params">(AuthenticationToken token)</span> <span class="hljs-keyword">throws</span> AuthenticationException</span>;</code></pre>
+<span class="hljs-function">AuthenticationInfo <span class="hljs-title">getAuthenticationInfo</span><span class="hljs-params">(AuthenticationToken token)</span> <span class="hljs-keyword">throws</span> AuthenticationException</span>;</code></pre></div>
 
 <p><em>下面通过自定义Realm来实现一个简单的用户身份验证程序~</em></p>
 <ol>
 <li><p><em>pom.xml : Maven依赖</em></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
@@ -225,16 +225,16 @@
         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>commons-logging<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.2<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>my-shiro.ini : 存储用户身份信息(账户=密码)</em></p>
-<pre><code class="hljs ini"><span class="hljs-comment">#自定义realm</span>
+<div class="hljs"><pre><code class="hljs ini"><span class="hljs-comment">#自定义realm</span>
 <span class="hljs-attr">myRealm</span> = pers.huangyuhui.realm.MyRealm
 <span class="hljs-comment">#指定SecurityManager的realms实现</span>
-<span class="hljs-attr">securityManager.realm</span> = <span class="hljs-variable">$myRealm</span></code></pre>
+<span class="hljs-attr">securityManager.realm</span> = <span class="hljs-variable">$myRealm</span></code></pre></div>
 </li>
 <li><p><em>MyRealm.java : 自定义Realm,模拟从数据库中获取用户信息</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.realm;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.realm;
 
 <span class="hljs-keyword">import</span> org.apache.shiro.authc.AuthenticationException;
 <span class="hljs-keyword">import</span> org.apache.shiro.authc.AuthenticationInfo;
@@ -281,10 +281,10 @@
         SimpleAuthenticationInfo info = <span class="hljs-keyword">new</span> SimpleAuthenticationInfo(username, password, getName());
         <span class="hljs-keyword">return</span> info;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>LoginByMyRealm.java : 验证用户登录信息</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.realm;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.realm;
 
 <span class="hljs-keyword">import</span> org.apache.shiro.SecurityUtils;
 <span class="hljs-keyword">import</span> org.apache.shiro.authc.AuthenticationException;
@@ -328,13 +328,13 @@
         System.out.println(<span class="hljs-string">"身份身份是否注销成功 :"</span> + !currentUser.isAuthenticated());
 
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行结果如下所示 :</em></p>
-<pre><code class="hljs java"><span class="hljs-comment">// ······</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// ······</span>
 用户身份是否验证成功 :<span class="hljs-keyword">true</span>
 <span class="hljs-comment">// ······</span>
-身份身份是否注销成功 :<span class="hljs-keyword">true</span></code></pre>
+身份身份是否注销成功 :<span class="hljs-keyword">true</span></code></pre></div>
 
 
 
@@ -347,7 +347,7 @@
 <li><p><em>pom.xml : Maven依赖(同上)</em></p>
 </li>
 <li><p><em>en-shiro.ini : 存储用户身份及加密配置信息</em></p>
-<pre><code class="hljs ini"><span class="hljs-section">[main]</span>
+<div class="hljs"><pre><code class="hljs ini"><span class="hljs-section">[main]</span>
 <span class="hljs-comment">#定义凭证匹配器</span>
 <span class="hljs-attr">credentialsMatcher</span> = org.apache.shiro.authc.credential.HashedCredentialsMatcher
 <span class="hljs-comment">#散列算法</span>
@@ -357,10 +357,10 @@
 <span class="hljs-comment">#将凭证匹配器设置到realm</span>
 <span class="hljs-attr">myRealm</span> = pers.huangyuhui.encryption.EncryRealm
 <span class="hljs-attr">myRealm.credentialsMatcher</span> = <span class="hljs-variable">$credentialsMatcher</span>
-<span class="hljs-attr">securityManager.realms</span> = <span class="hljs-variable">$myRealm</span></code></pre>
+<span class="hljs-attr">securityManager.realms</span> = <span class="hljs-variable">$myRealm</span></code></pre></div>
 </li>
 <li><p><em>EncryRealm.java : 自定义Realm,模拟从数据库中获取用户信息</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.encryption;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.encryption;
 
 <span class="hljs-keyword">import</span> org.apache.shiro.authc.AuthenticationException;
 <span class="hljs-keyword">import</span> org.apache.shiro.authc.AuthenticationInfo;
@@ -406,10 +406,10 @@
         <span class="hljs-comment">//指定盐值:ByteSource.Util.bytes(username)</span>
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> SimpleAuthenticationInfo(username, password, ByteSource.Util.bytes(username), getName());
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>LoginByMyRealm.java : 验证用户登录信息</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.encryption;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.encryption;
 
 <span class="hljs-keyword">import</span> org.apache.shiro.SecurityUtils;
 <span class="hljs-keyword">import</span> org.apache.shiro.authc.AuthenticationException;
@@ -453,13 +453,13 @@
         System.out.println(<span class="hljs-string">"身份身份是否注销成功 :"</span> + !currentUser.isAuthenticated());
 
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行结果如下所示 :</em></p>
-<pre><code class="hljs java"><span class="hljs-comment">// ······</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// ······</span>
 用户身份是否验证成功 :<span class="hljs-keyword">true</span>
 <span class="hljs-comment">// ······</span>
-身份身份是否注销成功 :<span class="hljs-keyword">true</span></code></pre></li>
+身份身份是否注销成功 :<span class="hljs-keyword">true</span></code></pre></div></li>
 </ol>
 
             </article>

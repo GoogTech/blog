@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -194,13 +194,13 @@
 <li><em>注 : Spring Boot启动时会创建一个<code>/tmp/tomcat.xxxxxx/work/Tomcat/localhost/ROOT</code>的临时目录作为文件上传的临时目录,但是该目录会在<code>10</code>天之后被系统自动清理掉 !`</em></li>
 </ul>
 <p><em>继而程序抛出如下异常信息 :</em></p>
-<pre><code class="hljs groovy">java.io.<span class="hljs-string">IOException:</span> java.io.<span class="hljs-string">FileNotFoundException:</span>
-<span class="hljs-regexp">/tmp/</span>tomcat<span class="hljs-number">.273391201583741210</span><span class="hljs-number">.8080</span><span class="hljs-regexp">/work/</span>Tomcat<span class="hljs-regexp">/localhost/</span>ROOT<span class="hljs-regexp">/upload/</span>portrait/myportrait.jpg (No such file or directory)...</code></pre>
+<div class="hljs"><pre><code class="hljs groovy">java.io.<span class="hljs-string">IOException:</span> java.io.<span class="hljs-string">FileNotFoundException:</span>
+<span class="hljs-regexp">/tmp/</span>tomcat<span class="hljs-number">.273391201583741210</span><span class="hljs-number">.8080</span><span class="hljs-regexp">/work/</span>Tomcat<span class="hljs-regexp">/localhost/</span>ROOT<span class="hljs-regexp">/upload/</span>portrait/myportrait.jpg (No such file or directory)...</code></pre></div>
 
 
 <h3 id="异常分析"><a href="#异常分析" class="headerlink" title="异常分析"></a>异常分析</h3><p><em><code>upload/portrait</code>是我用于存储头像的项目目录,而<code>transferTo(File dest)</code>方法预期写入的文件路径为<code>/tmp/tomcat.273391201583741210.8080/work/Tomcat/localhost/ROOT/upload/portrait/</code>,我们并没有创建该目录,因此会抛出此异常信息 !</em></p>
 <h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p><em>为什么会这样呢 ? 相对路径-预期路径应该是项目路径<code>/tmp/source/</code>,但是报错确是一个系统临时文件路径,由于是写入文件时报错,继而我们来查看一下<code>transferTo(File dest)</code>的源码吧 :</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> org.apache.catalina.core;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> org.apache.catalina.core;
 <span class="hljs-comment">//......</span>
 
 <span class="hljs-comment">/**
@@ -224,37 +224,37 @@
             <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IOException(e);
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><em>由源码可知,在使用<code>Servlet3.0</code>支持的上传文件功能时,若我们没有使用绝对路径,<code>transferTo(File dest)</code>方法会在相对路径前添加一个<code>location</code>路径 ! 继而影响了SpringMVC的<code>MultipartFile</code>的使用 .</em></p>
 <h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h4 id="使用绝对路径"><a href="#使用绝对路径" class="headerlink" title="使用绝对路径"></a>使用绝对路径</h4><p><em>通过<code>ResourceUtils.getURL(&quot;classpath:&quot;).getPath()</code>获取项目的绝对路径,为防止项目路径中含有空格等特殊字符继而乱码,可以通过<code>URLDecoder.decode(String s, Charset charset)</code>对其进行解码.</em></p>
-<pre><code class="hljs java"><span class="hljs-comment">//项目下存储头像的目录</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">//项目下存储头像的目录</span>
 <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String uploadPath = <span class="hljs-string">"/static/upload/friend_portrait/"</span>;
 <span class="hljs-comment">//指定存储头像目录的完整路径(项目发布路径):若不使用绝对路径,则Spring boot会默认将上传的文件存储到临时目录中</span>
-String dirPath = URLDecoder.decode(ResourceUtils.getURL(<span class="hljs-string">"classpath:"</span>).getPath(), StandardCharsets.UTF_8) + uploadPath;</code></pre>
+String dirPath = URLDecoder.decode(ResourceUtils.getURL(<span class="hljs-string">"classpath:"</span>).getPath(), StandardCharsets.UTF_8) + uploadPath;</code></pre></div>
 
 <p><em>注 : 当我们使用<code>ClassLoader()</code>的<code>getResource()</code>方法获取路径时,获取到的路径是已被<code>URLEncoder.encode(path,&quot;utf-8&quot;)</code>编码了的,当路径中存在中文和空格时,它会对这些字符进行转换,继而得到的往往不是我们想要的真实路径,所以我们可以调用<code>URLDecoder.decode(String s, Charset charset)</code>方法进行解码,以便得到原始的中文及空格路径. 发送的时候使用<code>encode(String s, Charset charset)</code>编码,接收的时候使用<code>URLDecoder.decode(String s, Charset charset)</code>解码,按指定的编码格式进行编码、解码,可以保证不会出现乱码哟 ~</em></p>
-<pre><code class="hljs java"><span class="hljs-comment">//使用指定的编码机制将字符串转换为 application/x-www-form-urlencoded 格式</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">//使用指定的编码机制将字符串转换为 application/x-www-form-urlencoded 格式</span>
 URLEncoder.encode(String s, Charset charset)
 
 <span class="hljs-comment">//使用指定的编码机制对 application/x-www-form-urlencoded 字符串解码</span>
-URLDecoder.decode(String s, Charset charset)</code></pre>
+URLDecoder.decode(String s, Charset charset)</code></pre></div>
 
 
 <h4 id="修改location的值"><a href="#修改location的值" class="headerlink" title="修改location的值"></a>修改location的值</h4><p><em><code>location</code>可以理解为临时文件目录,可以通过配置<code>location</code>的值,使其指向我们的项目路径,继而来解决此问题. 只需在Spring Boot启动类中添如下代码 :</em></p>
-<pre><code class="hljs java"> <span class="hljs-meta">@Bean</span>
+<div class="hljs"><pre><code class="hljs java"> <span class="hljs-meta">@Bean</span>
  <span class="hljs-function">MultipartConfigElement <span class="hljs-title">multipartConfigElement</span><span class="hljs-params">()</span> </span>&#123;
     MultipartConfigFactory factory = <span class="hljs-keyword">new</span> MultipartConfigFactory();
     factory.setLocation(<span class="hljs-string">"/app/pttms/tmp"</span>);
     <span class="hljs-keyword">return</span> factory.createMultipartConfig();
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 
 <h3 id="示例程序"><a href="#示例程序" class="headerlink" title="示例程序"></a>示例程序</h3><p><em>该上传文件的示例程序摘自我的Sping Boot-好友备忘录小项目,程序中使用<code>绝对路径</code>方案来解决上述问题,该程序具有参考与学习价值哟~</em></p>
 <ol>
 <li><p><em>FriendController.java : 好友信息控制器</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.haungyuhui.memo.controller;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.haungyuhui.memo.controller;
 
 <span class="hljs-keyword">import</span> com.github.pagehelper.PageHelper;
 <span class="hljs-keyword">import</span> com.github.pagehelper.PageInfo;
@@ -306,10 +306,10 @@ URLDecoder.decode(String s, Charset charset)</code></pre>
         <span class="hljs-comment">//返回头像的上传结果</span>
         <span class="hljs-keyword">return</span> UploadFile.getUploadResult(photo, dirPath, uploadPath);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>UploadFile.java : 上传文件的工具类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.haungyuhui.memo.util;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.haungyuhui.memo.util;
 
 <span class="hljs-keyword">import</span> org.apache.commons.io.filefilter.SuffixFileFilter;
 <span class="hljs-keyword">import</span> org.springframework.web.multipart.MultipartFile;
@@ -406,7 +406,7 @@ URLDecoder.decode(String s, Charset charset)</code></pre>
         &#125;
         <span class="hljs-keyword">return</span> upload_result;
     &#125;
-&#125;</code></pre></li>
+&#125;</code></pre></div></li>
 </ol>
 
             </article>

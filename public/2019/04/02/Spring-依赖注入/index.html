@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -191,18 +191,18 @@
               <h2 id="Spring-framework-依赖注入篇"><a href="#Spring-framework-依赖注入篇" class="headerlink" title="Spring framework 依赖注入篇"></a>Spring framework <code>依赖注入篇</code></h2><p><em>如果想区分<code>依赖注入</code>与<code>控制反转(IOC)</code>两者之间的不同,可以参考<code>Martin Fowler</code>给出的解释.查看文章: <a href="http://martinfowler.com/articles/injection.html" target="_blank" rel="noopener">GO</a></em></p>
 <ul>
 <li><p><em>简单来说,依赖注入的情况如下 :</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">importantMethod</span><span class="hljs-params">()</span> </span>&#123;
         B b = ... <span class="hljs-comment">// get an instance of B</span>
         b.usefulMethod();
         ...
     &#125;
     ...
-&#125;</code></pre></li>
+&#125;</code></pre></div></li>
 <li><p><em>如果要使用<code>B</code>,类<code>A</code>必须先获得组件<code>B</code>的实例引用,若<code>B</code>是一个具体类,则可以通过<code>new</code>关键字直接创建组件<code>B</code>实例.*但是,如果<code>B</code>是接口,且有多个实现,则问题就变得复杂了,我们固然可以任意选择接口<code>B</code>的一个实现类,但这也意味着<code>A</code>的可重用性大大降低了,因为无法采用<code>B</code>的其他实现.</em></p>
 </li>
 <li><p><em>依赖注入是这样处理此类情景的 : 接管对象的创建工作,并将该对象的引用注入需要该对象的组件.以上述例子为例,依赖注入<em>框架会分别创建对象<code>A</code>和对象<code>B</code>,将对象<code>B</code>注入到对象<code>A</code>中.为了能让框架进行依赖注入,程序员需要编写特定的<code>set</code>方法</em>或构建方法,例如: 为了能将<code>B</code>注入到<code>A</code>中,类<code>A</code>会被修改成如下形式 :</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>&#123;
     <span class="hljs-keyword">private</span> B b;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">importantMethod</span><span class="hljs-params">()</span> </span>&#123;
         <span class="hljs-comment">// no need to worry about creating B anymore.</span>
@@ -213,12 +213,12 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setB</span><span class="hljs-params">(B b)</span> </span>&#123;
         <span class="hljs-keyword">this</span>.b = b;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>修改后的类<code>A</code>新增了一个<code>setter</code>方法,该方法将会被框架调用,以注入一个<code>B</code>的实例.由于对象依赖由依赖注入,类<code>A</code>的<code>importantMethod()</code>方法不再需要在调用<code>B</code>的<code>usefulMethod()</code>方法前去创建一个<code>B</code>的实例.</em></p>
 </li>
 <li><p><em>当然,也可以采用<code>构造器方式</code>注入,如下所示 : (本例中,<code>Spring</code>会先创建<code>B</code>的实例,再创建实例<code>A</code>,然后把<code>B</code>注入到实例<code>A</code>中.)</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>&#123;
     <span class="hljs-keyword">private</span> B b;
 
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">A</span><span class="hljs-params">(B b)</span></span>&#123;
@@ -230,28 +230,28 @@
         b.usefulMethod();
         ...
     &#125;
-&#125;</code></pre></li>
+&#125;</code></pre></div></li>
 <li><p><strong>注意 : <code>Spring</code> 管理的对象称为<code>beans</code> .</strong></p>
 </li>
 </ul>
-<pre><code class="hljs autohotkey">通过提供一个控制反转器(或者依赖注入器IOC),`Spring`为我们提供一种可以'聪明'地管理Java对象的依赖关系的方法.
+<div class="hljs"><pre><code class="hljs autohotkey">通过提供一个控制反转器(或者依赖注入器IOC),`Spring`为我们提供一种可以'聪明'地管理Java对象的依赖关系的方法.
 <span class="hljs-title">其优雅之处在于 :</span> 程序员无须了解`Spring`框架的存在,更不需要引入任何`Spring`类型.
 
 使用`Spring`,程序几乎将所有重要对象的创建工作移交给了`Spring`,并配置如何注入依赖.`Spring`支持`XML`和`注解`
 两种配置方式.此外还需要创建是一个`ApplicationContext`对象,其代表一个`Spring`控制反转容器,`org.springframework.
 context.ApplicationContext`接口有多个实现,包括`ClassPathXmlApplicationContext`和`FileSystemXmlApplicationContext`.
-这两个实现都需要至少一个包含`beans`信息的`XML`文件.</code></pre>
+这两个实现都需要至少一个包含`beans`信息的`XML`文件.</code></pre></div>
 
 <ul>
 <li><em>ClassPathXmlApplicationContext : 在类加载路径中加载配置文件.</em></li>
 <li><em>FileSystemXmlApplicationContext : 在文件系统路径中加载文件.</em></li>
 </ul>
-<h4 id="下面为从类路径中加载applicationContext1-xml和applicationContext2-xml的ApplicationContext创建的一个代码示例"><a href="#下面为从类路径中加载applicationContext1-xml和applicationContext2-xml的ApplicationContext创建的一个代码示例" class="headerlink" title="下面为从类路径中加载applicationContext1.xml和applicationContext2.xml的ApplicationContext创建的一个代码示例 :"></a>下面为从类路径中加载<code>applicationContext1.xml</code>和<code>applicationContext2.xml</code>的<code>ApplicationContext</code>创建的一个代码示例 :</h4><pre><code class="hljs java">ApplicationContext context = <span class="hljs-keyword">new</span> ClassPathXmlApplicationContext(
+<h4 id="下面为从类路径中加载applicationContext1-xml和applicationContext2-xml的ApplicationContext创建的一个代码示例"><a href="#下面为从类路径中加载applicationContext1-xml和applicationContext2-xml的ApplicationContext创建的一个代码示例" class="headerlink" title="下面为从类路径中加载applicationContext1.xml和applicationContext2.xml的ApplicationContext创建的一个代码示例 :"></a>下面为从类路径中加载<code>applicationContext1.xml</code>和<code>applicationContext2.xml</code>的<code>ApplicationContext</code>创建的一个代码示例 :</h4><div class="hljs"><pre><code class="hljs java">ApplicationContext context = <span class="hljs-keyword">new</span> ClassPathXmlApplicationContext(
     <span class="hljs-keyword">new</span> String[]&#123;<span class="hljs-string">"applicationContext1.xml"</span>,<span class="hljs-string">"applicationContext2.xml"</span>&#125;)
 
 <span class="hljs-comment">//可以通过调用`ApplicationContext`的`getBean`方法获得对象</span>
 <span class="hljs-comment">//getBean方法会查询`id`为`product`且类型为`Product`的`bean`对象.</span>
-Product product = context.getBean(<span class="hljs-string">"product"</span>,Product<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;</code></pre>
+Product product = context.getBean(<span class="hljs-string">"product"</span>,Product<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;</code></pre></div>
 
 <ul>
 <li><p><strong>注 : 理想情况下,我们仅需在测试代码中创建一个<code>ApplicationContext</code>,应用程序本身无需处理,对于<code>Spring MVC</code>应用,可以通过一个<code>Spring Servlet</code>来处理<code>ApplicationContext</code>,既而无须直接处理.</strong></p>

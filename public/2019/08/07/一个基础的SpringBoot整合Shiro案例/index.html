@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -220,7 +220,7 @@
 </tr>
 </tbody></table>
 <h3 id="资源权限设计"><a href="#资源权限设计" class="headerlink" title="资源权限设计"></a>资源权限设计</h3><p><em>springboot-shiro/src/main/java/pers/huangyuhui/ss/shiro/ShiroConfig.java : 资源过滤及其权限的配置信息如下</em></p>
-<pre><code class="hljs java">
+<div class="hljs"><pre><code class="hljs java">
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@description</span>: 配置过滤器
  * <span class="hljs-doctag">@param</span>: securityManager
@@ -265,11 +265,11 @@
     <span class="hljs-keyword">return</span> filterMap;
 &#125;
 
-<span class="hljs-comment">// ······</span></code></pre>
+<span class="hljs-comment">// ······</span></code></pre></div>
 
 
 <h3 id="凭证加密设计"><a href="#凭证加密设计" class="headerlink" title="凭证加密设计"></a>凭证加密设计</h3><p><em>springboot-shiro/src/main/java/pers/huangyuhui/ss/shiro/ShiroConfig.java : 用户凭证加密的配置信息如下(盐值:用户名)</em></p>
-<pre><code class="hljs java"><span class="hljs-comment">/**
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**
  * <span class="hljs-doctag">@description</span>: 初始化自定义Realm
  * <span class="hljs-doctag">@param</span>: credentialsMatcher
  * <span class="hljs-doctag">@date</span>: 2019-08-05 7:50 AM
@@ -297,10 +297,10 @@
     <span class="hljs-keyword">return</span> hashedCredentialsMatcher;
 &#125;
 
-<span class="hljs-comment">// ······</span></code></pre>
+<span class="hljs-comment">// ······</span></code></pre></div>
 
 <p><em>springboot-shiro/src/main/java/pers/huangyuhui/ss/utils/SecurityUtils.java : 密码加密逻辑如下</em></p>
-<pre><code class="hljs java"><span class="hljs-comment">/**
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: springboot-shiro
  * <span class="hljs-doctag">@description</span>: 加密工具
  * <span class="hljs-doctag">@author</span>: 黄宇辉
@@ -317,11 +317,11 @@
         String md5Pwd = <span class="hljs-keyword">new</span> SimpleHash(<span class="hljs-string">"md5"</span>, <span class="hljs-string">"demo"</span>, ByteSource.Util.bytes(<span class="hljs-string">"stu"</span>), <span class="hljs-number">3</span>).toHex();
         System.out.println(md5Pwd);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 <h3 id="Thymeleaf整合Shiro标签"><a href="#Thymeleaf整合Shiro标签" class="headerlink" title="Thymeleaf整合Shiro标签"></a>Thymeleaf整合Shiro标签</h3><p><em>springboot-shiro/src/main/java/pers/huangyuhui/ss/shiro/ShiroConfig.java : Thymeleaf整合Shiro标签的配置如下</em></p>
-<pre><code class="hljs java">    <span class="hljs-comment">/**
+<div class="hljs"><pre><code class="hljs java">    <span class="hljs-comment">/**
      * <span class="hljs-doctag">@description</span>: 配置ShiroDialect, 用于thymeleaf和shiro标签配合使用
      * <span class="hljs-doctag">@date</span>: 2019-08-05 6:37 PM
      * <span class="hljs-doctag">@return</span>: at.pollux.thymeleaf.shiro.dialect.ShiroDialect
@@ -329,11 +329,11 @@
     <span class="hljs-meta">@Bean</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> ShiroDialect <span class="hljs-title">shiroDialect</span><span class="hljs-params">()</span> </span>&#123;
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ShiroDialect();
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 <h3 id="Shiro集成EhCache缓存"><a href="#Shiro集成EhCache缓存" class="headerlink" title="Shiro集成EhCache缓存"></a>Shiro集成EhCache缓存</h3><p><em>springboot-shiro/src/main/java/pers/huangyuhui/ss/shiro/ShiroConfig.java : Shiro集成EhCache的配置信息如下</em></p>
-<pre><code class="hljs java">    <span class="hljs-comment">/**
+<div class="hljs"><pre><code class="hljs java">    <span class="hljs-comment">/**
      * <span class="hljs-doctag">@description</span>: 安全事务管理器
      * <span class="hljs-doctag">@param</span>: credentialsMatcher
      * <span class="hljs-doctag">@date</span>: 2019-08-05 7:53 AM
@@ -366,7 +366,7 @@
         <span class="hljs-keyword">return</span> ehCacheManager;
 
     <span class="hljs-comment">// ······</span>
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 <h3 id="案例截屏解析"><a href="#案例截屏解析" class="headerlink" title="案例截屏解析"></a>案例截屏解析</h3><p><em>用户登录页,访问资源前必须先进行用户身份认证,详情参考资源拦截器中的配置信息哟</em><br><img src="/2019/08/07/%E4%B8%80%E4%B8%AA%E5%9F%BA%E7%A1%80%E7%9A%84SpringBoot%E6%95%B4%E5%90%88Shiro%E6%A1%88%E4%BE%8B/springboot-shiro-%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E9%A1%B5.PNG" srcset="/img/loading.gif" alt></p>

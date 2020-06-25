@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -202,7 +202,7 @@
 <li><code>support</code>(支持包) : 包含了core和object包的支持类,例如: 提供异常转换功能的SQLException类.</li>
 </ol>
 <p><em>由此可知,Spring对数据库的操作都封装在这几个包中,Spring JDBC的配置是在配置文件<code>applicationContext.xml</code>中完成的哟 ~ 其模板如下所示 :</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>
 	<span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
 	<span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans 
@@ -233,12 +233,12 @@
 	<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
 
     ······
-<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre></div>
 <p><em>定义JdbcTemplate时,需要将dataSource注入到JdbcTemplate中,而其它需要使用JdbcTemplate的Bean,也需要将JdbcTemplate注入到该Bean中(<code>通常注入到Dao类中,在Dao类中进行与数据库的相关操作</code>).</em></p>
 <h3 id="Spring-JdbcTempalte-的常用方法"><a href="#Spring-JdbcTempalte-的常用方法" class="headerlink" title="Spring JdbcTempalte 的常用方法"></a>Spring JdbcTempalte 的常用方法</h3><p><em><code>JdbcTemplate</code>类中提供了大量的操作数据库的方法,下面通过一个简单的<code>CURE</code>来体现一下Spring JDBC代码的简洁美 ~</em></p>
 <ol>
 <li><p><em>applicationContext.xml : 配置文件</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>
 	<span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
 	<span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans 
@@ -269,10 +269,10 @@
 		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"jdbcTemplate"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"jdbcTemplate"</span> /&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>Account.java : 封装用户账户信息</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.jdbc.bean;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.jdbc.bean;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: Account
@@ -316,10 +316,10 @@
 		<span class="hljs-keyword">return</span> <span class="hljs-string">"Account [id="</span> + id + <span class="hljs-string">", username="</span> + username + <span class="hljs-string">", balance="</span> + balance + <span class="hljs-string">"]"</span>;
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>AccountDao.java : 操作账户信息的接口</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.jdbc.dao;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.jdbc.dao;
 
 <span class="hljs-keyword">import</span> java.util.List;
 
@@ -380,10 +380,10 @@
 	 * <span class="hljs-doctag">@return</span>: int
 	 */</span>
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">deleteAccount</span><span class="hljs-params">(<span class="hljs-keyword">int</span> id)</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>AccountDaoImpl.java : AccountDao的实现类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.jdbc.dao.impl;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.jdbc.dao.impl;
 
 <span class="hljs-keyword">import</span> java.util.List;
 
@@ -468,12 +468,12 @@
 
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 </li>
 </ol>
 <p>5.<em>CURETest.java : 测试类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.jdbc.test;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.jdbc.test;
 
 <span class="hljs-keyword">import</span> java.util.List;
 
@@ -592,7 +592,7 @@
 
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 

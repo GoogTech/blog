@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -198,7 +198,7 @@
 </ul>
 <h3 id="Servlet-2-5-示例"><a href="#Servlet-2-5-示例" class="headerlink" title="Servlet 2.5 示例"></a>Servlet 2.5 示例</h3><ul>
 <li><p><em>JSP program</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=ISO-8859-1"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"ISO-8859-1"</span>%&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=ISO-8859-1"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"ISO-8859-1"</span>%&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -217,10 +217,10 @@
 			<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>Servlet program</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ServletLifecyle</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ServletLifecyle</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
 	
 	
 	<span class="hljs-meta">@Override</span>
@@ -293,12 +293,12 @@ service() :
 destory() : 
     关闭Tomcat服务时执行一次.
 
-*/</span></code></pre>
+*/</span></code></pre></div>
 </li>
 <li><p><em>web.xml</em></p>
 </li>
 </ul>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee"</span> <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"WebApp_ID"</span> <span class="hljs-attr">version</span>=<span class="hljs-string">"4.0"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">display-name</span>&gt;</span>Servlet_basic_lifecycle<span class="hljs-tag">&lt;/<span class="hljs-name">display-name</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">welcome-file-list</span>&gt;</span>
@@ -322,9 +322,9 @@ destory() :
 		<span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>sameName<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/ServletLifecyle<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre></div>
 
-<pre><code class="hljs java">通过在`web.xml`配置文件中添加<span class="hljs-string">'&lt;load-on-startup&gt;1&lt;/load-on-startup&gt;'</span>使得Tomcat启动时自动加载init() !
+<div class="hljs"><pre><code class="hljs java">通过在`web.xml`配置文件中添加<span class="hljs-string">'&lt;load-on-startup&gt;1&lt;/load-on-startup&gt;'</span>使得Tomcat启动时自动加载init() !
 
 INFO: At least one JAR was scanned <span class="hljs-keyword">for</span> TLDs yet contained no TLDs. Enable debug logging <span class="hljs-keyword">for</span> <span class="hljs-keyword">this</span> logger <span class="hljs-keyword">for</span> a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
 (Servlet <span class="hljs-number">2.5</span>)init() ..	&lt;——— the result.
@@ -333,10 +333,10 @@ INFO: Starting ProtocolHandler [<span class="hljs-string">"http-nio-8080"</span>
 Apr <span class="hljs-number">06</span>, <span class="hljs-number">2019</span> <span class="hljs-number">2</span>:<span class="hljs-number">31</span>:<span class="hljs-number">09</span> PM org.apache.coyote.AbstractProtocol start
 INFO: Starting ProtocolHandler [<span class="hljs-string">"ajp-nio-8009"</span>]
 Apr <span class="hljs-number">06</span>, <span class="hljs-number">2019</span> <span class="hljs-number">2</span>:<span class="hljs-number">31</span>:<span class="hljs-number">09</span> PM org.apache.catalina.startup.Catalina start
-INFO: Server startup in [<span class="hljs-number">2</span>,<span class="hljs-number">686</span>] milliseconds</code></pre>
+INFO: Server startup in [<span class="hljs-number">2</span>,<span class="hljs-number">686</span>] milliseconds</code></pre></div>
 
 
-<h3 id="Servlet-3-0-示例"><a href="#Servlet-3-0-示例" class="headerlink" title="Servlet 3.0 示例"></a>Servlet 3.0 示例</h3><pre><code class="hljs java"><span class="hljs-comment">/*
+<h3 id="Servlet-3-0-示例"><a href="#Servlet-3-0-示例" class="headerlink" title="Servlet 3.0 示例"></a>Servlet 3.0 示例</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/*
 Servlet 3.0 较2.5可以通过注解使Tomcat启动时自动加载Servlet 中的初始化方法: init().
 
 @WebServlet(value="/ServletTest" , loadOnStartup=1)
@@ -348,10 +348,10 @@ loadOnStartup : 当有多个Servlet时将按照数字大小顺序执行.其默�
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ServletTest</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
 	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;
 
-    ······</code></pre>
+    ······</code></pre></div>
 
 
-<h3 id="总结深究-待解决的问题"><a href="#总结深究-待解决的问题" class="headerlink" title="总结深究 ( 待解决的问题 )"></a>总结深究 ( 待解决的问题 )</h3><h4 id="发现学习中我并没有关闭Tomcat服务器-但自动执行了销毁方法destory-于是查了一些资料-至今还未发现其答案-我认为-应该是Tomcat新版本的特性吧-超时自动销毁Servlet-但是自动调用Destory-时与Service-时间差也太小了吧-36-秒啊"><a href="#发现学习中我并没有关闭Tomcat服务器-但自动执行了销毁方法destory-于是查了一些资料-至今还未发现其答案-我认为-应该是Tomcat新版本的特性吧-超时自动销毁Servlet-但是自动调用Destory-时与Service-时间差也太小了吧-36-秒啊" class="headerlink" title="发现学习中我并没有关闭Tomcat服务器,但自动执行了销毁方法destory() ! 于是查了一些资料,至今还未发现其答案,我认为 : 应该是Tomcat新版本的特性吧(超时自动销毁Servlet?),但是自动调用Destory()时与Service()时间差也太小了吧 ! 36 秒啊 !"></a>发现学习中我并没有关闭<code>Tomcat</code>服务器,但自动执行了销毁方法<code>destory()</code> ! 于是查了一些资料,至今还未发现其答案,我认为 : 应该是<code>Tomcat</code>新版本的特性吧(超时自动销毁Servlet?),但是自动调用<code>Destory()</code>时与<code>Service()</code>时间差也太小了吧 ! 36 秒啊 !</h4><pre><code class="hljs java">### 3-上述来回来点击链接请求后且稍许时间后会发现Servlet自动调用了destory() !!!?
+<h3 id="总结深究-待解决的问题"><a href="#总结深究-待解决的问题" class="headerlink" title="总结深究 ( 待解决的问题 )"></a>总结深究 ( 待解决的问题 )</h3><h4 id="发现学习中我并没有关闭Tomcat服务器-但自动执行了销毁方法destory-于是查了一些资料-至今还未发现其答案-我认为-应该是Tomcat新版本的特性吧-超时自动销毁Servlet-但是自动调用Destory-时与Service-时间差也太小了吧-36-秒啊"><a href="#发现学习中我并没有关闭Tomcat服务器-但自动执行了销毁方法destory-于是查了一些资料-至今还未发现其答案-我认为-应该是Tomcat新版本的特性吧-超时自动销毁Servlet-但是自动调用Destory-时与Service-时间差也太小了吧-36-秒啊" class="headerlink" title="发现学习中我并没有关闭Tomcat服务器,但自动执行了销毁方法destory() ! 于是查了一些资料,至今还未发现其答案,我认为 : 应该是Tomcat新版本的特性吧(超时自动销毁Servlet?),但是自动调用Destory()时与Service()时间差也太小了吧 ! 36 秒啊 !"></a>发现学习中我并没有关闭<code>Tomcat</code>服务器,但自动执行了销毁方法<code>destory()</code> ! 于是查了一些资料,至今还未发现其答案,我认为 : 应该是<code>Tomcat</code>新版本的特性吧(超时自动销毁Servlet?),但是自动调用<code>Destory()</code>时与<code>Service()</code>时间差也太小了吧 ! 36 秒啊 !</h4><div class="hljs"><pre><code class="hljs java">### 3-上述来回来点击链接请求后且稍许时间后会发现Servlet自动调用了destory() !!!?
 Apr 05, 2019 10:31:05 PM org.apache.catalina.core.StandardContext reload
 INFO: Reloading Context with name [/Servlet_basic_lifecycle] is completed
 (Servlet 2.5)init() ..
@@ -363,7 +363,7 @@ Apr 05, 2019 10:31:41 PM org.apache.catalina.core.StandardContext reload
 INFO: Reloading Context with name [/Servlet_basic_lifecycle] has started
 destory() ..    &lt;—— the result ? what happend ! ? (I'm not close the the Tomcat server now)
 
-······</code></pre>
+······</code></pre></div>
 
 <ul>
 <li><em>注意 : <code>&lt;——</code> 是本人后期为便于大家审阅代码加上的.</em></li>

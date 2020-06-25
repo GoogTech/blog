@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -189,7 +189,7 @@
             
             <article class="markdown-body">
               <p><em><code>Nginx</code>(“engine x”)是一款是由俄罗斯的程序设计师 Igor Sysoev 所开发高性能的 Web和 反向代理服务器，也是一个 IMAP/POP3/SMTP 代理服务器。在高连接并发的情况下，Nginx是Apache服务器不错的替代品。</em></p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre><code class="hljs shell"><span class="hljs-meta">&gt;</span><span class="bash"> sudo apt install nginx</span></code></pre>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">&gt;</span><span class="bash"> sudo apt install nginx</span></code></pre></div>
 
 <p><em>安装好的位置</em></p>
 <ul>
@@ -199,21 +199,21 @@
 <li><code>/var/log/nginx</code> : 存放日志</li>
 </ul>
 <h3 id="启动并验证效果"><a href="#启动并验证效果" class="headerlink" title="启动并验证效果"></a>启动并验证效果</h3><p><em>启动并重新加载 nginx 配置文件后，在浏览器输入你的 ip 地址，如果出现Wellcome to nginx那么就是配置成功</em></p>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 启动nginx</span>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 启动nginx</span>
 <span class="hljs-meta">&gt;</span><span class="bash"> service nginx start  </span>
 <span class="hljs-meta">#</span><span class="bash"> 重新加载nginx配置文件</span>
 <span class="hljs-meta">&gt;</span><span class="bash"> service nginx reload  </span>
 <span class="hljs-meta">
 #</span><span class="bash"> 与上面相同的两个命令</span>
 <span class="hljs-meta">&gt;</span><span class="bash"> nginx -s reopen <span class="hljs-comment"># 重启 nginx</span></span>
-<span class="hljs-meta">&gt;</span><span class="bash"> nginx -s stop <span class="hljs-comment"># 停止 nginx</span></span></code></pre>
+<span class="hljs-meta">&gt;</span><span class="bash"> nginx -s stop <span class="hljs-comment"># 停止 nginx</span></span></code></pre></div>
 
 
-<h3 id="查看版本号"><a href="#查看版本号" class="headerlink" title="查看版本号"></a>查看版本号</h3><pre><code class="hljs shell"><span class="hljs-meta">&gt;</span><span class="bash"> nginx -v</span></code></pre>
+<h3 id="查看版本号"><a href="#查看版本号" class="headerlink" title="查看版本号"></a>查看版本号</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">&gt;</span><span class="bash"> nginx -v</span></code></pre></div>
 
 
 <h3 id="nginx-配置文件介绍"><a href="#nginx-配置文件介绍" class="headerlink" title="nginx 配置文件介绍"></a>nginx 配置文件介绍</h3><p><em>&gt; vim /usr/local/webserver/nginx/conf/nginx.conf</em></p>
-<pre><code class="hljs shell">...     #全局块
+<div class="hljs"><pre><code class="hljs shell">...     #全局块
 
 events &#123;    #events块
    ...
@@ -239,7 +239,7 @@ http    #http块
       ...
     &#125;
     ...     #http全局块
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <ul>
 <li><code>全局块</code> : 配置影响nginx全局的指令。一般有运行nginx服务器的用户组，nginx进程pid存放路径，日志存放路径，配置文件引入，允许生成worker process数等。</li>
@@ -249,10 +249,10 @@ http    #http块
 <li><code>location块</code> : 配置请求的路由，以及各种页面的处理情况。</li>
 </ul>
 <h3 id="验证配置文件的正确性以及重载配置"><a href="#验证配置文件的正确性以及重载配置" class="headerlink" title="验证配置文件的正确性以及重载配置"></a>验证配置文件的正确性以及重载配置</h3><p><em>修改 nginx 的配置文件后记得验证配置文件的正确性以及重载配置哟</em></p>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 验证默认配置文件</span>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 验证默认配置文件</span>
 <span class="hljs-meta">&gt;</span><span class="bash"> nginx -t           </span>
 <span class="hljs-meta">#</span><span class="bash"> 重载nginx配置文件</span>
-<span class="hljs-meta">&gt;</span><span class="bash"> nginx -s reload</span></code></pre>
+<span class="hljs-meta">&gt;</span><span class="bash"> nginx -s reload</span></code></pre></div>
 
 
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>

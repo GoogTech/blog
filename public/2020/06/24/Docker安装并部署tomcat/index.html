@@ -17,7 +17,7 @@
   <meta name="description" content="My Personal Website For Blog">
   <meta name="author" content="黄宇辉">
   <meta name="keywords" content="learning note,hexo blog">
-  <title>Docker安装并数据tomcat - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+  <title>Docker安装并部署tomcat - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -188,7 +188,7 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h3 id="1-搜索tomcat镜像"><a href="#1-搜索tomcat镜像" class="headerlink" title="1. 搜索tomcat镜像"></a>1. 搜索tomcat镜像</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前所有镜像</span>
+              <h3 id="1-搜索tomcat镜像"><a href="#1-搜索tomcat镜像" class="headerlink" title="1. 搜索tomcat镜像"></a>1. 搜索tomcat镜像</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前所有镜像</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 ubuntu              latest              74435f89ab78        7 days ago          73.9MB
@@ -203,9 +203,9 @@ NAME                          DESCRIPTION                                     ST
 tomcat                        Apache Tomcat is an open source implementati…   2759                [OK]
 tomee                         Apache TomEE is an all-Apache Java EE certif…   79                  [OK]
 
-. . . . . .</code></pre>
+. . . . . .</code></pre></div>
 
-<h3 id="2-下载tomcat镜像"><a href="#2-下载tomcat镜像" class="headerlink" title="2. 下载tomcat镜像"></a>2. 下载tomcat镜像</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前所有镜像</span>
+<h3 id="2-下载tomcat镜像"><a href="#2-下载tomcat镜像" class="headerlink" title="2. 下载tomcat镜像"></a>2. 下载tomcat镜像</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前所有镜像</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 ubuntu              latest              74435f89ab78        7 days ago          73.9MB
@@ -240,12 +240,12 @@ tomcat              9.0                 2eb5a120304e        2 weeks ago         
 nginx               latest              2622e6cca7eb        2 weeks ago         132MB
 mysql               latest              be0dbf01a0f3        2 weeks ago         541MB
 hello-world         latest              bf756fb1ae65        5 months ago        13.3kB
-ubuntu@VM-0-4-ubuntu:~$</code></pre>
+ubuntu@VM-0-4-ubuntu:~$</code></pre></div>
 
 <blockquote>
 <p>DockerHub 官方的下载命令 : <code>docker run -it --rm tomcat:9</code>，其多用于测试，即表示当使用完 tomcat 容器后立即将其删除.</p>
 </blockquote>
-<h3 id="3-运行tomcat"><a href="#3-运行tomcat" class="headerlink" title="3.运行tomcat"></a>3.运行tomcat</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的容器</span>
+<h3 id="3-运行tomcat"><a href="#3-运行tomcat" class="headerlink" title="3.运行tomcat"></a>3.运行tomcat</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的容器</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 <span class="hljs-meta">
@@ -269,12 +269,12 @@ ubuntu@VM-0-4-ubuntu:~$ sudo docker run -d -p 9999:8080 --name MyTomcat tomcat
 #</span><span class="bash"> 再次查看当前正在运行的容器，验证 tomcat 是否已经启动</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                    NAMES
-4001aad00b75        tomcat              "catalina.sh run"   34 seconds ago      Up 32 seconds       0.0.0.0:9999-&gt;8080/tcp   MyTomcat</code></pre>
+4001aad00b75        tomcat              "catalina.sh run"   34 seconds ago      Up 32 seconds       0.0.0.0:9999-&gt;8080/tcp   MyTomcat</code></pre></div>
 
 <p><em>此时访问 <a href="http://ip:9999" target="_blank" rel="noopener">http://ip:9999</a> 页面如下图所示，这是因为 dockerhub 中的 tomcat 是被<code>阉割</code>( 例如缺少linux命令… )过的，所以相关配置文件并不完整.</em></p>
 <p><img src="/2020/06/24/Docker%E5%AE%89%E8%A3%85%E5%B9%B6%E9%83%A8%E7%BD%B2tomcat/docker-deploy-tomcat.PNG" srcset="/img/loading.gif" alt=" "> </p>
 <p><em>为了访问 <a href="http://ip:9999" target="_blank" rel="noopener">http://ip:9999</a> 时能够看到 tomcat 首页，我们需要进入后台正在运行的 tomcat 容器中配置一下 webapps 中的内容</em></p>
-<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的所有容器</span>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的所有容器</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                    NAMES
 4001aad00b75        tomcat              "catalina.sh run"   14 minutes ago      Up 14 minutes       0.0.0.0:9999-&gt;8080/tcp   MyTomcat
@@ -308,7 +308,7 @@ ubuntu@VM-0-4-ubuntu:~$ sudo docker stop 4001aad00b75 # 根据id停止正在运�
 4001aad00b75
 ubuntu@VM-0-4-ubuntu:~$ sudo docker ps # 再次查看当前正在运行的容器，验证 tomcat 容器是否已经停止运行
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                    NAMES
-ubuntu@VM-0-4-ubuntu</code></pre>
+ubuntu@VM-0-4-ubuntu</code></pre></div>
 
 <p><img src="/2020/06/24/Docker%E5%AE%89%E8%A3%85%E5%B9%B6%E9%83%A8%E7%BD%B2tomcat/docker-deploy-tomcat-index.PNG" srcset="/img/loading.gif" alt=" "></p>
 <h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><blockquote>
@@ -338,6 +338,12 @@ ubuntu@VM-0-4-ubuntu</code></pre>
                 <div class="post-prevnext row">
                   <div class="post-prev col-6">
                     
+                    
+                      <a href="/2020/06/24/Docker%E5%AE%89%E8%A3%85MySQL%E5%8F%8A%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Docker安装MySQL及基本使用</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </div>
                   <div class="post-next col-6">
@@ -509,7 +515,7 @@ ubuntu@VM-0-4-ubuntu</code></pre>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Docker安装并数据tomcat&nbsp;",
+        "Docker安装并部署tomcat&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

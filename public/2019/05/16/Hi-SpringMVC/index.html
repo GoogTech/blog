@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -201,7 +201,7 @@
 <h3 id="Spring-MVC的工作流程"><a href="#Spring-MVC的工作流程" class="headerlink" title="Spring MVC的工作流程"></a>Spring MVC的工作流程</h3><p><em>Spring MVC的工作原理图如下所示.</em><br><img src="/2019/05/16/Hi-SpringMVC/Spring-MVC%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%9B%BE.jpg" srcset="/img/loading.gif" alt=" "></p>
 <h3 id="第一个Spring-MVC应用程序"><a href="#第一个Spring-MVC应用程序" class="headerlink" title="第一个Spring MVC应用程序"></a>第一个Spring MVC应用程序</h3><ol>
 <li><p><em>第一步: 配置前端控制器</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span> 
 	<span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee"</span> 
 	<span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"</span> 
@@ -227,10 +227,10 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>spring_mvc<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>第二步: 创建Controller类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.controller;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.controller;
 
 <span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;
 <span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;
@@ -260,10 +260,10 @@
 		<span class="hljs-keyword">return</span> modelAndView;
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>第三步: 创建Spring MVC的配置文件,配置控制器映射信息</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>
 	<span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
 	<span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans 
@@ -281,14 +281,14 @@
 	<span class="hljs-comment">&lt;!-- 截图解析器 --&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span> /&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre></li>
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre></div></li>
 </ol>
 <ul>
 <li><em>注意: 在Spring 4.0以后,如果不配置处理器映射器,处理器适配器和视图解析器,也会使用Spring内部默认的配置来完成相应的工作呦~ 这里没有省略是为了更清晰地展示Spring MVC的工作流程.</em></li>
 </ul>
 <ol start="4">
 <li><p><em>第四步: 创建视图页面</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
 	<span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
@@ -299,7 +299,7 @@
 <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">align</span>=<span class="hljs-string">"center"</span>&gt;</span>$&#123;msg &#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>第五步: 启动Tomcat服务器,在浏览器中访问地址: <code>http://localhost:8080/Hi_SpringMVC/FirstController</code> 其效果图如下.</em><br><img src="/2019/05/16/Hi-SpringMVC/%E7%AC%AC%E4%B8%80%E4%B8%AASpring-MVC%E7%A8%8B%E5%BA%8F%E8%A7%86%E5%9B%BE.PNG" srcset="/img/loading.gif" alt=" "></p>
 </li>

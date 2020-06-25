@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -206,45 +206,45 @@
 <h3 id="局部变量类型推断"><a href="#局部变量类型推断" class="headerlink" title="局部变量类型推断"></a>局部变量类型推断</h3><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p><em>很多人抱怨 Java 是一种强类型,需要引入大量的样板代码. 甚至在这些情况下,给定好变量名,通常很清楚发生了什么,明显类型声明往往被认为是不必要的. 许多流行的编程语言都已经支持某种形式的局部变量类型推断 : 如C++ (auto), C# (var), Scala (var/val), Go (declaration with :=)等</em></p>
 <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p><em>Java 局部变量类型推断( LVTI ),JDK10 中可以使用 var 作为局部变量类型推断标识符,<code>此符号仅适用于局部变量,增强for循环的索引,以及传统for循环的本地变量. 它不能使用于方法形式参数,构造函数形式参数,方法返回类型,字段,catch块形式参数或任何其他类型的变量声明</code>. 标识符 var 不是关键字,相反,它是一个保留的类型名称. 这意味着 var 用作变量,方法名或则包名称的代码不会受到影响. 但 var 不能作为类或则接口的名字( 但这样命名是比较罕见的,因为他违反了通常的命名约定,类和接口首字母应该大写 ). <code>其工作原理为 : 在处理 var 时,编译器先是查看表达式右边部分,并根据右边变量值的类型进行推断,作为左边变量的类型,然后将该类型写入字符码当中</code></em></p>
 <h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p><em>类型推断代码示例 :</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">var</span> str = <span class="hljs-string">"ABC"</span>; <span class="hljs-comment">//根据推断为字符串类型</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">var</span> str = <span class="hljs-string">"ABC"</span>; <span class="hljs-comment">//根据推断为字符串类型</span>
 <span class="hljs-keyword">var</span> l = <span class="hljs-number">10L</span>; <span class="hljs-comment">//根据10L推断为long类型</span>
 <span class="hljs-keyword">var</span> flag = <span class="hljs-keyword">true</span>; <span class="hljs-comment">//根据true推断为boolean类型</span>
 <span class="hljs-keyword">var</span> flag1 = <span class="hljs-number">1</span>; <span class="hljs-comment">//这里会推断boolean类型,0表示false非0表示true</span>
 <span class="hljs-keyword">var</span> list = <span class="hljs-keyword">new</span> ArrayList&lt;String&gt;(); <span class="hljs-comment">//推断为ArrayList&lt;String&gt;</span>
-<span class="hljs-keyword">var</span> stream = list.stream(); <span class="hljs-comment">//推断为Stream&lt;String&gt;</span></code></pre>
+<span class="hljs-keyword">var</span> stream = list.stream(); <span class="hljs-comment">//推断为Stream&lt;String&gt;</span></code></pre></div>
 
 <p><em>上述示例代码的反编译class文件 :</em></p>
-<pre><code class="hljs java">String str = <span class="hljs-string">"ABC"</span>;
+<div class="hljs"><pre><code class="hljs java">String str = <span class="hljs-string">"ABC"</span>;
 <span class="hljs-keyword">long</span> l = <span class="hljs-number">10L</span>;
 <span class="hljs-keyword">boolean</span> flag = <span class="hljs-keyword">true</span>;
 <span class="hljs-keyword">int</span> flag1 = <span class="hljs-keyword">true</span>;
 ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> ArrayList();
-Stream&lt;String&gt; stream = list.stream();</code></pre>
+Stream&lt;String&gt; stream = list.stream();</code></pre></div>
 
 <p><em>遍历代码中使用类型推断 :</em></p>
-<pre><code class="hljs java"><span class="hljs-comment">//集合遍历</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">//集合遍历</span>
 <span class="hljs-keyword">var</span> list = <span class="hljs-keyword">new</span> ArrayList&lt;String&gt;();
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> s : list) &#123; &#125;
 <span class="hljs-comment">//普通遍历</span>
-<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123; &#125;</code></pre>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123; &#125;</code></pre></div>
 
 <p><em>var 类型可以被final修饰符修饰</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> limit = <span class="hljs-number">10</span>;</code></pre>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> limit = <span class="hljs-number">10</span>;</code></pre></div>
 
 <h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p><em>在局部变量使用中,这些情况不适用类型推断哟 : <code>没有初始化的局部变量声明</code>, <code>方法的返回类型</code>, <code>方法的参数类型</code>, <code>构造器的参数类型</code>, <code>属性</code>, <code>catch块</code>. 部分示例如下所示</em></p>
 <ol>
 <li><p><em>初始值不能为null,既如果局部变量不赋值,则无法实现类型推断</em></p>
-<pre><code class="hljs java"><span class="hljs-comment">//error</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">//error</span>
 <span class="hljs-keyword">var</span> string1;
-<span class="hljs-keyword">var</span> string2 = <span class="hljs-keyword">null</span>;</code></pre>
+<span class="hljs-keyword">var</span> string2 = <span class="hljs-keyword">null</span>;</code></pre></div>
 </li>
 <li><p><em>为数组静态初始化中,语法格式需要注意</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">int</span>[] array = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>&#125;; <span class="hljs-comment">//正确写法</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">int</span>[] array = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>&#125;; <span class="hljs-comment">//正确写法</span>
 <span class="hljs-keyword">var</span> array2 = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]&#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>&#125;; <span class="hljs-comment">//正确写法</span>
-<span class="hljs-keyword">var</span> array3 = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>&#125;; <span class="hljs-comment">//错误写法</span></code></pre>
+<span class="hljs-keyword">var</span> array3 = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>&#125;; <span class="hljs-comment">//错误写法</span></code></pre></div>
 </li>
 <li><p><em>Lambda表达式及方法引用中,左边的函数式接口不能声明为 var</em></p>
-<pre><code class="hljs java"><span class="hljs-comment">//正确写法</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">//正确写法</span>
 Comparator&lt;Integer&gt; comparator = (o1, o2) -&gt; Integer.compare(o1, o2);
 <span class="hljs-comment">//错误写法</span>
 <span class="hljs-keyword">var</span> comparator = (o1, o2) -&gt; Integer.compare(o1, o2);
@@ -252,7 +252,7 @@ Comparator&lt;Integer&gt; comparator = (o1, o2) -&gt; Integer.compare(o1, o2);
 <span class="hljs-comment">//正确写法</span>
 Consumer&lt;String&gt; consumer = System.out::println;
 <span class="hljs-comment">//错误写法</span>
-<span class="hljs-keyword">var</span> consumer = System.out::println;</code></pre>
+<span class="hljs-keyword">var</span> consumer = System.out::println;</code></pre></div>
 
 
 

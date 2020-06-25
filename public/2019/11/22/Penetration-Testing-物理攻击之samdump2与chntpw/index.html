@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -192,22 +192,22 @@
 <li><p><em>首先将装有 Kali linux 操作系统的 U 盘插入 PC，并通过设置 BLOS 来启动 Kali linux</em></p>
 </li>
 <li><p><em>通过命令查看分区情况，然后将 U 盘挂载到 Windows 操作系统的系统盘. 例如我的系统盘显示为 : <code>/dev/sda2</code></em></p>
-<pre><code class="hljs sh">fdisk -l
+<div class="hljs"><pre><code class="hljs sh">fdisk -l
 
-mount /dev/sad2 /mnt/</code></pre>
+mount /dev/sad2 /mnt/</code></pre></div>
 </li>
 <li><p><em>进入挂载目录，查看是否正确挂载. ( 如果正确显示系统盘 C 盘文件，则表示挂载成功  )</em></p>
-<pre><code class="hljs sh"><span class="hljs-built_in">cd</span> /mnt/
+<div class="hljs"><pre><code class="hljs sh"><span class="hljs-built_in">cd</span> /mnt/
 
-ls -la</code></pre>
+ls -la</code></pre></div>
 </li>
 <li><p><em>接着进入 Windows 用于存放用户账号密码的文件夹下</em></p>
-<pre><code class="hljs sh"><span class="hljs-built_in">cd</span> /Windows/System32/config</code></pre>
+<div class="hljs"><pre><code class="hljs sh"><span class="hljs-built_in">cd</span> /Windows/System32/config</code></pre></div>
 </li>
 <li><p><em>使用 Kali linux 自带的 <code>samdump2</code> 来获取存储在 Windows 系统上的用户账号和密码. 然后可通过 cat 命令查看所有用户系统驱动器以及它们的密码散列值</em></p>
-<pre><code class="hljs sh">samdump2 SYSTEM SAM -o sam.hash
+<div class="hljs"><pre><code class="hljs sh">samdump2 SYSTEM SAM -o sam.hash
 
-cat sam.hash</code></pre>
+cat sam.hash</code></pre></div>
 </li>
 <li><p><em>最后可通过 <code>Hashcat</code>，<code>John Ripper</code> 或 <code>Credump</code> 等工具来完成对用户密码的破解</em></p>
 </li>
@@ -220,16 +220,16 @@ cat sam.hash</code></pre>
 </blockquote>
 <h3 id="使用-chntpw-操作-Windows-密码"><a href="#使用-chntpw-操作-Windows-密码" class="headerlink" title="使用 chntpw 操作 Windows 密码"></a>使用 chntpw 操作 Windows 密码</h3><p><em><code>chntpw</code> 是一个 Kali linux 自带的工具，可以用于编辑 Windows 注册表、重置用户密码、将用户提升为管理员，以及其它的一些有用的选项.</em></p>
 <p><em>前 4 步和上述 <code>使用 samdump2 破解 Windows 密码</code> 相同. 进入 Windows 用于存放用户账号密码的文件夹下后，运行 <code>chntpw</code></em></p>
-<pre><code class="hljs sh">chntpw SAM</code></pre>
+<div class="hljs"><pre><code class="hljs sh">chntpw SAM</code></pre></div>
 
 <ul>
 <li>密码存储在 Windows 系统中的 SAM( Security Account Management ) 文件中，它是 Windows XP，Windows Vista 及 Windows 7 等用于存储用户密码的数据库文件</li>
 </ul>
 <p><em>例如操作指定用户的SAM. ( 可通过命令 <code>chntpw -l &lt;sam file&gt;</code> 来查看 SAM 的用户列表 )</em></p>
-<pre><code class="hljs sh"><span class="hljs-comment">#chntpw -l &lt;sam file&gt;</span>
+<div class="hljs"><pre><code class="hljs sh"><span class="hljs-comment">#chntpw -l &lt;sam file&gt;</span>
 <span class="hljs-comment">#chntpw -u &lt;user&gt;&lt;sam file&gt;</span>
 
-chntpw -u username SAM</code></pre>
+chntpw -u username SAM</code></pre></div>
 
 <p><em>执行指定的操作后即可执行命令 <code>q</code> 退出编辑，最后你应该可以得到确认，例如提示信息 : <code>&lt;SAM&gt;-OK</code></em></p>
 <h4 id="Tool-1"><a href="#Tool-1" class="headerlink" title="Tool"></a>Tool</h4><blockquote>

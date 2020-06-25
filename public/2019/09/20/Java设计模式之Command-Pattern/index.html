@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -201,7 +201,7 @@
 <h3 id="示例程序-1"><a href="#示例程序-1" class="headerlink" title="示例程序-1"></a>示例程序-1</h3><p><em>下面是一个使用命令设计模式的简单程序案例,案例说明 : 某系统提供了一系列功能键,用户可以自定义功能键( FunctionButton )的功能,例如登录键( LoginInCommand )用于登录系统,退出键( LoginOutCommand )用于注销系统 · · ·</em></p>
 <ol>
 <li><p><em>FunctionButton类 : 功能键类, 充当请求调用者(请求发送者)</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -225,10 +225,10 @@
         command.execute();
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Command抽象类 : 抽象命令类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -240,10 +240,10 @@
  */</span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Command</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">execute</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>LoginInCommand类 : 登录命令类, 充当具体命令类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -266,10 +266,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">execute</span><span class="hljs-params">()</span> </span>&#123;
         enterSystem.login();
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>LoginOutCommand类 : 退出命令类, 充当具体命令类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -292,10 +292,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">execute</span><span class="hljs-params">()</span> </span>&#123;
         exitSystem.exit();
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>LoginInSystem类 : 登录系统的模拟实现类, 充当请求接收者</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -310,10 +310,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">login</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"login in"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>LoginOutSystem类 : 退出系统的模拟实现类, 充当请求接收者</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -328,10 +328,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">exit</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"login out"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Client类 : 客户端测试类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -355,12 +355,12 @@
         functionButton.setCommand(exit_key);
         functionButton.click();
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>示例程序运行的结果如下所示 :</em></p>
-<pre><code class="hljs asciidoc"><span class="hljs-section">login in
+<div class="hljs"><pre><code class="hljs asciidoc"><span class="hljs-section">login in
 --------------------</span>
-login out</code></pre>
+login out</code></pre></div>
 
 </li>
 </ol>
@@ -368,7 +368,7 @@ login out</code></pre>
 <h3 id="示例程序-2"><a href="#示例程序-2" class="headerlink" title="示例程序-2"></a>示例程序-2</h3><p><em>下面是一个使用命令设计模式的简单程序案例,案例说明 : 设计一个画图软件,既用户可以通过拖动鼠标在画板上画画,点击 clear 按钮时会擦除画板上的痕迹.</em></p>
 <ol>
 <li><p><em>Command接口 : 表示”命令”的接口,充当(抽象)命令</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -380,10 +380,10 @@ login out</code></pre>
  */</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Command</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">execute</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>MacroCommand类 : 表示”由多条命令整合成的命令”的类,充当具体的命令</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_2;
 
 <span class="hljs-keyword">import</span> java.util.Stack;
 
@@ -420,10 +420,10 @@ login out</code></pre>
         commands.clear();
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>DrawCommand类 : 表示”绘制一个点的命令( 画笔 )”的类,充当具体的命令</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_2;
 
 <span class="hljs-keyword">import</span> java.awt.*;
 
@@ -455,10 +455,10 @@ login out</code></pre>
         drawable.draw(position.x, position.y);
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Drawable接口 : 表示”绘制对象”的接口</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -470,10 +470,10 @@ login out</code></pre>
  */</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Drawable</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">draw</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>DrawCanvas类 : 实现”绘制对象”的类,充当接收者</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_2;
 
 <span class="hljs-keyword">import</span> java.awt.*;
 
@@ -513,10 +513,10 @@ login out</code></pre>
         graphics.setColor(color);
         graphics.fillOval(x - redius, y - redius, redius * <span class="hljs-number">2</span>, redius * <span class="hljs-number">2</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Client类 : 客户端测试类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.command_pattern.command_pattern_2;
 
 <span class="hljs-keyword">import</span> javax.swing.*;
 <span class="hljs-keyword">import</span> java.awt.*;
@@ -580,7 +580,7 @@ login out</code></pre>
         <span class="hljs-keyword">new</span> Client(<span class="hljs-string">"a simple drawing board"</span>);
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>示例程序的运行结果如下图所示 :</em><br><img src="/2019/09/20/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8BCommand-Pattern/Command-Pattern-ClassDiagram2-drawing.png" srcset="/img/loading.gif" alt></p>
 </li>

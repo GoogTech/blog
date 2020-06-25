@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -192,7 +192,7 @@
 <h3 id="Cookie-object"><a href="#Cookie-object" class="headerlink" title="Cookie object"></a>Cookie object</h3><p><em><code>Cooke</code>是一种会话技术,它用于将会话过程中的数据保存到用户的浏览器中,从而使浏览器和服务器可以更好地进行数据交互.Cookie在浏览器和服务器之间的传输过程示例图如下 :</em></p>
 <p><img src="/2019/05/02/Java-web-Cookie-and-Session/Cookie%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B9%8B%E9%97%B4%E7%9A%84%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B.jpg" srcset="/img/loading.gif" alt=" "></p>
 <h3 id="Cookie-application"><a href="#Cookie-application" class="headerlink" title="Cookie application"></a>Cookie application</h3><h4 id="显示用户上次访问时间"><a href="#显示用户上次访问时间" class="headerlink" title="显示用户上次访问时间"></a>显示用户上次访问时间</h4><p><em>案例描述 : 当用户请求LastAccessServlet时,服务器会调用<code>HttpServletResponse</code>接口的<code>addCookie(Cookie cookie)</code>方法,该方法会在发送给浏览器的HTTP响应消息中增加一个<code>Set-Cookie</code>头字段,将创建的Cookie对象作为Set-Cookie头字段的值传递给浏览器.示例程序如下 :</em></p>
-<pre><code class="hljs java"><span class="hljs-meta">@WebServlet</span>(<span class="hljs-string">"/LastAccessServlet"</span>)
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@WebServlet</span>(<span class="hljs-string">"/LastAccessServlet"</span>)
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LastAccessServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
 	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;
 
@@ -241,31 +241,31 @@
 		doGet(request, response);
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 <h3 id="Session-object"><a href="#Session-object" class="headerlink" title="Session object"></a>Session object</h3><p><em><code>Cookie</code>技术可以将用户的信息保存在各自的浏览器中,并且可以在多次请求下实现数据的共享.但是,如果传递的信息比较多,使用Cookie技术显然会增加服务器端程序处理的难度.这时,可以使用<code>Session</code>实现,Session是一种将会话数据保存到服务器端的技术.当浏览器访问Web服务器时,<code>Servlet容器</code>就会创建一个<code>Session对象</code>和<code>ID属性</code>,当客户端后续访问服务器时,只要将标识号传递给服务器,服务器就能判断出该请求是哪个客户端发送的,从而选择与之对应的Session对象为其服务.需要注意的是 : 由于客端户需要接收,记录,回送Session对象的ID,因此,通常情况下,<code>Session是借助Cookie技术来传递ID属性的 !</code></em></p>
 <h4 id="HttpSession-API"><a href="#HttpSession-API" class="headerlink" title="HttpSession API"></a>HttpSession API</h4><p><em>Session是与每个请求消息紧密相关的,HttpServletRequest接口中定义了用于获取Session对象的getSession()方法,该方法有两种重载形式.</em></p>
-<pre><code class="hljs java"><span class="hljs-comment">// 根据传递的参数来判断是否创建新的HttpSession对象</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 根据传递的参数来判断是否创建新的HttpSession对象</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> HttpSession <span class="hljs-title">getSession</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> create)</span></span>;
 <span class="hljs-comment">// 在相关的HttpSession对象不存在时总是创建新的HttpSession对象</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> HttpSession <span class="hljs-title">getSession</span><span class="hljs-params">()</span></span>;</code></pre>
+<span class="hljs-function"><span class="hljs-keyword">public</span> HttpSession <span class="hljs-title">getSession</span><span class="hljs-params">()</span></span>;</code></pre></div>
 
 <h4 id="Session超时管理"><a href="#Session超时管理" class="headerlink" title="Session超时管理"></a>Session超时管理</h4><p><em>为了解决不再使用的<code>HttpSession</code>对象会在Web服务器中因积累过多从而导致Web服务器内存耗尽的问题,Web服务器采用了<code>超时限制</code>的办法来判断客户端是否还在继续访问.在会话过程中,会话的有效时间可以在<code>web.xml</code>文件中设置,其默认值由Servlet容器定义.如果想使站点内的所有Web应用程序都起作用,可以配置<code>&lt;Tomcat directory&gt;\conf\web.xml</code>文件,如下所示 :</em></p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- ==================== Default Session Configuration ================= --&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- ==================== Default Session Configuration ================= --&gt;</span>
   <span class="hljs-comment">&lt;!-- You can set the default session timeout (in minutes) for all newly --&gt;</span>
   <span class="hljs-comment">&lt;!-- created sessions by modifying the value below.                     --&gt;</span>
 
     <span class="hljs-tag">&lt;<span class="hljs-name">session-config</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">session-timeout</span>&gt;</span>30<span class="hljs-tag">&lt;/<span class="hljs-name">session-timeout</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">session-config</span>&gt;</span></code></pre>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">session-config</span>&gt;</span></code></pre></div>
 
 
 <h3 id="Session-application"><a href="#Session-application" class="headerlink" title="Session application"></a>Session application</h3><h4 id="实现购物车"><a href="#实现购物车" class="headerlink" title="实现购物车"></a>实现购物车</h4><p><em>案例描述 : 购物车的的实现流程如下图所示,当用户使用浏览器访问某个网站的图书列表页面时,如果购买某一本书,那么首先会判断书籍是否存在,如果存在就加入购物车,跳转到购物车中所购买图书的列表页,否则,返回图书列表页面.</em></p>
 <p><img src="/2019/05/02/Java-web-Cookie-and-Session/Session%E6%A1%88%E4%BE%8B-%E8%B4%AD%E7%89%A9%E8%BD%A6%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B%E5%9B%BE.png" srcset="/img/loading.gif" alt=" "></p>
 <ol>
 <li><p><em>Book.java : 用于封装图书的信息.</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.session.example.shoppingtrolley;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.session.example.shoppingtrolley;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: Book
@@ -300,10 +300,10 @@
 		<span class="hljs-keyword">this</span>.name = name;
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>BookDB.java : 用于模拟保存所有图书的数据库.</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.session.example.shoppingtrolley;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.session.example.shoppingtrolley;
 
 <span class="hljs-keyword">import</span> java.util.Collection;
 <span class="hljs-keyword">import</span> java.util.LinkedHashMap;
@@ -339,10 +339,10 @@
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Book <span class="hljs-title">getBook</span><span class="hljs-params">(String book_id)</span> </span>&#123;
 		<span class="hljs-keyword">return</span> books.get(book_id);
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>ListBookServlet.java : 用于显示所有可购买图书的列表.通过点击”click to buy”链接,便可将指定的图书添加到购物车中.</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.session.example.shoppingtrolley;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.session.example.shoppingtrolley;
 
 <span class="hljs-keyword">import</span> java.io.IOException;
 <span class="hljs-keyword">import</span> java.io.PrintWriter;
@@ -389,10 +389,10 @@
 		doGet(request, response);
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>PurchaseServlet.java : 功能一: 将用户购买的图书信息保存到Session对象中. 功能二: 在用户购买图书结束后,将页面重定向到用户已经购买的图书列表.</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.session.example.shoppingtrolley;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.session.example.shoppingtrolley;
 
 <span class="hljs-keyword">import</span> java.io.IOException;
 <span class="hljs-keyword">import</span> java.util.ArrayList;
@@ -466,10 +466,10 @@
 		doGet(request, response);
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>CartServlet.java : 展示用户已经购买的图书列表.</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.session.example.shoppingtrolley;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.session.example.shoppingtrolley;
 
 <span class="hljs-keyword">import</span> java.io.IOException;
 <span class="hljs-keyword">import</span> java.io.PrintWriter;
@@ -540,7 +540,7 @@
 		doGet(request, response);
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 </li>
@@ -549,7 +549,7 @@
 <p><img src="/2019/05/02/Java-web-Cookie-and-Session/Session%E6%A1%88%E4%BE%8B-%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E6%B5%81%E7%A8%8B%E5%9B%BE.png" srcset="/img/loading.gif" alt=" "></p>
 <ol>
 <li><p><em>Login.html : 用户登录页面.</em></p>
-<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
@@ -574,10 +574,10 @@
 			<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>User.java : 封装用户信息.</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.session.example.login;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.session.example.login;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: User
@@ -613,14 +613,14 @@
 		<span class="hljs-keyword">this</span>.password = password;
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 </li>
 </ol>
 <ol start="3">
 <li><p><em>IndexServlet.java : 用于显示网站的首界面,如果用户没有登录,那么首界面需要提示用户登录,否则,显示用户已经登录的信息.</em></p>
-<pre><code class="hljs java"><span class="hljs-meta">@WebServlet</span>(<span class="hljs-string">"/IndexServlet"</span>)
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@WebServlet</span>(<span class="hljs-string">"/IndexServlet"</span>)
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IndexServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
 	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;
 
@@ -659,10 +659,10 @@
 		doGet(request, response);
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>LoginServlet.java : 用于显示用户登录成功后的界面.</em></p>
-<pre><code class="hljs java"><span class="hljs-meta">@WebServlet</span>(<span class="hljs-string">"/LoginServlet"</span>)
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@WebServlet</span>(<span class="hljs-string">"/LoginServlet"</span>)
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LoginServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
 	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;
 
@@ -695,10 +695,10 @@
 		doGet(request, response);
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>LogoutServlet.java : 用于完成用户注销功能.</em></p>
-<pre><code class="hljs java"><span class="hljs-meta">@WebServlet</span>(<span class="hljs-string">"/LogoutServlet"</span>)
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@WebServlet</span>(<span class="hljs-string">"/LogoutServlet"</span>)
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LogoutServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
 	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;
 
@@ -722,7 +722,7 @@
 		doGet(request, response);
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 </li>
@@ -730,7 +730,7 @@
 <h4 id="利用Session实现一次性验证码"><a href="#利用Session实现一次性验证码" class="headerlink" title="利用Session实现一次性验证码"></a>利用Session实现一次性验证码</h4><p><em>案例描述 : 在实际开发中,为了保证用户信息的安全,都会在网站登录的界面中添加一次性验证码,从而限制不法分子使用软件暴力猜测密码.一次性验证码的功能同样可以使用<code>Session</code>来实现.该案例代码基于上个案例(实现用户登录)进行改写.</em></p>
 <ol>
 <li><p><em>Login.jsp : 用户登录页面.</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
     <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
@@ -764,10 +764,10 @@
 				<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 			<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 		<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>CheckServlet.java : 用于生成验证码图片.</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.session.example.verifcode;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.session.example.verifcode;
 
 <span class="hljs-keyword">import</span> java.awt.Color;
 <span class="hljs-keyword">import</span> java.awt.Font;
@@ -890,10 +890,10 @@
 		doGet(request, response);
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>LoginServlet.java : 对LoginServlet进行修改,增加对验证码的判断.</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.session.example.verifcode;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.session.example.verifcode;
 
 <span class="hljs-keyword">import</span> java.io.IOException;
 <span class="hljs-keyword">import</span> java.io.PrintWriter;
@@ -944,7 +944,7 @@
 		doGet(request, response);
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行结果 : 用户登录页面.</em><br><img src="/2019/05/02/Java-web-Cookie-and-Session/Session%E6%A1%88%E4%BE%8B-%E5%AE%9E%E7%8E%B0%E4%B8%80%E6%AC%A1%E6%80%A7%E9%AA%8C%E8%AF%81%E7%A0%81-%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2.PNG" srcset="/img/loading.gif" alt=" "></p>
 </li>

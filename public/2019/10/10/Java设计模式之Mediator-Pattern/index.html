@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -201,7 +201,7 @@
 <h3 id="程序示例"><a href="#程序示例" class="headerlink" title="程序示例"></a>程序示例</h3><p><em>下面是一个使用中介者模式的简单示例程序 : 设计一个 CRM 桌面系统,其中包含一个客户信息管理模块,其界面组件之间存在复杂的交互关系,如果删除一个客户,则从客户列表中( List )中删掉对应的项,客户选择组合框( ComboBox )中的客户名称也将减少一个; 如果增加一个客户信息,则客户列表中将增加一个客户,并且组合框中也将增加一项. 为了更好地处理界面组件之间的交互,现使用中介者模式设计该系系统~</em></p>
 <ol>
 <li><p><em>Mediator.java : 抽象中介者类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -213,10 +213,10 @@
  */</span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Mediator</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">componentChanged</span><span class="hljs-params">(Component component)</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>ConcreteMediator.java : 具体中介者类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -257,10 +257,10 @@
             userNameTextBox.setText();
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Component.java : 抽象组件类, 充当抽象同事类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -284,10 +284,10 @@
     &#125;
 
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Button.java : 按钮类, 充当具体同事类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -301,10 +301,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">()</span> </span>&#123;
         <span class="hljs-comment">//System.out.println("点击添加信息按钮");</span>
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>List.java : 列表框类, 充当具体同事类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -323,10 +323,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">select</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"列表框选中项: 黄浩然"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>ComboBox.java : 组合框类, 充当具体同事类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -345,10 +345,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">select</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"组合框选中项: 黄浩然"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>TextBox.java : 文本框, 充当具体同事类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -367,10 +367,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setText</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"文本框显示: 黄浩然"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Client.java : 客户端测试类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -409,10 +409,10 @@
         list.changed(); <span class="hljs-comment">//从列表框中选择客户</span>
         comboBox.changed(); <span class="hljs-comment">//从组合框中选择客户</span>
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行结果如下所示 :</em></p>
-<pre><code class="hljs brainfuck">--<span class="hljs-literal">-</span> <span class="hljs-comment">点击增加信息按钮</span> --<span class="hljs-literal">-</span>
+<div class="hljs"><pre><code class="hljs brainfuck">--<span class="hljs-literal">-</span> <span class="hljs-comment">点击增加信息按钮</span> --<span class="hljs-literal">-</span>
 <span class="hljs-comment">列表框增加一项:</span> <span class="hljs-comment">黄宇辉</span>
 <span class="hljs-comment">组合框增加一项:</span> <span class="hljs-comment">黄宇辉</span>
 <span class="hljs-comment">客户信息增加成功后文本框被清空</span>
@@ -423,7 +423,7 @@
 
 --<span class="hljs-literal">-</span> <span class="hljs-comment">从组合框选择客户</span> --<span class="hljs-literal">-</span>
 <span class="hljs-comment">组合框选中项:</span> <span class="hljs-comment">黄浩然</span>
-<span class="hljs-comment">文本框显示:</span> <span class="hljs-comment">黄浩然</span></code></pre>
+<span class="hljs-comment">文本框显示:</span> <span class="hljs-comment">黄浩然</span></code></pre></div>
 
 </li>
 </ol>
@@ -431,7 +431,7 @@
 <h3 id="程序示例-扩展"><a href="#程序示例-扩展" class="headerlink" title="程序示例-扩展"></a>程序示例-扩展</h3><p><em>对上述示例程序进行改进,使客户信息管理窗口下端能够及时显示当前系统中客户信息的总数. 由于上述案例使用了中介者设计模式,所以在原有系统中增加新的组件( 既新的同事类 )将变得很容易,解决方案 : 首先增加一个 Label 类,其次增加一个 ConcreteMediator 的子类 SubConcreteMediator 来实现对 Label 对象的引用,然后在新增的中介者类 SubConcreteMediator 中通过覆盖 componentChanged() 方法实现所有组件( 包括新增Lable组件 )之间的交互. 既原有组件类无需做任何修改,客户端代码仅需做少量修改,其更加符合开闭原则~</em></p>
 <ol>
 <li><p><em>Label.java : 文本标签类, 具体同事类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -446,10 +446,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"[ 文本标签内容改变,客户信息总数: +1 ]"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>SubConcreteMediator.java : 在新增的该中介者类, 通过覆写componentChanged()方法来实现所有组件(包括新增Label组件)之间的交互</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -489,10 +489,10 @@
         &#125;
 
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Client.java : 客户端测试类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mediator_pattern.mediator_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -534,10 +534,10 @@
         list.changed(); <span class="hljs-comment">//从列表框中选择客户</span>
         comboBox.changed(); <span class="hljs-comment">//从组合框中选择客户</span>
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行结果如下所示 :</em></p>
-<pre><code class="hljs brainfuck">--<span class="hljs-literal">-</span> <span class="hljs-comment">点击增加信息按钮</span> --<span class="hljs-literal">-</span>
+<div class="hljs"><pre><code class="hljs brainfuck">--<span class="hljs-literal">-</span> <span class="hljs-comment">点击增加信息按钮</span> --<span class="hljs-literal">-</span>
 <span class="hljs-comment">列表框增加一项:</span> <span class="hljs-comment">黄宇辉</span>
 <span class="hljs-comment">组合框增加一项:</span> <span class="hljs-comment">黄宇辉</span>
 <span class="hljs-comment">客户信息增加成功后文本被清空</span>
@@ -549,7 +549,7 @@
 
 --<span class="hljs-literal">-</span> <span class="hljs-comment">从组合框选择客户</span> --<span class="hljs-literal">-</span>
 <span class="hljs-comment">组合框选中项:</span> <span class="hljs-comment">赵艳春</span>
-<span class="hljs-comment">文本框显示:</span> <span class="hljs-comment">赵艳春</span></code></pre>
+<span class="hljs-comment">文本框显示:</span> <span class="hljs-comment">赵艳春</span></code></pre></div>
 
 </li>
 </ol>

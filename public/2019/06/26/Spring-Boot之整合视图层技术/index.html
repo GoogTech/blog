@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -191,7 +191,7 @@
               <h2 id="学习笔记-Spring-Boot之整合视图层技术"><a href="#学习笔记-Spring-Boot之整合视图层技术" class="headerlink" title="学习笔记 : Spring Boot之整合视图层技术"></a>学习笔记 : Spring Boot之整合视图层技术</h2><p><em>简介 : 在目前的企业级应用开发中,前后端分离是趋势,但是视图技术还有一席之地. Spring Boot对视图层技术提供了很好的支持,官方推荐使用的模板引擎是<code>Thymeleaf</code>,也支持<code>FreeMarker</code>哟,需要注意的是Spring Boot官方并不推荐使用<code>JSP</code>技术 !</em></p>
 <h3 id="整合Thymeleaf"><a href="#整合Thymeleaf" class="headerlink" title="整合Thymeleaf"></a>整合Thymeleaf</h3><p><em><code>Thymeleaf</code>是新一代模板引擎,类似于<code>Velocity</code>,<code>FreeMarker</code>等传统Java模板引擎.与其不同的是: Thymeleaf支持HTML原型,同时Spring Boot也提供了Thymeleaf自动化配置解决方案. 更多资料见 : <a href="https://www.thymeleaf.org/" target="_blank" rel="noopener">https://www.thymeleaf.org/</a></em></p>
 <h4 id="配置Thymeleaf"><a href="#配置Thymeleaf" class="headerlink" title="配置Thymeleaf"></a>配置Thymeleaf</h4><p><em>Spring Boot为Thymeleaf提供了自动化配置类<code>ThymeleafAutoConfiguration</code>,相关的配置信息在<code>ThymeleafProperties</code>类中,其部分源码如下所示 :</em></p>
-<pre><code class="hljs java"><span class="hljs-meta">@ConfigurationProperties</span>(
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@ConfigurationProperties</span>(
     prefix = <span class="hljs-string">"spring.thymeleaf"</span>
 )
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThymeleafProperties</span> </span>&#123;
@@ -204,10 +204,10 @@
     <span class="hljs-keyword">private</span> String suffix = <span class="hljs-string">".html"</span>;
     <span class="hljs-keyword">private</span> String mode = <span class="hljs-string">"HTML"</span>;
 
-    ······</code></pre>
+    ······</code></pre></div>
 
 <p><em>如果需要对默认的Thymeleaf配置参数进行自定义,那么可以直接在application.properties中进行配置哟,常见配置如下:</em></p>
-<pre><code class="hljs ini"><span class="hljs-comment">#是否开启缓存,开发时可设置为false,默认为true</span>
+<div class="hljs"><pre><code class="hljs ini"><span class="hljs-comment">#是否开启缓存,开发时可设置为false,默认为true</span>
 <span class="hljs-attr">spring.thymeleaf.cache</span>=<span class="hljs-literal">true</span>
 <span class="hljs-comment">#检查模板是否存在,默认为true</span>
 <span class="hljs-attr">spring.thymeleaf.check-template</span>=<span class="hljs-literal">true</span>
@@ -220,12 +220,12 @@
 <span class="hljs-comment">#Content-Type配置</span>
 <span class="hljs-attr">spring.thymeleaf.servlet.content-type</span>=text/html
 <span class="hljs-comment">#模板文件后缀</span>
-<span class="hljs-attr">spring.thymeleaf.suffix</span>=.html</code></pre>
+<span class="hljs-attr">spring.thymeleaf.suffix</span>=.html</code></pre></div>
 
 
 <h4 id="示例程序"><a href="#示例程序" class="headerlink" title="示例程序"></a>示例程序</h4><ol>
 <li><p><em>pom.xml</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://maven.apache.org/POM/4.0.0"</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
          <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span>
@@ -258,10 +258,10 @@
         <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>Book.java : 图书信息</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.view.bean;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.view.bean;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: view
@@ -284,10 +284,10 @@
     &#125;
 
     <span class="hljs-comment">//getter and setter ...</span>
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>BookDao.java : 获取并存储图书信息</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.view.dao;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.view.dao;
 
 <span class="hljs-keyword">import</span> pers.huangyuhui.view.bean.Book;
 
@@ -318,10 +318,10 @@
         books.add(book4);
         <span class="hljs-keyword">return</span> books;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>BookController.java : 操控图书信息的控制器</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.view.controller;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.view.controller;
 
 <span class="hljs-keyword">import</span> org.springframework.stereotype.Controller;
 <span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.GetMapping;
@@ -347,10 +347,10 @@
         <span class="hljs-keyword">return</span> modelAndView;
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>bookList.html : 展示图书列表信息的页面</em></p>
-<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-comment">&lt;!-- 导入Thymeleaf的名称空间 --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span> <span class="hljs-attr">xmlns:th</span>=<span class="hljs-string">"http://www.thymeleaf.org"</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -371,7 +371,7 @@
     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 
 
 
@@ -379,7 +379,7 @@
 </ol>
 <h3 id="整合FreeMarker"><a href="#整合FreeMarker" class="headerlink" title="整合FreeMarker"></a>整合FreeMarker</h3><p><em><code>FreeMarker</code>是一个非常古老的模板引擎,可以用在Web环境或者非Web环境中. 与<code>Thymeleaf</code>不同的是FreeMarker需要经过解析才能够在浏览器中展示出来. 更多资料见 : <a href="https://freemarker.apache.org/" target="_blank" rel="noopener">https://freemarker.apache.org/</a></em></p>
 <h4 id="配置FreeMarker"><a href="#配置FreeMarker" class="headerlink" title="配置FreeMarker"></a>配置FreeMarker</h4><p><em>Spring Boot对FreeMarker也提供了配置类<code>FreeMarkerAutoConfiguration</code>,相关的配置属性在<code>FreeMarkerProperties</code>中,其部分源码如下所示 :</em></p>
-<pre><code class="hljs java"><span class="hljs-meta">@ConfigurationProperties</span>(
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@ConfigurationProperties</span>(
     prefix = <span class="hljs-string">"spring.freemarker"</span>
 )
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FreeMarkerProperties</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AbstractTemplateViewResolverProperties</span> </span>&#123;
@@ -390,10 +390,10 @@
     <span class="hljs-keyword">private</span> String[] templateLoaderPath = <span class="hljs-keyword">new</span> String[]&#123;<span class="hljs-string">"classpath:/templates/"</span>&#125;;
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> preferFileSystemAccess = <span class="hljs-keyword">true</span>;
 
-    ······</code></pre>
+    ······</code></pre></div>
 
 <p><em>如果需要对默认的FreeMarker配置参数进行自定义,那么可以直接在application.properties中进行配置哟,常见配置如下:</em></p>
-<pre><code class="hljs ini"><span class="hljs-comment">#HttpServletRequest的属性是否可以覆盖controller中model的同名项</span>
+<div class="hljs"><pre><code class="hljs ini"><span class="hljs-comment">#HttpServletRequest的属性是否可以覆盖controller中model的同名项</span>
 <span class="hljs-attr">spring.freemarker.allow-request-override</span>=<span class="hljs-literal">false</span>
 <span class="hljs-comment">#HttpSession的属性是否可以覆盖controller中的model的同名项</span>
 <span class="hljs-attr">spring.freemarker.allow-session-override</span>=<span class="hljs-literal">false</span>
@@ -412,20 +412,20 @@
 <span class="hljs-comment">#模板文件后缀</span>
 <span class="hljs-attr">spring.freemarker.suffix</span>=.ftl
 <span class="hljs-comment">#模板文件位置</span>
-<span class="hljs-attr">spring.freemarker.template-loader-path</span>=classpath:/templates/</code></pre>
+<span class="hljs-attr">spring.freemarker.template-loader-path</span>=classpath:/templates/</code></pre></div>
 
 
 <h4 id="示例程序-1"><a href="#示例程序-1" class="headerlink" title="示例程序"></a>示例程序</h4><ol>
 <li><p><em>Book.java,BookDao.java,BookController.java程序与Thymeleaf示例程序相同,此处略写 …</em></p>
 </li>
 <li><p><em>在<code>pom.xml</code>中需添加FreeMarker依赖</em></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-freemarker<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>bookList.html : 展示图书列表的页面</em></p>
-<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
@@ -450,7 +450,7 @@
     <span class="hljs-tag">&lt;/<span class="hljs-name">#if</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 
 
 
@@ -461,7 +461,7 @@
 <li><p><em>Book.java,BookDao.java,BookController.java程序与Thymeleaf示例程序相同,此处略写 …</em></p>
 </li>
 <li><p><em>在<code>pom.xml</code>中需添加使用JSP所需的依赖</em></p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- JSTL --&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- JSTL --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.servlet<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jstl<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
@@ -471,14 +471,14 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.tomcat.embed<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>tomcat-embed-jasper<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>provided<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em><code>application.properties</code>配置文件中用于解析视图的代码</em></p>
-<pre><code class="hljs ini"><span class="hljs-attr">spring.mvc.view.prefix</span>=/WEB-INF/jsp/
-<span class="hljs-attr">spring.mvc.view.suffix</span>=.jsp</code></pre>
+<div class="hljs"><pre><code class="hljs ini"><span class="hljs-attr">spring.mvc.view.prefix</span>=/WEB-INF/jsp/
+<span class="hljs-attr">spring.mvc.view.suffix</span>=.jsp</code></pre></div>
 </li>
 <li><p><em>bookList.jsp : 展示图书列表信息的页面</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html;charset=UTF-8"</span> %&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html;charset=UTF-8"</span> %&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">%@taglib</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">"c"</span> <span class="hljs-attr">uri</span>=<span class="hljs-string">"http://java.sun.com/jsp/jstl/core"</span> %&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -499,7 +499,7 @@
     <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">c:forEach</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>程序运行结果(以上三个示例程序运行结果大同小异哟)</em><br><img src="/2019/06/26/Spring-Boot%E4%B9%8B%E6%95%B4%E5%90%88%E8%A7%86%E5%9B%BE%E5%B1%82%E6%8A%80%E6%9C%AF/BookInfoView.PNG" srcset="/img/loading.gif" alt=" "></p>
 </li>

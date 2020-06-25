@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
   
 
   
@@ -198,7 +198,7 @@
 <h5 id="Bean-的实例化案例"><a href="#Bean-的实例化案例" class="headerlink" title="Bean 的实例化案例"></a>Bean 的实例化案例</h5><p><em>通过一个示例程序来演示实例化Bean的三种方式.</em></p>
 <ol>
 <li><p><em>Bean类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.bean.instance;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.bean.instance;
 
 <span class="hljs-comment">//构造器实例化</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bean1</span> </span>&#123;
@@ -217,10 +217,10 @@
 <span class="hljs-comment">//实例工厂方式实例化</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bean3</span> </span>&#123;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>MyBean2Factory.java : 静态工厂</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.bean.factory;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.bean.factory;
 
 <span class="hljs-keyword">import</span> pers.huangyuhui.spring.bean.instance.Bean2;
 
@@ -236,10 +236,10 @@
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Bean2 <span class="hljs-title">createBean</span><span class="hljs-params">()</span> </span>&#123;
 		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Bean2();
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>MyBean3Factory.java : 实例工厂</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.bean.factory;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.bean.factory;
 
 <span class="hljs-keyword">import</span> pers.huangyuhui.spring.bean.instance.Bean3;
 
@@ -259,10 +259,10 @@
 	<span class="hljs-function"><span class="hljs-keyword">public</span> Bean3 <span class="hljs-title">createBean</span><span class="hljs-params">()</span> </span>&#123;
 		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Bean3();
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>applicationContext.xml : Spring核心配置文件</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>
 	<span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
 	<span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span>
@@ -279,10 +279,10 @@
 	<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"myBean3Factory"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"pers.huangyuhui.spring.bean.factory.MyBean3Factory"</span>/&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"bean3"</span> <span class="hljs-attr">factory-bean</span>=<span class="hljs-string">"myBean3Factory"</span> <span class="hljs-attr">factory-method</span>=<span class="hljs-string">"createBean"</span>/&gt;</span>
 	
-<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>InstanceTest.java : 测试类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.bean.instance.test;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.bean.instance.test;
 
 <span class="hljs-keyword">import</span> org.junit.BeforeClass;
 <span class="hljs-keyword">import</span> org.junit.Ignore;
@@ -338,7 +338,7 @@
 		System.out.println(applicationContext.getBean(<span class="hljs-string">"bean3"</span>));
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 
@@ -357,7 +357,7 @@
 <h4 id="Bean-的作用域案例"><a href="#Bean-的作用域案例" class="headerlink" title="Bean 的作用域案例"></a>Bean 的作用域案例</h4><p><em>下面通过简单程序来分别演示<code>singleton</code>和<code>prototype</code>作用域</em></p>
 <ol>
 <li><p><em>Bean类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.bean.scope;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.bean.scope;
 
 <span class="hljs-comment">//Bean的作用域: singleton </span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bean4</span> </span>&#123;
@@ -368,10 +368,10 @@
 
 <span class="hljs-comment">//Bean的作用域: prototype</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bean5</span> </span>&#123;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Spring核心配置文件</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>
 	<span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
 	<span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span>
@@ -381,10 +381,10 @@
 	<span class="hljs-comment">&lt;!-- prototype --&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"bean5"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"pers.huangyuhui.spring.bean.scope.Bean5"</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">"prototype"</span>/&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>测试类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.bean.scope.test;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.bean.scope.test;
 
 <span class="hljs-keyword">import</span> org.junit.BeforeClass;
 <span class="hljs-keyword">import</span> org.junit.Ignore;
@@ -427,7 +427,7 @@
 		System.out.println(applicationContext.getBean(<span class="hljs-string">"bean5"</span>));
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 
@@ -442,7 +442,7 @@
 <p><em>下面通过一个简单示例程序来展示基于XML的Bean的装配方式.</em></p>
 <ol>
 <li><p><em>User.java : Java bean</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.assemble.bean;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.assemble.bean;
 
 <span class="hljs-keyword">import</span> java.util.List;
 
@@ -489,10 +489,10 @@
 		<span class="hljs-keyword">return</span> <span class="hljs-string">"User [name="</span> + name + <span class="hljs-string">", phone="</span> + phone + <span class="hljs-string">"]"</span>;
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>applicationContext.xml : Spring核心配置文件</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>
 	<span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
 	<span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span>
@@ -517,10 +517,10 @@
 	 		<span class="hljs-tag">&lt;/<span class="hljs-name">list</span>&gt;</span>
 	 	<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
 	 <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>AssembleTest.java : 测试类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.assemble.test;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.assemble.test;
 
 <span class="hljs-keyword">import</span> org.junit.BeforeClass;
 <span class="hljs-keyword">import</span> org.junit.Ignore;
@@ -557,7 +557,7 @@
 		System.out.println(applicationContext.getBean(<span class="hljs-string">"user2"</span>));
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 </li>
@@ -572,15 +572,15 @@
 <p><em>下面通过一个简单案例来演示如何通过这些注解来装配Bean.</em></p>
 <ol>
 <li><p><em>UserDao.java</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.assemble.dao;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.assemble.dao;
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">UserDao</span> </span>&#123;
 
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">save</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>UserDaoImple.java</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.assemble.dao.impl;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.assemble.dao.impl;
 
 <span class="hljs-keyword">import</span> org.springframework.stereotype.Repository;
 
@@ -601,22 +601,22 @@
 		System.out.println(<span class="hljs-string">"UserDao : Save function ~"</span>);
 	&#125;
 
-&#125;</code></pre></li>
+&#125;</code></pre></div></li>
 </ol>
 <ul>
 <li><em>其中使用<code>@Respository</code>注解将UserDaoImpl类标识为Spring中的Bean,其写法相当于配置文件中的<code>&lt;bean id=&quot;userDao&quot; class=&quot;pers.huangyuhui.spring.assemble.dao.impl.UserDaoImpl&quot;/&gt;</code></em></li>
 </ul>
 <ol start="3">
 <li><p><em>UserService.java</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.assemble.dao;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.assemble.dao;
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">UserService</span> </span>&#123;
 
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">save</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>UserServiceImpl.java</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.assemble.dao.impl;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.assemble.dao.impl;
 
 <span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
 <span class="hljs-keyword">import</span> org.springframework.stereotype.Service;
@@ -643,10 +643,10 @@
 		System.out.println(<span class="hljs-string">"UserService : Save function ~"</span>);
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>UserController.java</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.assemble.controller;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.assemble.controller;
 
 <span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
 <span class="hljs-keyword">import</span> org.springframework.stereotype.Repository;
@@ -671,10 +671,10 @@
 		System.out.println(<span class="hljs-string">"UserController : Save function ~"</span>);
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>AssembleTest.java : 测试类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.assemble.test;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.assemble.test;
 
 <span class="hljs-keyword">import</span> org.junit.BeforeClass;
 <span class="hljs-keyword">import</span> org.junit.Ignore;
@@ -706,10 +706,10 @@
 		userController.save();
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Spring核心配置文件</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>
 	<span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
 	<span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">"http://www.springframework.org/schema/context"</span>
@@ -719,12 +719,12 @@
 	 <span class="hljs-comment">&lt;!-- 扫描指定包下的所有Bean类,进行注解解析 --&gt;</span>
 	 <span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">"pers.huangyuhui.spring.assemble"</span>/&gt;</span>
 	 
-<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>程序运行结果</em></p>
-<pre><code class="hljs ada">UserDao : <span class="hljs-type">Save</span> <span class="hljs-keyword">function</span> <span class="hljs-title">~</span>
+<div class="hljs"><pre><code class="hljs ada">UserDao : <span class="hljs-type">Save</span> <span class="hljs-keyword">function</span> <span class="hljs-title">~</span>
 UserService : <span class="hljs-type">Save</span> <span class="hljs-keyword">function</span> <span class="hljs-title">~</span>
-UserController : <span class="hljs-type">Save</span> <span class="hljs-keyword">function</span> <span class="hljs-title">~</span></code></pre></li>
+UserController : <span class="hljs-type">Save</span> <span class="hljs-keyword">function</span> <span class="hljs-title">~</span></code></pre></div></li>
 </ol>
 
             </article>
