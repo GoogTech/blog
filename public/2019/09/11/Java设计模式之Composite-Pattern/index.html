@@ -204,7 +204,7 @@
 <h3 id="示例程序1"><a href="#示例程序1" class="headerlink" title="示例程序1"></a>示例程序1</h3><p><em>下面是一个使用组合设计模式的简单示例程序,这段示例程序的功能为列出文件夹及其中文件的名称及大小~</em></p>
 <ol>
 <li><p><em>Entry抽象类 : 表示目录条目的抽象类, 充当Component角色</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_1;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -233,10 +233,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;
         <span class="hljs-keyword">return</span> getName() + <span class="hljs-string">" ("</span> + getSize() + <span class="hljs-string">")"</span>;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>File类 : 表示文件的类, 充当Leaf角色</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_1;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -270,10 +270,10 @@
     <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printList</span><span class="hljs-params">(String prefix)</span> </span>&#123;
         System.out.println(prefix + <span class="hljs-string">"/"</span> + <span class="hljs-keyword">this</span>.toString());
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>Directory类 : 表示文件夹的类, 充当Composite角色</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_1;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_1;
 
 <span class="hljs-keyword">import</span> java.util.ArrayList;
 
@@ -321,10 +321,10 @@
             entry.printList(prefix + <span class="hljs-string">"/"</span> + name);
         &#125;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>FileTreatMentException类 : 自定义异常类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_1;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -343,10 +343,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">FileTreatMentException</span><span class="hljs-params">(String msg)</span> </span>&#123;
         <span class="hljs-keyword">super</span>(msg);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>Client类 : 客户端测试类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_1;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -390,10 +390,10 @@
         &#125;
 
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>程序运行结果如下所示 :</em></p>
-<div class="hljs"><pre><code class="hljs crystal">------ Making Root Entries ------
+<pre><code class="hljs crystal">------ Making Root Entries ------
 <span class="hljs-regexp">/root (30000)
 /root</span><span class="hljs-regexp">/bin (30000)
 /root</span><span class="hljs-regexp">/bin/demo</span>1<span class="hljs-class">.<span class="hljs-keyword">class</span> (10000)</span>
@@ -415,7 +415,7 @@
 /root</span><span class="hljs-regexp">/usr/demo</span>Dir2/demo.txt (<span class="hljs-number">300</span>)
 <span class="hljs-regexp">/root/usr</span><span class="hljs-regexp">/demoDir3 (900)
 /root</span><span class="hljs-regexp">/usr/demo</span>Dir3/demo.doc (<span class="hljs-number">400</span>)
-<span class="hljs-regexp">/root/usr</span><span class="hljs-regexp">/demoDir3/demo</span>.mail (<span class="hljs-number">500</span>)</code></pre></div>
+<span class="hljs-regexp">/root/usr</span><span class="hljs-regexp">/demoDir3/demo</span>.mail (<span class="hljs-number">500</span>)</code></pre>
 
 </li>
 </ol>
@@ -423,7 +423,7 @@
 <h3 id="示例程序2"><a href="#示例程序2" class="headerlink" title="示例程序2"></a>示例程序2</h3><p><em>下面是一个使用组合设计模式的简单示例程序 : 写一个模拟杀毒( Antivirus )程序,该程序既可以对某个文件夹( Folder )杀毒,也可以对某个指定的文件( File )杀毒,而且该杀毒程序还可以根据各类文件的特点为不同类型(文本文件,图像文件,音频文件等)的文件提供不同的杀毒方式.</em></p>
 <ol>
 <li><p><em>AbstractFile抽象类 : 抽象文件类, 充当抽象构件类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_2;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -443,10 +443,10 @@
         <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> FileTreatMentException();
     &#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>TextFile类 : 文本文件类, 充当叶子构件类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_2;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -473,10 +473,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">killVirus</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"——————&gt; 对文本文件[ "</span> + name + <span class="hljs-string">" ]进行杀毒"</span>);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>ImageFile类 : 图像文件类, 充当叶子构件类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_2;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -503,10 +503,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">killVirus</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"——————&gt; 对图像文件[ "</span> + name + <span class="hljs-string">" ]进行杀毒"</span>);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>Folder类 : 文件夹类, 充当容器构件类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_2;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_2;
 
 <span class="hljs-keyword">import</span> java.util.ArrayList;
 
@@ -545,10 +545,10 @@
             abstractFile.killVirus();
         &#125;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>FileTreatMentException类 : 自定义异常类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_2;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -567,10 +567,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">FileTreatMentException</span><span class="hljs-params">(String msg)</span> </span>&#123;
         <span class="hljs-keyword">super</span>(msg);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>Client类 : 客户端测试类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_2;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.composite_pattern.composite_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -595,14 +595,14 @@
         folder.killVirus();
     &#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>示例程序的运行结果如下所示 :</em></p>
-<div class="hljs"><pre><code class="hljs inform7">======&gt; 对文件夹<span class="hljs-comment">[ my-folder ]</span>进行杀毒
+<pre><code class="hljs inform7">======&gt; 对文件夹<span class="hljs-comment">[ my-folder ]</span>进行杀毒
 ======&gt; 对文件夹<span class="hljs-comment">[ text-folder ]</span>进行杀毒
 ——————&gt; 对文本文件<span class="hljs-comment">[ demo.text ]</span>进行杀毒
 ======&gt; 对文件夹<span class="hljs-comment">[ image-folder ]</span>进行杀毒
-——————&gt; 对图像文件<span class="hljs-comment">[ demo.jpg ]</span>进行杀毒</code></pre></div>
+——————&gt; 对图像文件<span class="hljs-comment">[ demo.jpg ]</span>进行杀毒</code></pre>
 
 </li>
 </ol>

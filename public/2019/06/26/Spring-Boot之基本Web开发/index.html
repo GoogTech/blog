@@ -191,7 +191,7 @@
               <h2 id="学习笔记-Spring-Boot之基本Web开发"><a href="#学习笔记-Spring-Boot之基本Web开发" class="headerlink" title="学习笔记 : Spring Boot之基本Web开发"></a>学习笔记 : Spring Boot之基本Web开发</h2><h3 id="ServletComponentScan的使用"><a href="#ServletComponentScan的使用" class="headerlink" title="@ServletComponentScan的使用"></a>@ServletComponentScan的使用</h3><p><em>在SpringBootApplication上使用<code>@ServletComponentScan</code>注解后,Servlet、Filter、Listener可以直接通过 @WebServlet、@WebFilter、@WebListener 注解自动注册,无需其他代码哟 !</em></p>
 <h4 id="开发Servlet"><a href="#开发Servlet" class="headerlink" title="开发Servlet"></a>开发Servlet</h4><ol>
 <li><p><em>pom.xml</em></p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://maven.apache.org/POM/4.0.0"</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
          <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span>
@@ -221,10 +221,10 @@
         <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span></code></pre>
 </li>
 <li><p><em>MyServlet.java : 自定义Servlet</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.web.servlet;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.web.servlet;
 
 <span class="hljs-keyword">import</span> javax.servlet.annotation.WebServlet;
 <span class="hljs-keyword">import</span> javax.servlet.http.HttpServlet;
@@ -246,10 +246,10 @@
     <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> </span>&#123;
         System.out.println(<span class="hljs-string">"this's my servlet ~"</span>);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>WebServletApplication.java : Spring Boot启动类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.webservlet;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.webservlet;
 
 <span class="hljs-keyword">import</span> org.springframework.boot.SpringApplication;
 <span class="hljs-keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -263,17 +263,17 @@
         SpringApplication.run(WebServletApplication<span class="hljs-class">.<span class="hljs-keyword">class</span>, <span class="hljs-title">args</span>)</span>;
     &#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>程序运行结果</em></p>
-<div class="hljs"><pre><code class="hljs kotlin"><span class="hljs-keyword">this</span><span class="hljs-string">'s my servlet ~</span></code></pre></div>
+<pre><code class="hljs kotlin"><span class="hljs-keyword">this</span><span class="hljs-string">'s my servlet ~</span></code></pre>
 
 
 </li>
 </ol>
 <h4 id="开发Filter"><a href="#开发Filter" class="headerlink" title="开发Filter"></a>开发Filter</h4><ol>
 <li><p><em>MyFilter.java : 自定义过滤器</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.web.filter;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.web.filter;
 
 <span class="hljs-keyword">import</span> javax.servlet.*;
 <span class="hljs-keyword">import</span> javax.servlet.annotation.WebFilter;
@@ -305,18 +305,18 @@
     <span class="hljs-meta">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">destroy</span><span class="hljs-params">()</span> </span>&#123;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>程序运行结果</em></p>
-<div class="hljs"><pre><code class="hljs scala"><span class="hljs-keyword">this</span><span class="hljs-symbol">'s</span> my filetr !
-<span class="hljs-keyword">this</span><span class="hljs-symbol">'s</span> my servlet ~</code></pre></div>
+<pre><code class="hljs scala"><span class="hljs-keyword">this</span><span class="hljs-symbol">'s</span> my filetr !
+<span class="hljs-keyword">this</span><span class="hljs-symbol">'s</span> my servlet ~</code></pre>
 
 
 </li>
 </ol>
 <h4 id="开发Listener"><a href="#开发Listener" class="headerlink" title="开发Listener"></a>开发Listener</h4><ol>
 <li><p><em>MyListener.java : 自定义监听器</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.web.listener;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.web.listener;
 
 <span class="hljs-keyword">import</span> javax.servlet.ServletContextEvent;
 <span class="hljs-keyword">import</span> javax.servlet.ServletContextListener;
@@ -343,20 +343,20 @@
         System.out.println(<span class="hljs-string">"this's contextDestroyed ~"</span>);
     &#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>程序运行结果</em></p>
-<div class="hljs"><pre><code class="hljs scala"><span class="hljs-keyword">this</span><span class="hljs-symbol">'s</span> requestInitialized ~
+<pre><code class="hljs scala"><span class="hljs-keyword">this</span><span class="hljs-symbol">'s</span> requestInitialized ~
 <span class="hljs-keyword">this</span><span class="hljs-symbol">'s</span> my filetr !
 <span class="hljs-keyword">this</span><span class="hljs-symbol">'s</span> my servlet ~
-<span class="hljs-keyword">this</span><span class="hljs-symbol">'s</span> requestDestroyed ~</code></pre></div>
+<span class="hljs-keyword">this</span><span class="hljs-symbol">'s</span> requestDestroyed ~</code></pre>
 
 
 
 </li>
 </ol>
 <h3 id="使用Bean注解注册Servlet等组件"><a href="#使用Bean注解注册Servlet等组件" class="headerlink" title="使用Bean注解注册Servlet等组件"></a>使用Bean注解注册Servlet等组件</h3><p><em>WebServletApplication.java : Spring Boot启动类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.web;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.web;
 
 <span class="hljs-keyword">import</span> org.springframework.boot.SpringApplication;
 <span class="hljs-keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -408,7 +408,7 @@
         this's contextInitialized ~
      */</span>
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 
 
@@ -429,8 +429,8 @@
 <li><em>Java编码定义</em></li>
 </ol>
 <p><em>第一种方式示例 : 可以在<code>application.properties</code>中直接定义过滤规则(第一行)和静态资源位置(第二行),示例代码如下 :</em></p>
-<div class="hljs"><pre><code class="hljs gradle">spring.mvc.<span class="hljs-keyword">static</span>-path-pattern=<span class="hljs-regexp">/static/</span>**
-spring.resources.<span class="hljs-keyword">static</span>-locations=<span class="hljs-keyword">classpath</span>:<span class="hljs-regexp">/static/</span></code></pre></div>
+<pre><code class="hljs gradle">spring.mvc.<span class="hljs-keyword">static</span>-path-pattern=<span class="hljs-regexp">/static/</span>**
+spring.resources.<span class="hljs-keyword">static</span>-locations=<span class="hljs-keyword">classpath</span>:<span class="hljs-regexp">/static/</span></code></pre>
 
 
 
@@ -441,12 +441,12 @@ spring.resources.<span class="hljs-keyword">static</span>-locations=<span class=
 <li><em>提供<code>&lt;input type=&quot;file&quot; name=&quot;filename&quot;/&gt;</code>的文件上传输入框</em></li>
 </ol>
 <p><em>在Spring Boot中可以根据需要在<code>application.properties</code>中对上传的文件进行详细的配置,示例代码如下 :</em></p>
-<div class="hljs"><pre><code class="hljs ini"><span class="hljs-attr">spring.servlet.multipart.enabled</span>=<span class="hljs-literal">true</span>
+<pre><code class="hljs ini"><span class="hljs-attr">spring.servlet.multipart.enabled</span>=<span class="hljs-literal">true</span>
 <span class="hljs-attr">spring.servlet.multipart.file-size-threshold</span>=<span class="hljs-number">0</span>
 <span class="hljs-attr">spring.servlet.multipart.location</span>=D://upload//photo
 <span class="hljs-attr">spring.servlet.multipart.max-file-size</span>=<span class="hljs-number">5</span>MB
 <span class="hljs-attr">spring.servlet.multipart.max-request-size</span>=<span class="hljs-number">10</span>MB
-<span class="hljs-attr">spring.servlet.multipart.resolve-lazily</span>=<span class="hljs-literal">false</span></code></pre></div>
+<span class="hljs-attr">spring.servlet.multipart.resolve-lazily</span>=<span class="hljs-literal">false</span></code></pre>
 <ol>
 <li><em>第一行: 设置是否开启文件上传支持,默认为true</em></li>
 <li><em>第二行: 设置文件写入磁盘的阈值,默认为0</em></li>
@@ -456,7 +456,7 @@ spring.resources.<span class="hljs-keyword">static</span>-locations=<span class=
 <li><em>第六行: 设置文件是否延迟解析,默认为false</em></li>
 </ol>
 <h4 id="示例程序"><a href="#示例程序" class="headerlink" title="示例程序"></a>示例程序</h4><p><em>upload.html : 上传文件页面</em></p>
-<div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
@@ -479,10 +479,10 @@ spring.resources.<span class="hljs-keyword">static</span>-locations=<span class=
     <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"上传"</span>/&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 
 <p><em>FileController.java : 操控文件的控制器</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.web.controller;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.web.controller;
 
 <span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;
 <span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RestController;
@@ -536,7 +536,7 @@ spring.resources.<span class="hljs-keyword">static</span>-locations=<span class=
         <span class="hljs-keyword">return</span> <span class="hljs-string">"fail to upload the file !"</span>;
     &#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
             </article>
             <hr>
             <div>

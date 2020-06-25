@@ -199,7 +199,7 @@
 <h3 id="示例程序"><a href="#示例程序" class="headerlink" title="示例程序"></a>示例程序</h3><p><em>下面是一个使用观察者设计模式的简单示例程序,模拟功能 : 在某多人联机对战游戏中,多个玩家可以加入同一战队组成联盟,当战队中的某一成员被敌人攻击时,其可以向其它队友发送求救通知,队友接收通知后作出相应的反应,既而来实现战队成员之间的联动~</em></p>
 <ol>
 <li><p><em>AllyControllerCenter抽象类 : 指挥部(战队控制中心)类, 充当抽象目标类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.observer_pattern.observer_pattern_1;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.observer_pattern.observer_pattern_1;
 
 <span class="hljs-keyword">import</span> java.util.ArrayList;
 
@@ -240,10 +240,10 @@
 
     <span class="hljs-comment">//声明抽象通知方法</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">noifyObserver</span><span class="hljs-params">(String name)</span></span>;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>ConcreteAllyControlCenter类 : 具体指挥部类, 充当具体目标类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.observer_pattern.observer_pattern_1;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.observer_pattern.observer_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -271,10 +271,10 @@
             &#125;
         &#125;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>Observer接口 : 抽象观察者类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.observer_pattern.observer_pattern_1;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.observer_pattern.observer_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -293,10 +293,10 @@
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">help</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">//声明支援盟友的方法</span>
 
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">beAttacked</span><span class="hljs-params">(AllyControllerCenter allyControllerCenter)</span></span>; <span class="hljs-comment">//声明遭受攻击的方法</span>
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>Player类 : 战队成员类, 充当具体观察者类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.observer_pattern.observer_pattern_1;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.observer_pattern.observer_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -337,10 +337,10 @@
         allyControllerCenter.noifyObserver(name);
     &#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>Client类 : 客户端测试类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.observer_pattern.observer_pattern_1;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.observer_pattern.observer_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -371,10 +371,10 @@
         player1.beAttacked(allyControllerCenter); 
 
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>示例程序的运行结果如下所示 :</em></p>
-<div class="hljs"><pre><code class="hljs css"><span class="hljs-selector-tag">------</span> 战队: <span class="hljs-selector-attr">[ YU ]</span>组建成功 <span class="hljs-selector-tag">------</span>
+<pre><code class="hljs css"><span class="hljs-selector-tag">------</span> 战队: <span class="hljs-selector-attr">[ YU ]</span>组建成功 <span class="hljs-selector-tag">------</span>
 玩家: <span class="hljs-selector-attr">[ player-A ]</span>加入战队
 玩家: <span class="hljs-selector-attr">[ player-B ]</span>加入战队
 玩家: <span class="hljs-selector-attr">[ player-C ]</span>加入战队
@@ -383,7 +383,7 @@
 战队: <span class="hljs-selector-attr">[ YU ]</span>指挥部发送的紧急通知 : 队友<span class="hljs-selector-attr">[ player-A ]</span>正在遭受敌人攻击
 坚持住! 队友:<span class="hljs-selector-attr">[ player-B ]</span>前来支援你
 坚持住! 队友:<span class="hljs-selector-attr">[ player-C ]</span>前来支援你
-坚持住! 队友:<span class="hljs-selector-attr">[ player-D ]</span>前来支援你</code></pre></div>
+坚持住! 队友:<span class="hljs-selector-attr">[ player-D ]</span>前来支援你</code></pre>
 
 </li>
 </ol>

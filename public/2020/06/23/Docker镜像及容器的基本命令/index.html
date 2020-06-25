@@ -188,15 +188,15 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h2 id="Docker帮助命令"><a href="#Docker帮助命令" class="headerlink" title="Docker帮助命令"></a>Docker帮助命令</h2><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看docker的版本信息</span>
+              <h2 id="Docker帮助命令"><a href="#Docker帮助命令" class="headerlink" title="Docker帮助命令"></a>Docker帮助命令</h2><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看docker的版本信息</span>
 <span class="hljs-meta">$</span><span class="bash"> docker version</span>
 <span class="hljs-meta">#</span><span class="bash"> 查看docker的系统信息</span>
 <span class="hljs-meta">$</span><span class="bash"> docker info</span>
 <span class="hljs-meta">#</span><span class="bash"> 查看docker帮助命令</span>
-<span class="hljs-meta">$</span><span class="bash"> docker --<span class="hljs-built_in">help</span></span></code></pre></div>
+<span class="hljs-meta">$</span><span class="bash"> docker --<span class="hljs-built_in">help</span></span></code></pre>
 
 
-<h2 id="Docker镜像命令"><a href="#Docker镜像命令" class="headerlink" title="Docker镜像命令"></a>Docker镜像命令</h2><h3 id="docker-images-查看镜像"><a href="#docker-images-查看镜像" class="headerlink" title="docker images : 查看镜像"></a>docker images : 查看镜像</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> docs</span>
+<h2 id="Docker镜像命令"><a href="#Docker镜像命令" class="headerlink" title="Docker镜像命令"></a>Docker镜像命令</h2><h3 id="docker-images-查看镜像"><a href="#docker-images-查看镜像" class="headerlink" title="docker images : 查看镜像"></a>docker images : 查看镜像</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> docs</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker images --help
 
 Usage:  docker images [OPTIONS] [REPOSITORY[:TAG]]
@@ -223,10 +223,10 @@ hello-world         latest              bf756fb1ae65        5 months ago        
 <span class="hljs-meta">
 #</span><span class="bash"> image -q</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker images -q
-bf756fb1ae65</code></pre></div>
+bf756fb1ae65</code></pre>
 
 
-<h3 id="docker-search-搜索镜像"><a href="#docker-search-搜索镜像" class="headerlink" title="docker search : 搜索镜像"></a>docker search : 搜索镜像</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> docs</span>
+<h3 id="docker-search-搜索镜像"><a href="#docker-search-搜索镜像" class="headerlink" title="docker search : 搜索镜像"></a>docker search : 搜索镜像</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> docs</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker search --help
 
 Usage:  docker search [OPTIONS] TERM
@@ -250,10 +250,10 @@ mariadb                           MariaDB is a community-developed fork of MyS�
 #</span><span class="bash"> STARS &gt; 9000</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker search mysql --filter=STARS=9000
 NAME                DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED
-mysql               MySQL is a widely used, open-source relation…   9662                [OK]</code></pre></div>
+mysql               MySQL is a widely used, open-source relation…   9662                [OK]</code></pre>
 
 
-<h3 id="docker-pull-下载镜像"><a href="#docker-pull-下载镜像" class="headerlink" title="docker pull : 下载镜像"></a>docker pull : 下载镜像</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> docs</span>
+<h3 id="docker-pull-下载镜像"><a href="#docker-pull-下载镜像" class="headerlink" title="docker pull : 下载镜像"></a>docker pull : 下载镜像</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> docs</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker pull --help
 
 Usage:  docker pull [OPTIONS] NAME[:TAG|@DIGEST]
@@ -291,10 +291,10 @@ docker.io/library/mysql:latest # docker pull mysql == docker pull docker.io/libr
 ubuntu@VM-0-4-ubuntu:~$ sudo docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 mysql               latest              be0dbf01a0f3        2 weeks ago         541MB
-hello-world         latest              bf756fb1ae65        5 months ago        13.3kB</code></pre></div>
+hello-world         latest              bf756fb1ae65        5 months ago        13.3kB</code></pre>
 
 
-<h3 id="docker-rmi-删除镜像"><a href="#docker-rmi-删除镜像" class="headerlink" title="docker rmi : 删除镜像"></a>docker rmi : 删除镜像</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> docs</span>
+<h3 id="docker-rmi-删除镜像"><a href="#docker-rmi-删除镜像" class="headerlink" title="docker rmi : 删除镜像"></a>docker rmi : 删除镜像</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> docs</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker rmi --help
 
 Usage:  docker rmi [OPTIONS] IMAGE [IMAGE...]
@@ -320,7 +320,7 @@ Deleted: sha256:bf756fb1ae65adf866bd8c456593cd24beb6a0a061dedf42b26a993176745f6b
 #</span><span class="bash"> list all images</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-mysql               latest              be0dbf01a0f3        2 weeks ago         541MB</code></pre></div>
+mysql               latest              be0dbf01a0f3        2 weeks ago         541MB</code></pre>
 
 <ul>
 <li>删除指定id的镜像 : <code>docker rmi -f 容器id</code></li>
@@ -329,7 +329,7 @@ mysql               latest              be0dbf01a0f3        2 weeks ago         
 </ul>
 <h2 id="Docker容器命令"><a href="#Docker容器命令" class="headerlink" title="Docker容器命令"></a>Docker容器命令</h2><h3 id="新建容器并启动"><a href="#新建容器并启动" class="headerlink" title="新建容器并启动"></a>新建容器并启动</h3><ol>
 <li><p>有了镜像之后才可以创建容器，所以首先我们需要先下载一个镜像，这里我选择版本为 18.04 的 Ubuntu 镜像 :</p>
-<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> download</span>
+<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> download</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker pull ubuntu:18.04
 18.04: Pulling from library/ubuntu
 d7c3167c320d: Pull complete
@@ -344,10 +344,10 @@ docker.io/library/ubuntu:18.04
 ubuntu@VM-0-4-ubuntu:~$ sudo docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 ubuntu              18.04               8e4ce0a6ce69        6 days ago          64.2MB
-mysql               latest              be0dbf01a0f3        2 weeks ago         541MB</code></pre></div>
+mysql               latest              be0dbf01a0f3        2 weeks ago         541MB</code></pre>
 </li>
 <li><p>查看容器命令帮助文档</p>
-<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> docs</span>
+<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> docs</span>
 ubuntu@VM-0-4-ubuntu:~$ docker run --help
 
 Usage:  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
@@ -449,7 +449,7 @@ Options:
   -v, --volume list                    Bind mount a volume
       --volume-driver string           Optional volume driver for the container
       --volumes-from list              Mount volumes from the specified container(s)
-  -w, --workdir string                 Working directory inside the container</code></pre></div>
+  -w, --workdir string                 Working directory inside the container</code></pre>
 
 </li>
 </ol>
@@ -471,7 +471,7 @@ Options:
 <li>-P                    随机指定端口</li>
 </ul>
 <ol start="3">
-<li>测试<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 启动并进入容器</span>
+<li>测试<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 启动并进入容器</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker run -it ubuntu /bin/bash
 <span class="hljs-meta">
 #</span><span class="bash"> 查看容器中的内容</span>
@@ -505,12 +505,12 @@ drwxr-xr-x   1 root root 4096 Jun  6 01:21 var
 #</span><span class="bash"> 退出容器</span>
 root@a90466e5e8cb:/# exit
 exit
-ubuntu@VM-0-4-ubuntu:~$</code></pre></div>
+ubuntu@VM-0-4-ubuntu:~$</code></pre>
 
 
 </li>
 </ol>
-<h3 id="列出所有运行的容器"><a href="#列出所有运行的容器" class="headerlink" title="列出所有运行的容器"></a>列出所有运行的容器</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看所有正在运行的容器(无)</span>
+<h3 id="列出所有运行的容器"><a href="#列出所有运行的容器" class="headerlink" title="列出所有运行的容器"></a>列出所有运行的容器</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看所有正在运行的容器(无)</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS      NAMES
 <span class="hljs-meta">
@@ -536,10 +536,10 @@ a90466e5e8cb
 aaaee4577665
 d9dbd1de7f99
 8001fae4d389
-6afccb969d87</code></pre></div>
+6afccb969d87</code></pre>
 
 
-<h3 id="退出容器"><a href="#退出容器" class="headerlink" title="退出容器"></a>退出容器</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 1. <span class="hljs-built_in">exit</span>: 直接停止并退出容器</span>
+<h3 id="退出容器"><a href="#退出容器" class="headerlink" title="退出容器"></a>退出容器</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 1. <span class="hljs-built_in">exit</span>: 直接停止并退出容器</span>
 <span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的容器(无)</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS              NAMES
@@ -583,14 +583,14 @@ ubuntu@VM-0-4-ubuntu:~$
 #</span><span class="bash"> 再次查看当前正在运行的容器</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS              NAMES
-8715a6647cba        ubuntu              "/bin/bash"         58 seconds ago      Up 56 seconds                          eager_villani</code></pre></div>
+8715a6647cba        ubuntu              "/bin/bash"         58 seconds ago      Up 56 seconds                          eager_villani</code></pre>
 
 
 <h3 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h3><ul>
 <li><code>docker rm 容器id</code> : 根据id删除指定的容器，如果要删除运行中的容器需要使用命令 <code>docker rm -f 容器id</code></li>
 <li><code>docker rm -f $(docker ps -aq)</code> : 根据id删除所有的容器，其中<code>docker ps -aq</code> 的作用为查出所有容器的id</li>
 </ul>
-<h3 id="容器的启动和停止"><a href="#容器的启动和停止" class="headerlink" title="容器的启动和停止"></a>容器的启动和停止</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 1. docker start 容器id : 启动容器</span>
+<h3 id="容器的启动和停止"><a href="#容器的启动和停止" class="headerlink" title="容器的启动和停止"></a>容器的启动和停止</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 1. docker start 容器id : 启动容器</span>
 <span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的容器(无)</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS              NAMES
@@ -635,7 +635,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 
 ---
 <span class="hljs-meta">
-#</span><span class="bash"> 4. docker <span class="hljs-built_in">kill</span> 容器id : 强制停止容器</span></code></pre></div>
+#</span><span class="bash"> 4. docker <span class="hljs-built_in">kill</span> 容器id : 强制停止容器</span></code></pre>
 
 
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><blockquote>

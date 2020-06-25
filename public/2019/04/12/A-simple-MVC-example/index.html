@@ -194,7 +194,7 @@
 <ul>
 <li><em><code>Java bean</code> : 封装用户的身份信息.</em></li>
 </ul>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.servlet.bean;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.servlet.bean;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: UserInfo
@@ -230,12 +230,12 @@
 		<span class="hljs-keyword">this</span>.password = password;
 	&#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <ul>
 <li><em>操作数据库的工具类</em></li>
 </ul>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.servlet.util;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.servlet.util;
 
 <span class="hljs-keyword">import</span> java.sql.Connection;
 <span class="hljs-keyword">import</span> java.sql.DriverManager;
@@ -304,13 +304,13 @@
 			&#125;
 		&#125;
 	&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 
 <ul>
 <li><em><code>控制器(controller)</code> : 用于验证用户的登录信息并根据其结果作出相应的处理.</em></li>
 </ul>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.servlet.controller;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.servlet.controller;
 
 <span class="hljs-keyword">import</span> java.io.IOException;
 <span class="hljs-keyword">import</span> javax.servlet.ServletException;
@@ -355,13 +355,13 @@
 		doGet(request, response);
 	&#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 
 <ul>
 <li><em>用于操作用户信息的接口.</em></li>
 </ul>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.servlet.model;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.servlet.model;
 <span class="hljs-keyword">import</span> pers.huangyuhui.servlet.bean.UserInfo;
 
 <span class="hljs-comment">/**
@@ -374,13 +374,13 @@
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">UserInfoDao</span> </span>&#123;
 
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">vaildateUserInfo</span><span class="hljs-params">(UserInfo userInfo)</span></span>;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 
 <ul>
 <li><em><code>模型(model)</code> : 实现了操作用户信息接口的类.</em></li>
 </ul>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.servlet.modImpl;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.servlet.modImpl;
 
 <span class="hljs-keyword">import</span> java.sql.Connection;
 <span class="hljs-keyword">import</span> java.sql.PreparedStatement;
@@ -425,13 +425,13 @@
 		&#125;
 		<span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
 	&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 
 <ul>
 <li><em><code>视图(view)</code> : 用户登录界面.:</em></li>
 </ul>
-<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
     <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
@@ -460,7 +460,7 @@
 					<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 				<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 		<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 
 
 <ul>

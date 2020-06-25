@@ -190,7 +190,7 @@
             <article class="markdown-body">
               <h2 id="学习笔记-Thymeleaf整合Shiro标签"><a href="#学习笔记-Thymeleaf整合Shiro标签" class="headerlink" title="学习笔记 : Thymeleaf整合Shiro标签"></a>学习笔记 : Thymeleaf整合Shiro标签</h2><p><em>详情请参考 : <a href="https://github.com/YUbuntu0109/Shiro-learning/tree/master/spring%20boot%20project%20with%20shiro" target="_blank" rel="noopener">一个简单的SpringBoot整合Shiro的权限管理案例</a></em></p>
 <h3 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h3><p><em>添加Thymeleaf及其对Shiro扩展的依赖</em></p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- Thymeleaf --&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- Thymeleaf --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
@@ -200,10 +200,10 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.github.theborakompanioni<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>thymeleaf-extras-shiro<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
 
 <h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p><em>在Shiro的配置类中配置<code>ShiroDialect</code></em></p>
-<div class="hljs"><pre><code class="hljs java">    <span class="hljs-comment">/**
+<pre><code class="hljs java">    <span class="hljs-comment">/**
      * <span class="hljs-doctag">@description</span>: 配置ShiroDialect, 用于thymeleaf和shiro标签配合使用
      * <span class="hljs-doctag">@date</span>: 2019-08-05 6:37 PM
      * <span class="hljs-doctag">@return</span>: at.pollux.thymeleaf.shiro.dialect.ShiroDialect
@@ -211,11 +211,11 @@
     <span class="hljs-meta">@Bean</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> ShiroDialect <span class="hljs-title">shiroDialect</span><span class="hljs-params">()</span> </span>&#123;
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ShiroDialect();
-&#125;</code></pre></div>
+&#125;</code></pre>
 
-<h3 id="添加HTML命令空间"><a href="#添加HTML命令空间" class="headerlink" title="添加HTML命令空间"></a>添加HTML命令空间</h3><div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"zh_CN"</span> <span class="hljs-attr">xmlns:th</span>=<span class="hljs-string">"http://www.thymeleaf.org"</span> <span class="hljs-attr">xmlns:shiro</span>=<span class="hljs-string">"http://www.pollix.at/thymeleaf/shiro"</span>&gt;</span></code></pre></div>
+<h3 id="添加HTML命令空间"><a href="#添加HTML命令空间" class="headerlink" title="添加HTML命令空间"></a>添加HTML命令空间</h3><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"zh_CN"</span> <span class="hljs-attr">xmlns:th</span>=<span class="hljs-string">"http://www.thymeleaf.org"</span> <span class="hljs-attr">xmlns:shiro</span>=<span class="hljs-string">"http://www.pollix.at/thymeleaf/shiro"</span>&gt;</span></code></pre>
 
-<h3 id="Thymealf-Shiro标签"><a href="#Thymealf-Shiro标签" class="headerlink" title="Thymealf+Shiro标签"></a>Thymealf+Shiro标签</h3><div class="hljs"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- guest标签:用户没有身份验证时显示相应信息,即游客访问信息 --&gt;</span>
+<h3 id="Thymealf-Shiro标签"><a href="#Thymealf-Shiro标签" class="headerlink" title="Thymealf+Shiro标签"></a>Thymealf+Shiro标签</h3><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- guest标签:用户没有身份验证时显示相应信息,即游客访问信息 --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">shiro:guest</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">shiro:guest</span>&gt;</span>
 
 <span class="hljs-comment">&lt;!-- user标签:用户已经身份验证/记住我登录后显示相应的信息 --&gt;</span>
@@ -244,7 +244,7 @@
 <span class="hljs-tag">&lt;<span class="hljs-name">shiro:lacksRole</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"abc"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">shiro:lacksRole</span>&gt;</span>　
 
 <span class="hljs-comment">&lt;!-- hasPermission标签:如果当前Subject有权限将显示body体内容 --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">shiro:hasPermission</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"user:create"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">shiro:hasPermission</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;<span class="hljs-name">shiro:hasPermission</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"user:create"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">shiro:hasPermission</span>&gt;</span></code></pre>
 
 
 

@@ -202,14 +202,14 @@
 <li><em>学生 : 只具有查询并修改个人信息的权限</em></li>
 </ul>
 <p><em>设置权限的核心示例代码如下 :</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 用户权限设置: 如果当前用户类型为教师,则将其权限设置为仅能查询个人信息</span>
+<pre><code class="hljs java"><span class="hljs-comment">// 用户权限设置: 如果当前用户类型为教师,则将其权限设置为仅能查询个人信息</span>
 <span class="hljs-keyword">if</span> (userType == <span class="hljs-number">3</span>) &#123;
     TeacherInfo currentTeacherInfo = (TeacherInfo) request.getSession().getAttribute(<span class="hljs-string">"userInfo"</span>);
 	teacherInfo.setId(currentTeacherInfo.getId());
 &#125;
 
 <span class="hljs-comment">// 获取分页后的教师列表信息</span>
-List&lt;TeacherInfo&gt; teacherList = teacherDao.getTeacherList(teacherInfo, <span class="hljs-keyword">new</span> Paging(currentPage, pageSize));</code></pre></div>
+List&lt;TeacherInfo&gt; teacherList = teacherDao.getTeacherList(teacherInfo, <span class="hljs-keyword">new</span> Paging(currentPage, pageSize));</code></pre>
 
 
 <h3 id="系统截图"><a href="#系统截图" class="headerlink" title="系统截图"></a>系统截图</h3><ul>
@@ -224,7 +224,7 @@ List&lt;TeacherInfo&gt; teacherList = teacherDao.getTeacherList(teacherInfo, <sp
 <li><em>学生信息管理页面</em></li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/YUbuntu0109/Student-Information-Management-System/master/demonstration_picture/Student_Information_Management_System01-StudentInfoInterface.PNG" srcset="/img/loading.gif" alt></p>
-<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><div class="hljs"><pre><code class="hljs css">│
+<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><pre><code class="hljs css">│
 └─<span class="hljs-selector-tag">student_information_management_system</span>
     │       
     │
@@ -347,15 +347,15 @@ List&lt;TeacherInfo&gt; teacherList = teacherDao.getTeacherList(teacherInfo, <sp
                 │      <span class="hljs-selector-tag">welcome</span><span class="hljs-selector-class">.jsp</span>
                 │
                 └─<span class="hljs-selector-tag">teacher</span>
-                        <span class="hljs-selector-tag">teacherList</span><span class="hljs-selector-class">.jsp</span></code></pre></div>
+                        <span class="hljs-selector-tag">teacherList</span><span class="hljs-selector-class">.jsp</span></code></pre>
 
-<h4 id="项目文件说明-数据库文件"><a href="#项目文件说明-数据库文件" class="headerlink" title="项目文件说明-数据库文件"></a>项目文件说明-<code>数据库文件</code></h4><div class="hljs"><pre><code class="hljs reasonml"><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">SMS</span>.</span></span>sql</code></pre></div>
+<h4 id="项目文件说明-数据库文件"><a href="#项目文件说明-数据库文件" class="headerlink" title="项目文件说明-数据库文件"></a>项目文件说明-<code>数据库文件</code></h4><pre><code class="hljs reasonml"><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">SMS</span>.</span></span>sql</code></pre>
 
-<h4 id="项目文件说明-数据库配置信息"><a href="#项目文件说明-数据库配置信息" class="headerlink" title="项目文件说明-数据库配置信息"></a>项目文件说明-<code>数据库配置信息</code></h4><div class="hljs"><pre><code class="hljs css"><span class="hljs-selector-tag">databaseConfig</span><span class="hljs-selector-class">.properties</span></code></pre></div>
+<h4 id="项目文件说明-数据库配置信息"><a href="#项目文件说明-数据库配置信息" class="headerlink" title="项目文件说明-数据库配置信息"></a>项目文件说明-<code>数据库配置信息</code></h4><pre><code class="hljs css"><span class="hljs-selector-tag">databaseConfig</span><span class="hljs-selector-class">.properties</span></code></pre>
 
-<h4 id="项目文件说明-H-ui-前端框架"><a href="#项目文件说明-H-ui-前端框架" class="headerlink" title="项目文件说明-H-ui 前端框架"></a>项目文件说明-<code>H-ui 前端框架</code></h4><div class="hljs"><pre><code class="hljs plain">h-ui/</code></pre></div>
+<h4 id="项目文件说明-H-ui-前端框架"><a href="#项目文件说明-H-ui-前端框架" class="headerlink" title="项目文件说明-H-ui 前端框架"></a>项目文件说明-<code>H-ui 前端框架</code></h4><pre><code class="hljs plain">h-ui/</code></pre>
 
-<h4 id="项目文件说明-EasyUI-前端框架"><a href="#项目文件说明-EasyUI-前端框架" class="headerlink" title="项目文件说明-EasyUI 前端框架"></a>项目文件说明-<code>EasyUI 前端框架</code></h4><div class="hljs"><pre><code class="hljs plain">easyui/</code></pre></div>
+<h4 id="项目文件说明-EasyUI-前端框架"><a href="#项目文件说明-EasyUI-前端框架" class="headerlink" title="项目文件说明-EasyUI 前端框架"></a>项目文件说明-<code>EasyUI 前端框架</code></h4><pre><code class="hljs plain">easyui/</code></pre>
 
 
 <h3 id="数据库ER图"><a href="#数据库ER图" class="headerlink" title="数据库ER图"></a>数据库ER图</h3><p><img src="https://raw.githubusercontent.com/YUbuntu0109/Student-Information-Management-System/master/demonstration_picture/sms_er.png" srcset="/img/loading.gif" alt></p>

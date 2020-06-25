@@ -198,7 +198,7 @@
 <h3 id="示例程序-透明装饰模式"><a href="#示例程序-透明装饰模式" class="headerlink" title="示例程序-透明装饰模式"></a>示例程序-透明装饰模式</h3><p><em>下面是一个使用了装饰设计模式的简单示例程序,其示例说明为 : 使用面向对象技术开发了一套图形界面构件库,该构件库提供了大量的基本结构,如窗体,文本框,列表框等,由于在使用时用户经常要求定制一些特殊的显示效果,如带滚动条的窗体,或带黑色边框的文本框等. 因此经常需要对该构件库进行扩展以增强其功能,既而可以使用装饰设计模式来设计该界面构件库哟~</em></p>
 <ol>
 <li><p><em>Component接口 : 抽象界面构件类, 充当抽象构件类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.decorator_pattern;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.decorator_pattern;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -211,10 +211,10 @@
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Component</span> </span>&#123;
 
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>Window类 : 窗体类, 充当具体构件类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.decorator_pattern;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.decorator_pattern;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -230,10 +230,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"显示窗体 !"</span>);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>TextBox类 : 文本框类, 充当具体构件类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.decorator_pattern;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.decorator_pattern;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -248,10 +248,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"显示文本框 !"</span>);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>ListBox类 : 列表框类, 充当具体构件类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.decorator_pattern;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.decorator_pattern;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -267,10 +267,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"显示列表框 !"</span>);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>ComponentDecorator类 : 构件装饰类, 充当抽象装饰类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.decorator_pattern;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.decorator_pattern;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -294,10 +294,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span> </span>&#123;
         component.display();
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>ScrollBarDecorator类 : 滚动条装饰类, 充当具体装饰类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.decorator_pattern;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.decorator_pattern;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -322,10 +322,10 @@
     <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setScrollBar</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"为构件添加滚动条 !"</span>);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>BlackBorderDecorator类 : 黑色边框装饰类, 充当具体装饰类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.decorator_pattern;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.decorator_pattern;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -350,10 +350,10 @@
     <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setBlackBorder</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"为构件添加黑色边框 !"</span>);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>Client类 : 客户端测试类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.decorator_pattern;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.decorator_pattern;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -374,7 +374,7 @@
         Component component2 = <span class="hljs-keyword">new</span> ScrollBarDecorator(component);
         component2.display();
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 </li>
 </ol>

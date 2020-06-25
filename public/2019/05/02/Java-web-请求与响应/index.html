@@ -192,7 +192,7 @@
 <p><img src="/2019/05/02/Java-web-%E8%AF%B7%E6%B1%82%E4%B8%8E%E5%93%8D%E5%BA%94/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%BF%E9%97%AEServlet%E7%9A%84%E4%BA%A4%E4%BA%92%E8%BF%87%E7%A8%8B.png" srcset="/img/loading.gif" alt=" "></p>
 <h3 id="HttpServletResponse"><a href="#HttpServletResponse" class="headerlink" title="HttpServletResponse"></a>HttpServletResponse</h3><p><em>HttpServletResponse接口继承自<code>ServletResponse</code>,用于封装HTTP响应消息.由于HTTP响应消息分为 : <code>状态行</code>,<code>响应消息头</code>,<code>消息体</code>三部分,因此,在HttpServletResponse接口中定义了向客户端发送响应状态码,响应消息头,响应消息体的方法.</em></p>
 <h3 id="HttpServletResponse-application"><a href="#HttpServletResponse-application" class="headerlink" title="HttpServletResponse application"></a>HttpServletResponse application</h3><h4 id="中文输出乱码问题"><a href="#中文输出乱码问题" class="headerlink" title="中文输出乱码问题"></a>中文输出乱码问题</h4><p><em>由于计算机中的数据都是以二进制形式存储的,因此,当传输文本时,就会发生字符和字节之间的转换.字符与字节之间是通过查码表完成的,将字符转换为字节的过程称为<code>编码</code>,相反称为<code>解码</code>.如果两者使用的码表不一致就会导致乱码问题.可通过以下示例程序中的方法解决此问题.</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@WebServlet</span>(<span class="hljs-string">"/SetCharsetServlet"</span>)
+<pre><code class="hljs java"><span class="hljs-meta">@WebServlet</span>(<span class="hljs-string">"/SetCharsetServlet"</span>)
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SetCharsetServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
 	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;
 
@@ -219,10 +219,10 @@
 		doGet(request, response);
 	&#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h4 id="网页定时刷新并跳转"><a href="#网页定时刷新并跳转" class="headerlink" title="网页定时刷新并跳转"></a>网页定时刷新并跳转</h4><p><em>在HTTP中定义了一个<code>Refresh</code>头字段,他可以通知浏览器在指定的时间自动刷新并跳转到其它页面.示例程序如下.</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@WebServlet</span>(<span class="hljs-string">"/SetHeaderServlet"</span>)
+<pre><code class="hljs java"><span class="hljs-meta">@WebServlet</span>(<span class="hljs-string">"/SetHeaderServlet"</span>)
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SetHeaderServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
 	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;
 
@@ -243,12 +243,12 @@
 		doGet(request, response);
 	&#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h4 id="请求重定向"><a href="#请求重定向" class="headerlink" title="请求重定向"></a>请求重定向</h4><p><em>在某些情况下,针对客户端的请求,一个<code>Servlet</code>类可能无法完成全部工作.这时,可以使用请求重定向来完成.所谓的请求重定向,指的是Web服务器接受到客户端的请求后,可能由于某些条件限制,不能访问当前请求URL所指的Web资源,而是指定了一个新的资源路径,让客端户重新发送请求.</em></p>
 <ol>
 <li><p><em>用户登录界面</em></p>
-<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
     <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
@@ -275,10 +275,10 @@
 			<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 </li>
 <li><p><em>登录成功页面</em></p>
-<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
     <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
@@ -291,10 +291,10 @@
 		<span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">align</span>=<span class="hljs-string">"center"</span>&gt;</span>success to login in !<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 </li>
 <li><p><em>编写处理用户登录请求的Servlet程序</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@WebServlet</span>(<span class="hljs-string">"/SendRedirectServlet"</span>)
+<pre><code class="hljs java"><span class="hljs-meta">@WebServlet</span>(<span class="hljs-string">"/SendRedirectServlet"</span>)
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SendRedirectServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
 	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;
 
@@ -324,14 +324,14 @@
 		doGet(request, response);
 	&#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 
 </li>
 </ol>
 <h3 id="HttpServletRequest"><a href="#HttpServletRequest" class="headerlink" title="HttpServletRequest"></a>HttpServletRequest</h3><p><em>HttpServletRequest接口继承自<code>ServletRequest</code>,用于封装HTTP请求消息.由于HTTP请求消息分为 : <code>请求行</code>,<code>请求消息头</code>,<code>请求消息体</code>三部分,因此,在HttpServletRequest接口中定义了获取请求行,请求头,请求消息体的相关方法.</em></p>
 <h3 id="HttpServletRequest-application"><a href="#HttpServletRequest-application" class="headerlink" title="HttpServletRequest application"></a>HttpServletRequest application</h3><h4 id="利用Referer请求头防止盗链"><a href="#利用Referer请求头防止盗链" class="headerlink" title="利用Referer请求头防止盗链"></a>利用Referer请求头防止盗链</h4><p><em>编写一个Servlet类,其负责提供下载内容,但它要求下载请求的链接必须是通过本网站进入的,否则,会将请求转发给下载说明的HTML页面.</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**
+<pre><code class="hljs java"><span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: DownManagerServlet
  * <span class="hljs-doctag">@Description</span>: 利用`Referer`请求头防止盗链
  * <span class="hljs-doctag">@author</span>: HuangYuhui
@@ -375,18 +375,18 @@
 		doGet(request, response);
 	&#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h4 id="请求参数的中文乱码问题"><a href="#请求参数的中文乱码问题" class="headerlink" title="请求参数的中文乱码问题"></a>请求参数的中文乱码问题</h4><p><em>HttpServletRequest接口中,提供了一个<code>setCharacterEncoding()</code>方法,该方法用于设置request对象的解码方式.但该方法只对<code>POST</code>提交方式有效(<code>错误结论</code>),为了解决<code>GET</code>方式提交表单的中文乱码问题,可以首先使用<code>ISO 8859-1</code>将用户名重新编码,然后使用码表GBK进行解码.示例程序略..</em></p>
 <h3 id="RequestDispatcher"><a href="#RequestDispatcher" class="headerlink" title="RequestDispatcher"></a>RequestDispatcher</h3><p><em>当一个Web资源收到客户端的请求后,如果希望服务器通知另外一个资源去处理请求,这时,除了使用<code>sendRedirect()</code>方法实现请求重定向外,还可以通过<code>RequestDispatcher</code>接口的实例对象来实现.在<code>ServletRequest</code>接口中定义了一个获取RequestDispatcher对象的方法.</em></p>
 <ol>
 <li><p><em>获取RequestDispatcher对象的方法</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// 返回封装了某个路径所指资源的RequestDispather对象.其中,参数path必须</span>
+<pre><code class="hljs java"><span class="hljs-comment">// 返回封装了某个路径所指资源的RequestDispather对象.其中,参数path必须</span>
 <span class="hljs-comment">// 以'/'开头,用于表示当前Web应用的根目录</span>
-getRequestDispatcher(String path);</code></pre></div>
+getRequestDispatcher(String path);</code></pre>
 </li>
 <li><p><em>获取RequestDispatcher对象后,最重要的工作是通知其他Web资源处理当前的Servlet请求,为此,在RequestDispather接口中,定义了两个相关的方法</em></p>
-<div class="hljs"><pre><code class="hljs java">// 该方法用于将请求从一个Servlet传递给另外的一个Web资源(请求转发)
+<pre><code class="hljs java">// 该方法用于将请求从一个Servlet传递给另外的一个Web资源(请求转发)
 // 注意: 该方法必须在响应提交给客户端之前被调用,否则抛出IllegalStateException
 forward(ServletRequests request,ServletResponse response);
 
@@ -432,9 +432,9 @@ public class RequestForwardServlet extends HttpServlet &#123;
 		doGet(request, response);
 	&#125;
 
-&#125;</code></pre></div></li>
+&#125;</code></pre></li>
 <li><p><em>ResultServlet示例程序</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**
+<pre><code class="hljs java"><span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: ResultServlet
  * <span class="hljs-doctag">@Description</span>: 请求转发:forword()
  * <span class="hljs-doctag">@author</span>: HuangYuhui
@@ -462,15 +462,15 @@ public class RequestForwardServlet extends HttpServlet &#123;
 		doGet(request, response);
 	&#125;
 
-&#125;</code></pre></div></li>
+&#125;</code></pre></li>
 <li><p><em>页面显示结果</em></p>
-<div class="hljs"><pre><code class="hljs groovy">my personal blog website <span class="hljs-string">address :</span> <span class="hljs-string">https:</span><span class="hljs-comment">//yubuntu0109.github.io</span></code></pre></div></li>
+<pre><code class="hljs groovy">my personal blog website <span class="hljs-string">address :</span> <span class="hljs-string">https:</span><span class="hljs-comment">//yubuntu0109.github.io</span></code></pre></li>
 </ol>
 <p><em>由结果可知,<code>forward()</code>方法不仅可以实现请求转发,还可以使转发页面和转发到的页面共享数据.需要注意的是: <code>存储在request对象中的数据只对当前请求有效,而对其他请求无效.</code></em></p>
 <h4 id="include-实现请求包含"><a href="#include-实现请求包含" class="headerlink" title="include()实现请求包含"></a>include()实现请求包含</h4><p><em>请求包含指的是使用<code>include</code>方法将Servlet请求转发给其他Web资源进行处理,与请求转发不同的是,在请求包含返回的响应消息中,既包含当前Servlet的响应消息也包含其他Web资源所做出的响应消息.</em></p>
 <ol>
 <li><p><em>编写IncludingServlet程序,其中调用<code>include()</code>方法请求包含IncludedServlet程序.</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**
+<pre><code class="hljs java"><span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: IncludingServlet
  * <span class="hljs-doctag">@Description</span>: 请求包含:include() 
  * <span class="hljs-doctag">@author</span>: HuangYuhui
@@ -502,10 +502,10 @@ public class RequestForwardServlet extends HttpServlet &#123;
 		doGet(request, response);
 	&#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>IncludedServlet程序</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**
+<pre><code class="hljs java"><span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: IncludedServlet
  * <span class="hljs-doctag">@Description</span>: 请求包含:include()
  * <span class="hljs-doctag">@author</span>: HuangYuhui
@@ -534,12 +534,12 @@ public class RequestForwardServlet extends HttpServlet &#123;
 		doGet(request, response);
 	&#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>页面显示结果</em></p>
-<div class="hljs"><pre><code class="hljs routeros">中文<span class="hljs-built_in">
+<pre><code class="hljs routeros">中文<span class="hljs-built_in">
 user </span>name : YUbuntu0109
-request.getRequestURI() : /Request-Response_basic/IncludingServlet</code></pre></div></li>
+request.getRequestURI() : /Request-Response_basic/IncludingServlet</code></pre></li>
 </ol>
 <p><em>注意: 使用<code>forward()</code>实现请求转发或使用<code>include()</code>方法实现请求包含后,浏览器显示的<code>URL</code>地址是不会变化的 !</em></p>
 

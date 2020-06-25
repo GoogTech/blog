@@ -192,7 +192,7 @@
 <h4 id="JSP-Model1-案例"><a href="#JSP-Model1-案例" class="headerlink" title="JSP Model1 案例"></a>JSP Model1 案例</h4><p><em>案例描述 : 通过一个简单的网络计算器程序来深化对JSP Model1模型的理解.</em></p>
 <ol>
 <li><p><em>Calculator.java : 封装计算器中的数据,处理业务逻辑.</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.jspmodel.model1.calculator;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.jspmodel.model1.calculator;
 
 <span class="hljs-keyword">import</span> java.math.BigDecimal;
 <span class="hljs-keyword">import</span> java.util.HashMap;
@@ -302,10 +302,10 @@
 		<span class="hljs-keyword">return</span> flag;
 	&#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>calculator.jsp : 显示网络计算机的页面.</em></p>
-<div class="hljs"><pre><code class="hljs html">&lt;%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.Map"%&gt;
+<pre><code class="hljs html">&lt;%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.Map"%&gt;
 &lt;jsp:useBean id="calculator" class="pers.huangyuhui.jspmodel.model1.calculator.Calculator"/&gt;
 &lt;jsp:setProperty property="*" name="calculator"/&gt;
 &lt;!DOCTYPE html&gt;
@@ -397,7 +397,7 @@
 				&lt;/div&gt;		
 			&lt;/form&gt;
 	&lt;/body&gt;
-&lt;/html&gt;</code></pre></div>
+&lt;/html&gt;</code></pre>
 </li>
 <li><p><em>程序运行效果示例图.</em><br><img src="/2019/05/05/Java-web-JSP-Model/JSPModel1%E6%A1%88%E4%BE%8B-%E8%AE%A1%E7%AE%97%E5%99%A8%E9%A1%B5%E9%9D%A2.PNG" srcset="/img/loading.gif" alt=" "></p>
 </li>
@@ -406,7 +406,7 @@
 <h4 id="JSP-Model2-案例"><a href="#JSP-Model2-案例" class="headerlink" title="JSP Model2 案例"></a>JSP Model2 案例</h4><p><em>案例描述 : 按照<code>JSP Model2</code>的模型思想编写一个用户注册的简单示例程序.</em></p>
 <ol>
 <li><p><em>UserBean.java : 封装用户的注册信息.</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.jspmodel.model2.register;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.jspmodel.model2.register;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: UserBean
@@ -452,10 +452,10 @@
 		<span class="hljs-keyword">this</span>.email = email;
 	&#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>RegisterFormBean.java : 封装并效验注册表单信息的JavaBean.</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.jspmodel.model2.register;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.jspmodel.model2.register;
 
 <span class="hljs-keyword">import</span> java.util.HashMap;
 <span class="hljs-keyword">import</span> java.util.Map;
@@ -562,10 +562,10 @@
 		<span class="hljs-keyword">return</span> flag;
 	&#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>DBUtil.java : 访问数据库的辅助类,充当DAO.</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.jspmodel.model2.register;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.jspmodel.model2.register;
 
 <span class="hljs-keyword">import</span> java.util.HashMap;
 
@@ -612,10 +612,10 @@
 		<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
 	&#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>ControllerServlet.java : 控制器,负责处理用户注册的请求.</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.jspmodel.model2.register;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.jspmodel.model2.register;
 
 <span class="hljs-keyword">import</span> java.io.IOException;
 
@@ -679,10 +679,10 @@
 		doGet(request, response);
 	&#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>register.jsp : 用户注册页面.</em></p>
-<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -767,10 +767,10 @@
 				<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 			<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 </li>
 <li><p><em>registerInfo.jsp : 用户注册成功页面.</em></p>
-<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">%@taglib</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">"c"</span> <span class="hljs-attr">uri</span>=<span class="hljs-string">"http://java.sun.com/jsp/jstl/core"</span>%&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
@@ -793,7 +793,7 @@
 				<span class="hljs-tag">&lt;/<span class="hljs-name">c:otherwise</span>&gt;</span>
 			<span class="hljs-tag">&lt;/<span class="hljs-name">c:choose</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 </li>
 <li><p><em>程序运行效果示例图.</em><br><img src="/2019/05/05/Java-web-JSP-Model/JSPModel2%E6%A1%88%E4%BE%8B-%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C%E9%A1%B5%E9%9D%A2.PNG" srcset="/img/loading.gif" alt=" "><br><img src="/2019/05/05/Java-web-JSP-Model/JSPModel2%E6%A1%88%E4%BE%8B-%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C%E4%BF%A1%E6%81%AF%E9%A1%B5%E9%9D%A2.PNG" srcset="/img/loading.gif" alt=" "></p>
 </li>

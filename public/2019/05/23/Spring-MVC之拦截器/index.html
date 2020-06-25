@@ -195,7 +195,7 @@
 </ol>
 <h3 id="拦截器的执行流程"><a href="#拦截器的执行流程" class="headerlink" title="拦截器的执行流程"></a>拦截器的执行流程</h3><h4 id="单个拦截器的执行流程"><a href="#单个拦截器的执行流程" class="headerlink" title="单个拦截器的执行流程"></a>单个拦截器的执行流程</h4><ol>
 <li><p><em>web.xml</em></p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
 	<span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee"</span>
 	<span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"</span>
@@ -223,10 +223,10 @@
 		<span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre>
 </li>
 <li><p><em>CustomInterceptor.java : 自定义拦截器</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.filter.interceptor;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.filter.interceptor;
 
 <span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;
 <span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;
@@ -262,10 +262,10 @@
 			<span class="hljs-keyword">throws</span> Exception </span>&#123;
 		System.out.println(<span class="hljs-string">"------ this is afterCompletion1 ------"</span>);
 	&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>springmvc-config.xml : Spring MVC配置文件</em></p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>
 	<span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
 	<span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">"http://www.springframework.org/schema/context"</span>
@@ -291,10 +291,10 @@
 		<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"pers.huangyuhui.springmvc.filter.interceptor.CustomInterceptor"</span> /&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">mvc:interceptors</span>&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
 </li>
 <li><p><em>MyController.java : 控制器</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.filter.controller;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.filter.controller;
 
 <span class="hljs-keyword">import</span> org.springframework.stereotype.Controller;
 <span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;
@@ -322,15 +322,15 @@
 		<span class="hljs-keyword">return</span> <span class="hljs-string">"index"</span>;
 	&#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>新建<code>WebContent/WEB-INF/view/index.jsp</code>(仅测试)</em></p>
 </li>
 <li><p><em>将项目发布到Tomcat服务器并启动,在浏览器中访问地址: <code>http://localhost:8080/springmvc_filter/myFilter/singleFilter</code> 即可得到程序运行结果,如下所示 :</em></p>
-<div class="hljs"><pre><code class="hljs routeros">------ this is preHandle1 ------
+<pre><code class="hljs routeros">------ this is preHandle1 ------
 test my<span class="hljs-built_in"> filter </span>~
 ------ this is postHandle1 ------
------- this is afterCompletion1 ------</code></pre></div>
+------ this is afterCompletion1 ------</code></pre>
 
 
 </li>
@@ -339,7 +339,7 @@ test my<span class="hljs-built_in"> filter </span>~
 <li><p><em>web.xml(同上..)</em></p>
 </li>
 <li><p><em>CustomInterceptor.java : 第一个自定义拦截器</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.filter.interceptor;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.filter.interceptor;
 
 <span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;
 <span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;
@@ -375,10 +375,10 @@ test my<span class="hljs-built_in"> filter </span>~
 			<span class="hljs-keyword">throws</span> Exception </span>&#123;
 		System.out.println(<span class="hljs-string">"------ this is afterCompletion1 ------"</span>);
 	&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>CustomInterceptor2.java : 第二个自定义拦截器</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.filter.interceptor;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.filter.interceptor;
 
 <span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;
 <span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;
@@ -414,10 +414,10 @@ test my<span class="hljs-built_in"> filter </span>~
 			<span class="hljs-keyword">throws</span> Exception </span>&#123;
 		System.out.println(<span class="hljs-string">"------ this is afterCompletion2------"</span>);
 	&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>springmvc-config.xml : Spring MVC配置文件</em></p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>
 	<span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
 	<span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">"http://www.springframework.org/schema/context"</span>
@@ -455,10 +455,10 @@ test my<span class="hljs-built_in"> filter </span>~
 		<span class="hljs-tag">&lt;/<span class="hljs-name">mvc:interceptor</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">mvc:interceptors</span>&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
 </li>
 <li><p><em>MyController.java : 控制器</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.filter.controller;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.filter.controller;
 
 <span class="hljs-keyword">import</span> org.springframework.stereotype.Controller;
 <span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;
@@ -485,17 +485,17 @@ test my<span class="hljs-built_in"> filter </span>~
 		<span class="hljs-keyword">return</span> <span class="hljs-string">"index"</span>;
 	&#125;
 
-&#125;</code></pre></div></li>
+&#125;</code></pre></li>
 <li><p><em>新建<code>WebContent/WEB-INF/view/index.jsp</code>(仅测试)</em></p>
 </li>
 <li><p><em>将项目发布到Tomcat服务器并启动,在浏览器中访问地址: <code>http://localhost:8080/springmvc_filter/myFilter/doubleFilter</code> 即可得到程序运行结果,如下所示 :</em></p>
-<div class="hljs"><pre><code class="hljs kotlin">------ <span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> preHandle1 ------
+<pre><code class="hljs kotlin">------ <span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> preHandle1 ------
 ------ <span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> preHandle2 ------
 test my filter ~
 ------ <span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> postHandle2 ------
 ------ <span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> postHandle1 ------
 ------ <span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> afterCompletion2------
------- <span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> afterCompletion1 ------</code></pre></div>
+------ <span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> afterCompletion1 ------</code></pre>
 
 
 
@@ -511,7 +511,7 @@ test my filter ~
 <li><p><em>web.xml : 略..</em></p>
 </li>
 <li><p><em>User.java : 用户信息</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.filter.bean;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.filter.bean;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: User
@@ -550,10 +550,10 @@ test my filter ~
 		<span class="hljs-keyword">this</span>.password = password;
 	&#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>login.jsp : 用户登录页面</em></p>
-<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -581,10 +581,10 @@ test my filter ~
 		<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 </li>
 <li><p><em>main.jsp : 系统主页面</em></p>
-<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -600,10 +600,10 @@ test my filter ~
 		<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 </li>
 <li><p><em>UserController.java : 控制器</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.filter.controller;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.filter.controller;
 
 <span class="hljs-keyword">import</span> javax.servlet.http.HttpSession;
 
@@ -692,10 +692,10 @@ test my filter ~
 
 	&#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>LoginInterceptor.java : 自定义拦截器</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.filter.interceptor;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.filter.interceptor;
 
 <span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;
 <span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;
@@ -753,7 +753,7 @@ test my filter ~
 			<span class="hljs-keyword">throws</span> Exception </span>&#123;
 		System.out.println(<span class="hljs-string">"this is afterCompletion"</span>);
 	&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>将项目发布到Tomcat服务器并启动,在浏览器中访问地址: <code>http://localhost:8080/springmvc_filter/main</code> 其页面如下:</em></p>
 </li>

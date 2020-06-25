@@ -189,32 +189,32 @@
             
             <article class="markdown-body">
               <h2 id="Ubuntu-18-04"><a href="#Ubuntu-18-04" class="headerlink" title="Ubuntu 18.04"></a>Ubuntu 18.04</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p><em>REmote DIctionary Server( <code>Redis</code> ) 是一个由 Salvatore Sanfilippo 写的 key-value 存储系统。Redis是一个开源的使用ANSI C语言编写、遵守BSD协议、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。它通常被称为数据结构服务器，因为值(value)可以是 字符串(String), 哈希(Hash), 列表(list), 集合(sets) 和有序集合(sorted sets)等类型。</em></p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">&gt;</span><span class="bash"> sudo apt-get install redis-server</span></code></pre></div>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre><code class="hljs shell"><span class="hljs-meta">&gt;</span><span class="bash"> sudo apt-get install redis-server</span></code></pre>
 
-<h3 id="检查Redis服务器系统进程"><a href="#检查Redis服务器系统进程" class="headerlink" title="检查Redis服务器系统进程"></a>检查Redis服务器系统进程</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">&gt;</span><span class="bash"> ps -agx|grep redis</span></code></pre></div>
+<h3 id="检查Redis服务器系统进程"><a href="#检查Redis服务器系统进程" class="headerlink" title="检查Redis服务器系统进程"></a>检查Redis服务器系统进程</h3><pre><code class="hljs shell"><span class="hljs-meta">&gt;</span><span class="bash"> ps -agx|grep redis</span></code></pre>
 
-<h3 id="通过启动命令检查Redis服务器状态"><a href="#通过启动命令检查Redis服务器状态" class="headerlink" title="通过启动命令检查Redis服务器状态"></a>通过启动命令检查Redis服务器状态</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">&gt;</span><span class="bash"> netstat -nlt|grep 6379</span></code></pre></div>
+<h3 id="通过启动命令检查Redis服务器状态"><a href="#通过启动命令检查Redis服务器状态" class="headerlink" title="通过启动命令检查Redis服务器状态"></a>通过启动命令检查Redis服务器状态</h3><pre><code class="hljs shell"><span class="hljs-meta">&gt;</span><span class="bash"> netstat -nlt|grep 6379</span></code></pre>
 
-<h3 id="通过命令行客户端访问Redis"><a href="#通过命令行客户端访问Redis" class="headerlink" title="通过命令行客户端访问Redis"></a>通过命令行客户端访问Redis</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">&gt;</span><span class="bash"> redis-cli</span>
+<h3 id="通过命令行客户端访问Redis"><a href="#通过命令行客户端访问Redis" class="headerlink" title="通过命令行客户端访问Redis"></a>通过命令行客户端访问Redis</h3><pre><code class="hljs shell"><span class="hljs-meta">&gt;</span><span class="bash"> redis-cli</span>
 <span class="hljs-meta">
 #</span><span class="bash"> <span class="hljs-built_in">test</span></span>
 127.0.0.1:6379:&gt; set firstKeyName firstKeyValue
 127.0.0.1:6379:&gt; get firstKeyName 
-127.0.0.1:6379:&gt; "firstKeyValue"</code></pre></div>
+127.0.0.1:6379:&gt; "firstKeyValue"</code></pre>
 
-<h3 id="启动与停止"><a href="#启动与停止" class="headerlink" title="启动与停止"></a>启动与停止</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> stop</span>
+<h3 id="启动与停止"><a href="#启动与停止" class="headerlink" title="启动与停止"></a>启动与停止</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> stop</span>
 <span class="hljs-meta">&gt;</span><span class="bash"> sudo srevice redis stop</span>
 <span class="hljs-meta">#</span><span class="bash"> restart</span>
-<span class="hljs-meta">&gt;</span><span class="bash"> sudo srevice redis restart</span></code></pre></div>
+<span class="hljs-meta">&gt;</span><span class="bash"> sudo srevice redis restart</span></code></pre>
 
 <h3 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h3><p><em>默认情况下无密码哟 : 找到 /etc/redis/redis.conf 文件，添加 <code>requirepass mypassword</code></em></p>
-<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">&gt;</span><span class="bash"> vim /etc/redis/redis.conf</span>
+<pre><code class="hljs shell"><span class="hljs-meta">&gt;</span><span class="bash"> vim /etc/redis/redis.conf</span>
 <span class="hljs-meta">
 #</span><span class="bash"> <span class="hljs-built_in">test</span></span>
 <span class="hljs-meta">&gt;</span><span class="bash"> redis-cli</span>
 <span class="hljs-meta">&gt;</span><span class="bash"> auth mypassword <span class="hljs-comment"># input your password</span></span>
 OK
-127.0.0.1:6379:&gt;</code></pre></div>
+127.0.0.1:6379:&gt;</code></pre>
 
 <h3 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h3><p><em>在这里你可以提前体验并学习以下 Redis 的使用 : <a href="http://try.redis.io/" target="_blank" rel="noopener">http://try.redis.io/</a></em><br><img src="/2020/06/21/Ubuntu18-04-%E5%AE%89%E8%A3%85Redis%E5%8F%8A%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/try.redis.io.PNG" srcset="/img/loading.gif" alt=" "></p>
 <h2 id="Windows-10"><a href="#Windows-10" class="headerlink" title="Windows 10"></a>Windows 10</h2><blockquote>

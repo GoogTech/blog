@@ -188,14 +188,14 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h3 id="1-搜索-MySQL-镜像"><a href="#1-搜索-MySQL-镜像" class="headerlink" title="1.搜索 MySQL 镜像"></a>1.搜索 MySQL 镜像</h3><div class="hljs"><pre><code class="hljs shell">ubuntu@VM-0-4-ubuntu:~$ sudo docker search mysql
+              <h3 id="1-搜索-MySQL-镜像"><a href="#1-搜索-MySQL-镜像" class="headerlink" title="1.搜索 MySQL 镜像"></a>1.搜索 MySQL 镜像</h3><pre><code class="hljs shell">ubuntu@VM-0-4-ubuntu:~$ sudo docker search mysql
 NAME                              DESCRIPTION                                     STARS               OFFICIAL              AUTOMATED
 mysql                             MySQL is a widely used, open-source relation…   9673                [OK]
 mariadb                           MariaDB is a community-developed fork of MyS…   3518                [OK]
-mysql/mysql-server                Optimized MySQL Server Docker images. Create…   705                 [OK]</code></pre></div>
+mysql/mysql-server                Optimized MySQL Server Docker images. Create…   705                 [OK]</code></pre>
 
 
-<h3 id="2-拉取-MySQL-镜像"><a href="#2-拉取-MySQL-镜像" class="headerlink" title="2.拉取 MySQL 镜像"></a>2.拉取 MySQL 镜像</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 拉取版本为 8.0.20 的 MySQL 镜像 </span>
+<h3 id="2-拉取-MySQL-镜像"><a href="#2-拉取-MySQL-镜像" class="headerlink" title="2.拉取 MySQL 镜像"></a>2.拉取 MySQL 镜像</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 拉取版本为 8.0.20 的 MySQL 镜像 </span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker pull mysql:8.0.20
 8.0.20: Pulling from library/mysql
 Digest: sha256:8b7b328a7ff6de46ef96bcf83af048cb00a1c86282bfca0cb119c84568b4caf6
@@ -212,10 +212,10 @@ tomcat              latest              2eb5a120304e        2 weeks ago         
 nginx               latest              2622e6cca7eb        2 weeks ago         132MB
 mysql               8.0.20              be0dbf01a0f3        2 weeks ago         541MB
 mysql               latest              be0dbf01a0f3        2 weeks ago         541MB
-hello-world         latest              bf756fb1ae65        5 months ago        13.3kB</code></pre></div>
+hello-world         latest              bf756fb1ae65        5 months ago        13.3kB</code></pre>
 
 
-<h3 id="3-运行-MySQL-容器"><a href="#3-运行-MySQL-容器" class="headerlink" title="3.运行 MySQL 容器"></a>3.运行 MySQL 容器</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行容器(无)</span>
+<h3 id="3-运行-MySQL-容器"><a href="#3-运行-MySQL-容器" class="headerlink" title="3.运行 MySQL 容器"></a>3.运行 MySQL 容器</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行容器(无)</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 <span class="hljs-meta">
@@ -244,11 +244,11 @@ ubuntu@VM-0-4-ubuntu:~$ sudo docker run --name mysql8 -e MYSQL_ROOT_PASSWORD=123
 #</span><span class="bash"> 再次查看正在运行的容器，验证 MySQL 容器是否启动</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                               NAMES
-1bbb0efc4f54        mysql:8.0.20        "docker-entrypoint.s…"   5 seconds ago       Up 3 seconds        33060/tcp, 0.0.0.0:3300-&gt;3306/tcp   mysql8</code></pre></div>
+1bbb0efc4f54        mysql:8.0.20        "docker-entrypoint.s…"   5 seconds ago       Up 3 seconds        33060/tcp, 0.0.0.0:3300-&gt;3306/tcp   mysql8</code></pre>
 <blockquote>
 <p>启动 MySQL 容器后，稍等片刻再次通过 <code>docker ps</code> 查看时会发现 MySQL 容器已经停止运行，其问题分析及解决方法见该文章最后的<code>参考</code>文章.</p>
 </blockquote>
-<h3 id="4-进入-MySQL-容器"><a href="#4-进入-MySQL-容器" class="headerlink" title="4.进入 MySQL 容器"></a>4.进入 MySQL 容器</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 进入后台正在运行的 MySQL 容器</span>
+<h3 id="4-进入-MySQL-容器"><a href="#4-进入-MySQL-容器" class="headerlink" title="4.进入 MySQL 容器"></a>4.进入 MySQL 容器</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 进入后台正在运行的 MySQL 容器</span>
 <span class="hljs-meta">#</span><span class="bash"> -i, --interactive=<span class="hljs-literal">false</span> : 以交互模式运行容器，通常与 -t 同时使用</span>
 <span class="hljs-meta">#</span><span class="bash"> -t, --tty=<span class="hljs-literal">false</span> : 为容器重新分配一个伪输入终端，通常与 -i 同时使用</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker exec -it mysql8 /bin/bash
@@ -259,7 +259,7 @@ boot  docker-entrypoint-initdb.d  etc            lib   media  opt  root  sbin  s
 #</span><span class="bash"> 登录 MySQL : 失败了!</span>
 root@8fd4dc9f3b89:/# mysql -u root -p
 Enter password:
-ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)</code></pre></div>
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2)</code></pre>
 
 <blockquote>
 <p>登录 MySQL 时失败了，抛出的异常信息为 : <code>ERROR 2002 (HY000): Can&#39;t connect to local MySQL server through socket &#39;/var/run/mysqld/mysqld.sock&#39; (2)</code>. Google 了很多资料也没解决该问题…</p>

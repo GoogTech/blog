@@ -197,7 +197,7 @@
 <h3 id="程序示例"><a href="#程序示例" class="headerlink" title="程序示例"></a>程序示例</h3><p><em>下面是一个使用简单工厂模式的简单程序示例,其功能( 模拟 )描述 : 通过设置不同的参数即可得到不同类型的图表,而且可以较为方便地对图表进行扩展,以便能够在将来增加一些新类型的图表.</em></p>
 <ol>
 <li><p><em>Chart接口 : 抽象图表接口, 充当抽象产品类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.simple_factory_pattern;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.simple_factory_pattern;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -210,10 +210,10 @@
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Chart</span> </span>&#123;
 
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>HistogramChart类 : 柱状图类, 充当具体产品类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.simple_factory_pattern;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.simple_factory_pattern;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -233,10 +233,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"显示柱状图"</span>);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>PieChart类 : 饼状图类, 充当具体产品类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.simple_factory_pattern;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.simple_factory_pattern;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -256,10 +256,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"显示饼状图"</span>);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>ChartFactory类 : 图表工厂类, 充当工厂类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.simple_factory_pattern;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.simple_factory_pattern;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -285,10 +285,10 @@
         &#125;
         <span class="hljs-keyword">return</span> chart;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>Client类 : 客户端测试类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.simple_factory_pattern;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.simple_factory_pattern;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -303,12 +303,12 @@
         Chart histogram = ChartFactory.getChar(<span class="hljs-string">"histogram"</span>);
         histogram.display();
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>程序运行结果如下所示 :</em></p>
-<div class="hljs"><pre><code class="hljs plain">创建柱状图
+<pre><code class="hljs plain">创建柱状图
 初始化柱状图
-显示柱状图</code></pre></div>
+显示柱状图</code></pre>
 
 </li>
 </ol>

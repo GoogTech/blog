@@ -209,7 +209,7 @@
 <li>336: Deprecate the Pack200 Tools and API (弃用Pack200工具和API)</li>
 </ol>
 <h3 id="String-新增方法"><a href="#String-新增方法" class="headerlink" title="String 新增方法"></a>String 新增方法</h3><p><em>新增加一系列字符串处理方法,程序示例如下 :</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testString</span><span class="hljs-params">()</span> </span>&#123;
 
     <span class="hljs-comment">//判断字符串是否为空白</span>
@@ -227,23 +227,23 @@
     <span class="hljs-comment">//输出结果</span>
     List.of(blank, strip, trailing, leading, repeat, count).forEach(System.out::println);
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p><em>程序运行结果如下所示 :</em></p>
-<div class="hljs"><pre><code class="hljs mipsasm">true
+<pre><code class="hljs mipsasm">true
 <span class="hljs-keyword">JavaStack
 </span><span class="hljs-keyword">JavaStack
 </span><span class="hljs-keyword">JavaStack
 </span><span class="hljs-keyword">JavaStackJavaStackJavaStack
-</span><span class="hljs-number">3</span></code></pre></div>
+</span><span class="hljs-number">3</span></code></pre>
 
 
 <h3 id="启动单一文件的源代码程序"><a href="#启动单一文件的源代码程序" class="headerlink" title="启动单一文件的源代码程序"></a>启动单一文件的源代码程序</h3><p><em>JDK11之前我们若运行一个 Java 源代码必须先编译,再运行,两个执行步骤. 而在 JDK11 版本中我们可以通过一个 Java 命令就直接搞定咯,如下所示 :</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">//JDK11版本之前需先编译后再运行程序</span>
+<pre><code class="hljs java"><span class="hljs-comment">//JDK11版本之前需先编译后再运行程序</span>
 javac JavaStack.java
 java JavaStack
 <span class="hljs-comment">//JDK11版本可直接运行程序</span>
-java JavaStack.java</code></pre></div>
+java JavaStack.java</code></pre>
 
 <p><em>一个命令编译运行源代码的注意点 :</em></p>
 <ul>
@@ -251,7 +251,7 @@ java JavaStack.java</code></pre></div>
 <li>不可以使用其它源文件中的自定义类( 本文件中的自定义类是可以使用的 )</li>
 </ul>
 <h3 id="优化局部变量类型推断"><a href="#优化局部变量类型推断" class="headerlink" title="优化局部变量类型推断"></a>优化局部变量类型推断</h3><p><em>在 var 上添加注解的语法格式在 JDK10 中是不能实现的,但在 JDK11 中加入了这样的语法</em></p>
-<div class="hljs"><pre><code class="hljs java">Consumer&lt;String&gt; consumer = (<span class="hljs-meta">@Nonnull</span> <span class="hljs-keyword">var</span> s) -&gt; s.toUpperCase();</code></pre></div>
+<pre><code class="hljs java">Consumer&lt;String&gt; consumer = (<span class="hljs-meta">@Nonnull</span> <span class="hljs-keyword">var</span> s) -&gt; s.toUpperCase();</code></pre>
 
 
 <h3 id="删除-Java-EE-和-CORBA-模块"><a href="#删除-Java-EE-和-CORBA-模块" class="headerlink" title="删除 Java EE 和 CORBA 模块"></a>删除 Java EE 和 CORBA 模块</h3><p><em>Java EE和 CORBA 两个模块在 JDK9 中已经标记<code>deprecated</code>,在 JDK11 中正式移除. JDK中 deprecated 的意思是在不建议使用,在未来的release版本会被删除. JavaEE由4部分组成 :</em></p>

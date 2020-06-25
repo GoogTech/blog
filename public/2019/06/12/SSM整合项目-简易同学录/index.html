@@ -196,7 +196,7 @@
 <li><em>一个简单的,基于SSM的同学录小项目,通过本项目可以学习SSM的整合及CURD操作的基本思路,同时也可以帮助你学习Intellij IEAD开发利器的使用哟,可以说非常适合初学SSM的同学啦~</em></li>
 </ul>
 <p><em>代码注释非常详细,思路也很清晰 :</em></p>
-<div class="hljs"><pre><code class="hljs java">
+<pre><code class="hljs java">
  <span class="hljs-meta">@Autowired</span> <span class="hljs-comment">//注入业务对象</span>
  <span class="hljs-keyword">private</span> FriendService friendService;
 
@@ -229,7 +229,7 @@
      result.put(<span class="hljs-string">"rows"</span>, friendList);
 
      <span class="hljs-keyword">return</span> result;
- &#125;</code></pre></div>
+ &#125;</code></pre>
 
 
 
@@ -253,7 +253,7 @@
 <li><em><code>Jar</code>包依赖关系</em></li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/YUbuntu0109/SSM-CURD-Alumni/master/demonstration_picture/SSM-CRUD-Alumni-Jar.png" srcset="/img/loading.gif" alt></p>
-<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><div class="hljs"><pre><code class="hljs css">└─<span class="hljs-selector-tag">SSM-CURD-Alumni</span>
+<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><pre><code class="hljs css">└─<span class="hljs-selector-tag">SSM-CURD-Alumni</span>
     │  <span class="hljs-selector-tag">LICENSE</span>
     │  <span class="hljs-selector-tag">README</span><span class="hljs-selector-class">.md</span>
     │
@@ -321,22 +321,22 @@
                     │      
                     │
                     └─<span class="hljs-selector-tag">WEB-INF</span>
-                            <span class="hljs-selector-tag">web</span><span class="hljs-selector-class">.xml</span></code></pre></div>
+                            <span class="hljs-selector-tag">web</span><span class="hljs-selector-class">.xml</span></code></pre>
 
 
-<h4 id="项目结构说明-数据库文件"><a href="#项目结构说明-数据库文件" class="headerlink" title="项目结构说明-数据库文件"></a>项目结构说明-<code>数据库文件</code></h4><div class="hljs"><pre><code class="hljs pgsql"><span class="hljs-keyword">database</span>/ssm.<span class="hljs-keyword">sql</span></code></pre></div>
+<h4 id="项目结构说明-数据库文件"><a href="#项目结构说明-数据库文件" class="headerlink" title="项目结构说明-数据库文件"></a>项目结构说明-<code>数据库文件</code></h4><pre><code class="hljs pgsql"><span class="hljs-keyword">database</span>/ssm.<span class="hljs-keyword">sql</span></code></pre>
 
-<h4 id="项目结构说明-数据库配置信息"><a href="#项目结构说明-数据库配置信息" class="headerlink" title="项目结构说明-数据库配置信息"></a>项目结构说明-<code>数据库配置信息</code></h4><div class="hljs"><pre><code class="hljs awk">ssm_crud2<span class="hljs-regexp">/src/m</span>ain<span class="hljs-regexp">/resource/</span>database-conf<span class="hljs-regexp">/c3p0.properties</span></code></pre></div>
+<h4 id="项目结构说明-数据库配置信息"><a href="#项目结构说明-数据库配置信息" class="headerlink" title="项目结构说明-数据库配置信息"></a>项目结构说明-<code>数据库配置信息</code></h4><pre><code class="hljs awk">ssm_crud2<span class="hljs-regexp">/src/m</span>ain<span class="hljs-regexp">/resource/</span>database-conf<span class="hljs-regexp">/c3p0.properties</span></code></pre>
 
-<h4 id="项目结构说明-EasyUI-Framework"><a href="#项目结构说明-EasyUI-Framework" class="headerlink" title="项目结构说明-EasyUI Framework"></a>项目结构说明-<code>EasyUI Framework</code></h4><div class="hljs"><pre><code class="hljs gradle">ssm_crud2<span class="hljs-regexp">/src/m</span>ain<span class="hljs-regexp">/webapp/</span><span class="hljs-keyword">static</span><span class="hljs-regexp">/easyui/</span></code></pre></div>
+<h4 id="项目结构说明-EasyUI-Framework"><a href="#项目结构说明-EasyUI-Framework" class="headerlink" title="项目结构说明-EasyUI Framework"></a>项目结构说明-<code>EasyUI Framework</code></h4><pre><code class="hljs gradle">ssm_crud2<span class="hljs-regexp">/src/m</span>ain<span class="hljs-regexp">/webapp/</span><span class="hljs-keyword">static</span><span class="hljs-regexp">/easyui/</span></code></pre>
 
-<h4 id="项目结构说明-Spring-核心配置文件"><a href="#项目结构说明-Spring-核心配置文件" class="headerlink" title="项目结构说明-Spring 核心配置文件"></a>项目结构说明-<code>Spring 核心配置文件</code></h4><div class="hljs"><pre><code class="hljs awk">ssm_crud2<span class="hljs-regexp">/src/m</span>ain<span class="hljs-regexp">/resource/</span>spring-conf<span class="hljs-regexp">/applicationContext.xml</span></code></pre></div>
+<h4 id="项目结构说明-Spring-核心配置文件"><a href="#项目结构说明-Spring-核心配置文件" class="headerlink" title="项目结构说明-Spring 核心配置文件"></a>项目结构说明-<code>Spring 核心配置文件</code></h4><pre><code class="hljs awk">ssm_crud2<span class="hljs-regexp">/src/m</span>ain<span class="hljs-regexp">/resource/</span>spring-conf<span class="hljs-regexp">/applicationContext.xml</span></code></pre>
 
-<h4 id="项目结构说明-Spring-MVC-核心配置文件"><a href="#项目结构说明-Spring-MVC-核心配置文件" class="headerlink" title="项目结构说明-Spring MVC 核心配置文件"></a>项目结构说明-<code>Spring MVC 核心配置文件</code></h4><div class="hljs"><pre><code class="hljs awk">ssm_crud2<span class="hljs-regexp">/src/m</span>ain<span class="hljs-regexp">/resource/</span>spring-conf<span class="hljs-regexp">/springmvc-config.xml</span></code></pre></div>
+<h4 id="项目结构说明-Spring-MVC-核心配置文件"><a href="#项目结构说明-Spring-MVC-核心配置文件" class="headerlink" title="项目结构说明-Spring MVC 核心配置文件"></a>项目结构说明-<code>Spring MVC 核心配置文件</code></h4><pre><code class="hljs awk">ssm_crud2<span class="hljs-regexp">/src/m</span>ain<span class="hljs-regexp">/resource/</span>spring-conf<span class="hljs-regexp">/springmvc-config.xml</span></code></pre>
 
-<h4 id="项目结构说明-MyBatis-核心配置文件"><a href="#项目结构说明-MyBatis-核心配置文件" class="headerlink" title="项目结构说明-MyBatis 核心配置文件"></a>项目结构说明-<code>MyBatis 核心配置文件</code></h4><div class="hljs"><pre><code class="hljs awk">ssm_crud2<span class="hljs-regexp">/src/m</span>ain<span class="hljs-regexp">/resource/my</span>batis-conf<span class="hljs-regexp">/mybatis-config.xml</span></code></pre></div>
+<h4 id="项目结构说明-MyBatis-核心配置文件"><a href="#项目结构说明-MyBatis-核心配置文件" class="headerlink" title="项目结构说明-MyBatis 核心配置文件"></a>项目结构说明-<code>MyBatis 核心配置文件</code></h4><pre><code class="hljs awk">ssm_crud2<span class="hljs-regexp">/src/m</span>ain<span class="hljs-regexp">/resource/my</span>batis-conf<span class="hljs-regexp">/mybatis-config.xml</span></code></pre>
 
-<h4 id="项目结构说明-Mapper-接口映射文件"><a href="#项目结构说明-Mapper-接口映射文件" class="headerlink" title="项目结构说明-Mapper 接口映射文件"></a>项目结构说明-<code>Mapper 接口映射文件</code></h4><div class="hljs"><pre><code class="hljs awk">ssm_crud2<span class="hljs-regexp">/src/m</span>ain<span class="hljs-regexp">/resource/m</span>apper<span class="hljs-regexp">/FriendMapper.xml</span></code></pre></div>
+<h4 id="项目结构说明-Mapper-接口映射文件"><a href="#项目结构说明-Mapper-接口映射文件" class="headerlink" title="项目结构说明-Mapper 接口映射文件"></a>项目结构说明-<code>Mapper 接口映射文件</code></h4><pre><code class="hljs awk">ssm_crud2<span class="hljs-regexp">/src/m</span>ain<span class="hljs-regexp">/resource/m</span>apper<span class="hljs-regexp">/FriendMapper.xml</span></code></pre>
 
             </article>
             <hr>

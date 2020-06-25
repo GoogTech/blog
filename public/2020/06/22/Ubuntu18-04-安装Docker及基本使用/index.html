@@ -204,7 +204,7 @@
 <li>Ubuntu Xenial 16.04( LTS )</li>
 </ul>
 <h3 id="预载新版本"><a href="#预载新版本" class="headerlink" title="预载新版本"></a>预载新版本</h3><p><em><code>docker</code>，<code>docker.io</code>或<code>docker-engine</code>称为Ubuntu 的旧版本，如果你已安装这些，请先卸载它们 :</em></p>
-<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo apt-get remove docker docker-engine docker.io containerd runc</span></code></pre></div>
+<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo apt-get remove docker docker-engine docker.io containerd runc</span></code></pre>
 
 
 <h3 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h3><p><em>Docker的安装方法共有以下三种，这里选择 <code>通过仓库安装</code> 的方法，即在新主机上首次安装Docker Engine之前，需要先设置Docker仓库。之后才可以从存储库中安装及更新Docker.</em></p>
@@ -215,77 +215,77 @@
 </ul>
 <h4 id="设置存储库"><a href="#设置存储库" class="headerlink" title="设置存储库"></a>设置存储库</h4><ol>
 <li><p><em>更新apt软件包索引，并安装软件包以允许apt通过HTTPS使用存储库 :</em></p>
-<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo apt-get update</span>
+<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo apt-get update</span>
 <span class="hljs-meta">
 $</span><span class="bash"> sudo apt-get install \</span>
     apt-transport-https \
     ca-certificates \
     curl \
     gnupg-agent \
-    software-properties-common</code></pre></div>
+    software-properties-common</code></pre>
 </li>
 <li><p><em>添加Docker的官方GPG密钥 :</em></p>
-<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span></code></pre></div>
+<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span></code></pre>
 
 </li>
 </ol>
 <p><em>( <code>9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88</code> )通过搜索指纹的这后8个字符来验证你现在是否拥有带有指纹的密钥 :</em></p>
-<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo apt-key fingerprint 0EBFCD88</span>
+<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo apt-key fingerprint 0EBFCD88</span>
 
 pub   rsa4096 2017-02-22 [SCEA]
       9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88
 uid           [ unknown] Docker Release (CE deb) &lt;docker@docker.com&gt;
-sub   rsa4096 2017-02-22 [S]</code></pre></div>
+sub   rsa4096 2017-02-22 [S]</code></pre>
 
 <ol start="3">
-<li><em>使用以下命令将仓库设置为稳定的(<code>stable</code>)存储库。若要添加<code>nightly</code>或<code>test</code>的存储库，请将 nightly 或 test( 或两者 )添加到单词 stable 后面 :</em><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo add-apt-repository \</span>
+<li><em>使用以下命令将仓库设置为稳定的(<code>stable</code>)存储库。若要添加<code>nightly</code>或<code>test</code>的存储库，请将 nightly 或 test( 或两者 )添加到单词 stable 后面 :</em><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo add-apt-repository \</span>
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
 <span class="hljs-meta">   $</span><span class="bash">(lsb_release -cs) \</span>
-   stable"</code></pre></div>
+   stable"</code></pre>
 
 </li>
 </ol>
 <h4 id="安装DOCKER引擎"><a href="#安装DOCKER引擎" class="headerlink" title="安装DOCKER引擎"></a>安装DOCKER引擎</h4><ol>
 <li><p><em>首先更新 apt 程序包索引，其次安装最新版本的 Docker Engine 和容器，或直接执行第二条命令来立即安装 Docker Engine :</em></p>
-<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo apt-get update</span>
-<span class="hljs-meta">$</span><span class="bash"> sudo apt-get install docker-ce docker-ce-cli containerd.io</span></code></pre></div>
+<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo apt-get update</span>
+<span class="hljs-meta">$</span><span class="bash"> sudo apt-get install docker-ce docker-ce-cli containerd.io</span></code></pre>
 </li>
 <li><p><em>若要安装特定版本的Docker Engine，有如下两种方式 :</em></p>
 </li>
 </ol>
 <ul>
 <li><p>方式一 : 列出存储库中可用版本，然后选择性安装 :</p>
-<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> apt-cache madison docker-ce</span>
+<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> apt-cache madison docker-ce</span>
 
   docker-ce | 5:18.09.1~3-0~ubuntu-xenial | https://download.docker.com/linux/ubuntu  xenial/stable amd64 Packages
   docker-ce | 5:18.09.0~3-0~ubuntu-xenial | https://download.docker.com/linux/ubuntu  xenial/stable amd64 Packages
   docker-ce | 18.06.1~ce~3-0~ubuntu       | https://download.docker.com/linux/ubuntu  xenial/stable amd64 Packages
   docker-ce | 18.06.0~ce~3-0~ubuntu       | https://download.docker.com/linux/ubuntu  xenial/stable amd64 Packages
-  ...</code></pre></div>
+  ...</code></pre>
 </li>
 <li><p>方式二 : 通过修改第二列中的版本字符串( VERSION_STRING )来安装特定版本，例如 : <code>18.09.1~3-0~ubuntu-xenial</code></p>
-<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo apt-get install docker-ce=&lt;VERSION_STRING&gt; docker-ce-cli=&lt;VERSION_STRING&gt; containerd.io</span></code></pre></div>
+<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo apt-get install docker-ce=&lt;VERSION_STRING&gt; docker-ce-cli=&lt;VERSION_STRING&gt; containerd.io</span></code></pre>
 
 </li>
 </ul>
 <h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p><em>通过运行 hello-world 映像来验证是否正确安装了Docker Engine. 此命令会下载测试图像并在容器中运行，容器运行时，它会打印参考消息( <code>hello from Docker</code> )并退出 :</em></p>
-<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo docker run hello-world</span></code></pre></div>
+<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo docker run hello-world</span></code></pre>
 <p><img src="/2020/06/22/Ubuntu18-04-%E5%AE%89%E8%A3%85Docker%E5%8F%8A%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/docker-run-hello-world.PNG" srcset="/img/loading.gif" alt=" "></p>
 <h4 id="升级DOCKER引擎"><a href="#升级DOCKER引擎" class="headerlink" title="升级DOCKER引擎"></a>升级DOCKER引擎</h4><p><em>要升级Docker Engine，请先运行sudo apt-get update，然后按照以上安装说明进行操作，选择要安装的新版本</em></p>
 <h3 id="卸载Docker"><a href="#卸载Docker" class="headerlink" title="卸载Docker"></a>卸载Docker</h3><ol>
-<li><em>卸载Docker Engine，CLI以及Containerd软件包 :</em><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo apt-get purge docker-ce docker-ce-cli containerd.io</span></code></pre></div></li>
-<li><em>主机上的映像，容器，卷或自定义配置文件不会自动删除。若要删除所有图像，容器和卷请执行以下命令 :</em><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo rm -rf /var/lib/docker</span></code></pre></div>
+<li><em>卸载Docker Engine，CLI以及Containerd软件包 :</em><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo apt-get purge docker-ce docker-ce-cli containerd.io</span></code></pre></li>
+<li><em>主机上的映像，容器，卷或自定义配置文件不会自动删除。若要删除所有图像，容器和卷请执行以下命令 :</em><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> sudo rm -rf /var/lib/docker</span></code></pre>
 
 
 </li>
 </ol>
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 使用指南</span>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 使用指南</span>
 <span class="hljs-meta">$</span><span class="bash"> docker</span>
 <span class="hljs-meta">#</span><span class="bash"> 查看版本号</span>
 <span class="hljs-meta">$</span><span class="bash"> sudo docker version</span>
 <span class="hljs-meta">#</span><span class="bash"> 查看镜像</span>
 <span class="hljs-meta">$</span><span class="bash"> sudo docker images</span>
-<span class="hljs-meta">#</span><span class="bash"> ...</span></code></pre></div>
+<span class="hljs-meta">#</span><span class="bash"> ...</span></code></pre>
 
 
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><em>菜鸟教程 : <a href="https://www.runoob.com/docker/docker-tutorial.html" target="_blank" rel="noopener">Docker Tutorial</a></em></p>

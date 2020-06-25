@@ -216,7 +216,7 @@
 <li><code>Tag</code> 接口</li>
 </ol>
 <p><em>Tag接口定义了JSP页面与标签处理器之前的通信规则,当JSP容器将JSP页面翻译成Servlet源文件时,如果遇到JSP标签,会创建标签处理器类的实例对象.然后依次调用标签处理器的如下方法.</em></p>
-<div class="hljs"><pre><code class="hljs java">setPageContext() ——&gt; setParent() ——&gt; doStartTag() ——&gt; doEndTag() ---&gt; release()</code></pre></div>
+<pre><code class="hljs java">setPageContext() ——&gt; setParent() ——&gt; doStartTag() ——&gt; doEndTag() ---&gt; release()</code></pre>
 
 <ol start="2">
 <li><code>IterationTag</code> 接口</li>
@@ -232,7 +232,7 @@
 <h4 id="案例-实现一个传统自定义标签"><a href="#案例-实现一个传统自定义标签" class="headerlink" title="案例-实现一个传统自定义标签"></a>案例-实现一个<code>传统</code>自定义标签</h4><p><em>描述 : 开发一个显示IP地址的自定义标签</em></p>
 <ol>
 <li><p>编写完成标签功能的标签处理器类</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.tag.handler;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.tag.handler;
 
 <span class="hljs-keyword">import</span> java.io.IOException;
 <span class="hljs-keyword">import</span> javax.servlet.jsp.JspException;
@@ -261,10 +261,10 @@
 
 		<span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.doStartTag();
 	&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p>编写TLD文件</p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">taglib</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://java.sun.com/xml/ns/j2ee"</span>
 	<span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
@@ -287,10 +287,10 @@
 		<span class="hljs-comment">&lt;!-- 指定标签的类型 --&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">body-content</span>&gt;</span>empty<span class="hljs-tag">&lt;/<span class="hljs-name">body-content</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">tag</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">taglib</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">taglib</span>&gt;</span></code></pre>
 </li>
 <li><p>编写JSP文件,并导入和使用自定义标签</p>
-<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
     <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">%--</span> 导入自定义的标签库描述符文件 <span class="hljs-attr">--</span>%&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">%@taglib</span> <span class="hljs-attr">uri</span>=<span class="hljs-string">"https://yubuntu0109.github.io"</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">"yu"</span> %&gt;</span>
@@ -303,7 +303,7 @@
 	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">yu:ipTag</span>/&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 
 </li>
 </ol>
@@ -311,7 +311,7 @@
 <li><code>SimpleTag</code> 接口</li>
 </ol>
 <p><em>SimpleTag接口中的方法和传统标签中定义的签名有所区别,但是功能却基本一致,例如: 都实现了给<code>标签处理器</code>传递<code>pageContext</code>对象和父标签处理器对象的功能.而且<code>JSP容器</code>执行简单标签处理器的顺序也和执行传统标签处理器的顺序一致.简单标签处理器的执行流程如下所示:</em></p>
-<div class="hljs"><pre><code class="hljs java">JSP容器实例化标签处理器类 ——&gt; setJspContext() ——&gt; setParent() ——&gt; 设置属性的setter方法 ——&gt; setJspBody() ——&gt; doTag()</code></pre></div>
+<pre><code class="hljs java">JSP容器实例化标签处理器类 ——&gt; setJspContext() ——&gt; setParent() ——&gt; 设置属性的setter方法 ——&gt; setJspBody() ——&gt; doTag()</code></pre>
 
 <ol start="2">
 <li><code>JspFragment</code> 类</li>
@@ -324,7 +324,7 @@
 <h4 id="案例-实现一个自定义简单标签"><a href="#案例-实现一个自定义简单标签" class="headerlink" title="案例-实现一个自定义简单标签"></a>案例-实现一个自定义简单标签</h4><p><em>描述 : 自定义简单标签,实现重复执行标签体的功能.</em></p>
 <ol>
 <li><p>编写标签处理器类</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.tag.handler;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.tag.handler;
 
 <span class="hljs-keyword">import</span> java.io.IOException;
 <span class="hljs-keyword">import</span> javax.servlet.jsp.JspException;
@@ -356,10 +356,10 @@
 			jspFragment.invoke(<span class="hljs-keyword">null</span>);
 		&#125;
 	&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>编写简单标签库描述符文件</em></p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">taglib</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://java.sun.com/xml/ns/j2ee"</span>
 	<span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
@@ -385,10 +385,10 @@
 			<span class="hljs-tag">&lt;<span class="hljs-name">required</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">required</span>&gt;</span>
 		<span class="hljs-tag">&lt;/<span class="hljs-name">attribute</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">tag</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">taglib</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">taglib</span>&gt;</span></code></pre>
 </li>
 <li><p>编写JSP文件,并导入和使用自定义标签</p>
-<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
     <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">%@taglib</span> <span class="hljs-attr">uri</span>=<span class="hljs-string">"/SimpleTag"</span>  <span class="hljs-attr">prefix</span>=<span class="hljs-string">"yu"</span>%&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
@@ -402,14 +402,14 @@
 				Hello SimpleTag !<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span>
 			<span class="hljs-tag">&lt;/<span class="hljs-name">yu:simpleIterate</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 
 </li>
 </ol>
 <h4 id="案例-模拟JSTL的-lt-c-choose-gt-lt-c-when-gt-lt-c-otherwise-gt-标签"><a href="#案例-模拟JSTL的-lt-c-choose-gt-lt-c-when-gt-lt-c-otherwise-gt-标签" class="headerlink" title="案例-模拟JSTL的&lt;c:choose&gt;,&lt;c:when&gt;,&lt;c:otherwise&gt;标签"></a>案例-模拟<code>JSTL</code>的&lt;c:choose&gt;,&lt;c:when&gt;,&lt;c:otherwise&gt;标签</h4><p><em>描述 : 通过模仿<code>JSTL</code>核心标签库中的&lt;c:choose&gt;,&lt;c:when test=””&gt;,&lt;c:otherwise&gt;标签,开发一套自己的标签 :  <code>&lt;yu:choose&gt;</code>,<code>&lt;yu:when test=&quot;&quot;&gt;</code>,<code>&lt;yu:otherwise&gt;</code></em></p>
 <ol>
 <li><p><em>编写标签<code>&lt;yu:choose&gt;</code>的标签处理器类 : ChooseTag.java</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.tag.handler.choose;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.tag.handler.choose;
 
 <span class="hljs-keyword">import</span> java.io.IOException;
 <span class="hljs-keyword">import</span> javax.servlet.jsp.JspException;
@@ -440,10 +440,10 @@
 		<span class="hljs-keyword">this</span>.getJspBody().invoke(<span class="hljs-keyword">null</span>);
 	&#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>编写标签<code>&lt;yu:when test=&quot;&quot;&gt;</code>的标签处理器类 : WhenTag.java</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.tag.handler.choose;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.tag.handler.choose;
 
 <span class="hljs-keyword">import</span> java.io.IOException;
 <span class="hljs-keyword">import</span> javax.servlet.jsp.JspException;
@@ -489,10 +489,10 @@
 			chooseTag.setFlag(<span class="hljs-keyword">true</span>);
 		&#125;
 	&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>编写<code>&lt;yu:otherwise&gt;</code>的标签体处理器类 : OtherwiseTag.java</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.tag.handler.choose;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.tag.handler.choose;
 
 <span class="hljs-keyword">import</span> java.io.IOException;
 <span class="hljs-keyword">import</span> javax.servlet.jsp.JspException;
@@ -533,10 +533,10 @@
 
 	&#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>编写<code>TLD</code>文件</em></p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">taglib</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://java.sun.com/xml/ns/j2ee"</span>
 	<span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
@@ -576,10 +576,10 @@
 		<span class="hljs-tag">&lt;<span class="hljs-name">body-content</span>&gt;</span>scriptless<span class="hljs-tag">&lt;/<span class="hljs-name">body-content</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">tag</span>&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">taglib</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">taglib</span>&gt;</span></code></pre>
 </li>
 <li><p><em>编写两个JSP文件,对三个自定义标签进行测试.</em></p>
-<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
     <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
@@ -600,11 +600,11 @@
 			<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 
 </li>
 </ol>
-<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
     <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">%--</span> 导入自定义的标签库描述符文件 <span class="hljs-attr">--</span>%&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">%@taglib</span> <span class="hljs-attr">uri</span>=<span class="hljs-string">"https://yubuntu0109.github.io"</span>  <span class="hljs-attr">prefix</span>=<span class="hljs-string">"yu"</span>%&gt;</span>
@@ -632,7 +632,7 @@
 			<span class="hljs-tag">&lt;/<span class="hljs-name">yu:choose</span>&gt;</span>
 		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
             </article>
             <hr>
             <div>

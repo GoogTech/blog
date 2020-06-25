@@ -205,7 +205,7 @@
 <h4 id="简单案例"><a href="#简单案例" class="headerlink" title="简单案例"></a>简单案例</h4><p><em>MyBatis框架的强大之处体现在映射文件,下面使用上述主要元素来编写一个简单的CURE程序 ~</em></p>
 <ol>
 <li><p><em>数据表</em></p>
-<div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment"># 客户信息表(用于测试增删改查元素)</span>
+<pre><code class="hljs sql"><span class="hljs-comment"># 客户信息表(用于测试增删改查元素)</span>
 <span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> t_customer (
 
 	<span class="hljs-keyword">id</span> <span class="hljs-built_in">INT</span>(<span class="hljs-number">32</span>) PRIMARY <span class="hljs-keyword">KEY</span> AUTO_INCREMENT,
@@ -221,17 +221,17 @@
 	t_id <span class="hljs-built_in">INT</span> PRIMARY <span class="hljs-keyword">KEY</span> AUTO_INCREMENT,
 	t_name <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
 	t_age <span class="hljs-built_in">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>
-)</code></pre></div>
+)</code></pre>
 </li>
 <li><p><em>db.properties : 数据库配置信息</em></p>
-<div class="hljs"><pre><code class="hljs t">#database configuration information
+<pre><code class="hljs t">#database configuration information
 jdbc.driver=com.mysql.cj.jdbc.Driver
 jdbc.url=jdbc:mysql://LOCALHOST/MyBatis?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true
 jdbc.username=root
-jdbc.password=GoodTime</code></pre></div>
+jdbc.password=GoodTime</code></pre>
 </li>
 <li><p><em>mybatis-config.xml : MyBatis核心配置文件</em></p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE configuration
  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span>
@@ -257,10 +257,10 @@ jdbc.password=GoodTime</code></pre></div>
 		<span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">"pers/huangyuhui/mybatis/mapper/UserMapper.xml"</span>/&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">"pers/huangyuhui/mybatis/mapper/CustomerMapper.xml"</span>/&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">mappers</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></code></pre>
 </li>
 <li><p><em>CustomerMapper.xml : 操作’t_customer’数据表的映射文件</em></p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span>
 
@@ -297,10 +297,10 @@ jdbc.password=GoodTime</code></pre></div>
 		delete from t_customer where id = #&#123;id&#125;
 	<span class="hljs-tag">&lt;/<span class="hljs-name">delete</span>&gt;</span>
 	
-<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre>
 </li>
 <li><p><em>UserMapper.xml : 操作’t_user’数据表的映射文件</em></p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span>
 
@@ -314,10 +314,10 @@ jdbc.password=GoodTime</code></pre></div>
 	<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"findAllUser"</span> <span class="hljs-attr">resultMap</span>=<span class="hljs-string">"resultMap"</span>&gt;</span>
 		select t_id,t_name,t_age from t_user
 	<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre>
 </li>
 <li><p><em>MyBatisUtils.java : MyBatis工具类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mybatis.util;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mybatis.util;
 
 <span class="hljs-keyword">import</span> java.io.IOException;
 <span class="hljs-keyword">import</span> java.io.Reader;
@@ -356,10 +356,10 @@ jdbc.password=GoodTime</code></pre></div>
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> SqlSession <span class="hljs-title">getSession</span><span class="hljs-params">()</span> </span>&#123;
 		<span class="hljs-keyword">return</span> sqlSessionFactory.openSession();
 	&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>MyBatisTest.java : 测试类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mybatis.test;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mybatis.test;
 
 <span class="hljs-keyword">import</span> java.io.IOException;
 <span class="hljs-keyword">import</span> java.util.List;
@@ -508,17 +508,17 @@ jdbc.password=GoodTime</code></pre></div>
 
 	&#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>log4j.properties : 日志配置文件</em></p>
-<div class="hljs"><pre><code class="hljs t">#Global configuration
+<pre><code class="hljs t">#Global configuration
 log4j.rootLogger=DEBUG,stdout
 #Log configuration
 log4j.logger.pers.huangyuhui.mybatis.test=TRACE
 #Console configuration
 log4j.appender.stdout=org.apache.log4j.ConsoleAppender
 log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
-log4j.appender.stdout.layout.layout.ConversionPattern=%5p [%t] - %m%n</code></pre></div></li>
+log4j.appender.stdout.layout.layout.ConversionPattern=%5p [%t] - %m%n</code></pre></li>
 </ol>
 
             </article>

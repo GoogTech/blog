@@ -200,7 +200,7 @@
 <h4 id="ResultItems"><a href="#ResultItems" class="headerlink" title="ResultItems"></a>ResultItems</h4><p><em>ResultItems相当于一个<code>Map</code>,它保存PageProcessor处理的结果,供Pipeline使用. 它的API与Map很类似,值得注意的是它有一个字段<code>skip</code>,若设置为true,则不应被Pipeline处理 .</em></p>
 <h3 id="控制爬虫运转的引擎-Spider"><a href="#控制爬虫运转的引擎-Spider" class="headerlink" title="控制爬虫运转的引擎-Spider"></a>控制爬虫运转的引擎-Spider</h3><p><em><code>Spider</code>是WebMagic内部流程的核心. <code>Downloader</code>、<code>PageProcessor</code>、<code>Scheduler</code>、<code>Pipeline</code>都是Spider的一个属性,这些属性是可以自由设置的,通过设置这个属性可以实现不同的功能. Spider也是WebMagic操作的入口,它封装了爬虫的创建、启动、停止、多线程等功能 .. 注意 : 一般来说,对于编写一个爬虫,PageProcessor是需要编写的部分,而Spider则是创建和控制爬虫的入口哟 ~</em></p>
 <h3 id="WebMagic入门程序"><a href="#WebMagic入门程序" class="headerlink" title="WebMagic入门程序"></a>WebMagic入门程序</h3><p><em>获取我博客中的个人姓名信息,示例程序如下 :</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.crawler.WebMagic_Demo;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.crawler.WebMagic_Demo;
 
 <span class="hljs-keyword">import</span> us.codecraft.webmagic.Page;
 <span class="hljs-keyword">import</span> us.codecraft.webmagic.Site;
@@ -238,10 +238,10 @@
                 .addUrl(<span class="hljs-string">"https://yubuntu0109.github.io/"</span>)
                 .run();
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p><em>程序运行结果 :</em></p>
-<div class="hljs"><pre><code class="hljs angelscript"><span class="hljs-number">19</span><span class="hljs-number">-07</span><span class="hljs-number">-13</span> <span class="hljs-number">15</span>:<span class="hljs-number">58</span>:<span class="hljs-number">11</span>,<span class="hljs-number">084</span> INFO  us.codecraft.webmagic.Spider(Spider.java:<span class="hljs-number">306</span>) ## Spider yubuntu0109.github.io started!
+<pre><code class="hljs angelscript"><span class="hljs-number">19</span><span class="hljs-number">-07</span><span class="hljs-number">-13</span> <span class="hljs-number">15</span>:<span class="hljs-number">58</span>:<span class="hljs-number">11</span>,<span class="hljs-number">084</span> INFO  us.codecraft.webmagic.Spider(Spider.java:<span class="hljs-number">306</span>) ## Spider yubuntu0109.github.io started!
 
 <span class="hljs-number">19</span><span class="hljs-number">-07</span><span class="hljs-number">-13</span> <span class="hljs-number">15</span>:<span class="hljs-number">58</span>:<span class="hljs-number">12</span>,<span class="hljs-number">210</span> INFO  us.codecraft.webmagic.downloader.HttpClientDownloader(HttpClientDownloader.java:<span class="hljs-number">86</span>) ## downloading page success https:<span class="hljs-comment">//yubuntu0109.github.io/</span>
 
@@ -252,23 +252,23 @@ name:	黄宇辉      &lt;----------WebMagic默认将爬取结果输出到控制�
 
 <span class="hljs-number">19</span><span class="hljs-number">-07</span><span class="hljs-number">-13</span> <span class="hljs-number">15</span>:<span class="hljs-number">58</span>:<span class="hljs-number">17</span>,<span class="hljs-number">405</span> INFO  us.codecraft.webmagic.Spider(Spider.java:<span class="hljs-number">338</span>) ## Spider yubuntu0109.github.io closed! <span class="hljs-number">1</span> pages downloaded.
 
-Process finished with exit code <span class="hljs-number">0</span></code></pre></div>
+Process finished with exit code <span class="hljs-number">0</span></code></pre>
 
 
 <h3 id="WebMagic抽取元素功能"><a href="#WebMagic抽取元素功能" class="headerlink" title="WebMagic抽取元素功能"></a>WebMagic抽取元素功能</h3><p><em><code>CSS</code> : 爬取博客个人姓名信息的元素标签</em></p>
-<div class="hljs"><pre><code class="hljs java">page.putField(<span class="hljs-string">"name"</span>, page.getHtml().css(<span class="hljs-string">"aside#menu hgroup.introduce h5"</span>));</code></pre></div>
+<pre><code class="hljs java">page.putField(<span class="hljs-string">"name"</span>, page.getHtml().css(<span class="hljs-string">"aside#menu hgroup.introduce h5"</span>));</code></pre>
 <p><em>程序运行结果 :</em></p>
-<div class="hljs"><pre><code class="hljs angelscript">name:	&lt;h5 <span class="hljs-keyword">class</span>="<span class="hljs-symbol">nickname</span>"&gt;黄宇辉&lt;/<span class="hljs-symbol">h5</span>&gt;</code></pre></div>
+<pre><code class="hljs angelscript">name:	&lt;h5 <span class="hljs-keyword">class</span>="<span class="hljs-symbol">nickname</span>"&gt;黄宇辉&lt;/<span class="hljs-symbol">h5</span>&gt;</code></pre>
 
 <p><em><code>CSS</code> : 爬取博客个人姓名信息</em></p>
-<div class="hljs"><pre><code class="hljs java">page.putField(<span class="hljs-string">"name"</span>, page.getHtml().css(<span class="hljs-string">"aside#menu hgroup.introduce h5"</span>, <span class="hljs-string">"text"</span>));</code></pre></div>
+<pre><code class="hljs java">page.putField(<span class="hljs-string">"name"</span>, page.getHtml().css(<span class="hljs-string">"aside#menu hgroup.introduce h5"</span>, <span class="hljs-string">"text"</span>));</code></pre>
 <p><em>程序运行结果 :</em></p>
-<div class="hljs"><pre><code class="hljs applescript"><span class="hljs-built_in">name</span>:	黄宇辉</code></pre></div>
+<pre><code class="hljs applescript"><span class="hljs-built_in">name</span>:	黄宇辉</code></pre>
 
 <p><em><code>CSS</code> : 爬取博客首页所有文章标题</em></p>
-<div class="hljs"><pre><code class="hljs java">page.putField(<span class="hljs-string">"title"</span>, page.getHtml().css(<span class="hljs-string">"div.container h3 a"</span>, <span class="hljs-string">"text"</span>).all());</code></pre></div>
+<pre><code class="hljs java">page.putField(<span class="hljs-string">"title"</span>, page.getHtml().css(<span class="hljs-string">"div.container h3 a"</span>, <span class="hljs-string">"text"</span>).all());</code></pre>
 <p><em>程序运行结果 :</em></p>
-<div class="hljs"><pre><code class="hljs mipsasm"><span class="hljs-symbol">title:</span>	
+<pre><code class="hljs mipsasm"><span class="hljs-symbol">title:</span>	
 [
     <span class="hljs-keyword">Java爬虫之Jsoup, </span>
     <span class="hljs-keyword">Java爬虫之HttpClient,
@@ -280,13 +280,13 @@ Process finished with exit code <span class="hljs-number">0</span></code></pre><
     Spring <span class="hljs-keyword">Boot之基本Web开发, </span>
     Hi Redis ~, 
     Hi Spring <span class="hljs-keyword">Boot </span>~
-]</code></pre></div>
+]</code></pre>
 
 <hr>
 <p><em><code>XPath</code> : 爬取博客首页所有文章标题的元素标签</em></p>
-<div class="hljs"><pre><code class="hljs java">page.putField(<span class="hljs-string">"title"</span>, page.getHtml().xpath(<span class="hljs-string">"//div[@class=container]/ul/li/article/h3/a"</span>).all());</code></pre></div>
+<pre><code class="hljs java">page.putField(<span class="hljs-string">"title"</span>, page.getHtml().xpath(<span class="hljs-string">"//div[@class=container]/ul/li/article/h3/a"</span>).all());</code></pre>
 <p><em>程序运行结果 :</em></p>
-<div class="hljs"><pre><code class="hljs java">title:	
+<pre><code class="hljs java">title:	
 [
     &lt;a class="post-title-link" href="/2019/07/10/Java爬虫之Jsoup/"&gt;Java爬虫之Jsoup&lt;/a&gt;, 
     &lt;a class="post-title-link" href="/2019/07/10/Java爬虫之HttpClient/"&gt;Java爬虫之HttpClient&lt;/a&gt;, 
@@ -298,22 +298,22 @@ Process finished with exit code <span class="hljs-number">0</span></code></pre><
     &lt;a class="post-title-link" href="/2019/06/26/Spring-Boot之基本Web开发/"&gt;Spring Boot之基本Web开发&lt;/a&gt;, 
     &lt;a class="post-title-link" href="/2019/06/25/Hi-Redis/"&gt;Hi Redis ~&lt;/a&gt;, 
     &lt;a class="post-title-link" href="/2019/06/23/Hi-Spring-Boot/"&gt;Hi Spring Boot ~&lt;/a&gt;
-]</code></pre></div>
+]</code></pre>
 
 <hr>
 <p><em><code>Regex</code> : 爬取博客首页含’Java’关键字的文章标题</em></p>
-<div class="hljs"><pre><code class="hljs java">page.putField(<span class="hljs-string">"title"</span>, page.getHtml().css(<span class="hljs-string">"div.container h3 a"</span>, <span class="hljs-string">"text"</span>).regex(<span class="hljs-string">".*Java.*"</span>).all());</code></pre></div>
+<pre><code class="hljs java">page.putField(<span class="hljs-string">"title"</span>, page.getHtml().css(<span class="hljs-string">"div.container h3 a"</span>, <span class="hljs-string">"text"</span>).regex(<span class="hljs-string">".*Java.*"</span>).all());</code></pre>
 <p><em>程序运行结果 :</em></p>
-<div class="hljs"><pre><code class="hljs apache"><span class="hljs-attribute">title</span>:<span class="hljs-meta">	[Java爬虫之Jsoup, Java爬虫之HttpClient]</span></code></pre></div>
+<pre><code class="hljs apache"><span class="hljs-attribute">title</span>:<span class="hljs-meta">	[Java爬虫之Jsoup, Java爬虫之HttpClient]</span></code></pre>
 
 <hr>
 <p><em><code>Link</code> : 爬取博客首页含’Java’关键字的文章链接</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">//获取博客首页中包含'Hi'关键字的文章链接</span>
+<pre><code class="hljs java"><span class="hljs-comment">//获取博客首页中包含'Hi'关键字的文章链接</span>
 page.addTargetRequests(page.getHtml().css(<span class="hljs-string">"div.container h3 a"</span>).links().regex(<span class="hljs-string">".*Hi.*"</span>).all());
 <span class="hljs-comment">//根据文章链接获取该文章标题</span>
-page.putField(<span class="hljs-string">"blog-title"</span>, page.getHtml().css(<span class="hljs-string">"div.post-content h2"</span>, <span class="hljs-string">"text"</span>).all());</code></pre></div>
+page.putField(<span class="hljs-string">"blog-title"</span>, page.getHtml().css(<span class="hljs-string">"div.post-content h2"</span>, <span class="hljs-string">"text"</span>).all());</code></pre>
 <p><em>程序运行结果 :</em></p>
-<div class="hljs"><pre><code class="hljs angelscript"><span class="hljs-number">19</span><span class="hljs-number">-07</span><span class="hljs-number">-13</span> <span class="hljs-number">16</span>:<span class="hljs-number">52</span>:<span class="hljs-number">15</span>,<span class="hljs-number">233</span> INFO  us.codecraft.webmagic.downloader.HttpClientDownloader(HttpClientDownloader.java:<span class="hljs-number">86</span>) 
+<pre><code class="hljs angelscript"><span class="hljs-number">19</span><span class="hljs-number">-07</span><span class="hljs-number">-13</span> <span class="hljs-number">16</span>:<span class="hljs-number">52</span>:<span class="hljs-number">15</span>,<span class="hljs-number">233</span> INFO  us.codecraft.webmagic.downloader.HttpClientDownloader(HttpClientDownloader.java:<span class="hljs-number">86</span>) 
 ## downloading page success https:<span class="hljs-comment">//yubuntu0109.github.io/2019/06/25/Hi-Redis/</span>
 <span class="hljs-keyword">get</span> page: https:<span class="hljs-comment">//yubuntu0109.github.io/2019/06/25/Hi-Redis/</span>
 blog-title:	[学习笔记 : 拥抱Redis ~]
@@ -321,21 +321,21 @@ blog-title:	[学习笔记 : 拥抱Redis ~]
 <span class="hljs-number">19</span><span class="hljs-number">-07</span><span class="hljs-number">-13</span> <span class="hljs-number">16</span>:<span class="hljs-number">52</span>:<span class="hljs-number">20</span>,<span class="hljs-number">490</span> INFO  us.codecraft.webmagic.downloader.HttpClientDownloader(HttpClientDownloader.java:<span class="hljs-number">86</span>) 
 ## downloading page success https:<span class="hljs-comment">//yubuntu0109.github.io/2019/06/23/Hi-Spring-Boot/</span>
 <span class="hljs-keyword">get</span> page: https:<span class="hljs-comment">//yubuntu0109.github.io/2019/06/23/Hi-Spring-Boot/</span>
-blog-title:	[学习笔记 : 拥抱Spring Boot]</code></pre></div>
+blog-title:	[学习笔记 : 拥抱Spring Boot]</code></pre>
 
 <hr>
 <h3 id="WebMagic自定义配置"><a href="#WebMagic自定义配置" class="headerlink" title="WebMagic自定义配置"></a>WebMagic自定义配置</h3><p><em>对爬虫进行一些配置</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Site site = Site.me()
+<pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Site site = Site.me()
         .setCharset(<span class="hljs-string">"utf-8"</span>)<span class="hljs-comment">//字符编码</span>
         .setTimeOut(<span class="hljs-number">10000</span>)<span class="hljs-comment">//超时时间-10s</span>
         .setRetrySleepTime(<span class="hljs-number">2000</span>)<span class="hljs-comment">//重试间隔时间-2s</span>
-        .setRetryTimes(<span class="hljs-number">5</span>);<span class="hljs-comment">//重试次数</span></code></pre></div>
+        .setRetryTimes(<span class="hljs-number">5</span>);<span class="hljs-comment">//重试次数</span></code></pre>
 
 <p><em>将爬取的数据存储到指定文件夹中</em></p>
-<div class="hljs"><pre><code class="hljs java">Spider.create(<span class="hljs-keyword">new</span> PipelineDemo()).addPipeline(<span class="hljs-keyword">new</span> FilePipeline(<span class="hljs-string">"D:\\WebMagic-Pipeline-Demo\\Data\\"</span>)) ..</code></pre></div>
+<pre><code class="hljs java">Spider.create(<span class="hljs-keyword">new</span> PipelineDemo()).addPipeline(<span class="hljs-keyword">new</span> FilePipeline(<span class="hljs-string">"D:\\WebMagic-Pipeline-Demo\\Data\\"</span>)) ..</code></pre>
 
 <p><em>设置处理爬虫的线程数</em></p>
-<div class="hljs"><pre><code class="hljs java">Spider.create(<span class="hljs-keyword">new</span> ThreadDemo()).thread(<span class="hljs-number">5</span>)..</code></pre></div>
+<pre><code class="hljs java">Spider.create(<span class="hljs-keyword">new</span> ThreadDemo()).thread(<span class="hljs-number">5</span>)..</code></pre>
             </article>
             <hr>
             <div>

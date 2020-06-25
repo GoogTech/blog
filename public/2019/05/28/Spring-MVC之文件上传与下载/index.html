@@ -196,17 +196,17 @@
 </ul>
 <p><em>当客户端form表单的<code>enctype</code>属性为<code>multipart/form-data</code>时,浏览器就会采用二进制流的方式来处理表单数据,服务器端就会对文件上传的请求进行解析处理. Spring MVC为文件上传提供了支持,这种支持是通过<code>MultipartResolver</code>(多部件解析器)对象实现的. MultipartResolver是一个接口对象,需要通过它的实现类<code>CommonsMultipartResolver</code>来完成文件的上传工作,在需要在spring mvc配置文件中定义MultipartResolver接口的Bean即可,其配置方式如下 :</em></p>
 <ul>
-<li><em>springmvc-config.xml</em><div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 配置文件上传解析器:MultipartResolver --&gt;</span>
+<li><em>springmvc-config.xml</em><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 配置文件上传解析器:MultipartResolver --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"multipartResolver"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.web.multipart.commons.CommonsMultipartResolver"</span>&gt;</span>
     <span class="hljs-comment">&lt;!-- 设置请求编码格式 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"defaultEncoding"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"UTF-8"</span>/&gt;</span>
     <span class="hljs-comment">&lt;!-- 设置允许上传文件的最大值(10MB),单位为字节 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"maxUploadSize"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"20971520"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre></div></li>
+<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre></li>
 <li><em>注意: 因为<code>MultipartResolver</code>接口的实现类<code>CommonsMultipartResolver</code>内部是引用<code>multipartResolver</code>字符串获取该实现类对象并完成文件解析的,所以在配置<code>CommonsMultipartResolver</code>时必须指定该Bean的id为multipartResolver</em></li>
 </ul>
 <h4 id="文件上传案例"><a href="#文件上传案例" class="headerlink" title="文件上传案例"></a>文件上传案例</h4><ol>
-<li><em>web.xml</em><div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<li><em>web.xml</em><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee"</span>
          <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
          <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"</span>
@@ -233,14 +233,14 @@
         <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre>
 
 
 </li>
 </ol>
 <ol start="2">
 <li><p><em>Springmvc-config.xml : Spring MVC核心配置文件</em></p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>
        <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
        <span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">"http://www.springframework.org/schema/context"</span>
@@ -269,10 +269,10 @@
         <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"maxUploadSize"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"20971520"</span>/&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
 </li>
 <li><p><em>upload.jsp : 文件上传页面</em></p>
-<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%--</span>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%--</span>
   <span class="hljs-attr">Created</span> <span class="hljs-attr">by</span> <span class="hljs-attr">IntelliJ</span> <span class="hljs-attr">IDEA.</span>
   <span class="hljs-attr">User:</span> <span class="hljs-attr">Administrator</span>
   <span class="hljs-attr">Date:</span> <span class="hljs-attr">6</span>/<span class="hljs-attr">1</span>/<span class="hljs-attr">2019</span>
@@ -308,10 +308,10 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"上传"</span>/&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 </li>
 <li><p><em>FileController.java : 文件上传控制器</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.file.controller;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.file.controller;
 
 <span class="hljs-keyword">import</span> org.apache.commons.io.FileUtils;
 <span class="hljs-keyword">import</span> org.springframework.http.HttpHeaders;
@@ -383,7 +383,7 @@
         <span class="hljs-keyword">return</span> <span class="hljs-string">"error"</span>;
     &#125;
 
-&#125;</code></pre></div></li>
+&#125;</code></pre></li>
 </ol>
 <ul>
 <li><em>注意: <code>upload</code>文件夹是在项目的发布路径中,而非创建的项目所在路径哟 !</em></li>
@@ -391,7 +391,7 @@
 <h3 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h3><p><em>简介 : Spring MVC提供了一个<code>ResponseEntity</code>类型的对象,使用它可以很方便地定义返回的<code>HttpHeaders</code>与<code>HttpStatus</code>对象,通过对这两个对象的设置,既可完成下载文件时所需对的配置信息.</em></p>
 <ol>
 <li><p><em>download.jsp : 文件下载页面</em></p>
-<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%--</span>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%--</span>
   <span class="hljs-attr">Created</span> <span class="hljs-attr">by</span> <span class="hljs-attr">IntelliJ</span> <span class="hljs-attr">IDEA.</span>
   <span class="hljs-attr">User:</span> <span class="hljs-attr">Administrator</span>
   <span class="hljs-attr">Date:</span> <span class="hljs-attr">6</span>/<span class="hljs-attr">1</span>/<span class="hljs-attr">2019</span>
@@ -408,10 +408,10 @@
 <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"$&#123;pageContext.request.contextPath&#125;/fileDownload?filename=&lt;%=URLEncoder.encode("</span>黄宇辉好可耐<span class="hljs-attr">.jpg</span>",<span class="hljs-attr">StandardCharsets.UTF_8</span>)%&gt;</span>"&gt;
     点击下载图片哟!<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 </li>
 <li><p><em>FileController.java : 文件下载控制器</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.file.controller;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.file.controller;
 
 <span class="hljs-keyword">import</span> org.apache.commons.io.FileUtils;
 <span class="hljs-keyword">import</span> org.springframework.http.HttpHeaders;
@@ -495,7 +495,7 @@
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> String(filename.getBytes(StandardCharsets.UTF_8.name()), StandardCharsets.ISO_8859_1.name());
     &#125;
 
-&#125;</code></pre></div></li>
+&#125;</code></pre></li>
 </ol>
 
             </article>

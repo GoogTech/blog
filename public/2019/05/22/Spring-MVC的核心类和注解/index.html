@@ -199,19 +199,19 @@
 <li>标注在类上 : 该类中的所有方法都将映射为相对于类级别的请求,表示该控制器所处理的所有请求都被映射到value属性值所指的路径下.</li>
 </ol>
 <h3 id="ViewResolver-视图解析器"><a href="#ViewResolver-视图解析器" class="headerlink" title="ViewResolver 视图解析器"></a>ViewResolver 视图解析器</h3><p><em>简介 : Spring MVC中视图解析器负责解析视图,可以通过在配置文件中定义一个ViewResolver来配置视图解析器.其配置如下 :</em></p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 定义视图解析器 --&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 定义视图解析器 --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"viewResolver"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span>
 	<span class="hljs-comment">&lt;!-- 设置前缀 --&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"prefix"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"/WEB-INF/view/"</span>/&gt;</span>
 	<span class="hljs-comment">&lt;!-- 设置后缀 --&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"suffix"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">".jsp"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre>
 
 
 
 <h3 id="应用案例"><a href="#应用案例" class="headerlink" title="应用案例"></a>应用案例</h3><ol>
 <li><p><em>web.xml</em></p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
 	<span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee"</span>
 	<span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"</span>
@@ -239,10 +239,10 @@
 		<span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre>
 </li>
 <li><p><em>springmvc-config.xml : Spring MVC配置文件</em></p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>
 	<span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
 	<span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">"http://www.springframework.org/schema/context"</span>
@@ -260,10 +260,10 @@
 		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"suffix"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">".jsp"</span>/&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
 </li>
 <li><p><em>MyController.java : 控制器</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.controller;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.controller;
 
 <span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;
 <span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;
@@ -293,7 +293,7 @@
 		<span class="hljs-keyword">return</span> <span class="hljs-string">"hi-springmvc"</span>;
 	&#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>在WebContent/WEB-INF/目录下新建view文件,并在其中新建<code>hi-springmvc.jsp</code>.</em></p>
 </li>

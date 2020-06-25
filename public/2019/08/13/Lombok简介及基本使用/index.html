@@ -209,37 +209,37 @@
 </ul>
 <h3 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h3><ol>
 <li><p><em>添加Maven依赖 :</em></p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.projectlombok<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>lombok<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.16.20<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>provided<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
 </li>
 <li><p><em>安装IDEA(<code>IntelliJ Lombok plugin</code>)插件</em></p>
 </li>
 </ol>
 <h3 id="常见异常"><a href="#常见异常" class="headerlink" title="常见异常"></a>常见异常</h3><ol>
 <li><p><em>(已添加<code>lombok</code>依赖情况下)抛出此异常,(IDEA环境)解决方案:安装<code>IntelliJ Lombok plugin</code>并启用<code>Enable annotation processing</code></em></p>
-<div class="hljs"><pre><code class="hljs stylus">Warning:(<span class="hljs-number">49</span>, <span class="hljs-number">8</span>) java: lombok<span class="hljs-selector-class">.javac</span><span class="hljs-selector-class">.apt</span><span class="hljs-selector-class">.LombokProcessor</span> could not be initialized. Lombok will not run during this compilation: java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.IllegalArgumentException</span>: com<span class="hljs-selector-class">.sun</span><span class="hljs-selector-class">.tools</span><span class="hljs-selector-class">.javac</span><span class="hljs-selector-class">.main</span>.DelegatingJavaFileManager<span class="hljs-variable">$DelegatingSJFM</span> extends com<span class="hljs-selector-class">.sun</span><span class="hljs-selector-class">.tools</span><span class="hljs-selector-class">.javac</span><span class="hljs-selector-class">.main</span><span class="hljs-selector-class">.DelegatingJavaFileManager</span> implements javax<span class="hljs-selector-class">.tools</span><span class="hljs-selector-class">.StandardJavaFileManager</span>
+<pre><code class="hljs stylus">Warning:(<span class="hljs-number">49</span>, <span class="hljs-number">8</span>) java: lombok<span class="hljs-selector-class">.javac</span><span class="hljs-selector-class">.apt</span><span class="hljs-selector-class">.LombokProcessor</span> could not be initialized. Lombok will not run during this compilation: java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.IllegalArgumentException</span>: com<span class="hljs-selector-class">.sun</span><span class="hljs-selector-class">.tools</span><span class="hljs-selector-class">.javac</span><span class="hljs-selector-class">.main</span>.DelegatingJavaFileManager<span class="hljs-variable">$DelegatingSJFM</span> extends com<span class="hljs-selector-class">.sun</span><span class="hljs-selector-class">.tools</span><span class="hljs-selector-class">.javac</span><span class="hljs-selector-class">.main</span><span class="hljs-selector-class">.DelegatingJavaFileManager</span> implements javax<span class="hljs-selector-class">.tools</span><span class="hljs-selector-class">.StandardJavaFileManager</span>
   	at lombok<span class="hljs-selector-class">.javac</span><span class="hljs-selector-class">.apt</span><span class="hljs-selector-class">.LombokFileObjects</span>.getCompiler(LombokFileObjects<span class="hljs-selector-class">.java</span>:<span class="hljs-number">148</span>)
   	at lombok<span class="hljs-selector-class">.javac</span><span class="hljs-selector-class">.apt</span><span class="hljs-selector-class">.InterceptingJavaFileManager</span>.&lt;init&gt;(InterceptingJavaFileManager<span class="hljs-selector-class">.java</span>:<span class="hljs-number">40</span>)
   	at lombok<span class="hljs-selector-class">.javac</span><span class="hljs-selector-class">.apt</span><span class="hljs-selector-class">.LombokProcessor</span>.placePostCompileAndDontMakeForceRoundDummiesHook(LombokProcessor<span class="hljs-selector-class">.java</span>:<span class="hljs-number">165</span>)
   	at lombok<span class="hljs-selector-class">.javac</span><span class="hljs-selector-class">.apt</span><span class="hljs-selector-class">.LombokProcessor</span>.init(LombokProcessor<span class="hljs-selector-class">.java</span>:<span class="hljs-number">87</span>)
   	at lombok<span class="hljs-selector-class">.core</span>.AnnotationProcessor<span class="hljs-variable">$JavacDescriptor</span>.want(AnnotationProcessor<span class="hljs-selector-class">.java</span>:<span class="hljs-number">87</span>)
-  	at lombok<span class="hljs-selector-class">.core</span><span class="hljs-selector-class">.AnnotationProcessor</span>.init(AnnotationProcessor<span class="hljs-selector-class">.java</span>:<span class="hljs-number">140</span>)</code></pre></div>
+  	at lombok<span class="hljs-selector-class">.core</span><span class="hljs-selector-class">.AnnotationProcessor</span>.init(AnnotationProcessor<span class="hljs-selector-class">.java</span>:<span class="hljs-number">140</span>)</code></pre>
 </li>
 <li><p><em>JDK版本bug,解决方案:重置JDK版本,Project Structure—&gt;Porject settings—&gt;Project : 将<code>Project SDK</code>设置为:<code>9(java version&quot;9.0.4&quot;)</code>, <code>language level</code>设置为<code>8</code>,详情操作请参考 : <a href="https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/ce0545de04d3cfc9b328a1760bb5f3c84d322362/source/_posts/%E8%AF%A6%E8%A7%A3%E5%9C%A8IDEA%E4%B8%AD%E5%A4%9A%E5%A4%84%E8%AE%BE%E7%BD%AEJDK%E5%8F%8A%E5%85%B6%E5%8C%BA%E5%88%AB.md" target="_blank" rel="noopener">IDEA为何多处设置JDK,有什么区别呢 ?</a></em></p>
-<div class="hljs"><pre><code class="hljs stylus">Warning:(<span class="hljs-number">9</span>, <span class="hljs-number">8</span>) java: lombok<span class="hljs-selector-class">.javac</span><span class="hljs-selector-class">.apt</span><span class="hljs-selector-class">.LombokProcessor</span> could not be initialized. Lombok will not run during this compilation: java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.IllegalArgumentException</span>: com<span class="hljs-selector-class">.sun</span><span class="hljs-selector-class">.tools</span><span class="hljs-selector-class">.javac</span><span class="hljs-selector-class">.main</span>.DelegatingJavaFileManager<span class="hljs-variable">$DelegatingSJFM</span> extends com<span class="hljs-selector-class">.sun</span><span class="hljs-selector-class">.tools</span><span class="hljs-selector-class">.javac</span><span class="hljs-selector-class">.main</span><span class="hljs-selector-class">.DelegatingJavaFileManager</span> implements javax<span class="hljs-selector-class">.tools</span><span class="hljs-selector-class">.StandardJavaFileManager</span>
+<pre><code class="hljs stylus">Warning:(<span class="hljs-number">9</span>, <span class="hljs-number">8</span>) java: lombok<span class="hljs-selector-class">.javac</span><span class="hljs-selector-class">.apt</span><span class="hljs-selector-class">.LombokProcessor</span> could not be initialized. Lombok will not run during this compilation: java<span class="hljs-selector-class">.lang</span><span class="hljs-selector-class">.IllegalArgumentException</span>: com<span class="hljs-selector-class">.sun</span><span class="hljs-selector-class">.tools</span><span class="hljs-selector-class">.javac</span><span class="hljs-selector-class">.main</span>.DelegatingJavaFileManager<span class="hljs-variable">$DelegatingSJFM</span> extends com<span class="hljs-selector-class">.sun</span><span class="hljs-selector-class">.tools</span><span class="hljs-selector-class">.javac</span><span class="hljs-selector-class">.main</span><span class="hljs-selector-class">.DelegatingJavaFileManager</span> implements javax<span class="hljs-selector-class">.tools</span><span class="hljs-selector-class">.StandardJavaFileManager</span>
   	at lombok<span class="hljs-selector-class">.javac</span><span class="hljs-selector-class">.apt</span><span class="hljs-selector-class">.LombokFileObjects</span>.getCompiler(LombokFileObjects<span class="hljs-selector-class">.java</span>:<span class="hljs-number">148</span>)
-  	at lombok<span class="hljs-selector-class">.javac</span><span class="hljs-selector-class">.apt</span><span class="hljs-selector-class">.InterceptingJavaFileManager</span>.&lt;init&gt;(InterceptingJavaFileManager<span class="hljs-selector-class">.java</span>:<span class="hljs-number">40</span>)</code></pre></div>
+  	at lombok<span class="hljs-selector-class">.javac</span><span class="hljs-selector-class">.apt</span><span class="hljs-selector-class">.InterceptingJavaFileManager</span>.&lt;init&gt;(InterceptingJavaFileManager<span class="hljs-selector-class">.java</span>:<span class="hljs-number">40</span>)</code></pre>
 
 
 </li>
 </ol>
 <h3 id="使用Lombok前后对比"><a href="#使用Lombok前后对比" class="headerlink" title="使用Lombok前后对比"></a>使用Lombok前后对比</h3><ol>
 <li><p><em>一个未使用Lombok的普通JavaBean</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.lombok.bean;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.lombok.bean;
 
 <span class="hljs-keyword">import</span> org.apache.log4j.Logger;
 
@@ -291,7 +291,7 @@
                 <span class="hljs-string">", password='"</span> + password + <span class="hljs-string">'\''</span> +
                 <span class="hljs-string">'&#125;'</span>;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>一个使用Lombok的普通JavaBean( 使用Lombok注解达到与上述JavaBean同样的效果 )~</em></p>
 </li>
@@ -305,7 +305,7 @@
 <li><code>@NoArgsConstructor</code> : 注解在类上,为类提供一个无参的构造方法</li>
 <li><code>@AllArgsConstructor</code> : 注解在类上,为类提供一个全参的构造方法</li>
 </ul>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.lombok.bean;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.lombok.bean;
 
 
 <span class="hljs-keyword">import</span> lombok.AllArgsConstructor;
@@ -328,7 +328,7 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">outLogInfo</span><span class="hljs-params">()</span> </span>&#123;
         log.info(<span class="hljs-string">"the message object to log ~"</span>);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 
 

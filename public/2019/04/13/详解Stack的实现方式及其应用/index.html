@@ -212,7 +212,7 @@
 <li><em>推荐小伙伴们一个数据结构可视化的网站,可以大大提高学习效率哟(っ•̀ω•́)っ✎⁾⁾⁾ <a href="https://www.cs.usfca.edu/~galles/visualization/about.html" target="_blank" rel="noopener">GO !</a></em><br><img src="/2019/04/13/%E8%AF%A6%E8%A7%A3Stack%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/ListStack.PNG" srcset="/img/loading.gif" alt=" "></li>
 </ul>
 <h3 id="栈的实现方式"><a href="#栈的实现方式" class="headerlink" title="栈的实现方式"></a>栈的实现方式</h3><ol>
-<li>基于简单数组的实现栈 ：程序示例如下*<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**
+<li>基于简单数组的实现栈 ：程序示例如下*<pre><code class="hljs java"><span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: SimpleStack
  * <span class="hljs-doctag">@Description</span>: 利用简单数组实现栈
  * <span class="hljs-doctag">@author</span>: HuangYuhui
@@ -322,12 +322,12 @@ The element to be poped : 1
 Pop all of elements : true
 Determines whether the stack is empty : true
 
- */</span></code></pre></div>
+ */</span></code></pre>
 <h4 id="局限性-栈的最大空间必须预先声明且不能改变-试图对一个满栈执行入栈时操作将产生一个针对简单数组这种特定实现栈方式的异常"><a href="#局限性-栈的最大空间必须预先声明且不能改变-试图对一个满栈执行入栈时操作将产生一个针对简单数组这种特定实现栈方式的异常" class="headerlink" title="局限性 : 栈的最大空间必须预先声明且不能改变.试图对一个满栈执行入栈时操作将产生一个针对简单数组这种特定实现栈方式的异常 !"></a>局限性 : 栈的最大空间必须预先声明且不能改变.试图对一个满栈执行入栈时操作将产生一个针对简单数组这种特定实现栈方式的异常 !</h4></li>
 </ol>
 <ol start="2">
 <li><p><em>基于动态数组的实现栈 ：程序示例如下</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**
+<pre><code class="hljs java"><span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: DynArrayStack
  * <span class="hljs-doctag">@Description</span>: 利用动态数组实现栈
  * <span class="hljs-doctag">@author</span>: HuangYuhui
@@ -456,10 +456,10 @@ The element to be poped : a
 Pop all of elements : true
 Determines whether the stack is empty : true
 
- */</span></code></pre></div>
+ */</span></code></pre>
 <h4 id="注意-倍增太多可能导致内存溢出"><a href="#注意-倍增太多可能导致内存溢出" class="headerlink" title="注意 : 倍增太多可能导致内存溢出 !"></a>注意 : 倍增太多可能导致<code>内存溢出</code> !</h4><h4 id="上述程序中利用重复倍增技术-提高了程序的性能-其总时间开销T-n-≈-O-n-相比采用-当栈满时-每次将数组的大小增加1更加节省了push操作的总时间开销-其总时间开销T-n-≈-O-n²"><a href="#上述程序中利用重复倍增技术-提高了程序的性能-其总时间开销T-n-≈-O-n-相比采用-当栈满时-每次将数组的大小增加1更加节省了push操作的总时间开销-其总时间开销T-n-≈-O-n²" class="headerlink" title="上述程序中利用重复倍增技术)提高了程序的性能,其总时间开销T(n) ≈ O(n) . 相比采用: 当栈满时,每次将数组的大小增加1更加节省了push操作的总时间开销.其总时间开销T(n) ≈ O(n²) ."></a>上述程序中利用<code>重复倍增技术)</code>提高了程序的性能,其总时间开销<code>T(n) ≈ O(n)</code> . 相比采用: 当栈满时,每次将数组的大小增加<code>1</code>更加节省了<code>push</code>操作的总时间开销.其总时间开销<code>T(n) ≈ O(n²)</code> .</h4></li>
 <li><p><em>基于链表来实现栈 ：程序示例如下</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**
+<pre><code class="hljs java"><span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: ListNode
  * <span class="hljs-doctag">@Description</span>: 定义链表
  * <span class="hljs-doctag">@author</span>: HuangYuhui
@@ -495,11 +495,11 @@ Determines whether the stack is empty : true
 	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;
 		<span class="hljs-keyword">return</span> <span class="hljs-string">"["</span> + data + <span class="hljs-string">"]"</span>;
 	&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 </li>
 </ol>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**
+<pre><code class="hljs java"><span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: ListStack
  * <span class="hljs-doctag">@Description</span>: 利用链表实现栈
  * <span class="hljs-doctag">@author</span>: HuangYuhui
@@ -662,7 +662,7 @@ Push a new node : [K]
 Destroy the stack(success ?) : true
 Determines whether the stack is empty : true
 
- */</span></code></pre></div>
+ */</span></code></pre>
 
 <h3 id="栈的各种实现方法的比较"><a href="#栈的各种实现方法的比较" class="headerlink" title="栈的各种实现方法的比较"></a>栈的各种实现方法的比较</h3><ol>
 <li><strong>递增策略和倍增策略的比较</strong></li>
@@ -688,7 +688,7 @@ Determines whether the stack is empty : true
 </ol>
 <ul>
 <li><p><em>首先定义一个基于简单数组的栈</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**
+<pre><code class="hljs java"><span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: SimpleStack
  * <span class="hljs-doctag">@Description</span>: 栈
  * <span class="hljs-doctag">@author</span>: HuangYuhui
@@ -737,10 +737,10 @@ Determines whether the stack is empty : true
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isEmpty</span><span class="hljs-params">()</span> </span>&#123;
 		<span class="hljs-keyword">return</span> topPointer == -<span class="hljs-number">1</span>;
 	&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>利用栈来反转字符</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**
+<pre><code class="hljs java"><span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: MyStack
  * <span class="hljs-doctag">@Description</span>: 利用栈来反转字符串
  * <span class="hljs-doctag">@author</span>: HuangYuhui
@@ -777,10 +777,10 @@ Determines whether the stack is empty : true
 
 		<span class="hljs-keyword">return</span> output;
 	&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>接收用户输入的字符并测试</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**
+<pre><code class="hljs java"><span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: ReversalStringTest
  * <span class="hljs-doctag">@Description</span>: 测试反转字符程序
  * <span class="hljs-doctag">@author</span>: HuangYuhui
@@ -836,15 +836,15 @@ Determines whether the stack is empty : true
 		&#125;
 		<span class="hljs-keyword">return</span> s;
 	&#125;
-&#125;</code></pre></div></li>
+&#125;</code></pre></li>
 <li><p><em>程序运行结果如下 :</em></p>
-<div class="hljs"><pre><code class="hljs java">Please enter a string : 
+<pre><code class="hljs java">Please enter a string : 
 my qq: <span class="hljs-number">3083968068</span>
 
 Reversed : <span class="hljs-number">8608693803</span> :qq ym
 
 Please enter a string : 
-exit</code></pre></div>
+exit</code></pre>
 </li>
 </ul>
 <ol start="2">
@@ -854,7 +854,7 @@ exit</code></pre></div>
 <li><p><em>首先定义一个基于简单数组的栈(同上,略写)</em></p>
 </li>
 <li><p><em>利用栈中入栈和出栈操作匹配括号符</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**
+<pre><code class="hljs java"><span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: BracketChecker
  * <span class="hljs-doctag">@Description</span>: 匹配括号
  * <span class="hljs-doctag">@author</span>: HuangYuhui
@@ -923,10 +923,10 @@ exit</code></pre></div>
 			System.out.println(<span class="hljs-string">"Success !"</span>);
 		&#125;
 	&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>接收用户输入的运算符并测试匹配程序</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**
+<pre><code class="hljs java"><span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: BracketCheckerTest
  * <span class="hljs-doctag">@Description</span>: 测试匹配括号符程序
  * <span class="hljs-doctag">@author</span>: HuangYuhui
@@ -967,9 +967,9 @@ exit</code></pre></div>
 		&#125;
 		<span class="hljs-keyword">return</span> s;
 	&#125;
-&#125;</code></pre></div></li>
+&#125;</code></pre></li>
 <li><p><em>程序运行结果如下 :</em></p>
-<div class="hljs"><pre><code class="hljs java">Please enter containing delimiters : 
+<pre><code class="hljs java">Please enter containing delimiters : 
 &#123;[&lt;a&gt;b]c)d&#125;efg
 error : ) at <span class="hljs-number">8</span>
 error : &#125; at <span class="hljs-number">10</span>
@@ -988,7 +988,7 @@ Please enter containing delimiters :
 Success !
 
 Please enter containing delimiters : 
-exit</code></pre></div></li>
+exit</code></pre></li>
 </ul>
 
             </article>

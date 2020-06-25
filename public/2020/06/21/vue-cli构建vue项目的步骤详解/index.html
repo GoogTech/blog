@@ -194,24 +194,24 @@
 <p> <a href="https://nodejs.org/en/" target="_blank" rel="noopener">https://nodejs.org/en/</a></p>
 </blockquote>
 <h3 id="安装淘宝npm"><a href="#安装淘宝npm" class="headerlink" title="安装淘宝npm"></a>安装淘宝npm</h3><p>为了加速下载 vue 项目依赖，安装一下淘宝的npm</p>
-<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> npm install -g cnpm --registry=https://registry.npm.taobao.org</span></code></pre></div>
+<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> npm install -g cnpm --registry=https://registry.npm.taobao.org</span></code></pre>
 
 <h3 id="安装vue-cli"><a href="#安装vue-cli" class="headerlink" title="安装vue-cli"></a>安装vue-cli</h3><ol>
 <li><p>首先安装vue-cli</p>
-<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> cnpm install --g vue-cli</span></code></pre></div>
+<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> cnpm install --g vue-cli</span></code></pre>
 </li>
 <li><p>检查是否安装成功</p>
-<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> vue --version</span>
-@vue/cli 4.4.4</code></pre></div>
+<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> vue --version</span>
+@vue/cli 4.4.4</code></pre>
 
 </li>
 </ol>
 <h3 id="构建vue项目"><a href="#构建vue项目" class="headerlink" title="构建vue项目"></a>构建vue项目</h3><ol>
-<li>初始化的过程中，会有一个交互式的选项让你选择项目的一些配置，根据项目需求选择即可.<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 项目名称必须全部小写,否则会报错</span>
-<span class="hljs-meta">$</span><span class="bash"> vue init webpack hello-vue</span></code></pre></div>
+<li>初始化的过程中，会有一个交互式的选项让你选择项目的一些配置，根据项目需求选择即可.<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 项目名称必须全部小写,否则会报错</span>
+<span class="hljs-meta">$</span><span class="bash"> vue init webpack hello-vue</span></code></pre>
 <img src="/2020/06/21/vue-cli%E6%9E%84%E5%BB%BAvue%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%AD%A5%E9%AA%A4%E8%AF%A6%E8%A7%A3/vue-init-webpack-hello-vue.PNG" srcset="/img/loading.gif" alt=" "></li>
 </ol>
-<div class="hljs"><pre><code class="hljs shell">? Project name hello-vue # 项目名称
+<pre><code class="hljs shell">? Project name hello-vue # 项目名称
 ? Project description a demo project for vue.js # 项目描述
 ? Author (HuangYuhui &lt;Gentleman_0109@outlook.com&gt;) # 作者信息
 ? Vue build standalone # 运行+编译时
@@ -225,11 +225,11 @@
 #</span><span class="bash"> 共有三个选项,这里我们最好选择第三个,因为通过npm install安装vue项目依赖库非常的慢,所以我们可以在项目创建后,自己通过<span class="hljs-string">"cnpm install"</span>安装</span>
 <span class="hljs-meta">#</span><span class="bash"> Should we run “npm install” <span class="hljs-keyword">for</span> you after the project has been created?</span>
 <span class="hljs-meta">#</span><span class="bash"> &lt;recommended&gt;&lt;use arrow keys&gt;Yes, use NPM  Yes, use Yarn  No, I will handle that myself</span>
-? Should we run `npm install` for you after the project has been created? (recommended) npm # 使用包管理器 npm</code></pre></div>
+? Should we run `npm install` for you after the project has been created? (recommended) npm # 使用包管理器 npm</code></pre>
 
 <ol start="2">
 <li><p>项目构建完成之后会提示如下构建成功信息:</p>
-<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> Project initialization finished!</span>
+<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> Project initialization finished!</span>
 <span class="hljs-meta">#</span><span class="bash"> ========================</span>
 
 To get started:
@@ -237,17 +237,17 @@ To get started:
   cd hello-vue
   npm run dev
 
-Documentation can be found at https://vuejs-templates.github.io/webpack</code></pre></div>
+Documentation can be found at https://vuejs-templates.github.io/webpack</code></pre>
 </li>
 <li><p>启动项目</p>
-<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">cd</span> hello-vue</span>
-<span class="hljs-meta">$</span><span class="bash"> npm run dev</span></code></pre></div>
+<pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">cd</span> hello-vue</span>
+<span class="hljs-meta">$</span><span class="bash"> npm run dev</span></code></pre>
 
 </li>
 </ol>
 <p><em>项目默认会在 8080 端口启动，如果端口有占用，会自动调整端口. 打开浏览器输入 : <code>http://localhost:8080</code> 就会看到构建的 vue 项目主页，如下图所示</em><br><img src="/2020/06/21/vue-cli%E6%9E%84%E5%BB%BAvue%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%AD%A5%E9%AA%A4%E8%AF%A6%E8%A7%A3/localhost-8080.PNG" srcset="/img/loading.gif" alt=" "></p>
 <h3 id="安装vue的辅助工具"><a href="#安装vue的辅助工具" class="headerlink" title="安装vue的辅助工具"></a>安装vue的辅助工具</h3><p>如果项目可以正常启动，即可继续安装你所需的vue辅助工具 :</p>
-<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 路由管理模块</span>
+<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 路由管理模块</span>
 npm install vue-router --save
 <span class="hljs-meta">#</span><span class="bash"> 状态管理模块</span>
 npm install vuex --save
@@ -257,7 +257,7 @@ npm install vue-resource --save
 cnpm install element-ui --save
 <span class="hljs-meta">#</span><span class="bash"> 安装axios</span>
 cnpm install axios --save
-<span class="hljs-meta">#</span><span class="bash"> ...</span></code></pre></div>
+<span class="hljs-meta">#</span><span class="bash"> ...</span></code></pre>
 
 
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>

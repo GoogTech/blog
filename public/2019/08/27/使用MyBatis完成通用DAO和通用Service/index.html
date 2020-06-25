@@ -190,7 +190,7 @@
             <article class="markdown-body">
               <h2 id="学习笔记-使用MyBatis完成通用DAO和通用Service"><a href="#学习笔记-使用MyBatis完成通用DAO和通用Service" class="headerlink" title="学习笔记 : 使用MyBatis完成通用DAO和通用Service"></a>学习笔记 : 使用MyBatis完成通用DAO和通用Service</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p><em>如 UserMapper 里面有 insert(User user) , find(Integer id) ,delete(Integer id) 等方法，则在 Service 中也要有这些方法的实现,假设每个 Mapper 有5个方法,则 Service 也需要有5个方法的实现. 如果有10个实体类, Mapper 可以省略( 可由工具生成 ),但是 Service 需要有这50个方法的实现. 既而后期会导致代码臃肿难以维护,且项目难以扩展哟~ 一般 Java 项目的分层结构图如下所示,详情请参考学习笔记 : <a href="https://yubuntu0109.github.io/2019/08/15/Java%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E4%B8%ADPO-BO-VO-DTO-POJO-DAO%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8F%8A%E5%85%B6%E4%BD%9C%E7%94%A8/">Java项目开发中PO,BO,VO,DTO,POJO,DAO的概念及其作用</a></em></p>
 <p><img src="/2019/08/27/%E4%BD%BF%E7%94%A8MyBatis%E5%AE%8C%E6%88%90%E9%80%9A%E7%94%A8DAO%E5%92%8C%E9%80%9A%E7%94%A8Service/%E4%B8%80%E8%88%ACJava%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%88%86%E5%B1%82%E7%BB%93%E6%9E%84.png" srcset="/img/loading.gif" alt></p>
-<h3 id="通用的DAO接口"><a href="#通用的DAO接口" class="headerlink" title="通用的DAO接口"></a>通用的DAO接口</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.memo.dao;
+<h3 id="通用的DAO接口"><a href="#通用的DAO接口" class="headerlink" title="通用的DAO接口"></a>通用的DAO接口</h3><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.memo.dao;
 
 <span class="hljs-keyword">import</span> java.io.Serializable;
 <span class="hljs-keyword">import</span> java.util.List;
@@ -221,9 +221,9 @@
 
     <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">updateByPrimaryKey</span><span class="hljs-params">(T record)</span></span>;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 
-<h3 id="通用的Service接口"><a href="#通用的Service接口" class="headerlink" title="通用的Service接口"></a>通用的Service接口</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.memo.service;
+<h3 id="通用的Service接口"><a href="#通用的Service接口" class="headerlink" title="通用的Service接口"></a>通用的Service接口</h3><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.memo.service;
 
 <span class="hljs-keyword">import</span> com.github.pagehelper.PageInfo;
 <span class="hljs-keyword">import</span> pers.huangyuhui.memo.object.BaseConditionVO;
@@ -260,9 +260,9 @@
     <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">updateByPrimaryKeyWithBLOBs</span><span class="hljs-params">(T record)</span></span>;
 
     <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">updateByPrimaryKey</span><span class="hljs-params">(T record)</span></span>;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
-<h4 id="通用的Service实现类"><a href="#通用的Service实现类" class="headerlink" title="通用的Service实现类"></a>通用的Service实现类</h4><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.memo.service.impl;
+<h4 id="通用的Service实现类"><a href="#通用的Service实现类" class="headerlink" title="通用的Service实现类"></a>通用的Service实现类</h4><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.memo.service.impl;
 
 <span class="hljs-keyword">import</span> com.github.pagehelper.PageHelper;
 <span class="hljs-keyword">import</span> com.github.pagehelper.PageInfo;
@@ -336,9 +336,9 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">insert</span><span class="hljs-params">(T record)</span> </span>&#123;
         <span class="hljs-keyword">return</span> baseMapper.insert(record);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
-<h4 id="具体的Mapper写法"><a href="#具体的Mapper写法" class="headerlink" title="具体的Mapper写法"></a>具体的Mapper写法</h4><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.memo.dao;
+<h4 id="具体的Mapper写法"><a href="#具体的Mapper写法" class="headerlink" title="具体的Mapper写法"></a>具体的Mapper写法</h4><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.memo.dao;
 
 <span class="hljs-keyword">import</span> org.springframework.stereotype.Repository;
 <span class="hljs-keyword">import</span> pers.huangyuhui.memo.bean.Friend;
@@ -371,9 +371,9 @@
     <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> 8/23/2019 删除好友信息</span>
     <span class="hljs-meta">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">deleteByPrimaryKey</span><span class="hljs-params">(Integer[] id)</span></span>;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
-<h4 id="具体的Service写法"><a href="#具体的Service写法" class="headerlink" title="具体的Service写法"></a>具体的Service写法</h4><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.memo.service;
+<h4 id="具体的Service写法"><a href="#具体的Service写法" class="headerlink" title="具体的Service写法"></a>具体的Service写法</h4><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.memo.service;
 
 <span class="hljs-keyword">import</span> pers.huangyuhui.memo.bean.Friend;
 
@@ -404,9 +404,9 @@
     <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> 8/25/2019 删除好友信息</span>
     <span class="hljs-meta">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">deleteByPrimaryKey</span><span class="hljs-params">(Integer[] id)</span></span>;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
-<h4 id="具体的Service实现类写法"><a href="#具体的Service实现类写法" class="headerlink" title="具体的Service实现类写法"></a>具体的Service实现类写法</h4><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.memo.service.impl;
+<h4 id="具体的Service实现类写法"><a href="#具体的Service实现类写法" class="headerlink" title="具体的Service实现类写法"></a>具体的Service实现类写法</h4><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.memo.service.impl;
 
 <span class="hljs-keyword">import</span> com.github.pagehelper.PageInfo;
 <span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
@@ -467,7 +467,7 @@
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.deleteByPrimaryKey(id);
     &#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 
 

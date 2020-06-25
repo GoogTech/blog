@@ -194,7 +194,7 @@
 </ul>
 <h3 id="Servlet-2-5-示例程序"><a href="#Servlet-2-5-示例程序" class="headerlink" title="Servlet 2.5 示例程序"></a>Servlet 2.5 示例程序</h3><ul>
 <li><p><em>web.xml</em></p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee"</span> <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"WebApp_ID"</span> <span class="hljs-attr">version</span>=<span class="hljs-string">"4.0"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">display-name</span>&gt;</span>Servlet_basic_lifecycle<span class="hljs-tag">&lt;/<span class="hljs-name">display-name</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">welcome-file-list</span>&gt;</span>
@@ -222,10 +222,10 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>sameName<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/ServletAPI<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre>
 </li>
 <li><p><em>Servlet program</em></p>
-<div class="hljs"><pre><code class="hljs java">
+<pre><code class="hljs java">
 <span class="hljs-comment">/*
  * ServletConfig 接口中的方法解析如下 : 
  *  1.ServletContext getServletContext(): 获取Servlet上下文对象,如: application.. 
@@ -300,13 +300,13 @@ Apr 06, 2019 6:45:25 PM org.apache.catalina.startup.Catalina start
 INFO: Server startup in [3,136] milliseconds
 ( Servlet 2.5 )service() -&gt; doGet()+doPost() ..			&lt;———the result
 
- */</span></code></pre></div>
+ */</span></code></pre>
 
 </li>
 </ul>
 <h3 id="Servlet-3-0-示例程序"><a href="#Servlet-3-0-示例程序" class="headerlink" title="Servlet 3.0 示例程序"></a>Servlet 3.0 示例程序</h3><ul>
 <li><p><em>web.xml</em></p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee"</span> <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"WebApp_ID"</span> <span class="hljs-attr">version</span>=<span class="hljs-string">"4.0"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">display-name</span>&gt;</span>ServletAPI_3.0<span class="hljs-tag">&lt;/<span class="hljs-name">display-name</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">welcome-file-list</span>&gt;</span>
@@ -326,10 +326,10 @@ INFO: Server startup in [3,136] milliseconds
 	    <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>GobalParamName<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span>
 	    <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>GlobalParamValue<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">context-param</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre>
 </li>
 <li><p><em>Servlet program</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/*
+<pre><code class="hljs java"><span class="hljs-comment">/*
  * 通过注解为当前Servlet初始化参数.如下所示.
  */</span>
 <span class="hljs-meta">@WebServlet</span>(value=<span class="hljs-string">"/ServletAPI"</span>,loadOnStartup=<span class="hljs-number">1</span>,initParams= &#123;<span class="hljs-meta">@WebInitParam</span>(name=<span class="hljs-string">"ServletParamName"</span>,value=<span class="hljs-string">"ServletParamValue"</span>)&#125;)
@@ -393,7 +393,7 @@ Apr 07, 2019 6:52:11 PM org.apache.catalina.startup.Catalina start
 INFO: Server startup in [2,502] milliseconds
 ( Servlet 3.0 )service() -&gt; doGet()+doPost() ..		&lt;———the result
 
- */</span></code></pre></div>
+ */</span></code></pre>
 
 </li>
 </ul>

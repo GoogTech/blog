@@ -223,7 +223,7 @@
 </ul>
 <h3 id="Python-程序的执行原理"><a href="#Python-程序的执行原理" class="headerlink" title="Python 程序的执行原理"></a>Python 程序的执行原理</h3><p><em>Python 不同于类似 C/C++ 之类的编译性语言，其不需要编译成二进制代码，它可以直接从源代码运行程序. 既 Python 解释器先会将源代码转换为字节码( 并非二进制机器码，其需要进一步编译才能够被机器识别. 如果 Python 进程在机器上拥有写入权限，那么它将把程序的字节码保存为一个以<code>.pyc</code>为扩展名的文件 )，然后再把编译好的字节码转发到 Python 虚拟机( PVM )中进行执行.</em></p>
 <h3 id="实现一个简单的学生管理系统"><a href="#实现一个简单的学生管理系统" class="headerlink" title="实现一个简单的学生管理系统"></a>实现一个简单的学生管理系统</h3><p><em>早上在图书馆花了<code>2</code>个小时左右时间看完了 <code>《Python 快速编程入门》</code> 书籍的前六章，毕竟我是有编程基础的嘿嘿，况且编程语言之间是相通的. 为了熟悉 Python 函数的基本使用，晚上回到寝室写了一个简单的学生管理系统，相比 <code>hello world implemented by Python</code> 程序是不是有点急啦哈哈哈~ 代码如下所示 :</em></p>
-<div class="hljs"><pre><code class="hljs python"><span class="hljs-string">"""
+<pre><code class="hljs python"><span class="hljs-string">"""
 Project name : python-learning
 Description : A SIMPLE STUDENT MANAGEMENT SYSTEM
 Author : 黄宇辉
@@ -337,10 +337,10 @@ student_infos = []
 
 
 <span class="hljs-comment"># RUN</span>
-main()</code></pre></div>
+main()</code></pre>
 
 <p><em>程序运行结果如下所示 :</em></p>
-<div class="hljs"><pre><code class="hljs asciidoc">CATCH THE EXCEPTION: unexpected EOF while parsing (&lt;string&gt;, line 0)
+<pre><code class="hljs asciidoc">CATCH THE EXCEPTION: unexpected EOF while parsing (&lt;string&gt;, line 0)
 
 ==================================================
 ### A SIMPLE STUDENT MANAGEMENT SYSTEM v1.0 ###
@@ -387,7 +387,7 @@ NO       NAME        SEX     PHONE
 PLEASE ENTER THE SPECIFIED NO OF MENU: 5
 SAVE ALL OF STUDENT INFORMATIONS SUCCESSFULLY
 
-<span class="hljs-bullet">. </span>. . . . .</code></pre></div>
+<span class="hljs-bullet">. </span>. . . . .</code></pre>
 
 <p><em>使用 Python 写完这个简单程序后，让我指间感觉超轻松，这语法太简洁了吧! 符合我的风格嘿嘿~</em></p>
 <blockquote>

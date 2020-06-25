@@ -202,7 +202,7 @@
 <h3 id="示例程序"><a href="#示例程序" class="headerlink" title="示例程序"></a>示例程序</h3><p><em>下面是一个使用外观设计模式的简单示例程序 : 写一个用于文件加密的模块,该模块的功能为对指定文件中的数据进行加密并将加密之后的数据保存到新的文件中. 具体流程包括三个部分 : 读取源文件中的数据, 数据加密, 将加密后的数据写入到新文件</em></p>
 <ol>
 <li><p><em>FileReader类 : 文件读取类, 充当子系统类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_1;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_1;
 
 <span class="hljs-keyword">import</span> java.io.FileInputStream;
 <span class="hljs-keyword">import</span> java.io.IOException;
@@ -229,10 +229,10 @@
         &#125;
         <span class="hljs-keyword">return</span> stringBuffer.toString();
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>CipherMachine类 : 数据加密类(求模运算), 充当子系统类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_1;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -252,10 +252,10 @@
         &#125;
         <span class="hljs-keyword">return</span> result.toString();
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>FileWriter类 : 文件保存类, 充当子类系统类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_1;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_1;
 
 <span class="hljs-keyword">import</span> java.io.FileOutputStream;
 <span class="hljs-keyword">import</span> java.io.IOException;
@@ -277,10 +277,10 @@
             e.printStackTrace();
         &#125;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>EncryptFacade类 : 加密外观类, 充当外观类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_1;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -311,10 +311,10 @@
         System.out.println(<span class="hljs-string">"&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; : 明文数据加密后的结果 : "</span> + encryptStr);
         fileWriter.write(encryptStr, toPath);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>Client类 : 客户端测试类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_1;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -333,17 +333,17 @@
         EncryptFacade encryptFacade = <span class="hljs-keyword">new</span> EncryptFacade();
         encryptFacade.fileEncrypt(FROM_PATH, TO_PATH);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>from.txt : 源文件,用于存储待加密的数据</em></p>
-<div class="hljs"><pre><code class="hljs gcode">YUbu<span class="hljs-symbol">ntu0109</span></code></pre></div>
+<pre><code class="hljs gcode">YUbu<span class="hljs-symbol">ntu0109</span></code></pre>
 </li>
 <li><p><em>程序运行结果如下所示 :</em></p>
-<div class="hljs"><pre><code class="hljs taggerscript">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; : 读取文件[ src<span class="hljs-symbol">\m</span>ain<span class="hljs-symbol">\j</span>ava<span class="hljs-symbol">\p</span>ers<span class="hljs-symbol">\h</span>uangyuhui<span class="hljs-symbol">\f</span>acade_pattern<span class="hljs-symbol">\f</span>acade_pattern_1<span class="hljs-symbol">\f</span>rom.txt ]中的明文数据 : YUbuntu0109
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; : 明文数据加密后的结果 : 51055456061</code></pre></div>
+<pre><code class="hljs taggerscript">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; : 读取文件[ src<span class="hljs-symbol">\m</span>ain<span class="hljs-symbol">\j</span>ava<span class="hljs-symbol">\p</span>ers<span class="hljs-symbol">\h</span>uangyuhui<span class="hljs-symbol">\f</span>acade_pattern<span class="hljs-symbol">\f</span>acade_pattern_1<span class="hljs-symbol">\f</span>rom.txt ]中的明文数据 : YUbuntu0109
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; : 明文数据加密后的结果 : 51055456061</code></pre>
 </li>
 <li><p><em>to.txt : 目标文件,用于存储加密后的数据( 程序运行后的该文件中的内容如下所示 )</em></p>
-<div class="hljs"><pre><code class="hljs angelscript"><span class="hljs-number">51055456061</span></code></pre></div>
+<pre><code class="hljs angelscript"><span class="hljs-number">51055456061</span></code></pre>
 
 </li>
 </ol>
@@ -351,7 +351,7 @@
 <h3 id="示例程序-抽象外观类"><a href="#示例程序-抽象外观类" class="headerlink" title="示例程序-抽象外观类"></a>示例程序-抽象外观类</h3><p><em>在标准的外观模式结构中,如果需要增加,删除或更换与外观类交互的子类,必须修改外观类或客户端的代码,这将违背<code>开闭原则</code>,因此可以通过引入抽象外观类对系统进行改进,即客户端针对抽象外观类进行编程,在运行时再确定具体的外观类. ( 下述示例程序是在上述示例程序基础上进行改进的 )</em></p>
 <ol>
 <li><p><em>FileReader类 : 文件读取类, 充当子系统类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_2;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_2;
 
 <span class="hljs-keyword">import</span> java.io.FileInputStream;
 <span class="hljs-keyword">import</span> java.io.IOException;
@@ -378,10 +378,10 @@
         &#125;
         <span class="hljs-keyword">return</span> stringBuffer.toString();
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>FileWriter类 : 文件保存类, 充当子类系统类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_2;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_2;
 
 <span class="hljs-keyword">import</span> java.io.FileOutputStream;
 <span class="hljs-keyword">import</span> java.io.IOException;
@@ -403,10 +403,10 @@
             e.printStackTrace();
         &#125;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>CipherMachine类 : 数据加密类(求模运算), 充当子系统类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_2;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -426,10 +426,10 @@
         &#125;
         <span class="hljs-keyword">return</span> result.toString();
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>NewCipherMachine类 : 数据加密类(移位运算), 充当子系统类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_2;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -470,10 +470,10 @@
         &#125;
         <span class="hljs-keyword">return</span> result;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>AbstractEncryptFacade抽象类 : 明文加密抽象类, 充当抽象外观类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_2;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -485,10 +485,10 @@
  */</span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AbstractEncryptFacade</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">fileEncrypt</span><span class="hljs-params">(String fromPath, String toPath)</span></span>;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>EncryptFacade类 : 加密外观类, 充当外观类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_2;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -519,10 +519,10 @@
         System.out.println(<span class="hljs-string">"&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; : 明文数据加密后的结果 : "</span> + encryptStr);
         fileWriter.write(encryptStr, toPath);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>NewEncryptFacade类 : 加密外观类, 充当外观类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_2;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -553,10 +553,10 @@
         System.out.println(<span class="hljs-string">"&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; : 明文数据加密后的结果 : "</span> + encryptStr);
         writer.write(encryptStr, toPath);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>Client类 : 客户端测试类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_2;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.facade_pattern.facade_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -579,19 +579,19 @@
         AbstractEncryptFacade newEncryptFacade = <span class="hljs-keyword">new</span> NewEncryptFacade();
         newEncryptFacade.fileEncrypt(FROM_PATH, TO_PATH);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>from.txt : 源文件,用于存储待加密的数据</em></p>
-<div class="hljs"><pre><code class="hljs gcode">YUbu<span class="hljs-symbol">ntu0109</span></code></pre></div>
+<pre><code class="hljs gcode">YUbu<span class="hljs-symbol">ntu0109</span></code></pre>
 </li>
 <li><p><em>to.txt : 目标文件,用于存储加密后的数据( 程序运行后的该文件中的内容如下所示 )</em></p>
-<div class="hljs"><pre><code class="hljs ebnf"><span class="hljs-attribute">IE</span></code></pre></div>
+<pre><code class="hljs ebnf"><span class="hljs-attribute">IE</span></code></pre>
 </li>
 <li><p><em>程序运行结果如下所示 :</em></p>
-<div class="hljs"><pre><code class="hljs taggerscript">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; : 读取文件[ src<span class="hljs-symbol">\m</span>ain<span class="hljs-symbol">\j</span>ava<span class="hljs-symbol">\p</span>ers<span class="hljs-symbol">\h</span>uangyuhui<span class="hljs-symbol">\f</span>acade_pattern<span class="hljs-symbol">\f</span>acade_pattern_2<span class="hljs-symbol">\f</span>rom.txt ]中的明文数据 : YUbuntu0109
+<pre><code class="hljs taggerscript">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; : 读取文件[ src<span class="hljs-symbol">\m</span>ain<span class="hljs-symbol">\j</span>ava<span class="hljs-symbol">\p</span>ers<span class="hljs-symbol">\h</span>uangyuhui<span class="hljs-symbol">\f</span>acade_pattern<span class="hljs-symbol">\f</span>acade_pattern_2<span class="hljs-symbol">\f</span>rom.txt ]中的明文数据 : YUbuntu0109
 &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; : 明文数据加密后的结果 : 51055456061
 &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; : 读取文件[ src<span class="hljs-symbol">\m</span>ain<span class="hljs-symbol">\j</span>ava<span class="hljs-symbol">\p</span>ers<span class="hljs-symbol">\h</span>uangyuhui<span class="hljs-symbol">\f</span>acade_pattern<span class="hljs-symbol">\f</span>acade_pattern_2<span class="hljs-symbol">\f</span>rom.txt ]中的明文数据 : YUbuntu0109
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; : 明文数据加密后的结果 : IE</code></pre></div>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; : 明文数据加密后的结果 : IE</code></pre>
 
 </li>
 </ol>

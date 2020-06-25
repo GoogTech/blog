@@ -340,15 +340,15 @@
 <li><p><em><code>DataOutputStream</code> 数据输出流允许应用程序以机器无关方式将Java基本数据类型写到底层输出流,<br> <code>DataInputStream</code> 类提供<code>readChar();</code>方法来读取文件中的字符.</em></p>
 </li>
 <li><p><em><code>Java IO</code></em></p>
-<div class="hljs"><pre><code class="hljs java">   System.getProperty(<span class="hljs-string">"user.dir"</span>);     获取当前的工作路径.
+<pre><code class="hljs java">   System.getProperty(<span class="hljs-string">"user.dir"</span>);     获取当前的工作路径.
 getName();                          方法获取文件名，getPath();获取文件路径.
-isDirectory();                      判断是否是文件.</code></pre></div>
+isDirectory();                      判断是否是文件.</code></pre>
 
 
 </li>
 </ol>
 <ol start="19">
-<li><em><code>extends Thread</code> 与 <code>implements Runnable</code> 使用</em><div class="hljs"><pre><code class="hljs java">   当通过`implements Runnable`创建线程:将实现了Runnable接口的对象作为`target`参数传递给Thread类即可,格式如下:
+<li><em><code>extends Thread</code> 与 <code>implements Runnable</code> 使用</em><pre><code class="hljs java">   当通过`implements Runnable`创建线程:将实现了Runnable接口的对象作为`target`参数传递给Thread类即可,格式如下:
 <span class="hljs-keyword">new</span> Thread(`实现了Runnable接口的对象名`);
 举例:	
 	<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Java_2</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span> </span>&#123; 
@@ -359,42 +359,42 @@ isDirectory();                      判断是否是文件.</code></pre></div>
  			 &#125;···
 
    通过`extends Thread`创建线程:
-Thread本身实现了`Runnable`接口,重写其`run()`方法即可;线程创建后,需要调用`start();`方法运行.</code></pre></div>
+Thread本身实现了`Runnable`接口,重写其`run()`方法即可;线程创建后,需要调用`start();`方法运行.</code></pre>
 
 
 </li>
 </ol>
 <ol start="20">
-<li><div class="hljs"><pre><code class="hljs java">setPreferredSize(<span class="hljs-keyword">new</span> Dimension(<span class="hljs-number">280</span>, <span class="hljs-number">60</span>));
+<li><pre><code class="hljs java">setPreferredSize(<span class="hljs-keyword">new</span> Dimension(<span class="hljs-number">280</span>, <span class="hljs-number">60</span>));
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setPreferredSize</span><span class="hljs-params">(Dimension preferredSize)</span></span>&#123;...&#125;
 
 将此组件的首选大小设置为常量值. 随后`getPreferredSize()`总是返回此值.将首选大小设置为`<span class="hljs-keyword">null</span>`可恢复默认行为. 
-`Dimension` : 类封装单个对象中组件的宽度和高度(以整数精度).</code></pre></div>
+`Dimension` : 类封装单个对象中组件的宽度和高度(以整数精度).</code></pre>
 
 
 </li>
 </ol>
 <ol start="21">
-<li><em><code>DecimalFormat</code>类提供的<code>format();</code>方法可以将数据格式化.</em><div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> class DecimalFormat extends <span class="hljs-title">NumberFormatDecimalFormat</span><span class="hljs-params">()</span></span>&#123;...&#125;
+<li><em><code>DecimalFormat</code>类提供的<code>format();</code>方法可以将数据格式化.</em><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> class DecimalFormat extends <span class="hljs-title">NumberFormatDecimalFormat</span><span class="hljs-params">()</span></span>&#123;...&#125;
 
-`DecimalFormat`是格式为十进制数的NumberFormat的具体子类. 它具有各种功能,旨在使任何地区的数字解析和格式化,包括支持西方,阿拉伯语和印度数字。它还支持不同类型的数字,包括整数(<span class="hljs-number">123</span>..),定点数(<span class="hljs-number">123.4</span>),科学记数法(<span class="hljs-number">1.23E4</span>),百分比(<span class="hljs-number">12</span>％),和货币金额(<span class="hljs-number">123</span>美元),所有这些都可以进行本地化.</code></pre></div>
+`DecimalFormat`是格式为十进制数的NumberFormat的具体子类. 它具有各种功能,旨在使任何地区的数字解析和格式化,包括支持西方,阿拉伯语和印度数字。它还支持不同类型的数字,包括整数(<span class="hljs-number">123</span>..),定点数(<span class="hljs-number">123.4</span>),科学记数法(<span class="hljs-number">1.23E4</span>),百分比(<span class="hljs-number">12</span>％),和货币金额(<span class="hljs-number">123</span>美元),所有这些都可以进行本地化.</code></pre>
 
 
 </li>
 </ol>
 <ol start="22">
 <li><p><em>窗体事件</em></p>
-<div class="hljs"><pre><code class="hljs java">setDefaultCloseOperation();     设置用户在此窗口上发起<span class="hljs-string">"close"</span>时默认执行操作.
+<pre><code class="hljs java">setDefaultCloseOperation();     设置用户在此窗口上发起<span class="hljs-string">"close"</span>时默认执行操作.
 JFrame.EXIT_ON_CLOSE;           `close`式关闭程序退出窗口.
 
-<span class="hljs-keyword">for</span> example: frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</code></pre></div>
+<span class="hljs-keyword">for</span> example: frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</code></pre>
 </li>
 <li><p><em>常用事件类</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addActionListener</span><span class="hljs-params">(ActionListener e)</span></span>&#123;..&#125;
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addActionListener</span><span class="hljs-params">(ActionListener e)</span></span>&#123;..&#125;
 添加指定的动作侦听器以从此按钮接收动作事件.当用户按下或释放鼠标在此按钮上时,会发生动作事件.如果`e`为空,则不会抛出任何异常.
 也不会执行任何操作.
 
-<span class="hljs-keyword">for</span> example: saveButton.addActionListener(<span class="hljs-keyword">this</span>);</code></pre></div>
+<span class="hljs-keyword">for</span> example: saveButton.addActionListener(<span class="hljs-keyword">this</span>);</code></pre>
 
 
 </li>

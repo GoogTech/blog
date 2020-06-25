@@ -188,15 +188,15 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h3 id="1-搜索nginx镜像"><a href="#1-搜索nginx镜像" class="headerlink" title="1.搜索nginx镜像"></a>1.搜索nginx镜像</h3><div class="hljs"><pre><code class="hljs shell">ubuntu@VM-0-4-ubuntu:~$ sudo docker search nginx
+              <h3 id="1-搜索nginx镜像"><a href="#1-搜索nginx镜像" class="headerlink" title="1.搜索nginx镜像"></a>1.搜索nginx镜像</h3><pre><code class="hljs shell">ubuntu@VM-0-4-ubuntu:~$ sudo docker search nginx
 NAME                               DESCRIPTION                                     STARS               OFFICIAL             AUTOMATED
 nginx                              Official build of Nginx.                        13374               [OK]
 jwilder/nginx-proxy                Automated Nginx reverse proxy for docker con…   1828                [OK]
 richarvey/nginx-php-fpm            Container running Nginx + PHP-FPM capable of…   778                 [OK]
 
-. . . . . .</code></pre></div>
+. . . . . .</code></pre>
 
-<h3 id="2-下载nginx镜像"><a href="#2-下载nginx镜像" class="headerlink" title="2.下载nginx镜像"></a>2.下载nginx镜像</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看本地所有镜像</span>
+<h3 id="2-下载nginx镜像"><a href="#2-下载nginx镜像" class="headerlink" title="2.下载nginx镜像"></a>2.下载nginx镜像</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看本地所有镜像</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 ubuntu              latest              74435f89ab78        7 days ago          73.9MB
@@ -223,9 +223,9 @@ ubuntu              latest              74435f89ab78        7 days ago          
 ubuntu              18.04               8e4ce0a6ce69        7 days ago          64.2MB
 nginx               latest              2622e6cca7eb        2 weeks ago         132MB
 mysql               latest              be0dbf01a0f3        2 weeks ago         541MB
-hello-world         latest              bf756fb1ae65        5 months ago        13.3kB</code></pre></div>
+hello-world         latest              bf756fb1ae65        5 months ago        13.3kB</code></pre>
 
-<h3 id="3-启动nginx"><a href="#3-启动nginx" class="headerlink" title="3. 启动nginx"></a>3. 启动nginx</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 以后台运行的方式启动nginx : docker run -d &lt;image name&gt;</span>
+<h3 id="3-启动nginx"><a href="#3-启动nginx" class="headerlink" title="3. 启动nginx"></a>3. 启动nginx</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 以后台运行的方式启动nginx : docker run -d &lt;image name&gt;</span>
 <span class="hljs-meta">#</span><span class="bash"> -d : 后台运行， </span>
 <span class="hljs-meta">#</span><span class="bash"> --name : 为容器起别名</span>
 <span class="hljs-meta">#</span><span class="bash"> -p 8888:88 : 暴露端口，-p 宿主机端口:容器内部端口</span>
@@ -264,11 +264,11 @@ Commercial support is available at
 
 &lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code></pre></div>
+&lt;/html&gt;</code></pre>
 
 <p><em>通过外网访问连接 <a href="http://ip:8888" target="_blank" rel="noopener">http://ip:8888</a> 来测试 nginx 是否部署成功</em></p>
 <p><img src="/2020/06/24/Docker%E5%AE%89%E8%A3%85%E5%B9%B6%E9%83%A8%E7%BD%B2nginx/docker-deploy-nginx.PNG" srcset="/img/loading.gif" alt=" "></p>
-<h3 id="4-修改nginx配置"><a href="#4-修改nginx配置" class="headerlink" title="4. 修改nginx配置"></a>4. 修改nginx配置</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的容器</span>
+<h3 id="4-修改nginx配置"><a href="#4-修改nginx配置" class="headerlink" title="4. 修改nginx配置"></a>4. 修改nginx配置</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的容器</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker ps                                                                               
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                   NAMES
 8438eaf75dbd        nginx               "/docker-entrypoint.…"   14 minutes ago      Up 14 minutes       0.0.0.0:8888 80/tcp     MyNginx                  
@@ -324,10 +324,10 @@ root@8438eaf75dbd:/usr/share/nginx/html# cat index.html
 #</span><span class="bash"> 使用 curl &lt;ip:port&gt; 进行本地测试，从返回的结果发现修改 index.html 后 nginx 依旧部署成功( 配置文件可动态修改 )</span>
 <span class="hljs-meta">#</span><span class="bash"> 也可以通过外网访问连接 http://ip:8888 来测试，如下图所示</span>
 root@8438eaf75dbd:/usr/share/nginx/html# curl http://49.233.79.152:8888
-&lt;h1 align=center&gt;hey guy welcome back,coffee time&lt;/h1&gt;</code></pre></div>
+&lt;h1 align=center&gt;hey guy welcome back,coffee time&lt;/h1&gt;</code></pre>
 
 <p><em>通过外网访问连接 <a href="http://ip:8888" target="_blank" rel="noopener">http://ip:8888</a> 来测试修改 index.html 后 nginx 是否部署成功( 配置文件可动态修改 )</em><br><img src="/2020/06/24/Docker%E5%AE%89%E8%A3%85%E5%B9%B6%E9%83%A8%E7%BD%B2nginx/docker-deploy-nginx-modify-index.PNG" srcset="/img/loading.gif" alt=" "></p>
-<h3 id="5-停止nginx运行"><a href="#5-停止nginx运行" class="headerlink" title="5. 停止nginx运行"></a>5. 停止nginx运行</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的容器</span>
+<h3 id="5-停止nginx运行"><a href="#5-停止nginx运行" class="headerlink" title="5. 停止nginx运行"></a>5. 停止nginx运行</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的容器</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                  NAMES
 8438eaf75dbd        nginx               "/docker-entrypoint.…"   38 minutes ago      Up 38 minutes       0.0.0.0:8888-&gt;80/tcp   MyNginx
@@ -340,7 +340,7 @@ ubuntu@VM-0-4-ubuntu:~$ sudo docker stop 8438eaf75dbd
 ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 <span class="hljs-meta">
-#</span><span class="bash"> nginx 被关闭后则不能访问 http://ip:8888</span></code></pre></div>
+#</span><span class="bash"> nginx 被关闭后则不能访问 http://ip:8888</span></code></pre>
 
 
 <h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><blockquote>

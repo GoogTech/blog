@@ -205,7 +205,7 @@
 <li><em>…</em></li>
 </ul>
 <h4 id="反射的简单应用示例"><a href="#反射的简单应用示例" class="headerlink" title="反射的简单应用示例"></a>反射的简单应用示例</h4><ol>
-<li><em>首先创建一个存储用户信息的类</em><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.bean;
+<li><em>首先创建一个存储用户信息的类</em><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.bean;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: UserInfo
@@ -268,8 +268,8 @@
 		System.out.println(s + <span class="hljs-string">"  my name is: "</span> + name + <span class="hljs-string">"  age: "</span> + age + <span class="hljs-string">"  sex: "</span> + sex);
 	&#125;
 
-&#125;</code></pre></div></li>
-<li><em>其次利用<code>反射</code>获取该类中的信息</em><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.bean.test;
+&#125;</code></pre></li>
+<li><em>其次利用<code>反射</code>获取该类中的信息</em><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.bean.test;
 
 <span class="hljs-keyword">import</span> java.lang.reflect.Field;
 <span class="hljs-keyword">import</span> java.lang.reflect.InvocationTargetException;
@@ -348,25 +348,25 @@
 		method2.invoke(userInfo, <span class="hljs-string">"Hello !"</span>);
 
 	&#125;
-&#125;</code></pre></div></li>
-<li><em>程序运行结果如下</em><div class="hljs"><pre><code class="hljs java">UserInfo [name=<span class="hljs-keyword">null</span>, sex=<span class="hljs-keyword">null</span>, age=<span class="hljs-number">0</span>]
+&#125;</code></pre></li>
+<li><em>程序运行结果如下</em><pre><code class="hljs java">UserInfo [name=<span class="hljs-keyword">null</span>, sex=<span class="hljs-keyword">null</span>, age=<span class="hljs-number">0</span>]
 UserInfo [name=Java reflection, sex=<span class="hljs-keyword">null</span>, age=<span class="hljs-number">0</span>]
 UserInfo [name=Java reflection, sex=male, age=<span class="hljs-number">2</span>]
 ClassInfo: Store the user information .
-Hello !  my name is: Java reflection  age: <span class="hljs-number">2</span>  sex: male</code></pre></div>
+Hello !  my name is: Java reflection  age: <span class="hljs-number">2</span>  sex: male</code></pre>
 
 </li>
 </ol>
 <h3 id="详解反射的源头-Class"><a href="#详解反射的源头-Class" class="headerlink" title="详解反射的源头 : Class"></a>详解反射的源头 : <code>Class</code></h3><p><em>在<code>Object</code>类中定义了以下的方法,此方法被所有子类继承 :</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@HotSpotIntrinsicCandidate</span>
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> Class&lt;?&gt; getClass();</code></pre></div>
+<pre><code class="hljs java"><span class="hljs-meta">@HotSpotIntrinsicCandidate</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> Class&lt;?&gt; getClass();</code></pre>
 <p><em>该返回值的类型是一个<code>Class</code>类,此类是<code>Java反射</code>的源头,实际上所谓的反射从程序的运行结果来看也也很理解,既: <code>可以通过对象反射求出类的名称.</code></em></p>
 <ul>
 <li><em>正常方式 : 引入需要的<code>包类</code>名称 ——&gt; 通过<code>new</code>实例化 ——&gt; 取得实例化对象</em></li>
 <li><em>反射方式 : 实例化对象 ——&gt; <code>getClass()</code> ——&gt; 得到完整的<code>包类</code>名称</em></li>
 </ul>
 <h4 id="getClass-的使用"><a href="#getClass-的使用" class="headerlink" title="getClass()的使用"></a><code>getClass()</code>的使用</h4><ol>
-<li><em>示例程序如下</em><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.bean.test;
+<li><em>示例程序如下</em><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.bean.test;
 
 <span class="hljs-keyword">import</span> org.junit.jupiter.api.Test;
 <span class="hljs-keyword">import</span> pers.huangyuhui.reflection.bean.UserInfo;
@@ -389,8 +389,8 @@ Hello !  my name is: Java reflection  age: <span class="hljs-number">2</span>  s
 		Class&lt;?&gt; class1 = userInfo.getClass();
 		System.out.println(class1);
 	&#125;
-&#125;</code></pre></div></li>
-<li><em>程序运行结果如下</em><div class="hljs"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">pers</span>.<span class="hljs-title">huangyuhui</span>.<span class="hljs-title">reflection</span>.<span class="hljs-title">bean</span>.<span class="hljs-title">UserInfo</span> //`运行时`类</span></code></pre></div></li>
+&#125;</code></pre></li>
+<li><em>程序运行结果如下</em><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">pers</span>.<span class="hljs-title">huangyuhui</span>.<span class="hljs-title">reflection</span>.<span class="hljs-title">bean</span>.<span class="hljs-title">UserInfo</span> //`运行时`类</span></code></pre></li>
 </ol>
 <ul>
 <li><em><code>运行时类</code> : example.java ——<code>编译器(javac.exe)</code>——&gt; example.class ——<code>JVM类加载器</code>——&gt; example.class被加载到内存(此时<code>example.class</code>就是一个<code>运行时类</code>,存放在<code>缓存区</code>,且运行时类本身就是一个<code>Class</code>实例并只加载一次 !)</em></li>
@@ -402,7 +402,7 @@ Hello !  my name is: Java reflection  age: <span class="hljs-number">2</span>  s
 <li>获取对应的运行时类的完整结构( 属性,方法,构造器,父类,所在的包,异常,注解… ).</li>
 </ol>
 <p><em>获取<code>Class</code>类实例的四种方式的示例程序如下</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.bean.test;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.bean.test;
 
 <span class="hljs-keyword">import</span> org.junit.Test;
 <span class="hljs-keyword">import</span> pers.huangyuhui.reflection.bean.UserInfo;
@@ -470,10 +470,10 @@ Hello !  my name is: Java reflection  age: <span class="hljs-number">2</span>  s
 		System.out.println(class1.getMethod(<span class="hljs-string">"introduce"</span>, String<span class="hljs-class">.<span class="hljs-keyword">class</span>))</span>;
 	&#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h3 id="类加载器ClassLoader"><a href="#类加载器ClassLoader" class="headerlink" title="类加载器ClassLoader"></a>类加载器<code>ClassLoader</code></h3><h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><p><em>类加载器的作用:把<code>类(class)</code>装载进内存.如下示例</em></p>
-<div class="hljs"><pre><code class="hljs java">Java源文件(*.java) ——Java编译器——&gt; 字节码文件(*<span class="hljs-class">.<span class="hljs-keyword">class</span>) ——类加载器+字节码效验器+解释器——&gt; 操作系统平台</span></code></pre></div>
+<pre><code class="hljs java">Java源文件(*.java) ——Java编译器——&gt; 字节码文件(*<span class="hljs-class">.<span class="hljs-keyword">class</span>) ——类加载器+字节码效验器+解释器——&gt; 操作系统平台</span></code></pre>
 <p><em><code>JVM</code>规范定义了两种类型的类加载器:<code>启动类加载器(bootstrap)</code>和<code>用户自定义加载器(user-defined class loader)</code>.JVM在运行时会产生<code>三个类加载器</code></em></p>
 <ol>
 <li>引导类加载器.</li>
@@ -494,7 +494,7 @@ Hello !  my name is: Java reflection  age: <span class="hljs-number">2</span>  s
 <li><em>负责<code>java-classpath</code>或<code>java.class.path</code>所指的目录下的类与<code>jar</code>包装入工作.(最常用)</em></li>
 </ul>
 <p><em><code>三个类加载器</code>的示例程序如下</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.classloader;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.classloader;
 
 <span class="hljs-keyword">import</span> org.junit.Test;
 <span class="hljs-keyword">import</span> pers.huangyuhui.reflection.bean.UserInfo;
@@ -547,7 +547,7 @@ Hello !  my name is: Java reflection  age: <span class="hljs-number">2</span>  s
 		System.out.println(classLoader4);
 
 	&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h4 id="类的加载过程"><a href="#类的加载过程" class="headerlink" title="类的加载过程"></a>类的加载过程</h4><p><em>当程序主动使用某个类时,如果该类还未被<code>加载</code>到内存中,则系统会通知如下三个步骤来对该类进行初始化.</em></p>
 <ol>
@@ -557,7 +557,7 @@ Hello !  my name is: Java reflection  age: <span class="hljs-number">2</span>  s
 </ol>
 <h4 id="类加载器的应用"><a href="#类加载器的应用" class="headerlink" title="类加载器的应用"></a>类加载器的应用</h4><ol>
 <li><p><em>利用<code>ClassLoader</code>读取指定<code>包</code>下的配置文件(如果不使用类加载器配置文件只能放在<code>项目</code>目录下..).程序示例如下 :</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.classloader;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.classloader;
 
 <span class="hljs-keyword">import</span> java.io.IOException;
 <span class="hljs-keyword">import</span> java.io.InputStream;
@@ -594,14 +594,14 @@ Hello !  my name is: Java reflection  age: <span class="hljs-number">2</span>  s
 
 	&#125;
 
-&#125;</code></pre></div></li>
+&#125;</code></pre></li>
 <li><p><em>在<code>pers.huangyuhui.reflection.classloader</code>包下创建配置文件<code>user.properties</code></em></p>
-<div class="hljs"><pre><code class="hljs java">singer=Justin Bieber
-song=Love yourself</code></pre></div>
+<pre><code class="hljs java">singer=Justin Bieber
+song=Love yourself</code></pre>
 </li>
 <li><p><em>程序运行结果如下</em></p>
-<div class="hljs"><pre><code class="hljs java">singer: Justin Bieber
-song: Love yourself</code></pre></div>
+<pre><code class="hljs java">singer: Justin Bieber
+song: Love yourself</code></pre>
 
 </li>
 </ol>
@@ -610,7 +610,7 @@ song: Love yourself</code></pre></div>
 <li>类必须有一个无参数的构造器.</li>
 <li>类的构造器的访问权限需要足够.</li>
 </ol>
-<h4 id="示例程序"><a href="#示例程序" class="headerlink" title="示例程序"></a>示例程序</h4><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.newinstance;
+<h4 id="示例程序"><a href="#示例程序" class="headerlink" title="示例程序"></a>示例程序</h4><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.newinstance;
 
 <span class="hljs-keyword">import</span> org.junit.Test;
 
@@ -639,7 +639,7 @@ song: Love yourself</code></pre></div>
 		System.out.println(userInfo);
 	&#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h3 id="通过反射调用类的完整结构"><a href="#通过反射调用类的完整结构" class="headerlink" title="通过反射调用类的完整结构"></a>通过反射调用类的<code>完整结构</code></h3><ol>
 <li>获取属性</li>
@@ -664,7 +664,7 @@ song: Love yourself</code></pre></div>
 </ol>
 <p><em>动态代理是指客户通过代理类来调用其它对象的方法,并且是在程序运行时根据需要动态创建目标类的代理对象.</em><br>2. 使用场合<br><em>调试及远程方法调用等..</em><br>3. 设计模式的原理<br><em>使用一个代理将对象包装起来,然后使用该代理对象取代原始对象.任何对原始对象的调用都要通过代理.代理对象决定是否以及何时将方法调用转到原始对象上.</em></p>
 <h4 id="静态代理程序示例"><a href="#静态代理程序示例" class="headerlink" title="静态代理程序示例"></a><code>静态代理</code>程序示例</h4><p><em>为了与动态代理相比较,静态代理程序示例如下.不难发现: 如果添加不同接口则需要不同的代理类来完成其代理!很繁琐!!</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.proxy;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.proxy;
 
 <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">ClothFactory</span> </span>&#123;
 	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">createCloth</span><span class="hljs-params">()</span></span>;
@@ -715,10 +715,10 @@ song: Love yourself</code></pre></div>
 		<span class="hljs-comment">// This is static proxy ..</span>
 		<span class="hljs-comment">// Create the cloth ..</span>
 	&#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <h4 id="动态代理程序示例"><a href="#动态代理程序示例" class="headerlink" title="动态代理程序示例"></a><code>动态代理</code>程序示例</h4><ul>
-<li><em><code>反射</code>是动态语言的关键,程序示例如下 :</em><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.proxy;
+<li><em><code>反射</code>是动态语言的关键,程序示例如下 :</em><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.reflection.proxy;
 
 <span class="hljs-keyword">import</span> java.lang.reflect.InvocationHandler;
 <span class="hljs-keyword">import</span> java.lang.reflect.Method;
@@ -790,7 +790,7 @@ song: Love yourself</code></pre></div>
 		<span class="hljs-comment">//Create the cloth ..</span>
 	&#125;
 
-&#125;</code></pre></div></li>
+&#125;</code></pre></li>
 </ul>
 
             </article>

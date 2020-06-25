@@ -196,15 +196,15 @@
 </ul>
 <h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><p><em>JShell 中的命令和代码片段是不一样的,命令都是以前导的反斜杠 <code>/</code> 开头,比如要显示所有已经定义的变量,可以使用 <code>/var</code>, 要显示所有已经定义的方法,可以使用 <code>/methods</code>,要显示所有已经定义的类型,可以使用 <code>/types</code>, 要显示所有输入的代码片段,可以使用 <code>/list</code> · · ·</em></p>
 <p><em>进入JShell命令行环境 :</em></p>
-<div class="hljs"><pre><code class="hljs s">C:\Users\Administrator
+<pre><code class="hljs s">C:\Users\Administrator
 λ jshell
 |  Welcome to JShell -- Version 11.0.2
 |  For an introduction type: /help intro
 
-jshell&gt;</code></pre></div>
+jshell&gt;</code></pre>
 
 <p><em>输入<code>/help</code>可以查看 JShell 相关的命令 :</em></p>
-<div class="hljs"><pre><code class="hljs s">jshell&gt; /help                                                                                     
+<pre><code class="hljs s">jshell&gt; /help                                                                                     
 |  Type a Java language expression, statement, or declaration.                                    
 |  Or type one of the following commands:                                                         
 |  /list [&lt;name or id&gt;|-all|-start]                                                               
@@ -266,37 +266,37 @@ jshell&gt;</code></pre></div>
 |  rerun                                                                                          
 |       a description of ways to re-evaluate previously entered snippets                          
                                                                                                   
-jshell&gt;</code></pre></div>
+jshell&gt;</code></pre>
 
 <p><em>JShell 命令的自动补全功能 :</em></p>
-<div class="hljs"><pre><code class="hljs s">jshell&gt; /
+<pre><code class="hljs s">jshell&gt; /
 /!          /?          /drop       /edit       /env        /exit       /help       /history    /imports
 /list       /methods    /open       /reload     /reset      /save       /set        /types      /vars
 
 &lt;press tab again to see synopsis&gt;
 
-jshell&gt; /</code></pre></div>
+jshell&gt; /</code></pre>
 
 <p><em><code>System.out.</code>后按下 Tab 键,就会列出当前类的所有的 public 方法的列表哟</em></p>
-<div class="hljs"><pre><code class="hljs s">jshell&gt; System.out.
+<pre><code class="hljs s">jshell&gt; System.out.
 append(        checkError()   close()        equals(        flush()        format(        getClass()
 hashCode()     notify()       notifyAll()    print(         printf(        println(       toString()
 wait(          write(
 
-jshell&gt;</code></pre></div>
+jshell&gt;</code></pre>
 
 <p><em>实例 : 在 JShell 中使用 Stream 流过滤并遍历输出数组元素 :</em></p>
-<div class="hljs"><pre><code class="hljs s">jshell&gt; public void streamDemo()&#123;
+<pre><code class="hljs s">jshell&gt; public void streamDemo()&#123;
    ...&gt; String[]array = &#123;&quot;a&quot;,&quot;bc&quot;,&quot;bcd&quot;,&quot;abcd&quot;&#125;;
    ...&gt; Stream.of(array).filter(e-&gt;e.startsWith(&quot;a&quot;)).filter(e-&gt;e.length()&gt;3).forEach(System.out::println);
    ...&gt; &#125;
 |  created method streamDemo()
 
 jshell&gt; streamDemo();
-abcd</code></pre></div>
+abcd</code></pre>
 
 <p><em>例如使用<code>/imports</code>命令用于查看已导入的包 :</em></p>
-<div class="hljs"><pre><code class="hljs s">jshell&gt; /imports
+<pre><code class="hljs s">jshell&gt; /imports
 |    import java.io.*
 |    import java.math.*
 |    import java.net.*
@@ -308,10 +308,10 @@ abcd</code></pre></div>
 |    import java.util.regex.*
 |    import java.util.stream.*
 
-jshell&gt;</code></pre></div>
+jshell&gt;</code></pre>
 
 <p><em>列出到目前为止当前 <code>session</code> 里所有有效的代码片段 :</em></p>
-<div class="hljs"><pre><code class="hljs s">jshell&gt; /list
+<pre><code class="hljs s">jshell&gt; /list
 
    1 : System.out.println(&quot;demo&quot;);
    2 : public void streamDemo()&#123;
@@ -323,15 +323,15 @@ jshell&gt;</code></pre></div>
        &#125;
    3 : streamDemo();
 
-jshell&gt;</code></pre></div>
+jshell&gt;</code></pre>
 
 <p><em>列出到目前为止当前 session 里所有方法 :</em></p>
-<div class="hljs"><pre><code class="hljs s">jshell&gt; /method
-|    void StreamDemo()</code></pre></div>
+<pre><code class="hljs s">jshell&gt; /method
+|    void StreamDemo()</code></pre>
 
 <p><em>在 JShell 中可以启用 JShell Edit Pad 编辑器来写更加便捷地书写 Java 代码,只需要输入命令<code>/edit</code>,代码编辑完成后,先点击”Accept”按钮,再点击”Exit”按钮,继而退出编辑器</em><br><img src="/2019/08/20/JDK-9%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BREPL-JShell/JShell-Edit-Pad-Demo.PNG" srcset="/img/loading.gif" alt></p>
 <p><em>调用已修改的程序,其运行结果如下所示 :</em></p>
-<div class="hljs"><pre><code class="hljs s">jshell&gt; /edit
+<pre><code class="hljs s">jshell&gt; /edit
 |  created method streamDemo()
 
 jshell&gt; /edit
@@ -341,14 +341,14 @@ jshell&gt; /edit
 jshell&gt; streamDemo();
 2
 
-jshell&gt;</code></pre></div>
+jshell&gt;</code></pre>
 
 <p><em>JShell Edit Pad 编辑器功能非常有限,仅能提供一些最基础的功能,不过好消息是 JShell 可以配置外部的代码编辑器,只需要使用 <code>/edit</code> 设置外部编辑器的完整路径即可,例如使用 VS Code 来作为外部的代码编辑器</em></p>
-<div class="hljs"><pre><code class="hljs s">jshell&gt; /set editor /Visual Studio Code/Microsoft VS Code/Code.exe
-|  Editor set to: /Visual Studio Code/Microsoft VS Code/Code.exe</code></pre></div>
+<pre><code class="hljs s">jshell&gt; /set editor /Visual Studio Code/Microsoft VS Code/Code.exe
+|  Editor set to: /Visual Studio Code/Microsoft VS Code/Code.exe</code></pre>
 
 <p><em>从外部加载源代码 : 如果在外部已经有写好的 Java 文件,则可以使用 <code>/open</code> 命令导入到 JShell 环境中,例如现在有一个Test.java文件</em></p>
-<div class="hljs"><pre><code class="hljs s">jshell&gt; /open /Java/Test.java
+<pre><code class="hljs s">jshell&gt; /open /Java/Test.java
 
 jshell&gt; /methods
 |    int add(int,int)
@@ -357,10 +357,10 @@ jshell&gt; /methods
 jshell&gt; add(1,2);
 $5 ==&gt; 3
 
-jshell&gt;</code></pre></div>
+jshell&gt;</code></pre>
 
 <p><em>JShell 命令缩写,例如 <code>/list</code> 的缩写为 <code>/l</code>,例如 <code>/list -all</code> 的缩写为 <code>/l -a</code>. 例如,我们可以使用 <code>/l -a</code> 来代替 <code>list -all</code> 输出所有的代码片段 :</em></p>
-<div class="hljs"><pre><code class="hljs s">jshell&gt; /l -a                                                                     
+<pre><code class="hljs s">jshell&gt; /l -a                                                                     
                                                                                   
   s1 : import java.io.*;                                                          
   s2 : import java.math.*;                                                        
@@ -400,11 +400,11 @@ jshell&gt;</code></pre></div>
        &#125;                                                                          
    6 : streamDemo();                                                              
                                                                                   
-jshell&gt;</code></pre></div>
+jshell&gt;</code></pre>
 
 <p><em>退出 JShell</em></p>
-<div class="hljs"><pre><code class="hljs s">jshell&gt; /exit
-|  Goodbye</code></pre></div>
+<pre><code class="hljs s">jshell&gt; /exit
+|  Goodbye</code></pre>
 
 
 

@@ -194,7 +194,7 @@
 <li>详解JDK 9中的新特性 : <a href="https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/5d65a860c457559e757af21b4aac423d6f7e912f/source/_posts/JDK-9%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BREPL-JShell.md" target="_blank" rel="noopener">JDK 9新特性之REPL(JShell)</a></li>
 </ul>
 <h3 id="接口的私有方法"><a href="#接口的私有方法" class="headerlink" title="接口的私有方法"></a>接口的私有方法</h3><p><em>Java 8 中规定接口中的方法除了抽象方法之外,还可以定义静态和默认的方法. 一定程度上扩展了接口的功能,此时的接口更像是一个抽象类. 而在 Java 9 中,接口更加的灵活和强大,连方法的访问权限修饰符都可以声明为 private 的了,此时方法将不会成为你对外暴露的 API 的一部分,话说这个语法的改进不应该在 Java 8 中就施行的嘛~ 示例程序如下 :</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.jdk9;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.jdk9;
 
 <span class="hljs-keyword">import</span> org.junit.Test;
 
@@ -237,16 +237,16 @@
         MyInterface.staticMethod();
         <span class="hljs-keyword">new</span> Grammar().defaultMethod();
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p><em>程序运行结果如下所示 :</em></p>
-<div class="hljs"><pre><code class="hljs oxygene">this <span class="hljs-keyword">is</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">method</span>
+<pre><code class="hljs oxygene">this <span class="hljs-keyword">is</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">method</span>
 <span class="hljs-title">this</span> <span class="hljs-title">is</span> <span class="hljs-title">private</span> <span class="hljs-title">method</span>
-<span class="hljs-title">this</span> <span class="hljs-title">is</span> <span class="hljs-title">default</span> <span class="hljs-title">method</span></span></code></pre></div>
+<span class="hljs-title">this</span> <span class="hljs-title">is</span> <span class="hljs-title">default</span> <span class="hljs-title">method</span></span></code></pre>
 
 
 <h3 id="钻石操作符的使用升级"><a href="#钻石操作符的使用升级" class="headerlink" title="钻石操作符的使用升级"></a>钻石操作符的使用升级</h3><p><em>与匿名实现类共同使用钻石操作符( diamond operator )在 Java 8 中如下的操作是会报错的,编译报错信息 : <code>Cannot use &quot;&lt;&gt;&quot; with anonymous inner classes</code>,在IDEA中将 Language level 调成 Java 9 即可解决编译错误啦</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testComparator</span><span class="hljs-params">()</span> </span>&#123;
     Comparator&lt;Integer&gt; comparator = <span class="hljs-keyword">new</span> Comparator&lt;&gt;() &#123;
         <span class="hljs-meta">@Override</span>
@@ -269,11 +269,11 @@
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testComparatorWithMethodRef</span><span class="hljs-params">()</span> </span>&#123;
     Comparator&lt;Integer&gt; comparator = Integer::compare;
     System.out.println(comparator.compare(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>));
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 
 <h3 id="改进的-try-with-resourcs"><a href="#改进的-try-with-resourcs" class="headerlink" title="改进的 try-with-resourcs"></a>改进的 try-with-resourcs</h3><p><em>在 Java 7 中可以实现资源的自动关闭,但是<code>要求必须将需要自动关闭的所有资源必须在try子句中进行初始化</code>,否则编译不通过. 而在 Java 9 中可以将需要自动关闭的资源的实例放在 try 的小括号外哟,程序示例如下所示 :</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">//JDK7版本之前释放资源的写法</span>
+<pre><code class="hljs java"><span class="hljs-comment">//JDK7版本之前释放资源的写法</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testTry</span><span class="hljs-params">()</span> </span>&#123;
     InputStreamReader reader = <span class="hljs-keyword">null</span>;
     <span class="hljs-keyword">try</span> &#123;
@@ -326,7 +326,7 @@
     &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
         e.printStackTrace();
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 
 <h3 id="String存储结构的变更"><a href="#String存储结构的变更" class="headerlink" title="String存储结构的变更"></a>String存储结构的变更</h3><p><em>从很多不同应用程序收集的信息表明,发现字符串是堆使用的主要组成部分. 而且,大多数字符串对象只包含一个字符,这样的字符只需要一个字节的存储空间,既而导致这些字符串对象的内部char数组中有一半的空间被闲置</em></p>
@@ -336,7 +336,7 @@
 <li>StringBuffer 和 StringBuilder 也同样做了变更,将以往 char 数组改为 byte 数组</li>
 </ul>
 <h3 id="快速创建只读集合"><a href="#快速创建只读集合" class="headerlink" title="快速创建只读集合"></a>快速创建只读集合</h3><p><em>JDK9在 List、Set 和 Map 集合中新增 of 静态方法,快速创建只读集合,程序示例如下所示 :</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.jdk9;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.jdk9;
 
 <span class="hljs-keyword">import</span> org.junit.Test;
 
@@ -393,16 +393,16 @@
         Map&lt;String, String&gt; map = Map.of(<span class="hljs-string">"k1"</span>, <span class="hljs-string">"v1"</span>, <span class="hljs-string">"k2"</span>, <span class="hljs-string">"v2"</span>, <span class="hljs-string">"k3"</span>, <span class="hljs-string">"v3"</span>);
         System.out.println(map);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p><em>程序运行结果相同,如下所示 :</em></p>
-<div class="hljs"><pre><code class="hljs routeros">[A, B, C]
+<pre><code class="hljs routeros">[A, B, C]
 [E, F, G]
-&#123;<span class="hljs-attribute">k1</span>=v1, <span class="hljs-attribute">k2</span>=v2, <span class="hljs-attribute">k3</span>=v3&#125;</code></pre></div>
+&#123;<span class="hljs-attribute">k1</span>=v1, <span class="hljs-attribute">k2</span>=v2, <span class="hljs-attribute">k3</span>=v3&#125;</code></pre>
 
 
 <h3 id="增强的-InputStream-API"><a href="#增强的-InputStream-API" class="headerlink" title="增强的 InputStream API"></a>增强的 InputStream API</h3><p><em>InputStream 终于有了一个非常有用的方法 : <code>transferTo</code>, 可以用来将数据直接传输到 OutputStream,这是在处理原始数据流时非常常见的一种用法,示例代码如下所示 :</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testTransferTo</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> FileNotFoundException </span>&#123;
     ClassLoader classLoader = <span class="hljs-keyword">this</span>.getClass().getClassLoader();
     InputStream is = classLoader.getResourceAsStream(<span class="hljs-string">"from.txt"</span>);
@@ -413,11 +413,11 @@
     &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
         e.printStackTrace();
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 
 <h3 id="增强的-Stream-API"><a href="#增强的-Stream-API" class="headerlink" title="增强的 Stream API"></a>增强的 Stream API</h3><p><em>Java 的 Stream API 是 Java 标准款最好的改进之一,让开发者能够快速运算,从而能够有效的利用数据并行计算. Java 8 提供的Stream能够利用多核架构实现声明式的数据处理. 而在 Java 9 中,Stream API 变得更好,Stream 接口中添加了4个新方法 ( <code>takeWhile</code>, <code>dropWhile</code>, <code>ofNullable</code>, <code>iterate的重载方法</code> ), 及为你提供一个 Predicate( 判断条件 )来指定什么时候结束迭代. 除了对 Stream 本身的扩展, Optional 和 Stream 之间的结合也得到了改进,现在可以通过 Optional 的新对象 stream() 来将一个 Optional 对象转换为一个可能为空的 Stream 对象. 程序示例如下所示 :</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testStream</span><span class="hljs-params">()</span> </span>&#123;
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testStream</span><span class="hljs-params">()</span> </span>&#123;
 
     <span class="hljs-comment">//takeWhile: 可以用于从Stream中获取一部分数据,接受一个Predicate来进行选择,在有序的Stream中,takeWhile返回从头开始的尽可能多的元素</span>
     List&lt;Integer&gt; list = Arrays.asList(<span class="hljs-number">45</span>, <span class="hljs-number">43</span>, <span class="hljs-number">76</span>, <span class="hljs-number">87</span>, <span class="hljs-number">42</span>, <span class="hljs-number">77</span>, <span class="hljs-number">90</span>, <span class="hljs-number">73</span>, <span class="hljs-number">67</span>, <span class="hljs-number">88</span>);
@@ -456,7 +456,7 @@
     Stream.iterate(<span class="hljs-number">1</span>, (x) -&gt; x &lt;= <span class="hljs-number">10</span>, (x) -&gt; x + <span class="hljs-number">1</span>).forEach(System.out::print);
     <span class="hljs-comment">//程序运行结果:12345678910</span>
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 
 <h3 id="改进的-Optional-类"><a href="#改进的-Optional-类" class="headerlink" title="改进的 Optional 类"></a>改进的 Optional 类</h3><p><em>Optional 类是在JDK8中新增的类,主要是为了解决空指针异常. 在JDK9中对这个类进行了改进,主要是新增了三个方法 : <code>stream</code>, <code>ifPresentOrElse</code> 和 <code>or</code></em></p>

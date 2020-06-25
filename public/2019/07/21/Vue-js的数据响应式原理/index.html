@@ -192,7 +192,7 @@
 <h3 id="初始数据链"><a href="#初始数据链" class="headerlink" title="初始数据链"></a>初始数据链</h3><p><em>数据链在学术上被定义为连通数据的链路,在这条链路上有一到多个数据起点(元数据),并通过改点不断衍生扩展新的节点(衍生数据),形成 一个庞大的网状结构. 当你修改数据起点时, 所有存在网上的节点值都将会同步更新,如下图所示 :</em></p>
 <p><img src="/2019/07/21/Vue-js%E7%9A%84%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/data-chain.png" srcset="/img/loading.gif" alt></p>
 <h3 id="Vue中的数据链"><a href="#Vue中的数据链" class="headerlink" title="Vue中的数据链"></a>Vue中的数据链</h3><p><em>Vue实例提供了<code>computed</code>计算属性选项,以供开发者生成衍生数据对象. 虽然计算属性以函数形式声明,却并不接受参数,也只能以属性的方式调用. 由于计算属性的<code>this</code>指向<code>Vue</code>实例,所以它可以获取实例上所有已挂载的可见属性,如下示例此程序 :</em></p>
-<div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
@@ -250,11 +250,11 @@
 			&#125;);
 		</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 
 <p><em>程序运行效果如下图所示 :</em><br><img src="/2019/07/21/Vue-js%E7%9A%84%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/Vue-%E6%95%B0%E6%8D%AE%E9%93%BE.PNG" srcset="/img/loading.gif" alt></p>
 <h3 id="数据绑定视图"><a href="#数据绑定视图" class="headerlink" title="数据绑定视图"></a>数据绑定视图</h3><p><em>下面通过一个示例程序,事实现数据与视图之间的<code>双向绑定</code> : 在对象函数的setter函数中修改文本节点的值,所以当obj.profile被重新赋值时,节点视图也会同步更新; 然后对输入框添加事件监听(addEventListener),当用户事件触发时,输入值将被赋予obj.profile. 以此方式,我们实现了数据与视图之间的双向绑定,这也就是Vue数据与视图绑定的实现原理 .</em></p>
-<div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
@@ -286,7 +286,7 @@
 			&#125;)
 		</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 
 <p><em>程序运行效果如下图所示 :</em><br><img src="/2019/07/21/Vue-js%E7%9A%84%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/Vue-%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E8%A7%86%E5%9B%BE%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.PNG" srcset="/img/loading.gif" alt></p>
 <p><em>在Vue中,当我们把普通的JavaScript对象传给Vue实例的data选项时,Vue将遍历对象属性,并使用<code>Object.defineProperty</code>将其全部转换为<code>getter/setter</code>,并在组件渲染时将属性记录为依赖. 之后当依赖项的setter函数被调用时,会通知<code>watcher</code>重新计算并更新其关联的所有组件. 由于Object.definedProperty是<code>ES5</code>中一个无法shim(自定义扩展)的特性,所以Vue应用无法运行在不支持Objcet.defineProperty的IE8及其以下版本的浏览器上 .</em></p>

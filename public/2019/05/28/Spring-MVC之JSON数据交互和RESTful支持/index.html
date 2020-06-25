@@ -192,7 +192,7 @@
 <h4 id="JSON-数据转换"><a href="#JSON-数据转换" class="headerlink" title="JSON 数据转换"></a>JSON 数据转换</h4><p><em>简介 : 为了实现浏览器与控制器<code>Controller</code>之间的数据交互,Spring提供了一个<code>HttpMessageConverter&lt;T&gt;</code>接口来完成此项工作. 该接口主要用于将请求消息中的数据转换为一个<code>T</code>的对象,<code>并将类型为T的对象绑定到请求方法的参数中,或者将对象转换为响应消息传递给浏览器显示.</code> Spring为<code>HttpMessageConverter&lt;T&gt;</code>接口提供了很多实现类,这些实现类可以对不同的类型的数据进行信息转换,其中<code>MappingJackson2HttpMessageConverter</code>是Spring MVC默认处理JSON格式请求响应的实现类. 该实现类利用<code>Jackson</code>开源包读写JSON数据,<code>将Java对象转换为JSON对象和XML文档,同时也可以将JSON对象和XML文档转换为Java对象 !</code></em></p>
 <h4 id="示例程序"><a href="#示例程序" class="headerlink" title="示例程序"></a>示例程序</h4><ol>
 <li><p><em>web.xml : 对Spring mvc的前端控制器等信息进行配置</em></p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee"</span>
          <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
          <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"</span>
@@ -218,10 +218,10 @@
         <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre>
 </li>
 <li><p><em>springmvc-config.xml : Spring mvc配置文件</em></p>
-<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>
        <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
        <span class="hljs-attr">xmlns:context</span>=<span class="hljs-string">"http://www.springframework.org/schema/context"</span>
@@ -249,10 +249,10 @@
         <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"suffix"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">".jsp"</span>/&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
 </li>
 <li><p><em>User.java : 用户信息</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.bean;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.bean;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: springmvc_json
@@ -290,10 +290,10 @@
                 <span class="hljs-string">", password='"</span> + password + <span class="hljs-string">'\''</span> +
                 <span class="hljs-string">'&#125;'</span>;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>index.jsp : 用于测试JSON交互的页面</em></p>
-<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%--</span>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%--</span>
   <span class="hljs-attr">Created</span> <span class="hljs-attr">by</span> <span class="hljs-attr">IntelliJ</span> <span class="hljs-attr">IDEA.</span>
   <span class="hljs-attr">User:</span> <span class="hljs-attr">Administrator</span>
   <span class="hljs-attr">Date:</span> <span class="hljs-attr">5</span>/<span class="hljs-attr">31</span>/<span class="hljs-attr">2019</span>
@@ -336,10 +336,10 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"Test"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"testJson()"</span>/&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 </li>
 <li><p><em>UserController.java : 控制器</em></p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.controller;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.springmvc.controller;
 
 <span class="hljs-keyword">import</span> org.springframework.stereotype.Controller;
 <span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.*;
@@ -373,7 +373,7 @@
         <span class="hljs-keyword">return</span> user;
     &#125;
 
-&#125;</code></pre></div>
+&#125;</code></pre>
 </li>
 <li><p><em>由程序运行的结果(略..)可知,<code>JSON</code>格式的请求数据成功转换为方法中的Java对象,<code>Java</code>对象也成功地转换为了JSON格式的响应数据.</em></p>
 </li>
