@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -189,8 +189,8 @@
             
             <article class="markdown-body">
               <p><em>昨天计划在远程服务器 Ubuntu18.04 上部署 <code>vsblog</code> 项目，当执行 <code>jave -jar vsblog.jar</code> 来启动项目时抛出了如下错误信息( 要知道在此之前我已经在本地<code>windows10</code> 操作系统上测试过了，一切 ok的啊 )</em></p>
-<pre><code class="hljs java">. . .
-Protocol handler start failedCaused by: java.net.SocketException: Permission denied</code></pre>
+<div class="hljs"><pre><code class="hljs java">. . .
+Protocol handler start failedCaused by: java.net.SocketException: Permission denied</code></pre></div>
 
 <p><em>在这个异常之前还有很多错误信息，所以在此之前我 google 了很多资料也没能解决，直到我 google 如上所述的一条错误信息才找到了正确的解决方法，如下所述 :</em></p>
 <p><em>摘自 stackflow : Linux doesn’t allow a normal user to bind to a TCP port that’s &lt;= 1024. There’s a discussion of the reasons for that <a href="https://unix.stackexchange.com/questions/16564/why-are-the-first-1024-ports-restricted-to-the-root-user-only" target="_blank" rel="noopener">here</a>. You’re attempting to bind to 86 and, therefore, it’s failing with “Permission denied”. The quickest and safest solution is to configure the port with a value that’s &gt; 1024. As you’re using Boot’s embedded Tomcat instance, the port’s configured in application.properties using the server.port property.</em></p>

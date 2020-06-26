@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -198,7 +198,7 @@
 <li>根据合并后的集合中的元素值创建Element对象,并将其存储到新集合中</li>
 <li>打印整个集合的Element对象信息</li>
 </ol>
-<h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><h4 id="传统方式的代码实现"><a href="#传统方式的代码实现" class="headerlink" title="传统方式的代码实现"></a>传统方式的代码实现</h4><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.jdk8.Stream;
+<h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><h4 id="传统方式的代码实现"><a href="#传统方式的代码实现" class="headerlink" title="传统方式的代码实现"></a>传统方式的代码实现</h4><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.jdk8.Stream;
 
 <span class="hljs-keyword">import</span> org.junit.Test;
 
@@ -291,17 +291,17 @@
         &#125;
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><em>程序运行结果如下 :</em></p>
-<pre><code class="hljs pgsql">Person&#123;<span class="hljs-type">name</span>=<span class="hljs-string">'CDE'</span>&#125;
+<div class="hljs"><pre><code class="hljs pgsql">Person&#123;<span class="hljs-type">name</span>=<span class="hljs-string">'CDE'</span>&#125;
 Person&#123;<span class="hljs-type">name</span>=<span class="hljs-string">'DEF'</span>&#125;
 Person&#123;<span class="hljs-type">name</span>=<span class="hljs-string">'EFG'</span>&#125;
 Person&#123;<span class="hljs-type">name</span>=<span class="hljs-string">'KLM'</span>&#125;
-Person&#123;<span class="hljs-type">name</span>=<span class="hljs-string">'KKK'</span>&#125;</code></pre>
+Person&#123;<span class="hljs-type">name</span>=<span class="hljs-string">'KKK'</span>&#125;</code></pre></div>
 
 
-<h4 id="使用Stream流的代码实现"><a href="#使用Stream流的代码实现" class="headerlink" title="使用Stream流的代码实现"></a>使用Stream流的代码实现</h4><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.jdk8.Stream;
+<h4 id="使用Stream流的代码实现"><a href="#使用Stream流的代码实现" class="headerlink" title="使用Stream流的代码实现"></a>使用Stream流的代码实现</h4><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.jdk8.Stream;
 
 <span class="hljs-keyword">import</span> org.junit.Test;
 
@@ -374,14 +374,14 @@ Person&#123;<span class="hljs-type">name</span>=<span class="hljs-string">'KKK'<
                 .forEach(System.out::println);
 
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><em>程序运行结果如下 :</em></p>
-<pre><code class="hljs ceylon">Element&#123;<span class="hljs-keyword">value</span>=<span class="hljs-string">'CDE'</span>&#125;
+<div class="hljs"><pre><code class="hljs ceylon">Element&#123;<span class="hljs-keyword">value</span>=<span class="hljs-string">'CDE'</span>&#125;
 Element&#123;<span class="hljs-keyword">value</span>=<span class="hljs-string">'DEF'</span>&#125;
 Element&#123;<span class="hljs-keyword">value</span>=<span class="hljs-string">'EFG'</span>&#125;
 Element&#123;<span class="hljs-keyword">value</span>=<span class="hljs-string">'KLM'</span>&#125;
-Element&#123;<span class="hljs-keyword">value</span>=<span class="hljs-string">'KKK'</span>&#125;</code></pre>
+Element&#123;<span class="hljs-keyword">value</span>=<span class="hljs-string">'KKK'</span>&#125;</code></pre></div>
             </article>
             <hr>
             <div>

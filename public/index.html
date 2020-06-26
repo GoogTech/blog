@@ -152,6 +152,188 @@
     
     
     <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/06/26/%E4%BD%BF%E7%94%A8Dockerfile%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84Ubuntu/">使用Dockerfile构建一个属于自己的Ubuntu</a>
+
+      <a href="/2020/06/26/%E4%BD%BF%E7%94%A8Dockerfile%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84Ubuntu/" class="index-excerpt">
+        
+        
+          
+        
+        <div>1.编写 Dockerfileroot@VM-0-4-ubuntu:/home/Dockerfile# cat Dockerfile
+FROM ubuntu:18.04
+
+MAINTAINER ishacker.net "ishacker.net@gmail.com"
+
+# set apt-source
+RUN  sed -i s@/archive.ubuntu.com/@/mirrors.ali</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-26
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Docker/">Docker</a>
+            
+              <a href="/tags/Ubuntu/">Ubuntu</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/06/26/Dockerfile%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%8C%87%E4%BB%A4%E8%AF%B4%E6%98%8E/">Docker Dockerfile介绍及指令说明</a>
+
+      <a href="/2020/06/26/Dockerfile%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%8C%87%E4%BB%A4%E8%AF%B4%E6%98%8E/" class="index-excerpt">
+        
+        
+          
+        
+        <div>Dockerfile介绍
+Dockerfile是一个用来构建镜像的文本文件，文本内容包含了一条条构建镜像所需的指令和说明. 例如 Centos 8 的 Dockerfile  如下所示.
+FROM scratch
+ADD centos-8-x86_64.tar.xz /
+
+LABEL org.label-schema.schema-version="1.0" \
+    org.label-sch</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-26
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Docker/">Docker</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/06/26/Docker%E4%B8%AD%E7%9A%84%E5%85%B7%E5%90%8D%E4%B8%8E%E5%8C%BF%E5%90%8D%E6%8C%82%E8%BD%BD/">Docker中的具名与匿名挂载</a>
+
+      <a href="/2020/06/26/Docker%E4%B8%AD%E7%9A%84%E5%85%B7%E5%90%8D%E4%B8%8E%E5%8C%BF%E5%90%8D%E6%8C%82%E8%BD%BD/" class="index-excerpt">
+        
+        
+          
+        
+        <div></div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-26
+          </div>
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/06/26/%E4%BD%BF%E7%94%A8Docker%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7%E5%90%8C%E6%AD%A5MySQL%E6%95%B0%E6%8D%AE/">使用Docker容器数据卷同步MySQL数据</a>
+
+      <a href="/2020/06/26/%E4%BD%BF%E7%94%A8Docker%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7%E5%90%8C%E6%AD%A5MySQL%E6%95%B0%E6%8D%AE/" class="index-excerpt">
+        
+        
+          
+        
+        <div>1. 拉取 MySQL 镜像# ok
+
+2.运行 MySQL 容器# ok
+# 查看当前正在运行的容器(无)
+ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-26
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Docker/">Docker</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/06/25/Docker%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7%E7%9A%84%E4%BD%BF%E7%94%A8/">Docker容器数据卷的使用</a>
+
+      <a href="/2020/06/25/Docker%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7%E7%9A%84%E4%BD%BF%E7%94%A8/" class="index-excerpt">
+        
+        
+          
+        
+        <div>数据卷的使用方式使用容器数据卷的好处 : 当部署 nginx，tomcat 或 redis 等容器时，可使用数据卷将容器中的配置文件自动同步到本地主机上，进而可解决当需要修改容器中的配置文件时需频繁进入容器内部的问题，即提高了工作效率 !
+方式一
+直接使用命令来挂载 : docker run -it -v 主机目录:容器目录
+# 主机terminal(1)
+# 查看本地镜像
+ubuntu@VM-0</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-25
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Docker/">Docker</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <div class="col-12 col-md-12 mx-auto index-info">
       <a class="index-header" href="/2020/06/24/Docker%E5%AE%89%E8%A3%85Redis%E5%8F%8A%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">Docker安装Redis及基本使用</a>
 
       <a href="/2020/06/24/Docker%E5%AE%89%E8%A3%85Redis%E5%8F%8A%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="index-excerpt">
@@ -335,211 +517,11 @@ ubuntu              latest              7</div>
     </div>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/23/Docker%E9%95%9C%E5%83%8F%E5%8F%8A%E5%AE%B9%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/">Docker镜像及容器的基本命令</a>
-
-      <a href="/2020/06/23/Docker%E9%95%9C%E5%83%8F%E5%8F%8A%E5%AE%B9%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/" class="index-excerpt">
-        
-        
-          
-        
-        <div>Docker帮助命令# 查看docker的版本信息
-$ docker version
-# 查看docker的系统信息
-$ docker info
-# 查看docker帮助命令
-$ docker --help
-
-
-Docker镜像命令docker images : 查看镜像# docs
-ubuntu@VM-0-4-ubuntu:~$ sudo docker images --help
-
-Usage:</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-23
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Docker/">Docker</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/22/%E8%A7%A3%E5%86%B3%E6%AF%8F%E5%BD%93Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E5%90%8E%E9%9C%80%E8%A6%81%E9%87%8D%E6%96%B0%E5%A1%AB%E5%86%99%E5%9F%9F%E5%90%8D%E7%9A%84%E5%B0%B4%E5%B0%AC/">解决每当Hexo博客更新后需要重新填]写域名的尴尬</a>
-
-      <a href="/2020/06/22/%E8%A7%A3%E5%86%B3%E6%AF%8F%E5%BD%93Hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E5%90%8E%E9%9C%80%E8%A6%81%E9%87%8D%E6%96%B0%E5%A1%AB%E5%86%99%E5%9F%9F%E5%90%8D%E7%9A%84%E5%B0%B4%E5%B0%AC/" class="index-excerpt">
-        
-        
-          
-        
-        <div>
-在 Hexo 博客文件夹中的 source 目录下( 不是hexo根目录哟 )创建一个名为 CNAME文件，然后文件中写入你的域名，例如我的博客域名 : ishacker.net
-
-
-
-执行 Hexo 博文生成命令 : hexo g，然后通过 hexo d 或 git push origin 等方式将 Hexo 博客部署到 Github 即可.
-
-</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-22
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Hexo/">Hexo</a>
-            
-              <a href="/tags/GitHub/">GitHub</a>
-            
-              <a href="/tags/domain-name/">domain name</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/22/SSH%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F/">SSH远程连接服务器的两种方式</a>
-
-      <a href="/2020/06/22/SSH%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="index-excerpt">
-        
-        
-          
-        
-        <div>简介Secure Shell(SSH) 是由 IETF(The Internet Engineering Task Force) 制定的建立在应用层基础上的安全网络协议。它是专为远程登录会话( 甚至可以用Windows远程登录Linux服务器进行文件互传 )和其他网络服务提供安全性的协议，可有效弥补网络中的漏洞。通过SSH，可以把所有传输的数据进行加密，也能够防止 DNS 欺骗和 IP 欺骗。还有</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-22
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/SSH/">SSH</a>
-            
-              <a href="/tags/Linux/">Linux</a>
-            
-              <a href="/tags/Ubuntu/">Ubuntu</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/22/Ubuntu18-04-%E5%AE%89%E8%A3%85Docker%E5%8F%8A%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">Ubuntu18.04 安装Docker及基本使用</a>
-
-      <a href="/2020/06/22/Ubuntu18-04-%E5%AE%89%E8%A3%85Docker%E5%8F%8A%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="index-excerpt">
-        
-        
-          
-        
-        <div>简介Docker 是一个开源的应用容器引擎，基于 Go 语言并遵从 Apache2.0 协议开源。Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。容器是完全使用沙箱机制，相互之间不会有任何接口( 类似 iPhone 的 app ),更重要的是容器性能开销极低。Docker 从 17.03 版本之后分为 CE</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-22
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Docker/">Docker</a>
-            
-              <a href="/tags/Ubuntu/">Ubuntu</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <div class="col-12 col-md-12 mx-auto index-info">
-      <a class="index-header" href="/2020/06/21/%E5%88%9B%E5%BB%BAvue%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/">创建vue项目的几种方式</a>
-
-      <a href="/2020/06/21/%E5%88%9B%E5%BB%BAvue%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="index-excerpt">
-        
-        
-          
-        
-        <div>一 : 使用vue-cli脚手架创建新vuejs项目
-详情参考文章 : vue-cli构建vue项目的步骤详解
-
-二 : 使用vue create命令创建vuejs项目$ vue create hello-world
-$ cd hello-world
-$ npm run serve # 运行成功后访问 http://localhost:8000
-
-三 : 使用vue cli3的ui命令基于图形用户</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-21
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Vue/">Vue</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   

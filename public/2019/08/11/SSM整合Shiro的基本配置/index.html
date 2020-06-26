@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -190,7 +190,7 @@
             <article class="markdown-body">
               <h2 id="学习笔记-SSM整合Shiro的基本配置"><a href="#学习笔记-SSM整合Shiro的基本配置" class="headerlink" title="学习笔记 : SSM整合Shiro的基本配置"></a>学习笔记 : SSM整合Shiro的基本配置</h2><p><em>学习Spring Boot整合Shiro知识后,写了<a href="https://github.com/YUbuntu0109/Shiro-learning/tree/master/spring%20boot%20project%20with%20shiro" target="_blank" rel="noopener">一个简单的Spring Boot整合Shiro的权限管理案例</a>,可随后在GitHub上发现了一个<a href="https://github.com/YUbuntu0109/Permission" target="_blank" rel="noopener">基于SSM框架简单的后台权限管理系统</a>,很喜欢该项目(比较初级,适合练手),所以又开始学习如何在SSM中整合Shiro,Spring集成Shiro一般通过的 xml 配置,相比Spring Boot较为繁琐哟~ 以下基本配置信息摘自案例 : <a href="https://github.com/YUbuntu0109/Shiro-learning/tree/master/ssm%20project%20with%20shiro" target="_blank" rel="noopener">一个简单的SSM整合Shiro的权限管理案例</a></em></p>
 <h3 id="Maven依赖"><a href="#Maven依赖" class="headerlink" title="Maven依赖"></a>Maven依赖</h3><p><em>Shiro-learning/ssm project with shiro/ssm-shiro/pom.xml</em></p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- Shiro --&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- Shiro --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.shiro<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>shiro-spring<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
@@ -201,11 +201,11 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.shiro<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>shiro-ehcache<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.4.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
 
 
 <h3 id="web-xml配置"><a href="#web-xml配置" class="headerlink" title="web.xml配置"></a>web.xml配置</h3><p><em>Shiro-learning/ssm project with shiro/ssm-shiro/src/main/webapp/WEB-INF/web.xml</em></p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--
 配置Spring整合Shiro的过滤器:将拦截下来的请求交给Spring容器中名为'shiroFilter'(与filter-name同名)的bean处理
 详情信息见:applicationContext-shiro.xml
 --&gt;</span>
@@ -216,11 +216,11 @@
 <span class="hljs-tag">&lt;<span class="hljs-name">filter-mapping</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">filter-name</span>&gt;</span>shiroFilter<span class="hljs-tag">&lt;/<span class="hljs-name">filter-name</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/*<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">filter-mapping</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">filter-mapping</span>&gt;</span></code></pre></div>
 
 
 <h3 id="Shiro的基本配置"><a href="#Shiro的基本配置" class="headerlink" title="Shiro的基本配置"></a>Shiro的基本配置</h3><p><em>Shiro-learning/ssm project with shiro/ssm-shiro/src/main/resources/spring-config/applicationContext-shiro.xml</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>
        <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
        <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans
@@ -302,10 +302,10 @@
         <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"securityManager"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"securityManager"</span>/&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre></div>
 
 <p><em>Shiro-learning/ssm project with shiro/ssm-shiro/src/main/resources/shiro-config/ehcache-shiro.xml</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">ehcache</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
          <span class="hljs-attr">xsi:noNamespaceSchemaLocation</span>=<span class="hljs-string">"http://ehcache.org/ehcache.xsd"</span>
          <span class="hljs-attr">updateCheck</span>=<span class="hljs-string">"false"</span>
@@ -384,11 +384,11 @@
                   <span class="hljs-attr">diskExpiryThreadIntervalSeconds</span>=<span class="hljs-string">"120"</span>
                   <span class="hljs-attr">memoryStoreEvictionPolicy</span>=<span class="hljs-string">"LRU"</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">defaultCache</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">ehcache</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ehcache</span>&gt;</span></code></pre></div>
 
 
 <h3 id="自定义Realm的基本配置"><a href="#自定义Realm的基本配置" class="headerlink" title="自定义Realm的基本配置"></a>自定义Realm的基本配置</h3><p><em>Shiro-learning/ssm project with shiro/ssm-shiro/src/main/java/pers/huangyuhui/shiro/shiro/UserRealm.java</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.shiro.shiro;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.shiro.shiro;
 
 <span class="hljs-keyword">import</span> org.apache.shiro.SecurityUtils;
 <span class="hljs-keyword">import</span> org.apache.shiro.authc.*;
@@ -480,7 +480,7 @@
         <span class="hljs-comment">//验证密码信息(盐值:ByteSource.Util.bytes(user.getUsername()))</span>
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> SimpleAuthenticationInfo(user, user.getPassword(), ByteSource.Util.bytes(user.getUsername()), <span class="hljs-keyword">this</span>.getName());
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
             </article>
             <hr>
             <div>

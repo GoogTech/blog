@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -199,7 +199,7 @@
 </ul>
 <p><em><code>MVVM</code>模式解耦了视图和模型 : 在模式中,每一个视图都对应一个ViewModel,同时ViewModel与模型建立关联系,当接收到用户请求时,ViewModel获取模型响应数据,并通过数据绑定将相应的视图页面重新渲染. 视图层的数据只需要传入ViewModel即可实现视图层的同步更新,从而实现了视图和模型之间的松散耦合 .</em></p>
 <p><em>下面以我的第一个<code>Vue</code>实例为例(具体语法解析见下述哟),简单地解析一下<code>MVVM</code>的各个部分 :</em></p>
-<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
@@ -217,34 +217,34 @@
 			&#125;);
 		</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 
 <ol>
 <li><p><em>View 层</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>&#123;&#123; message &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>&#123;&#123; message &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>ViewModel 层</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
 <span class="hljs-keyword">var</span> app = <span class="hljs-keyword">new</span> Vue(&#123;
 	el: <span class="hljs-string">'#app'</span>,
 	data: &#123;
 		message: <span class="hljs-string">'Hello Vue!'</span>
 	&#125;
 &#125;);
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>Model 层</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
 data: &#123;
 	message: <span class="hljs-string">'Hello Vue!'</span>
 &#125;
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre></div>
 
 
 </li>
 </ol>
 <h3 id="第一个Vue实例"><a href="#第一个Vue实例" class="headerlink" title="第一个Vue实例"></a>第一个Vue实例</h3><p><em>在这个实例中,初始化了带有’message’数据的’vm’对象,并将其绑定到’id’为’app’的<code>DOM</code>节点上. 初始化时,在实例上绑定的常规数据对象会被Vue转换为被观察的拥有可响应行为的对象,简单点说,就是当数据发生改变时,会同步更新其数据链和作用域中所有的相关状态,例如当实例数据发生改变时,视图也随之变化. 下面就义这个简单的Vue实例为例,简单地解析一下其语法 :</em></p>
-<pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
@@ -262,27 +262,27 @@ data: &#123;
 			&#125;);
 		</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 
 <ol>
 <li><p><em>vm : 通过构造函数Vue就可以创建一个Vue的根实例,并启动Vue应用,变量vm就代表这个Vue实例. 例如 :</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
 <span class="hljs-keyword">var</span> vm = <span class="hljs-keyword">new</span> Vue(&#123;
 	
 &#125;);
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>el : 实际上,所有代码都是一个对象写入Vue实例(<code>vm</code>)内的. 首先,必不可少的一个选项就是<code>el</code>,其用于指定一个页面中已存在的<code>DOM</code>元素来挂载Vue实例,它可以是HTMLElement,也可以是CSS选择器,挂载成功后继而可以通过<code>vm.$el</code>来访问该元素,例如 :</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
 <span class="hljs-keyword">var</span> vm = <span class="hljs-keyword">new</span> Vue(&#123;
     <span class="hljs-attr">el</span>:<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>) <span class="hljs-comment">//或:'#app'</span>
 &#125;);
-<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>/&gt;</span></span></span></code></pre>
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>/&gt;</span></span></span></code></pre></div>
 </li>
 <li><p><em>data : 通过Vue实例的data选项,继而配合<code>v-model</code>指令可以声明应用内需要双向绑定的数据,例如 :</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"msg"</span> /&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"msg"</span> /&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
 <span class="hljs-keyword">var</span> vm = <span class="hljs-keyword">new</span> Vue(&#123;
@@ -291,10 +291,10 @@ data: &#123;
 		msg: <span class="hljs-string">'stay hungray,stay foolish ~'</span>
 	&#125;
 &#125;);
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>双括号(<code>Mustache</code>语法)是最基本的文本插值方法,它会自动将我们双向绑定的数据实时显示出来,例如 :</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>&#123;&#123; message &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>&#123;&#123; message &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
     <span class="hljs-keyword">var</span> vm = <span class="hljs-keyword">new</span> Vue(&#123;
@@ -303,7 +303,7 @@ data: &#123;
 		message: <span class="hljs-string">'Hello Vue!'</span>
 	&#125;
 &#125;);
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre></div>
 
 
 </li>

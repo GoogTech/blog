@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -203,24 +203,24 @@
 <h3 id="应用案例"><a href="#应用案例" class="headerlink" title="应用案例"></a>应用案例</h3><p><em>下面通过一个操作客户信息的综合案例来学习SQL动态元素 (っ•̀ω•́)っ✎⁾⁾ ~</em></p>
 <ol>
 <li><p><em>客户信息表结构</em></p>
-<pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> t_customer (
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> t_customer (
 
 	<span class="hljs-keyword">id</span> <span class="hljs-built_in">INT</span>(<span class="hljs-number">32</span>) PRIMARY <span class="hljs-keyword">KEY</span> AUTO_INCREMENT,
 	username <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
 	jobs <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">45</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
 	phone <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">16</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>
 	
-)</code></pre>
+)</code></pre></div>
 </li>
 <li><p><em>db.properties : 数据库配置文件</em></p>
-<pre><code class="hljs t">#database configuration information
+<div class="hljs"><pre><code class="hljs t">#database configuration information
 jdbc.driver=com.mysql.cj.jdbc.Driver
 jdbc.url=jdbc:mysql://LOCALHOST/MyBatis?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true
 jdbc.username=root
-jdbc.password=GoodTime</code></pre>
+jdbc.password=GoodTime</code></pre></div>
 </li>
 <li><p><em>mybatis-config.xml : MyBatis核心配置文件</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE configuration
  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span>
@@ -245,10 +245,10 @@ jdbc.password=GoodTime</code></pre>
 	<span class="hljs-tag">&lt;<span class="hljs-name">mappers</span>&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">"pers/huangyuhui/mybatis/mapper/CustomerMapper.xml"</span> /&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">mappers</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>Customer.java : 封装客户信息</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mybatis.bean;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mybatis.bean;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: Customer
@@ -301,10 +301,10 @@ jdbc.password=GoodTime</code></pre>
 		<span class="hljs-keyword">return</span> <span class="hljs-string">"Customer [id="</span> + id + <span class="hljs-string">", username="</span> + username + <span class="hljs-string">", job="</span> + job + <span class="hljs-string">", phone="</span> + phone + <span class="hljs-string">"]"</span>;
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>CustomerMapper.xml : 操作’t_customer’数据表的映射文件</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span>
 
@@ -400,10 +400,10 @@ jdbc.password=GoodTime</code></pre>
 		<span class="hljs-tag">&lt;<span class="hljs-name">bind</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"pattern_username"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">" '%'  + _parameter.getUsername + '%' "</span>/&gt;</span>
 		select id,username,job,phone from t_customer where username like #&#123;pattern_username&#125;
 	<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>MyBatisUtils.java : MyBatis工具类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mybatis.util;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mybatis.util;
 
 <span class="hljs-keyword">import</span> java.io.IOException;
 <span class="hljs-keyword">import</span> java.io.Reader;
@@ -442,10 +442,10 @@ jdbc.password=GoodTime</code></pre>
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> SqlSession <span class="hljs-title">getSession</span><span class="hljs-params">()</span> </span>&#123;
 		<span class="hljs-keyword">return</span> sqlSessionFactory.openSession();
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>MyBatisTest.java : 测试类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mybatis.test;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mybatis.test;
 
 <span class="hljs-keyword">import</span> java.io.IOException;
 <span class="hljs-keyword">import</span> java.util.ArrayList;
@@ -577,17 +577,17 @@ jdbc.password=GoodTime</code></pre>
 
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>log4j.properties : 日志配置文件</em></p>
-<pre><code class="hljs t">#Global configuration
+<div class="hljs"><pre><code class="hljs t">#Global configuration
 log4j.rootLogger=DEBUG,stdout
 #Log configuration
 log4j.logger.pers.huangyuhui.mybatis.test=TRACE
 #Console configuration
 log4j.appender.stdout=org.apache.log4j.ConsoleAppender
 log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
-log4j.appender.stdout.layout.layout.ConversionPattern=%5p [%t] - %m%n</code></pre></li>
+log4j.appender.stdout.layout.layout.ConversionPattern=%5p [%t] - %m%n</code></pre></div></li>
 </ol>
 
             </article>

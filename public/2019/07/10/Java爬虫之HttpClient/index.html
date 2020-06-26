@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -196,7 +196,7 @@
 <li><em>支持代理服务器</em></li>
 </ol>
 <h3 id="实现爬虫"><a href="#实现爬虫" class="headerlink" title="实现爬虫"></a>实现爬虫</h3><p><em>传统实现 : 爬取静态网页</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.crawler.HttpClient_Demo;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.crawler.HttpClient_Demo;
 
 <span class="hljs-keyword">import</span> java.io.BufferedReader;
 <span class="hljs-keyword">import</span> java.io.IOException;
@@ -228,10 +228,10 @@
         reader.close();
         System.out.println(pageBuffer.toString());
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><em>HttpClient实现 : 爬取静态网页</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.crawler.HttpClient_Demo;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.crawler.HttpClient_Demo;
 
 <span class="hljs-keyword">import</span> org.apache.http.HttpEntity;
 <span class="hljs-keyword">import</span> org.apache.http.client.methods.CloseableHttpResponse;
@@ -274,12 +274,12 @@
             e.printStackTrace();
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 
 <h3 id="GET请求"><a href="#GET请求" class="headerlink" title="GET请求"></a>GET请求</h3><p><em>无参GET请求 : 爬取B站静态网页</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.crawler.HttpClient_Get;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.crawler.HttpClient_Get;
 
 <span class="hljs-keyword">import</span> org.apache.http.HttpEntity;
 <span class="hljs-keyword">import</span> org.apache.http.client.methods.CloseableHttpResponse;
@@ -320,10 +320,10 @@
             e.printStackTrace();
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><em>有参GET请求 : 爬取B站中搜索关键字为jsoup的网页内容</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.crawler.HttpClient_Get;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.crawler.HttpClient_Get;
 
 <span class="hljs-keyword">import</span> org.apache.http.HttpEntity;
 <span class="hljs-keyword">import</span> org.apache.http.client.methods.CloseableHttpResponse;
@@ -369,12 +369,12 @@
         httpClient.close();
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 
 <h3 id="POST请求"><a href="#POST请求" class="headerlink" title="POST请求"></a>POST请求</h3><p><em>无参POST请求 : 爬取CSDN静态网页</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.crawler.HttpClient_Post;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.crawler.HttpClient_Post;
 
 <span class="hljs-keyword">import</span> org.apache.http.HttpEntity;
 <span class="hljs-keyword">import</span> org.apache.http.client.methods.CloseableHttpResponse;
@@ -417,10 +417,10 @@
             e.printStackTrace();
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><em>有参POST请求 : 爬取B站中搜索关键字为jsoup的网页内容(注:其并不支持POST,既只做演示)</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.crawler.HttpClient_Post;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.crawler.HttpClient_Post;
 
 <span class="hljs-keyword">import</span> org.apache.http.HttpEntity;
 <span class="hljs-keyword">import</span> org.apache.http.NameValuePair;
@@ -472,12 +472,12 @@
 
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 
 <h3 id="HttpClient连接池"><a href="#HttpClient连接池" class="headerlink" title="HttpClient连接池"></a>HttpClient连接池</h3><p><em>学习使用HttpClient连接池</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.crawler.HttpClient_ConnPool;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.crawler.HttpClient_ConnPool;
 
 <span class="hljs-keyword">import</span> org.apache.http.HttpEntity;
 <span class="hljs-keyword">import</span> org.apache.http.client.methods.CloseableHttpResponse;
@@ -531,7 +531,7 @@
         &#125;
         <span class="hljs-comment">//httpClient.close(); //由PoolingHttpClientConnectionManager管理</span>
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
             </article>
             <hr>
             <div>

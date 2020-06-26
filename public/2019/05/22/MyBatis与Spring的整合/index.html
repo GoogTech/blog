@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -191,7 +191,7 @@
               <h2 id="学习笔记-Spring与MyBatis整合"><a href="#学习笔记-Spring与MyBatis整合" class="headerlink" title="学习笔记 : Spring与MyBatis整合"></a>学习笔记 : Spring与MyBatis整合</h2><h3 id="传统DAO方式的开发整合"><a href="#传统DAO方式的开发整合" class="headerlink" title="传统DAO方式的开发整合"></a>传统DAO方式的开发整合</h3><p><em>简介 : 采用传统DAO开发方式进行MyBatis与Spring框架的整合时,需要编写DAO接口以及接口的实现类,<code>并且需要向DAO实现类中注入SqlSessionFactory</code>,然后通过SqlSessionFactory创建SqlSession. 下面通过一个使用客户id查询数据表中客户信息的案例来演示该开发方式.</em></p>
 <ol>
 <li><p><em>customer.sql : 客户信息表</em></p>
-<pre><code class="hljs sql"><span class="hljs-comment"># 客户信息表</span>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment"># 客户信息表</span>
 <span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> t_customer (
 
 	<span class="hljs-keyword">id</span> <span class="hljs-built_in">INT</span>(<span class="hljs-number">20</span>) PRIMARY <span class="hljs-keyword">KEY</span> AUTO_INCREMENT,
@@ -199,10 +199,10 @@
 	job <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">10</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
 	phone <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">12</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>
 	
-)</code></pre>
+)</code></pre></div>
 </li>
 <li><p><em>db.properties : 数据库配置文件</em></p>
-<pre><code class="hljs t">#
+<div class="hljs"><pre><code class="hljs t">#
 #database configuration information
 #
 jdbc.driver=com.mysql.cj.jdbc.Driver
@@ -214,10 +214,10 @@ jdbc.password=xxxxxx
 #
 jdbc.maxTotal=30    #最大连接数
 jdbc.maxIdle=10     #最大空闲连接数
-jdbc.initialSize=5  #初始化连接数</code></pre>
+jdbc.initialSize=5  #初始化连接数</code></pre></div>
 </li>
 <li><p><em>applicationContext.xml : Spring核心配置文件</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>
 	<span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
 	<span class="hljs-attr">xmlns:aop</span>=<span class="hljs-string">"http://www.springframework.org/schema/aop"</span>
@@ -270,10 +270,10 @@ jdbc.initialSize=5  #初始化连接数</code></pre>
 		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"sqlSessionFactory"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"sqlSessionFactory"</span>/&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>mybatis-config.xml : MyBaits核心配置文件</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>
@@ -287,10 +287,10 @@ jdbc.initialSize=5  #初始化连接数</code></pre>
 	<span class="hljs-tag">&lt;<span class="hljs-name">mappers</span>&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">"pers/huangyuhui/sm/po/CustomerMapper.xml"</span> /&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">mappers</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>Customer.java : 持久层</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.sm.po;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.sm.po;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: Customer
@@ -343,10 +343,10 @@ jdbc.initialSize=5  #初始化连接数</code></pre>
 		<span class="hljs-keyword">return</span> <span class="hljs-string">"Customer [id="</span> + id + <span class="hljs-string">", name="</span> + name + <span class="hljs-string">", job="</span> + job + <span class="hljs-string">", phone="</span> + phone + <span class="hljs-string">"]"</span>;
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>CustomerMapper.xml : 映射文件</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">namespace</span>=<span class="hljs-string">"pers.huangyuhui.sm.po.CustomerMapper"</span>&gt;</span>
@@ -354,10 +354,10 @@ jdbc.initialSize=5  #初始化连接数</code></pre>
 	<span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"findCustomerById"</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">"Integer"</span>  <span class="hljs-attr">resultType</span>=<span class="hljs-string">"customer"</span>&gt;</span>
 		select id,name,job,phone from t_customer where id = #&#123;id&#125;
 	<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">mapper</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>CustomerDao.java : DAO层</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.sm.dao;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.sm.dao;
 
 <span class="hljs-keyword">import</span> pers.huangyuhui.sm.po.Customer;
 
@@ -377,10 +377,10 @@ jdbc.initialSize=5  #初始化连接数</code></pre>
 	 * <span class="hljs-doctag">@return</span>: Customer
 	 */</span>
 	<span class="hljs-function"><span class="hljs-keyword">public</span> Customer <span class="hljs-title">findCustomerById</span><span class="hljs-params">(Integer id)</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>CustomerDaoImpl.java : CustomerDao的实现类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.sm.dao.impl;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.sm.dao.impl;
 
 <span class="hljs-keyword">import</span> org.mybatis.spring.support.SqlSessionDaoSupport;
 
@@ -407,16 +407,16 @@ jdbc.initialSize=5  #初始化连接数</code></pre>
 		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.getSqlSession().selectOne(mapperNamespace + <span class="hljs-string">"findCustomerById"</span>, id);
 	&#125;
 
-&#125;</code></pre></li>
+&#125;</code></pre></div></li>
 </ol>
 <p><em>在此步骤需要在Spring配置文件applicationContext.xml中编写实例化CustomerDaoImpl的配置(<code>已添加</code>),代码如下所示 :</em></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"customerDao"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"pers.huangyuhui.sm.dao.impl.CustomerDaoImpl"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"customerDao"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"pers.huangyuhui.sm.dao.impl.CustomerDaoImpl"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"sqlSessionFactory"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"sqlSessionFactory"</span>/&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></code></pre></div>
 
 <ol start="9">
 <li><p><em>SMTest.java : 整合测试类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.sm.test;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.sm.test;
 
 <span class="hljs-keyword">import</span> org.junit.BeforeClass;
 <span class="hljs-keyword">import</span> org.junit.Test;
@@ -450,20 +450,20 @@ jdbc.initialSize=5  #初始化连接数</code></pre>
 		Customer customer = customerDao.findCustomerById(<span class="hljs-number">1</span>);
 		System.out.println(customer);
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>log4j.properties : 日志文件</em></p>
-<pre><code class="hljs t">#Global configuration
+<div class="hljs"><pre><code class="hljs t">#Global configuration
 log4j.rootLogger=DEBUG,stdout
 #Log configuration
 log4j.logger.pers.huangyuhui.sm.test=TRACE
 #Console configuration
 log4j.appender.stdout=org.apache.log4j.ConsoleAppender
 log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
-log4j.appender.stdout.layout.layout.ConversionPattern=%5p [%t] - %m%n</code></pre>
+log4j.appender.stdout.layout.layout.ConversionPattern=%5p [%t] - %m%n</code></pre></div>
 </li>
 <li><p><em>程序运行结果</em></p>
-<pre><code class="hljs routeros">Fetching JDBC<span class="hljs-built_in"> Connection </span><span class="hljs-keyword">from</span> DataSource
+<div class="hljs"><pre><code class="hljs routeros">Fetching JDBC<span class="hljs-built_in"> Connection </span><span class="hljs-keyword">from</span> DataSource
 JDBC<span class="hljs-built_in"> Connection </span>[1334618867, <span class="hljs-attribute">URL</span>=xxxxxx, MySQL Connector/J] will <span class="hljs-keyword">not</span> be managed by Spring
 
 ==&gt;  Preparing: select id,name,job,phone <span class="hljs-keyword">from</span> t_customer where id = ? 
@@ -472,7 +472,7 @@ JDBC<span class="hljs-built_in"> Connection </span>[1334618867, <span class="hlj
 
 Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@15c25153]
 Returning JDBC<span class="hljs-built_in"> Connection </span><span class="hljs-keyword">to</span> DataSource<span class="hljs-built_in">
-Customer </span>[<span class="hljs-attribute">id</span>=1, <span class="hljs-attribute">name</span>=YUbuntu0109, <span class="hljs-attribute">job</span>=student, <span class="hljs-attribute">phone</span>=15111111111]</code></pre>
+Customer </span>[<span class="hljs-attribute">id</span>=1, <span class="hljs-attribute">name</span>=YUbuntu0109, <span class="hljs-attribute">job</span>=student, <span class="hljs-attribute">phone</span>=15111111111]</code></pre></div>
 
 
 

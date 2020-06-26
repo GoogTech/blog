@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -196,7 +196,7 @@
 <li><em><code>Functions</code> : 函数标签库,提供了一套自定义<code>EL</code>函数,包含<code>JSP</code>网页制作者经常要用到的字符串操作.</em></li>
 </ol>
 <h3 id="JSTL的使用"><a href="#JSTL的使用" class="headerlink" title="JSTL的使用"></a><code>JSTL</code>的使用</h3><p><em>例如 : 测试<code>&lt;c:out&gt;</code>标签,需要使用<code>taglib</code>指令导入<code>Core</code>标签库.代码如下 :</em></p>
-<pre><code class="hljs java">&lt;%<span class="hljs-meta">@taglib</span> uri=<span class="hljs-string">"http://java.sun.com/jsp/jstl/core"</span> prefix=<span class="hljs-string">"c"</span> %&gt;</code></pre>
+<div class="hljs"><pre><code class="hljs java">&lt;%<span class="hljs-meta">@taglib</span> uri=<span class="hljs-string">"http://java.sun.com/jsp/jstl/core"</span> prefix=<span class="hljs-string">"c"</span> %&gt;</code></pre></div>
 <p><em>在上述代码中,<code>taglib</code>指令的<code>uri</code>属性用于指定引入标签库描述文件中的<code>URL</code>, 其<code>prefix</code>属性用于指定引入标签库描述符文件的前缀.在JSP文件中使用这个标签时都要使用这个前缀.</em></p>
 
             </article>

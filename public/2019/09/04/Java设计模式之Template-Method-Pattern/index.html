@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -203,7 +203,7 @@
 <h3 id="示例程序-简洁版"><a href="#示例程序-简洁版" class="headerlink" title="示例程序-简洁版"></a>示例程序-简洁版</h3><p><em>下面是一个使用模板方法模式的简单示例程序 : 通过自定义模板样式来打印不同包裹字符的效果~</em></p>
 <ol>
 <li><p><em>AbstractDisplay抽象类 : 充当抽象类角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.template_method.template_method1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.template_method.template_method1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -238,10 +238,10 @@
 
     <span class="hljs-comment">//基本方法-钩子方法</span>
     <span class="hljs-comment">//略······</span>
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>CustomDisplay1类 : 充当具体类角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.template_method.template_method1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.template_method.template_method1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -284,10 +284,10 @@
         System.out.println(<span class="hljs-string">"●"</span>);
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>CustomDisplay2类 : 充当具体类角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.template_method.template_method1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.template_method.template_method1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -329,10 +329,10 @@
         &#125;
         System.out.println(<span class="hljs-string">"+"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Main类 : 程序测试</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.template_method.template_method1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.template_method.template_method1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -351,10 +351,10 @@
         abstractDisplay2.disply();
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行结果如下所示 :</em></p>
-<pre><code class="hljs pgsql">●■■■■■■■■■■■■■■■■■■■■■■■●
+<div class="hljs"><pre><code class="hljs pgsql">●■■■■■■■■■■■■■■■■■■■■■■■●
 █<span class="hljs-keyword">Template</span> <span class="hljs-keyword">Method</span> Pattern█
 █<span class="hljs-keyword">Template</span> <span class="hljs-keyword">Method</span> Pattern█
 █<span class="hljs-keyword">Template</span> <span class="hljs-keyword">Method</span> Pattern█
@@ -367,7 +367,7 @@
 |<span class="hljs-keyword">Template</span> <span class="hljs-keyword">Method</span> Pattern|
 |<span class="hljs-keyword">Template</span> <span class="hljs-keyword">Method</span> Pattern|
 |<span class="hljs-keyword">Template</span> <span class="hljs-keyword">Method</span> Pattern|s
-+<span class="hljs-comment">-----------------------+</span></code></pre>
++<span class="hljs-comment">-----------------------+</span></code></pre></div>
 
 </li>
 </ol>
@@ -379,7 +379,7 @@
 <h3 id="示例程序-详细版"><a href="#示例程序-详细版" class="headerlink" title="示例程序-详细版"></a>示例程序-详细版</h3><p><em>下面是一个使用方法模板模式的简单示例程序 : 该程序的功能( 模拟 )为支持多种数据源及图表的显示方式,但所有的图表实现操作都需基于XML格式的数据,因此可能需要对数据进行转换,如果从数据源中获取的数据已经是XML数据则无需进行转换,所以这里需要用到<code>钩子方法</code>哟</em></p>
 <ol>
 <li><p><em>DataViewer抽象类 : 充当抽象类角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.template_method.template_method2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.template_method.template_method2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -416,10 +416,10 @@
         &#125;
         displayData();
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>CustomDataViewer1类 : 充当具体类角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.template_method.template_method2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.template_method.template_method2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -447,10 +447,10 @@
         <span class="hljs-comment">//return super.isNotXMLData();</span>
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>CustomDataViewer2类 : 充当具体类角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.template_method.template_method2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.template_method.template_method2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -472,10 +472,10 @@
         System.out.println(<span class="hljs-string">"以圆饼图的方式显示数据"</span>);
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Main类 : 程序测试</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.template_method.template_method2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.template_method.template_method2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -493,15 +493,15 @@
         System.out.println(<span class="hljs-string">"--------------------"</span>);
         dataViewer2.process();
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行结果如下所示 :</em></p>
-<pre><code class="hljs asciidoc">从XML文件中获取数据
+<div class="hljs"><pre><code class="hljs asciidoc">从XML文件中获取数据
 <span class="hljs-section">以柱状图的方式显示数据
 --------------------</span>
 从XML文件中获取数据
 将数据转换为XML格式
-以圆饼图的方式显示数据</code></pre>
+以圆饼图的方式显示数据</code></pre></div>
 
 </li>
 </ol>

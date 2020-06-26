@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -198,7 +198,7 @@
 <h3 id="示例程序-静态代理"><a href="#示例程序-静态代理" class="headerlink" title="示例程序-静态代理"></a>示例程序-静态代理</h3><p><em>下面是一个使用代理模式( 静态代理 )的简单示例程序 : 模拟实现某商务信息查询系统的部分功能 : ( 一 )在进行商务信息查询前用户需要通过身份验证,只有合法的用户才能够使用该查询系统. ( 二 )在进行商务信息查询时系统需要记录其查询日志,以便根据查询次数收取查询费用</em></p>
 <ol>
 <li><p><em>AccessValidator类 : 身份验证类(业务类), 它提供validate()方法来实现用户身份的验证</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.froxy_pattern.froxy_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.froxy_pattern.froxy_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -220,10 +220,10 @@
             <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Logger类 : 日志记录类(业务类), 提供一个log()方法来保存日志信息</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.froxy_pattern.froxy_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.froxy_pattern.froxy_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -239,10 +239,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">log</span><span class="hljs-params">(String userId)</span> </span>&#123;
         System.out.println(<span class="hljs-string">"成功更新数据库信息,ID为:[ "</span> + userId + <span class="hljs-string">"+ ]的用户查询次数+1"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Searcher接口 : 抽象查询类, 充当抽象主题角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.froxy_pattern.froxy_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.froxy_pattern.froxy_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -254,10 +254,10 @@
  */</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Searcher</span> </span>&#123;
     <span class="hljs-function">String <span class="hljs-title">doSearch</span><span class="hljs-params">(String userId, String keyWord)</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>RealSearcher类 : 具体查询类, 充当真实主题角色, 它实现了查询功能</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.froxy_pattern.froxy_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.froxy_pattern.froxy_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -275,10 +275,10 @@
         System.out.println(<span class="hljs-string">"ID为:[ "</span> + userId + <span class="hljs-string">" ]的用户使用关键字:[ "</span> + keyWord + <span class="hljs-string">" ]查询了商务信息"</span>);
         <span class="hljs-keyword">return</span> <span class="hljs-string">"[ 这是用户所查询的商务信息结果 ]"</span>;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>ProxySearcher类 : 代理查询类, 充当代码主题角色, 它是查询代理, 维持了对RealSearcher, AccessValidator, 及Logger对象的引用</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.froxy_pattern.froxy_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.froxy_pattern.froxy_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -317,10 +317,10 @@
         logger = <span class="hljs-keyword">new</span> Logger();
         logger.log(userId);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Client类 : 客户端测试类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.froxy_pattern.froxy_pattern_1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.froxy_pattern.froxy_pattern_1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -336,13 +336,13 @@
         Searcher searcher = <span class="hljs-keyword">new</span> ProxySearcher();
         System.out.println(searcher.doSearch(<span class="hljs-string">"yubuntu0109"</span>, <span class="hljs-string">"design-patterns-in-java"</span>));
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>示例程序的运行结果如下所示 :</em></p>
-<pre><code class="hljs css"><span class="hljs-selector-tag">ID</span>为:<span class="hljs-selector-attr">[ yubuntu0109 ]</span>的用户登录成功
+<div class="hljs"><pre><code class="hljs css"><span class="hljs-selector-tag">ID</span>为:<span class="hljs-selector-attr">[ yubuntu0109 ]</span>的用户登录成功
 <span class="hljs-selector-tag">ID</span>为:<span class="hljs-selector-attr">[ yubuntu0109 ]</span>的用户使用关键字:<span class="hljs-selector-attr">[ design-patterns-in-java ]</span>查询了商务信息
 成功更新数据库信息,<span class="hljs-selector-tag">ID</span>为:<span class="hljs-selector-attr">[ yubuntu0109+ ]</span>的用户查询次数+1
-<span class="hljs-selector-attr">[ 这是用户所查询的商务信息结果 ]</span></code></pre>
+<span class="hljs-selector-attr">[ 这是用户所查询的商务信息结果 ]</span></code></pre></div>
 
 </li>
 </ol>
@@ -350,7 +350,7 @@
 <h3 id="示例程序-动态代理"><a href="#示例程序-动态代理" class="headerlink" title="示例程序-动态代理"></a>示例程序-动态代理</h3><p><em>下面是一个使用代理模式( 动态代理 )的示例程序 : 模拟为某 OA 系统数据访问层( DAO )增加方法调用日志,既记录每一个方法被调用的开始及结束时间</em></p>
 <ol>
 <li><p><em>AbstractUserDao接口 : 抽象用户DAO类, 充当抽象主题角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.froxy_pattern.froxy_pattern_2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.froxy_pattern.froxy_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -362,10 +362,10 @@
  */</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">AbstractUserDao</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">findUserById</span><span class="hljs-params">(String userId)</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>AbstractDocumentDao接口 : 抽象文档DAO类, 充当抽象主题角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.froxy_pattern.froxy_pattern_2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.froxy_pattern.froxy_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -377,10 +377,10 @@
  */</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">AbstractDocumentDao</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">deleteDocumentById</span><span class="hljs-params">(String documentId)</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>DocumentDao类 : 文档DAO类, 充当具体主题角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.froxy_pattern.froxy_pattern_2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.froxy_pattern.froxy_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -402,10 +402,10 @@
             <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>UserDao类 : 用户DAO类, 充当具体主题角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.froxy_pattern.froxy_pattern_2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.froxy_pattern.froxy_pattern_2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -427,10 +427,10 @@
             <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>DAOLogHandler类 : 自定义请求处理程序类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.froxy_pattern.froxy_pattern_2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.froxy_pattern.froxy_pattern_2;
 
 <span class="hljs-keyword">import</span> java.lang.reflect.InvocationHandler;
 <span class="hljs-keyword">import</span> java.lang.reflect.Method;
@@ -473,10 +473,10 @@
         afterInvoke();
         <span class="hljs-keyword">return</span> result;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Client类 : 客户端测试类</em></p>
-<pre><code class="hljs java">package pers.huangyuhui.froxy_pattern.froxy_pattern_2;
+<div class="hljs"><pre><code class="hljs java">package pers.huangyuhui.froxy_pattern.froxy_pattern_2;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
@@ -502,10 +502,10 @@ public class Client &#123;
         AbstractDocumentDao proxy2 = (AbstractDocumentDao) Proxy.newProxyInstance(AbstractDocumentDao.class.getClassLoader(), new Class[]&#123;AbstractDocumentDao.class&#125;, handler2);
         proxy2.deleteDocumentById("Y001");
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>示例程序运行的结果如下所示 :</em></p>
-<pre><code class="hljs smali">------&gt;<span class="hljs-built_in"> invoke </span>before: Fri Sep 27 14:05:06 CST 2019
+<div class="hljs"><pre><code class="hljs smali">------&gt;<span class="hljs-built_in"> invoke </span>before: Fri Sep 27 14:05:06 CST 2019
 成功查询ID为:[ yubuntu0109 ]的用户信息
 ------&gt;<span class="hljs-built_in"> invoke </span>after: Fri Sep 27 14:05:06 CST 2019
 
@@ -513,7 +513,7 @@ public class Client &#123;
 
 ------&gt;<span class="hljs-built_in"> invoke </span>before: Fri Sep 27 14:05:06 CST 2019
 成功删除ID为:[ Y001 ]的文档信息
-------&gt;<span class="hljs-built_in"> invoke </span>after: Fri Sep 27 14:05:06 CST 2019</code></pre>
+------&gt;<span class="hljs-built_in"> invoke </span>after: Fri Sep 27 14:05:06 CST 2019</code></pre></div>
 
 </li>
 </ol>

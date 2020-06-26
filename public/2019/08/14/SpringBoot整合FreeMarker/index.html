@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -191,7 +191,7 @@
               <h2 id="学习笔记-Spring-Boot整合FreeMarker"><a href="#学习笔记-Spring-Boot整合FreeMarker" class="headerlink" title="学习笔记 : Spring Boot整合FreeMarker"></a>学习笔记 : Spring Boot整合FreeMarker</h2><h3 id="FreeMarker官方简介"><a href="#FreeMarker官方简介" class="headerlink" title="FreeMarker官方简介"></a>FreeMarker官方简介</h3><p><em>Apache FreeMarker™ is a template engine: a Java library to generate text output (HTML web pages, e-mails, configuration files, source code, etc.) based on templates and changing data. Templates are written in the FreeMarker Template Language (FTL), which is a simple, specialized language (not a full-blown programming language like PHP). Usually, a general-purpose programming language (like Java) is used to prepare the data (issue database queries, do business calculations). Then, Apache FreeMarker displays that prepared data using templates. <code>In the template you are focusing on how to present the data, and outside the template you are focusing on what data to present.</code></em></p>
 <p><img src="/2019/08/14/SpringBoot%E6%95%B4%E5%90%88FreeMarker/FreeMarker-overview.png" srcset="/img/loading.gif" alt></p>
 <p><em>This approach is often referred to as the MVC (Model View Controller) pattern, and is particularly popular for dynamic web pages. <code>It helps in separating web page designers (HTML authors) from developers (Java programmers usually). Designers won&#39;t face complicated logic in templates</code>, and can change the appearance of a page without programmers having to change or recompile code.</em></p>
-<h3 id="引入Maven依赖"><a href="#引入Maven依赖" class="headerlink" title="引入Maven依赖"></a>引入Maven依赖</h3><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- Web --&gt;</span>
+<h3 id="引入Maven依赖"><a href="#引入Maven依赖" class="headerlink" title="引入Maven依赖"></a>引入Maven依赖</h3><div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- Web --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
@@ -200,10 +200,10 @@
 <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-freemarker<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre></div>
 
 
-<h3 id="编写Controller"><a href="#编写Controller" class="headerlink" title="编写Controller"></a>编写Controller</h3><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.freemark.controller;
+<h3 id="编写Controller"><a href="#编写Controller" class="headerlink" title="编写Controller"></a>编写Controller</h3><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.freemark.controller;
 
 <span class="hljs-keyword">import</span> org.springframework.stereotype.Controller;
 <span class="hljs-keyword">import</span> org.springframework.ui.Model;
@@ -225,10 +225,10 @@
         model.addAttribute(<span class="hljs-string">"resource"</span>, <span class="hljs-string">"SringBoot is integrated with FreeMarker !"</span>);
         <span class="hljs-keyword">return</span> <span class="hljs-string">"index"</span>;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
-<h3 id="编写FreeMarker页面"><a href="#编写FreeMarker页面" class="headerlink" title="编写FreeMarker页面"></a>编写FreeMarker页面</h3><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<h3 id="编写FreeMarker页面"><a href="#编写FreeMarker页面" class="headerlink" title="编写FreeMarker页面"></a>编写FreeMarker页面</h3><div class="hljs"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
@@ -237,7 +237,7 @@
 <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">align</span>=<span class="hljs-string">"center"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"color: blueviolet"</span>&gt;</span>$&#123;resource&#125; Date: $&#123;.now?string("yyyy-MM-dd HH:mm:ss.sss")&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 
 <p><em>程序运行效果如下所示 :</em><br><img src="/2019/08/14/SpringBoot%E6%95%B4%E5%90%88FreeMarker/Hi-FreeMarker.PNG" srcset="/img/loading.gif" alt></p>
 

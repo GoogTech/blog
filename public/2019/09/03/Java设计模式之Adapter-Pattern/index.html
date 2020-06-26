@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -192,7 +192,7 @@
 <h3 id="示例程序-使用继承的适配器"><a href="#示例程序-使用继承的适配器" class="headerlink" title="示例程序(使用继承的适配器)"></a>示例程序(使用继承的适配器)</h3><p><em>首先让我们来看一段使用继承的适配器的示例程序,该简单程序的作用是将一段输入的字符串显示为<code>(hello)</code>或<code>*hello*</code>.</em></p>
 <ol>
 <li><p><em>Banner类 : 充当Adaptee角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.adapter.adapter1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.adapter.adapter1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -217,10 +217,10 @@
         System.out.println(<span class="hljs-string">"*"</span> + string + <span class="hljs-string">"*"</span>);
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Print接口 : 充当Target角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.adapter.adapter1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.adapter.adapter1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -234,10 +234,10 @@
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">printWeak</span><span class="hljs-params">()</span></span>;
 
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">printStrong</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>PrintBanner类 : 充当Adapter角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.adapter.adapter1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.adapter.adapter1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -262,10 +262,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printStrong</span><span class="hljs-params">()</span> </span>&#123;
         <span class="hljs-keyword">super</span>.showWithAster();
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Main类 : 充当Client角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.adapter.adapter1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.adapter.adapter1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -281,11 +281,11 @@
         print.printWeak();
         print.printStrong();
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行结果如下所示 :</em></p>
-<pre><code class="hljs lisp">(<span class="hljs-name">Hello</span>)
-*Hello*</code></pre>
+<div class="hljs"><pre><code class="hljs lisp">(<span class="hljs-name">Hello</span>)
+*Hello*</code></pre></div>
 
 </li>
 </ol>
@@ -299,7 +299,7 @@
 <h3 id="示例程序-使用委托的适配器"><a href="#示例程序-使用委托的适配器" class="headerlink" title="示例程序(使用委托的适配器)"></a>示例程序(使用委托的适配器)</h3><p><em>在 Java 语言中,委托是指将某个方法中的实际处理交给其它实例的方法</em></p>
 <ol>
 <li><p><em>Banner类 : 充当Adaptee角色(同上个示例程序)</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.adapter.adapter2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.adapter.adapter2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -323,10 +323,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">showWithAster</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"*"</span> + string + <span class="hljs-string">"*"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Print类 : 充当Target角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.adapter.adapter2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.adapter.adapter2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -340,10 +340,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printWeak</span><span class="hljs-params">()</span></span>;
 
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">pintStrong</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>PrintBanner类 : 充当Adapter角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.adapter.adapter2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.adapter.adapter2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -370,10 +370,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">pintStrong</span><span class="hljs-params">()</span> </span>&#123;
         banner.showWithAster();
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Main类 : 充当Client角色(同上个示例程序)</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.adapter.adapter2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.adapter.adapter2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -391,7 +391,7 @@
         print.pintStrong();
 
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 </li>
 </ol>
@@ -400,7 +400,7 @@
 <h4 id="示例程序"><a href="#示例程序" class="headerlink" title="示例程序"></a>示例程序</h4><p><em>下面是一个缺省适配模式的示例程序,创建一个 JFrame 窗体,并通过继承 MyWindowAdapter 适配器类,选择性地自定义监听事件.</em></p>
 <ol>
 <li><p><em>MyWindowAdapter接口 : 充当缺省适配器类. WindowListener, MouseListener接口 : 充当适配者接口</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.adapter.adapter3;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.adapter.adapter3;
 
 <span class="hljs-keyword">import</span> java.awt.event.MouseEvent;
 <span class="hljs-keyword">import</span> java.awt.event.MouseListener;
@@ -477,10 +477,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">windowDeactivated</span><span class="hljs-params">(WindowEvent e)</span> </span>&#123;
 
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>MyEventService类 : 充当具体业务类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.adapter.adapter3;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.adapter.adapter3;
 
 <span class="hljs-keyword">import</span> java.awt.event.MouseEvent;
 <span class="hljs-keyword">import</span> java.awt.event.WindowEvent;
@@ -510,10 +510,10 @@
         System.out.println(<span class="hljs-string">"mouseClicked : Clicked"</span>);
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>MyContoller类 : 测试类,创建JFrame窗体并为其绑定监听事件</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.adapter.adapter3;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.adapter.adapter3;
 
 <span class="hljs-keyword">import</span> javax.swing.*;
 <span class="hljs-keyword">import</span> java.awt.event.MouseAdapter;
@@ -558,7 +558,7 @@
         &#125;);
 
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 </li>
 </ol>

@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -201,33 +201,33 @@
 </ul>
 <h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><ol>
 <li><p>语法格式一 : 无参,无返回值</p>
-<pre><code class="hljs java">Runnable runnable = () -&gt; System.out.println(<span class="hljs-string">"Hello Lambda1 !"</span>);</code></pre>
+<div class="hljs"><pre><code class="hljs java">Runnable runnable = () -&gt; System.out.println(<span class="hljs-string">"Hello Lambda1 !"</span>);</code></pre></div>
 </li>
 <li><p>语法格式二 : Lambda需要一个参数,但是没有返回值</p>
-<pre><code class="hljs java"><span class="hljs-comment">//可以简写为:  Consumer&lt;String&gt; consumer = System.out::println;</span>
-Consumer&lt;String&gt; consumer = (String str) -&gt; System.out.println(str);</code></pre>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">//可以简写为:  Consumer&lt;String&gt; consumer = System.out::println;</span>
+Consumer&lt;String&gt; consumer = (String str) -&gt; System.out.println(str);</code></pre></div>
 </li>
 <li><p>语法格式三 : 数据类型可以省略,因为可由编译器推断得出,称为”类型推断”</p>
-<pre><code class="hljs java">Consumer&lt;String&gt; c = (str) -&gt; &#123; System.out.println(str) &#125;;</code></pre>
+<div class="hljs"><pre><code class="hljs java">Consumer&lt;String&gt; c = (str) -&gt; &#123; System.out.println(str) &#125;;</code></pre></div>
 </li>
 <li><p>语法格式四 :  Lambda若需要一个参数时,参数的小括号可以省略</p>
-<pre><code class="hljs java">Consumer&lt;String&gt; c = str -&gt; &#123; System.out.println(str) &#125;;</code></pre>
+<div class="hljs"><pre><code class="hljs java">Consumer&lt;String&gt; c = str -&gt; &#123; System.out.println(str) &#125;;</code></pre></div>
 </li>
 <li><p>语法格式五 : Lambda需要两个或以上的参数,多条执行语句,并且可以有返回值</p>
-<pre><code class="hljs java">Comparator&lt;String&gt; c = (x,y) -&gt; &#123;
+<div class="hljs"><pre><code class="hljs java">Comparator&lt;String&gt; c = (x,y) -&gt; &#123;
     System.out.println(<span class="hljs-string">"this is comparator"</span>);
     <span class="hljs-keyword">return</span> Integer.compare(x,y);
-&#125;;</code></pre>
+&#125;;</code></pre></div>
 </li>
 <li><p>语法格式六 : 当Lambda体只有一条语句时,return与大括号若有,都可以省略</p>
-<pre><code class="hljs java"><span class="hljs-comment">//可以简写为: Comparator&lt;Integer&gt; comparator = Integer::compare;</span>
-Comparator&lt;Integer&gt; c = (x,y) -&gt; Integer.compare(x,y);</code></pre>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">//可以简写为: Comparator&lt;Integer&gt; comparator = Integer::compare;</span>
+Comparator&lt;Integer&gt; c = (x,y) -&gt; Integer.compare(x,y);</code></pre></div>
 
 </li>
 </ol>
 <h4 id="程序示例"><a href="#程序示例" class="headerlink" title="程序示例"></a>程序示例</h4><ol>
 <li><p><em>程序示例 : 语法格式一</em></p>
-<pre><code class="hljs java"><span class="hljs-comment">//未使用Lambda表达式</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">//未使用Lambda表达式</span>
 <span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">runnable</span><span class="hljs-params">()</span> </span>&#123;
     Runnable runnable = <span class="hljs-keyword">new</span> Runnable() &#123;
@@ -244,10 +244,10 @@ Comparator&lt;Integer&gt; c = (x,y) -&gt; Integer.compare(x,y);</code></pre>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">runnableWithLambda</span><span class="hljs-params">()</span> </span>&#123;
     Runnable runnable = () -&gt; System.out.println(<span class="hljs-string">"this is runnable"</span>);
     runnable.run();
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序示例 : 语法格式二/三/四</em></p>
-<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">consumer</span><span class="hljs-params">()</span> </span>&#123;
     Consumer&lt;String&gt; consumer = <span class="hljs-keyword">new</span> Consumer&lt;String&gt;() &#123;
         <span class="hljs-meta">@Override</span>
@@ -265,10 +265,10 @@ Comparator&lt;Integer&gt; c = (x,y) -&gt; Integer.compare(x,y);</code></pre>
     <span class="hljs-comment">//可以简写为: Consumer&lt;String&gt; consumer = System.out::println;</span>
     Consumer&lt;String&gt; consumer = (String str) -&gt; System.out.println(str);
     consumer.accept(<span class="hljs-string">"this is consumer"</span>);
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序示例 : 语法格式五</em></p>
-<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">comparator</span><span class="hljs-params">()</span> </span>&#123;
     Comparator&lt;Integer&gt; comparator = <span class="hljs-keyword">new</span> Comparator&lt;Integer&gt;() &#123;
         <span class="hljs-meta">@Override</span>
@@ -287,10 +287,10 @@ Comparator&lt;Integer&gt; c = (x,y) -&gt; Integer.compare(x,y);</code></pre>
         <span class="hljs-keyword">return</span> Integer.compare(x, y);
     &#125;;
     System.out.println(comparator.compare(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>));
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序示例 : 语法格式六</em></p>
-<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">comparator</span><span class="hljs-params">()</span> </span>&#123;
     Comparator&lt;Integer&gt; comparator = <span class="hljs-keyword">new</span> Comparator&lt;Integer&gt;() &#123;
         <span class="hljs-meta">@Override</span>
@@ -306,7 +306,7 @@ Comparator&lt;Integer&gt; c = (x,y) -&gt; Integer.compare(x,y);</code></pre>
     <span class="hljs-comment">//可以简写为: Comparator&lt;Integer&gt; comparator = Integer::compare;</span>
     Comparator&lt;Integer&gt; comparator = (x, y) -&gt; Integer.compare(x, y);
     System.out.println(comparator.compare(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>));
-&#125;</code></pre></li>
+&#125;</code></pre></div></li>
 </ol>
 
             </article>

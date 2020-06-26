@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -192,7 +192,7 @@
 <h3 id="示例程序-详细版"><a href="#示例程序-详细版" class="headerlink" title="示例程序-详细版"></a>示例程序-详细版</h3><p><em>下面是一个实现了<code>Iterator模式</code>的示例程序,其作用是将书籍信息( Book )放到存储书籍信息的书架( BookSelf )上,并将书的名字按顺序显示出来</em></p>
 <ol>
 <li><p><em>Book : 图书信息类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.iterator;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.iterator;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -214,10 +214,10 @@
         <span class="hljs-keyword">return</span> name;
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Aggregate接口 : 充当集合角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.iterator;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.iterator;
 
 
 <span class="hljs-comment">/**
@@ -231,10 +231,10 @@
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Aggregate</span> </span>&#123;
 
     <span class="hljs-function">Iterator <span class="hljs-title">iterator</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>BookSelf类 : 充当具体的集合角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.iterator;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.iterator;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -268,10 +268,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> Iterator <span class="hljs-title">iterator</span><span class="hljs-params">()</span> </span>&#123;
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> BookShelfIterator(<span class="hljs-keyword">this</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Iterator接口 : 充当迭代器角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.iterator;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.iterator;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -285,10 +285,10 @@
     <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">hasNext</span><span class="hljs-params">()</span></span>;
 
     <span class="hljs-function">Object <span class="hljs-title">next</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>BookShelfIterator类 : 充当具体的迭代器角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.iterator;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.iterator;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -317,10 +317,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">next</span><span class="hljs-params">()</span> </span>&#123;
         <span class="hljs-keyword">return</span> bookSelf.getBookByIndex(index++);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Test测试类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.iterator;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.iterator;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -346,14 +346,14 @@
             System.out.println(book.getName());
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行结果如下所示 :</em></p>
-<pre><code class="hljs armasm">A-<span class="hljs-keyword">BOOK
+<div class="hljs"><pre><code class="hljs armasm">A-<span class="hljs-keyword">BOOK
 </span><span class="hljs-keyword">B-BOOK
 </span>C-<span class="hljs-keyword">BOOK
 </span>D-<span class="hljs-keyword">BOOK
-</span>E-<span class="hljs-keyword">BOOK</span></code></pre>
+</span>E-<span class="hljs-keyword">BOOK</span></code></pre></div>
 
 </li>
 </ol>
@@ -367,7 +367,7 @@
 <h3 id="示例程序-简洁版"><a href="#示例程序-简洁版" class="headerlink" title="示例程序-简洁版"></a>示例程序-简洁版</h3><p><em>下面同样是一个实现了<code>Iterator模式</code>的示例程序( 同上 ),其作用是将商品数据存储到商品集合( ProductList )中,并将商品的名字按顺序显示出来</em></p>
 <ol>
 <li><p><em>AbstractObjectList : 抽象聚合类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.iterator2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.iterator2;
 
 <span class="hljs-keyword">import</span> java.util.List;
 
@@ -402,10 +402,10 @@
     <span class="hljs-comment">//创建迭代器的抽象工厂方法</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> AbstractIterator <span class="hljs-title">iterator</span><span class="hljs-params">()</span></span>;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>ProductList : 商品数据类,充当具体聚合类. ProductIterator(内部类) : 商品迭代器,充当具体迭代器</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.iterator2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.iterator2;
 
 <span class="hljs-keyword">import</span> java.util.List;
 
@@ -450,10 +450,10 @@
         &#125;
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>AbstractIterator : 抽象迭代器</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.iterator2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.iterator2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -468,10 +468,10 @@
     <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">hasNext</span><span class="hljs-params">()</span></span>;
 
     <span class="hljs-function">Object <span class="hljs-title">next</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Test : 测试类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.iterator2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.iterator2;
 
 <span class="hljs-keyword">import</span> java.util.ArrayList;
 <span class="hljs-keyword">import</span> java.util.List;
@@ -505,14 +505,14 @@
         System.out.println(<span class="hljs-string">"all datas : "</span> + productList.getObjects().toString());
 
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行结果如下所示 :</em></p>
-<pre><code class="hljs armasm"><span class="hljs-keyword">B-BOOK
+<div class="hljs"><pre><code class="hljs armasm"><span class="hljs-keyword">B-BOOK
 </span>C-<span class="hljs-keyword">BOOK
 </span>D-<span class="hljs-keyword">BOOK
 </span>E-<span class="hljs-keyword">BOOK
-</span><span class="hljs-symbol">all</span> datas : [<span class="hljs-keyword">B-BOOK, </span>C-<span class="hljs-keyword">BOOK, </span>D-<span class="hljs-keyword">BOOK, </span>E-<span class="hljs-keyword">BOOK]</span></code></pre>
+</span><span class="hljs-symbol">all</span> datas : [<span class="hljs-keyword">B-BOOK, </span>C-<span class="hljs-keyword">BOOK, </span>D-<span class="hljs-keyword">BOOK, </span>E-<span class="hljs-keyword">BOOK]</span></code></pre></div>
 
 </li>
 </ol>

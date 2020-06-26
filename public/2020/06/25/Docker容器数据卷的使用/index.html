@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>Docker容器数据卷的使用 - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>ANONYMOUS</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-06-25 22:28">
+      June 25, 2020 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      996 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      14
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="数据卷的使用方式"><a href="#数据卷的使用方式" class="headerlink" title="数据卷的使用方式"></a>数据卷的使用方式</h2><p><em>使用容器数据卷的好处 : 当部署 <code>nginx</code>，<code>tomcat</code> 或 <code>redis</code> 等容器时，可使用数据卷将容器中的配置文件自动同步到本地主机上，进而可解决当需要修改容器中的配置文件时需频繁进入容器内部的问题，即提高了工作效率 !</em></p>
+<h3 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h3><ol>
+<li><p>直接使用命令来挂载 : <code>docker run -it -v 主机目录:容器目录</code></p>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 主机terminal(1)</span>
+<span class="hljs-meta">#</span><span class="bash"> 查看本地镜像</span>
+ubuntu@VM-0-4-ubuntu:/home$ sudo docker images
+REPOSITORY            TAG                 IMAGE ID            CREATED             SIZE
+mytomcat              0.1                 1a8ec5515a1d        23 minutes ago      652MB
+ubuntu                latest              74435f89ab78        8 days ago          73.9MB
+ubuntu                18.04               8e4ce0a6ce69        8 days ago          64.2MB
+redis                 latest              235592615444        2 weeks ago         104MB
+tomcat                9                   2eb5a120304e        2 weeks ago         647MB
+tomcat                9.0                 2eb5a120304e        2 weeks ago         647MB
+tomcat                latest              2eb5a120304e        2 weeks ago         647MB
+nginx                 latest              2622e6cca7eb        2 weeks ago         132MB
+mysql                 8.0.20              be0dbf01a0f3        2 weeks ago         541MB
+mysql                 latest              be0dbf01a0f3        2 weeks ago         541MB
+portainer/portainer   latest              cd645f5a4769        3 weeks ago         79.1MB
+hello-world           latest              bf756fb1ae65        5 months ago        13.3kB
+<span class="hljs-meta">
+#</span><span class="bash"> 主机terminal(1)</span>
+<span class="hljs-meta">#</span><span class="bash"> 查看 home 目录下有哪些文件</span>
+ubuntu@VM-0-4-ubuntu:/home$ ls
+ishacker.net.java  ubuntu
+<span class="hljs-meta">
+#</span><span class="bash"> 主机terminal(1)</span>
+<span class="hljs-meta">#</span><span class="bash"> 以后台运行的方式进入 ubuntu 容器，并将其 home 目录挂载到主机上的 home/testing 目录中 </span>
+ubuntu@VM-0-4-ubuntu:/home$ sudo docker run -it -v /home/testing:/home ubuntu /bin/bash
+root@9ecaeb8de732:/# cd home/ # 进入 home 目录，发现该目录下无任何文件
+root@9ecaeb8de732:/home# ls
+root@9ecaeb8de732:/home#
+
+---
+<span class="hljs-meta">
+#</span><span class="bash"> 打开一个新的主机terminal(2)</span>
+<span class="hljs-meta">#</span><span class="bash"> 再次查看主机 home 目录下有哪些文件</span>
+ubuntu@VM-0-4-ubuntu:~$ cd /home/
+ubuntu@VM-0-4-ubuntu:/home$ ls
+ishacker.net.java  testing  ubuntu # 会发现 home 目录下多了一个 testing 文件夹，且 testing 文件夹为空( 因为 ubuntu 容器中的 home 目录下为空 )
+ubuntu@VM-0-4-ubuntu:/home$ cd testing/
+ubuntu@VM-0-4-ubuntu:/home/testing$ ls
+ubuntu@VM-0-4-ubuntu:/home/testing$</code></pre></div>
+</li>
+<li><p>通过命令 <code>docker inspect &lt;容器ID&gt;</code> 获取容器/镜像的元数据，进而查看数据卷是否挂载成功.</p>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的容器</span>
+ubuntu@VM-0-4-ubuntu:/home/testing$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+9ecaeb8de732        ubuntu              "/bin/bash"         12 minutes ago      Up 12 minutes                           gallant_cartwright
+<span class="hljs-meta">
+#</span><span class="bash"> 获取 ubuntu 容器的元数据</span>
+ubuntu@VM-0-4-ubuntu:/home/testing$ sudo docker inspect 9ecaeb8de732
+[
+    &#123;
+        "Mounts": [ # 数据卷挂载的配置信息
+            &#123;
+                "Type": "bind",
+                "Source": "/home/testing", # 源目录，即主机目录
+                "Destination": "/home", # 目标目录，即容器目录
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            &#125;
+        ],
+    &#125;
+``` 
+
+3. 测试
+```shell
+<span class="hljs-meta">#</span><span class="bash"> 容器terminal</span>
+<span class="hljs-meta">#</span><span class="bash"> 查看 ubuntu 容器 home 目录下有哪些文件</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker ps # 首先查看当前正在运行的容器
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+9ecaeb8de732        ubuntu              "/bin/bash"         29 minutes ago      Up 29 minutes                           gallant_cartwright
+ubuntu@VM-0-4-ubuntu:~$ sudo docker exec -it 9ecaeb8de732 /bin/bash # 进入后台正在运行的 ubuntu 容器中
+root@9ecaeb8de732:/# ls # 查看 ubuntu 根目录有哪些文件
+bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@9ecaeb8de732:/# cd home/ # 进入 home 目录
+root@9ecaeb8de732:/home# ls # 发现 home 目录下无任何文件
+root@9ecaeb8de732:/home#
+
+---
+<span class="hljs-meta">
+#</span><span class="bash"> 主机terminal</span>
+<span class="hljs-meta">#</span><span class="bash"> 在主机 home/testing 目录下创建一个名为 bind.txt 文件，并写入一段话</span>
+ubuntu@VM-0-4-ubuntu:/home/testing$ su echo "hey guy good night" &gt; bind.txt
+ubuntu@VM-0-4-ubuntu:/home/testing$ su
+Password:
+root@VM-0-4-ubuntu:/home/testing# echo "hey guy good night" &gt; bind.txt
+root@VM-0-4-ubuntu:/home/testing# ls
+bind.txt
+root@VM-0-4-ubuntu:/home/testing# cat bind.txt
+hey guy good night
+
+---
+<span class="hljs-meta">
+#</span><span class="bash"> 容器terminal</span>
+<span class="hljs-meta">#</span><span class="bash"> 再次查看 ubuntu 容器 home 目录下有哪些文件，会发现主机 home/testing 目录下的文件已经同步到了 ubuntu 容器中的 home 目录下</span>
+root@9ecaeb8de732:/home# ls
+bind.txt
+root@9ecaeb8de732:/home# cat bind.txt
+hey guy good night</code></pre></div>
+
+</li>
+</ol>
+<blockquote>
+<p>相反如果在 ubuntu 容器中的 home 目录下创建文件或更新数据后，主机上 home/testing 目录中的数据也能得到同步. 进而实现了如同 <code>Vue.js</code> 般的数据双向绑定 !  注意 : 就算在 ubuntu 容器停止运行的情况下修改主机上 /home/testing 目录下的数据，当再次启动 ubuntu 容器后其 home 目录下的数据依旧可以得到同步.</p>
+</blockquote>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Docker/">Docker</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/06/26/%E4%BD%BF%E7%94%A8Docker%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7%E5%90%8C%E6%AD%A5MySQL%E6%95%B0%E6%8D%AE/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">使用Docker容器数据卷同步MySQL数据</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/24/Docker%E5%AE%89%E8%A3%85Redis%E5%8F%8A%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+                        <span class="hidden-mobile">Docker安装Redis及基本使用</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Docker容器数据卷的使用&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

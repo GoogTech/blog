@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -189,7 +189,7 @@
             
             <article class="markdown-body">
               <h2 id="爬虫项目笔记-JDBookCrawler-V1-0"><a href="#爬虫项目笔记-JDBookCrawler-V1-0" class="headerlink" title="爬虫项目笔记 : JDBookCrawler-V1.0"></a>爬虫项目笔记 : JDBookCrawler-V1.0</h2><p><em>简介 : 最近在学习爬虫技术,浅薄学习<code>HttpClient</code>,<code>Jsoup</code>后,为了总结知识点既而写了这个小爬虫 : 爬取京东商城书籍数据. 程序已Psuh到GitHub : <a href="https://github.com/YUbuntu0109/Crawler-learning/tree/master/BookCrawler-v1.0/bookcrawler" target="_blank" rel="noopener">https://github.com/YUbuntu0109/Crawler-learning/tree/master/BookCrawler-v1.0/bookcrawler</a></em></p>
-<h3 id="项目概述"><a href="#项目概述" class="headerlink" title="项目概述"></a>项目概述</h3><h4 id="项目结构图"><a href="#项目结构图" class="headerlink" title="项目结构图"></a>项目结构图</h4><pre><code class="hljs reasonml">└─BookCrawler-v1.<span class="hljs-number">0</span>
+<h3 id="项目概述"><a href="#项目概述" class="headerlink" title="项目概述"></a>项目概述</h3><h4 id="项目结构图"><a href="#项目结构图" class="headerlink" title="项目结构图"></a>项目结构图</h4><div class="hljs"><pre><code class="hljs reasonml">└─BookCrawler-v1.<span class="hljs-number">0</span>
         └─bookcrawler
             │ 
             │  crawler.sql
@@ -219,21 +219,21 @@
                     │                      <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">HttpUtils</span>.</span></span>java
                     │
                     └─resources
-                            db.properties</code></pre>
+                            db.properties</code></pre></div>
 
 
 <h4 id="程序运行指南"><a href="#程序运行指南" class="headerlink" title="程序运行指南"></a>程序运行指南</h4><ol>
 <li><p><em>crawler.sql : MySQL数据库文件</em></p>
-<pre><code class="hljs sql">BookCrawler-v1.0/bookcrawler/crawler.sql</code></pre>
+<div class="hljs"><pre><code class="hljs sql">BookCrawler-v1.0/bookcrawler/crawler.sql</code></pre></div>
 </li>
 <li><p><em>db.properties : 连接数据库的配置文件</em></p>
-<pre><code class="hljs llvm">jdbc.driver.class=com.mysql.cj.jdbc.Driver
+<div class="hljs"><pre><code class="hljs llvm">jdbc.driver.class=com.mysql.cj.jdbc.Driver
 jdbc.connection.url=jdbc:mysql://localhost/crawler?useSSL=<span class="hljs-keyword">false</span>&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=<span class="hljs-keyword">true</span>
 jdbc.connection.username=<span class="hljs-keyword">x</span>-<span class="hljs-keyword">x</span>-<span class="hljs-keyword">x</span>-<span class="hljs-keyword">x</span>-<span class="hljs-keyword">x</span>-<span class="hljs-keyword">x</span>
-jdbc.connection.password=<span class="hljs-keyword">x</span>-<span class="hljs-keyword">x</span>-<span class="hljs-keyword">x</span>-<span class="hljs-keyword">x</span>-<span class="hljs-keyword">x</span>-<span class="hljs-keyword">x</span></code></pre>
+jdbc.connection.password=<span class="hljs-keyword">x</span>-<span class="hljs-keyword">x</span>-<span class="hljs-keyword">x</span>-<span class="hljs-keyword">x</span>-<span class="hljs-keyword">x</span>-<span class="hljs-keyword">x</span></code></pre></div>
 </li>
 <li><p><em>BookCrawlerTest.java : 爬虫启动程序</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.bookcrawler;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.bookcrawler;
 
 <span class="hljs-keyword">import</span> pers.huangyuhui.bookcrawler.pojo.HttpHeader;
 <span class="hljs-keyword">import</span> pers.huangyuhui.bookcrawler.task.BookCrawler;
@@ -264,7 +264,7 @@ jdbc.connection.password=<span class="hljs-keyword">x</span>-<span class="hljs-k
         httpHeader.setUserAgent(<span class="hljs-string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36"</span>);<span class="hljs-comment">//需指定用户代理哟</span>
         <span class="hljs-keyword">new</span> BookCrawler().parse(URL, IMAGE_PATH, httpHeader, currentPageNum, endPageNum);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 </li>
@@ -276,7 +276,7 @@ jdbc.connection.password=<span class="hljs-keyword">x</span>-<span class="hljs-k
 <p><em>数据库中存储的数据如下图所示 :</em></p>
 <p><img src="/2019/07/14/%E5%B0%8F%E7%88%AC%E8%99%AB-JDBookCrawler-V1-0/%E5%B0%8F%E7%88%AC%E8%99%AB-JDBookCrawler-V1-0%5CBookCrawler-V1.0-DB.PNG" srcset="/img/loading.gif" alt=" "></p>
 <p><em>控制台输出的日志信息如下 :</em></p>
-<pre><code class="hljs tex">[message]------&gt;Begin to crawling this page : [https://search.jd.com/Search?keyword=Java&amp;enc=utf-8&amp;page=1]
+<div class="hljs"><pre><code class="hljs tex">[message]------&gt;Begin to crawling this page : [https://search.jd.com/Search?keyword=Java&amp;enc=utf-8&amp;page=1]
 
 
 <span class="hljs-tag">\<span class="hljs-name">\</span></span><span class="hljs-tag">\<span class="hljs-name">\</span></span><span class="hljs-tag">\<span class="hljs-name">\</span></span><span class="hljs-tag">\<span class="hljs-name">\</span></span><span class="hljs-tag">\<span class="hljs-name">\</span></span>第 [1] 本<span class="hljs-tag">\<span class="hljs-name">\</span></span><span class="hljs-tag">\<span class="hljs-name">\</span></span><span class="hljs-tag">\<span class="hljs-name">\</span></span><span class="hljs-tag">\<span class="hljs-name">\</span></span><span class="hljs-tag">\<span class="hljs-name">\</span></span>
@@ -1496,7 +1496,7 @@ Book&#123;sku='12167904', name='Java大学实用教程（第4版）', price=31.7
 [message]------&gt;This page has had crawled completly : [https://search.jd.com/Search?keyword=Java&amp;enc=utf-8&amp;page=]
 
 
-Process finished with exit code 0</code></pre>
+Process finished with exit code 0</code></pre></div>
             </article>
             <hr>
             <div>

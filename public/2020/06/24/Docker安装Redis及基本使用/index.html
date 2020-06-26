@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -188,15 +188,15 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h3 id="1-搜索-Redis-镜像"><a href="#1-搜索-Redis-镜像" class="headerlink" title="1. 搜索 Redis 镜像"></a>1. 搜索 Redis 镜像</h3><pre><code class="hljs shell">ubuntu@VM-0-4-ubuntu:~$ sudo docker search redis
+              <h3 id="1-搜索-Redis-镜像"><a href="#1-搜索-Redis-镜像" class="headerlink" title="1. 搜索 Redis 镜像"></a>1. 搜索 Redis 镜像</h3><div class="hljs"><pre><code class="hljs shell">ubuntu@VM-0-4-ubuntu:~$ sudo docker search redis
 NAME                             DESCRIPTION                                     STARS               OFFICIAL               AUTOMATED
 redis                            Redis is an open source key-value store that…   8316                [OK]
 bitnami/redis                    Bitnami Redis Docker Image                      149                 [OK]
 sameersbn/redis                                                                  80                  [OK]
 
-. . . . .</code></pre>
+. . . . .</code></pre></div>
 
-<h3 id="2-拉取-Redis-镜像"><a href="#2-拉取-Redis-镜像" class="headerlink" title="2. 拉取 Redis 镜像"></a>2. 拉取 Redis 镜像</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 拉取最新版本的 redis 镜像</span>
+<h3 id="2-拉取-Redis-镜像"><a href="#2-拉取-Redis-镜像" class="headerlink" title="2. 拉取 Redis 镜像"></a>2. 拉取 Redis 镜像</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 拉取最新版本的 redis 镜像</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker pull redis
 Using default tag: latest
 latest: Pulling from library/redis
@@ -221,9 +221,9 @@ tomcat              latest              2eb5a120304e        2 weeks ago         
 nginx               latest              2622e6cca7eb        2 weeks ago         132MB
 mysql               8.0.20              be0dbf01a0f3        2 weeks ago         541MB
 mysql               latest              be0dbf01a0f3        2 weeks ago         541MB
-hello-world         latest              bf756fb1ae65        5 months ago        13.3kB</code></pre>
+hello-world         latest              bf756fb1ae65        5 months ago        13.3kB</code></pre></div>
 
-<h3 id="3-运行-Redis-容器"><a href="#3-运行-Redis-容器" class="headerlink" title="3. 运行 Redis 容器"></a>3. 运行 Redis 容器</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 后台启动 redis 容器</span>
+<h3 id="3-运行-Redis-容器"><a href="#3-运行-Redis-容器" class="headerlink" title="3. 运行 Redis 容器"></a>3. 运行 Redis 容器</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 后台启动 redis 容器</span>
 <span class="hljs-meta">#</span><span class="bash"> --name redis-test : 将容器命名为redis-test，后面可以用这个name进行容器的启动暂停等操作</span>
 <span class="hljs-meta">#</span><span class="bash"> -i, --interactive=<span class="hljs-literal">false</span> : 以交互模式运行容器，通常与 -t 同时使用</span>
 <span class="hljs-meta">#</span><span class="bash"> -t, --tty=<span class="hljs-literal">false</span> : 为容器重新分配一个伪输入终端，通常与 -i 同时使用</span>
@@ -235,9 +235,9 @@ ubuntu@VM-0-4-ubuntu:~$ sudo docker run -itd --name redis-test -p 6380:6379 redi
 #</span><span class="bash"> 验证 redis 容器是否已经启动</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
-231025907f4d        redis               "docker-entrypoint.s…"   48 seconds ago      Up 46 seconds       0.0.0.0:6380-&gt;6379/tcp   redis-test</code></pre>
+231025907f4d        redis               "docker-entrypoint.s…"   48 seconds ago      Up 46 seconds       0.0.0.0:6380-&gt;6379/tcp   redis-test</code></pre></div>
 
-<h3 id="4-进入-Redis-容器"><a href="#4-进入-Redis-容器" class="headerlink" title="4. 进入 Redis 容器"></a>4. 进入 Redis 容器</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的容器</span>
+<h3 id="4-进入-Redis-容器"><a href="#4-进入-Redis-容器" class="headerlink" title="4. 进入 Redis 容器"></a>4. 进入 Redis 容器</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的容器</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
 231025907f4d        redis               "docker-entrypoint.s…"   5 minutes ago       Up 5 minutes        0.0.0.0:6380-&gt;6379/tcp   redis-test
@@ -272,7 +272,7 @@ ubuntu@VM-0-4-ubuntu:~$ sudo docker stop 231025907f4d
 231025907f4d
 ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS
- NAMES</code></pre>
+ NAMES</code></pre></div>
 
             </article>
             <hr>
@@ -297,6 +297,12 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
                 <div class="post-prevnext row">
                   <div class="post-prev col-6">
                     
+                    
+                      <a href="/2020/06/25/Docker%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Docker容器数据卷的使用</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </div>
                   <div class="post-next col-6">

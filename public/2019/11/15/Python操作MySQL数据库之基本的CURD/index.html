@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -190,30 +190,30 @@
             <article class="markdown-body">
               <h2 id="学习笔记-Python-操作-MySQL-数据库之基本的-CURD"><a href="#学习笔记-Python-操作-MySQL-数据库之基本的-CURD" class="headerlink" title="学习笔记 : Python 操作 MySQL 数据库之基本的 CURD"></a>学习笔记 : Python 操作 MySQL 数据库之基本的 CURD</h2><p><em>🐍 学习完 Python 的基础知识后，当然需要进阶地学习关于 Python 的数据库编程知识啦~ 下面是我写的一个操作 MySQL 数据库的基本增删改查，其对于和我一样初学 Python 的同学来说，非常具有参考与学习价值哟~</em></p>
 <ol>
-<li><em>tb_user : 数据库表结构</em><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`tb_user`</span> (
+<li><em>tb_user : 数据库表结构</em><div class="hljs"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`tb_user`</span> (
   <span class="hljs-string">`id`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> AUTO_INCREMENT,
   <span class="hljs-string">`name`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">45</span>) <span class="hljs-keyword">COLLATE</span> utf8mb4_unicode_ci <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,
   <span class="hljs-string">`sex`</span> <span class="hljs-built_in">char</span>(<span class="hljs-number">1</span>) <span class="hljs-keyword">COLLATE</span> utf8mb4_unicode_ci <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,
   <span class="hljs-string">`phone`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">45</span>) <span class="hljs-keyword">COLLATE</span> utf8mb4_unicode_ci <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,
   PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`id`</span>)
-) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> AUTO_INCREMENT=<span class="hljs-number">9</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8mb4 <span class="hljs-keyword">COLLATE</span>=utf8mb4_unicode_ci</code></pre>
+) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> AUTO_INCREMENT=<span class="hljs-number">9</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8mb4 <span class="hljs-keyword">COLLATE</span>=utf8mb4_unicode_ci</code></pre></div>
 
 
 </li>
 </ol>
 <ol start="2">
-<li><em>dbconfig.ini : 存储数据库的配置信息</em><pre><code class="hljs ini"><span class="hljs-section">[DATABASE_CONFIGURATION_INFOS]</span>
+<li><em>dbconfig.ini : 存储数据库的配置信息</em><div class="hljs"><pre><code class="hljs ini"><span class="hljs-section">[DATABASE_CONFIGURATION_INFOS]</span>
 <span class="hljs-attr">host</span> = localhost
 <span class="hljs-attr">user</span> = root
 <span class="hljs-attr">password</span> = 
 <span class="hljs-attr">database</span> = 
-<span class="hljs-attr">charset</span> = utf8</code></pre>
+<span class="hljs-attr">charset</span> = utf8</code></pre></div>
 
 
 </li>
 </ol>
 <ol start="3">
-<li><em>Utils.py : 连接数据库的工具类</em><pre><code class="hljs python"><span class="hljs-string">"""
+<li><em>Utils.py : 连接数据库的工具类</em><div class="hljs"><pre><code class="hljs python"><span class="hljs-string">"""
 Project name : python-learning
 Description : A SIMPLE TOOL FOR OPERATING DATABASE
 Author : 黄宇辉
@@ -257,13 +257,13 @@ Created on 11/12/2019-9:30 PM
                                          charset=connConfig.get(<span class="hljs-string">'charset'</span>))
             <span class="hljs-keyword">return</span> connection
         <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
-            print(<span class="hljs-string">"FAIL TO CONNECT TO THE DATABASE : %s"</span> % e)</code></pre>
+            print(<span class="hljs-string">"FAIL TO CONNECT TO THE DATABASE : %s"</span> % e)</code></pre></div>
 
 
 </li>
 </ol>
 <ol start="4">
-<li><em>CURD.py : 操作数据库的测试类</em><pre><code class="hljs python"><span class="hljs-string">"""
+<li><em>CURD.py : 操作数据库的测试类</em><div class="hljs"><pre><code class="hljs python"><span class="hljs-string">"""
 Project name : python-learning
 Description : BASIC CURD ON MYSQL DATABASE
 Author : 黄宇辉
@@ -386,14 +386,14 @@ curd.selectAll()
 <span class="hljs-comment"># curd.selectById(userid=1)</span>
 <span class="hljs-comment"># curd.addUser(username='addUser', sex='m', telephone='00000000000')</span>
 <span class="hljs-comment"># curd.updateUser(username='updateUser', sex='f', telephone='11111111111', userid=1)</span>
-<span class="hljs-comment"># curd.delUser(userid=1)</span></code></pre>
+<span class="hljs-comment"># curd.delUser(userid=1)</span></code></pre></div>
 
 
 </li>
 </ol>
 <ol start="5">
-<li><em>程序运行结果如下所示( 仅供参考 ) :</em><pre><code class="hljs groovy"><span class="hljs-string">ID:</span><span class="hljs-number">1</span> - <span class="hljs-string">NAME:</span>黄宇辉 - <span class="hljs-string">SEX:</span>男 - <span class="hljs-string">PHONE:</span><span class="hljs-number">11111111111</span>
-<span class="hljs-string">ID:</span><span class="hljs-number">2</span> - <span class="hljs-string">NAME:</span>燕子 - <span class="hljs-string">SEX:</span>女 - <span class="hljs-string">PHONE:</span><span class="hljs-number">00000000000</span></code></pre>
+<li><em>程序运行结果如下所示( 仅供参考 ) :</em><div class="hljs"><pre><code class="hljs groovy"><span class="hljs-string">ID:</span><span class="hljs-number">1</span> - <span class="hljs-string">NAME:</span>黄宇辉 - <span class="hljs-string">SEX:</span>男 - <span class="hljs-string">PHONE:</span><span class="hljs-number">11111111111</span>
+<span class="hljs-string">ID:</span><span class="hljs-number">2</span> - <span class="hljs-string">NAME:</span>燕子 - <span class="hljs-string">SEX:</span>女 - <span class="hljs-string">PHONE:</span><span class="hljs-number">00000000000</span></code></pre></div>
 </li>
 </ol>
 

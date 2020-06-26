@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -190,7 +190,7 @@
             <article class="markdown-body">
               <h2 id="学习笔记-Maven依赖经常导入失败的解决方案"><a href="#学习笔记-Maven依赖经常导入失败的解决方案" class="headerlink" title="学习笔记 : Maven依赖经常导入失败的解决方案"></a>学习笔记 : Maven依赖经常导入失败的解决方案</h2><p><em>我最近一周在学习并贡献的项目 : <a href="https://github.com/YUbuntu0109/VBlog/tree/dev" target="_blank" rel="noopener">VBlog</a>( 一个基于 Vue + SpringBoot 并采用当下流行的前后端分离开发模式实现的多用户博客管理平台 ). 刚开始将该项目导入到 IDE 并尝试本地运行时,发现<code>Maven</code>依赖竟然又无法正常导入,本来满怀期待的想要在本地体验一下该项目的,哎~  为了再次避免这种尴尬,给出以下两个解决方案,基本上这两个方案配合使用真的可以解决 99% 的问题哟嘿嘿嘿~</em></p>
 <h3 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h3><p><em>配置 Maven 镜像站 : 以下是我一直在用的常用镜像站</em></p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- ailiyun' Maven respository mirror --&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- ailiyun' Maven respository mirror --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">mirror</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>aliyun<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">mirrorOf</span>&gt;</span>central<span class="hljs-tag">&lt;/<span class="hljs-name">mirrorOf</span>&gt;</span>
@@ -240,7 +240,7 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>spring maven1<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">url</span>&gt;</span>http://repo.spring.io/libs-milestone/<span class="hljs-tag">&lt;/<span class="hljs-name">url</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">mirrorOf</span>&gt;</span>central<span class="hljs-tag">&lt;/<span class="hljs-name">mirrorOf</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">mirror</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">mirror</span>&gt;</span></code></pre></div>
 
 
 <h3 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h3><p><em>方案一配置后,发现依赖仍然下载失败 !? 这时候就需要配合使用方案二咯 : 虽然依赖下载失败了,但是你会发现相关文件夹里却多出了很多以<code>.lastUpdated</code>为后缀的文件,这也就是开发者在开发工具中反复导入依赖但始终失败的原因啦~ 这时就需要你通过文件搜索找到本地仓库( 例如 <code>C:\Users\Administrator\.m2\repository</code> )中所有以<code>.lastUpdated</code>为后缀的文件,并将其全部删除即可 !</em></p>

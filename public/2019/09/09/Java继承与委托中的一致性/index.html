@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -189,7 +189,7 @@
             
             <article class="markdown-body">
               <h2 id="学习笔记-Decorator-Pattern的延伸阅读-继承与委托中的一致性"><a href="#学习笔记-Decorator-Pattern的延伸阅读-继承与委托中的一致性" class="headerlink" title="学习笔记 : Decorator Pattern的延伸阅读-继承与委托中的一致性"></a>学习笔记 : <code>Decorator Pattern</code>的延伸阅读-继承与委托中的一致性</h2><h3 id="继承-父类和子类的一致性"><a href="#继承-父类和子类的一致性" class="headerlink" title="继承-父类和子类的一致性"></a>继承-父类和子类的一致性</h3><p><em>父类和子类具有一致性,示例代码如下所示 :</em></p>
-<pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>&#123;
     ···
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">parentMethod</span><span class="hljs-params">()</span></span>&#123;
         ···
@@ -201,19 +201,19 @@
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">childMethod</span><span class="hljs-params">()</span></span>&#123;
         ···
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <p><em>此时,Child类的实例可以被保存在 Parent 类型中的变量中,所以可以调用从 Parent 类中继承的方法,也就是说,可以像操作 Parent 类的实例一样操作 Child 类的实例. 如下是将子类当做父类看待的示例代码~</em></p>
-<pre><code class="hljs java">Parent obj = <span class="hljs-keyword">new</span> Child();
-obj.parentMethod();</code></pre>
+<div class="hljs"><pre><code class="hljs java">Parent obj = <span class="hljs-keyword">new</span> Child();
+obj.parentMethod();</code></pre></div>
 
 <p><em>相反,如果想将父类当做子类一样操作,则需要先进行类型转换哟~</em></p>
-<pre><code class="hljs java">Parent obj = <span class="hljs-keyword">new</span> Child();
-((Child)obj).childMethod();</code></pre>
+<div class="hljs"><pre><code class="hljs java">Parent obj = <span class="hljs-keyword">new</span> Child();
+((Child)obj).childMethod();</code></pre></div>
 
 
 <h3 id="委托-自己和被委托对象的一致性"><a href="#委托-自己和被委托对象的一致性" class="headerlink" title="委托-自己和被委托对象的一致性"></a>委托-自己和被委托对象的一致性</h3><p><em>使用委托让接口具有透明性,自己和被委托对象具有一致性 : 如下示例程序, Rose 和 Violet 都有相同的 method 方法, Rose 将 method 方法的处理委托给了 Violet</em></p>
-<pre><code class="hljs java"><span class="hljs-comment">/* or interface */</span><span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Flower</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/* or interface */</span><span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Flower</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method</span><span class="hljs-params">()</span></span>;
 &#125;
 
@@ -228,7 +228,7 @@ obj.parentMethod();</code></pre>
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">method</span><span class="hljs-params">()</span> </span>&#123;
         ···
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
             </article>
             <hr>

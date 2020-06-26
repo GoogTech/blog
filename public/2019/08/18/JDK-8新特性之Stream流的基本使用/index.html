@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -189,17 +189,17 @@
             
             <article class="markdown-body">
               <h2 id="学习笔记-JDK-8新特性之Stream流的基本使用"><a href="#学习笔记-JDK-8新特性之Stream流的基本使用" class="headerlink" title="学习笔记 : JDK 8新特性之Stream流的基本使用"></a>学习笔记 : JDK 8新特性之Stream流的基本使用</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p><em>Java 8 API添加了一个新的抽象称为<code>Stream流</code>,其让你以一种声明的方式处理数据. Stream 使用一种类似用 SQL 语句从数据库查询数据的直观方式来提供一种对 Java 集合运算和表达的高阶抽象. 其 API 可以极大提高Java程序员的生产力,让程序员写出高效率、干净、简洁的代码. 其把将要处理的元素集合看作一种流, 流在管道中传输, 并且可以在管道的节点上进行处理, 比如筛选,排序,聚合等, 元素流在管道中经过中间操作 (intermediate operation) 的处理,最后由最终操作 (terminal operation) 得到前面处理的结果</em></p>
-<pre><code class="hljs brainfuck"><span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span>       <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span>   <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span>   <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">+</span>   <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span>
+<div class="hljs"><pre><code class="hljs brainfuck"><span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span>       <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span>   <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span>   <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">+</span>   <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span>
 <span class="hljs-comment">|</span> <span class="hljs-comment">stream</span> <span class="hljs-comment">of</span> <span class="hljs-comment">elements</span> <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span>&gt; <span class="hljs-comment">|filter</span><span class="hljs-literal">+</span><span class="hljs-literal">-</span>&gt; <span class="hljs-comment">|sorted</span><span class="hljs-literal">+</span><span class="hljs-literal">-</span>&gt; <span class="hljs-comment">|map</span><span class="hljs-literal">+</span><span class="hljs-literal">-</span>&gt; <span class="hljs-comment">|collect|</span>
-<span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span>       <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span>   <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span>   <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">+</span>   <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span></code></pre>
+<span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span>       <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span>   <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span>   <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">+</span>   <span class="hljs-literal">+</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">+</span></code></pre></div>
 
 <p><em>以上的流程可以转换Java代码 :</em></p>
-<pre><code class="hljs java">List&lt;Integer&gt; transactionsIds = 
+<div class="hljs"><pre><code class="hljs java">List&lt;Integer&gt; transactionsIds = 
 widgets.stream()
         .filter(b -&gt; b.getColor() == RED)
         .sorted((x,y) -&gt; x.getWeight() - y.getWeight())
         .mapToInt(Widget::getWeight)
-        .sum();</code></pre>
+        .sum();</code></pre></div>
 
 
 <h4 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h4><p><em>Stream (流) 是一个来自数据源的元素队列并支持聚合操作 :</em></p>
@@ -225,7 +225,7 @@ widgets.stream()
 <li><em><code>终结方法</code> : 返回值类型不再是<code>Stream</code>接口自身类型的方法,因此不再支持类似<code>StringBuilder</code>那样的链式调用,终结方法例如<code>count</code>和<code>forEach</code></em></li>
 </ol>
 <h4 id="程序示例-对比"><a href="#程序示例-对比" class="headerlink" title="程序示例(对比)"></a>程序示例(对比)</h4><p><em>话不多说,来对比一下传统遍历并过滤集合与使用Stream流遍历并过滤集合的代码,感受下Stream流的美~</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.Stream;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.Stream;
 
 <span class="hljs-keyword">import</span> org.junit.Test;
 
@@ -289,11 +289,11 @@ widgets.stream()
 
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 <h3 id="获取Stream流的两种方式"><a href="#获取Stream流的两种方式" class="headerlink" title="获取Stream流的两种方式"></a>获取Stream流的两种方式</h3><p><em>获取流的两种方式 : 一将集合装换为Stream流, 二将数组转换为Stream流</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.Stream;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.Stream;
 
 <span class="hljs-keyword">import</span> java.util.*;
 <span class="hljs-keyword">import</span> java.util.stream.Stream;
@@ -344,17 +344,17 @@ widgets.stream()
 
     <span class="hljs-comment">// ······</span>
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 <h3 id="forEach方法"><a href="#forEach方法" class="headerlink" title="forEach方法"></a>forEach方法</h3><p><em>该方法接收一个<code>Consumer</code>接口函数,会将每一个流元素交给该函数进行处理</em></p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">forEach</span><span class="hljs-params">(Consumer&lt;? <span class="hljs-keyword">super</span> T&gt; action)</span></span>;</code></pre>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">forEach</span><span class="hljs-params">(Consumer&lt;? <span class="hljs-keyword">super</span> T&gt; action)</span></span>;</code></pre></div>
 
 <h4 id="复习Consumer接口"><a href="#复习Consumer接口" class="headerlink" title="复习Consumer接口"></a>复习Consumer接口</h4><p><em>此前已学过<code>java.util.function.Consumer&lt;T&gt;</code>函数式接口,该接口是一个消费型接口,其中唯一的抽象方法如下,意为消费一个指定泛型的数据</em></p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">accept</span><span class="hljs-params">(T t)</span></span>;</code></pre>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">accept</span><span class="hljs-params">(T t)</span></span>;</code></pre></div>
 
 <h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><p><em>遍历输出数组中的元素</em></p>
-<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testForEach</span><span class="hljs-params">()</span> </span>&#123;
     String[] array = &#123;<span class="hljs-string">"a"</span>, <span class="hljs-string">"bc"</span>, <span class="hljs-string">"abc"</span>, <span class="hljs-string">"bcd"</span>, <span class="hljs-string">"abcd"</span>&#125;;
 
@@ -365,32 +365,32 @@ widgets.stream()
     <span class="hljs-comment">//第二种方式</span>
     Stream&lt;String&gt; stream2 = Stream.of(array);
     stream2.forEach(System.out::println);
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 <h3 id="filter方法"><a href="#filter方法" class="headerlink" title="filter方法"></a>filter方法</h3><p><em>可以通过<code>filter</code>方法将一个流转换成另一个子集流,该接口接收一个<code>Predicate</code>函数式接口参数( 可以是一个Lambda或方法引用 )作为筛选条件</em></p>
 <h4 id="复习Predicate接口"><a href="#复习Predicate接口" class="headerlink" title="复习Predicate接口"></a>复习Predicate接口</h4><p><em>此前已学过<code>java.util.function.Predicate&lt;T&gt;</code>函数式接口,其中唯一的抽象方法如下,该方法将会产生一个boolean值结果,代表指定的条件是否满足,如果结果为true,那么Stream流的<code>filter</code>方法将会留用元素,反之舍弃</em></p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">test</span><span class="hljs-params">(T t)</span></span>;</code></pre>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">test</span><span class="hljs-params">(T t)</span></span>;</code></pre></div>
 
 <h4 id="基本使用-1"><a href="#基本使用-1" class="headerlink" title="基本使用"></a>基本使用</h4><p><em>延迟方法与终结方法结合使用 : 过滤并遍历数组元素</em></p>
-<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testFilter</span><span class="hljs-params">()</span> </span>&#123;
     String[] array = &#123;<span class="hljs-string">"a"</span>, <span class="hljs-string">"bc"</span>, <span class="hljs-string">"abc"</span>, <span class="hljs-string">"bcd"</span>, <span class="hljs-string">"abcd"</span>&#125;;
     Stream.of(array)
             .filter(element -&gt; element.startsWith(<span class="hljs-string">"a"</span>))
             .filter(element -&gt; element.length() &gt; <span class="hljs-number">3</span>)
             .forEach(System.out::println); <span class="hljs-comment">//abcd</span>
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 <h3 id="map方法"><a href="#map方法" class="headerlink" title="map方法"></a>map方法</h3><p><em>如果需要将流中的元素映射到另一个流中,则可以使用<code>map</code>方法,方法签名如下,该接口需要一个函数式接口参数,可以将当前流中的T类型数据转换为另一种R类型的流</em></p>
-<pre><code class="hljs java">&lt;R&gt; <span class="hljs-function">Stream&lt;R&gt; <span class="hljs-title">map</span><span class="hljs-params">(function&lt;? <span class="hljs-keyword">super</span> T,? extends R&gt; mapper)</span></span>;</code></pre>
+<div class="hljs"><pre><code class="hljs java">&lt;R&gt; <span class="hljs-function">Stream&lt;R&gt; <span class="hljs-title">map</span><span class="hljs-params">(function&lt;? <span class="hljs-keyword">super</span> T,? extends R&gt; mapper)</span></span>;</code></pre></div>
 
 <h4 id="复习Function接口"><a href="#复习Function接口" class="headerlink" title="复习Function接口"></a>复习Function接口</h4><p><em>此前已学过<code>java.util.function.Function&lt;T, R&gt;</code>函数式接口,其中唯一的抽象方法如下,其可以将一种 T 类型转换为 R 类型,而这种转换的动作称为<code>映射</code></em></p>
-<pre><code class="hljs java"><span class="hljs-function">R <span class="hljs-title">apply</span><span class="hljs-params">(T t)</span></span>;</code></pre>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function">R <span class="hljs-title">apply</span><span class="hljs-params">(T t)</span></span>;</code></pre></div>
 
 <h4 id="基本使用-2"><a href="#基本使用-2" class="headerlink" title="基本使用"></a>基本使用</h4><p><em>将String类型的数组元素装换为Integer类型并输出</em></p>
-<pre><code class="hljs java"><span class="hljs-comment">//Lambda表达式写法</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">//Lambda表达式写法</span>
 <span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testMapWithLambda</span><span class="hljs-params">()</span> </span>&#123;
     String[] array = &#123;<span class="hljs-string">"1"</span>, <span class="hljs-string">"2"</span>, <span class="hljs-string">"3"</span>, <span class="hljs-string">"4"</span>, <span class="hljs-string">"5"</span>&#125;;
@@ -417,48 +417,48 @@ widgets.stream()
     Stream.of(array)
             .map(Integer::valueOf)
             .forEach(System.out::println);
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 <h3 id="count方法"><a href="#count方法" class="headerlink" title="count方法"></a>count方法</h3><p><em>正如就集合<code>Collection</code>当中的<code>size</code>方法一样,Stream流提供了<code>count</code>方法来计数元素个数,该方法返回一个long值代表元素个数(不再像同旧集合为int值). 注 : 该方法为终结方法哟~</em></p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">long</span> <span class="hljs-title">count</span><span class="hljs-params">()</span></span>;</code></pre>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">long</span> <span class="hljs-title">count</span><span class="hljs-params">()</span></span>;</code></pre></div>
 
 <h4 id="基本使用-3"><a href="#基本使用-3" class="headerlink" title="基本使用"></a>基本使用</h4><p><em>统计数组中以”a”开头的元素个数</em></p>
-<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testCount</span><span class="hljs-params">()</span> </span>&#123;
     String[] array = &#123;<span class="hljs-string">"a"</span>, <span class="hljs-string">"bc"</span>, <span class="hljs-string">"abc"</span>, <span class="hljs-string">"bcd"</span>, <span class="hljs-string">"abcd"</span>&#125;;
     <span class="hljs-keyword">long</span> count = Stream.of(array).filter(element -&gt; element.startsWith(<span class="hljs-string">"a"</span>)).count();
     System.out.println(count);
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 <h3 id="limit方法"><a href="#limit方法" class="headerlink" title="limit方法"></a>limit方法</h3><p><em><code>limit</code>方法可以对流进行截取,如果集合当前长度大于参数则进行截取,否则不进行操作</em></p>
-<pre><code class="hljs java"><span class="hljs-function">Stream&lt;T&gt; <span class="hljs-title">limit</span><span class="hljs-params">(<span class="hljs-keyword">long</span> maxSize)</span></span>;</code></pre>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function">Stream&lt;T&gt; <span class="hljs-title">limit</span><span class="hljs-params">(<span class="hljs-keyword">long</span> maxSize)</span></span>;</code></pre></div>
 
 <h4 id="基本使用-4"><a href="#基本使用-4" class="headerlink" title="基本使用"></a>基本使用</h4><p><em>截取数组中的前三个元素并输出</em></p>
-<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testLimit</span><span class="hljs-params">()</span> </span>&#123;
     String[] array = &#123;<span class="hljs-string">"a"</span>, <span class="hljs-string">"bc"</span>, <span class="hljs-string">"abc"</span>, <span class="hljs-string">"bcd"</span>, <span class="hljs-string">"abcd"</span>&#125;;
     Stream.of(array).limit(<span class="hljs-number">3</span>).forEach(System.out::println);
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 <h3 id="skip方法"><a href="#skip方法" class="headerlink" title="skip方法"></a>skip方法</h3><p><em>如果希望跳过前几个元素,可以使用<code>skip</code>方法获取一个截取之后的流. 如果流的当前长度大于n,则跳过前n个,否则将会的到一个长度为0的空流</em></p>
-<pre><code class="hljs java"><span class="hljs-function">Stream&lt;T&gt; <span class="hljs-title">skip</span><span class="hljs-params">(<span class="hljs-keyword">long</span> n)</span></span>;</code></pre>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function">Stream&lt;T&gt; <span class="hljs-title">skip</span><span class="hljs-params">(<span class="hljs-keyword">long</span> n)</span></span>;</code></pre></div>
 
 <h4 id="基本使用-5"><a href="#基本使用-5" class="headerlink" title="基本使用"></a>基本使用</h4><p><em>使用<code>skip</code>方法跳过数组中的前三个元素并输出</em></p>
-<pre><code class="hljs java"><span class="hljs-meta">@Test</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testSkip</span><span class="hljs-params">()</span> </span>&#123;
     String[] array = &#123;<span class="hljs-string">"a"</span>, <span class="hljs-string">"bc"</span>, <span class="hljs-string">"abc"</span>, <span class="hljs-string">"bcd"</span>, <span class="hljs-string">"abcd"</span>&#125;;
     Stream.of(array).skip(<span class="hljs-number">3</span>).forEach(System.out::println);
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 <h3 id="concat方法"><a href="#concat方法" class="headerlink" title="concat方法"></a>concat方法</h3><p><em>如果有两个流,希望合并称为一个流,那么可以使用Stream接口的静态方法<code>concat</code>. 注 : 这是一个静态方法,不用与<code>java.lang.String</code>中的<code>concat</code>方法哟</em></p>
-<pre><code class="hljs java"><span class="hljs-function">Stream&lt;T&gt; <span class="hljs-title">skip</span><span class="hljs-params">(<span class="hljs-keyword">long</span> n)</span></span>;</code></pre>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function">Stream&lt;T&gt; <span class="hljs-title">skip</span><span class="hljs-params">(<span class="hljs-keyword">long</span> n)</span></span>;</code></pre></div>
 
 <h4 id="基本使用-6"><a href="#基本使用-6" class="headerlink" title="基本使用"></a>基本使用</h4><p><em>通过合并两个数组中的元素得到新的流,并输出合并后的数组元素</em></p>
-<pre><code class="hljs java"><span class="hljs-comment">//Lambda表达式写法</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">//Lambda表达式写法</span>
 <span class="hljs-meta">@Test</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testConcat</span><span class="hljs-params">()</span> </span>&#123;
     String[] array1 = &#123;<span class="hljs-string">"a"</span>, <span class="hljs-string">"abc"</span>&#125;;
@@ -475,7 +475,7 @@ widgets.stream()
     String[] array1 = &#123;<span class="hljs-string">"a"</span>, <span class="hljs-string">"abc"</span>&#125;;
     String[] array2 = &#123;<span class="hljs-string">"abcd"</span>, <span class="hljs-string">"abcde"</span>&#125;;
     Stream.concat(Stream.of(array1), Stream.of(array2)).forEach(System.out::println);
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 

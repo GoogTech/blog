@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -194,7 +194,7 @@
 <p><em>UTF-8 is a variable-width encoding; it encodes each symbol using one to four 8-bit bytes. Symbols with lower numerical code point values are encoded using fewer bytes. This way, UTF-8 is optimized for the common case where ASCII characters and other BMP symbols (whose code points range from U+000000 to U+00FFFF) are used — while still allowing astral symbols (whose code points range from U+010000 to U+10FFFF) to be stored.</em></p>
 <h2 id="MySQL’s-utf8"><a href="#MySQL’s-utf8" class="headerlink" title="MySQL’s utf8"></a>MySQL’s utf8</h2><p><em>For a long time, I was using MySQL’s utf8 charset for databases, tables, and columns, assuming it mapped to the UTF-8 encoding described above. By using utf8, I’d be able to store any symbol I want in my database — or so I thought.</em></p>
 <p><em>While writing about JavaScript’s internal character encoding, I noticed that there was no way to insert the U+1D306 TETRAGRAM FOR CENTRE (𝌆) symbol into the MySQL database behind this site. The column I was trying to update had the utf8_unicode_ci collation, and the connection charset was set to utf8.</em></p>
-<pre><code class="hljs t"># just to emphasize that the connection charset is set to `utf8`
+<div class="hljs"><pre><code class="hljs t"># just to emphasize that the connection charset is set to `utf8`
 mysql&gt; SET NAMES utf8; 
 Query OK, 0 rows affected (0.00 sec)
 
@@ -208,15 +208,15 @@ mysql&gt; SELECT column_name FROM database_name.table_name WHERE id = 9001;
 +-------------+
 | foo         |
 +-------------+
-1 row in set (0.00 sec)</code></pre>
+1 row in set (0.00 sec)</code></pre></div>
 <p><em>The content got truncated at the first astral Unicode symbol, in this case 𝌆 — so, attempting to insert foo𝌆bar actually inserted foo instead, resulting in data loss (and possibly introducing security issues; see below). MySQL returned a warning message, too:</em></p>
-<pre><code class="hljs mysql">mysql&gt; SHOW WARNINGS;
+<div class="hljs"><pre><code class="hljs mysql">mysql&gt; SHOW WARNINGS;
 +---------+------+------------------------------------------------------------------------------+
 | Level   | Code | Message                                                                      |
 +---------+------+------------------------------------------------------------------------------+
 | Warning | 1366 | Incorrect string value: &apos;\xF0\x9D\x8C\x86&apos; for column &apos;column_name&apos; at row 1 |
 +---------+------+------------------------------------------------------------------------------+
-1 row in set (0.00 sec)</code></pre>
+1 row in set (0.00 sec)</code></pre></div>
 <p><em>Turns out MySQL’s utf8 charset only partially implements proper UTF-8 encoding. It can only store UTF-8-encoded symbols that consist of one to three bytes; encoded symbols that take up four bytes aren’t supported.</em></p>
 <p><em>Since astral symbols (whose code points range from U+010000 to U+10FFFF) each consist of four bytes in UTF-8, you cannot store them using MySQL’s utf8 implementation.</em></p>
 <p><em>This doesn’t just affect the 𝌆 character, but more important symbols like U+01F4A9 PILE OF POO (💩) as well. In total, that’s 1,048,575 possible code points you can’t use. In fact, MySQL’s utf8 only allows you to store 5.88% ((0x00FFFF + 1) / (0x10FFFF + 1)) of all possible Unicode code points. Proper UTF-8 can encode 100% of all Unicode code points.</em></p>
@@ -248,7 +248,7 @@ mysql&gt; SELECT column_name FROM database_name.table_name WHERE id = 9001;
 <p><em>Section 10.1.11 of the <code>MySQL 5.5</code> Reference Manual has some more information on this.</em></p>
 <h3 id="Step-5-Modify-connection-client-and-server-character-sets"><a href="#Step-5-Modify-connection-client-and-server-character-sets" class="headerlink" title="Step 5: Modify connection, client, and server character sets"></a>Step 5: Modify connection, client, and server character sets</h3><p><em>In your application code, set the connection character set to utf8mb4. This can be done by simply replacing any variants of SET NAMES utf8 with SET NAMES utf8mb4. If your old SET NAMES statement specified the collation, make sure to change that as well, e.g. <code>SET NAMES utf8 COLLATE utf8_unicode_ci becomes SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci.</code></em></p>
 <p><em>Make sure to set the client and server character set as well. I have the following in my MySQL configuration file (<code>/etc/my.cnf</code>):</em></p>
-<pre><code class="hljs mysql">[client]
+<div class="hljs"><pre><code class="hljs mysql">[client]
 default-character-set = utf8mb4
 
 [mysql]
@@ -257,10 +257,10 @@ default-character-set = utf8mb4
 [mysqld]
 character-set-client-handshake = FALSE
 character-set-server = utf8mb4
-collation-server = utf8mb4_unicode_ci</code></pre>
+collation-server = utf8mb4_unicode_ci</code></pre></div>
 
 <p><em>You can easily confirm these settings work correctly:</em></p>
-<pre><code class="hljs t">mysql&gt; SHOW VARIABLES WHERE Variable_name LIKE &apos;character\_set\_%&apos; OR Variable_name LIKE &apos;collation%&apos;;
+<div class="hljs"><pre><code class="hljs t">mysql&gt; SHOW VARIABLES WHERE Variable_name LIKE &apos;character\_set\_%&apos; OR Variable_name LIKE &apos;collation%&apos;;
 +--------------------------+--------------------+
 | Variable_name            | Value              |
 +--------------------------+--------------------+
@@ -275,19 +275,19 @@ collation-server = utf8mb4_unicode_ci</code></pre>
 | collation_database       | utf8mb4_unicode_ci |
 | collation_server         | utf8mb4_unicode_ci |
 +--------------------------+--------------------+
-10 rows in set (0.00 sec)</code></pre>
+10 rows in set (0.00 sec)</code></pre></div>
 <p>As you can see, all the relevant options are set to utf8mb4, except for character_set_filesystem which should be binary unless you’re on a file system that supports multi-byte UTF-8-encoded characters in file names, and character_set_system which is always utf8 and can’t be overridden.</p>
 <ul>
 <li><em><code>Note: The default character set and collation can be configured at some other levels as well.</code></em></li>
 </ul>
 <h3 id="Step-6-Repair-and-optimize-all-tables"><a href="#Step-6-Repair-and-optimize-all-tables" class="headerlink" title="Step 6: Repair and optimize all tables"></a>Step 6: Repair and optimize all tables</h3><p><em>After upgrading the MySQL server and making the necessary changes explained above, make sure to repair and optimize all databases and tables. I didn’t do this right away after upgrading (I didn’t think it was necessary, as everything seemed to work fine at first glance), and ran into some weird bugs where UPDATE statements didn’t have any effect, even though no errors were thrown.</em></p>
 <p><em>You could run the following MySQL queries for each table you want to repair and optimize:</em></p>
-<pre><code class="hljs t"># For each table
+<div class="hljs"><pre><code class="hljs t"># For each table
 REPAIR TABLE table_name;
-OPTIMIZE TABLE table_name;</code></pre>
+OPTIMIZE TABLE table_name;</code></pre></div>
 
 <p><em>Luckily, this can easily be done in one go using the command-line mysqlcheck utility:</em></p>
-<pre><code class="hljs mysql">$ mysqlcheck -u root -p --auto-repair --optimize --all-databases</code></pre>
+<div class="hljs"><pre><code class="hljs mysql">$ mysqlcheck -u root -p --auto-repair --optimize --all-databases</code></pre></div>
 <p><em>This will prompt for the root user’s password, after which all tables in all databases will be repaired and optimized.</em></p>
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p><em><code>Never use utf8 in MySQL — always use utf8mb4 instead.</code> Updating your databases and code might take some time, but it’s definitely worth the effort. Why would you arbitrarily limit the set of symbols that can be used in your database? Why would you lose data every time a user enters an astral symbol as part of a comment or message or whatever it is you store in your database? There’s no reason not to strive for full Unicode support everywhere. Do the right thing, and use utf8mb4. 🍻 ヾ(￣▽￣)Bye<del>Bye</del></em></p>
 <ul>

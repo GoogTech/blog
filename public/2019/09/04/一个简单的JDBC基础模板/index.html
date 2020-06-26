@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -191,7 +191,7 @@
               <h2 id="学习笔记-一个简单的JDBC基础模板"><a href="#学习笔记-一个简单的JDBC基础模板" class="headerlink" title="学习笔记 : 一个简单的JDBC基础模板"></a>学习笔记 : 一个简单的JDBC基础模板</h2><p><em>最近在 GitHub 上又结识了一个小伙伴,看他最近在学习 JDBC 方面的知识,看到他所写的代码让我顿时回忆起自己初学编程的自己,所以想帮帮他,继而把前些日子写的 JDBC 基础模板整理了一下并给他提了一个 PR,详情请参考 : <a href="https://github.com/qinjiajuny/JDBCLearning/pull/4" target="_blank" rel="noopener">https://github.com/qinjiajuny/JDBCLearning/pull/4</a></em></p>
 <ol>
 <li><p><em>tb_user : 用户信息数据表</em></p>
-<pre><code class="hljs sql"><span class="hljs-comment">-- auto-generated definition</span>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment">-- auto-generated definition</span>
 <span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> tb_user
 (
     <span class="hljs-keyword">id</span>        <span class="hljs-built_in">int</span> auto_increment primary <span class="hljs-keyword">key</span>,
@@ -201,17 +201,17 @@
     <span class="hljs-keyword">password</span>  <span class="hljs-built_in">varchar</span>(<span class="hljs-number">15</span>) <span class="hljs-literal">null</span>,
     telephone <span class="hljs-built_in">varchar</span>(<span class="hljs-number">11</span>) <span class="hljs-literal">null</span>,
     birthday  <span class="hljs-built_in">date</span>        <span class="hljs-literal">null</span>
-);</code></pre>
+);</code></pre></div>
 </li>
 <li><p><em>db.properties : 数据库连接配置文件</em></p>
-<pre><code class="hljs sh"><span class="hljs-comment"># Database configuration information (Server version: 8.0.11 MySQL Community Server - GPL)</span>
+<div class="hljs"><pre><code class="hljs sh"><span class="hljs-comment"># Database configuration information (Server version: 8.0.11 MySQL Community Server - GPL)</span>
 Url=jdbc:mysql://localhost/database-name?useSSL=<span class="hljs-literal">false</span>&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=<span class="hljs-literal">true</span>
 UserName=
 UserPassword=
-DriverName=com.mysql.cj.jdbc.Driver</code></pre>
+DriverName=com.mysql.cj.jdbc.Driver</code></pre></div>
 </li>
 <li><p><em>ConfigUtil.java : 读取数据库连接配置文件的工具类</em></p>
-<pre><code class="hljs java">package pers.huangyuhui.curd.utils;
+<div class="hljs"><pre><code class="hljs java">package pers.huangyuhui.curd.utils;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -256,10 +256,10 @@ class ConfigUtil &#123;
     static Properties getProperties() &#123;
         return properties;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>DBUtil : 连接数据库的工具类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.curd.utils;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.curd.utils;
 
 <span class="hljs-keyword">import</span> java.sql.Connection;
 <span class="hljs-keyword">import</span> java.sql.DriverManager;
@@ -303,10 +303,10 @@ class ConfigUtil &#123;
         &#125;
         <span class="hljs-keyword">return</span> connection;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>User.java : 用户信息类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.curd.bean;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.curd.bean;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: curd-demo
@@ -393,10 +393,10 @@ class ConfigUtil &#123;
                 <span class="hljs-string">", birthday='"</span> + birthday + <span class="hljs-string">'\''</span> +
                 <span class="hljs-string">'&#125;'</span>;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>UserDao.java : 数据访问层</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.curd.dao;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.curd.dao;
 
 <span class="hljs-keyword">import</span> pers.huangyuhui.curd.bean.User;
 <span class="hljs-keyword">import</span> pers.huangyuhui.curd.utils.DBUitl;
@@ -494,10 +494,10 @@ class ConfigUtil &#123;
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>UserService.java : 业务逻辑层</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.curd.service;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.curd.service;
 
 <span class="hljs-keyword">import</span> pers.huangyuhui.curd.bean.User;
 
@@ -520,10 +520,10 @@ class ConfigUtil &#123;
     <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">updateUser</span><span class="hljs-params">(User user)</span></span>;
 
     <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">deleteUser</span><span class="hljs-params">(Integer id)</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>UserServiceImpl.java : 业务逻辑层的实现类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.curd.service.impl;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.curd.service.impl;
 
 <span class="hljs-keyword">import</span> pers.huangyuhui.curd.bean.User;
 <span class="hljs-keyword">import</span> pers.huangyuhui.curd.dao.UserDao;
@@ -562,10 +562,10 @@ class ConfigUtil &#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">deleteUser</span><span class="hljs-params">(Integer id)</span> </span>&#123;
         <span class="hljs-keyword">return</span> userDao.deleteUserById(id);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>AppTest.java : 程序测试类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.curd;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.curd;
 
 <span class="hljs-keyword">import</span> org.junit.BeforeClass;
 <span class="hljs-keyword">import</span> org.junit.Test;
@@ -626,7 +626,7 @@ class ConfigUtil &#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">deleteUser</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"是否成功删除用户信息 : "</span> + userService.deleteUser(<span class="hljs-number">1</span>));
     &#125;
-&#125;</code></pre></li>
+&#125;</code></pre></div></li>
 </ol>
 
             </article>

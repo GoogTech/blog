@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -190,7 +190,7 @@
             <article class="markdown-body">
               <h3 id="学习笔记-自定义EL函数防止HTML注入"><a href="#学习笔记-自定义EL函数防止HTML注入" class="headerlink" title="学习笔记 : 自定义EL函数防止HTML注入"></a>学习笔记 : 自定义<code>EL</code>函数防止<code>HTML</code>注入</h3><h4 id="防止HTML注入前"><a href="#防止HTML注入前" class="headerlink" title="防止HTML注入前"></a>防止<code>HTML</code>注入前</h4><ol>
 <li><p><em><code>JSP</code>程序代码</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
     <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
@@ -217,10 +217,10 @@
 			<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em><code>Servlet</code>程序代码</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.el.test;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.el.test;
 
 <span class="hljs-keyword">import</span> java.io.IOException;
 
@@ -258,10 +258,10 @@
 		<span class="hljs-keyword">this</span>.doPost(req, resp);
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>所跳转的<code>JSP</code>页面的程序代码</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>
     <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span>%&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
@@ -275,7 +275,7 @@
 			留言内容: $&#123;message &#125;
 		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>运行结果示例图</em></p>
 </li>
@@ -286,7 +286,7 @@
 </ul>
 <h4 id="防止HTML注入后"><a href="#防止HTML注入后" class="headerlink" title="防止HTML注入后"></a>防止<code>HTML</code>注入后</h4><ol>
 <li><p><em>过滤<code>HTML</code>中特殊字符的程序代码</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.el.util;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.el.util;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: HTMLFilter
@@ -329,7 +329,7 @@
 		&#125;
 		<span class="hljs-keyword">return</span> result.toString();
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>描述自定义<code>EL</code>函数的<code>mytaglib.tld</code>文件</em></p>
 </li>
@@ -337,7 +337,7 @@
 <ul>
 <li><em><code>&lt;taglib&gt;</code>元素是tld文件的根元素,用于声明该JSP文件使用了标签库,不需要对其进行修改,只需要从目录<code>&lt;Tomacat安装目录&gt;\webapps\examples\WEB-INF\jsp2\jsp2-example-taglib.tld</code>中复制即可.</em></li>
 </ul>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">taglib</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://java.sun.com/xml/ns/j2ee"</span>
     <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
@@ -359,11 +359,11 @@
     	<span class="hljs-tag">&lt;/<span class="hljs-name">function-signature</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">function</span>&gt;</span>
  
-<span class="hljs-tag">&lt;/<span class="hljs-name">taglib</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">taglib</span>&gt;</span></code></pre></div>
 
 <ol start="3">
 <li><p><em><code>JSP</code>页面的程序代码</em></p>
-<pre><code class="html"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">page</span> <span class="attr">language</span>=<span class="string">"java"</span> <span class="attr">contentType</span>=<span class="string">"text/html; charset=UTF-8"</span></span>
+<div class="hljs"><pre><code class="html"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">page</span> <span class="attr">language</span>=<span class="string">"java"</span> <span class="attr">contentType</span>=<span class="string">"text/html; charset=UTF-8"</span></span>
 <span class="tag"> <span class="attr">pageEncoding</span>=<span class="string">"UTF-8"</span>%&gt;</span>
 &lt;%-- uri: 既tld文件中&lt;uri&gt;元素的内容.  prefix: 为引用的tld文件定义一个"代号"(作为自定义EL函数的前缀) --%&gt;
 <span class="tag">&lt;<span class="name">%@taglib</span> <span class="attr">prefix</span>=<span class="string">"demo"</span> <span class="attr">uri</span>=<span class="string">"https://yubuntu0109.github.io"</span> %&gt;</span>
@@ -379,7 +379,7 @@
          留言内容: ${demo:filter(message) }
      <span class="tag">&lt;/<span class="name">div</span>&gt;</span>
  <span class="tag">&lt;/<span class="name">body</span>&gt;</span>
-<span class="tag">&lt;/<span class="name">html</span>&gt;</span></code></pre>
+<span class="tag">&lt;/<span class="name">html</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>运行效果示例图</em><br><img src="/2019/04/22/%E8%87%AA%E5%AE%9A%E4%B9%89EL%E5%87%BD%E6%95%B0%E9%98%B2%E6%AD%A2HTML%E6%B3%A8%E5%85%A5/JSP-HTMLInjectionResult2.PNG" srcset="/img/loading.gif" alt=" "></p>
 </li>

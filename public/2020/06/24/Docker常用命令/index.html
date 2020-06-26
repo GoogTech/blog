@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -190,7 +190,7 @@
             <article class="markdown-body">
               <p><em>图解 Docker 常用命令</em></p>
 <p><img src="/2020/06/24/Docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/docker-command.png" srcset="/img/loading.gif" alt=" "></p>
-<h3 id="后台启动容器"><a href="#后台启动容器" class="headerlink" title="后台启动容器"></a>后台启动容器</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看所有镜像</span>
+<h3 id="后台启动容器"><a href="#后台启动容器" class="headerlink" title="后台启动容器"></a>后台启动容器</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看所有镜像</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 ubuntu              latest              74435f89ab78        7 days ago          73.9MB
@@ -209,10 +209,10 @@ ubuntu@VM-0-4-ubuntu:~$ sudo docker run -d ubuntu
 #</span><span class="bash"> 再次查看当前正在运行的容器，发现ubuntu并没有正在运行?!</span>
 <span class="hljs-meta">#</span><span class="bash"> 这是因为docker没有发现应用便会自动停止，所以若要使得docker容器可以在后台启动并运行，则前台必须要有一个进程</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES</code></pre>
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES</code></pre></div>
 
 
-<h3 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看logs命令的帮助文档</span>
+<h3 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看logs命令的帮助文档</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker logs --help
 
 Usage:  docker logs [OPTIONS] CONTAINER
@@ -252,10 +252,10 @@ ubuntu@VM-0-4-ubuntu:~$ sudo docker logs -tf --tail 5 b89578415781
 2020-06-24T02:02:02.105495333Z this is logs..                                                                          
 2020-06-24T02:02:03.109132666Z this is logs..                                                                          
 ^C  # ctrl + c                                                                                                                   
-ubuntu@VM-0-4-ubuntu:~$</code></pre>
+ubuntu@VM-0-4-ubuntu:~$</code></pre></div>
 
 
-<h3 id="查看容器中的进程信息"><a href="#查看容器中的进程信息" class="headerlink" title="查看容器中的进程信息"></a>查看容器中的进程信息</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的容器</span>
+<h3 id="查看容器中的进程信息"><a href="#查看容器中的进程信息" class="headerlink" title="查看容器中的进程信息"></a>查看容器中的进程信息</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的容器</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS              NAMES
 5f39caf62a73        ubuntu              "/bin/sh -c 'while t…"   6 seconds ago       Up 4 seconds                           magical_leakey
@@ -265,10 +265,10 @@ ubuntu@VM-0-4-ubuntu:~$ sudo docker top 5f39caf62a73
 UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
 root                17430               17403               0                   10:14               ?                   00:00:00            /bin/sh -c while true;do echo 'this is logs..';sleep 1;done
 root                17532               17430               0                   10:14               ?
- 00:00:00            sleep 1</code></pre>
+ 00:00:00            sleep 1</code></pre></div>
 
 
-<h3 id="查看镜像的元数据"><a href="#查看镜像的元数据" class="headerlink" title="查看镜像的元数据"></a>查看镜像的元数据</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看inspect的帮助命令</span>
+<h3 id="查看镜像的元数据"><a href="#查看镜像的元数据" class="headerlink" title="查看镜像的元数据"></a>查看镜像的元数据</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看inspect的帮助命令</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker inspect --help
 
 Usage:  docker inspect [OPTIONS] NAME|ID [NAME|ID...]
@@ -310,10 +310,10 @@ ubuntu@VM-0-4-ubuntu:~$ sudo docker inspect 5f39caf62a73
             "FinishedAt": "0001-01-01T00:00:00Z"                                                                       
         &#125;
 
-. . . . . .</code></pre>
+. . . . . .</code></pre></div>
 
 
-<h3 id="进入当前正在运行的容器"><a href="#进入当前正在运行的容器" class="headerlink" title="进入当前正在运行的容器"></a>进入当前正在运行的容器</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的容器</span>
+<h3 id="进入当前正在运行的容器"><a href="#进入当前正在运行的容器" class="headerlink" title="进入当前正在运行的容器"></a>进入当前正在运行的容器</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的容器</span>
 ubuntu@VM-0-4-ubuntu:~$ sudo docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS              NAMES
 5f39caf62a73        ubuntu              "/bin/sh -c 'while t…"   33 minutes ago      Up 33 minutes                          magical_leakey
@@ -339,10 +339,10 @@ this is logs..
 this is logs..
 this is logs..
 this is logs..
-^Cubuntu@VM-0-4-ubuntu:~$</code></pre>
+^Cubuntu@VM-0-4-ubuntu:~$</code></pre></div>
 
 
-<h3 id="从容器内拷贝文件到主机上"><a href="#从容器内拷贝文件到主机上" class="headerlink" title="从容器内拷贝文件到主机上"></a>从容器内拷贝文件到主机上</h3><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的容器(无)</span>
+<h3 id="从容器内拷贝文件到主机上"><a href="#从容器内拷贝文件到主机上" class="headerlink" title="从容器内拷贝文件到主机上"></a>从容器内拷贝文件到主机上</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看当前正在运行的容器(无)</span>
 ubuntu@VM-0-4-ubuntu:/home$ sudo docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS              NAMES
 <span class="hljs-meta">
@@ -375,7 +375,7 @@ ubuntu@VM-0-4-ubuntu:/home$ ls
 ubuntu
 ubuntu@VM-0-4-ubuntu:/home$ sudo docker cp 2f8d86d683f2:/home/ishacker.net.java /home
 ubuntu@VM-0-4-ubuntu:/home$ ls
-ishacker.net.java  ubuntu</code></pre>
+ishacker.net.java  ubuntu</code></pre></div>
 
 
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>其中 &lt;&gt; 括起来的参数为必选，而 [] 括起来为可选.</p>

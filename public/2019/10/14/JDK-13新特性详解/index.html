@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -203,7 +203,7 @@
 <li>2019/08/22         Final Release Candidate</li>
 <li>2019/09/17         General Availability</li>
 </ul>
-<h3 id="Switch-Expressions-特性演示"><a href="#Switch-Expressions-特性演示" class="headerlink" title="Switch Expressions 特性演示"></a>Switch Expressions 特性演示</h3><pre><code class="hljs java"> <span class="hljs-comment">/*
+<h3 id="Switch-Expressions-特性演示"><a href="#Switch-Expressions-特性演示" class="headerlink" title="Switch Expressions 特性演示"></a>Switch Expressions 特性演示</h3><div class="hljs"><pre><code class="hljs java"> <span class="hljs-comment">/*
 JDK12之前版本的写法:许多break使它不必要地冗长,如果忘记写break,则会产生意料之外的结果或者异常,所以针对于此jdk12在这里进行了优化升级
 */</span>
 <span class="hljs-keyword">switch</span> (score) &#123;
@@ -241,10 +241,10 @@ System.out.println(
             <span class="hljs-keyword">case</span> <span class="hljs-number">90</span> -&gt; <span class="hljs-string">"优秀"</span>;
             <span class="hljs-keyword">default</span> -&gt; <span class="hljs-string">"default"</span>;
         &#125;
-);</code></pre>
+);</code></pre></div>
 
 
-<h3 id="Text-Blocks-特性演示"><a href="#Text-Blocks-特性演示" class="headerlink" title="Text Blocks 特性演示"></a>Text Blocks 特性演示</h3><pre><code class="hljs java">//解释:左边的文本块相当于右边的字符串文字
+<h3 id="Text-Blocks-特性演示"><a href="#Text-Blocks-特性演示" class="headerlink" title="Text Blocks 特性演示"></a>Text Blocks 特性演示</h3><div class="hljs"><pre><code class="hljs java">//解释:左边的文本块相当于右边的字符串文字
 /*
 """
 line1
@@ -289,7 +289,7 @@ String query2 =
         SELECT `EMP_ID`, `LAST_NAME` FROM `EMPLOYEE_TB`
         WHERE `CITY` = 'INDIANAPOLIS'
         ORDER BY `EMP_ID`, `LAST_NAME`;
-        """;</code></pre>
+        """;</code></pre></div>
 
 
 

@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -190,7 +190,7 @@
             <article class="markdown-body">
               <h2 id="详细讲解各版本Java-Servlet的使用-这次哥哥讲细节-✪ω✪"><a href="#详细讲解各版本Java-Servlet的使用-这次哥哥讲细节-✪ω✪" class="headerlink" title="详细讲解各版本Java Servlet的使用,这次哥哥讲细节 (✪ω✪) !"></a>详细讲解各版本Java Servlet的使用,这次哥哥讲细节 (✪ω✪) !</h2><h3 id="Servlet-2-5-通过配置web-xml文件来映射Servlet-示例代码如下"><a href="#Servlet-2-5-通过配置web-xml文件来映射Servlet-示例代码如下" class="headerlink" title="Servlet 2.5 : 通过配置web.xml文件来映射Servlet ( 示例代码如下 )"></a><code>Servlet 2.5</code> : 通过配置<code>web.xml</code>文件来映射<code>Servlet</code> ( 示例代码如下 )</h3><ul>
 <li><p><em>Servlet program</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FirstServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FirstServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
 
 	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = -<span class="hljs-number">7228095681625205247L</span>;
 
@@ -230,10 +230,10 @@
  * This is doGet ..
  * This is doPost ..
  * 
- */</span></code></pre>
+ */</span></code></pre></div>
 </li>
 <li><p><em>JSP Progarm</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=ISO-8859-1"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"ISO-8859-1"</span>%&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=ISO-8859-1"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"ISO-8859-1"</span>%&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -259,10 +259,10 @@
 			<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>web.xml</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
 	<span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee"</span>
 	<span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"</span>
@@ -303,7 +303,7 @@
 		<span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>sameName<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/FirstServlet<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre></div>
 
 
 
@@ -311,7 +311,7 @@
 </ul>
 <h3 id="Servlet-3-0-通过注解来映射相应的Servlet"><a href="#Servlet-3-0-通过注解来映射相应的Servlet" class="headerlink" title="Servlet 3.0 : 通过注解来映射相应的Servlet."></a><code>Servlet 3.0</code> : 通过<code>注解</code>来映射相应的<code>Servlet</code>.</h3><ul>
 <li><p><em>Servlet program</em></p>
-<pre><code class="hljs java"><span class="hljs-comment">/*
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/*
 1.Servlet 3.0 与 Servlet 2.5 的区分 :
 	Servlet 3.0 : 较`Servlet 2.0`不需要在web.xml中配置Servlet映射,但需在Servlet类的定义处上编写注解: @WenServlet("/Servlet url..")其中"/Servlet url.."与Servlet 2.0在web.xml配置文件中&lt;url-pattern&gt;标签中的内容原理是相同的.
 
@@ -357,10 +357,10 @@
  * This is doPost ..	       		&lt;— 点击`doPost`按钮时`Servlet`触发的响应.
  * This is doGet ..				    &lt;— 点击`doGet`按钮时`Servlet`触发的响应.
  *
- */</span></code></pre>
+ */</span></code></pre></div>
 </li>
 <li><p><em>JSP Program</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=ISO-8859-1"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"ISO-8859-1"</span>%&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">language</span>=<span class="hljs-string">"java"</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=ISO-8859-1"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"ISO-8859-1"</span>%&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -378,10 +378,10 @@
 			<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>web.xml</em></p>
-<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 无需任何修改 --&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 无需任何修改 --&gt;</span>
 <span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee"</span> <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"WebApp_ID"</span> <span class="hljs-attr">version</span>=<span class="hljs-string">"4.0"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">display-name</span>&gt;</span>Servlet_basic_version_3.0<span class="hljs-tag">&lt;/<span class="hljs-name">display-name</span>&gt;</span>
@@ -393,7 +393,7 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">welcome-file</span>&gt;</span>default.htm<span class="hljs-tag">&lt;/<span class="hljs-name">welcome-file</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">welcome-file</span>&gt;</span>default.jsp<span class="hljs-tag">&lt;/<span class="hljs-name">welcome-file</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">welcome-file-list</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em><code>JSP</code>运行效果示例图</em><br><img src="/2019/04/05/Java-Servlet%E5%90%84%E7%89%88%E6%9C%AC%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/Servlet2.5.PNG" srcset="/img/loading.gif" alt=" "></p>
 </li>

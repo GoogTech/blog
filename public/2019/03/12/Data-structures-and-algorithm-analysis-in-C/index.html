@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -189,16 +189,16 @@
             
             <article class="markdown-body">
               <h3 id="数据结构与算法分析-C语言描述"><a href="#数据结构与算法分析-C语言描述" class="headerlink" title="数据结构与算法分析 - C语言描述"></a>数据结构与算法分析 - C语言描述</h3><p><em><code>著名计算机科学家沃思(Niklaus Wirth)曾提出一个程序公式：程序 = 数据结构 + 算法. 由此体现程序最美的灵魂所在 ~</code></em></p>
-<pre><code class="hljs c">来! 小哥哥带大家体现一下`灵魂`的美 -(っ•̀ω•́)っ✎⁾⁾-
+<div class="hljs"><pre><code class="hljs c">来! 小哥哥带大家体现一下`灵魂`的美 -(っ•̀ω•́)っ✎⁾⁾-
 约瑟夫问题(`Josephus problem `)是循环链表的一个典型应用,其描述如下: M个人围成一个圈,
 从其中任意一个人开始,按顺时针使所有人从一开始报数,报到N的人出列,然后使N之后的人接着从
 <span class="hljs-number">1</span>开始报数,再次使报到N的人出列···如此下去,求出列的顺序及最后留下来的人的编号.
-很有趣的题目对吧! 小哥哥在这里简单实现一下哟 ~</code></pre>
+很有趣的题目对吧! 小哥哥在这里简单实现一下哟 ~</code></pre></div>
 
 <ul>
 <li><em>Declare.h</em></li>
 </ul>
-<pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> _Josephus_problem_</span>
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> _Josephus_problem_</span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> _Josephus_problem_</span>
  
 <span class="hljs-comment">/*Simplify the code*/</span>
@@ -234,12 +234,12 @@
 <span class="hljs-comment">/*THE HEART OF ALGORITHM*/</span>
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">The_Heart_Of_Algorithm_</span><span class="hljs-params">(pHead ph, <span class="hljs-keyword">int</span> n)</span></span>;
  
-<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></code></pre>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></code></pre></div>
 
 <ul>
 <li><em>Functions.c</em></li>
 </ul>
-<pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"Declare.h"</span></span>
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"Declare.h"</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span>
  
@@ -368,12 +368,12 @@
     &#125;
     node-&gt;next = node; <span class="hljs-comment">//YOU ARE NOT ALONE ~(*^▽^*)~</span>
     <span class="hljs-built_in">printf</span>(<span class="hljs-string">"\n"</span>);
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <ul>
 <li><em>Main.c</em></li>
 </ul>
-<pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"Declare.h"</span></span>
+<div class="hljs"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"Declare.h"</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span>
  
@@ -410,12 +410,12 @@
  
     system(<span class="hljs-string">"pause"</span>);
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <ul>
 <li><em>The result of a program running</em></li>
 </ul>
-<pre><code class="hljs c">Please enter the total number of peoples of Josphus problem :
+<div class="hljs"><pre><code class="hljs c">Please enter the total number of peoples of Josphus problem :
 <span class="hljs-number">10000</span>
 Please enter the index of node which you want to <span class="hljs-keyword">delete</span> :
 <span class="hljs-number">6</span>
@@ -471,7 +471,7 @@ Please enter the index of node which you want to <span class="hljs-keyword">dele
 <span class="hljs-number">5693</span> <span class="hljs-number">386</span>
 --- THE LAST OF NODE ---
 <span class="hljs-number">8991</span>
-请按任意键继续. . .</code></pre>
+请按任意键继续. . .</code></pre></div>
 
 
 <ul>

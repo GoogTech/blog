@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="My Personal Website For Blog">
+  <meta name="author" content="黄宇辉">
+  <meta name="keywords" content="learning note,hexo blog">
+  <title>使用Dockerfile构建一个属于自己的Ubuntu - 欢迎参观小灰灰的网站哟 ヾ(◍°∇°◍)ﾉﾞ ~</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>ANONYMOUS</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-06-26 13:15">
+      June 26, 2020 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      11k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      215
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h3 id="1-编写-Dockerfile"><a href="#1-编写-Dockerfile" class="headerlink" title="1.编写 Dockerfile"></a>1.编写 Dockerfile</h3><div class="hljs"><pre><code class="hljs shell">root@VM-0-4-ubuntu:/home/Dockerfile# cat Dockerfile
+FROM ubuntu:18.04
+
+MAINTAINER ishacker.net "ishacker.net@gmail.com"
+<span class="hljs-meta">
+#</span><span class="bash"> <span class="hljs-built_in">set</span> apt-source</span>
+RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+<span class="hljs-meta">
+#</span><span class="bash"> update apt-source</span>
+RUN apt-get update -y
+<span class="hljs-meta">
+#</span><span class="bash"> insatll the common commands: ssh,vim,ping,ipconfig,curl..</span>
+RUN apt-get -y install ssh vim curl net-tools
+<span class="hljs-meta">
+#</span><span class="bash"> <span class="hljs-built_in">local</span> path</span>
+ENV MYPATH /usr/local
+<span class="hljs-meta">
+#</span><span class="bash"> work path same as <span class="hljs-built_in">local</span> path</span>
+WORKDIR $MYPATH
+<span class="hljs-meta">
+#</span><span class="bash"> expost port</span>
+EXPOSE 80
+<span class="hljs-meta">
+#</span><span class="bash"> ouput info</span>
+CMD echo $MYPATH
+CMD echo "successfully"
+CMD /bin/bash</code></pre></div>
+
+
+<h3 id="2-构建-Dockerfile"><a href="#2-构建-Dockerfile" class="headerlink" title="2. 构建 Dockerfile"></a>2. 构建 Dockerfile</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> -f : dockerfile文件路径，若文件名为 Dockerfile 则可以不使用 -f 来指定文件名: docker build -t yubuntu:0.1 .</span>
+<span class="hljs-meta">#</span><span class="bash"> -t : 镜像名:[版本号]</span>
+root@VM-0-4-ubuntu:/home/Dockerfile# docker build -f Dockerfile -t yubuntu:0.1 . 
+Sending build context to Docker daemon  2.048kB
+Step 1/11 : FROM ubuntu:18.04
+<span class="hljs-meta"> ---&gt;</span><span class="bash"> 8e4ce0a6ce69</span>
+Step 2/11 : MAINTAINER ishacker.net "ishacker.net@gmail.com"
+<span class="hljs-meta"> ---&gt;</span><span class="bash"> Using cache</span>
+<span class="hljs-meta"> ---&gt;</span><span class="bash"> 3668bdb1a2c3</span>
+Step 3/11 : RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+<span class="hljs-meta"> ---&gt;</span><span class="bash"> Running <span class="hljs-keyword">in</span> 334aeda3e7b0</span>
+Removing intermediate container 334aeda3e7b0
+<span class="hljs-meta"> ---&gt;</span><span class="bash"> e5abb449e8e3</span>
+Step 4/11 : RUN apt-get update -y
+<span class="hljs-meta"> ---&gt;</span><span class="bash"> Running <span class="hljs-keyword">in</span> 1f339d87a93a</span>
+Get:1 http://mirrors.aliyun.com/ubuntu bionic InRelease [242 kB]
+Get:2 http://mirrors.aliyun.com/ubuntu bionic-updates InRelease [88.7 kB]
+Get:3 http://mirrors.aliyun.com/ubuntu bionic-backports InRelease [74.6 kB]
+Get:4 http://mirrors.aliyun.com/ubuntu bionic/restricted amd64 Packages [13.5 kB]
+Get:5 http://mirrors.aliyun.com/ubuntu bionic/main amd64 Packages [1344 kB]
+Get:6 http://mirrors.aliyun.com/ubuntu bionic/universe amd64 Packages [11.3 MB]
+Get:7 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
+Get:8 http://mirrors.aliyun.com/ubuntu bionic/multiverse amd64 Packages [186 kB]
+Get:9 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 Packages [1270 kB]
+Get:10 http://mirrors.aliyun.com/ubuntu bionic-updates/multiverse amd64 Packages [13.4 kB]
+Get:11 http://mirrors.aliyun.com/ubuntu bionic-updates/restricted amd64 Packages [93.9 kB]
+Get:12 http://mirrors.aliyun.com/ubuntu bionic-updates/universe amd64 Packages [1398 kB]
+Get:13 http://mirrors.aliyun.com/ubuntu bionic-backports/universe amd64 Packages [8158 B]
+Get:14 http://mirrors.aliyun.com/ubuntu bionic-backports/main amd64 Packages [8286 B]
+Get:15 http://security.ubuntu.com/ubuntu bionic-security/multiverse amd64 Packages [9012 B]
+Get:16 http://security.ubuntu.com/ubuntu bionic-security/main amd64 Packages [977 kB]
+Get:17 http://security.ubuntu.com/ubuntu bionic-security/restricted amd64 Packages [82.2 kB]
+Get:18 http://security.ubuntu.com/ubuntu bionic-security/universe amd64 Packages [862 kB]
+Fetched 18.1 MB in 9s (2070 kB/s)
+Reading package lists...
+Removing intermediate container 1f339d87a93a
+<span class="hljs-meta"> ---&gt;</span><span class="bash"> 86a5820e7867</span>
+Step 5/11 : RUN apt-get -y install ssh vim curl net-tools
+<span class="hljs-meta"> ---&gt;</span><span class="bash"> Running <span class="hljs-keyword">in</span> 3e756381ba33</span>
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  ca-certificates dbus dmsetup file gir1.2-glib-2.0 krb5-locales libapparmor1
+  libargon2-0 libasn1-8-heimdal libbsd0 libcap2 libcryptsetup12 libcurl4
+  libdbus-1-3 libdevmapper1.02.1 libedit2 libexpat1 libgirepository-1.0-1
+  libglib2.0-0 libglib2.0-data libgpm2 libgssapi-krb5-2 libgssapi3-heimdal
+  libhcrypto4-heimdal libheimbase1-heimdal libheimntlm0-heimdal
+  libhx509-5-heimdal libicu60 libidn11 libip4tc0 libjson-c3 libk5crypto3
+  libkeyutils1 libkmod2 libkrb5-26-heimdal libkrb5-3 libkrb5support0
+  libldap-2.4-2 libldap-common libmagic-mgc libmagic1 libmpdec2 libnghttp2-14
+  libnss-systemd libpam-systemd libpsl5 libpython3-stdlib libpython3.6
+  libpython3.6-minimal libpython3.6-stdlib libreadline7 libroken18-heimdal
+  librtmp1 libsasl2-2 libsasl2-modules libsasl2-modules-db libsqlite3-0
+  libssl1.0.0 libssl1.1 libwind0-heimdal libwrap0 libx11-6 libx11-data libxau6
+  libxcb1 libxdmcp6 libxext6 libxml2 libxmuu1 mime-support multiarch-support
+  ncurses-term networkd-dispatcher openssh-client openssh-server
+  openssh-sftp-server openssl publicsuffix python3 python3-certifi
+  python3-chardet python3-dbus python3-gi python3-idna python3-minimal
+  python3-pkg-resources python3-requests python3-six python3-urllib3 python3.6
+  python3.6-minimal readline-common shared-mime-info ssh-import-id systemd
+  systemd-sysv ucf vim-common vim-runtime wget xauth xdg-user-dirs xxd
+  xz-utils
+Suggested packages:
+  default-dbus-session-bus | dbus-session-bus gpm krb5-doc krb5-user
+  libsasl2-modules-gssapi-mit | libsasl2-modules-gssapi-heimdal
+  libsasl2-modules-ldap libsasl2-modules-otp libsasl2-modules-sql iw
+  | wireless-tools keychain libpam-ssh monkeysphere ssh-askpass molly-guard
+  rssh ufw python3-doc python3-tk python3-venv python-dbus-doc
+  python3-dbus-dbg python3-setuptools python3-cryptography python3-openssl
+  python3-socks python3.6-venv python3.6-doc binutils binfmt-support
+  readline-doc systemd-container policykit-1 ctags vim-doc vim-scripts
+The following NEW packages will be installed:
+  ca-certificates curl dbus dmsetup file gir1.2-glib-2.0 krb5-locales
+  libapparmor1 libargon2-0 libasn1-8-heimdal libbsd0 libcap2 libcryptsetup12
+  libcurl4 libdbus-1-3 libdevmapper1.02.1 libedit2 libexpat1
+  libgirepository-1.0-1 libglib2.0-0 libglib2.0-data libgpm2 libgssapi-krb5-2
+  libgssapi3-heimdal libhcrypto4-heimdal libheimbase1-heimdal
+  libheimntlm0-heimdal libhx509-5-heimdal libicu60 libidn11 libip4tc0
+  libjson-c3 libk5crypto3 libkeyutils1 libkmod2 libkrb5-26-heimdal libkrb5-3
+  libkrb5support0 libldap-2.4-2 libldap-common libmagic-mgc libmagic1
+  libmpdec2 libnghttp2-14 libnss-systemd libpam-systemd libpsl5
+  libpython3-stdlib libpython3.6 libpython3.6-minimal libpython3.6-stdlib
+  libreadline7 libroken18-heimdal librtmp1 libsasl2-2 libsasl2-modules
+  libsasl2-modules-db libsqlite3-0 libssl1.0.0 libssl1.1 libwind0-heimdal
+  libwrap0 libx11-6 libx11-data libxau6 libxcb1 libxdmcp6 libxext6 libxml2
+  libxmuu1 mime-support multiarch-support ncurses-term net-tools
+  networkd-dispatcher openssh-client openssh-server openssh-sftp-server
+  openssl publicsuffix python3 python3-certifi python3-chardet python3-dbus
+  python3-gi python3-idna python3-minimal python3-pkg-resources
+  python3-requests python3-six python3-urllib3 python3.6 python3.6-minimal
+  readline-common shared-mime-info ssh ssh-import-id systemd systemd-sysv ucf
+  vim vim-common vim-runtime wget xauth xdg-user-dirs xxd xz-utils
+0 upgraded, 108 newly installed, 0 to remove and 0 not upgraded.
+Need to get 37.1 MB of archives.
+After this operation, 162 MB of additional disk space will be used.
+Get:1 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libssl1.1 amd64 1.1.1-1ubuntu2.1~18.04.6 [1301 kB]
+Get:2 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libpython3.6-minimal amd64 3.6.9-1~18.04ubuntu1 [533 kB]
+Get:3 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libexpat1 amd64 2.2.5-3ubuntu0.2 [80.5 kB]
+Get:4 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 python3.6-minimal amd64 3.6.9-1~18.04ubuntu1 [1609 kB]Get:5 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 python3-minimal amd64 3.6.7-1~18.04 [23.7 kB]
+Get:6 http://mirrors.aliyun.com/ubuntu bionic/main amd64 mime-support all 3.60ubuntu1 [30.1 kB]
+Get:7 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libmpdec2 amd64 2.4.2-1ubuntu1 [84.1 kB]
+Get:8 http://mirrors.aliyun.com/ubuntu bionic/main amd64 readline-common all 7.0-3 [52.9 kB]
+Get:9 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libreadline7 amd64 7.0-3 [124 kB]
+Get:10 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libsqlite3-0 amd64 3.22.0-1ubuntu0.4 [499 kB]
+Get:11 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libpython3.6-stdlib amd64 3.6.9-1~18.04ubuntu1 [1710 kB]
+Get:12 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 python3.6 amd64 3.6.9-1~18.04ubuntu1 [203 kB]
+Get:13 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libpython3-stdlib amd64 3.6.7-1~18.04 [7240 B]
+Get:14 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 python3 amd64 3.6.7-1~18.04 [47.2 kB]
+Get:15 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libcap2 amd64 1:2.25-1.2 [13.0 kB]
+Get:16 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libargon2-0 amd64 0~20161029-1.1 [19.9 kB]
+Get:17 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libdevmapper1.02.1 amd64 2:1.02.145-4.1ubuntu3.18.04.3 [127 kB]
+Get:18 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libjson-c3 amd64 0.12.1-1.3ubuntu0.3 [21.7 kB]
+Get:19 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libcryptsetup12 amd64 2:2.0.2-1ubuntu1.1 [134 kB]
+Get:20 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libidn11 amd64 1.33-2.1ubuntu1.2 [46.6 kB]
+Get:21 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libip4tc0 amd64 1.6.1-2ubuntu2 [19.6 kB]
+Get:22 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libapparmor1 amd64 2.12-4ubuntu5.1 [31.3 kB]
+Get:23 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libkmod2 amd64 24-1ubuntu3.4 [40.1 kB]
+Get:24 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 systemd amd64 237-3ubuntu10.41 [2914 kB]
+Get:25 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 systemd-sysv amd64 237-3ubuntu10.41 [14.7 kB]
+Get:26 http://mirrors.aliyun.com/ubuntu bionic/main amd64 multiarch-support amd64 2.27-3ubuntu1 [6916 B]
+Get:27 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libxau6 amd64 1:1.0.8-1 [8376 B]
+Get:28 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libbsd0 amd64 0.8.7-1ubuntu0.1 [41.6 kB]
+Get:29 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libxdmcp6 amd64 1:1.1.2-3 [10.7 kB]
+Get:30 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libxcb1 amd64 1.13-2~ubuntu18.04 [45.5 kB]
+Get:31 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libx11-data all 2:1.6.4-3ubuntu0.2 [113 kB]
+Get:32 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libx11-6 amd64 2:1.6.4-3ubuntu0.2 [569 kB]
+Get:33 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libxext6 amd64 2:1.3.3-1 [29.4 kB]
+Get:34 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libedit2 amd64 3.1-20170329-1 [76.9 kB]
+Get:35 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libkrb5support0 amd64 1.16-2ubuntu0.1 [30.9 kB]
+Get:36 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libk5crypto3 amd64 1.16-2ubuntu0.1 [85.6 kB]
+Get:37 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libkeyutils1 amd64 1.5.9-9.2ubuntu2 [8720 B]
+Get:38 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libkrb5-3 amd64 1.16-2ubuntu0.1 [279 kB]
+Get:39 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libgssapi-krb5-2 amd64 1.16-2ubuntu0.1 [122 kB]
+Get:40 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libssl1.0.0 amd64 1.0.2n-1ubuntu5.3 [1088 kB]
+Get:41 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 openssh-client amd64 1:7.6p1-4ubuntu0.3 [614 kB]
+Get:42 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 openssh-sftp-server amd64 1:7.6p1-4ubuntu0.3 [45.6 kB]
+Get:43 http://mirrors.aliyun.com/ubuntu bionic/main amd64 ucf all 3.0038 [50.5 kB]
+Get:44 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libwrap0 amd64 7.6.q-27 [46.3 kB]
+Get:45 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 openssh-server amd64 1:7.6p1-4ubuntu0.3 [333 kB]
+Get:46 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 ssh all 1:7.6p1-4ubuntu0.3 [5204 B]
+Get:47 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 openssl amd64 1.1.1-1ubuntu2.1~18.04.6 [614 kB]
+Get:48 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 ca-certificates all 20190110~18.04.1 [146 kB]
+Get:49 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libdbus-1-3 amd64 1.12.2-1ubuntu1.2 [175 kB]
+Get:50 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 dbus amd64 1.12.2-1ubuntu1.2 [150 kB]
+Get:51 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 dmsetup amd64 2:1.02.145-4.1ubuntu3.18.04.3 [74.4 kB]Get:52 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libmagic-mgc amd64 1:5.32-2ubuntu0.4 [184 kB]
+Get:53 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libmagic1 amd64 1:5.32-2ubuntu0.4 [68.6 kB]
+Get:54 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 file amd64 1:5.32-2ubuntu0.4 [22.1 kB]
+Get:55 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libglib2.0-0 amd64 2.56.4-0ubuntu0.18.04.6 [1171 kB] Get:56 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libgirepository-1.0-1 amd64 1.56.1-1 [82.0 kB]
+Get:57 http://mirrors.aliyun.com/ubuntu bionic/main amd64 gir1.2-glib-2.0 amd64 1.56.1-1 [131 kB]
+Get:58 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libglib2.0-data all 2.56.4-0ubuntu0.18.04.6 [4540 B] Get:59 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libicu60 amd64 60.2-3ubuntu3.1 [8054 kB]
+Get:60 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libnss-systemd amd64 237-3ubuntu10.41 [105 kB]
+Get:61 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libpam-systemd amd64 237-3ubuntu10.41 [107 kB]
+Get:62 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libxml2 amd64 2.9.4+dfsg1-6.1ubuntu1.3 [663 kB]
+Get:63 http://mirrors.aliyun.com/ubuntu bionic/main amd64 python3-dbus amd64 1.2.6-1 [89.9 kB]
+Get:64 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 python3-gi amd64 3.26.1-2ubuntu1 [153 kB]
+Get:65 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 networkd-dispatcher all 1.7-0ubuntu3.3 [13.3 kB]
+Get:66 http://mirrors.aliyun.com/ubuntu bionic/main amd64 shared-mime-info amd64 1.9-2 [426 kB]
+Get:67 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 xxd amd64 2:8.0.1453-1ubuntu1.3 [49.4 kB]
+Get:68 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 vim-common all 2:8.0.1453-1ubuntu1.3 [70.6 kB]
+Get:69 http://mirrors.aliyun.com/ubuntu bionic/main amd64 xdg-user-dirs amd64 0.17-1ubuntu1 [48.0 kB]
+Get:70 http://mirrors.aliyun.com/ubuntu bionic/main amd64 xz-utils amd64 5.2.2-1.3 [83.8 kB]
+Get:71 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 krb5-locales all 1.16-2ubuntu0.1 [13.5 kB]
+Get:72 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libpsl5 amd64 0.19.1-5build1 [41.8 kB]
+Get:73 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libxmuu1 amd64 2:1.1.2-2 [9674 B]
+Get:74 http://mirrors.aliyun.com/ubuntu bionic/main amd64 publicsuffix all 20180223.1310-1 [97.6 kB]
+Get:75 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 wget amd64 1.19.4-1ubuntu2.2 [316 kB]
+Get:76 http://mirrors.aliyun.com/ubuntu bionic/main amd64 xauth amd64 1:1.0.10-1 [24.6 kB]
+Get:77 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libroken18-heimdal amd64 7.5.0+dfsg-1 [41.3 kB]
+Get:78 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libasn1-8-heimdal amd64 7.5.0+dfsg-1 [175 kB]
+Get:79 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libheimbase1-heimdal amd64 7.5.0+dfsg-1 [29.3 kB]
+Get:80 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libhcrypto4-heimdal amd64 7.5.0+dfsg-1 [85.9 kB]
+Get:81 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libwind0-heimdal amd64 7.5.0+dfsg-1 [47.8 kB]
+Get:82 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libhx509-5-heimdal amd64 7.5.0+dfsg-1 [107 kB]
+Get:83 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libkrb5-26-heimdal amd64 7.5.0+dfsg-1 [206 kB]
+Get:84 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libheimntlm0-heimdal amd64 7.5.0+dfsg-1 [14.8 kB]
+Get:85 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libgssapi3-heimdal amd64 7.5.0+dfsg-1 [96.5 kB]
+Get:86 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libsasl2-modules-db amd64 2.1.27~101-g0780600+dfsg-3ubuntu2.1 [14.8 kB]
+Get:87 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libsasl2-2 amd64 2.1.27~101-g0780600+dfsg-3ubuntu2.1 [49.2 kB]
+Get:88 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libldap-common all 2.4.45+dfsg-1ubuntu1.5 [16.9 kB]
+Get:89 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libldap-2.4-2 amd64 2.4.45+dfsg-1ubuntu1.5 [155 kB]
+Get:90 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libnghttp2-14 amd64 1.30.0-1ubuntu1 [77.8 kB]
+Get:91 http://mirrors.aliyun.com/ubuntu bionic/main amd64 librtmp1 amd64 2.4+20151223.gitfa8646d.1-1 [54.2 kB]
+Get:92 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libcurl4 amd64 7.58.0-2ubuntu3.9 [214 kB]
+Get:93 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 curl amd64 7.58.0-2ubuntu3.9 [159 kB]
+Get:94 http://mirrors.aliyun.com/ubuntu bionic/main amd64 libgpm2 amd64 1.20.7-5 [15.1 kB]
+Get:95 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libpython3.6 amd64 3.6.9-1~18.04ubuntu1 [1414 kB]
+Get:96 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 libsasl2-modules amd64 2.1.27~101-g0780600+dfsg-3ubuntu2.1 [48.8 kB]
+Get:97 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 ncurses-term all 6.1-1ubuntu1.18.04 [248 kB]
+Get:98 http://mirrors.aliyun.com/ubuntu bionic/main amd64 net-tools amd64 1.60+git20161116.90da8a0-1ubuntu1 [194 kB]
+Get:99 http://mirrors.aliyun.com/ubuntu bionic/main amd64 python3-certifi all 2018.1.18-2 [144 kB]
+Get:100 http://mirrors.aliyun.com/ubuntu bionic/main amd64 python3-pkg-resources all 39.0.1-2 [98.8 kB]
+Get:101 http://mirrors.aliyun.com/ubuntu bionic/main amd64 python3-chardet all 3.0.4-1 [80.3 kB]
+Get:102 http://mirrors.aliyun.com/ubuntu bionic/main amd64 python3-idna all 2.6-1 [32.5 kB]
+Get:103 http://mirrors.aliyun.com/ubuntu bionic/main amd64 python3-six all 1.11.0-2 [11.4 kB]
+Get:104 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 python3-urllib3 all 1.22-1ubuntu0.18.04.1 [86.0 kB] Get:105 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 python3-requests all 2.18.4-2ubuntu0.1 [58.3 kB]
+Get:106 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 vim-runtime all 2:8.0.1453-1ubuntu1.3 [5436 kB]
+Get:107 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 vim amd64 2:8.0.1453-1ubuntu1.3 [1153 kB]
+Get:108 http://mirrors.aliyun.com/ubuntu bionic-updates/main amd64 ssh-import-id all 5.7-0ubuntu1.1 [10.9 kB]
+debconf: delaying package configuration, since apt-utils is not installed
+Fetched 37.1 MB in 5s (7965 kB/s)
+Selecting previously unselected package libssl1.1:amd64.
+(Reading database ... 4046 files and directories currently installed.)
+Preparing to unpack .../libssl1.1_1.1.1-1ubuntu2.1~18.04.6_amd64.deb ...
+Unpacking libssl1.1:amd64 (1.1.1-1ubuntu2.1~18.04.6) ...
+Selecting previously unselected package libpython3.6-minimal:amd64.
+Preparing to unpack .../libpython3.6-minimal_3.6.9-1~18.04ubuntu1_amd64.deb ...
+Unpacking libpython3.6-minimal:amd64 (3.6.9-1~18.04ubuntu1) ...
+Selecting previously unselected package libexpat1:amd64.
+Preparing to unpack .../libexpat1_2.2.5-3ubuntu0.2_amd64.deb ...
+Unpacking libexpat1:amd64 (2.2.5-3ubuntu0.2) ...
+Selecting previously unselected package python3.6-minimal.
+Preparing to unpack .../python3.6-minimal_3.6.9-1~18.04ubuntu1_amd64.deb ...
+Unpacking python3.6-minimal (3.6.9-1~18.04ubuntu1) ...
+Setting up libssl1.1:amd64 (1.1.1-1ubuntu2.1~18.04.6) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.1 /usr/local/share/perl/5.26.1 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Setting up libpython3.6-minimal:amd64 (3.6.9-1~18.04ubuntu1) ...
+Setting up libexpat1:amd64 (2.2.5-3ubuntu0.2) ...
+Setting up python3.6-minimal (3.6.9-1~18.04ubuntu1) ...
+Selecting previously unselected package python3-minimal.
+(Reading database ... 4303 files and directories currently installed.)
+Preparing to unpack .../0-python3-minimal_3.6.7-1~18.04_amd64.deb ...
+Unpacking python3-minimal (3.6.7-1~18.04) ...
+Selecting previously unselected package mime-support.
+Preparing to unpack .../1-mime-support_3.60ubuntu1_all.deb ...
+Unpacking mime-support (3.60ubuntu1) ...
+Selecting previously unselected package libmpdec2:amd64.
+Preparing to unpack .../2-libmpdec2_2.4.2-1ubuntu1_amd64.deb ...
+Unpacking libmpdec2:amd64 (2.4.2-1ubuntu1) ...
+Selecting previously unselected package readline-common.
+Preparing to unpack .../3-readline-common_7.0-3_all.deb ...
+Unpacking readline-common (7.0-3) ...
+Selecting previously unselected package libreadline7:amd64.
+Preparing to unpack .../4-libreadline7_7.0-3_amd64.deb ...
+Unpacking libreadline7:amd64 (7.0-3) ...
+Selecting previously unselected package libsqlite3-0:amd64.
+Preparing to unpack .../5-libsqlite3-0_3.22.0-1ubuntu0.4_amd64.deb ...
+Unpacking libsqlite3-0:amd64 (3.22.0-1ubuntu0.4) ...
+Selecting previously unselected package libpython3.6-stdlib:amd64.
+Preparing to unpack .../6-libpython3.6-stdlib_3.6.9-1~18.04ubuntu1_amd64.deb ...
+Unpacking libpython3.6-stdlib:amd64 (3.6.9-1~18.04ubuntu1) ...
+Selecting previously unselected package python3.6.
+Preparing to unpack .../7-python3.6_3.6.9-1~18.04ubuntu1_amd64.deb ...
+Unpacking python3.6 (3.6.9-1~18.04ubuntu1) ...
+Selecting previously unselected package libpython3-stdlib:amd64.
+Preparing to unpack .../8-libpython3-stdlib_3.6.7-1~18.04_amd64.deb ...
+Unpacking libpython3-stdlib:amd64 (3.6.7-1~18.04) ...
+Setting up python3-minimal (3.6.7-1~18.04) ...
+Selecting previously unselected package python3.
+(Reading database ... 4761 files and directories currently installed.)
+Preparing to unpack .../0-python3_3.6.7-1~18.04_amd64.deb ...
+Unpacking python3 (3.6.7-1~18.04) ...
+Selecting previously unselected package libcap2:amd64.
+Preparing to unpack .../1-libcap2_1%3a2.25-1.2_amd64.deb ...
+Unpacking libcap2:amd64 (1:2.25-1.2) ...
+Selecting previously unselected package libargon2-0:amd64.
+Preparing to unpack .../2-libargon2-0_0~20161029-1.1_amd64.deb ...
+Unpacking libargon2-0:amd64 (0~20161029-1.1) ...
+Selecting previously unselected package libdevmapper1.02.1:amd64.
+Preparing to unpack .../3-libdevmapper1.02.1_2%3a1.02.145-4.1ubuntu3.18.04.3_amd64.deb ...
+Unpacking libdevmapper1.02.1:amd64 (2:1.02.145-4.1ubuntu3.18.04.3) ...
+Selecting previously unselected package libjson-c3:amd64.
+Preparing to unpack .../4-libjson-c3_0.12.1-1.3ubuntu0.3_amd64.deb ...
+Unpacking libjson-c3:amd64 (0.12.1-1.3ubuntu0.3) ...
+Selecting previously unselected package libcryptsetup12:amd64.
+Preparing to unpack .../5-libcryptsetup12_2%3a2.0.2-1ubuntu1.1_amd64.deb ...
+Unpacking libcryptsetup12:amd64 (2:2.0.2-1ubuntu1.1) ...
+Selecting previously unselected package libidn11:amd64.
+Preparing to unpack .../6-libidn11_1.33-2.1ubuntu1.2_amd64.deb ...
+Unpacking libidn11:amd64 (1.33-2.1ubuntu1.2) ...
+Selecting previously unselected package libip4tc0:amd64.
+Preparing to unpack .../7-libip4tc0_1.6.1-2ubuntu2_amd64.deb ...
+Unpacking libip4tc0:amd64 (1.6.1-2ubuntu2) ...
+Selecting previously unselected package libapparmor1:amd64.
+Preparing to unpack .../8-libapparmor1_2.12-4ubuntu5.1_amd64.deb ...
+Unpacking libapparmor1:amd64 (2.12-4ubuntu5.1) ...
+Selecting previously unselected package libkmod2:amd64.
+Preparing to unpack .../9-libkmod2_24-1ubuntu3.4_amd64.deb ...
+Unpacking libkmod2:amd64 (24-1ubuntu3.4) ...
+Setting up libcap2:amd64 (1:2.25-1.2) ...
+Setting up libargon2-0:amd64 (0~20161029-1.1) ...
+Setting up libdevmapper1.02.1:amd64 (2:1.02.145-4.1ubuntu3.18.04.3) ...
+Setting up libjson-c3:amd64 (0.12.1-1.3ubuntu0.3) ...
+Setting up libcryptsetup12:amd64 (2:2.0.2-1ubuntu1.1) ...
+Setting up libidn11:amd64 (1.33-2.1ubuntu1.2) ...
+Setting up libip4tc0:amd64 (1.6.1-2ubuntu2) ...
+Selecting previously unselected package systemd.
+(Reading database ... 4842 files and directories currently installed.)
+Preparing to unpack .../systemd_237-3ubuntu10.41_amd64.deb ...
+Unpacking systemd (237-3ubuntu10.41) ...
+Setting up libapparmor1:amd64 (2.12-4ubuntu5.1) ...
+Setting up libkmod2:amd64 (24-1ubuntu3.4) ...
+Setting up systemd (237-3ubuntu10.41) ...
+Created symlink /etc/systemd/system/getty.target.wants/getty@tty1.service → /lib/systemd/system/getty@.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/remote-fs.target → /lib/systemd/system/remote-fs.target.
+Created symlink /etc/systemd/system/sysinit.target.wants/systemd-timesyncd.service → /lib/systemd/system/systemd-timesyncd.service.
+Created symlink /etc/systemd/system/dbus-org.freedesktop.resolve1.service → /lib/systemd/system/systemd-resolved.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/systemd-resolved.service → /lib/systemd/system/systemd-resolved.service.
+ln: failed to create symbolic link '/etc/resolv.conf': Device or resource busy
+Created symlink /etc/systemd/system/multi-user.target.wants/ondemand.service → /lib/systemd/system/ondemand.service.
+Initializing machine ID from random generator.
+Selecting previously unselected package systemd-sysv.
+(Reading database ... 5552 files and directories currently installed.)
+Preparing to unpack .../systemd-sysv_237-3ubuntu10.41_amd64.deb ...
+Unpacking systemd-sysv (237-3ubuntu10.41) ...
+Selecting previously unselected package multiarch-support.
+Preparing to unpack .../multiarch-support_2.27-3ubuntu1_amd64.deb ...
+Unpacking multiarch-support (2.27-3ubuntu1) ...
+Setting up multiarch-support (2.27-3ubuntu1) ...
+Selecting previously unselected package libxau6:amd64.
+(Reading database ... 5572 files and directories currently installed.)
+Preparing to unpack .../00-libxau6_1%3a1.0.8-1_amd64.deb ...
+Unpacking libxau6:amd64 (1:1.0.8-1) ...
+Selecting previously unselected package libbsd0:amd64.
+Preparing to unpack .../01-libbsd0_0.8.7-1ubuntu0.1_amd64.deb ...
+Unpacking libbsd0:amd64 (0.8.7-1ubuntu0.1) ...
+Selecting previously unselected package libxdmcp6:amd64.
+Preparing to unpack .../02-libxdmcp6_1%3a1.1.2-3_amd64.deb ...
+Unpacking libxdmcp6:amd64 (1:1.1.2-3) ...
+Selecting previously unselected package libxcb1:amd64.
+Preparing to unpack .../03-libxcb1_1.13-2~ubuntu18.04_amd64.deb ...
+Unpacking libxcb1:amd64 (1.13-2~ubuntu18.04) ...
+Selecting previously unselected package libx11-data.
+Preparing to unpack .../04-libx11-data_2%3a1.6.4-3ubuntu0.2_all.deb ...
+Unpacking libx11-data (2:1.6.4-3ubuntu0.2) ...
+Selecting previously unselected package libx11-6:amd64.
+Preparing to unpack .../05-libx11-6_2%3a1.6.4-3ubuntu0.2_amd64.deb ...
+Unpacking libx11-6:amd64 (2:1.6.4-3ubuntu0.2) ...
+Selecting previously unselected package libxext6:amd64.
+Preparing to unpack .../06-libxext6_2%3a1.3.3-1_amd64.deb ...
+Unpacking libxext6:amd64 (2:1.3.3-1) ...
+Selecting previously unselected package libedit2:amd64.
+Preparing to unpack .../07-libedit2_3.1-20170329-1_amd64.deb ...
+Unpacking libedit2:amd64 (3.1-20170329-1) ...
+Selecting previously unselected package libkrb5support0:amd64.
+Preparing to unpack .../08-libkrb5support0_1.16-2ubuntu0.1_amd64.deb ...
+Unpacking libkrb5support0:amd64 (1.16-2ubuntu0.1) ...
+Selecting previously unselected package libk5crypto3:amd64.
+Preparing to unpack .../09-libk5crypto3_1.16-2ubuntu0.1_amd64.deb ...
+Unpacking libk5crypto3:amd64 (1.16-2ubuntu0.1) ...
+Selecting previously unselected package libkeyutils1:amd64.
+Preparing to unpack .../10-libkeyutils1_1.5.9-9.2ubuntu2_amd64.deb ...
+Unpacking libkeyutils1:amd64 (1.5.9-9.2ubuntu2) ...
+Selecting previously unselected package libkrb5-3:amd64.
+Preparing to unpack .../11-libkrb5-3_1.16-2ubuntu0.1_amd64.deb ...
+Unpacking libkrb5-3:amd64 (1.16-2ubuntu0.1) ...
+Selecting previously unselected package libgssapi-krb5-2:amd64.
+Preparing to unpack .../12-libgssapi-krb5-2_1.16-2ubuntu0.1_amd64.deb ...
+Unpacking libgssapi-krb5-2:amd64 (1.16-2ubuntu0.1) ...
+Selecting previously unselected package libssl1.0.0:amd64.
+Preparing to unpack .../13-libssl1.0.0_1.0.2n-1ubuntu5.3_amd64.deb ...
+Unpacking libssl1.0.0:amd64 (1.0.2n-1ubuntu5.3) ...
+Selecting previously unselected package openssh-client.
+Preparing to unpack .../14-openssh-client_1%3a7.6p1-4ubuntu0.3_amd64.deb ...
+Unpacking openssh-client (1:7.6p1-4ubuntu0.3) ...
+Selecting previously unselected package openssh-sftp-server.
+Preparing to unpack .../15-openssh-sftp-server_1%3a7.6p1-4ubuntu0.3_amd64.deb ...
+Unpacking openssh-sftp-server (1:7.6p1-4ubuntu0.3) ...
+Selecting previously unselected package ucf.
+Preparing to unpack .../16-ucf_3.0038_all.deb ...
+Moving old data out of the way
+Unpacking ucf (3.0038) ...
+Selecting previously unselected package libwrap0:amd64.
+Preparing to unpack .../17-libwrap0_7.6.q-27_amd64.deb ...
+Unpacking libwrap0:amd64 (7.6.q-27) ...
+Selecting previously unselected package openssh-server.
+Preparing to unpack .../18-openssh-server_1%3a7.6p1-4ubuntu0.3_amd64.deb ...
+Unpacking openssh-server (1:7.6p1-4ubuntu0.3) ...
+Selecting previously unselected package ssh.
+Preparing to unpack .../19-ssh_1%3a7.6p1-4ubuntu0.3_all.deb ...
+Unpacking ssh (1:7.6p1-4ubuntu0.3) ...
+Selecting previously unselected package openssl.
+Preparing to unpack .../20-openssl_1.1.1-1ubuntu2.1~18.04.6_amd64.deb ...
+Unpacking openssl (1.1.1-1ubuntu2.1~18.04.6) ...
+Selecting previously unselected package ca-certificates.
+Preparing to unpack .../21-ca-certificates_20190110~18.04.1_all.deb ...
+Unpacking ca-certificates (20190110~18.04.1) ...
+Selecting previously unselected package libdbus-1-3:amd64.
+Preparing to unpack .../22-libdbus-1-3_1.12.2-1ubuntu1.2_amd64.deb ...
+Unpacking libdbus-1-3:amd64 (1.12.2-1ubuntu1.2) ...
+Selecting previously unselected package dbus.
+Preparing to unpack .../23-dbus_1.12.2-1ubuntu1.2_amd64.deb ...
+Unpacking dbus (1.12.2-1ubuntu1.2) ...
+Selecting previously unselected package dmsetup.
+Preparing to unpack .../24-dmsetup_2%3a1.02.145-4.1ubuntu3.18.04.3_amd64.deb ...
+Unpacking dmsetup (2:1.02.145-4.1ubuntu3.18.04.3) ...
+Selecting previously unselected package libmagic-mgc.
+Preparing to unpack .../25-libmagic-mgc_1%3a5.32-2ubuntu0.4_amd64.deb ...
+Unpacking libmagic-mgc (1:5.32-2ubuntu0.4) ...
+Selecting previously unselected package libmagic1:amd64.
+Preparing to unpack .../26-libmagic1_1%3a5.32-2ubuntu0.4_amd64.deb ...
+Unpacking libmagic1:amd64 (1:5.32-2ubuntu0.4) ...
+Selecting previously unselected package file.
+Preparing to unpack .../27-file_1%3a5.32-2ubuntu0.4_amd64.deb ...
+Unpacking file (1:5.32-2ubuntu0.4) ...
+Selecting previously unselected package libglib2.0-0:amd64.
+Preparing to unpack .../28-libglib2.0-0_2.56.4-0ubuntu0.18.04.6_amd64.deb ...
+Unpacking libglib2.0-0:amd64 (2.56.4-0ubuntu0.18.04.6) ...
+Selecting previously unselected package libgirepository-1.0-1:amd64.
+Preparing to unpack .../29-libgirepository-1.0-1_1.56.1-1_amd64.deb ...
+Unpacking libgirepository-1.0-1:amd64 (1.56.1-1) ...
+Selecting previously unselected package gir1.2-glib-2.0:amd64.
+Preparing to unpack .../30-gir1.2-glib-2.0_1.56.1-1_amd64.deb ...
+Unpacking gir1.2-glib-2.0:amd64 (1.56.1-1) ...
+Selecting previously unselected package libglib2.0-data.
+Preparing to unpack .../31-libglib2.0-data_2.56.4-0ubuntu0.18.04.6_all.deb ...
+Unpacking libglib2.0-data (2.56.4-0ubuntu0.18.04.6) ...
+Selecting previously unselected package libicu60:amd64.
+Preparing to unpack .../32-libicu60_60.2-3ubuntu3.1_amd64.deb ...
+Unpacking libicu60:amd64 (60.2-3ubuntu3.1) ...
+Selecting previously unselected package libnss-systemd:amd64.
+Preparing to unpack .../33-libnss-systemd_237-3ubuntu10.41_amd64.deb ...
+Unpacking libnss-systemd:amd64 (237-3ubuntu10.41) ...
+Selecting previously unselected package libpam-systemd:amd64.
+Preparing to unpack .../34-libpam-systemd_237-3ubuntu10.41_amd64.deb ...
+Unpacking libpam-systemd:amd64 (237-3ubuntu10.41) ...
+Selecting previously unselected package libxml2:amd64.
+Preparing to unpack .../35-libxml2_2.9.4+dfsg1-6.1ubuntu1.3_amd64.deb ...
+Unpacking libxml2:amd64 (2.9.4+dfsg1-6.1ubuntu1.3) ...
+Selecting previously unselected package python3-dbus.
+Preparing to unpack .../36-python3-dbus_1.2.6-1_amd64.deb ...
+Unpacking python3-dbus (1.2.6-1) ...
+Selecting previously unselected package python3-gi.
+Preparing to unpack .../37-python3-gi_3.26.1-2ubuntu1_amd64.deb ...
+Unpacking python3-gi (3.26.1-2ubuntu1) ...
+Selecting previously unselected package networkd-dispatcher.
+Preparing to unpack .../38-networkd-dispatcher_1.7-0ubuntu3.3_all.deb ...
+Unpacking networkd-dispatcher (1.7-0ubuntu3.3) ...
+Selecting previously unselected package shared-mime-info.
+Preparing to unpack .../39-shared-mime-info_1.9-2_amd64.deb ...
+Unpacking shared-mime-info (1.9-2) ...
+Selecting previously unselected package xxd.
+Preparing to unpack .../40-xxd_2%3a8.0.1453-1ubuntu1.3_amd64.deb ...
+Unpacking xxd (2:8.0.1453-1ubuntu1.3) ...
+Selecting previously unselected package vim-common.
+Preparing to unpack .../41-vim-common_2%3a8.0.1453-1ubuntu1.3_all.deb ...
+Unpacking vim-common (2:8.0.1453-1ubuntu1.3) ...
+Selecting previously unselected package xdg-user-dirs.
+Preparing to unpack .../42-xdg-user-dirs_0.17-1ubuntu1_amd64.deb ...
+Unpacking xdg-user-dirs (0.17-1ubuntu1) ...
+Selecting previously unselected package xz-utils.
+Preparing to unpack .../43-xz-utils_5.2.2-1.3_amd64.deb ...
+Unpacking xz-utils (5.2.2-1.3) ...
+Selecting previously unselected package krb5-locales.
+Preparing to unpack .../44-krb5-locales_1.16-2ubuntu0.1_all.deb ...
+Unpacking krb5-locales (1.16-2ubuntu0.1) ...
+Selecting previously unselected package libpsl5:amd64.
+Preparing to unpack .../45-libpsl5_0.19.1-5build1_amd64.deb ...
+Unpacking libpsl5:amd64 (0.19.1-5build1) ...
+Selecting previously unselected package libxmuu1:amd64.
+Preparing to unpack .../46-libxmuu1_2%3a1.1.2-2_amd64.deb ...
+Unpacking libxmuu1:amd64 (2:1.1.2-2) ...
+Selecting previously unselected package publicsuffix.
+Preparing to unpack .../47-publicsuffix_20180223.1310-1_all.deb ...
+Unpacking publicsuffix (20180223.1310-1) ...
+Selecting previously unselected package wget.
+Preparing to unpack .../48-wget_1.19.4-1ubuntu2.2_amd64.deb ...
+Unpacking wget (1.19.4-1ubuntu2.2) ...
+Selecting previously unselected package xauth.
+Preparing to unpack .../49-xauth_1%3a1.0.10-1_amd64.deb ...
+Unpacking xauth (1:1.0.10-1) ...
+Selecting previously unselected package libroken18-heimdal:amd64.
+Preparing to unpack .../50-libroken18-heimdal_7.5.0+dfsg-1_amd64.deb ...
+Unpacking libroken18-heimdal:amd64 (7.5.0+dfsg-1) ...
+Selecting previously unselected package libasn1-8-heimdal:amd64.
+Preparing to unpack .../51-libasn1-8-heimdal_7.5.0+dfsg-1_amd64.deb ...
+Unpacking libasn1-8-heimdal:amd64 (7.5.0+dfsg-1) ...
+Selecting previously unselected package libheimbase1-heimdal:amd64.
+Preparing to unpack .../52-libheimbase1-heimdal_7.5.0+dfsg-1_amd64.deb ...
+Unpacking libheimbase1-heimdal:amd64 (7.5.0+dfsg-1) ...
+Selecting previously unselected package libhcrypto4-heimdal:amd64.
+Preparing to unpack .../53-libhcrypto4-heimdal_7.5.0+dfsg-1_amd64.deb ...
+Unpacking libhcrypto4-heimdal:amd64 (7.5.0+dfsg-1) ...
+Selecting previously unselected package libwind0-heimdal:amd64.
+Preparing to unpack .../54-libwind0-heimdal_7.5.0+dfsg-1_amd64.deb ...
+Unpacking libwind0-heimdal:amd64 (7.5.0+dfsg-1) ...
+Selecting previously unselected package libhx509-5-heimdal:amd64.
+Preparing to unpack .../55-libhx509-5-heimdal_7.5.0+dfsg-1_amd64.deb ...
+Unpacking libhx509-5-heimdal:amd64 (7.5.0+dfsg-1) ...
+Selecting previously unselected package libkrb5-26-heimdal:amd64.
+Preparing to unpack .../56-libkrb5-26-heimdal_7.5.0+dfsg-1_amd64.deb ...
+Unpacking libkrb5-26-heimdal:amd64 (7.5.0+dfsg-1) ...
+Selecting previously unselected package libheimntlm0-heimdal:amd64.
+Preparing to unpack .../57-libheimntlm0-heimdal_7.5.0+dfsg-1_amd64.deb ...
+Unpacking libheimntlm0-heimdal:amd64 (7.5.0+dfsg-1) ...
+Selecting previously unselected package libgssapi3-heimdal:amd64.
+Preparing to unpack .../58-libgssapi3-heimdal_7.5.0+dfsg-1_amd64.deb ...
+Unpacking libgssapi3-heimdal:amd64 (7.5.0+dfsg-1) ...
+Selecting previously unselected package libsasl2-modules-db:amd64.
+Preparing to unpack .../59-libsasl2-modules-db_2.1.27~101-g0780600+dfsg-3ubuntu2.1_amd64.deb ...
+Unpacking libsasl2-modules-db:amd64 (2.1.27~101-g0780600+dfsg-3ubuntu2.1) ...
+Selecting previously unselected package libsasl2-2:amd64.
+Preparing to unpack .../60-libsasl2-2_2.1.27~101-g0780600+dfsg-3ubuntu2.1_amd64.deb ...
+Unpacking libsasl2-2:amd64 (2.1.27~101-g0780600+dfsg-3ubuntu2.1) ...
+Selecting previously unselected package libldap-common.
+Preparing to unpack .../61-libldap-common_2.4.45+dfsg-1ubuntu1.5_all.deb ...
+Unpacking libldap-common (2.4.45+dfsg-1ubuntu1.5) ...
+Selecting previously unselected package libldap-2.4-2:amd64.
+Preparing to unpack .../62-libldap-2.4-2_2.4.45+dfsg-1ubuntu1.5_amd64.deb ...
+Unpacking libldap-2.4-2:amd64 (2.4.45+dfsg-1ubuntu1.5) ...
+Selecting previously unselected package libnghttp2-14:amd64.
+Preparing to unpack .../63-libnghttp2-14_1.30.0-1ubuntu1_amd64.deb ...
+Unpacking libnghttp2-14:amd64 (1.30.0-1ubuntu1) ...
+Selecting previously unselected package librtmp1:amd64.
+Preparing to unpack .../64-librtmp1_2.4+20151223.gitfa8646d.1-1_amd64.deb ...
+Unpacking librtmp1:amd64 (2.4+20151223.gitfa8646d.1-1) ...
+Selecting previously unselected package libcurl4:amd64.
+Preparing to unpack .../65-libcurl4_7.58.0-2ubuntu3.9_amd64.deb ...
+Unpacking libcurl4:amd64 (7.58.0-2ubuntu3.9) ...
+Selecting previously unselected package curl.
+Preparing to unpack .../66-curl_7.58.0-2ubuntu3.9_amd64.deb ...
+Unpacking curl (7.58.0-2ubuntu3.9) ...
+Selecting previously unselected package libgpm2:amd64.
+Preparing to unpack .../67-libgpm2_1.20.7-5_amd64.deb ...
+Unpacking libgpm2:amd64 (1.20.7-5) ...
+Selecting previously unselected package libpython3.6:amd64.
+Preparing to unpack .../68-libpython3.6_3.6.9-1~18.04ubuntu1_amd64.deb ...
+Unpacking libpython3.6:amd64 (3.6.9-1~18.04ubuntu1) ...
+Selecting previously unselected package libsasl2-modules:amd64.
+Preparing to unpack .../69-libsasl2-modules_2.1.27~101-g0780600+dfsg-3ubuntu2.1_amd64.deb ...
+Unpacking libsasl2-modules:amd64 (2.1.27~101-g0780600+dfsg-3ubuntu2.1) ...
+Selecting previously unselected package ncurses-term.
+Preparing to unpack .../70-ncurses-term_6.1-1ubuntu1.18.04_all.deb ...
+Unpacking ncurses-term (6.1-1ubuntu1.18.04) ...
+Selecting previously unselected package net-tools.
+Preparing to unpack .../71-net-tools_1.60+git20161116.90da8a0-1ubuntu1_amd64.deb ...
+Unpacking net-tools (1.60+git20161116.90da8a0-1ubuntu1) ...
+Selecting previously unselected package python3-certifi.
+Preparing to unpack .../72-python3-certifi_2018.1.18-2_all.deb ...
+Unpacking python3-certifi (2018.1.18-2) ...
+Selecting previously unselected package python3-pkg-resources.
+Preparing to unpack .../73-python3-pkg-resources_39.0.1-2_all.deb ...
+Unpacking python3-pkg-resources (39.0.1-2) ...
+Selecting previously unselected package python3-chardet.
+Preparing to unpack .../74-python3-chardet_3.0.4-1_all.deb ...
+Unpacking python3-chardet (3.0.4-1) ...
+Selecting previously unselected package python3-idna.
+Preparing to unpack .../75-python3-idna_2.6-1_all.deb ...
+Unpacking python3-idna (2.6-1) ...
+Selecting previously unselected package python3-six.
+Preparing to unpack .../76-python3-six_1.11.0-2_all.deb ...
+Unpacking python3-six (1.11.0-2) ...
+Selecting previously unselected package python3-urllib3.
+Preparing to unpack .../77-python3-urllib3_1.22-1ubuntu0.18.04.1_all.deb ...
+Unpacking python3-urllib3 (1.22-1ubuntu0.18.04.1) ...
+Selecting previously unselected package python3-requests.
+Preparing to unpack .../78-python3-requests_2.18.4-2ubuntu0.1_all.deb ...
+Unpacking python3-requests (2.18.4-2ubuntu0.1) ...
+Selecting previously unselected package vim-runtime.
+Preparing to unpack .../79-vim-runtime_2%3a8.0.1453-1ubuntu1.3_all.deb ...
+Adding 'diversion of /usr/share/vim/vim80/doc/help.txt to /usr/share/vim/vim80/doc/help.txt.vim-tiny by vim-runtime'
+Adding 'diversion of /usr/share/vim/vim80/doc/tags to /usr/share/vim/vim80/doc/tags.vim-tiny by vim-runtime'
+Unpacking vim-runtime (2:8.0.1453-1ubuntu1.3) ...
+Selecting previously unselected package vim.
+Preparing to unpack .../80-vim_2%3a8.0.1453-1ubuntu1.3_amd64.deb ...
+Unpacking vim (2:8.0.1453-1ubuntu1.3) ...
+Selecting previously unselected package ssh-import-id.
+Preparing to unpack .../81-ssh-import-id_5.7-0ubuntu1.1_all.deb ...
+Unpacking ssh-import-id (5.7-0ubuntu1.1) ...
+Setting up libedit2:amd64 (3.1-20170329-1) ...
+Setting up readline-common (7.0-3) ...
+Setting up ncurses-term (6.1-1ubuntu1.18.04) ...
+Setting up libnss-systemd:amd64 (237-3ubuntu10.41) ...
+First installation detected...
+Checking NSS setup...
+Setting up libicu60:amd64 (60.2-3ubuntu3.1) ...
+Setting up libssl1.0.0:amd64 (1.0.2n-1ubuntu5.3) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.1 /usr/local/share/perl/5.26.1 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Setting up libnghttp2-14:amd64 (1.30.0-1ubuntu1) ...
+Setting up mime-support (3.60ubuntu1) ...
+Setting up xxd (2:8.0.1453-1ubuntu1.3) ...
+Setting up libgpm2:amd64 (1.20.7-5) ...
+Setting up libldap-common (2.4.45+dfsg-1ubuntu1.5) ...
+Setting up libreadline7:amd64 (7.0-3) ...
+Setting up libpsl5:amd64 (0.19.1-5build1) ...
+Setting up systemd-sysv (237-3ubuntu10.41) ...
+Setting up libglib2.0-0:amd64 (2.56.4-0ubuntu0.18.04.6) ...
+No schema files found: doing nothing.
+Setting up libsasl2-modules-db:amd64 (2.1.27~101-g0780600+dfsg-3ubuntu2.1) ...
+Setting up libsasl2-2:amd64 (2.1.27~101-g0780600+dfsg-3ubuntu2.1) ...
+Setting up libroken18-heimdal:amd64 (7.5.0+dfsg-1) ...
+Setting up librtmp1:amd64 (2.4+20151223.gitfa8646d.1-1) ...
+Setting up libbsd0:amd64 (0.8.7-1ubuntu0.1) ...
+Setting up libkrb5support0:amd64 (1.16-2ubuntu0.1) ...
+Setting up ucf (3.0038) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.1 /usr/local/share/perl/5.26.1 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Setting up libgirepository-1.0-1:amd64 (1.56.1-1) ...
+Setting up libxml2:amd64 (2.9.4+dfsg1-6.1ubuntu1.3) ...
+Setting up libmagic-mgc (1:5.32-2ubuntu0.4) ...
+Setting up libmagic1:amd64 (1:5.32-2ubuntu0.4) ...
+Setting up gir1.2-glib-2.0:amd64 (1.56.1-1) ...
+Setting up libglib2.0-data (2.56.4-0ubuntu0.18.04.6) ...
+Setting up krb5-locales (1.16-2ubuntu0.1) ...
+Setting up publicsuffix (20180223.1310-1) ...
+Setting up xz-utils (5.2.2-1.3) ...
+update-alternatives: using /usr/bin/xz to provide /usr/bin/lzma (lzma) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/lzma.1.gz because associated file /usr/share/man/man1/xz.1.gz (of link group lzma) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/unlzma.1.gz because associated file /usr/share/man/man1/unxz.1.gz (of link group lzma) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/lzcat.1.gz because associated file /usr/share/man/man1/xzcat.1.gz (of link group lzma) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/lzmore.1.gz because associated file /usr/share/man/man1/xzmore.1.gz (of link group lzma) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/lzless.1.gz because associated file /usr/share/man/man1/xzless.1.gz (of link group lzma) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/lzdiff.1.gz because associated file /usr/share/man/man1/xzdiff.1.gz (of link group lzma) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/lzcmp.1.gz because associated file /usr/share/man/man1/xzcmp.1.gz (of link group lzma) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/lzgrep.1.gz because associated file /usr/share/man/man1/xzgrep.1.gz (of link group lzma) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/lzegrep.1.gz because associated file /usr/share/man/man1/xzegrep.1.gz (of link group lzma) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/lzfgrep.1.gz because associated file /usr/share/man/man1/xzfgrep.1.gz (of link group lzma) doesn't exist
+Setting up libheimbase1-heimdal:amd64 (7.5.0+dfsg-1) ...
+Setting up openssl (1.1.1-1ubuntu2.1~18.04.6) ...
+Setting up wget (1.19.4-1ubuntu2.2) ...
+Setting up vim-common (2:8.0.1453-1ubuntu1.3) ...
+Setting up libsqlite3-0:amd64 (3.22.0-1ubuntu0.4) ...
+Setting up dmsetup (2:1.02.145-4.1ubuntu3.18.04.3) ...
+Setting up shared-mime-info (1.9-2) ...
+Setting up vim-runtime (2:8.0.1453-1ubuntu1.3) ...
+Setting up libxdmcp6:amd64 (1:1.1.2-3) ...
+Setting up libkeyutils1:amd64 (1.5.9-9.2ubuntu2) ...
+Setting up libsasl2-modules:amd64 (2.1.27~101-g0780600+dfsg-3ubuntu2.1) ...
+Setting up net-tools (1.60+git20161116.90da8a0-1ubuntu1) ...
+Setting up ca-certificates (20190110~18.04.1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.1 /usr/local/share/perl/5.26.1 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Updating certificates in /etc/ssl/certs...
+127 added, 0 removed; done.
+Setting up xdg-user-dirs (0.17-1ubuntu1) ...
+Setting up libx11-data (2:1.6.4-3ubuntu0.2) ...
+Setting up libxau6:amd64 (1:1.0.8-1) ...
+Setting up libmpdec2:amd64 (2.4.2-1ubuntu1) ...
+Setting up libdbus-1-3:amd64 (1.12.2-1ubuntu1.2) ...
+Setting up libwrap0:amd64 (7.6.q-27) ...
+Setting up libpython3.6-stdlib:amd64 (3.6.9-1~18.04ubuntu1) ...
+Setting up libk5crypto3:amd64 (1.16-2ubuntu0.1) ...
+Setting up python3.6 (3.6.9-1~18.04ubuntu1) ...
+Setting up libwind0-heimdal:amd64 (7.5.0+dfsg-1) ...
+Setting up libasn1-8-heimdal:amd64 (7.5.0+dfsg-1) ...
+Setting up libhcrypto4-heimdal:amd64 (7.5.0+dfsg-1) ...
+Setting up file (1:5.32-2ubuntu0.4) ...
+Setting up libhx509-5-heimdal:amd64 (7.5.0+dfsg-1) ...
+Setting up libkrb5-3:amd64 (1.16-2ubuntu0.1) ...
+Setting up libkrb5-26-heimdal:amd64 (7.5.0+dfsg-1) ...
+Setting up dbus (1.12.2-1ubuntu1.2) ...
+Setting up libxcb1:amd64 (1.13-2~ubuntu18.04) ...
+Setting up libheimntlm0-heimdal:amd64 (7.5.0+dfsg-1) ...
+Setting up libpython3.6:amd64 (3.6.9-1~18.04ubuntu1) ...
+Setting up libpython3-stdlib:amd64 (3.6.7-1~18.04) ...
+Setting up libpam-systemd:amd64 (237-3ubuntu10.41) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.1 /usr/local/share/perl/5.26.1 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Setting up python3 (3.6.7-1~18.04) ...
+running python rtupdate hooks for python3.6...
+running python post-rtupdate hooks for python3.6...
+Setting up vim (2:8.0.1453-1ubuntu1.3) ...
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vim (vim) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vimdiff (vimdiff) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/rvim (rvim) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/rview (rview) in auto mode
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/vi (vi) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/fr/man1/vi.1.gz because associated file /usr/share/man/fr/man1/vim.1.gz (of link group vi) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/it/man1/vi.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group vi) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/pl/man1/vi.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group vi) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/ru/man1/vi.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group vi) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/ja/man1/vi.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group vi) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/vi.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group vi) doesn't exist
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/view (view) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/fr/man1/view.1.gz because associated file /usr/share/man/fr/man1/vim.1.gz (of link group view) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/it/man1/view.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group view) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/pl/man1/view.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group view) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/ru/man1/view.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group view) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/ja/man1/view.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group view) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/view.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group view) doesn't exist
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/ex (ex) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/fr/man1/ex.1.gz because associated file /usr/share/man/fr/man1/vim.1.gz (of link group ex) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/it/man1/ex.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group ex) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/pl/man1/ex.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group ex) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/ru/man1/ex.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group ex) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/ja/man1/ex.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group ex) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/ex.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group ex) doesn't exist
+update-alternatives: using /usr/bin/vim.basic to provide /usr/bin/editor (editor) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/fr/man1/editor.1.gz because associated file /usr/share/man/fr/man1/vim.1.gz (of link group editor) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/it/man1/editor.1.gz because associated file /usr/share/man/it/man1/vim.1.gz (of link group editor) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/pl/man1/editor.1.gz because associated file /usr/share/man/pl/man1/vim.1.gz (of link group editor) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/ru/man1/editor.1.gz because associated file /usr/share/man/ru/man1/vim.1.gz (of link group editor) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/ja/man1/editor.1.gz because associated file /usr/share/man/ja/man1/vim.1.gz (of link group editor) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/editor.1.gz because associated file /usr/share/man/man1/vim.1.gz (of link group editor) doesn't exist
+Setting up python3-idna (2.6-1) ...
+Setting up python3-six (1.11.0-2) ...
+Setting up libx11-6:amd64 (2:1.6.4-3ubuntu0.2) ...
+Setting up python3-certifi (2018.1.18-2) ...
+Setting up python3-pkg-resources (39.0.1-2) ...
+Setting up python3-gi (3.26.1-2ubuntu1) ...
+Setting up libxmuu1:amd64 (2:1.1.2-2) ...
+Setting up libgssapi-krb5-2:amd64 (1.16-2ubuntu0.1) ...
+Setting up python3-chardet (3.0.4-1) ...
+Setting up python3-urllib3 (1.22-1ubuntu0.18.04.1) ...
+Setting up libgssapi3-heimdal:amd64 (7.5.0+dfsg-1) ...
+Setting up openssh-client (1:7.6p1-4ubuntu0.3) ...
+Setting up python3-dbus (1.2.6-1) ...
+Setting up libxext6:amd64 (2:1.3.3-1) ...
+Setting up xauth (1:1.0.10-1) ...
+Setting up openssh-sftp-server (1:7.6p1-4ubuntu0.3) ...
+Setting up libldap-2.4-2:amd64 (2.4.45+dfsg-1ubuntu1.5) ...
+Setting up python3-requests (2.18.4-2ubuntu0.1) ...
+Setting up ssh-import-id (5.7-0ubuntu1.1) ...
+Setting up networkd-dispatcher (1.7-0ubuntu3.3) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/networkd-dispatcher.service → /lib/systemd/system/networkd-dispatcher.service.
+Setting up libcurl4:amd64 (7.58.0-2ubuntu3.9) ...
+Setting up openssh-server (1:7.6p1-4ubuntu0.3) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.1 /usr/local/share/perl/5.26.1 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/ssh/sshd_config with new version
+Creating SSH2 RSA key; this may take some time ...
+2048 SHA256:sy8vdhqYDPkk+Jk78KDNRQlcuUCMWF5TUENyvKiqGSg root@3e756381ba33 (RSA)
+Creating SSH2 ECDSA key; this may take some time ...
+256 SHA256:YFiQUZslHVf2cd9S3ZOngy9+3LPm77eAJbWHVy3VkIY root@3e756381ba33 (ECDSA)
+Creating SSH2 ED25519 key; this may take some time ...
+256 SHA256:7/df6Yqlqpzo8RtXxbYBmShLj/vjvZElibEbcf3jwQs root@3e756381ba33 (ED25519)
+Created symlink /etc/systemd/system/sshd.service → /lib/systemd/system/ssh.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/ssh.service → /lib/systemd/system/ssh.service.
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Setting up curl (7.58.0-2ubuntu3.9) ...
+Setting up ssh (1:7.6p1-4ubuntu0.3) ...
+Processing triggers for systemd (237-3ubuntu10.41) ...
+Processing triggers for libc-bin (2.27-3ubuntu1) ...
+Processing triggers for ca-certificates (20190110~18.04.1) ...
+Updating certificates in /etc/ssl/certs...
+0 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+done.
+Removing intermediate container 3e756381ba33
+<span class="hljs-meta"> ---&gt;</span><span class="bash"> 5f1085ba9b18</span>
+Step 6/11 : ENV MYPATH /usr/local
+<span class="hljs-meta"> ---&gt;</span><span class="bash"> Running <span class="hljs-keyword">in</span> 80adec6bf6c1</span>
+Removing intermediate container 80adec6bf6c1
+<span class="hljs-meta"> ---&gt;</span><span class="bash"> 03f28e984b92</span>
+Step 7/11 : WORKDIR $MYPATH
+<span class="hljs-meta"> ---&gt;</span><span class="bash"> Running <span class="hljs-keyword">in</span> e71ddbb55632</span>
+Removing intermediate container e71ddbb55632
+<span class="hljs-meta"> ---&gt;</span><span class="bash"> 211e5936bfa4</span>
+Step 8/11 : EXPOSE 80
+<span class="hljs-meta"> ---&gt;</span><span class="bash"> Running <span class="hljs-keyword">in</span> 1bf8e9a3803d</span>
+Removing intermediate container 1bf8e9a3803d
+<span class="hljs-meta"> ---&gt;</span><span class="bash"> 2666da51b676</span>
+Step 9/11 : CMD echo $MYPATH
+<span class="hljs-meta"> ---&gt;</span><span class="bash"> Running <span class="hljs-keyword">in</span> 77c7906abf73</span>
+Removing intermediate container 77c7906abf73
+<span class="hljs-meta"> ---&gt;</span><span class="bash"> ca89ab0bf7fb</span>
+Step 10/11 : CMD echo "successfully"
+<span class="hljs-meta"> ---&gt;</span><span class="bash"> Running <span class="hljs-keyword">in</span> 108764aad3c6</span>
+Removing intermediate container 108764aad3c6
+<span class="hljs-meta"> ---&gt;</span><span class="bash"> 2fd3a5a65ab5</span>
+Step 11/11 : CMD /bin/bash
+<span class="hljs-meta"> ---&gt;</span><span class="bash"> Running <span class="hljs-keyword">in</span> 92f1d57f6668</span>
+Removing intermediate container 92f1d57f6668
+<span class="hljs-meta"> ---&gt;</span><span class="bash"> 4d37144f889a</span>
+Successfully built 4d37144f889a
+Successfully tagged yubuntu:0.1</code></pre></div>
+
+
+<h3 id="3-测试运行"><a href="#3-测试运行" class="headerlink" title="3. 测试运行"></a>3. 测试运行</h3><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看本地容器</span>
+root@VM-0-4-ubuntu:/home/Dockerfile# docker images
+REPOSITORY            TAG                 IMAGE ID            CREATED             SIZE
+yubuntu               0.1                 4d37144f889a        9 minutes ago       249MB # 这个是刚刚使用 Dockerfile 构建的 Ubuntu
+&lt;none&gt;                &lt;none&gt;              7eb46e7294d5        20 minutes ago      64.2MB
+yubuntu/ubuntu        0.1                 73083828dbc5        6 hours ago         73.9MB
+mytomcat              0.1                 1a8ec5515a1d        19 hours ago        652MB
+ubuntu                latest              74435f89ab78        9 days ago          73.9MB
+ubuntu                18.04               8e4ce0a6ce69        9 days ago          64.2MB
+redis                 latest              235592615444        2 weeks ago         104MB
+tomcat                9                   2eb5a120304e        2 weeks ago         647MB
+tomcat                9.0                 2eb5a120304e        2 weeks ago         647MB
+tomcat                latest              2eb5a120304e        2 weeks ago         647MB
+nginx                 latest              2622e6cca7eb        2 weeks ago         132MB
+mysql                 5.7                 9cfcce23593a        2 weeks ago         448MB
+mysql                 8.0.20              be0dbf01a0f3        2 weeks ago         541MB
+mysql                 latest              be0dbf01a0f3        2 weeks ago         541MB
+portainer/portainer   latest              cd645f5a4769        3 weeks ago         79.1MB
+hello-world           latest              bf756fb1ae65        5 months ago        13.3kB
+<span class="hljs-meta">
+#</span><span class="bash"> 查看当前正在运行的容器(无)</span>
+root@VM-0-4-ubuntu:/home/Dockerfile# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+<span class="hljs-meta">
+#</span><span class="bash"> 以后台运行的方式进入自己构建的 yubuntu 容器中</span>
+root@VM-0-4-ubuntu:/home/Dockerfile# docker run -it yubuntu:0.1
+root@387fba60fd69:/usr/local#
+<span class="hljs-meta">
+#</span><span class="bash"> 查看当前所在目录为 /usr/<span class="hljs-built_in">local</span></span>
+<span class="hljs-meta">#</span><span class="bash"> 这是因为我在 Dockerfile 中将 ENV MYPATH 设置为了 /usr/<span class="hljs-built_in">local</span></span>
+root@387fba60fd69:/usr/local# pwd
+/usr/local
+<span class="hljs-meta">
+#</span><span class="bash"> 检查 vim 是否安装成功( success )</span>
+root@387fba60fd69:/usr/local# vim -version
+VIM - Vi IMproved 8.0 (2016 Sep 12, compiled Mar 18 2020 18:29:15)
+Garbage after option argument: "-version"
+More info with: "vim -h"
+<span class="hljs-meta">
+#</span><span class="bash"> 检查 ssh 是否安装成功( success )</span>
+root@387fba60fd69:/usr/local# ssh -V
+OpenSSH_7.6p1 Ubuntu-4ubuntu0.3, OpenSSL 1.0.2n  7 Dec 2017
+<span class="hljs-meta">
+#</span><span class="bash"> 检查 curl 是否安装成功( success )</span>
+root@387fba60fd69:/usr/local# curl -V
+curl 7.58.0 (x86_64-pc-linux-gnu) libcurl/7.58.0 OpenSSL/1.1.1 zlib/1.2.11 libidn2/2.0.4 libpsl/0.19.1 (+libidn2/2.0.4) nghttp2/1.30.0 librtmp/2.3
+Release-Date: 2018-01-24
+Protocols: dict file ftp ftps gopher http https imap imaps ldap ldaps pop3 pop3s rtmp rtsp smb smbs smtp smtps telnet tftp
+Features: AsynchDNS IDN IPv6 Largefile GSS-API Kerberos SPNEGO NTLM NTLM_WB SSL libz TLS-SRP HTTP2 UnixSockets HTTPS-proxy PSL
+<span class="hljs-meta">
+#</span><span class="bash"> 检查 net-tools 是否安装成功( success )</span>
+root@387fba60fd69:/usr/local# ifconfig -version
+net-tools 2.10-alpha</code></pre></div>
+
+<p>扩 : 查看镜像的变更历史</p>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 退出 yubuntu 容器</span>
+root@387fba60fd69:/usr/local# exit
+root@VM-0-4-ubuntu:/home/Dockerfile#
+<span class="hljs-meta">
+#</span><span class="bash"> 查看本地镜像</span>
+root@VM-0-4-ubuntu:/home/Dockerfile# docker images
+REPOSITORY            TAG                 IMAGE ID            CREATED             SIZE
+yubuntu               0.1                 4d37144f889a        26 minutes ago      249MB
+&lt;none&gt;                &lt;none&gt;              7eb46e7294d5        37 minutes ago      64.2MB
+yubuntu/ubuntu        0.1                 73083828dbc5        7 hours ago         73.9MB
+mytomcat              0.1                 1a8ec5515a1d        19 hours ago        652MB
+ubuntu                latest              74435f89ab78        9 days ago          73.9MB
+ubuntu                18.04               8e4ce0a6ce69        9 days ago          64.2MB
+redis                 latest              235592615444        2 weeks ago         104MB
+tomcat                9                   2eb5a120304e        2 weeks ago         647MB
+tomcat                9.0                 2eb5a120304e        2 weeks ago         647MB
+tomcat                latest              2eb5a120304e        2 weeks ago         647MB
+nginx                 latest              2622e6cca7eb        2 weeks ago         132MB
+mysql                 5.7                 9cfcce23593a        2 weeks ago         448MB
+mysql                 8.0.20              be0dbf01a0f3        2 weeks ago         541MB
+mysql                 latest              be0dbf01a0f3        2 weeks ago         541MB
+portainer/portainer   latest              cd645f5a4769        3 weeks ago         79.1MB
+hello-world           latest              bf756fb1ae65        5 months ago        13.3kBs
+<span class="hljs-meta">
+#</span><span class="bash"> 查看 yubuntu 镜像的变更历史</span>
+root@VM-0-4-ubuntu:/home/Dockerfile# docker history 4d37144f889a
+IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+4d37144f889a        26 minutes ago      /bin/sh -c #(nop)  CMD ["/bin/sh" "-c" "/bin…   0B
+2fd3a5a65ab5        26 minutes ago      /bin/sh -c #(nop)  CMD ["/bin/sh" "-c" "echo…   0B
+ca89ab0bf7fb        26 minutes ago      /bin/sh -c #(nop)  CMD ["/bin/sh" "-c" "echo…   0B
+2666da51b676        26 minutes ago      /bin/sh -c #(nop)  EXPOSE 80                    0B
+211e5936bfa4        26 minutes ago      /bin/sh -c #(nop) WORKDIR /usr/local            0B
+03f28e984b92        26 minutes ago      /bin/sh -c #(nop)  ENV MYPATH=/usr/local        0B
+5f1085ba9b18        26 minutes ago      /bin/sh -c apt-get -y install ssh vim curl n…   156MB
+86a5820e7867        27 minutes ago      /bin/sh -c apt-get update -y                    28.8MB
+e5abb449e8e3        27 minutes ago      /bin/sh -c sed -i s@/archive.ubuntu.com/@/mi…   2.77kB
+3668bdb1a2c3        37 minutes ago      /bin/sh -c #(nop)  MAINTAINER ishacker.net "…   0B
+8e4ce0a6ce69        9 days ago          /bin/sh -c #(nop)  CMD ["/bin/bash"]            0B
+&lt;missing&gt;           9 days ago          /bin/sh -c mkdir -p /run/systemd &amp;&amp; echo 'do…   7B
+&lt;missing&gt;           9 days ago          /bin/sh -c set -xe   &amp;&amp; echo '#!/bin/sh' &gt; /…   745B
+&lt;missing&gt;           9 days ago          /bin/sh -c [ -z "$(apt-get indextargets)" ]     987kB
+&lt;missing&gt;           9 days ago          /bin/sh -c #(nop) ADD file:1e8d02626176dc814…   63.2MB</code></pre></div>
+
+
+<h3 id="4-将镜像发布到DockerHub"><a href="#4-将镜像发布到DockerHub" class="headerlink" title="4.将镜像发布到DockerHub"></a>4.将镜像发布到DockerHub</h3><h4 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h4><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看 login 命令使用说明</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker login --help
+
+Usage:  docker login [OPTIONS] [SERVER]
+
+Log in to a Docker registry.
+If no server is specified, the default is defined by the daemon.
+
+Options:
+  -p, --password string   Password
+      --password-stdin    Take the password from stdin
+  -u, --username string   Username
+<span class="hljs-meta">
+#</span><span class="bash"> 登录 DockerHubs</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker login -u yubuntu0109
+Password:
+WARNING! Your password will be stored unencrypted in /home/ubuntu/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+<span class="hljs-meta">
+#</span><span class="bash"> 查看我的密码信息</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo cat /home/ubuntu/.docker/config.json
+&#123;
+        "auths": &#123;
+                "https://index.docker.io/v1/": &#123;
+                        "auth": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx==" # (●ˇ∀ˇ●) 字符马赛克嘿嘿~
+                &#125;
+        &#125;,
+        "HttpHeaders": &#123;
+                "User-Agent": "Docker-Client/19.03.11 (linux)"
+        &#125;
+&#125;</code></pre></div>
+
+<h4 id="提交镜像"><a href="#提交镜像" class="headerlink" title="提交镜像"></a>提交镜像</h4><div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看本地镜像</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker images
+REPOSITORY            TAG                 IMAGE ID            CREATED             SIZE
+yubuntu               0.1                 4d37144f889a        3 hours ago         249MB
+· · · · · ·
+<span class="hljs-meta">
+#</span><span class="bash"> 发布镜像( 但是失败了 ! )</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker push yubuntu0109/yubuntu:0.1
+The push refers to repository [docker.io/yubuntu0109/yubuntu]
+An image does not exist locally with the tag: yubuntu0109/yubuntu
+<span class="hljs-meta">
+#</span><span class="bash"> 为了解决上述异常信息，将要发布的镜像改到自己账户名下</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker tag yubuntu:0.1 yubuntu0109/yubuntu:0.1
+<span class="hljs-meta">
+#</span><span class="bash"> 再次尝试发布镜像( 镜像发布成功 ! )</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker push yubuntu0109/yubuntu:0.1
+The push refers to repository [docker.io/yubuntu0109/yubuntu]
+05165639a570: Layer already exists
+5febb4f0a3d9: Layer already exists
+2a9b0f5ed53e: Layer already exists
+ddc500d84994: Layer already exists
+c64c52ea2c16: Layer already exists
+5930c9e5703f: Layer already exists
+b187ff70b2e4: Layer already exists
+0.1: digest: sha256:81ca2b6320b4f972bda75a800e0f7a23b50691790578079298d6de325bcacb4a size: 1783</code></pre></div>
+
+<p><em>如果你当你执行 <code>docker push yubuntu0109/yubuntu:0.1</code> 时抛出 <code>denied: requested access to the resource is denied</code> 或 <code>An image does not exist locally with the tag: yubuntu0109/yubuntu</code> 错误提示，请参考如下解决方案 :</em></p>
+<div class="hljs"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 首先将要发布的镜像改到自己账户名下</span>
+<span class="hljs-meta">#</span><span class="bash"> tag标签如果不写，默认为latest</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker tag yubuntu:0.1 yubuntu0109/yubuntu:0.1
+<span class="hljs-meta">
+#</span><span class="bash"> 再次查看本地镜像，会发现镜像名已经修改成功</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker images
+REPOSITORY            TAG                 IMAGE ID            CREATED             SIZE
+yubuntu               0.1                 4d37144f889a        3 hours ago         249MB #( x )
+yubuntu0109/yubuntu   0.1                 4d37144f889a        3 hours ago         249MB #( v )
+· · · · · ·
+<span class="hljs-meta">
+#</span><span class="bash"> 然后再次发布镜像即可</span>
+ubuntu@VM-0-4-ubuntu:~$ sudo docker push yubuntu0109/yubuntu:0.1</code></pre></div>
+
+<p>镜像发布成功后，打开 <a href="https://hub.docker.com/u/yubuntu0109" target="_blank" rel="noopener">https://hub.docker.com/u/yubuntu0109</a> 会发现镜像已经成功发布到自己的 DockerHub 上，如下图所示 :</p>
+<p><img src="/2020/06/26/%E4%BD%BF%E7%94%A8Dockerfile%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84Ubuntu/dockerhub-first-image-ubuntu18.04.PNG" srcset="/img/loading.gif" alt=" "></p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Docker/">Docker</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Ubuntu/">Ubuntu</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/26/Dockerfile%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%8C%87%E4%BB%A4%E8%AF%B4%E6%98%8E/">
+                        <span class="hidden-mobile">Docker Dockerfile介绍及指令说明</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "使用Dockerfile构建一个属于自己的Ubuntu&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

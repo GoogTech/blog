@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -219,7 +219,7 @@
 <li><em><code>@SuppressWarnings</code>注解使用详解如下图所示</em><br><img src="/2019/04/14/Java-annotation/SuppressWarnings.PNG" srcset="/img/loading.gif" alt=" "></li>
 </ul>
 <ol>
-<li><em><code>@Override</code>,<code>@Deprecated</code>,<code>@SafeVarargs</code>,<code>SuppressWarnings</code>程序示例</em><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.annotation.built_in_annotation;
+<li><em><code>@Override</code>,<code>@Deprecated</code>,<code>@SafeVarargs</code>,<code>SuppressWarnings</code>程序示例</em><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.annotation.built_in_annotation;
 
 <span class="hljs-keyword">import</span> java.util.ArrayList;
 
@@ -272,8 +272,8 @@
 		ArrayList arrayList = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
 	&#125;
 
-&#125;</code></pre></li>
-<li><em><code>@FunctionalInterface</code>程序示例</em><pre><code class="hljs java"><span class="hljs-comment">/**
+&#125;</code></pre></div></li>
+<li><em><code>@FunctionalInterface</code>程序示例</em><div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: functionalInterface
  * <span class="hljs-doctag">@Description</span>: `学习<span class="hljs-doctag">@functionalInterface</span>注解`
  * <span class="hljs-doctag">@author</span>: HuangYuhui
@@ -312,12 +312,12 @@
 
 <span class="hljs-comment">//使用`@FunctionalInterface`注解的函数式接口继而可以使用`Lambda`表示式来表示该接口的一个实现.</span>
 <span class="hljs-comment">//(Java8 之前一般是使用匿名类实现的).</span>
-<span class="hljs-comment">//functionalInterface  f = message-&gt;System.out.println();</span></code></pre>
+<span class="hljs-comment">//functionalInterface  f = message-&gt;System.out.println();</span></code></pre></div>
 
 </li>
 </ol>
 <h4 id="内置注解-元注解"><a href="#内置注解-元注解" class="headerlink" title="内置注解 : 元注解"></a>内置注解 : <code>元注解</code></h4><ul>
-<li><em>使用<code>@Target</code>,<code>@Retention</code>自定义注解</em><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.lang.annotation.ElementType;
+<li><em>使用<code>@Target</code>,<code>@Retention</code>自定义注解</em><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.lang.annotation.ElementType;
 <span class="hljs-keyword">import</span> java.lang.annotation.Retention;
 <span class="hljs-keyword">import</span> java.lang.annotation.RetentionPolicy;
 <span class="hljs-keyword">import</span> java.lang.annotation.Target;
@@ -341,8 +341,8 @@
 
 	String[] address() <span class="hljs-keyword">default</span> &#123; <span class="hljs-string">"null"</span> &#125;;
 
-&#125;</code></pre></li>
-<li><em>使用自定义注解</em><pre><code class="hljs java"><span class="hljs-keyword">import</span> pers.huangyuhui.annotation.myannotation.MyTarget_annotation;
+&#125;</code></pre></div></li>
+<li><em>使用自定义注解</em><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">import</span> pers.huangyuhui.annotation.myannotation.MyTarget_annotation;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: TargetTest
@@ -374,7 +374,7 @@
 		<span class="hljs-keyword">int</span> i;
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 </li>
 </ul>
@@ -383,7 +383,7 @@
 </ol>
 <ul>
 <li><p><em>首先自定义一个注解</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.annotation.myannotation;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.annotation.myannotation;
 <span class="hljs-keyword">import</span> java.lang.annotation.ElementType;
 <span class="hljs-keyword">import</span> java.lang.annotation.Retention;
 <span class="hljs-keyword">import</span> java.lang.annotation.RetentionPolicy;
@@ -404,10 +404,10 @@
 	<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">id</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> 1</span>;
 
 	<span class="hljs-function">String <span class="hljs-title">name</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> "<span class="hljs-keyword">default</span> value"</span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>通过反射获取自定义注解信息</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">import</span> java.lang.reflect.Method;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.lang.reflect.Method;
 
 <span class="hljs-keyword">import</span> pers.huangyuhui.annotation.myannotation.MyAnnotation;
 
@@ -443,11 +443,11 @@
 
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行结果如下</em></p>
-<pre><code class="hljs java">id : <span class="hljs-number">1</span> 
-name : Hello annotation !</code></pre>
+<div class="hljs"><pre><code class="hljs java">id : <span class="hljs-number">1</span> 
+name : Hello annotation !</code></pre></div>
 </li>
 </ul>
 <ol start="2">
@@ -455,7 +455,7 @@ name : Hello annotation !</code></pre>
 </ol>
 <ul>
 <li><p><em>首先自定义一个注解</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.annotation.myannotation;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.annotation.myannotation;
 
 <span class="hljs-keyword">import</span> java.lang.annotation.Retention;
 <span class="hljs-keyword">import</span> java.lang.annotation.RetentionPolicy;
@@ -471,10 +471,10 @@ name : Hello annotation !</code></pre>
 <span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> MyAnnotation2 &#123;
 
 	<span class="hljs-function">String <span class="hljs-title">description</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>通过反射获取自定义<code>注解</code>信息</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.annotation.reflect;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.annotation.reflect;
 
 <span class="hljs-keyword">import</span> java.lang.annotation.Annotation;
 <span class="hljs-keyword">import</span> java.lang.reflect.Method;
@@ -524,20 +524,20 @@ name : Hello annotation !</code></pre>
 
 	&#125;
 
-&#125;</code></pre></li>
+&#125;</code></pre></div></li>
 <li><p><em>程序运行结果如下</em></p>
-<pre><code class="hljs java">`getAllAnnotationInfo`类的所有注解 : 
+<div class="hljs"><pre><code class="hljs java">`getAllAnnotationInfo`类的所有注解 : 
 <span class="hljs-meta">@pers</span>.huangyuhui.annotation.myannotation.MyAnnotation(name=<span class="hljs-string">"default value"</span>, id=<span class="hljs-number">1</span>)
 <span class="hljs-meta">@pers</span>.huangyuhui.annotation.myannotation.MyAnnotation2(description=<span class="hljs-string">"Test class"</span>)
 
 方法`fun()`的所有注解 : 
 <span class="hljs-meta">@pers</span>.huangyuhui.annotation.myannotation.MyAnnotation(name=<span class="hljs-string">"Hello annotation !"</span>, id=<span class="hljs-number">1</span>)
-<span class="hljs-meta">@pers</span>.huangyuhui.annotation.myannotation.MyAnnotation2(description=<span class="hljs-string">"Test method"</span>)</code></pre>
+<span class="hljs-meta">@pers</span>.huangyuhui.annotation.myannotation.MyAnnotation2(description=<span class="hljs-string">"Test method"</span>)</code></pre></div>
 
 </li>
 </ul>
 <h3 id="标记注解"><a href="#标记注解" class="headerlink" title="标记注解"></a>标记注解</h3><ul>
-<li><em>编写示例程序来判断<code>标记注解</code>是否存在</em><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.lang.annotation.Retention;
+<li><em>编写示例程序来判断<code>标记注解</code>是否存在</em><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.lang.annotation.Retention;
 <span class="hljs-keyword">import</span> java.lang.annotation.RetentionPolicy;
 <span class="hljs-keyword">import</span> java.lang.reflect.Method;
 
@@ -576,13 +576,13 @@ name : Hello annotation !</code></pre>
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
 		fun();
 	&#125;
-&#125;</code></pre></li>
-<li><em>程序运行结果如下</em><pre><code class="hljs erlang-repl">存在标记注解 !</code></pre></li>
+&#125;</code></pre></div></li>
+<li><em>程序运行结果如下</em><div class="hljs"><pre><code class="hljs erlang-repl">存在标记注解 !</code></pre></div></li>
 <li><em><code>说明</code> : 因为<code>标记注解没有成员</code>,所以应用标记注解时,后面不需要有圆括号.如果提供空的圆括号,也不会报错,但不是必需的.类似地,对于所有成员都使用<code>默认值(default)</code>的注解也可以没有圆括号.</em></li>
 </ul>
 <h3 id="重复注解"><a href="#重复注解" class="headerlink" title="重复注解"></a>重复注解</h3><ul>
 <li><p><em>要创建<code>重复注解</code>,必须创建<code>容器注解</code></em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.annotation.myannotation;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.annotation.myannotation;
 
 <span class="hljs-keyword">import</span> java.lang.annotation.Retention;
 <span class="hljs-keyword">import</span> java.lang.annotation.RetentionPolicy;
@@ -599,10 +599,10 @@ name : Hello annotation !</code></pre>
 
 	<span class="hljs-comment">// `value`成员指定的是重复注解类型的数组</span>
 	MyAnnotation[] value();
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>创建<code>重复注解</code></em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.annotation.myannotation;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.annotation.myannotation;
 
 <span class="hljs-keyword">import</span> java.lang.annotation.Repeatable;
 <span class="hljs-keyword">import</span> java.lang.annotation.Retention;
@@ -624,10 +624,10 @@ name : Hello annotation !</code></pre>
 	<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">id</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> 1</span>;
 
 	<span class="hljs-function">String <span class="hljs-title">name</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> "<span class="hljs-keyword">default</span> value"</span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>通过反射获取<code>重复注解</code>信息</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.annotation.myannotation_test;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.annotation.myannotation_test;
 
 <span class="hljs-keyword">import</span> java.lang.annotation.Annotation;
 <span class="hljs-keyword">import</span> java.lang.reflect.Method;
@@ -676,9 +676,9 @@ name : Hello annotation !</code></pre>
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
 		testMethod();
 	&#125;
-&#125;</code></pre></li>
+&#125;</code></pre></div></li>
 <li><p><em>程序运行结果如下</em></p>
-<pre><code class="hljs java">
+<div class="hljs"><pre><code class="hljs java">
 <span class="hljs-comment">//程序运行结果 :</span>
 <span class="hljs-meta">@pers</span>.huangyuhui.annotation.myannotation.MyReapeatable_annotation(value=&#123;
 
@@ -691,7 +691,7 @@ name : Hello annotation !</code></pre>
 <span class="hljs-comment">//程序运行结果(使用`getAnnotationsByType`来获取`MyAnnotation`重复注解) : </span>
 <span class="hljs-meta">@pers</span>.huangyuhui.annotation.myannotation.MyAnnotation(name=<span class="hljs-string">"default value"</span>, id=<span class="hljs-number">1</span>)
 <span class="hljs-meta">@pers</span>.huangyuhui.annotation.myannotation.MyAnnotation(name=<span class="hljs-string">"default value"</span>, id=<span class="hljs-number">2</span>)
-<span class="hljs-meta">@pers</span>.huangyuhui.annotation.myannotation.MyAnnotation(name=<span class="hljs-string">"YUbuntu0109"</span>, id=<span class="hljs-number">3</span>)</code></pre></li>
+<span class="hljs-meta">@pers</span>.huangyuhui.annotation.myannotation.MyAnnotation(name=<span class="hljs-string">"YUbuntu0109"</span>, id=<span class="hljs-number">3</span>)</code></pre></div></li>
 </ul>
 
             </article>

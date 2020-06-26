@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -195,7 +195,7 @@
 <li>适应于频繁的插入操作.</li>
 </ol>
 <h3 id="链表的实现方式"><a href="#链表的实现方式" class="headerlink" title="链表的实现方式"></a>链表的实现方式</h3><h4 id="单向链表"><a href="#单向链表" class="headerlink" title="单向链表"></a>单向链表</h4><ol>
-<li><em>首先定义一个链表</em><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.linkedlist;
+<li><em>首先定义一个链表</em><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.linkedlist;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: ListNode
@@ -224,8 +224,8 @@
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setNext</span><span class="hljs-params">(SinglyListNode&lt;E&gt; next)</span> </span>&#123;
 		<span class="hljs-keyword">this</span>.next = next;
 	&#125;
-&#125;</code></pre></li>
-<li><em>操作单向链表的示例程序</em><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.linkedlist;
+&#125;</code></pre></div></li>
+<li><em>操作单向链表的示例程序</em><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.linkedlist;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: SinglyLinkedList
@@ -380,8 +380,8 @@
 		list.traverseNode();
 
 	&#125;
-&#125;</code></pre></li>
-<li><em>程序运行结果</em><pre><code class="hljs java">The size of linked list: <span class="hljs-number">4</span>
+&#125;</code></pre></div></li>
+<li><em>程序运行结果</em><div class="hljs"><pre><code class="hljs java">The size of linked list: <span class="hljs-number">4</span>
 The header node : C
 All of node: C , A , B , <span class="hljs-keyword">null</span> , 
 Delete the node which the position is first: <span class="hljs-keyword">true</span>
@@ -389,13 +389,13 @@ All of node: A , B , <span class="hljs-keyword">null</span> ,
 delete the node: A , B , <span class="hljs-keyword">null</span> , 
 Delete all of node: <span class="hljs-keyword">true</span>
 The size of linked list: <span class="hljs-number">0</span>
-Error: the linked node is empty !</code></pre>
+Error: the linked node is empty !</code></pre></div>
 
 </li>
 </ol>
 <h4 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h4><ol>
 <li><p><em>定义链表</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.linkedlist;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.linkedlist;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: BidirectionalLinkList
@@ -433,9 +433,9 @@ Error: the linked node is empty !</code></pre>
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setPrevious</span><span class="hljs-params">(DoubleListNode&lt;E&gt; previous)</span> </span>&#123;
 		<span class="hljs-keyword">this</span>.previous = previous;
 	&#125;
-&#125;</code></pre></li>
+&#125;</code></pre></div></li>
 <li><p><em>操作双向链表的示例程序</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.linkedlist;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.linkedlist;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: CircularList
@@ -600,10 +600,10 @@ Error: the linked node is empty !</code></pre>
 		list.destroyList();
 		System.out.println(<span class="hljs-string">"The header node: "</span> + list.getHeaderNode());
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行结果</em></p>
-<pre><code class="hljs java">-------- traverse --------
+<div class="hljs"><pre><code class="hljs java">-------- traverse --------
 the node: a
 the node: b
 the node: c
@@ -660,10 +660,10 @@ public class ListNode&lt;T&gt; &#123;
 		this.next = next;
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>操作循环链表的示例程序</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.linkedlist;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.linkedlist;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: CircularLinkedList
@@ -881,10 +881,10 @@ public class ListNode&lt;T&gt; &#123;
 		list.traverseNode(newHeadNode4);
 		System.out.println(<span class="hljs-string">"the length of the list: "</span> + list.getLength(headNode));
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行结果</em></p>
-<pre><code class="hljs java">the origin node: <span class="hljs-number">1</span> -&gt; <span class="hljs-number">2</span> -&gt; <span class="hljs-number">3</span> -&gt; <span class="hljs-number">4</span> -&gt; headNode(<span class="hljs-number">1</span>)
+<div class="hljs"><pre><code class="hljs java">the origin node: <span class="hljs-number">1</span> -&gt; <span class="hljs-number">2</span> -&gt; <span class="hljs-number">3</span> -&gt; <span class="hljs-number">4</span> -&gt; headNode(<span class="hljs-number">1</span>)
 the length of the list: <span class="hljs-number">4</span>
 add two header node: <span class="hljs-number">101</span> -&gt; <span class="hljs-number">100</span> -&gt; <span class="hljs-number">1</span> -&gt; <span class="hljs-number">2</span> -&gt; <span class="hljs-number">3</span> -&gt; <span class="hljs-number">4</span> -&gt; headNode(<span class="hljs-number">101</span>)
 the length of the list: <span class="hljs-number">6</span>
@@ -895,7 +895,7 @@ the length of the list: <span class="hljs-number">6</span>
 delete the header node:  <span class="hljs-number">100</span> -&gt; <span class="hljs-number">1</span> -&gt; <span class="hljs-number">2</span> -&gt; <span class="hljs-number">0</span> -&gt; <span class="hljs-number">3</span> -&gt; headNode(<span class="hljs-number">100</span>)
 the length of the list: <span class="hljs-number">5</span>
 delete the fourth node: <span class="hljs-number">100</span> -&gt; <span class="hljs-number">1</span> -&gt; <span class="hljs-number">2</span> -&gt; <span class="hljs-number">3</span> -&gt; headNode(<span class="hljs-number">100</span>)
-the length of the list: <span class="hljs-number">4</span></code></pre>
+the length of the list: <span class="hljs-number">4</span></code></pre></div>
 
 </li>
 </ol>

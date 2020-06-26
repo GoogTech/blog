@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -197,7 +197,7 @@
 <li><em><code>unbind</code> : 只调用一次,指令与元素解绑时调用</em></li>
 </ol>
 <h4 id="自定义全局指令"><a href="#自定义全局指令" class="headerlink" title="自定义全局指令"></a>自定义全局指令</h4><p><em>自定义一个全局的指令,用于自定义字体颜色,示例程序如下 :</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-color</span>=<span class="hljs-string">"'blueviolet'"</span>&gt;</span>&#123;&#123;msg&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
@@ -213,10 +213,10 @@
 			msg: <span class="hljs-string">'hi Vue !'</span>
 		&#125;
 	&#125;);
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre></div>
 
 <p><em>大多情况下,我们可能只想在<code>bind</code>和<code>update</code>钩子上作重复动作,并不想关心其它的钩子,那么就可以这样简写哟 :</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-color</span>=<span class="hljs-string">"'blueviolet'"</span>&gt;</span>&#123;&#123;msg&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
@@ -230,10 +230,10 @@
 			msg: <span class="hljs-string">'hi Vue !'</span>
 		&#125;
 	&#125;);
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre></div>
 
 <h4 id="自定义私有指令"><a href="#自定义私有指令" class="headerlink" title="自定义私有指令"></a>自定义私有指令</h4><p><em>自定义一个私有的指令,用于自定义字体颜色,其示例程序如下 :</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-color</span>=<span class="hljs-string">"'blueviolet'"</span>&gt;</span>&#123;&#123;msg&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
@@ -250,10 +250,10 @@
 			&#125;
 		&#125;
 	&#125;);
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre></div>
 
 <p><em>(同上)可简写为 :</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-color</span>=<span class="hljs-string">"'blueviolet'"</span>&gt;</span>&#123;&#123;msg&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
@@ -268,11 +268,11 @@
 			&#125;
 		&#125;
 	&#125;);
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre></div>
 
 
 <h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><p><em>Vue.js允许你自定义过滤器,可被用于一些常见的文本格式化,过滤器可以用在两个地方 : <code>双花括号插值</code>和<code>v-bind</code>表达式 (后者从 2.1.0+ 开始支持). 过滤器应该被添加在JavaScript表达式的尾部,由管道符 : <code>|</code> 指示,表达式的值将作为形参传入到<code>filter</code>中,示例代码如下 :</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>&#123;&#123;title&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>&#123;&#123;title | titleFilter1&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>&#123;&#123;title | titleFilter1 | titleFilter2&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
@@ -292,10 +292,10 @@
 			&#125;
 		&#125;
 	&#125;);
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre></div>
 
 <p><em>除在组件中定义filter外,Vue还允许在开发者在全局定义filter,与选项filter不同的是,全局filter可以在任何组件和实例中起作用哟,示例程序如下 :</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>&#123;&#123;title&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>&#123;&#123;title | titleFilter1&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>&#123;&#123;title | titleFilter1 | titleFilter2&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
@@ -314,11 +314,11 @@
 			<span class="hljs-attr">title</span>: <span class="hljs-string">'Demo#%Program#%For#%Filter'</span>
 		&#125;
 	&#125;);
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre></div>
 
 <p><em>程序运行效果如下 :</em><br><img src="/2019/07/23/Vue-js%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4%E4%B8%8E%E8%BF%87%E6%BB%A4%E5%99%A8/Vue-filter-demo.PNG" srcset="/img/loading.gif" alt></p>
 <h4 id="全局过滤器"><a href="#全局过滤器" class="headerlink" title="全局过滤器"></a>全局过滤器</h4><p><em>定义一个全局filter,用于格式化指定字符,其示例程序如下 :</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>&#123;&#123;msg | msgFilter('Keep')&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>&#123;&#123;msg | msgFilter('Keep')&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
 	Vue.filter(<span class="hljs-string">'msgFilter'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">msg, filterStr</span>) </span>&#123;
 		<span class="hljs-keyword">return</span> msg.replace(<span class="hljs-regexp">/Stay/g</span>, filterStr) <span class="hljs-comment">//使用正则表达式匹配字符</span>
@@ -330,10 +330,10 @@
 			<span class="hljs-attr">msg</span>: <span class="hljs-string">'Stay hungry,Stay foolish ~'</span>
 		&#125;
 	&#125;);
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre></div>
 
 <h4 id="私有过滤器"><a href="#私有过滤器" class="headerlink" title="私有过滤器"></a>私有过滤器</h4><p><em>定义一个选项filter,用于格式化指定字符,其示例程序如下 :</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>&#123;&#123;msg | msgFilter('keep')&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>&#123;&#123;msg | msgFilter('keep')&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
     <span class="hljs-keyword">var</span> vm = <span class="hljs-keyword">new</span> Vue(&#123;
 	<span class="hljs-attr">el</span>: <span class="hljs-string">'#app'</span>,
@@ -346,7 +346,7 @@
 		    &#125;
 	    &#125;
 	&#125;);
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre></div>
             </article>
             <hr>
             <div>

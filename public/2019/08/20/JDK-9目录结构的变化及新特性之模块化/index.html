@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -212,17 +212,17 @@
 <p><img src="/2019/08/20/JDK-9%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E7%9A%84%E5%8F%98%E5%8C%96%E5%8F%8A%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8B%E6%A8%A1%E5%9D%97%E5%8C%96/JDK9-%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8B%E6%A8%A1%E5%9D%97%E5%8C%96-%E6%A8%A1%E5%9D%97%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png" srcset="/img/loading.gif" alt></p>
 <ol>
 <li><p><em>modela模块中的module-info.java :</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">module</span> modela &#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">module</span> modela &#123;
     <span class="hljs-keyword">exports</span> com.cnblogs.bean;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>modelb模块中的module-info.java :</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">module</span> modelb &#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">module</span> modelb &#123;
     <span class="hljs-keyword">requires</span> modela;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>modelb模块中的Test.java :</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.cnblogs.tset;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.cnblogs.tset;
   
 <span class="hljs-keyword">import</span> com.cnblogs.bean.Person;
   
@@ -232,10 +232,10 @@
         Person person = <span class="hljs-keyword">new</span> Person(<span class="hljs-string">"jdk9"</span>,<span class="hljs-number">2</span>);
         System.out.println(person);
     &#125; 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行结果 :</em></p>
-<pre><code class="hljs routeros">Person&#123;<span class="hljs-attribute">name</span>=<span class="hljs-string">'jdk9'</span>, <span class="hljs-attribute">age</span>=2&#125;</code></pre>
+<div class="hljs"><pre><code class="hljs routeros">Person&#123;<span class="hljs-attribute">name</span>=<span class="hljs-string">'jdk9'</span>, <span class="hljs-attribute">age</span>=2&#125;</code></pre></div>
 
 </li>
 </ol>

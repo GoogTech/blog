@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -196,7 +196,7 @@
 <h3 id="登录登出案例"><a href="#登录登出案例" class="headerlink" title="登录登出案例"></a>登录登出案例</h3><p><em>接下来通过一个模拟验证用户登录信息的示例程序,来探究并分析一下Shiro的验证用户身份信息的流程</em></p>
 <ol>
 <li><p><em>pom.xml : Maven依赖</em></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
     <span class="hljs-comment">&lt;!--Junit 单元测试 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
@@ -216,14 +216,14 @@
         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>slf4j-log4j12<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.7.12<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>shiro.ini : 存储用户身份信息(账户=密码)</em></p>
-<pre><code class="hljs ini"><span class="hljs-section">[users]</span>
-<span class="hljs-attr">root</span>=yubuntu0109</code></pre>
+<div class="hljs"><pre><code class="hljs ini"><span class="hljs-section">[users]</span>
+<span class="hljs-attr">root</span>=yubuntu0109</code></pre></div>
 </li>
 <li><p><em>ShiroTest.java : 模拟验证用户登录信息(把断点打在<code>currentUser.login(token)</code>)</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui;
 
 <span class="hljs-keyword">import</span> org.apache.shiro.SecurityUtils;
 <span class="hljs-keyword">import</span> org.apache.shiro.authc.AuthenticationException;
@@ -269,13 +269,13 @@
         System.out.println(<span class="hljs-string">"身份身份是否注销成功 :"</span> + !currentUser.isAuthenticated());
 
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行效果如下所示 :</em></p>
-<pre><code class="hljs java"><span class="hljs-comment">// ······</span>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-comment">// ······</span>
 用户身份是否验证成功 :<span class="hljs-keyword">true</span>
 <span class="hljs-comment">// ······</span>
-身份身份是否注销成功 :<span class="hljs-keyword">true</span></code></pre>
+身份身份是否注销成功 :<span class="hljs-keyword">true</span></code></pre></div>
 
 
 </li>
@@ -289,29 +289,29 @@
 <li><em>最后可以使用<code>Subject.logout()</code>进行退出操作</em></li>
 </ol>
 <h3 id="案例源码流程分析"><a href="#案例源码流程分析" class="headerlink" title="案例源码流程分析"></a>案例源码流程分析</h3><ol>
-<li><em>运行上述程序,首先debug(Step into)进入<code>currentUser.login(token)</code>内部,既DelegatingSubject.java. 从源码可以看出 : 与Subject的所有交互都会委托给SecurityManager. 可以把Subject认为是一个门面,SecurityManager才是实际的执行者哟~</em><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">login</span><span class="hljs-params">(AuthenticationToken token)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
+<li><em>运行上述程序,首先debug(Step into)进入<code>currentUser.login(token)</code>内部,既DelegatingSubject.java. 从源码可以看出 : 与Subject的所有交互都会委托给SecurityManager. 可以把Subject认为是一个门面,SecurityManager才是实际的执行者哟~</em><div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">login</span><span class="hljs-params">(AuthenticationToken token)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
         <span class="hljs-keyword">this</span>.clearRunAsIdentitiesInternal();
         Subject subject = <span class="hljs-keyword">this</span>.securityManager.login(<span class="hljs-keyword">this</span>, token);
-        <span class="hljs-comment">// ······</span></code></pre>
+        <span class="hljs-comment">// ······</span></code></pre></div>
 
 </li>
 </ol>
 <p><em>继续(Step into)进入<code>this.securityManager.login(this, token);</code>,既DefaultSecurityManager.java. 此时验证用户身份的的操作正式开始</em></p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> Subject <span class="hljs-title">login</span><span class="hljs-params">(Subject subject, AuthenticationToken token)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> Subject <span class="hljs-title">login</span><span class="hljs-params">(Subject subject, AuthenticationToken token)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
         AuthenticationInfo info;
         <span class="hljs-keyword">try</span> &#123;
             info = <span class="hljs-keyword">this</span>.authenticate(token);
         &#125; <span class="hljs-keyword">catch</span> (AuthenticationException var7) &#123;
-        <span class="hljs-comment">// ······</span></code></pre>
+        <span class="hljs-comment">// ······</span></code></pre></div>
 
 <ol start="2">
 <li><p><em>继续(Step into)进入<code>this.authenticate(token)</code>,既AuthenticatingSecurityManager.java. 从源码可以看出SecurityManager将<code>token</code>委托给了Authenticator(认证器)去执行用户身份的认证操作</em></p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> AuthenticationInfo <span class="hljs-title">authenticate</span><span class="hljs-params">(AuthenticationToken token)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> AuthenticationInfo <span class="hljs-title">authenticate</span><span class="hljs-params">(AuthenticationToken token)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.authenticator.authenticate(token);
-    &#125;</code></pre>
+    &#125;</code></pre></div>
 </li>
 <li><p><em>继续(Step into)进入<code>this.authenticator.authenticate(token)</code>,既AbstractAuthenticator.java. 由<code>info = this.doAuthenticate(token);</code>获取一个AuthenticationInfo对象</em></p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> AuthenticationInfo <span class="hljs-title">authenticate</span><span class="hljs-params">(AuthenticationToken token)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> AuthenticationInfo <span class="hljs-title">authenticate</span><span class="hljs-params">(AuthenticationToken token)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
        <span class="hljs-keyword">if</span> (token == <span class="hljs-keyword">null</span>) &#123;
            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">"Method argument (authentication token) cannot be null."</span>);
        &#125; <span class="hljs-keyword">else</span> &#123;
@@ -324,10 +324,10 @@
                    String msg = <span class="hljs-string">"No account information found for authentication token ["</span> + token + <span class="hljs-string">"] by this Authenticator instance.  Please check that it is configured correctly."</span>;
                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> AuthenticationException(msg);
                &#125;
-       <span class="hljs-comment">// ······</span></code></pre>
+       <span class="hljs-comment">// ······</span></code></pre></div>
 </li>
 <li><p><em>继续(Step into)进入<code>info = this.doAuthenticate(token)</code>,既ModularRealmAuthenticator.java. 然后从系统所加载配置文件所对应的Realms的值中获取(<code>this.getRealms()</code>)一个realms对象,该对象中包含一个<code>users</code>属性,其中包含着用户的身份及凭证信息,例如账号为root,密码为yubuntu0109的用户信息</em></p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> AuthenticationInfo <span class="hljs-title">doAuthenticate</span><span class="hljs-params">(AuthenticationToken authenticationToken)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> AuthenticationInfo <span class="hljs-title">doAuthenticate</span><span class="hljs-params">(AuthenticationToken authenticationToken)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
        assertRealmsConfigured();
        Collection&lt;Realm&gt; realms = getRealms();
        <span class="hljs-keyword">if</span> (realms.size() == <span class="hljs-number">1</span>) &#123;
@@ -336,12 +336,12 @@
            <span class="hljs-keyword">return</span> doMultiRealmAuthentication(realms, authenticationToken);
        &#125;
    &#125;
-   <span class="hljs-comment">// ······</span></code></pre>
+   <span class="hljs-comment">// ······</span></code></pre></div>
 
 </li>
 </ol>
 <p><em>继续(Step into)进入<code>this.doSingleRealmAuthentication((Realm)realms.iterator().next(), authenticationToken)</code>. 发现其通过<code>realm.getAuthenticationInfo(token)</code>获取一个AuthenticationInfo对象(其中存储着从Realm中获取的用户身份信息)</em></p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> AuthenticationInfo <span class="hljs-title">doSingleRealmAuthentication</span><span class="hljs-params">(Realm realm, AuthenticationToken token)</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> AuthenticationInfo <span class="hljs-title">doSingleRealmAuthentication</span><span class="hljs-params">(Realm realm, AuthenticationToken token)</span> </span>&#123;
         <span class="hljs-keyword">if</span> (!realm.supports(token)) &#123;
             String msg = <span class="hljs-string">"Realm ["</span> + realm + <span class="hljs-string">"] does not support authentication token ["</span> +
                     token + <span class="hljs-string">"].  Please ensure that the appropriate Realm implementation is "</span> +
@@ -355,10 +355,10 @@
             <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> UnknownAccountException(msg);
         &#125;
         <span class="hljs-keyword">return</span> info;
-    &#125;</code></pre>
+    &#125;</code></pre></div>
 
 <ol start="5">
-<li><em>继续(Step into)进入<code>realm.getAuthenticationInfo(token)</code>,既AuthenticatingRealm.java</em><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> AuthenticationInfo <span class="hljs-title">getAuthenticationInfo</span><span class="hljs-params">(AuthenticationToken token)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
+<li><em>继续(Step into)进入<code>realm.getAuthenticationInfo(token)</code>,既AuthenticatingRealm.java</em><div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> AuthenticationInfo <span class="hljs-title">getAuthenticationInfo</span><span class="hljs-params">(AuthenticationToken token)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
 
        AuthenticationInfo info = getCachedAuthenticationInfo(token);
        <span class="hljs-keyword">if</span> (info == <span class="hljs-keyword">null</span>) &#123;
@@ -380,12 +380,12 @@
 
        <span class="hljs-keyword">return</span> info;
    &#125;
-   <span class="hljs-comment">// ······</span></code></pre>
+   <span class="hljs-comment">// ······</span></code></pre></div>
 
 </li>
 </ol>
 <p><em>(Step into)进入<code>doGetAuthenticationInfo(token)</code>,既SimpleAccountRealm.java. 通过<code>getUser(upToken.getUsername())</code>进行验证用户账户信息(稍后验证密码信息),然后返回一个SimpleAccount对象(account,如root),其中包含了凭证信息(credentials,如yubuntu0109)</em></p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> AuthenticationInfo <span class="hljs-title">doGetAuthenticationInfo</span><span class="hljs-params">(AuthenticationToken token)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> AuthenticationInfo <span class="hljs-title">doGetAuthenticationInfo</span><span class="hljs-params">(AuthenticationToken token)</span> <span class="hljs-keyword">throws</span> AuthenticationException </span>&#123;
         UsernamePasswordToken upToken = (UsernamePasswordToken) token;
         SimpleAccount account = getUser(upToken.getUsername());
 
@@ -403,10 +403,10 @@
 
         <span class="hljs-keyword">return</span> account;
     &#125;
-    <span class="hljs-comment">// ······</span></code></pre>
+    <span class="hljs-comment">// ······</span></code></pre></div>
 
 <p><em><code>getUser(String username)</code>的源码如下所示 :</em></p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> SimpleAccount <span class="hljs-title">getUser</span><span class="hljs-params">(String username)</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> SimpleAccount <span class="hljs-title">getUser</span><span class="hljs-params">(String username)</span> </span>&#123;
         USERS_LOCK.readLock().lock();
         <span class="hljs-keyword">try</span> &#123;
             <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.users.get(username);
@@ -414,10 +414,10 @@
             USERS_LOCK.readLock().unlock();
         &#125;
     &#125;
-    <span class="hljs-comment">// ······</span></code></pre>
+    <span class="hljs-comment">// ······</span></code></pre></div>
 
 <p><em>(step out)退出<code>doGetAuthenticationInfo(AuthenticationToken token)</code>方法,然后(step into)进入<code>assertCredentialsMatch(token, info)</code>方法,其属于AuthenticatingRealm.java. 继而执行验证用户密码信息的操作</em></p>
-<pre><code class="hljs java">protected void assertCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) throws AuthenticationException &#123;
+<div class="hljs"><pre><code class="hljs java">protected void assertCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) throws AuthenticationException &#123;
         CredentialsMatcher cm = getCredentialsMatcher();
         if (cm != null) &#123;
             if (!cm.doCredentialsMatch(token, info)) &#123;
@@ -430,14 +430,14 @@
                     "credentials during authentication.  If you do not wish for credentials to be examined, you " +
                     "can configure an " + AllowAllCredentialsMatcher.class.getName() + " instance.");
         &#125;
-    &#125;</code></pre>
+    &#125;</code></pre></div>
 
 <p><em>(step into)进入<code>cm.doCredentialsMatch(token, info)</code>,其属于SimpleCredentialsMatcher.java. 观察Shiro是如何验证密码的 : 比较AuthenticationToken(<code>token</code>)与AuthenticationInfo(<code>info</code>)中的用户密码是否相同</em></p>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">doCredentialsMatch</span><span class="hljs-params">(AuthenticationToken token, AuthenticationInfo info)</span> </span>&#123;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">doCredentialsMatch</span><span class="hljs-params">(AuthenticationToken token, AuthenticationInfo info)</span> </span>&#123;
         Object tokenCredentials = getCredentials(token);
         Object accountCredentials = getCredentials(info);
         <span class="hljs-keyword">return</span> equals(tokenCredentials, accountCredentials);
-    &#125;</code></pre>
+    &#125;</code></pre></div>
             </article>
             <hr>
             <div>

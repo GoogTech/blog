@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -215,7 +215,7 @@
 <h4 id="构造方法注入"><a href="#构造方法注入" class="headerlink" title="构造方法注入"></a>构造方法注入</h4><p><em>指Spring容器使用的构造方法注入被依赖的实例.基于构造方法的依赖注入通过带参数的构造方法来实现,每个参数代表着一个依赖.</em></p>
 <h3 id="Spring-简单示例程序"><a href="#Spring-简单示例程序" class="headerlink" title="Spring 简单示例程序"></a>Spring 简单示例程序</h3><ol>
 <li><p><em>创建一个简单的Java bean</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.bean;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.bean;
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HiSpring5</span> </span>&#123;
 
@@ -233,10 +233,10 @@
 	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">ouputName</span><span class="hljs-params">()</span> </span>&#123;
 		System.out.println(<span class="hljs-string">"ouputName() method: my name is "</span> + name + <span class="hljs-string">" !"</span>);
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>创建Spring的配置文件: applicationContext.xml</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>
 	<span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
 	<span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span>
@@ -250,10 +250,10 @@
 		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"name"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"Spring"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>测试类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.bean.test;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.spring.bean.test;
 
 <span class="hljs-keyword">import</span> org.junit.Test;
 <span class="hljs-keyword">import</span> org.springframework.context.ApplicationContext;
@@ -277,17 +277,17 @@
 
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行结果如下</em></p>
-<pre><code class="hljs java">May 14, 2019 4:23:28 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
+<div class="hljs"><pre><code class="hljs java">May 14, 2019 4:23:28 PM org.springframework.context.support.ClassPathXmlApplicationContext prepareRefresh
 INFO: Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@a2431d0: startup date [Tue May 14 16:23:28 CST 2019]; root of context hierarchy
 May 14, 2019 4:23:28 PM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
 INFO: Loading XML bean definitions from class path resource [applicationContext.xml]
 
 The Constructor  be called !
 setName(String name) method be called !
-ouputName() method: my name is Spring !</code></pre></li>
+ouputName() method: my name is Spring !</code></pre></div></li>
 </ol>
 
             </article>

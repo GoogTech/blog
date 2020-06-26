@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -195,7 +195,7 @@
 </ul>
 <h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><ol>
 <li><p><em>baseWebShiro\pom.xml : Maven依赖</em></p>
-<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://maven.apache.org/POM/4.0.0"</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://maven.apache.org/POM/4.0.0"</span>
          <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
          <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span>
@@ -244,10 +244,10 @@
             <span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">plugins</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>baseWebShiro\src\main\resources\shiro.ini : 用户身份及权限信息</em></p>
-<pre><code class="hljs ini">[main]
+<div class="hljs"><pre><code class="hljs ini">[main]
 # 默认登录页为:/login.jsp
 authc.loginUrl = /login
 # 用户没有访问指定资源的角色时所跳转的页面
@@ -275,10 +275,10 @@ deptManager = department:view
 # 当请求loginOut时,会被logout捕获并清除session
 /logout = logout
 # 所有的请求都需要身份认证
-/** = authc</code></pre>
+/** = authc</code></pre></div>
 </li>
 <li><p><em>baseWebShiro\src\main\webapp\WEB-INF\web.xml</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
          <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://java.sun.com/xml/ns/javaee"</span>
          <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"</span>
@@ -313,14 +313,14 @@ deptManager = department:view
         <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/*<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">filter-mapping</span>&gt;</span>
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">web-app</span>&gt;</span></code></pre></div>
 
 
 </li>
 </ol>
 <h3 id="前端页面"><a href="#前端页面" class="headerlink" title="前端页面"></a>前端页面</h3><ol>
 <li><p><em>baseWebShiro\src\main\webapp\static\js\jquery.js : 嘿嘿,代码量你懂得,自行下载吧~</em></p>
-<pre><code class="hljs js"><span class="hljs-comment">/*!
+<div class="hljs"><pre><code class="hljs js"><span class="hljs-comment">/*!
  * jQuery JavaScript Library v1.7.1
  * http://jquery.com/
  *
@@ -343,17 +343,17 @@ deptManager = department:view
         location = <span class="hljs-built_in">window</span>.location;
     <span class="hljs-keyword">var</span> jQuery = (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
 
-        <span class="hljs-comment">// ······</span></code></pre>
+        <span class="hljs-comment">// ······</span></code></pre></div>
 </li>
 <li><p><em>baseWebShiro\src\main\webapp\static\js\main.js : 切换用户主页中的信息管理页面</em></p>
-<pre><code class="hljs js">$(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+<div class="hljs"><pre><code class="hljs js">$(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
     $(<span class="hljs-string">".changePage"</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
         $(<span class="hljs-string">"#rightMain"</span>).prop(<span class="hljs-string">"src"</span>, $(<span class="hljs-keyword">this</span>).data(<span class="hljs-string">"url"</span>));
     &#125;);
-&#125;);</code></pre>
+&#125;);</code></pre></div>
 </li>
 <li><p><em>baseWebShiro\src\main\webapp\static\style\main_css.css : 用户主页样式</em></p>
-<pre><code class="hljs css"><span class="hljs-selector-class">.top</span> &#123;
+<div class="hljs"><pre><code class="hljs css"><span class="hljs-selector-class">.top</span> &#123;
     <span class="hljs-attribute">height</span>: <span class="hljs-number">50px</span>;
     <span class="hljs-attribute">width</span>: <span class="hljs-number">99%</span>;
     <span class="hljs-attribute">float</span>: left;
@@ -391,10 +391,10 @@ deptManager = department:view
     <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
     <span class="hljs-attribute">float</span>: left;
     <span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">1px</span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>baseWebShiro\src\main\webapp\WEB-INF\views\login.jsp : 用户登录页</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html;charset=UTF-8"</span> %&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html;charset=UTF-8"</span> %&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>login<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
@@ -458,10 +458,10 @@ deptManager = department:view
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>baseWebShiro\src\main\webapp\WEB-INF\views\main.jsp : 用户主页</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span> %&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span> %&gt;</span>
 <span class="hljs-comment">&lt;!-- 引入Shiro标签 --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">taglib</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">"shiro"</span> <span class="hljs-attr">uri</span>=<span class="hljs-string">"http://shiro.apache.org/tags"</span> %&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;</span>
@@ -501,10 +501,10 @@ deptManager = department:view
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>baseWebShiro\src\main\webapp\welcome.jsp : 用户欢迎页</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span> %&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span> %&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -514,10 +514,10 @@ deptManager = department:view
 <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">align</span>=<span class="hljs-string">"center"</span>&gt;</span>（づ￣3￣）づ╭❤～ 用户欢迎页<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>baseWebShiro\src\main\webapp\WEB-INF\views\department\list.jsp : 部门信息管理页</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span> %&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span> %&gt;</span>
 <span class="hljs-comment">&lt;!-- 引入Shiro标签 --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">taglib</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">"shiro"</span> <span class="hljs-attr">uri</span>=<span class="hljs-string">"http://shiro.apache.org/tags"</span> %&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;</span>
@@ -565,10 +565,10 @@ deptManager = department:view
     <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">center</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>baseWebShiro\src\main\webapp\WEB-INF\views\employee\list.jsp : 员工信息管理页</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span> %&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span> %&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -603,10 +603,10 @@ deptManager = department:view
     <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">center</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>baseWebShiro\src\main\webapp\nopermission.jsp : 无角色/权限提示页</em></p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span> %&gt;</span>
+<div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">page</span> <span class="hljs-attr">contentType</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span> <span class="hljs-attr">pageEncoding</span>=<span class="hljs-string">"UTF-8"</span> %&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -616,14 +616,14 @@ deptManager = department:view
 <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">align</span>=<span class="hljs-string">"center"</span>&gt;</span>(ಥ_ಥ) 抱歉,你无权限操作该模块 !<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 
 
 </li>
 </ol>
 <h3 id="后端控制器"><a href="#后端控制器" class="headerlink" title="后端控制器"></a>后端控制器</h3><ol>
 <li><p><em>baseWebShiro\src\main\java\pers\huangyuhui\shiro\web\LoginServlet.java : 用户登录控制器</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.shiro.web;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.shiro.web;
 
 <span class="hljs-keyword">import</span> org.apache.shiro.authc.IncorrectCredentialsException;
 <span class="hljs-keyword">import</span> org.apache.shiro.authc.UnknownAccountException;
@@ -659,10 +659,10 @@ deptManager = department:view
         req.getRequestDispatcher(<span class="hljs-string">"/WEB-INF/views/login.jsp"</span>).forward(req, resp);
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>baseWebShiro\src\main\java\pers\huangyuhui\shiro\web\MainAction.java : 用户主页面控制器</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.shiro.web;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.shiro.web;
 
 <span class="hljs-keyword">import</span> java.io.IOException;
 
@@ -683,10 +683,10 @@ deptManager = department:view
     <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doPost</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
         req.getRequestDispatcher(<span class="hljs-string">"/WEB-INF/views/main.jsp"</span>).forward(req, resp);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>baseWebShiro\src\main\java\pers\huangyuhui\shiro\web\DepartmentServlet.java : 部门信息管理页控制器</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.shiro.web;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.shiro.web;
 
 <span class="hljs-keyword">import</span> javax.servlet.ServletException;
 <span class="hljs-keyword">import</span> javax.servlet.annotation.WebServlet;
@@ -722,10 +722,10 @@ deptManager = department:view
         &#125;
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>baseWebShiro\src\main\java\pers\huangyuhui\shiro\web\EmployeeServlet.java : 员工信息管理页控制器</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.shiro.web;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.shiro.web;
 
 <span class="hljs-keyword">import</span> javax.servlet.ServletException;
 <span class="hljs-keyword">import</span> javax.servlet.annotation.WebServlet;
@@ -763,7 +763,7 @@ deptManager = department:view
         &#125;
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 
 </li>

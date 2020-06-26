@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -201,7 +201,7 @@
 <h3 id="程序示例-简洁版"><a href="#程序示例-简洁版" class="headerlink" title="程序示例-简洁版"></a>程序示例-简洁版</h3><p><em>下面是一个实现了Factory Method模式的简单示例程序,该示例程序的功能( 模拟 )是为了提高多种日志记录器之间切换的灵活性.</em></p>
 <ol>
 <li><p><em>Logger接口 : 日志记录器接口, 充当抽象产品角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -213,10 +213,10 @@
  */</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Logger</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">writeLog</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>DatabaseLogger类 : 数据库日志记录器, 充当具体产品角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-pattern
@@ -232,10 +232,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">writeLog</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"this is some logs about database"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>FileLogger类 : 文件日志记录器, 充当具体产品角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -251,10 +251,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">writeLog</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"this is some logs about file"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>LoggerFactory类 : 日志记录器工厂接口, 充当抽象工厂角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -266,10 +266,10 @@
  */</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">LoggerFactory</span> </span>&#123;
     <span class="hljs-function">Logger <span class="hljs-title">createLogger</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>DatabaseLoggerFactory类 : 数据库日志记录器工厂类, 充当具体工厂角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method1;
 
 
 <span class="hljs-comment">/**
@@ -286,10 +286,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> Logger <span class="hljs-title">createLogger</span><span class="hljs-params">()</span> </span>&#123;
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> DatabaseLogger();
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>FileLoggerFactory类 : 文件日志记录器工厂类, 充当具体工厂角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -305,10 +305,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> Logger <span class="hljs-title">createLogger</span><span class="hljs-params">()</span> </span>&#123;
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> FileLogger();
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Client类 : 客户端测试类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method1;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method1;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -329,11 +329,11 @@
         Logger fileLogger = fileLoggerFactory.createLogger();
         fileLogger.writeLog();
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行结果如下所示 :</em></p>
-<pre><code class="hljs applescript">this <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span> logs <span class="hljs-keyword">about</span> database
-this <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span> logs <span class="hljs-keyword">about</span> <span class="hljs-built_in">file</span></code></pre>
+<div class="hljs"><pre><code class="hljs applescript">this <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span> logs <span class="hljs-keyword">about</span> database
+this <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span> logs <span class="hljs-keyword">about</span> <span class="hljs-built_in">file</span></code></pre></div>
 
 </li>
 </ol>
@@ -341,7 +341,7 @@ this <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span>
 <h3 id="示例程序-工厂方法的重载"><a href="#示例程序-工厂方法的重载" class="headerlink" title="示例程序-工厂方法的重载"></a>示例程序-工厂方法的重载</h3><p><em>下述示例代码文件同上述<code>示例程序-简洁版</code>,既只需修改部分代码即可哟~</em></p>
 <ol>
 <li><p><em>LoggerFactory接口 : 日志记录器工厂接口, 充当抽象工厂角色(工厂方法的重载)</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -357,10 +357,10 @@ this <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span>
     <span class="hljs-function">Logger <span class="hljs-title">createLogger</span><span class="hljs-params">(String args)</span></span>;
 
     <span class="hljs-function">Logger <span class="hljs-title">createLogger</span><span class="hljs-params">(Object obj)</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>DatabaseLoggerFactory类 : 数据库日志记录器工厂类, 充当具体工厂角色(工厂方法的重载)</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -392,10 +392,10 @@ this <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span>
         <span class="hljs-comment">//使用封装在参数obj中的数据来初始化数据库日志记录器，代码省略 ···</span>
         <span class="hljs-keyword">return</span> logger;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Client类 : 客户端测试类-(工厂方法的重载)</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method2;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method2;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -416,12 +416,12 @@ this <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span>
         Logger fileLogger = fileLoggerFactory.createLogger();
         fileLogger.writeLog();
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行结果如下所示 :</em></p>
-<pre><code class="hljs pgsql">使用参数<span class="hljs-keyword">database</span>-<span class="hljs-keyword">connection</span>-<span class="hljs-keyword">info</span>作为连接字符串来连接数据库,代码省略 ···
+<div class="hljs"><pre><code class="hljs pgsql">使用参数<span class="hljs-keyword">database</span>-<span class="hljs-keyword">connection</span>-<span class="hljs-keyword">info</span>作为连接字符串来连接数据库,代码省略 ···
 this <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span> logs about <span class="hljs-keyword">database</span>
-this <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span> logs about file</code></pre>
+this <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span> logs about file</code></pre></div>
 
 </li>
 </ol>
@@ -429,7 +429,7 @@ this <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span>
 <h3 id="示例程序-工厂方法的隐藏"><a href="#示例程序-工厂方法的隐藏" class="headerlink" title="示例程序-工厂方法的隐藏"></a>示例程序-工厂方法的隐藏</h3><p><em>下述示例代码文件同上述<code>示例程序-简洁版</code>,既只需修改部分代码即可哟~</em></p>
 <ol>
 <li><p><em>LoggerFactory类 : 日志记录器工厂接口, 充当抽象工厂角色(工厂方法的隐藏)</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method3;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method3;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -448,16 +448,16 @@ this <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span>
     &#125;
 
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> Logger <span class="hljs-title">createLogger</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>DatabaseLoggerFactory类 : 数据库日志记录器工厂类, 充当具体工厂角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DatabaseLoggerFactory</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">LoggerFactory</span> </span>&#123; · · · · · ·</code></pre>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DatabaseLoggerFactory</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">LoggerFactory</span> </span>&#123; · · · · · ·</code></pre></div>
 </li>
 <li><p><em>FileLoggerFactory类 : 文件日志记录器工厂类, 充当具体工厂角色</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileLoggerFactory</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">LoggerFactory</span> </span>&#123; · · · · · ·</code></pre>
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileLoggerFactory</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">LoggerFactory</span> </span>&#123; · · · · · ·</code></pre></div>
 </li>
 <li><p><em>Client类 : 客户端测试类(工厂方法的隐藏)</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method3;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.factory_method.factory_method3;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -480,11 +480,11 @@ this <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span>
         <span class="hljs-comment">//Logger fileLogger = fileLoggerFactory.createLogger();</span>
         <span class="hljs-comment">//fileLogger.writeLog();</span>
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行结果如下所示 :</em></p>
-<pre><code class="hljs applescript">this <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span> logs <span class="hljs-keyword">about</span> database
-this <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span> logs <span class="hljs-keyword">about</span> <span class="hljs-built_in">file</span></code></pre>
+<div class="hljs"><pre><code class="hljs applescript">this <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span> logs <span class="hljs-keyword">about</span> database
+this <span class="hljs-keyword">is</span> <span class="hljs-keyword">some</span> logs <span class="hljs-keyword">about</span> <span class="hljs-built_in">file</span></code></pre></div>
 
 </li>
 </ol>

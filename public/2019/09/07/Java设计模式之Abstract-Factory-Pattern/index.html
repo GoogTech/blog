@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -198,7 +198,7 @@
 <h3 id="示例程序"><a href="#示例程序" class="headerlink" title="示例程序"></a>示例程序</h3><p><em>下面是一个使用了抽象工厂模式的简单示例程序,其程序功能( 模拟 )描述为 : 开发一套基于 Java 桌面软件的界面皮肤库,用户可以自由切换界面皮肤,例如有 Spring 与 Summer 风格等皮肤~</em></p>
 <ol>
 <li><p><em>Button接口 : 接口按钮, 充当抽象产品</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -210,10 +210,10 @@
  */</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Button</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>SpringButton类 : Spring风格皮肤的按钮类, 充当具体产品</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -228,10 +228,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"spring theme———&gt;this is button"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>SummerButton类 : Summer风格皮肤的按钮类, 充当具体产品</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -247,10 +247,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"Summer theme———&gt;button"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>TextField接口 : 文本框接口, 充当抽象产品</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -262,10 +262,10 @@
  */</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">TextField</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>SpringTextField类 : Spring风格皮肤的文本框类, 充当具体产品</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -281,10 +281,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"Spring theme———&gt;this is text field"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>SummerTextField类 : Summer风格皮肤的文本框类, 充当具体产品</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -300,10 +300,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"Summer theme———&gt;this is text field"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>ComboBob类 : 组合框接口, 充当抽象产品</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -315,10 +315,10 @@
  */</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">ComboBox</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>SpringComboBox类 : Spring风格皮肤的组合框类, 充当具体产品</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -333,10 +333,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"Spring theme———&gt;this is comboxBox"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>SummerComboBox类 : Summer风格皮肤的组合框类, 充当具体产品</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -351,10 +351,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">display</span><span class="hljs-params">()</span> </span>&#123;
         System.out.println(<span class="hljs-string">"Summer theme———&gt;this is comboBox"</span>);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>SkinFactory接口 : 界面皮肤工厂接口, 充当抽象工厂</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -370,10 +370,10 @@
     <span class="hljs-function">TextField <span class="hljs-title">createTextField</span><span class="hljs-params">()</span></span>;
 
     <span class="hljs-function">ComboBox <span class="hljs-title">createComboBox</span><span class="hljs-params">()</span></span>;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>SpringSkinFactory类 : Spring皮肤风格的工厂类, 充当具体工厂</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -398,10 +398,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> ComboBox <span class="hljs-title">createComboBox</span><span class="hljs-params">()</span> </span>&#123;
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> SpringComboBox();
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>SummerSkinFactory类 : Summer风格皮肤的工厂类, 充当具体工厂</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -426,10 +426,10 @@
     <span class="hljs-function"><span class="hljs-keyword">public</span> ComboBox <span class="hljs-title">createComboBox</span><span class="hljs-params">()</span> </span>&#123;
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> SummerComboBox();
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Client类 : 客户端测试类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.abstract_factory_pattern.abstract_factory;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: design-patterns
@@ -455,16 +455,16 @@
         skinFactory2.createComboBox().display();
 
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>程序运行结果如下所示 :</em></p>
-<pre><code class="hljs kotlin">spring theme———&gt;<span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> button
+<div class="hljs"><pre><code class="hljs kotlin">spring theme———&gt;<span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> button
 Spring theme———&gt;<span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> text field
 Spring theme———&gt;<span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> comboxBox
 ———————————————————
 Summer theme———&gt;button
 Summer theme———&gt;<span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> text field
-Summer theme———&gt;<span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> comboBox</code></pre>
+Summer theme———&gt;<span class="hljs-keyword">this</span> <span class="hljs-keyword">is</span> comboBox</code></pre></div>
 
 </li>
 </ol>

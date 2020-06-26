@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -197,7 +197,7 @@
 <li>类 :: 实例方法名</li>
 </ul>
 <h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><p><em>下面通过一个简单的程序示例,来对比Lambda表达式与方法引用写法之间的区别 :</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.method;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.method;
 
 <span class="hljs-keyword">import</span> org.junit.Ignore;
 <span class="hljs-keyword">import</span> org.junit.Test;
@@ -246,7 +246,7 @@
         <span class="hljs-comment">//对象 :: 实例方法名</span>
         printResult(<span class="hljs-string">"hello lambda"</span>, System.out::println);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
 <h4 id="语义分析"><a href="#语义分析" class="headerlink" title="语义分析"></a>语义分析</h4><p><em>例如上例中,<code>System.out</code>对象中有一个重载的<code>println(String)</code>方法恰好就是我们所需要的,那么对于<code>printResult</code>方法的函数式接口参数,对比以下两种写法,完全等效 :</em></p>
 <ul>
@@ -254,7 +254,7 @@
 <li>方法引用写法 : <code>System.out::println</code></li>
 </ul>
 <p><em>第一种语义是指 : 拿到参数之后,继而传递给<code>System.out.println</code>方法去处理</em><br><em>第二种语义是指 : 直接让<code>System.out</code>中的<code>println</code>方法取代Lambda. 这种写法复用了已有方案,更加简洁</em></p>
-<h3 id="常用的几种方法引用"><a href="#常用的几种方法引用" class="headerlink" title="常用的几种方法引用"></a>常用的几种方法引用</h3><h4 id="通过对象名引用成员方法"><a href="#通过对象名引用成员方法" class="headerlink" title="通过对象名引用成员方法"></a>通过对象名引用成员方法</h4><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.method;
+<h3 id="常用的几种方法引用"><a href="#常用的几种方法引用" class="headerlink" title="常用的几种方法引用"></a>常用的几种方法引用</h3><h4 id="通过对象名引用成员方法"><a href="#通过对象名引用成员方法" class="headerlink" title="通过对象名引用成员方法"></a>通过对象名引用成员方法</h4><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.method;
 
 <span class="hljs-keyword">import</span> org.junit.Test;
 
@@ -312,9 +312,9 @@
         Method obj = <span class="hljs-keyword">new</span> Method();
         printResult(<span class="hljs-string">"hello lambda"</span>, obj::printUpperCaseStr);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h4 id="通过类名引用静态方法"><a href="#通过类名引用静态方法" class="headerlink" title="通过类名引用静态方法"></a>通过类名引用静态方法</h4><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.method;
+<h4 id="通过类名引用静态方法"><a href="#通过类名引用静态方法" class="headerlink" title="通过类名引用静态方法"></a>通过类名引用静态方法</h4><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.method;
 
 <span class="hljs-keyword">import</span> org.junit.Test;
 
@@ -371,9 +371,9 @@
         <span class="hljs-keyword">int</span> result = getResult(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, Method::add);
         System.out.println(result);
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h4 id="通过Supper引用父类中的成员方法"><a href="#通过Supper引用父类中的成员方法" class="headerlink" title="通过Supper引用父类中的成员方法"></a>通过Supper引用父类中的成员方法</h4><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.method;
+<h4 id="通过Supper引用父类中的成员方法"><a href="#通过Supper引用父类中的成员方法" class="headerlink" title="通过Supper引用父类中的成员方法"></a>通过Supper引用父类中的成员方法</h4><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.method;
 
 <span class="hljs-keyword">import</span> org.junit.Test;
 
@@ -432,9 +432,9 @@
         printResult(<span class="hljs-keyword">super</span>::hello);
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h4 id="通过this引用成员方法"><a href="#通过this引用成员方法" class="headerlink" title="通过this引用成员方法"></a>通过this引用成员方法</h4><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.method;
+<h4 id="通过this引用成员方法"><a href="#通过this引用成员方法" class="headerlink" title="通过this引用成员方法"></a>通过this引用成员方法</h4><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.method;
 
 <span class="hljs-keyword">import</span> org.junit.Test;
 
@@ -485,9 +485,9 @@
         printResult(<span class="hljs-keyword">this</span>::buyLaptop);
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h4 id="类的构造器引用"><a href="#类的构造器引用" class="headerlink" title="类的构造器引用"></a>类的构造器引用</h4><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.method;
+<h4 id="类的构造器引用"><a href="#类的构造器引用" class="headerlink" title="类的构造器引用"></a>类的构造器引用</h4><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.method;
 
 <span class="hljs-keyword">import</span> org.junit.Test;
 
@@ -553,9 +553,9 @@
         printResult(<span class="hljs-string">"yubuntu0109"</span>, User::<span class="hljs-keyword">new</span>);
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 
-<h4 id="数组的构造器引用"><a href="#数组的构造器引用" class="headerlink" title="数组的构造器引用"></a>数组的构造器引用</h4><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.method;
+<h4 id="数组的构造器引用"><a href="#数组的构造器引用" class="headerlink" title="数组的构造器引用"></a>数组的构造器引用</h4><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.method;
 
 <span class="hljs-keyword">import</span> org.junit.Test;
 
@@ -606,7 +606,7 @@
         <span class="hljs-keyword">int</span>[] array = getArray(<span class="hljs-number">10</span>, <span class="hljs-keyword">int</span>[]::<span class="hljs-keyword">new</span>);
         System.out.println(Arrays.toString(array));
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
             </article>
             <hr>
             <div>

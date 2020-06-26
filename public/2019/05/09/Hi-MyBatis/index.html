@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -212,7 +212,7 @@
 </ol>
 <h3 id="MyBatis-入门程序"><a href="#MyBatis-入门程序" class="headerlink" title="MyBatis 入门程序"></a>MyBatis 入门程序</h3><ol>
 <li><p><em>User.java : 一个简单Java bean</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mybatis.bean;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mybatis.bean;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@ClassName</span>: User
@@ -265,17 +265,17 @@
 		<span class="hljs-keyword">return</span> <span class="hljs-string">"User [id="</span> + id + <span class="hljs-string">", name="</span> + name + <span class="hljs-string">", gender="</span> + gender + <span class="hljs-string">", email="</span> + email + <span class="hljs-string">"]"</span>;
 	&#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>db.properties : 数据库配置信息文件.</em></p>
-<pre><code class="hljs t">#database configuration information
+<div class="hljs"><pre><code class="hljs t">#database configuration information
 jdbc.driver=com.mysql.cj.jdbc.Driver
 jdbc.url=jdbc:mysql://LOCALHOST/MyBatis?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true
 jdbc.username=root
-jdbc.password=GoodTime</code></pre>
+jdbc.password=GoodTime</code></pre></div>
 </li>
 <li><p><em>mybatis-config.xml : MyBatis核心配置文件</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
 <span class="hljs-meta">&lt;!DOCTYPE configuration
  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span>
@@ -300,10 +300,10 @@ jdbc.password=GoodTime</code></pre>
 	<span class="hljs-tag">&lt;<span class="hljs-name">mappers</span>&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">mapper</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">"UserMapper.xml"</span> /&gt;</span>
 	<span class="hljs-tag">&lt;/<span class="hljs-name">mappers</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>UserTest.java : 测试类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mybatis.bean.test;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.mybatis.bean.test;
 
 <span class="hljs-keyword">import</span> java.io.IOException;
 <span class="hljs-keyword">import</span> java.io.InputStream;
@@ -351,20 +351,20 @@ jdbc.password=GoodTime</code></pre>
 		&#125;
 
 	&#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>log4j.properties : 日志文件(便于查看MyBatis操作数据库的过程).</em></p>
-<pre><code class="hljs t">#Global configuration
+<div class="hljs"><pre><code class="hljs t">#Global configuration
 log4j.rootLogger=DEBUG,stdout
 #Log configuration
 log4j.logger.pers.huangyuhui.mybatis.bean.test=TRACE
 #Console configuration
 log4j.appender.stdout=org.apache.log4j.ConsoleAppender
 log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
-log4j.appender.stdout.layout.layout.ConversionPattern=%5p [%t] - %m%n</code></pre>
+log4j.appender.stdout.layout.layout.ConversionPattern=%5p [%t] - %m%n</code></pre></div>
 </li>
 <li><p><em>程序运行结果如下所示</em></p>
-<pre><code class="hljs routeros">Logging initialized using <span class="hljs-string">'class org.apache.ibatis.logging.log4j.Log4jImpl'</span> adapter.
+<div class="hljs"><pre><code class="hljs routeros">Logging initialized using <span class="hljs-string">'class org.apache.ibatis.logging.log4j.Log4jImpl'</span> adapter.
 PooledDataSource forcefully closed/removed all connections.
 PooledDataSource forcefully closed/removed all connections.
 PooledDataSource forcefully closed/removed all connections.
@@ -380,7 +380,7 @@ User </span>[<span class="hljs-attribute">id</span>=1, <span class="hljs-attribu
 
 Resetting autocommit <span class="hljs-keyword">to</span> <span class="hljs-literal">true</span> on JDBC<span class="hljs-built_in"> Connection </span>[com.mysql.cj.jdbc.ConnectionImpl@49cb9cb5]
 Closing JDBC<span class="hljs-built_in"> Connection </span>[com.mysql.cj.jdbc.ConnectionImpl@49cb9cb5]
-Returned<span class="hljs-built_in"> connection </span>1238080693 <span class="hljs-keyword">to</span> pool.</code></pre></li>
+Returned<span class="hljs-built_in"> connection </span>1238080693 <span class="hljs-keyword">to</span> pool.</code></pre></div></li>
 </ol>
 
             </article>

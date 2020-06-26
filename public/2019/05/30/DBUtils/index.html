@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -197,16 +197,16 @@
 </ol>
 <h3 id="CURE-案例"><a href="#CURE-案例" class="headerlink" title="CURE 案例"></a>CURE 案例</h3><ol>
 <li><p><em>数据表信息</em></p>
-<pre><code class="hljs sql"><span class="hljs-comment">-- auto-generated definition by Intellij IDEA</span>
+<div class="hljs"><pre><code class="hljs sql"><span class="hljs-comment">-- auto-generated definition by Intellij IDEA</span>
 <span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> <span class="hljs-keyword">user</span>
 (
     <span class="hljs-keyword">id</span>       <span class="hljs-built_in">int</span> auto_increment primary <span class="hljs-keyword">key</span>,
     <span class="hljs-keyword">name</span>     <span class="hljs-built_in">varchar</span>(<span class="hljs-number">15</span>) <span class="hljs-literal">null</span>,
     <span class="hljs-keyword">password</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">20</span>) <span class="hljs-literal">null</span>
-)</code></pre>
+)</code></pre></div>
 </li>
 <li><p><em>C3P0配置文件</em></p>
-<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="hljs"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">c3p0-config</span>&gt;</span>
     <span class="hljs-comment">&lt;!-- 默认配置: 在没有指定配置时默认使用该配置创建c3p0数据源对象 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">default-config</span>&gt;</span>
@@ -235,10 +235,10 @@
         <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"initiaPoolSize"</span>&gt;</span>5<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"maxPoolSize"</span>&gt;</span>15<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">named-config</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">c3p0-config</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">c3p0-config</span>&gt;</span></code></pre></div>
 </li>
 <li><p><em>数据源工具类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.dbutils.utils;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.dbutils.utils;
 
 <span class="hljs-keyword">import</span> com.mchange.v2.c3p0.ComboPooledDataSource;
 
@@ -266,10 +266,10 @@
         <span class="hljs-keyword">return</span> dataSource;
     &#125;
 
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>Java Bean : 存储用户信息</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.dbutils.bean;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.dbutils.bean;
 
 <span class="hljs-comment">/**
  * <span class="hljs-doctag">@project</span>: dbutils
@@ -317,10 +317,10 @@
                 <span class="hljs-string">", password='"</span> + password + <span class="hljs-string">'\''</span> +
                 <span class="hljs-string">'&#125;'</span>;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>DAO层 : 封装数据库的基本操作</em></p>
-<pre><code class="hljs java">package pers.huangyuhui.dbutils.dao;
+<div class="hljs"><pre><code class="hljs java">package pers.huangyuhui.dbutils.dao;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
@@ -395,10 +395,10 @@ public class DBUtilsDao &#123;
             return false;
         &#125;
     &#125;
-&#125;</code></pre>
+&#125;</code></pre></div>
 </li>
 <li><p><em>测试类</em></p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.dbutils.test;
+<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> pers.huangyuhui.dbutils.test;
 
 <span class="hljs-keyword">import</span> org.junit.BeforeClass;
 <span class="hljs-keyword">import</span> org.junit.Ignore;
@@ -480,7 +480,7 @@ public class DBUtilsDao &#123;
         List users = dbUtilsDao.selectAll();
         System.out.println(users);
     &#125;
-&#125;</code></pre></li>
+&#125;</code></pre></div></li>
 </ol>
 
             </article>

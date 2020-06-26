@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs-2015.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/vs2015.min.css" />
   
 
   
@@ -239,7 +239,7 @@
 <li>在文件夹内执行命令<code>npm install hexo-cli -g</code>,<code>npm install</code>,<code>npm install hexo-deployer-git</code>.</li>
 </ol>
 <h3 id="注意事项-Hexo无法备份themes主题目录中的部分theme"><a href="#注意事项-Hexo无法备份themes主题目录中的部分theme" class="headerlink" title="注意事项 ( Hexo无法备份themes主题目录中的部分theme.. )"></a>注意事项 ( <code>Hexo</code>无法备份<code>themes</code>主题目录中的部分<code>theme</code>.. )</h3><ul>
-<li><em>如果想正常备份你所喜欢的<code>theme</code>的话,可以在博客目录运行如下命令 :</em><pre><code class="hljs java">$ git rm --cached themes\theme-name\
+<li><em>如果想正常备份你所喜欢的<code>theme</code>的话,可以在博客目录运行如下命令 :</em><div class="hljs"><pre><code class="hljs java">$ git rm --cached themes\theme-name\
 rm <span class="hljs-string">'themes/theme-name'</span>
 
 $ git status
@@ -256,7 +256,7 @@ Untracked files:
 
         themes/theme-name/
 
-<span class="hljs-comment">//最后再执行: `git add themes/theme-name/` 就会发现可以成功备份该主题了哟 !</span></code></pre></li>
+<span class="hljs-comment">//最后再执行: `git add themes/theme-name/` 就会发现可以成功备份该主题了哟 !</span></code></pre></div></li>
 <li><strong>原因分析 : 这是因为用到了<code>git</code>的子模块(<code>git submodule</code>)功能,既你在你的<code>git</code>项目里<code>clone</code>的他人的项目.在你的主项目的<code>git</code>库里,子模块只是一个<code>HEAD</code>指针,指向子模块的<code>commit</code> ..详情见下述参考的博客文章哟 (っ•̀ω•́)っ✎⁾⁾</strong></li>
 </ul>
 <ul>
