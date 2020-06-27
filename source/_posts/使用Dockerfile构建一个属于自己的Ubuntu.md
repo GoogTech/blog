@@ -39,6 +39,14 @@ CMD echo $MYPATH
 CMD echo "successfully"
 CMD /bin/bash
 ```
+> Docker File 中可以使用 sed 命令来批量替换软件源，因为 sed 命令在大多数环境中不用安装都可运行，而最简 Ubuntu Docker 镜像中并没有 vim.
+```bash
+# Dockerfile
+RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list
+
+# Ubuntu Server: no graphical interface
+sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list
+```
 
 
 ### 2. 构建 Dockerfile
