@@ -5,7 +5,7 @@ layout: about
 ---
 
 <p style="text-align:center;font-size: 25px;">
-    <img src="../../source/_posts/image-repo/wechat-GoogTech.png" width="500">
+    <img src="https://yubuntu0109.github.io/2020/06/21/image-repo/wechat-GoogTech.png" width="500">
 </p>
 <p style="text-align:center;font-size: 25px;">
     < THE QUIETER YOU ARE THE MORE YOU ARE ABLE TO HEAR />
