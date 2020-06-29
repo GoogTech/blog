@@ -1,5 +1,10 @@
 <p align="center">
 	<a href="https://ishacker.net/"><img src="https://yubuntu0109.github.io/2020/06/21/image-repo/logo.png" width="500"></a>
+
+<p align="center">
+    <img src="https://yubuntu0109.github.io/2020/06/21/image-repo/wechat-GoogTech.png" width="360">
+</p>
+
 </p>
 
 <p align="center">
