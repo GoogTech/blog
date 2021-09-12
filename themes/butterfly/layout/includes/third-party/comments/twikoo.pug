@@ -1,0 +1,45 @@
+script.
+  (()=>{
+    const $countDom = document.getElementById('twikoo-count')
+    const init = () => {
+      twikoo.init(Object.assign({
+        el: '#twikoo-wrap',
+        envId: '!{theme.twikoo.envId}',
+        region: '!{theme.twikoo.region}'
+      }, !{JSON.stringify(theme.twikoo.option)}))
+    }
+
+    const getCount = () => {
+      twikoo.getCommentsCount({
+        envId: '!{theme.twikoo.envId}',
+        region: '!{theme.twikoo.region}',
+        urls: [window.location.pathname],
+        includeReply: false
+      }).then(function (res) {
+        $countDom.innerText = res[0].count
+      }).catch(function (err) {
+        console.error(err);
+      });
+    }
+
+    const loadTwikoo = (bool = false) => {
+      if (typeof twikoo === 'object') {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      } else {
+        getScript('!{theme.CDN.twikoo}').then(()=> {
+          init()
+          bool && $countDom && setTimeout(getCount,0)
+        })
+      }
+    }
+
+    if ('!{theme.comments.use[0]}' === 'Twikoo' || !!{theme.comments.lazyload}) {
+      if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+      else loadTwikoo(true)
+    } else {
+      window.loadOtherComment = () => {
+        loadTwikoo()
+      }
+    }
+  })()
