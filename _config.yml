@@ -84,5 +84,5 @@ theme: butterfly
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/YUbuntu0109/YUbuntu0109.github.io.git
+  repo: https://github.com/GoogTech/GoogTech.github.io.git
   branch: master
