@@ -12,9 +12,11 @@ language: en
 timezone:
 
 # URL
-# If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://goog.tech/blog
-root: /blog/
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+#url: http://yoursite.com
+#勿乱填,起初导致我的文章中所需图片的路径错误而无法被加载 !
+url: https://yubuntu0109.github.io/
+root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults: 
 
