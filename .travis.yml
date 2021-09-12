@@ -32,4 +32,4 @@ branches:
     - HexoBackup
 env:
  global:
-   - GH_REF: github.com/YUbuntu0109/YUbuntu0109.github.io.git
+   - GH_REF: github.com/GoogTech/GoogTech.github.io.git
