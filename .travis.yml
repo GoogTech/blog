@@ -1,9 +1,9 @@
 language: node_js
 node_js: stable
 
-# cache:
-#   directories:
-#     - node_modules
+cache:
+  directories:
+    - node_modules
 
 # S: Build Lifecycle
 install:
@@ -14,16 +14,16 @@ install:
  # - npm install -g gulp
 
 script:
-  #- hexo clean
-  #- hexo g
+  - hexo clean
+  - hexo g
 
 after_script:
   - cd ./public
   - git init
-  - git config user.name "yubuntu0109"
-  - git config user.email "Gentleman_0109@outlook.com"
+  - git config user.name "googtech"
+  - git config user.email "hi@goog.tech"
   - git add .
-  - git commit -m ":rocket:Travis CI:update my personal website"
+  - git commit -m ":rocket:update blog"
   - git push --force --quiet "https://${YUBUNTU0109_TOKEN}@${GH_REF}" master:master
 
 # E: Build LifeCycle
