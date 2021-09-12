@@ -1,9 +1,9 @@
 language: node_js
 node_js: stable
 
-cache:
-  directories:
-    - node_modules
+# cache:
+#   directories:
+#     - node_modules
 
 # S: Build Lifecycle
 install:
