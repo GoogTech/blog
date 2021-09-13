@@ -20,6 +20,7 @@ menu:
   #   Music: /music/ || fas fa-music
   #   Movie: /movies/ || fas fa-video
   Link: /link/ || fas fa-link
+  Comment: /comment/ || fas fa-comment-dots
   About: /about/ || fas fa-heart
 
 # Hide the child menu items in mobile sidebar
