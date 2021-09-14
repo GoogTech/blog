@@ -100,7 +100,7 @@ disable_top_img: false
 index_img: /img/book.gif
 
 # If the banner of page not setting, it will show the top_img
-default_top_img:
+default_top_img: /img/book.gif
 
 # The banner image of archive page
 archive_img:
@@ -265,10 +265,10 @@ reward:
 # Post edit
 # Easily browse and edit blog source code online.
 post_edit:
-  enable: false
+  enable: true
   # url: https://github.com/user-name/repo-name/edit/branch-name/subdirectory-name/
   # For example: https://github.com/jerryc127/butterfly.js.org/edit/main/source/
-  url:
+  url: https://github.com/GoogTech/blog/edit/HexoBackup/source/
 
 # Related Articles
 related_post:
