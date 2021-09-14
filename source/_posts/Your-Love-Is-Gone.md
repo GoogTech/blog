@@ -2,6 +2,8 @@
 title: Your Love Is Gone
 date: 2021-08-29 00:00:00
 tags: [Song]
+categories: Song
+keywords: 'Song'
 ---
 
 Wow, I💖this song so much so that I have still single loop all these days, and I think that its style like the `<Love Yourself>` of **Justin Bieber**, someday I will play it with the guitar and upload the video to my youtube channel, although on the current situation, that's just a plan because I'm so busy for preparing the postgraduate examination recently.
