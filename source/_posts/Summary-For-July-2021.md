@@ -2,6 +2,8 @@
 title: Summary For July 2021
 date: 2021-07-31 00:00:00
 tags: [Summary]
+categories: Summary
+keywords: 'Summary,July,2021'
 ---
 
 # ✍ Study
