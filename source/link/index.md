@@ -13,4 +13,12 @@ Please share your valuable, readable, or funny site in comment according to spec
 `avatar`: site avatar
 `descr`: site description
 
+
+For example, My link string is shown below : 
+
+`name`: GoogTech
+`link`: https://goog.tech
+`avatar`: https://avatars.githubusercontent.com/u/43493852?v=4
+`descr`: Developer, hacker, blogger, guitarist, marathoner and vlogger.
+
 {% endnote %}
