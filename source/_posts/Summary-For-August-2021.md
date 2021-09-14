@@ -2,6 +2,8 @@
 title: Summary For August 2021
 date: 2021-08-31 00:00:00
 tags: [Summary]
+categories: Summary
+keywords: 'Summary,August,2021'
 ---
 
 # ✍ Study
