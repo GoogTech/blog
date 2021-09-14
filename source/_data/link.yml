@@ -1,5 +1,5 @@
 - class_name: My Site
-  class_desc: Hey, guys welcome back to coffee time!
+  class_desc: share daily life, note, idea, and experience
   link_list:
     - name: Daily Blog
       link: https://goog.tech/blog
@@ -15,18 +15,51 @@
       descr: Although it's the learning note of basic CS Course so important for our personal development.
 
 
-# - class_name: 网站
-#   class_desc: 值得推荐的网站
-#   link_list:
-#     - name: Youtube
-#       link: https://www.youtube.com/
-#       avatar: https://i.loli.net/2020/05/14/9ZkGg8v3azHJfM1.png
-#       descr: 视频网站
-#     - name: Weibo
-#       link: https://www.weibo.com/
-#       avatar: https://i.loli.net/2020/05/14/TLJBum386vcnI1P.png
-#       descr: 中国最大社交分享平台
-#     - name: Twitter
-#       link: https://twitter.com/
-#       avatar: https://i.loli.net/2020/05/14/5VyHPQqR6LWF39a.png
-#       descr: 社交分享平台
+- class_name: My Social Medial
+  class_desc: keep touch
+  link_list:
+    - name: Github
+      link: https://github.com/GoogTech
+      avatar: https://cdn.svgporn.com/logos/github-icon.svg
+      descr: 
+    - name: Twitter
+      link: https://twitter.com/googtech_
+      avatar: https://i.loli.net/2020/05/14/5VyHPQqR6LWF39a.png
+      descr: 
+    - name: LeetCode
+      link: https://leetcode-cn.com/u/googtech/
+      avatar: https://assets.leetcode.com/static_assets/public/icons/favicon-32x32.png
+      descr: 
+    - name: Facebook
+      link: 
+      avatar: https://cdn.svgporn.com/logos/facebook.svg
+      descr: 
+    - name: Instream
+      link: 
+      avatar: https://www.instagram.com/static/images/ico/apple-touch-icon-76x76-precomposed.png/666282be8229.png
+      descr: 
+    - name: Bilibili
+      link: https://space.bilibili.com/364361791
+      avatar: https://space.bilibili.com/favicon.ico
+      descr: 
+    - name: StackOverflow
+      link: https://stackoverflow.com/users/story/13689597
+      avatar: https://cdn.svgporn.com/logos/stackoverflow-icon.svg
+      descr: 
+    - name: Youtube
+      link: https://www.youtube.com/channel/UCQ2-QI7IYSSX2tpOjmjBatw
+      avatar: https://cdn.svgporn.com/logos/youtube.svg
+      descr:
+    - name: Linkedin
+      link: https://www.linkedin.cn/in/googtech
+      avatar: https://cdn.svgporn.com/logos/linkedin.svg
+      descr: 
+
+
+- class_name: Share Your Site With Others
+  class_desc: learn from each other
+  link_list:
+    - name: YuZhangWang的领域
+      link: https://www.yuzhang.wang
+      avatar: https://cdn.jsdelivr.net/gh/YuZhangWang/Creative_pictures01@main/img/20210907012640.png
+      descr: 两岸猿声啼不住 轻舟已过万重山
