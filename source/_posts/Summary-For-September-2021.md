@@ -32,7 +32,7 @@ keywords: 'Summary,September,2021'
 ## Computer Network Subejct
 It's costed **thirty-four** days to learn this subject firstly from 25 Aug to 27 Sep, and the learning contents are displayed below.
 * Finish the multiple-choice questions.
-* Build the knowledge mindmap.
+* Build the knowledge [mindmap](https://github.com/GoogTech/cs-learning-note/releases/tag/v3.0-beta).
 
 ## Review English Words
 Not until firstly finish memorizing **two thousand** words on the 8th. It's so embarrassing because I cost two months to end it, then review it from the 9th to the 29th.
