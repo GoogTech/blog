@@ -7,6 +7,13 @@ keywords: 'Steve Jobs,Speech,Stanford University'
 ---
 
 
+{% note blue 'fas fa-bullhorn' %}
+
+[Download the PDF file.](Steve-Jobs-speech-at-Stanford-University-in-2005/Steve-Jobs-speech-at-Stanford-University-in-2005.pdf)
+
+{% endnote %}
+
+
 ## Intro
 I am honored to be with you today at your commencement from one of the finest universities in the world. 
 
@@ -154,7 +161,7 @@ I met with David Packard and Bob Noyce and tried to apologize for screwing up so
 
 I was a very public failure, and I even thought about running away from the Valley.
 
-But something slowly began to dawn on me. I still loved what I did.
+**But something slowly began to dawn on me. I still loved what I did.**
 
 The turn of events at Apple had not changed that one bit.
 
