@@ -9,7 +9,7 @@ keywords: 'Steve Jobs,Speech,Stanford University'
 
 {% note blue 'fas fa-bullhorn' %}
 
-[Download the PDF file.](Steve-Jobs-speech-at-Stanford-University-in-2005/Steve-Jobs-speech-at-Stanford-University-in-2005.pdf)
+[Download the PDF file.](https://goog.tech/blog/2021/09/17/Steve-Jobs-speech-at-Stanford-University-in-2005/Steve-Jobs-speech-at-Stanford-University-in-2005.pdf)
 
 {% endnote %}
 
