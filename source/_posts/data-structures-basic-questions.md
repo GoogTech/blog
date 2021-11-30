@@ -2729,17 +2729,17 @@ D、稳定的排序方法优于不稳定的排序方法，因为稳定的排序�
 
 以下算法均使用 `C++` 实现, 代码 `注释详细`、`程序精简`、而且每个程序都是单独 `可运行` 的哟 (●'◡'●)~
 
-> 不会 `C++` 的童鞋可以看下我的这个笔记哈 : [两小时从 C 过渡到 C++](https://algorithm.show/cpp-tutorial/c-to-cpp-in-two-hours/c-to-cpp-in-two-hours.html)
+> 不会 `C++` 的童鞋可以看下我的这个笔记哈 : [两小时从 C 过渡到 C++](https://goog.tech/blog/2021/06/15/c-to-cpp-in-two-hours/)
 
 
 
-### 1. 单链表的插入
+### 单链表的插入
 
 ```c++
 /**
  * @Author: GoogTech
  * @Email: googtech@qq.com
- * @Website: https://algorithm.show
+ * @Website: https://goog.tech/leetcode
  * @Date: 2021,6,21
  *
  * 1.单链表的插入
@@ -2922,13 +2922,13 @@ print result be shown below:
 
 
 
-### 2. 单链表的删除
+### 单链表的删除
 
 ```c++
 /**
  * @Author: GoogTech
  * @Email: googtech@qq.com
- * @Website: https://algorithm.show
+ * @Website: https://goog.tech/leetcode
  * @Date: 2021,6,21
  *
  * 2.单链表的删除
@@ -3160,13 +3160,13 @@ print result be shown below:
 
 
 
-### 3. 顺序有序表的合并
+### 顺序有序表的合并
 
 ```c++
 /**
  * @Author: GoogTech
  * @Email: googtech@qq.com
- * @Website: https://algorithm.show
+ * @Website: https://goog.tech/leetcode
  * @Date: 2021,6,21
  *
  * 3.合并两个有序顺序表
@@ -3299,13 +3299,13 @@ The print result be shown below:
 
 
 
-### 4. 链式有序表的合并
+### 链式有序表的合并
 
 ```c++
 /**
  * @Author: GoogTech
  * @Email: googtech@qq.com
- * @Website: https://algorithm.show
+ * @Website: https://goog.tech/leetcode
  * @Date: 2021,6,21
  *
  * 4.合并两个有序链表( 迭代法 )
@@ -3410,15 +3410,15 @@ print result be shown below:
 
 
 
-### 5. 循环队列的入队
+### 循环队列的入队
 
-### 6. 循环队列的出队
+### 循环队列的出队
 
 ```c++
 /**
  * @Author: GoogTech
  * @Email: googtech@qq.com
- * @Website: https://algorithm.show
+ * @Website: https://goog.tech/leetcode
  * @Date: 2021,6,23
  *
  * 5,6.循环队列的入队
@@ -3597,13 +3597,13 @@ The length of circular queue: 0
 
 
 
-### 7. 表达式中括号匹配的检验
+### 表达式中括号匹配的检验
 
 ```c++
 /**
  * @Author: GoogTech
  * @Email: googtech@qq.com
- * @Website: https://algorithm.show
+ * @Website: https://goog.tech/leetcode
  * @Date: 2021,6,23
  *
  * 7.表达式中括号匹配的检验
@@ -3677,13 +3677,13 @@ The string is valid ? : 0
 
 
 
-### 8. BF模式匹配算法
+### BF模式匹配算法
 
 ```c++
 /**
  * @Author: GoogTech
  * @Email: googtech@qq.com
- * @Website: https://algorithm.show
+ * @Website: https://goog.tech/leetcode
  * @Date: 2021,6,23
  *
  * 8.BF模式匹配算法
@@ -3734,13 +3734,13 @@ The index: 6
 
 
 
-### 9. 中序遍历的非递归算法
+### 中序遍历的非递归算法
 
 ```c++
 /**
  * @Author: GoogTech
  * @Email: googtech@qq.com
- * @Website: https://algorithm.show
+ * @Website: https://goog.tech/leetcode
  * @Date: 2021,6,23
  *
  * 10.中序遍历的非递归算法(迭代法)
@@ -3852,13 +3852,13 @@ The print result be shown below:
 
 
 
-### 10. 先序遍历的顺序建立二叉链表
+### 先序遍历的顺序建立二叉链表
 
 ```c++
 /**
  * @Author: GoogTech
  * @Email: googtech@qq.com
- * @Website: https://algorithm.show
+ * @Website: https://goog.tech/leetcode
  * @Date: 2021,6,23
  *
  * 11.先序遍历的顺序建立二叉链表
@@ -3924,13 +3924,13 @@ A, B, C, D, E, G, F,
 
 
 
-### 11. 复制二叉树
+### 复制二叉树
 
 ```c++
 /**
  * @Author: GoogTech
  * @Email: googtech@qq.com
- * @Website: https://algorithm.show
+ * @Website: https://goog.tech/leetcode
  * @Date: 2021,6,23
  *
  * 12.复制二叉树
@@ -3998,13 +3998,13 @@ int main() {
 
 
 
-### 12. 计算二叉树的深度
+### 计算二叉树的深度
 
 ```c++
 /**
  * @Author: GoogTech
  * @Email: googtech@qq.com
- * @Website: https://algorithm.show
+ * @Website: https://goog.tech/leetcode
  * @Date: 2021,6,23
  *
  * 13.计算二叉树的深度
@@ -4064,13 +4064,13 @@ The depth of binary tree: 3
 
 
 
-### 13. 冒泡排序
+### 冒泡排序
 
 ```c++
 /**
  * @Author: GoogTech
  * @Email: googtech@qq.com
- * @Website: https://algorithm.show
+ * @Website: https://goog.tech/leetcode
  * @Date: 2021,6,23
  *
  * 18.冒泡排序
@@ -4118,13 +4118,13 @@ static void BubbleSort(vector<int> &R) {
 
 
 
-### 14. 直接插入排序
+### 直接插入排序
 
 ```c++
 /**
  * @Author: GoogTech
  * @Email: googtech@qq.com
- * @Website: https://algorithm.show
+ * @Website: https://goog.tech/leetcode
  * @Date: 2021,6,23
  *
  * 19.直接插入排序
@@ -4177,13 +4177,13 @@ int main() {
 
 
 
-### 15. 简单选择排序
+### 简单选择排序
 
 ```c++
 /**
  * @Author: GoogTech
  * @Email: googtech@qq.com
- * @Website: https://algorithm.show
+ * @Website: https://goog.tech/leetcode
  * @Date: 2021,6,23
  *
  * 20.简单选择排序
@@ -4240,13 +4240,13 @@ int main() {
 
 
 
-### 16. 快速排序
+### 快速排序
 
 ```c++
 /**
  * @Author: GoogTech
  * @Email: googtech@qq.com
- * @Website: https://algorithm.show
+ * @Website: https://goog.tech/leetcode
  * @Date: 2021,6,24
  *
  * 20.快速排序
@@ -4322,7 +4322,7 @@ The print result be shown blow:
 
 
 
-### 17. 散列(哈希)查找
+### 散列(哈希)查找
 
 #### 基本概念
 
@@ -4378,7 +4378,7 @@ The print result be shown blow:
 
 
 
-### 18. 待实现
+### 待实现
 
 18. KMP模式匹配算法
 19. 构造平衡二叉排序树
@@ -4397,4 +4397,4 @@ The print result be shown blow:
 
 ## 总结
 
-求知若饥, 虚心若愚. 更多算法题解请关注 : *https://googtech/leetcode*
+求知若饥, 虚心若愚. 更多算法题解请关注 : *https://goog.tech/leetcode*
