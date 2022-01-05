@@ -1,0 +1,309 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Vue.js的生命周期 | GoogTech's Blog Site</title><meta name="keywords" content="Vue"><meta name="author" content="GoogTech,hi@goog.tech"><meta name="copyright" content="GoogTech"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="学习笔记 : 详解Vue.js的生命周期Vue实例的生命周期函数从Vue实例创建,运行,到销毁期间,总是伴随着各种各样的事件,这些事件统称为生命周期,至于生命周期钩子只不过是生命周期事件的别名而已. 其生命周期图如下所示 :   初始阶段   钩子函数 描述 数据 真实DOM 项目中的应用    beforeCreate 表示组件创建前的准备工作,为事件的发布订阅和生命周期的开始做初始化 无 无">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue.js的生命周期">
+<meta property="og:url" content="https://goog.tech/blog/2019/07/20/Vue-js%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/index.html">
+<meta property="og:site_name" content="GoogTech&#39;s Blog Site">
+<meta property="og:description" content="学习笔记 : 详解Vue.js的生命周期Vue实例的生命周期函数从Vue实例创建,运行,到销毁期间,总是伴随着各种各样的事件,这些事件统称为生命周期,至于生命周期钩子只不过是生命周期事件的别名而已. 其生命周期图如下所示 :   初始阶段   钩子函数 描述 数据 真实DOM 项目中的应用    beforeCreate 表示组件创建前的准备工作,为事件的发布订阅和生命周期的开始做初始化 无 无">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://goog.tech/blog/img/default-cover/47.png">
+<meta property="article:published_time" content="2019-07-20T21:56:19.000Z">
+<meta property="article:modified_time" content="2022-01-05T03:09:17.728Z">
+<meta property="article:author" content="GoogTech">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://goog.tech/blog/img/default-cover/47.png"><link rel="shortcut icon" href="/blog/img/favicon.png"><link rel="canonical" href="https://goog.tech/blog/2019/07/20/Vue-js%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?38cca3f22b1618b6439834b03516d7e7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-206511912-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-206511912-1');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: GoogTech","link":"Link: ","source":"Source: GoogTech's Blog Site","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Vue.js的生命周期',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-05 03:09:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/blog/atom.xml" title="GoogTech's Blog Site" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/43493852?v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/blog/archives/"><div class="headline">Articles</div><div class="length-num">202</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/tags/"><div class="headline">Tags</div><div class="length-num">81</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/blog/img/default-cover/47.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/blog/">GoogTech's Blog Site</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Vue.js的生命周期<a class="post-edit-link" href="https://github.com/GoogTech/blog/edit/HexoBackup/source/_posts/Vue-js的生命周期.md" title="Edited on" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2019-07-20T21:56:19.000Z" title="undefined 2019-07-20 21:56:19">2019-07-20</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">1.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>5min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Vue.js的生命周期"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/blog/2019/07/20/Vue-js%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/blog/2019/07/20/Vue-js%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="学习笔记-详解Vue-js的生命周期"><a href="#学习笔记-详解Vue-js的生命周期" class="headerlink" title="学习笔记 : 详解Vue.js的生命周期"></a>学习笔记 : 详解Vue.js的生命周期</h2><h3 id="Vue实例的生命周期函数"><a href="#Vue实例的生命周期函数" class="headerlink" title="Vue实例的生命周期函数"></a>Vue实例的生命周期函数</h3><p><em>从Vue实例创建,运行,到销毁期间,总是伴随着各种各样的事件,这些事件统称为生命周期,至于生命周期钩子只不过是生命周期事件的别名而已. 其生命周期图如下所示 :</em></p>
+<img src="/blog/2019/07/20/Vue-js%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/Vue-lifecycle.png" class="">
+
+<h4 id="初始阶段"><a href="#初始阶段" class="headerlink" title="初始阶段"></a>初始阶段</h4><table>
+<thead>
+<tr>
+<th align="center">钩子函数</th>
+<th align="center">描述</th>
+<th align="center">数据</th>
+<th align="center">真实DOM</th>
+<th align="center">项目中的应用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">beforeCreate</td>
+<td align="center">表示组件创建前的准备工作,为事件的发布订阅和生命周期的开始做初始化</td>
+<td align="center">无</td>
+<td align="center">无</td>
+<td align="center">项目中一般不使用</td>
+</tr>
+<tr>
+<td align="center">created</td>
+<td align="center">表示组件创建结束</td>
+<td align="center">有</td>
+<td align="center">无</td>
+<td align="center">异步数据请求,然后可以进行一次默认数据的修改</td>
+</tr>
+<tr>
+<td align="center">beforeMount</td>
+<td align="center">表示组件装载前的准备工作(VDOM)</td>
+<td align="center">有</td>
+<td align="center">无</td>
+<td align="center">数据请求,它也可以进行一次数据修改</td>
+</tr>
+<tr>
+<td align="center">mounted</td>
+<td align="center">组件挂载结束,真实DOM渲染完成</td>
+<td align="center">有</td>
+<td align="center">有</td>
+<td align="center">DOM操作,第三方库的实例化</td>
+</tr>
+</tbody></table>
+<ul>
+<li><em><code>beforeCreate</code> : 在实例初始化之后,数据观测(data observer)和event/watcher事件配置之前被调用</em></li>
+<li><em><code>created</code> : 实例已经创建完成之后被调用. 在这一步,实例已完成以下的配置 : 数据观测(data observer)属性初始化和方法的运算,watch/event事件回调. 然而挂载阶段还没开始,<code>$el</code>属性目前不可见</em></li>
+<li><em><code>beforeMount</code> : 在挂载开始之前被调用,相关的render函数首次被调用</em></li>
+<li><em><code>mounted</code> : <code>el</code>被新创建的<code>vm.$el</code>替换，并挂载到实例上去之后调用该钩子. 如果root实例挂载了一个文档内元素,当mounted被调用时vm.$el也在文档内</em></li>
+</ul>
+<h4 id="运行阶段"><a href="#运行阶段" class="headerlink" title="运行阶段"></a>运行阶段</h4><table>
+<thead>
+<tr>
+<th align="center">钩子函数</th>
+<th align="center">描述</th>
+<th align="center">数据</th>
+<th align="center">真实DOM</th>
+<th align="center">项目中的应用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">beforeUpdate</td>
+<td align="center">数据更新前的准备工作,数据修改才会执行</td>
+<td align="center">有(修改后的数据)</td>
+<td align="center">有</td>
+<td align="center">生成新的VDOM,然后通过diff算法进行两次VDOM对比,没有太多的操作意义</td>
+</tr>
+<tr>
+<td align="center">updated</td>
+<td align="center">数据更新结束,通过render函数渲染真实DOM</td>
+<td align="center">有</td>
+<td align="center">有(重新渲染后的真实DOM)</td>
+<td align="center">可以进行异步数据请求得到的DOM渲染的第三方库实例化</td>
+</tr>
+</tbody></table>
+<ul>
+<li><em><code>beforeUpdate</code> : 数据更新时调用,发生在虚拟DOM重新渲染和打补丁之前. 你可以在这个钩子中进一步地更改状态,这不会触发附加的重渲染过程</em></li>
+<li><em><code>updated</code> : 由于数据更改导致的虚拟DOM重新渲染和打补丁,在这之后会调用该钩子. 当这个钩子被调用时,组件DOM已经更新,所以你现在可以执行依赖于DOM的操作</em></li>
+</ul>
+<h4 id="销毁阶段"><a href="#销毁阶段" class="headerlink" title="销毁阶段"></a>销毁阶段</h4><table>
+<thead>
+<tr>
+<th align="center">钩子函数</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">beforeDestroy</td>
+<td align="center">组件即将销毁,准备调用<code>$destroy()</code>方法</td>
+</tr>
+<tr>
+<td align="center">destroyed</td>
+<td align="center">组件销毁结束</td>
+</tr>
+</tbody></table>
+<ul>
+<li><em><code>beforeDestroy</code> : 实例销毁之前调用. 在这一步,实例仍然完全可用</em></li>
+<li><em><code>destroyed</code> : Vue实例销毁后调用. 调用后,Vue实例指示的所有东西都会解绑定,所有的事件监听器会被移除,所有的子实例也会被销毁</em></li>
+</ul>
+<h3 id="生命周期函数程序示例"><a href="#生命周期函数程序示例" class="headerlink" title="生命周期函数程序示例"></a>生命周期函数程序示例</h3><p><em>可通过下面这个简单实例来观察这些生命周期函数执行的时机哟 ~</em></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;resources/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>the life cycle of Vue<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">h2</span>&gt;</span>&#123;&#123;title&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;randomTitle()&quot;</span>&gt;</span>Change title<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;destoryVm()&quot;</span>&gt;</span>destory VM<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">			<span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">				<span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span><br><span class="line"><span class="javascript">				<span class="function"><span class="title">data</span>(<span class="params"></span>)</span> &#123;</span></span><br><span class="line"><span class="javascript">					<span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">						<span class="attr">title</span>: <span class="string">&#x27;Hi Vue !&#x27;</span></span></span><br><span class="line"><span class="javascript">					&#125;</span></span><br><span class="line"><span class="javascript">				&#125;,</span></span><br><span class="line"><span class="javascript">				<span class="comment">//methods将被混入到Vue实例中.可以直接通过VM实例访问这些方法,或者在指令表达式中使用.</span></span></span><br><span class="line"><span class="javascript">				<span class="comment">//方法中的this自动绑定为Vue实例.</span></span></span><br><span class="line"><span class="javascript">				<span class="attr">methods</span>: &#123;</span></span><br><span class="line"><span class="javascript">					<span class="attr">randomTitle</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">						<span class="comment">//floor:returns the largest integer less than or equal to a number. </span></span></span><br><span class="line"><span class="javascript">						<span class="built_in">this</span>.title = <span class="string">&#x27;Hi &#x27;</span> + [<span class="string">&#x27;HTML&#x27;</span>, <span class="string">&#x27;CSS&#x27;</span>, <span class="string">&#x27;JS&#x27;</span>][<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">2.99</span>)]</span></span><br><span class="line"><span class="javascript">					&#125;,</span></span><br><span class="line"><span class="javascript">					<span class="attr">destoryVm</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">						<span class="built_in">this</span>.$destroy()</span></span><br><span class="line"><span class="javascript">					&#125;</span></span><br><span class="line"><span class="javascript">				&#125;,</span></span><br><span class="line"><span class="javascript">				<span class="comment">//实例初始化后,数据观测和事件绑定之前</span></span></span><br><span class="line"><span class="javascript">				<span class="function"><span class="title">beforeCreate</span>(<span class="params"></span>)</span> &#123;</span></span><br><span class="line"><span class="javascript">					<span class="comment">//注:此时data和methods还未被初始化哟</span></span></span><br><span class="line"><span class="javascript">					<span class="built_in">console</span>.log(<span class="string">&#x27;before create&#x27;</span>)</span></span><br><span class="line"><span class="javascript">				&#125;,</span></span><br><span class="line"><span class="javascript">				<span class="comment">//实例初始化完成,挂载尚未开始时 </span></span></span><br><span class="line"><span class="javascript">				<span class="function"><span class="title">created</span>(<span class="params"></span>)</span> &#123;</span></span><br><span class="line"><span class="javascript">					<span class="comment">//注:此时data与methods已被初始化了哟</span></span></span><br><span class="line"><span class="javascript">					<span class="built_in">console</span>.log(<span class="string">&#x27;created&#x27;</span>)</span></span><br><span class="line"><span class="javascript">				&#125;,</span></span><br><span class="line"><span class="javascript">				<span class="comment">//挂载之前,render函数首先被调用时</span></span></span><br><span class="line"><span class="javascript">				<span class="function"><span class="title">beforeMount</span>(<span class="params"></span>)</span> &#123;</span></span><br><span class="line"><span class="javascript">					<span class="comment">//注:此时模板已在内存中编译完成,但尚未把模板渲染到页面中</span></span></span><br><span class="line"><span class="javascript">					<span class="built_in">console</span>.log(<span class="string">&#x27;before mount&#x27;</span>)</span></span><br><span class="line"><span class="javascript">				&#125;,</span></span><br><span class="line"><span class="javascript">				<span class="comment">//在实例挂载到DOM节点之后</span></span></span><br><span class="line"><span class="javascript">				<span class="function"><span class="title">mounted</span>(<span class="params"></span>)</span> &#123;</span></span><br><span class="line"><span class="javascript">					<span class="comment">//注:此时内存中的模板已真实挂载到页面中,继而完成页面的渲染</span></span></span><br><span class="line"><span class="javascript">					<span class="built_in">console</span>.log(<span class="string">&#x27;mounted&#x27;</span>)</span></span><br><span class="line"><span class="javascript">				&#125;,</span></span><br><span class="line"><span class="javascript">				<span class="comment">//数据更新时,在虚拟DOM状态变化之前</span></span></span><br><span class="line"><span class="javascript">				<span class="function"><span class="title">beforeUpdate</span>(<span class="params"></span>)</span> &#123;</span></span><br><span class="line"><span class="javascript">					<span class="comment">//注:数据被修改时则触发该事件,但此时页面上的数据并未更新哟</span></span></span><br><span class="line"><span class="javascript">					<span class="built_in">console</span>.log(<span class="string">&#x27;before update&#x27;</span>)</span></span><br><span class="line"><span class="javascript">				&#125;,</span></span><br><span class="line"><span class="javascript">				<span class="comment">//虚拟DOM被重新渲染之后</span></span></span><br><span class="line"><span class="javascript">				<span class="function"><span class="title">updated</span>(<span class="params"></span>)</span> &#123;</span></span><br><span class="line"><span class="javascript">					<span class="comment">//注:此时页面中的数据已经与data保持同步了哟</span></span></span><br><span class="line"><span class="javascript">					<span class="built_in">console</span>.log(<span class="string">&#x27;updated&#x27;</span>)</span></span><br><span class="line"><span class="javascript">				&#125;,</span></span><br><span class="line"><span class="javascript">				<span class="comment">//实例销毁之前,此时实例依然可用</span></span></span><br><span class="line"><span class="javascript">				<span class="function"><span class="title">beforeDestroy</span>(<span class="params"></span>)</span> &#123;</span></span><br><span class="line"><span class="javascript">					<span class="built_in">console</span>.log(<span class="string">&#x27;before destory&#x27;</span>)</span></span><br><span class="line"><span class="javascript">				&#125;,</span></span><br><span class="line"><span class="javascript">				<span class="comment">//实例销毁后,此时Vue实例及其子实例将完全解绑</span></span></span><br><span class="line"><span class="javascript">				<span class="function"><span class="title">destroyed</span>(<span class="params"></span>)</span> &#123;</span></span><br><span class="line"><span class="javascript">					<span class="built_in">console</span>.log(<span class="string">&#x27;destoryed&#x27;</span>)</span></span><br><span class="line"><span class="javascript">				&#125;</span></span><br><span class="line"><span class="javascript">			&#125;);</span></span><br><span class="line"><span class="javascript">		</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li><em>刚打开页面,既Vue示例刚被创建并挂载到DOM上时,调用的钩子函数如下图所示 :</em></li>
+</ol>
+<p><img src="Vue-js%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%5Cvue-lifecycle-created+mounted.PNG"></p>
+<ol start="2">
+<li><em>点击<code>change title</code>按钮来改变标题数据,继而会触发视图更新,调用的钩子函数如下图所示 :</em></li>
+</ol>
+<p><img src="Vue-js%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%5Cvue-lifecycle-updated.PNG"></p>
+<ol start="3">
+<li><em>点击<code>destroy VM</code>按钮来销毁Vue实例,调用的钩子函数如下图所示 :</em></li>
+</ol>
+<p><img src="Vue-js%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%5Cvue-lifecycle-destroyed.PNG"></p>
+<ol start="4">
+<li><em>之后,尝试多次点击<code>chang title</code>按钮,发现视图不再响应数据的变化,继而证明此时节点上绑定的Vue实例已被销毁 !</em></li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:hi@goog.tech">GoogTech</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://goog.tech/blog/2019/07/20/Vue-js%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">https://goog.tech/blog/2019/07/20/Vue-js的生命周期/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/Vue/">Vue</a></div><div class="post_share"><div class="social-share" data-image="/blog/img/default-cover/47.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> Donate</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/blog/img/wechat-sponsor.png" target="_blank"><img class="post-qr-code-img" src="/blog/img/wechat-sponsor.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/2019/07/21/Vue-js%E7%9A%84%E8%AF%AD%E6%B3%95/"><img class="prev-cover" src="/blog/img/default-cover/58.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Vue.js的语法</div></div></a></div><div class="next-post pull-right"><a href="/blog/2019/07/19/Hi-Vue/"><img class="next-cover" src="/blog/img/default-cover/7.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Hi Vue ~</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/blog/2019/07/25/A-simple-comment-component-for-Vue/" title="A simple comment component for Vue"><img class="cover" src="/blog/img/default-cover/23.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-07-25</div><div class="title">A simple comment component for Vue</div></div></a></div><div><a href="/blog/2019/07/19/Hi-Vue/" title="Hi Vue ~"><img class="cover" src="/blog/img/default-cover/7.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-07-19</div><div class="title">Hi Vue ~</div></div></a></div><div><a href="/blog/2019/07/21/Vue-js的数据响应式原理/" title="Vue.js的数据响应式原理"><img class="cover" src="/blog/img/default-cover/30.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-07-21</div><div class="title">Vue.js的数据响应式原理</div></div></a></div><div><a href="/blog/2019/07/23/Vue-js的自定义指令与过滤器/" title="Vue.js的自定义指令与过滤器"><img class="cover" src="/blog/img/default-cover/33.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-07-23</div><div class="title">Vue.js的自定义指令与过滤器</div></div></a></div><div><a href="/blog/2019/07/21/Vue-js的语法/" title="Vue.js的语法"><img class="cover" src="/blog/img/default-cover/58.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-07-21</div><div class="title">Vue.js的语法</div></div></a></div><div><a href="/blog/2019/07/24/Vue组件的定义及基本用法/" title="Vue组件的定义及基本用法"><img class="cover" src="/blog/img/default-cover/23.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-07-24</div><div class="title">Vue组件的定义及基本用法</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E8%AF%A6%E8%A7%A3Vue-js%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">1.</span> <span class="toc-text">学习笔记 : 详解Vue.js的生命周期</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue%E5%AE%9E%E4%BE%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.</span> <span class="toc-text">Vue实例的生命周期函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E9%98%B6%E6%AE%B5"><span class="toc-number">1.1.1.</span> <span class="toc-text">初始阶段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E9%98%B6%E6%AE%B5"><span class="toc-number">1.1.2.</span> <span class="toc-text">运行阶段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%94%80%E6%AF%81%E9%98%B6%E6%AE%B5"><span class="toc-number">1.1.3.</span> <span class="toc-text">销毁阶段</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0%E7%A8%8B%E5%BA%8F%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.2.</span> <span class="toc-text">生命周期函数程序示例</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2022 By GoogTech</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="/blog/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'cuhS73KNdoQ8SJpCFhaalYHe-gzGzoHsz',
+      appKey: 'bBxVEeuGBYAXa68aQv8mGUjn',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

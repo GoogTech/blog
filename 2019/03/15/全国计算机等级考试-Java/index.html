@@ -1,0 +1,371 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>全国计算机等级考试-Java | GoogTech's Blog Site</title><meta name="keywords" content="Java,NCRE"><meta name="author" content="GoogTech,hi@goog.tech"><meta name="copyright" content="GoogTech"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="NCRE(National Computer Rank Examination) —— 二级Java篇   敲黑板：二级考试的试题都是在往年的试卷中随机抽取的 ! 勿慌 ✧⁺⸜(●˙▾˙●)⸝⁺✧  选择题总结(重点+易错点)   try与catch的匹配是: catch到的异常是try中可能抛出的异常或其子类的实例.  按照标准的I&#x2F;O模型,Java提供了三种标准流,分别为：System.in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="全国计算机等级考试-Java">
+<meta property="og:url" content="https://goog.tech/blog/2019/03/15/%E5%85%A8%E5%9B%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AD%89%E7%BA%A7%E8%80%83%E8%AF%95-Java/index.html">
+<meta property="og:site_name" content="GoogTech&#39;s Blog Site">
+<meta property="og:description" content="NCRE(National Computer Rank Examination) —— 二级Java篇   敲黑板：二级考试的试题都是在往年的试卷中随机抽取的 ! 勿慌 ✧⁺⸜(●˙▾˙●)⸝⁺✧  选择题总结(重点+易错点)   try与catch的匹配是: catch到的异常是try中可能抛出的异常或其子类的实例.  按照标准的I&#x2F;O模型,Java提供了三种标准流,分别为：System.in">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://goog.tech/blog/img/default-cover/1.png">
+<meta property="article:published_time" content="2019-03-15T11:10:42.000Z">
+<meta property="article:modified_time" content="2022-01-05T03:09:17.804Z">
+<meta property="article:author" content="GoogTech">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="NCRE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://goog.tech/blog/img/default-cover/1.png"><link rel="shortcut icon" href="/blog/img/favicon.png"><link rel="canonical" href="https://goog.tech/blog/2019/03/15/%E5%85%A8%E5%9B%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AD%89%E7%BA%A7%E8%80%83%E8%AF%95-Java/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?38cca3f22b1618b6439834b03516d7e7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-206511912-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-206511912-1');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: GoogTech","link":"Link: ","source":"Source: GoogTech's Blog Site","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '全国计算机等级考试-Java',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-05 03:09:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/blog/atom.xml" title="GoogTech's Blog Site" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/43493852?v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/blog/archives/"><div class="headline">Articles</div><div class="length-num">202</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/tags/"><div class="headline">Tags</div><div class="length-num">81</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/blog/img/default-cover/1.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/blog/">GoogTech's Blog Site</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">全国计算机等级考试-Java<a class="post-edit-link" href="https://github.com/GoogTech/blog/edit/HexoBackup/source/_posts/全国计算机等级考试-Java.md" title="Edited on" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2019-03-15T11:10:42.000Z" title="undefined 2019-03-15 11:10:42">2019-03-15</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">2.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>8min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="全国计算机等级考试-Java"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/blog/2019/03/15/%E5%85%A8%E5%9B%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AD%89%E7%BA%A7%E8%80%83%E8%AF%95-Java/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/blog/2019/03/15/%E5%85%A8%E5%9B%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AD%89%E7%BA%A7%E8%80%83%E8%AF%95-Java/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="NCRE-National-Computer-Rank-Examination-——-二级Java篇"><a href="#NCRE-National-Computer-Rank-Examination-——-二级Java篇" class="headerlink" title="NCRE(National Computer Rank Examination) —— 二级Java篇"></a>NCRE(National Computer Rank Examination) —— 二级<code>Java</code>篇</h3><ul>
+<li><img src="/blog/2019/03/15/%E5%85%A8%E5%9B%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AD%89%E7%BA%A7%E8%80%83%E8%AF%95-Java/excitement.jpg" class=""></li>
+</ul>
+<p><strong><code>敲黑板：二级考试的试题都是在往年的试卷中随机抽取的 ! 勿慌 ✧⁺⸜(●˙▾˙●)⸝⁺✧</code></strong></p>
+<ul>
+<li><h3 id="选择题总结-重点-易错点"><a href="#选择题总结-重点-易错点" class="headerlink" title="选择题总结(重点+易错点)"></a>选择题总结(<code>重点+易错点</code>)</h3></li>
+</ul>
+<ol>
+<li><p><em>try与catch的匹配是: catch到的异常是try中可能抛出的异常或其子类的实例.</em></p>
+</li>
+<li><p><em>按照标准的I/O模型,Java提供了三种标准流,分别为：<code>System.in</code> , <code>System.out</code> , <code>System.err</code>.</em></p>
+</li>
+<li><p><em>属于过滤字节输出流的类是：<code>BufferedOutputSteam</code></em>.</p>
+</li>
+<li><p><em>当窗口被激活时，调用的窗口事件的方法是：<code>public void windowActivated(WindowEvent)</code></em></p>
+</li>
+<li><p><em>对类进行并发控制，需要私有属性进行定义变量(private),用锁将方法锁起来<code>synchronized</code>,这样就不会出现并发出现异常情况.</em></p>
+</li>
+<li><p><em><code>Swing</code>组件的外观与具体平台无关.</em></p>
+</li>
+<li><p><em>在Java中的开发包1.7之前，switch不支持<code>String</code>类型数据,case值和key值匹配时,程序会报错 !</em></p>
+</li>
+<li><p><em>在一个类中可以定义为多个名称相同,但参数不同的方法,这种机制叫做：重载.</em></p>
+</li>
+<li><p><em>匿名内部类也就是没有名字的内部类,正因为没有名字,所以匿名内部类只能使用一次!它通常用来简化代码编写,但使用匿名内部类还有一个前提条            件：<code>必须继承一个父类或实现一个接口 !</code></em></p>
+</li>
+<li><p><em>类变量必须带有的修饰符为：static</em></p>
+</li>
+<li><p><em>在Java中二维数组定义的语法为：数据类型[][]数组名=new 数据类型[行数][列数];</em></p>
+</li>
+<li><p><em>在Java.io包的字节输入流中,过滤器输入流的基类是: <code>FilterInputStream</code></em></p>
+</li>
+<li><p><em>所有字符输入流都从<code>Reader</code>类继承,所有字符输出流都从<code>Writer</code>类继承.</em></p>
+</li>
+<li><p><em>Swing除继续沿用了AWT中的<code>FlowLayout,BorderLayout,CardLayout,GridLayout,GridBagLayout</code>布局管理器外,新增了一个<code>BoxLayout</code>布局管理      器.<code>BoxLayout</code>布局管理器按照自上而下(y轴)或者从左到右(x轴)的顺序布局依次加入构件.</em></p>
+</li>
+<li><p><em>java.awt.event包中定义了适配器类；该包中定义的适配器类包括以下几个:</em> </p>
+<ul>
+<li><code>ComponentAdapter 构件适配器</code></li>
+<li><code>ContainerAdapter 容器适配器</code></li>
+<li><code>FocusAdapter 焦点适配器</code></li>
+<li><code>MouseAdapter 鼠标适配器</code></li>
+<li><code>KeyAdapter 键盘适配器</code></li>
+<li><code>MouseMotionAdapter 鼠标运动适配器</code> </li>
+<li><code>WindowAdapters 窗口适配器</code></li>
+<li><code>而FrameAdapter 不属于事件适配器类 !</code>*</li>
+</ul>
+</li>
+<li><p><em>如果发生下面几种情况时,处于运行状态的线程就进入阻塞状态 :</em></p>
+<ul>
+<li>线程调用<code>sleep();</code> / <code>join();</code> / <code>wait();</code>方法.</li>
+<li>如果线程中使用<code>sychronized</code>来请求对象的所未获得时.</li>
+<li>如果线程中有输入/输出操作,则进入阻塞状态;待输入/输出操作结束后,线程进入可运行状态.</li>
+</ul>
+</li>
+<li><p><em>在Java中,使用<code>synchronized</code>关键字标识临界区.Java平台将每个由<code>synchronized</code>语句设置的对象设置一个锁,称为<code>对象锁</code>,它是一种独占的排        他锁,既同一时刻最多只能有一个线程获取该锁,为了能够正常地使用对象锁，对共享数据的所有访问都必须在临界区内.同时临界区的共享数据必须是私       有的,确保只能通过对象的方法才能访问到.</em> </p>
+</li>
+<li><p><em>算法的空间复杂度是指算法在执行过程中所需的内存空间.算法执行期间所需的存储空间包括3个部分:</em></p>
+<ul>
+<li>输入数据的存储空间</li>
+<li>程序本身所占的存储空间</li>
+<li>算法执行过程中所需要的额外空间</li>
+</ul>
+</li>
+<li><p><em><code>需求分析</code>是对待开发软件提出的需求进行分析并给出详细设计,是解决软件做什么的阶段.</em></p>
+</li>
+<li><p><em>软件设计可以使用的工具有<code>总体结构图</code>,<code>程序流程图</code>,<code>N-S图</code>,<code>PAD图</code>..注意：<code>数据流程图(DFD)</code>是需求分析使用的工具 !</em></p>
+</li>
+<li><p><em>逻辑设计阶段形成逻辑数据模型(从<code>E-R图</code>向<code>关系模式</code>转换).注意点：关系模式设计属于：<code>逻辑设计</code></em></p>
+</li>
+<li><p><em>能够运行Java字节码的命令为: <code>javac</code></em></p>
+</li>
+<li><p><em><code>break</code>在java起到跳出循环的作用.<code>continue</code>是跳过当次循环继续执行下一次循环.</em></p>
+</li>
+<li><p><em><code>XML</code>只是一个配置文件通过流将XML件读取出来，并不属于字节流 !</em></p>
+</li>
+<li><p><em><code>yield()</code>该方法与<code>sleep()</code>类似,只是不能由用户指定暂停多长时间,并且<code>yield()</code>方法只能让同优级的线程有执行的机会 !</em></p>
+</li>
+<li><p><em>javap的作用: <code>Javap</code>是 Java class文件分解器,可以反编译,也可以查看java编译器生成的字节码.</em></p>
+</li>
+<li><p><em>在数据库设计中,在需求分析阶段建立数据字典.</em></p>
+</li>
+<li><p><em>注意: 在 <code>/</code> 运算中并不存四舍五入的操作!只取整数部分!</em></p>
+</li>
+<li><p><em>正则表达式是一种描述某种匹配检索规则的字符串.</em></p>
+<ul>
+<li>java.util.regex 包中有一个<code>Pattern</code>类,用于进行快速模拟匹配.</li>
+<li>java.util.regex 包还具有一个<code>Matcher</code>匹配器类. </li>
+</ul>
+</li>
+<li><p><em><code>javax.swing.text</code>是文本类包,<code>javax.swing.table</code>是表格类包,<code>javax.swing.plaf</code>包括一些对外观样式操作的类和接口.</em></p>
+</li>
+<li><p><em><code>JFrame</code>是页面容器,<code>JToolBar</code>为工具条(属于容器的一种).</em></p>
+</li>
+<li><p><em>Java中的线程包含<code>CPU</code>,<code>代码</code>,<code>数据</code>三个部分</em></p>
+</li>
+<li><p><em><code>interrupt();</code>中断线程:中断状态被清除. <code>start();</code>用于开启一个线程. <code>notify();</code>用于唤醒一个处于等待状态的线程.</em></p>
+</li>
+<li><p><em>当一个Applet所在的浏览器被最小化以后,不能被调用的Applet方法是<code>init()</code></em></p>
+<ul>
+<li><code>init();</code> 当浏览器加载applet,进行初始化的时候调用该方法.</li>
+<li><code>start();</code> 该方法在<code>init()</code>方法之后调用,当用户从其它页面转到包含applet的页面时该方法也被调用.</li>
+<li><code>stop();</code> 在用户离开包含applet的页面时被调用.</li>
+<li><code>destroy();</code> 当applet不再被使用,或浏览器退出的时候,该方法被调用.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ul>
+<li><h3 id="操作题总结-重点-API介绍"><a href="#操作题总结-重点-API介绍" class="headerlink" title="操作题总结(重点+API介绍)"></a>操作题总结(<code>重点+API介绍</code>)</h3></li>
+</ul>
+<ol>
+<li><p><em>数组的算法排序继承于 <code>Comparable</code></em></p>
+</li>
+<li><p><em>JApplet(<code>init()</code>方法中接收来自html页面上的参数).</em></p>
+</li>
+<li><p><em>通过<code>setName(String str);</code>为继承Thread的子类的线程初始化名字.</em></p>
+</li>
+<li><p><em><code>equals();</code>方法比较的是两个字符串的内容是否相等.而 <code>==</code> 符号比较的是: 两个字符串的地址是否相同.</em></p>
+</li>
+<li><p><em>当程序中涉及鼠标点击事件需要继承<code>MouseAdapter</code>类来对鼠标做出的动作进行相应的回应 !</em></p>
+</li>
+<li><p><em><code>paint(Graphics g)</code>,调用 <code>g.drawOval();</code>可以画同心圆.</em></p>
+</li>
+<li><p><em>Applet中绘制指定文本字符串使用：<code>drawString();</code></em></p>
+</li>
+<li><p><em>Java中String类提供了<code>charAt();</code>方法遍历每个字符.</em> </p>
+</li>
+<li><p><em>常用布局管理器</em></p>
+<ul>
+<li><code>FlowLayout</code>,<code>BorderLayout</code>,<code>GridLayout</code>,<code>CardLayout</code>,<code>GridBagLayout</code>.</li>
+<li>注意: <code>JLabel</code>对象可以显示文本,图像或同时显示两者,创建对象时,在构造函数中输入要显示的对象即可.</li>
+</ul>
+</li>
+<li><p><em><code>getContentPane();</code>方法获得JFrame的内容面板. <code>getSource();</code> 找到给定名称的资源</em>.</p>
+</li>
+<li><p><em><code>frame.pack();-Method in class java.awt. Window.</code> 使此窗口的大小适合其子组件的首选大小和布局.</em></p>
+</li>
+<li><p><em><code>JPanel</code>是Java图形用户界面(GUI)工具包swing中的面板容器类,包含于javax.swing包,是一种轻量级容器,可以加入到<code>JFrame</code>窗体中,所以我们       需要继承此类作为画板供JFrame类来操作</em></p>
+</li>
+<li><p> <em>通过鼠标点击获取相应的请求命令方法为: <code>e.getActionCommand();</code></em></p>
+</li>
+<li><p><em><code>beep() - Method in class java.awt. Toolkit</code>. 根据本地系统设置和硬件功能发出音频蜂鸣声.</em></p>
+<ul>
+<li>for example: Toolkit.getDefaultToolkit().beep(); </li>
+</ul>
+</li>
+<li><p><em><code>drawRect(int, int, int, int) - Method in class java.awt.Graphics</code> 绘制指定矩形的轮廓.</em></p>
+</li>
+<li><p><em><code>DataOutputStream</code> 数据输出流允许应用程序以机器无关方式将Java基本数据类型写到底层输出流,<br> <code>DataInputStream</code> 类提供<code>readChar();</code>方法来读取文件中的字符.</em></p>
+</li>
+<li><p><em><code>Java IO</code></em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   System.getProperty(<span class="string">&quot;user.dir&quot;</span>);     获取当前的工作路径.</span><br><span class="line">getName();                          方法获取文件名，getPath();获取文件路径.</span><br><span class="line">isDirectory();                      判断是否是文件.</span><br></pre></td></tr></table></figure></li>
+<li><p><em><code>extends Thread</code> 与 <code>implements Runnable</code> 使用</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">   当通过`implements Runnable`创建线程:将实现了Runnable接口的对象作为`target`参数传递给Thread类即可,格式如下:</span><br><span class="line"><span class="keyword">new</span> Thread(`实现了Runnable接口的对象名`);</span><br><span class="line">举例:	</span><br><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Java_2</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123; </span><br><span class="line"> 		    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[]args)</span> </span>&#123;</span><br><span class="line">     			Java_2 r = <span class="keyword">new</span> Java_2();</span><br><span class="line">     		        Thread t = <span class="keyword">new</span> Thread( r );</span><br><span class="line">    			       t.start(); </span><br><span class="line"> 			 &#125;···</span><br><span class="line"></span><br><span class="line">   通过`extends Thread`创建线程:</span><br><span class="line">Thread本身实现了`Runnable`接口,重写其`run()`方法即可;线程创建后,需要调用`start();`方法运行.</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ol start="20">
+<li><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">setPreferredSize(<span class="keyword">new</span> Dimension(<span class="number">280</span>, <span class="number">60</span>));</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPreferredSize</span><span class="params">(Dimension preferredSize)</span></span>&#123;...&#125;</span><br><span class="line"></span><br><span class="line">将此组件的首选大小设置为常量值. 随后`getPreferredSize()`总是返回此值.将首选大小设置为`<span class="keyword">null</span>`可恢复默认行为. </span><br><span class="line">`Dimension` : 类封装单个对象中组件的宽度和高度(以整数精度).</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ol start="21">
+<li> <em><code>DecimalFormat</code>类提供的<code>format();</code>方法可以将数据格式化.</em><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> class DecimalFormat extends <span class="title">NumberFormatDecimalFormat</span><span class="params">()</span></span>&#123;...&#125;</span><br><span class="line"></span><br><span class="line">`DecimalFormat`是格式为十进制数的NumberFormat的具体子类. 它具有各种功能,旨在使任何地区的数字解析和格式化,包括支持西方,阿拉伯语和印度数字。它还支持不同类型的数字,包括整数(<span class="number">123.</span>.),定点数(<span class="number">123.4</span>),科学记数法(<span class="number">1.23E4</span>),百分比(<span class="number">12</span>％),和货币金额(<span class="number">123</span>美元),所有这些都可以进行本地化.</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ol start="22">
+<li><p><em>窗体事件</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">setDefaultCloseOperation();     设置用户在此窗口上发起<span class="string">&quot;close&quot;</span>时默认执行操作.</span><br><span class="line">JFrame.EXIT_ON_CLOSE;           `close`式关闭程序退出窗口.</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> example: frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   </span><br></pre></td></tr></table></figure></li>
+<li><p><em>常用事件类</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addActionListener</span><span class="params">(ActionListener e)</span></span>&#123;..&#125;</span><br><span class="line">添加指定的动作侦听器以从此按钮接收动作事件.当用户按下或释放鼠标在此按钮上时,会发生动作事件.如果`e`为空,则不会抛出任何异常.</span><br><span class="line">也不会执行任何操作.</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> example: saveButton.addActionListener(<span class="keyword">this</span>); </span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<ul>
+<li><p><strong>哎哟终于写好了 ! 伸个懒腰 ٩(๑❛ᴗ❛๑)۶ ~ 最近没零花钱买<code>麦斯威尔</code>了,然后每天的状态就像下面的俺的小黄人一样  ╰( ´・ω・)つ──☆✿✿✿</strong></p>
+</li>
+<li><img src="/blog/2019/03/15/%E5%85%A8%E5%9B%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AD%89%E7%BA%A7%E8%80%83%E8%AF%95-Java/awkwardness.jpg" class=""></li>
+<li><h5 id="后期有时间还写推出NCRE-MySQL-NCRE-C-NCRE-三级数据库等全国计算机等考题目解析-最近忙于备考-所以先写作先放一放"><a href="#后期有时间还写推出NCRE-MySQL-NCRE-C-NCRE-三级数据库等全国计算机等考题目解析-最近忙于备考-所以先写作先放一放" class="headerlink" title="后期有时间还写推出NCRE-MySQL,NCRE-C,NCRE-三级数据库等全国计算机等考题目解析 ! 最近忙于备考,所以先写作先放一放 ~"></a>后期有时间还写推出<code>NCRE-MySQL</code>,<code>NCRE-C</code>,<code>NCRE-三级数据库</code>等全国计算机等考题目解析 ! 最近忙于备考,所以先写作先放一放 ~</h5></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:hi@goog.tech">GoogTech</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://goog.tech/blog/2019/03/15/%E5%85%A8%E5%9B%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AD%89%E7%BA%A7%E8%80%83%E8%AF%95-Java/">https://goog.tech/blog/2019/03/15/全国计算机等级考试-Java/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/Java/">Java</a><a class="post-meta__tags" href="/blog/tags/NCRE/">NCRE</a></div><div class="post_share"><div class="social-share" data-image="/blog/img/default-cover/1.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> Donate</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/blog/img/wechat-sponsor.png" target="_blank"><img class="post-qr-code-img" src="/blog/img/wechat-sponsor.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/2019/03/16/static-keyword/"><img class="prev-cover" src="/blog/img/default-cover/18.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">static keyword</div></div></a></div><div class="next-post pull-right"><a href="/blog/2019/03/14/JDBC-%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E5%88%86%E6%9E%90/"><img class="next-cover" src="/blog/img/default-cover/12.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">JDBC 常见错误分析</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/blog/2019/05/30/DBUtils/" title="DBUtils"><img class="cover" src="/blog/img/default-cover/45.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-05-30</div><div class="title">DBUtils</div></div></a></div><div><a href="/blog/2019/05/28/Database-Connection-Pool/" title="Database Connection Pool"><img class="cover" src="/blog/img/default-cover/34.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-05-28</div><div class="title">Database Connection Pool</div></div></a></div><div><a href="/blog/2019/03/14/JDBC-常见错误分析/" title="JDBC 常见错误分析"><img class="cover" src="/blog/img/default-cover/12.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-03-14</div><div class="title">JDBC 常见错误分析</div></div></a></div><div><a href="/blog/2019/04/08/Java-Servlet-API/" title="Java Servlet API"><img class="cover" src="/blog/img/default-cover/14.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-08</div><div class="title">Java Servlet API</div></div></a></div><div><a href="/blog/2019/04/05/Java-Servlet各版本使用详解/" title="Java Servlet各版本使用详解"><img class="cover" src="/blog/img/default-cover/57.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-05</div><div class="title">Java Servlet各版本使用详解</div></div></a></div><div><a href="/blog/2019/04/14/Java-annotation/" title="Java annotation"><img class="cover" src="/blog/img/default-cover/44.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-14</div><div class="title">Java annotation</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#NCRE-National-Computer-Rank-Examination-%E2%80%94%E2%80%94-%E4%BA%8C%E7%BA%A7Java%E7%AF%87"><span class="toc-number">1.</span> <span class="toc-text">NCRE(National Computer Rank Examination) —— 二级Java篇</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E9%A2%98%E6%80%BB%E7%BB%93-%E9%87%8D%E7%82%B9-%E6%98%93%E9%94%99%E7%82%B9"><span class="toc-number">2.</span> <span class="toc-text">选择题总结(重点+易错点)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E9%A2%98%E6%80%BB%E7%BB%93-%E9%87%8D%E7%82%B9-API%E4%BB%8B%E7%BB%8D"><span class="toc-number">3.</span> <span class="toc-text">操作题总结(重点+API介绍)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%8E%E6%9C%9F%E6%9C%89%E6%97%B6%E9%97%B4%E8%BF%98%E5%86%99%E6%8E%A8%E5%87%BANCRE-MySQL-NCRE-C-NCRE-%E4%B8%89%E7%BA%A7%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AD%89%E5%85%A8%E5%9B%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AD%89%E8%80%83%E9%A2%98%E7%9B%AE%E8%A7%A3%E6%9E%90-%E6%9C%80%E8%BF%91%E5%BF%99%E4%BA%8E%E5%A4%87%E8%80%83-%E6%89%80%E4%BB%A5%E5%85%88%E5%86%99%E4%BD%9C%E5%85%88%E6%94%BE%E4%B8%80%E6%94%BE"><span class="toc-number">3.0.1.</span> <span class="toc-text">后期有时间还写推出NCRE-MySQL,NCRE-C,NCRE-三级数据库等全国计算机等考题目解析 ! 最近忙于备考,所以先写作先放一放 ~</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2022 By GoogTech</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="/blog/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'cuhS73KNdoQ8SJpCFhaalYHe-gzGzoHsz',
+      appKey: 'bBxVEeuGBYAXa68aQv8mGUjn',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

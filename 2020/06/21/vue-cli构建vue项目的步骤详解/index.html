@@ -1,0 +1,234 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>vue-cli构建vue项目的步骤详解 | GoogTech's Blog Site</title><meta name="keywords" content="Vue"><meta name="author" content="GoogTech,hi@goog.tech"><meta name="copyright" content="GoogTech"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="简介构建一个 vue 项目最简单的方式就是使用脚手架工具 vue-cli. 其作用就是用配置好的模板迅速搭建起一个项目工程，进而省去自己配置 webpack 配置文件的基本内容，大大降低了初学者构建项目的难度. 以下是使用 vue-cli 构建 vue 项目的流程. 环境准备首先安装 Node.js，因为 vue 的安装及使用需要 node 和 npm 环境，最后可通过 node -v 以及 np">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue-cli构建vue项目的步骤详解">
+<meta property="og:url" content="https://goog.tech/blog/2020/06/21/vue-cli%E6%9E%84%E5%BB%BAvue%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%AD%A5%E9%AA%A4%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="GoogTech&#39;s Blog Site">
+<meta property="og:description" content="简介构建一个 vue 项目最简单的方式就是使用脚手架工具 vue-cli. 其作用就是用配置好的模板迅速搭建起一个项目工程，进而省去自己配置 webpack 配置文件的基本内容，大大降低了初学者构建项目的难度. 以下是使用 vue-cli 构建 vue 项目的流程. 环境准备首先安装 Node.js，因为 vue 的安装及使用需要 node 和 npm 环境，最后可通过 node -v 以及 np">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://goog.tech/blog/img/default-cover/5.png">
+<meta property="article:published_time" content="2020-06-21T22:43:31.000Z">
+<meta property="article:modified_time" content="2022-01-05T03:09:17.792Z">
+<meta property="article:author" content="GoogTech">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://goog.tech/blog/img/default-cover/5.png"><link rel="shortcut icon" href="/blog/img/favicon.png"><link rel="canonical" href="https://goog.tech/blog/2020/06/21/vue-cli%E6%9E%84%E5%BB%BAvue%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%AD%A5%E9%AA%A4%E8%AF%A6%E8%A7%A3/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?38cca3f22b1618b6439834b03516d7e7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-206511912-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-206511912-1');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: GoogTech","link":"Link: ","source":"Source: GoogTech's Blog Site","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'vue-cli构建vue项目的步骤详解',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-05 03:09:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/blog/atom.xml" title="GoogTech's Blog Site" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/43493852?v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/blog/archives/"><div class="headline">Articles</div><div class="length-num">202</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/tags/"><div class="headline">Tags</div><div class="length-num">81</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/blog/img/default-cover/5.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/blog/">GoogTech's Blog Site</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">vue-cli构建vue项目的步骤详解<a class="post-edit-link" href="https://github.com/GoogTech/blog/edit/HexoBackup/source/_posts/vue-cli构建vue项目的步骤详解.md" title="Edited on" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2020-06-21T22:43:31.000Z" title="undefined 2020-06-21 22:43:31">2020-06-21</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">702</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>2min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="vue-cli构建vue项目的步骤详解"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/blog/2020/06/21/vue-cli%E6%9E%84%E5%BB%BAvue%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%AD%A5%E9%AA%A4%E8%AF%A6%E8%A7%A3/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/blog/2020/06/21/vue-cli%E6%9E%84%E5%BB%BAvue%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%AD%A5%E9%AA%A4%E8%AF%A6%E8%A7%A3/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><em>构建一个 vue 项目最简单的方式就是使用脚手架工具 <code>vue-cli</code>. 其作用就是用配置好的模板迅速搭建起一个项目工程，进而省去自己配置 webpack 配置文件的基本内容，大大降低了初学者构建项目的难度. 以下是使用 vue-cli 构建 vue 项目的流程.</em></p>
+<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><p>首先安装 Node.js，因为 vue 的安装及使用需要 node 和 npm 环境，最后可通过 <code>node -v</code> 以及 <code>npm -v</code> 来检查是否安装成功.</p>
+<blockquote>
+<p> <a target="_blank" rel="noopener" href="https://nodejs.org/en/">https://nodejs.org/en/</a></p>
+</blockquote>
+<h3 id="安装淘宝npm"><a href="#安装淘宝npm" class="headerlink" title="安装淘宝npm"></a>安装淘宝npm</h3><p>为了加速下载 vue 项目依赖，安装一下淘宝的npm</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install -g cnpm --registry=https://registry.npm.taobao.org</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="安装vue-cli"><a href="#安装vue-cli" class="headerlink" title="安装vue-cli"></a>安装vue-cli</h3><ol>
+<li><p>首先安装vue-cli</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cnpm install --g vue-cli</span></span><br></pre></td></tr></table></figure></li>
+<li><p>检查是否安装成功</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vue --version</span></span><br><span class="line">@vue/cli 4.4.4</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="构建vue项目"><a href="#构建vue项目" class="headerlink" title="构建vue项目"></a>构建vue项目</h3><ol>
+<li>初始化的过程中，会有一个交互式的选项让你选择项目的一些配置，根据项目需求选择即可.<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 项目名称必须全部小写,否则会报错</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> vue init webpack hello-vue</span></span><br></pre></td></tr></table></figure>
+<img src="/blog/2020/06/21/vue-cli%E6%9E%84%E5%BB%BAvue%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%AD%A5%E9%AA%A4%E8%AF%A6%E8%A7%A3/vue-init-webpack-hello-vue.PNG" class=""></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">? Project name hello-vue # 项目名称</span><br><span class="line">? Project description a demo project for vue.js # 项目描述</span><br><span class="line">? Author (HuangYuhui &lt;Gentleman_0109@outlook.com&gt;) # 作者信息</span><br><span class="line">? Vue build standalone # 运行+编译时</span><br><span class="line">? Install vue-router? Yes # 安装 vue-router</span><br><span class="line">? Use ESLint to lint your code? Yes # 使用 ESLint 作为代码规范</span><br><span class="line">? Pick an ESLint preset Standard # 选择 Standard 的代码规范</span><br><span class="line">? Set up unit tests Yes # 安装单元测试</span><br><span class="line">? Pick a test runner jest # 测试模块</span><br><span class="line">? Setup e2e tests with Nightwatch? Yes # 安装 e2e 测试</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 共有三个选项,这里我们最好选择第三个,因为通过npm install安装vue项目依赖库非常的慢,所以我们可以在项目创建后,自己通过<span class="string">&quot;cnpm install&quot;</span>安装</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Should we run “npm install” <span class="keyword">for</span> you after the project has been created?</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> &lt;recommended&gt;&lt;use arrow keys&gt;Yes, use NPM  Yes, use Yarn  No, I will handle that myself</span></span><br><span class="line">? Should we run `npm install` for you after the project has been created? (recommended) npm # 使用包管理器 npm</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>项目构建完成之后会提示如下构建成功信息:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Project initialization finished!</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> ========================</span></span><br><span class="line"></span><br><span class="line">To get started:</span><br><span class="line"></span><br><span class="line">  cd hello-vue</span><br><span class="line">  npm run dev</span><br><span class="line"></span><br><span class="line">Documentation can be found at https://vuejs-templates.github.io/webpack</span><br></pre></td></tr></table></figure></li>
+<li><p>启动项目</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> hello-vue</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm run dev</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><em>项目默认会在 8080 端口启动，如果端口有占用，会自动调整端口. 打开浏览器输入 : <code>http://localhost:8080</code> 就会看到构建的 vue 项目主页，如下图所示</em></p>
+<img src="/blog/2020/06/21/vue-cli%E6%9E%84%E5%BB%BAvue%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%AD%A5%E9%AA%A4%E8%AF%A6%E8%A7%A3/localhost-8080.PNG" class="">
+
+<h3 id="安装vue的辅助工具"><a href="#安装vue的辅助工具" class="headerlink" title="安装vue的辅助工具"></a>安装vue的辅助工具</h3><p>如果项目可以正常启动，即可继续安装你所需的vue辅助工具 :</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 路由管理模块</span></span><br><span class="line">npm install vue-router --save</span><br><span class="line"><span class="meta">#</span><span class="bash"> 状态管理模块</span></span><br><span class="line">npm install vuex --save</span><br><span class="line"><span class="meta">#</span><span class="bash"> 网路请求模块</span></span><br><span class="line">npm install vue-resource --save</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装element-ui</span></span><br><span class="line">cnpm install element-ui --save</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装axios</span></span><br><span class="line">cnpm install axios --save</span><br><span class="line"><span class="meta">#</span><span class="bash"> ...</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/aizai846/archive/2020/04/05/12634878.html">Vue项目创建详解</a></p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.uxys.com/html/Vue/20200127/26722.html">vue-cli构建vue项目的步骤详解</a></p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:hi@goog.tech">GoogTech</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://goog.tech/blog/2020/06/21/vue-cli%E6%9E%84%E5%BB%BAvue%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%AD%A5%E9%AA%A4%E8%AF%A6%E8%A7%A3/">https://goog.tech/blog/2020/06/21/vue-cli构建vue项目的步骤详解/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/Vue/">Vue</a></div><div class="post_share"><div class="social-share" data-image="/blog/img/default-cover/5.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> Donate</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/blog/img/wechat-sponsor.png" target="_blank"><img class="post-qr-code-img" src="/blog/img/wechat-sponsor.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/2020/06/21/%E5%88%9B%E5%BB%BAvue%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/"><img class="prev-cover" src="/blog/img/default-cover/28.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">创建vue项目的几种方式</div></div></a></div><div class="next-post pull-right"><a href="/blog/2020/06/21/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E9%A1%B9%E7%9B%AE%E7%9A%84%E4%B8%A4%E7%A7%8D%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88/"><img class="next-cover" src="/blog/img/default-cover/24.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">前后端分离项目的两种部署方案</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/blog/2019/07/25/A-simple-comment-component-for-Vue/" title="A simple comment component for Vue"><img class="cover" src="/blog/img/default-cover/23.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-07-25</div><div class="title">A simple comment component for Vue</div></div></a></div><div><a href="/blog/2019/07/19/Hi-Vue/" title="Hi Vue ~"><img class="cover" src="/blog/img/default-cover/7.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-07-19</div><div class="title">Hi Vue ~</div></div></a></div><div><a href="/blog/2019/07/21/Vue-js的数据响应式原理/" title="Vue.js的数据响应式原理"><img class="cover" src="/blog/img/default-cover/30.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-07-21</div><div class="title">Vue.js的数据响应式原理</div></div></a></div><div><a href="/blog/2019/07/20/Vue-js的生命周期/" title="Vue.js的生命周期"><img class="cover" src="/blog/img/default-cover/47.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-07-20</div><div class="title">Vue.js的生命周期</div></div></a></div><div><a href="/blog/2019/07/23/Vue-js的自定义指令与过滤器/" title="Vue.js的自定义指令与过滤器"><img class="cover" src="/blog/img/default-cover/33.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-07-23</div><div class="title">Vue.js的自定义指令与过滤器</div></div></a></div><div><a href="/blog/2019/07/21/Vue-js的语法/" title="Vue.js的语法"><img class="cover" src="/blog/img/default-cover/58.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-07-21</div><div class="title">Vue.js的语法</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-number">1.1.</span> <span class="toc-text">环境准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%B7%98%E5%AE%9Dnpm"><span class="toc-number">1.2.</span> <span class="toc-text">安装淘宝npm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85vue-cli"><span class="toc-number">1.3.</span> <span class="toc-text">安装vue-cli</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E5%BB%BAvue%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.4.</span> <span class="toc-text">构建vue项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85vue%E7%9A%84%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7"><span class="toc-number">1.5.</span> <span class="toc-text">安装vue的辅助工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">1.6.</span> <span class="toc-text">参考</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2022 By GoogTech</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="/blog/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'cuhS73KNdoQ8SJpCFhaalYHe-gzGzoHsz',
+      appKey: 'bBxVEeuGBYAXa68aQv8mGUjn',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

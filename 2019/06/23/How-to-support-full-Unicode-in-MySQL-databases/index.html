@@ -1,0 +1,254 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>How to support full Unicode in MySQL databases | GoogTech's Blog Site</title><meta name="keywords" content="MySQL"><meta name="author" content="GoogTech,hi@goog.tech"><meta name="copyright" content="GoogTech"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="How to support full Unicode in MySQL databases · Mathias Bynens😂Alternative title: The things we do to store U+1F4A9 PILE OF POO (💩) correctly. Are you using MySQL’s utf8 charset in your databases?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to support full Unicode in MySQL databases">
+<meta property="og:url" content="https://goog.tech/blog/2019/06/23/How-to-support-full-Unicode-in-MySQL-databases/index.html">
+<meta property="og:site_name" content="GoogTech&#39;s Blog Site">
+<meta property="og:description" content="How to support full Unicode in MySQL databases · Mathias Bynens😂Alternative title: The things we do to store U+1F4A9 PILE OF POO (💩) correctly. Are you using MySQL’s utf8 charset in your databases?">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://goog.tech/blog/img/default-cover/1.png">
+<meta property="article:published_time" content="2019-06-23T08:28:41.000Z">
+<meta property="article:modified_time" content="2022-01-05T03:09:17.672Z">
+<meta property="article:author" content="GoogTech">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://goog.tech/blog/img/default-cover/1.png"><link rel="shortcut icon" href="/blog/img/favicon.png"><link rel="canonical" href="https://goog.tech/blog/2019/06/23/How-to-support-full-Unicode-in-MySQL-databases/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?38cca3f22b1618b6439834b03516d7e7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-206511912-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-206511912-1');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: GoogTech","link":"Link: ","source":"Source: GoogTech's Blog Site","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'How to support full Unicode in MySQL databases',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-05 03:09:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/blog/atom.xml" title="GoogTech's Blog Site" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/43493852?v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/blog/archives/"><div class="headline">Articles</div><div class="length-num">202</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/tags/"><div class="headline">Tags</div><div class="length-num">81</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/blog/img/default-cover/1.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/blog/">GoogTech's Blog Site</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">How to support full Unicode in MySQL databases<a class="post-edit-link" href="https://github.com/GoogTech/blog/edit/HexoBackup/source/_posts/How-to-support-full-Unicode-in-MySQL-databases.md" title="Edited on" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2019-06-23T08:28:41.000Z" title="undefined 2019-06-23 08:28:41">2019-06-23</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">1.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>9min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="How to support full Unicode in MySQL databases"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/blog/2019/06/23/How-to-support-full-Unicode-in-MySQL-databases/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/blog/2019/06/23/How-to-support-full-Unicode-in-MySQL-databases/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="How-to-support-full-Unicode-in-MySQL-databases-·-Mathias-Bynens"><a href="#How-to-support-full-Unicode-in-MySQL-databases-·-Mathias-Bynens" class="headerlink" title="How to support full Unicode in MySQL databases · Mathias Bynens"></a>How to support full Unicode in MySQL databases · Mathias Bynens</h2><p>😂<em>Alternative title: The things we do to store U+1F4A9 PILE OF POO (💩) correctly.</em></p>
+<p><em>Are you using MySQL’s utf8 charset in your databases? In this write-up I’ll explain why you should switch to utf8mb4 instead, and how to do it.</em></p>
+<h2 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h2><p><em>The UTF-8 encoding can represent every symbol in the Unicode character set, which ranges from U+000000 to U+10FFFF. That’s 1,114,112 possible symbols. (Not all of these Unicode code points have been assigned characters yet, but that doesn’t stop UTF-8 from being able to encode them.)</em></p>
+<p><em>UTF-8 is a variable-width encoding; it encodes each symbol using one to four 8-bit bytes. Symbols with lower numerical code point values are encoded using fewer bytes. This way, UTF-8 is optimized for the common case where ASCII characters and other BMP symbols (whose code points range from U+000000 to U+00FFFF) are used — while still allowing astral symbols (whose code points range from U+010000 to U+10FFFF) to be stored.</em></p>
+<h2 id="MySQL’s-utf8"><a href="#MySQL’s-utf8" class="headerlink" title="MySQL’s utf8"></a>MySQL’s utf8</h2><p><em>For a long time, I was using MySQL’s utf8 charset for databases, tables, and columns, assuming it mapped to the UTF-8 encoding described above. By using utf8, I’d be able to store any symbol I want in my database — or so I thought.</em></p>
+<p><em>While writing about JavaScript’s internal character encoding, I noticed that there was no way to insert the U+1D306 TETRAGRAM FOR CENTRE (𝌆) symbol into the MySQL database behind this site. The column I was trying to update had the utf8_unicode_ci collation, and the connection charset was set to utf8.</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># just to emphasize that the connection charset is set to `utf8`</span><br><span class="line">mysql&gt; SET NAMES utf8; </span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; UPDATE database_name.table_name SET column_name = &#x27;foo𝌆bar&#x27; WHERE id = 9001;</span><br><span class="line">Query OK, 1 row affected, 1 warning (0.00 sec)</span><br><span class="line">Rows matched: 1  Changed: 1  Warnings: 1</span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT column_name FROM database_name.table_name WHERE id = 9001;</span><br><span class="line">+-------------+</span><br><span class="line">| column_name |</span><br><span class="line">+-------------+</span><br><span class="line">| foo         |</span><br><span class="line">+-------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p><em>The content got truncated at the first astral Unicode symbol, in this case 𝌆 — so, attempting to insert foo𝌆bar actually inserted foo instead, resulting in data loss (and possibly introducing security issues; see below). MySQL returned a warning message, too:</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW WARNINGS;</span><br><span class="line">+---------+------+------------------------------------------------------------------------------+</span><br><span class="line">| Level   | Code | Message                                                                      |</span><br><span class="line">+---------+------+------------------------------------------------------------------------------+</span><br><span class="line">| Warning | 1366 | Incorrect string value: &#x27;\xF0\x9D\x8C\x86&#x27; for column &#x27;column_name&#x27; at row 1 |</span><br><span class="line">+---------+------+------------------------------------------------------------------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p><em>Turns out MySQL’s utf8 charset only partially implements proper UTF-8 encoding. It can only store UTF-8-encoded symbols that consist of one to three bytes; encoded symbols that take up four bytes aren’t supported.</em></p>
+<p><em>Since astral symbols (whose code points range from U+010000 to U+10FFFF) each consist of four bytes in UTF-8, you cannot store them using MySQL’s utf8 implementation.</em></p>
+<p><em>This doesn’t just affect the 𝌆 character, but more important symbols like U+01F4A9 PILE OF POO (💩) as well. In total, that’s 1,048,575 possible code points you can’t use. In fact, MySQL’s utf8 only allows you to store 5.88% ((0x00FFFF + 1) / (0x10FFFF + 1)) of all possible Unicode code points. Proper UTF-8 can encode 100% of all Unicode code points.</em></p>
+<p><em>As shown above, <code>this behavior can lead to data loss</code>, but it gets worse — it can result in security vulnerabilities.MySQL’s utf8 encoding is awkwardly named, as it’s different from proper UTF-8 encoding. It doesn’t offer full Unicode support, which can lead to data loss or security vulnerabilities.</em></p>
+<h2 id="MySQL’s-utf8mb4"><a href="#MySQL’s-utf8mb4" class="headerlink" title="MySQL’s utf8mb4"></a>MySQL’s utf8mb4</h2><p><em>Luckily, <code>MySQL 5.5.3 (released in early 2010)</code> introduced a new encoding called utf8mb4 which maps to proper UTF-8 and thus fully supports Unicode, including astral symbols.</em></p>
+<p><em>Switching from MySQL’s utf8 to utf8mb4</em></p>
+<h3 id="Step-1-Create-a-backup"><a href="#Step-1-Create-a-backup" class="headerlink" title="Step 1: Create a backup"></a>Step 1: Create a backup</h3><p><em>Create a backup of all the databases on the server you want to upgrade. Safety first!</em></p>
+<h3 id="Step-2-Upgrade-the-MySQL-server"><a href="#Step-2-Upgrade-the-MySQL-server" class="headerlink" title="Step 2: Upgrade the MySQL server"></a>Step 2: Upgrade the MySQL server</h3><p><em>Upgrade the MySQL server to v5.5.3+, or ask your server administrator to do it for you.</em></p>
+<h3 id="Step-3-Modify-databases-tables-and-columns"><a href="#Step-3-Modify-databases-tables-and-columns" class="headerlink" title="Step 3: Modify databases, tables, and columns"></a>Step 3: Modify databases, tables, and columns</h3><p><em>Change the character set and collation properties of the databases, tables, and columns to use utf8mb4 instead of utf8.</em></p>
+<ul>
+<li>For each database :</li>
+</ul>
+<p><em><code>ALTER DATABASE database_name CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci</code>;</em></p>
+<ul>
+<li>For each table :</li>
+</ul>
+<p><em><code>ALTER TABLE table_name CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci</code>;</em></p>
+<ul>
+<li>For each column :</li>
+</ul>
+<p><em><code>ALTER TABLE table_name CHANGE column_name column_name VARCHAR(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci</code>;</em></p>
+<ul>
+<li>(Don’t blindly copy-paste this! The exact statement depends on the column type, maximum length, and other properties. The above line is just an example for a <code>VARCHAR</code> column.)<br>Since utf8mb4 is fully backwards compatible with utf8, no mojibake or other forms of data loss should occur. (But you have a backup, right?)</li>
+</ul>
+<h3 id="Step-4-Check-the-maximum-length-of-columns-and-index-keys"><a href="#Step-4-Check-the-maximum-length-of-columns-and-index-keys" class="headerlink" title="Step 4: Check the maximum length of columns and index keys"></a>Step 4: Check the maximum length of columns and index keys</h3><p><em>This is probably the most tedious part of the whole upgrading process.</em></p>
+<p><em>When converting from utf8 to utf8mb4, the maximum length of a column or index key is unchanged in terms of bytes. Therefore, it is smaller in terms of characters, because the maximum length of a character is now four bytes instead of three.</em></p>
+<p><em>For example, a TINYTEXT column can hold up to 255 bytes, which correlates to 85 three-byte or 63 four-byte characters. Let’s say you have a TINYTEXT column that uses utf8 but must be able to contain more than 63 characters. Given this requirement, you can’t convert this column to utf8mb4 unless you also change the data type to a longer type such as TEXT — because if you’d try to fill it with four-byte characters, you’d only be able to enter 63 characters, but not more.</em></p>
+<p><em>The same goes for index keys. The InnoDB storage engine has a maximum index length of 767 bytes, so for utf8 or utf8mb4 columns, you can index a maximum of 255 or 191 characters, respectively. If you currently have utf8 columns with indexes longer than 191 characters,you will need to index a smaller number of characters when using utf8mb4. (Because of this, I had to change some indexed VARCHAR(255) columns to VARCHAR(191).)</em></p>
+<p><em>Section 10.1.11 of the <code>MySQL 5.5</code> Reference Manual has some more information on this.</em></p>
+<h3 id="Step-5-Modify-connection-client-and-server-character-sets"><a href="#Step-5-Modify-connection-client-and-server-character-sets" class="headerlink" title="Step 5: Modify connection, client, and server character sets"></a>Step 5: Modify connection, client, and server character sets</h3><p><em>In your application code, set the connection character set to utf8mb4. This can be done by simply replacing any variants of SET NAMES utf8 with SET NAMES utf8mb4. If your old SET NAMES statement specified the collation, make sure to change that as well, e.g. <code>SET NAMES utf8 COLLATE utf8_unicode_ci becomes SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci.</code></em></p>
+<p><em>Make sure to set the client and server character set as well. I have the following in my MySQL configuration file (<code>/etc/my.cnf</code>):</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">default-character-set = utf8mb4</span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line">default-character-set = utf8mb4</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line">character-set-client-handshake = FALSE</span><br><span class="line">character-set-server = utf8mb4</span><br><span class="line">collation-server = utf8mb4_unicode_ci</span><br></pre></td></tr></table></figure>
+
+<p><em>You can easily confirm these settings work correctly:</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW VARIABLES WHERE Variable_name LIKE &#x27;character\_set\_%&#x27; OR Variable_name LIKE &#x27;collation%&#x27;;</span><br><span class="line">+--------------------------+--------------------+</span><br><span class="line">| Variable_name            | Value              |</span><br><span class="line">+--------------------------+--------------------+</span><br><span class="line">| character_set_client     | utf8mb4            |</span><br><span class="line">| character_set_connection | utf8mb4            |</span><br><span class="line">| character_set_database   | utf8mb4            |</span><br><span class="line">| character_set_filesystem | binary             |</span><br><span class="line">| character_set_results    | utf8mb4            |</span><br><span class="line">| character_set_server     | utf8mb4            |</span><br><span class="line">| character_set_system     | utf8               |</span><br><span class="line">| collation_connection     | utf8mb4_unicode_ci |</span><br><span class="line">| collation_database       | utf8mb4_unicode_ci |</span><br><span class="line">| collation_server         | utf8mb4_unicode_ci |</span><br><span class="line">+--------------------------+--------------------+</span><br><span class="line">10 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>As you can see, all the relevant options are set to utf8mb4, except for character_set_filesystem which should be binary unless you’re on a file system that supports multi-byte UTF-8-encoded characters in file names, and character_set_system which is always utf8 and can’t be overridden.</p>
+<ul>
+<li><em><code>Note: The default character set and collation can be configured at some other levels as well.</code></em></li>
+</ul>
+<h3 id="Step-6-Repair-and-optimize-all-tables"><a href="#Step-6-Repair-and-optimize-all-tables" class="headerlink" title="Step 6: Repair and optimize all tables"></a>Step 6: Repair and optimize all tables</h3><p><em>After upgrading the MySQL server and making the necessary changes explained above, make sure to repair and optimize all databases and tables. I didn’t do this right away after upgrading (I didn’t think it was necessary, as everything seemed to work fine at first glance), and ran into some weird bugs where UPDATE statements didn’t have any effect, even though no errors were thrown.</em></p>
+<p><em>You could run the following MySQL queries for each table you want to repair and optimize:</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># For each table</span><br><span class="line">REPAIR TABLE table_name;</span><br><span class="line">OPTIMIZE TABLE table_name;</span><br></pre></td></tr></table></figure>
+
+<p><em>Luckily, this can easily be done in one go using the command-line mysqlcheck utility:</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysqlcheck -u root -p --auto-repair --optimize --all-databases</span><br></pre></td></tr></table></figure>
+<p><em>This will prompt for the root user’s password, after which all tables in all databases will be repaired and optimized.</em></p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p><em><code>Never use utf8 in MySQL — always use utf8mb4 instead.</code> Updating your databases and code might take some time, but it’s definitely worth the effort. Why would you arbitrarily limit the set of symbols that can be used in your database? Why would you lose data every time a user enters an astral symbol as part of a comment or message or whatever it is you store in your database? There’s no reason not to strive for full Unicode support everywhere. Do the right thing, and use utf8mb4. 🍻 ヾ(￣▽￣)Bye<del>Bye</del></em></p>
+<ul>
+<li><em>🙂expressing thanks : <a target="_blank" rel="noopener" href="https://mathiasbynens.be/notes/mysql-utf8mb4#utf8-to-utf8mb4">https://mathiasbynens.be/notes/mysql-utf8mb4#utf8-to-utf8mb4</a></em></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:hi@goog.tech">GoogTech</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://goog.tech/blog/2019/06/23/How-to-support-full-Unicode-in-MySQL-databases/">https://goog.tech/blog/2019/06/23/How-to-support-full-Unicode-in-MySQL-databases/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/MySQL/">MySQL</a></div><div class="post_share"><div class="social-share" data-image="/blog/img/default-cover/1.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> Donate</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/blog/img/wechat-sponsor.png" target="_blank"><img class="post-qr-code-img" src="/blog/img/wechat-sponsor.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/2019/06/23/Hi-Spring-Boot/"><img class="prev-cover" src="/blog/img/default-cover/54.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Hi Spring Boot ~</div></div></a></div><div class="next-post pull-right"><a href="/blog/2019/06/22/SSM%E9%A1%B9%E7%9B%AE-%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/"><img class="next-cover" src="/blog/img/default-cover/43.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">SSM项目:学生管理系统</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/blog/2020/06/24/Docker安装MySQL及基本使用/" title="Docker安装MySQL及基本使用"><img class="cover" src="/blog/img/default-cover/54.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-24</div><div class="title">Docker安装MySQL及基本使用</div></div></a></div><div><a href="/blog/2019/03/14/JDBC-常见错误分析/" title="JDBC 常见错误分析"><img class="cover" src="/blog/img/default-cover/12.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-03-14</div><div class="title">JDBC 常见错误分析</div></div></a></div><div><a href="/blog/2019/06/12/Java-web项目-学生管理系统/" title="Java web项目:学生管理系统"><img class="cover" src="/blog/img/default-cover/37.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-12</div><div class="title">Java web项目:学生管理系统</div></div></a></div><div><a href="/blog/2019/11/15/Python操作MySQL数据库之基本的CURD/" title="Python操作MySQL数据库之基本的CURD"><img class="cover" src="/blog/img/default-cover/33.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-11-15</div><div class="title">Python操作MySQL数据库之基本的CURD</div></div></a></div><div><a href="/blog/2019/06/12/SSM整合项目-简易同学录/" title="SSM整合项目:简易同学录"><img class="cover" src="/blog/img/default-cover/2.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-12</div><div class="title">SSM整合项目:简易同学录</div></div></a></div><div><a href="/blog/2019/06/22/SSM项目-学生管理系统/" title="SSM项目:学生管理系统"><img class="cover" src="/blog/img/default-cover/43.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-22</div><div class="title">SSM项目:学生管理系统</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-support-full-Unicode-in-MySQL-databases-%C2%B7-Mathias-Bynens"><span class="toc-number">1.</span> <span class="toc-text">How to support full Unicode in MySQL databases · Mathias Bynens</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UTF-8"><span class="toc-number">2.</span> <span class="toc-text">UTF-8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL%E2%80%99s-utf8"><span class="toc-number">3.</span> <span class="toc-text">MySQL’s utf8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL%E2%80%99s-utf8mb4"><span class="toc-number">4.</span> <span class="toc-text">MySQL’s utf8mb4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-1-Create-a-backup"><span class="toc-number">4.1.</span> <span class="toc-text">Step 1: Create a backup</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-2-Upgrade-the-MySQL-server"><span class="toc-number">4.2.</span> <span class="toc-text">Step 2: Upgrade the MySQL server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-3-Modify-databases-tables-and-columns"><span class="toc-number">4.3.</span> <span class="toc-text">Step 3: Modify databases, tables, and columns</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-4-Check-the-maximum-length-of-columns-and-index-keys"><span class="toc-number">4.4.</span> <span class="toc-text">Step 4: Check the maximum length of columns and index keys</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-5-Modify-connection-client-and-server-character-sets"><span class="toc-number">4.5.</span> <span class="toc-text">Step 5: Modify connection, client, and server character sets</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-6-Repair-and-optimize-all-tables"><span class="toc-number">4.6.</span> <span class="toc-text">Step 6: Repair and optimize all tables</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Summary"><span class="toc-number">5.</span> <span class="toc-text">Summary</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2022 By GoogTech</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="/blog/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'cuhS73KNdoQ8SJpCFhaalYHe-gzGzoHsz',
+      appKey: 'bBxVEeuGBYAXa68aQv8mGUjn',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

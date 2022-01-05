@@ -1,0 +1,233 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Spring Boot项目:好友备忘录 | GoogTech's Blog Site</title><meta name="keywords" content="MySQL,MyBatis,Spring Boot,jQuery,Ajax,EasyUI,Maven,Thymeleaf"><meta name="author" content="GoogTech,hi@goog.tech"><meta name="copyright" content="GoogTech"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="A simple project for Spring Boot ~ 我的第一个Spring Boot小项目 （づ￣3￣）づ╭❤～ 赶紧来学习吧 ! 期待你的issues哟(っ•̀ω•́)っ✎⁾⁾~ 该项目的GitHub仓库地址 : https:&#x2F;&#x2F;github.com&#x2F;YUbuntu0109&#x2F;springboot-beginner  项目概述👍一个简单的,基于Spring Boot的好友备忘录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Boot项目:好友备忘录">
+<meta property="og:url" content="https://goog.tech/blog/2019/06/30/Spring-Boot%E9%A1%B9%E7%9B%AE-%E5%A5%BD%E5%8F%8B%E5%A4%87%E5%BF%98%E5%BD%95/index.html">
+<meta property="og:site_name" content="GoogTech&#39;s Blog Site">
+<meta property="og:description" content="A simple project for Spring Boot ~ 我的第一个Spring Boot小项目 （づ￣3￣）づ╭❤～ 赶紧来学习吧 ! 期待你的issues哟(っ•̀ω•́)っ✎⁾⁾~ 该项目的GitHub仓库地址 : https:&#x2F;&#x2F;github.com&#x2F;YUbuntu0109&#x2F;springboot-beginner  项目概述👍一个简单的,基于Spring Boot的好友备忘录">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://goog.tech/blog/img/default-cover/33.png">
+<meta property="article:published_time" content="2019-06-30T20:53:09.000Z">
+<meta property="article:modified_time" content="2022-01-05T03:09:17.700Z">
+<meta property="article:author" content="GoogTech">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="MyBatis">
+<meta property="article:tag" content="Spring Boot">
+<meta property="article:tag" content="jQuery">
+<meta property="article:tag" content="Ajax">
+<meta property="article:tag" content="EasyUI">
+<meta property="article:tag" content="Maven">
+<meta property="article:tag" content="Thymeleaf">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://goog.tech/blog/img/default-cover/33.png"><link rel="shortcut icon" href="/blog/img/favicon.png"><link rel="canonical" href="https://goog.tech/blog/2019/06/30/Spring-Boot%E9%A1%B9%E7%9B%AE-%E5%A5%BD%E5%8F%8B%E5%A4%87%E5%BF%98%E5%BD%95/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?38cca3f22b1618b6439834b03516d7e7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-206511912-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-206511912-1');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: GoogTech","link":"Link: ","source":"Source: GoogTech's Blog Site","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Spring Boot项目:好友备忘录',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-05 03:09:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/blog/atom.xml" title="GoogTech's Blog Site" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/43493852?v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/blog/archives/"><div class="headline">Articles</div><div class="length-num">202</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/tags/"><div class="headline">Tags</div><div class="length-num">81</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/blog/img/default-cover/33.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/blog/">GoogTech's Blog Site</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Spring Boot项目:好友备忘录<a class="post-edit-link" href="https://github.com/GoogTech/blog/edit/HexoBackup/source/_posts/Spring-Boot项目-好友备忘录.md" title="Edited on" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2019-06-30T20:53:09.000Z" title="undefined 2019-06-30 20:53:09">2019-06-30</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">369</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>1min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Spring Boot项目:好友备忘录"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/blog/2019/06/30/Spring-Boot%E9%A1%B9%E7%9B%AE-%E5%A5%BD%E5%8F%8B%E5%A4%87%E5%BF%98%E5%BD%95/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/blog/2019/06/30/Spring-Boot%E9%A1%B9%E7%9B%AE-%E5%A5%BD%E5%8F%8B%E5%A4%87%E5%BF%98%E5%BD%95/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="A-simple-project-for-Spring-Boot"><a href="#A-simple-project-for-Spring-Boot" class="headerlink" title="A simple project for Spring Boot ~"></a>A simple project for Spring Boot ~</h2><ul>
+<li><em>我的第一个<code>Spring Boot</code>小项目 （づ￣3￣）づ╭❤～</em></li>
+<li><em>赶紧来学习吧 ! 期待你的<code>issues</code>哟(っ•̀ω•́)っ✎⁾⁾~ 该项目的GitHub仓库地址 : <a target="_blank" rel="noopener" href="https://github.com/YUbuntu0109/springboot-beginner">https://github.com/YUbuntu0109/springboot-beginner</a></em></li>
+</ul>
+<h3 id="项目概述"><a href="#项目概述" class="headerlink" title="项目概述"></a>项目概述</h3><p>👍<em>一个简单的,基于Spring Boot的好友备忘录小项目,通过本项目可以学习<code>Spring Boot</code>与<code>MyBatis</code>的整合及CURD操作的基本思路,同时也可以帮助你学习<code>Thylemeaf</code>模板引擎使用哟 ! 该项目的代码注释详细,逻辑结构清晰,非常具有参考,学习价值哟 ! 可以说非常适合初学Sping Boot的同学啦(っ•̀ω•́)っ✎⁾⁾~</em></p>
+<p>💗<em>为了让更多同学快速地体验该项目,已通过<code>mvn package</code>将其打包,并将其作为<code>v1.0</code>上传到了<code>release</code>中~</em></p>
+<h3 id="项目截图"><a href="#项目截图" class="headerlink" title="项目截图"></a>项目截图</h3><ul>
+<li><em>项目主页面</em></li>
+</ul>
+<img src="/blog/2019/06/30/Spring-Boot%E9%A1%B9%E7%9B%AE-%E5%A5%BD%E5%8F%8B%E5%A4%87%E5%BF%98%E5%BD%95/SpringBoot-CURD-Memo_MainView.PNG" class="">
+
+<ul>
+<li><em>好友信息管理页面</em></li>
+</ul>
+<img src="/blog/2019/06/30/Spring-Boot%E9%A1%B9%E7%9B%AE-%E5%A5%BD%E5%8F%8B%E5%A4%87%E5%BF%98%E5%BD%95/SpringBoot-CURD-Memo_FriendListView.PNG" class="">
+
+<img src="/blog/2019/06/30/Spring-Boot%E9%A1%B9%E7%9B%AE-%E5%A5%BD%E5%8F%8B%E5%A4%87%E5%BF%98%E5%BD%95/SpringBoot-CURD-Memo_FriendListView2.PNG" class="">
+
+
+<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">│  .gitattributes</span><br><span class="line">│  LICENSE</span><br><span class="line">│  README.md</span><br><span class="line">│</span><br><span class="line">├─database file</span><br><span class="line">│      memo.sql</span><br><span class="line">│</span><br><span class="line">├─demonstration_picture</span><br><span class="line">│      SpringBoot-CURD-Memo_FriendListView.PNG</span><br><span class="line">│      SpringBoot-CURD-Memo_FriendListView2.PNG</span><br><span class="line">│      SpringBoot-CURD-Memo_MainView.PNG</span><br><span class="line">│</span><br><span class="line">└─memo</span><br><span class="line">    │  .gitignore</span><br><span class="line">    │  mvnw</span><br><span class="line">    │  mvnw.cmd</span><br><span class="line">    │  pom.xml</span><br><span class="line">    │</span><br><span class="line">    │</span><br><span class="line">    └─src</span><br><span class="line">        └─main</span><br><span class="line">            ├─java</span><br><span class="line">            │  └─pers</span><br><span class="line">            │      └─haungyuhui</span><br><span class="line">            │          └─memo</span><br><span class="line">            │              │  MemoApplication.java</span><br><span class="line">            │              │</span><br><span class="line">            │              ├─bean</span><br><span class="line">            │              │      Friend.java</span><br><span class="line">            │              │</span><br><span class="line">            │              ├─controller</span><br><span class="line">            │              │      StudentController.java</span><br><span class="line">            │              │</span><br><span class="line">            │              ├─dao</span><br><span class="line">            │              │      FriendMapper.java</span><br><span class="line">            │              │      FriendMapper.xml</span><br><span class="line">            │              │</span><br><span class="line">            │              ├─service</span><br><span class="line">            │              │  │  FriendService.java</span><br><span class="line">            │              │  │</span><br><span class="line">            │              │  └─impl</span><br><span class="line">            │              │          FriendServiceImpl.java</span><br><span class="line">            │              │</span><br><span class="line">            │              └─util</span><br><span class="line">            │                      UploadFile.java</span><br><span class="line">            │</span><br><span class="line">            └─resources</span><br><span class="line">                │  application.properties</span><br><span class="line">                │</span><br><span class="line">                ├─static</span><br><span class="line">                │  ├─easyui</span><br><span class="line">                │  │  │  jquery.easyui.min.js</span><br><span class="line">                │  │  │  jquery.min.js</span><br><span class="line">                │  │  │</span><br><span class="line">                │  │  ├─css</span><br><span class="line">                │  │  │      default.css</span><br><span class="line">                │  │  │      demo.css</span><br><span class="line">                │  │  │</span><br><span class="line">                │  │  ├─js</span><br><span class="line">                │  │  │      outlook2.js</span><br><span class="line">                │  │  │      validateExtends.js</span><br><span class="line">                │  │  │</span><br><span class="line">                │  │  └─themes</span><br><span class="line">                │  │      │(略..)</span><br><span class="line">                │  │        </span><br><span class="line">                │  │      </span><br><span class="line">                │  │      </span><br><span class="line">                │  └─image</span><br><span class="line">                │          default_portrait.png</span><br><span class="line">                │</span><br><span class="line">                └─templates</span><br><span class="line">                        friendList.html</span><br><span class="line">                        intro.html</span><br><span class="line">                        main.html</span><br></pre></td></tr></table></figure>
+
+<h4 id="项目文件说明-Spring-boot启动类"><a href="#项目文件说明-Spring-boot启动类" class="headerlink" title="项目文件说明-Spring boot启动类"></a>项目文件说明-<code>Spring boot启动类</code></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MemoApplication.java</span><br></pre></td></tr></table></figure>
+
+<h4 id="项目文件说明-数据库文件"><a href="#项目文件说明-数据库文件" class="headerlink" title="项目文件说明-数据库文件"></a>项目文件说明-<code>数据库文件</code></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">memo.sql</span><br></pre></td></tr></table></figure>
+
+<h4 id="项目文件说明-EasyUI-前端框架"><a href="#项目文件说明-EasyUI-前端框架" class="headerlink" title="项目文件说明-EasyUI 前端框架"></a>项目文件说明-<code>EasyUI 前端框架</code></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">easyui/</span><br></pre></td></tr></table></figure>
+
+<h4 id="项目文件说明-默认头像"><a href="#项目文件说明-默认头像" class="headerlink" title="项目文件说明-默认头像"></a>项目文件说明-<code>默认头像</code></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">default_portrait.png</span><br></pre></td></tr></table></figure>
+
+
+<p><em>🙂 Look forward to your contribution ! If you need any help, please contact me ~ QQ : 3083968068</em></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:hi@goog.tech">GoogTech</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://goog.tech/blog/2019/06/30/Spring-Boot%E9%A1%B9%E7%9B%AE-%E5%A5%BD%E5%8F%8B%E5%A4%87%E5%BF%98%E5%BD%95/">https://goog.tech/blog/2019/06/30/Spring-Boot项目-好友备忘录/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/MySQL/">MySQL</a><a class="post-meta__tags" href="/blog/tags/MyBatis/">MyBatis</a><a class="post-meta__tags" href="/blog/tags/Spring-Boot/">Spring Boot</a><a class="post-meta__tags" href="/blog/tags/jQuery/">jQuery</a><a class="post-meta__tags" href="/blog/tags/Ajax/">Ajax</a><a class="post-meta__tags" href="/blog/tags/EasyUI/">EasyUI</a><a class="post-meta__tags" href="/blog/tags/Maven/">Maven</a><a class="post-meta__tags" href="/blog/tags/Thymeleaf/">Thymeleaf</a></div><div class="post_share"><div class="social-share" data-image="/blog/img/default-cover/33.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> Donate</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/blog/img/wechat-sponsor.png" target="_blank"><img class="post-qr-code-img" src="/blog/img/wechat-sponsor.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/2019/06/30/Spring-Boot%E4%B9%8B%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"><img class="prev-cover" src="/blog/img/default-cover/33.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Spring Boot之文件上传与下载</div></div></a></div><div class="next-post pull-right"><a href="/blog/2019/06/27/Spring-Boot%E4%B9%8BThymeleaf/"><img class="next-cover" src="/blog/img/default-cover/19.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Spring Boot之Thymeleaf</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/blog/2019/06/12/Java-web项目-学生管理系统/" title="Java web项目:学生管理系统"><img class="cover" src="/blog/img/default-cover/37.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-12</div><div class="title">Java web项目:学生管理系统</div></div></a></div><div><a href="/blog/2019/06/12/SSM整合项目-简易同学录/" title="SSM整合项目:简易同学录"><img class="cover" src="/blog/img/default-cover/2.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-12</div><div class="title">SSM整合项目:简易同学录</div></div></a></div><div><a href="/blog/2019/06/22/SSM项目-学生管理系统/" title="SSM项目:学生管理系统"><img class="cover" src="/blog/img/default-cover/43.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-22</div><div class="title">SSM项目:学生管理系统</div></div></a></div><div><a href="/blog/2019/07/17/小爬虫-JDBookCrawler-V3-0/" title="小爬虫:JDBookCrawler-V3.0"><img class="cover" src="/blog/img/default-cover/50.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-07-17</div><div class="title">小爬虫:JDBookCrawler-V3.0</div></div></a></div><div><a href="/blog/2019/07/15/小爬虫-JDBookCrawler-V2-0/" title="小爬虫:JDBookCrawler-V2.0"><img class="cover" src="/blog/img/default-cover/53.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-07-15</div><div class="title">小爬虫:JDBookCrawler-V2.0</div></div></a></div><div><a href="/blog/2019/07/01/Spring-Boot拥抱MyBatis及Redis/" title="Spring-Boot拥抱MyBatis及Redis ~"><img class="cover" src="/blog/img/default-cover/13.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-07-01</div><div class="title">Spring-Boot拥抱MyBatis及Redis ~</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#A-simple-project-for-Spring-Boot"><span class="toc-number">1.</span> <span class="toc-text">A simple project for Spring Boot ~</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">项目概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E6%88%AA%E5%9B%BE"><span class="toc-number">1.2.</span> <span class="toc-text">项目截图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text">项目结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E-Spring-boot%E5%90%AF%E5%8A%A8%E7%B1%BB"><span class="toc-number">1.3.1.</span> <span class="toc-text">项目文件说明-Spring boot启动类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6"><span class="toc-number">1.3.2.</span> <span class="toc-text">项目文件说明-数据库文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E-EasyUI-%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6"><span class="toc-number">1.3.3.</span> <span class="toc-text">项目文件说明-EasyUI 前端框架</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6%E8%AF%B4%E6%98%8E-%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F"><span class="toc-number">1.3.4.</span> <span class="toc-text">项目文件说明-默认头像</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2022 By GoogTech</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="/blog/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'cuhS73KNdoQ8SJpCFhaalYHe-gzGzoHsz',
+      appKey: 'bBxVEeuGBYAXa68aQv8mGUjn',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

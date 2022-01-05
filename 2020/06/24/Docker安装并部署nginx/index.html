@@ -1,0 +1,218 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Docker安装并部署nginx | GoogTech's Blog Site</title><meta name="keywords" content="Docker,Nginx"><meta name="author" content="GoogTech,hi@goog.tech"><meta name="copyright" content="GoogTech"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.搜索nginx镜像1234567ubuntu@VM-0-4-ubuntu:~$ sudo docker search nginxNAME                               DESCRIPTION                                     STARS               OFFICIAL             AUTOMATEDn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker安装并部署nginx">
+<meta property="og:url" content="https://goog.tech/blog/2020/06/24/Docker%E5%AE%89%E8%A3%85%E5%B9%B6%E9%83%A8%E7%BD%B2nginx/index.html">
+<meta property="og:site_name" content="GoogTech&#39;s Blog Site">
+<meta property="og:description" content="1.搜索nginx镜像1234567ubuntu@VM-0-4-ubuntu:~$ sudo docker search nginxNAME                               DESCRIPTION                                     STARS               OFFICIAL             AUTOMATEDn">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://goog.tech/blog/img/default-cover/9.png">
+<meta property="article:published_time" content="2020-06-24T13:25:07.000Z">
+<meta property="article:modified_time" content="2022-01-05T03:09:17.664Z">
+<meta property="article:author" content="GoogTech">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Nginx">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://goog.tech/blog/img/default-cover/9.png"><link rel="shortcut icon" href="/blog/img/favicon.png"><link rel="canonical" href="https://goog.tech/blog/2020/06/24/Docker%E5%AE%89%E8%A3%85%E5%B9%B6%E9%83%A8%E7%BD%B2nginx/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?38cca3f22b1618b6439834b03516d7e7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-206511912-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-206511912-1');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: GoogTech","link":"Link: ","source":"Source: GoogTech's Blog Site","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Docker安装并部署nginx',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-05 03:09:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/blog/atom.xml" title="GoogTech's Blog Site" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/43493852?v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/blog/archives/"><div class="headline">Articles</div><div class="length-num">202</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/tags/"><div class="headline">Tags</div><div class="length-num">81</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/blog/img/default-cover/9.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/blog/">GoogTech's Blog Site</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Docker安装并部署nginx<a class="post-edit-link" href="https://github.com/GoogTech/blog/edit/HexoBackup/source/_posts/Docker安装并部署nginx.md" title="Edited on" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2020-06-24T13:25:07.000Z" title="undefined 2020-06-24 13:25:07">2020-06-24</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>6min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Docker安装并部署nginx"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/blog/2020/06/24/Docker%E5%AE%89%E8%A3%85%E5%B9%B6%E9%83%A8%E7%BD%B2nginx/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/blog/2020/06/24/Docker%E5%AE%89%E8%A3%85%E5%B9%B6%E9%83%A8%E7%BD%B2nginx/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="1-搜索nginx镜像"><a href="#1-搜索nginx镜像" class="headerlink" title="1.搜索nginx镜像"></a>1.搜索nginx镜像</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ubuntu@VM-0-4-ubuntu:~$ sudo docker search nginx</span><br><span class="line">NAME                               DESCRIPTION                                     STARS               OFFICIAL             AUTOMATED</span><br><span class="line">nginx                              Official build of Nginx.                        13374               [OK]</span><br><span class="line">jwilder/nginx-proxy                Automated Nginx reverse proxy for docker con…   1828                [OK]</span><br><span class="line">richarvey/nginx-php-fpm            Container running Nginx + PHP-FPM capable of…   778                 [OK]</span><br><span class="line"></span><br><span class="line">. . . . . .</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-下载nginx镜像"><a href="#2-下载nginx镜像" class="headerlink" title="2.下载nginx镜像"></a>2.下载nginx镜像</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看本地所有镜像</span></span><br><span class="line">ubuntu@VM-0-4-ubuntu:~$ sudo docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">ubuntu              latest              74435f89ab78        7 days ago          73.9MB</span><br><span class="line">ubuntu              18.04               8e4ce0a6ce69        7 days ago          64.2MB</span><br><span class="line">mysql               latest              be0dbf01a0f3        2 weeks ago         541MB</span><br><span class="line">hello-world         latest              bf756fb1ae65        5 months ago        13.3kB</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 从远程仓库中下载 nginx 镜像</span></span><br><span class="line">ubuntu@VM-0-4-ubuntu:~$ sudo docker pull nginx</span><br><span class="line">Using default tag: latest</span><br><span class="line">latest: Pulling from library/nginx</span><br><span class="line">8d69e59170f7: Pull complete</span><br><span class="line">3f9f1ec1d262: Pull complete</span><br><span class="line">d1f5ff4f210d: Pull complete</span><br><span class="line">1e22bfa8652e: Pull complete</span><br><span class="line">Digest: sha256:21f32f6c08406306d822a0e6e8b7dc81f53f336570e852e25fbe1e3e3d0d0133</span><br><span class="line">Status: Downloaded newer image for nginx:latest</span><br><span class="line">docker.io/library/nginx:latest</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 再次查看本地所有镜像，验证是否下载成功</span></span><br><span class="line">ubuntu@VM-0-4-ubuntu:~$ sudo docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">ubuntu              latest              74435f89ab78        7 days ago          73.9MB</span><br><span class="line">ubuntu              18.04               8e4ce0a6ce69        7 days ago          64.2MB</span><br><span class="line">nginx               latest              2622e6cca7eb        2 weeks ago         132MB</span><br><span class="line">mysql               latest              be0dbf01a0f3        2 weeks ago         541MB</span><br><span class="line">hello-world         latest              bf756fb1ae65        5 months ago        13.3kB</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-启动nginx"><a href="#3-启动nginx" class="headerlink" title="3. 启动nginx"></a>3. 启动nginx</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 以后台运行的方式启动nginx : docker run -d &lt;image name&gt;</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -d : 后台运行，</span> </span><br><span class="line"><span class="meta">#</span><span class="bash"> --name : 为容器起别名</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -p 8888:88 : 暴露端口，-p 宿主机端口:容器内部端口</span></span><br><span class="line">ubuntu@VM-0-4-ubuntu:~$ sudo docker run -d --name MyNginx -p 8888:80 nginx</span><br><span class="line">8438eaf75dbdcae96602fd91035cf550e8a3a4634bfc17a92e63f2325fc15064</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看当前正在运行的容器，验证 nginx 服务是否已启动</span></span><br><span class="line">ubuntu@VM-0-4-ubuntu:~$ sudo docker ps</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS              NAMES</span><br><span class="line">8438eaf75dbd        nginx               &quot;/docker-entrypoint.…&quot;   9 seconds ago       Up 7 seconds        0.0.0.0:8888-&gt;80/tcp   MyNginx</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 使用 curl &lt;ip:port&gt; 进行本地测试，从返回的结果发现 nginx 部署成功</span> </span><br><span class="line"><span class="meta">#</span><span class="bash"> 也可以通过外网访问连接 http://ip:8888 来测试，如下图所示</span></span><br><span class="line">ubuntu@VM-0-4-ubuntu:~$ sudo curl localhost:8888</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;Welcome to nginx!&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    body &#123;</span><br><span class="line">        width: 35em;</span><br><span class="line">        margin: 0 auto;</span><br><span class="line">        font-family: Tahoma, Verdana, Arial, sans-serif;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;</span><br><span class="line">&lt;p&gt;If you see this page, the nginx web server is successfully installed and</span><br><span class="line">working. Further configuration is required.&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;For online documentation and support please refer to</span><br><span class="line">&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;</span><br><span class="line">Commercial support is available at</span><br><span class="line">&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><em>通过外网访问连接 <a target="_blank" rel="noopener" href="http://ip:8888/">http://ip:8888</a> 来测试 nginx 是否部署成功</em></p>
+<img src="/blog/2020/06/24/Docker%E5%AE%89%E8%A3%85%E5%B9%B6%E9%83%A8%E7%BD%B2nginx/docker-deploy-nginx.PNG" class="">
+
+
+<h3 id="4-修改nginx配置"><a href="#4-修改nginx配置" class="headerlink" title="4. 修改nginx配置"></a>4. 修改nginx配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看当前正在运行的容器</span></span><br><span class="line">ubuntu@VM-0-4-ubuntu:~$ sudo docker ps                                                                               </span><br><span class="line">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                   NAMES</span><br><span class="line">8438eaf75dbd        nginx               &quot;/docker-entrypoint.…&quot;   14 minutes ago      Up 14 minutes       0.0.0.0:8888 80/tcp     MyNginx                  </span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 根据容器 NAME 进入当前正在运行的 nginx 容器( docker <span class="built_in">exec</span> -it : 特征为进入容器后开启一个新的终端 )</span></span><br><span class="line">ubuntu@VM-0-4-ubuntu:~$ sudo docker exec -it MyNginx /bin/bash       </span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查找 nginx 的配置文件目录</span></span><br><span class="line">root@8438eaf75dbd:/# whereis nginx                                                                                   </span><br><span class="line">nginx: /usr/sbin/nginx /usr/lib/nginx /etc/nginx /usr/share/nginx       </span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 进入 nginx 中用于存储 html 的文件目录</span></span><br><span class="line">root@8438eaf75dbd:/# cd /usr/share/nginx/</span><br><span class="line">root@8438eaf75dbd:/usr/share/nginx# cd html/                                                                         </span><br><span class="line">root@8438eaf75dbd:/usr/share/nginx/html# ls                                                                          </span><br><span class="line">50x.html  index.html                 </span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看 index.html 文件中的内容</span></span><br><span class="line">root@8438eaf75dbd:/usr/share/nginx/html# cat index.html                                                              </span><br><span class="line">&lt;!DOCTYPE html&gt;                                                                                                      </span><br><span class="line">&lt;html&gt;                                                                                                               </span><br><span class="line">&lt;head&gt;                                                                                                               </span><br><span class="line">&lt;title&gt;Welcome to nginx!&lt;/title&gt;                                                                                     </span><br><span class="line">&lt;style&gt;                                                                                                              </span><br><span class="line">    body &#123;                                                                                                           </span><br><span class="line">        width: 35em;                                                                                                 </span><br><span class="line">        margin: 0 auto;                                                                                              </span><br><span class="line">        font-family: Tahoma, Verdana, Arial, sans-serif;                                                             </span><br><span class="line">    &#125;                                                                                                                </span><br><span class="line">&lt;/style&gt;                                                                                                             </span><br><span class="line">&lt;/head&gt;                                                                                                              </span><br><span class="line">&lt;body&gt;                                                                                                               </span><br><span class="line">&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;                                                                                           </span><br><span class="line">&lt;p&gt;If you see this page, the nginx web server is successfully installed and                                          </span><br><span class="line">working. Further configuration is required.&lt;/p&gt;                                                                      </span><br><span class="line">                                                                                                                     </span><br><span class="line">&lt;p&gt;For online documentation and support please refer to                                                              </span><br><span class="line">&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;                                                                      </span><br><span class="line">Commercial support is available at                                                                                   </span><br><span class="line">&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;                                                                       </span><br><span class="line">                                                                                                                     </span><br><span class="line">&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;                                                                           </span><br><span class="line">&lt;/body&gt;                                                                                                              </span><br><span class="line">&lt;/html&gt;                         </span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重写 index.html 中内容</span></span><br><span class="line">root@8438eaf75dbd:/usr/share/nginx/html# echo &quot;&lt;h1 align=&quot;center&quot;&gt;hey guy welcome back,coffee time&lt;/h1&gt;&quot; &gt; index.html          </span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 再次查看 index.html 中的内容</span></span><br><span class="line">root@8438eaf75dbd:/usr/share/nginx/html# cat index.html</span><br><span class="line">&lt;h1 align=center&gt;hey guy welcome back,coffee time&lt;/h1&gt;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 使用 curl &lt;ip:port&gt; 进行本地测试，从返回的结果发现修改 index.html 后 nginx 依旧部署成功( 配置文件可动态修改 )</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 也可以通过外网访问连接 http://ip:8888 来测试，如下图所示</span></span><br><span class="line">root@8438eaf75dbd:/usr/share/nginx/html# curl http://49.233.79.152:8888</span><br><span class="line">&lt;h1 align=center&gt;hey guy welcome back,coffee time&lt;/h1&gt;</span><br></pre></td></tr></table></figure>
+
+<p><em>通过外网访问连接 <a target="_blank" rel="noopener" href="http://ip:8888/">http://ip:8888</a> 来测试修改 index.html 后 nginx 是否部署成功( 配置文件可动态修改 )</em></p>
+<img src="/blog/2020/06/24/Docker%E5%AE%89%E8%A3%85%E5%B9%B6%E9%83%A8%E7%BD%B2nginx/docker-deploy-nginx-modify-index.PNG" class="">
+
+
+<h3 id="5-停止nginx运行"><a href="#5-停止nginx运行" class="headerlink" title="5. 停止nginx运行"></a>5. 停止nginx运行</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看当前正在运行的容器</span></span><br><span class="line">ubuntu@VM-0-4-ubuntu:~$ sudo docker ps</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                  NAMES</span><br><span class="line">8438eaf75dbd        nginx               &quot;/docker-entrypoint.…&quot;   38 minutes ago      Up 38 minutes       0.0.0.0:8888-&gt;80/tcp   MyNginx</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 根据id停止指定容器的运行</span></span><br><span class="line">ubuntu@VM-0-4-ubuntu:~$ sudo docker stop 8438eaf75dbd</span><br><span class="line">8438eaf75dbd</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 再次查看当前正在运行的容器，验证 nginx 是否被关闭</span></span><br><span class="line">ubuntu@VM-0-4-ubuntu:~$ sudo docker ps</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> nginx 被关闭后则不能访问 http://ip:8888</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><blockquote>
+<p>以后部署项目后，如果每次修改配置都要进入容器中感觉是不是非常麻烦 ?  所以我们要做的是 : 在容器外部提供一个映射路径，进而使得在外部放置的项目能够自动同步到内部容器中.  那么该怎么实现这个想法呢 ? ( 嘿嘿… 目前我也不知道该如何实现这个想法，等我回来更新吧哈哈哈哈 )</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:hi@goog.tech">GoogTech</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://goog.tech/blog/2020/06/24/Docker%E5%AE%89%E8%A3%85%E5%B9%B6%E9%83%A8%E7%BD%B2nginx/">https://goog.tech/blog/2020/06/24/Docker安装并部署nginx/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/Docker/">Docker</a><a class="post-meta__tags" href="/blog/tags/Nginx/">Nginx</a></div><div class="post_share"><div class="social-share" data-image="/blog/img/default-cover/9.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> Donate</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/blog/img/wechat-sponsor.png" target="_blank"><img class="post-qr-code-img" src="/blog/img/wechat-sponsor.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/2020/06/24/Docker%E5%AE%89%E8%A3%85%E5%B9%B6%E9%83%A8%E7%BD%B2tomcat/"><img class="prev-cover" src="/blog/img/default-cover/52.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Docker安装并部署tomcat</div></div></a></div><div class="next-post pull-right"><a href="/blog/2020/06/24/Docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"><img class="next-cover" src="/blog/img/default-cover/55.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Docker常用命令</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/blog/2020/06/26/Dockerfile介绍及指令说明/" title="Docker Dockerfile介绍及指令说明"><img class="cover" src="/blog/img/default-cover/8.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-26</div><div class="title">Docker Dockerfile介绍及指令说明</div></div></a></div><div><a href="/blog/2020/06/24/Docker安装MySQL及基本使用/" title="Docker安装MySQL及基本使用"><img class="cover" src="/blog/img/default-cover/54.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-24</div><div class="title">Docker安装MySQL及基本使用</div></div></a></div><div><a href="/blog/2020/06/24/Docker安装Redis及基本使用/" title="Docker安装Redis及基本使用"><img class="cover" src="/blog/img/default-cover/42.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-24</div><div class="title">Docker安装Redis及基本使用</div></div></a></div><div><a href="/blog/2020/06/24/Docker安装并部署tomcat/" title="Docker安装并部署tomcat"><img class="cover" src="/blog/img/default-cover/52.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-24</div><div class="title">Docker安装并部署tomcat</div></div></a></div><div><a href="/blog/2020/06/25/Docker容器数据卷的使用/" title="Docker容器数据卷的使用"><img class="cover" src="/blog/img/default-cover/59.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-25</div><div class="title">Docker容器数据卷的使用</div></div></a></div><div><a href="/blog/2020/06/24/Docker常用命令/" title="Docker常用命令"><img class="cover" src="/blog/img/default-cover/55.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-24</div><div class="title">Docker常用命令</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%90%9C%E7%B4%A2nginx%E9%95%9C%E5%83%8F"><span class="toc-number">1.</span> <span class="toc-text">1.搜索nginx镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%B8%8B%E8%BD%BDnginx%E9%95%9C%E5%83%8F"><span class="toc-number">2.</span> <span class="toc-text">2.下载nginx镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%90%AF%E5%8A%A8nginx"><span class="toc-number">3.</span> <span class="toc-text">3. 启动nginx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E4%BF%AE%E6%94%B9nginx%E9%85%8D%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text">4. 修改nginx配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%81%9C%E6%AD%A2nginx%E8%BF%90%E8%A1%8C"><span class="toc-number">5.</span> <span class="toc-text">5. 停止nginx运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%80%83"><span class="toc-number">6.</span> <span class="toc-text">思考</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2022 By GoogTech</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="/blog/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'cuhS73KNdoQ8SJpCFhaalYHe-gzGzoHsz',
+      appKey: 'bBxVEeuGBYAXa68aQv8mGUjn',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

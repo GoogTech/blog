@@ -1,0 +1,1101 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Shell极速入门教程 | GoogTech's Blog Site</title><meta name="keywords" content="Shell,Tutorial"><meta name="author" content="GoogTech,hi@goog.tech"><meta name="copyright" content="GoogTech"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="简介以下 Shell 程序均在 Windows 平台上编写😅, 开发工具为 VSCode, 开发环境为 GitBash. Hello Shell123#!\Git\Git\bin\bashecho &quot;hello world&quot;  运行结果如下所示 : 1hello world   echo : 此命令用于向窗口输出文本.  #! : 其后路径所指的程序即是解释此脚本文件的程序解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shell极速入门教程">
+<meta property="og:url" content="https://goog.tech/blog/2021/06/26/quick-start-tutorial-for-shell-language-beginner/index.html">
+<meta property="og:site_name" content="GoogTech&#39;s Blog Site">
+<meta property="og:description" content="简介以下 Shell 程序均在 Windows 平台上编写😅, 开发工具为 VSCode, 开发环境为 GitBash. Hello Shell123#!\Git\Git\bin\bashecho &quot;hello world&quot;  运行结果如下所示 : 1hello world   echo : 此命令用于向窗口输出文本.  #! : 其后路径所指的程序即是解释此脚本文件的程序解">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://goog.tech/blog/img/default-cover/11.png">
+<meta property="article:published_time" content="2021-06-26T00:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-05T03:09:17.788Z">
+<meta property="article:author" content="GoogTech">
+<meta property="article:tag" content="Shell">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://goog.tech/blog/img/default-cover/11.png"><link rel="shortcut icon" href="/blog/img/favicon.png"><link rel="canonical" href="https://goog.tech/blog/2021/06/26/quick-start-tutorial-for-shell-language-beginner/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?38cca3f22b1618b6439834b03516d7e7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-206511912-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-206511912-1');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: GoogTech","link":"Link: ","source":"Source: GoogTech's Blog Site","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Shell极速入门教程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-05 03:09:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/blog/atom.xml" title="GoogTech's Blog Site" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/43493852?v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/blog/archives/"><div class="headline">Articles</div><div class="length-num">202</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/tags/"><div class="headline">Tags</div><div class="length-num">81</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/blog/img/default-cover/11.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/blog/">GoogTech's Blog Site</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Shell极速入门教程<a class="post-edit-link" href="https://github.com/GoogTech/blog/edit/HexoBackup/source/_posts/quick-start-tutorial-for-shell-language-beginner.md" title="Edited on" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2021-06-26T00:00:00.000Z" title="undefined 2021-06-26 00:00:00">2021-06-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/blog/categories/Programming-Language/">Programming Language</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">5.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>24min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Shell极速入门教程"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/blog/2021/06/26/quick-start-tutorial-for-shell-language-beginner/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/blog/2021/06/26/quick-start-tutorial-for-shell-language-beginner/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>以下 Shell 程序均在 Windows 平台上编写😅, 开发工具为 VSCode, 开发环境为 GitBash.</p>
+<h2 id="Hello-Shell"><a href="#Hello-Shell" class="headerlink" title="Hello Shell"></a>Hello Shell</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">echo &quot;hello world&quot;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hello world</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>echo</code> : 此命令用于向窗口输出文本.</p>
+</li>
+<li><p><code>#!</code> : 其后路径所指的程序即是解释此脚本文件的程序解释器.</p>
+</li>
+</ul>
+<hr>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><h3 id="单行注释"><a href="#单行注释" class="headerlink" title="单行注释"></a>单行注释</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">echo</span> <span class="string">&quot;Hello World&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="多行注释"><a href="#多行注释" class="headerlink" title="多行注释"></a>多行注释</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">:&lt;&lt;EOF</span><br><span class="line">echo &quot;Hello World&quot;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h2 id="echo-命令"><a href="#echo-命令" class="headerlink" title="echo 命令"></a>echo 命令</h2><h3 id="显示普通字符串"><a href="#显示普通字符串" class="headerlink" title="显示普通字符串"></a>显示普通字符串</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">echo &quot;Hello World&quot;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello World</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="显示转义字符串"><a href="#显示转义字符串" class="headerlink" title="显示转义字符串"></a>显示转义字符串</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">echo &quot;\&quot;Hello World&quot;\&quot;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;Hello World&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="显示变量"><a href="#显示变量" class="headerlink" title="显示变量"></a>显示变量</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">alias=&quot;GoogTech&quot;</span><br><span class="line"></span><br><span class="line">echo $&#123;alias&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GoogTech</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="显示结果定向到指定文件"><a href="#显示结果定向到指定文件" class="headerlink" title="显示结果定向到指定文件"></a>显示结果定向到指定文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">echo &quot;echo some informations into the specified file&quot; &gt; file.txt</span><br></pre></td></tr></table></figure>
+
+<p>运行上述程序后, 该脚本首先会在当前目录下创建一个名为 <code>file.txt</code> 的文件, 然后将字符串写入到该文件中, 文件中的内容如下所示 : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo some informations into the specified file</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="显示命令执行的结果"><a href="#显示命令执行的结果" class="headerlink" title="显示命令执行的结果"></a>显示命令执行的结果</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">echo `pwd`</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/f/Git/workbench/shell</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>注 : 程序中使用的是反引号<code>``</code>, 而非单引号<code>&#39;&#39;</code>.</li>
+</ul>
+<hr>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="使用变量"><a href="#使用变量" class="headerlink" title="使用变量"></a>使用变量</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">alias=&quot;GoogTech&quot;</span><br><span class="line"></span><br><span class="line">echo $alias</span><br><span class="line">echo $&#123;alias&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GoogTech</span><br><span class="line">GoogTech</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>$</code> : 用于引用已定义的变量.</li>
+<li><code>&#123;&#125;</code>  : 变量名外的花括号是可选的, 加花括号是为了帮助解释器识别变量的边界, 故建议给所有变量加上花括号.</li>
+</ul>
+<h3 id="只读变量"><a href="#只读变量" class="headerlink" title="只读变量"></a>只读变量</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">myUrl=&quot;https://googtech.io&quot;</span><br><span class="line"></span><br><span class="line">readonly myUrl</span><br><span class="line"></span><br><span class="line">myUrl=&quot;https://github.com/googtech&quot;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f:\Git\workbench\shell\readonlyTest.sh: line 7: myUrl: readonly variable</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li> <code>readonly</code>  : 此命令可将变量定义为只读变量, 进而其值不能被改变.</li>
+</ul>
+<h3 id="删除变量"><a href="#删除变量" class="headerlink" title="删除变量"></a>删除变量</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">url=&quot;https://googtech.io&quot;</span><br><span class="line"></span><br><span class="line">unset url</span><br><span class="line"></span><br><span class="line">echo $url</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># 无任何输出哈~</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>unset</code> : 用于删除变量, 但此命令不能删除只读变量.</li>
+</ul>
+<hr>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><h3 id="单引号与双引号"><a href="#单引号与双引号" class="headerlink" title="单引号与双引号"></a>单引号与双引号</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">alias=&#x27;GoogTech&#x27;</span><br><span class="line"></span><br><span class="line">intro=&quot;Hey guy I&#x27;m \&quot;$alias\&quot; !&quot;</span><br><span class="line"></span><br><span class="line">echo $&#123;intro&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hey guy I&#x27;m &quot;GoogTech&quot; !</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>&#39; &#39;</code> : 单引号字符串中的变量是无效的, 而且无法使用转义符.</li>
+<li><code>&quot; &quot;</code> : 双引号中可以引用变量, 而且可以使用转义符.</li>
+</ul>
+<h3 id="拼接字符串"><a href="#拼接字符串" class="headerlink" title="拼接字符串"></a>拼接字符串</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">alias=&quot;GoogTech&quot;</span><br><span class="line"></span><br><span class="line">greeting1=&quot;hey &quot;$alias&quot; !&quot;</span><br><span class="line">greeting2=&quot;hello $&#123;alias&#125; !&quot;</span><br><span class="line"></span><br><span class="line">echo $&#123;greeting1&#125;</span><br><span class="line">echo $&#123;greeting2&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hey GoogTech !</span><br><span class="line">hello GoogTech !</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="获取字符串长度"><a href="#获取字符串长度" class="headerlink" title="获取字符串长度"></a>获取字符串长度</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">alias=&quot;GoogTech&quot;</span><br><span class="line"></span><br><span class="line">echo &quot;The length of my alias: &quot;$&#123;#alias&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The length of my alias: 8</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="提取字串"><a href="#提取字串" class="headerlink" title="提取字串"></a>提取字串</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">alias=&quot;GoogTech&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 从字符串的第 1 个字符开始截取 4 个字符</span></span><br><span class="line">echo &quot;$&#123;alias:0:4&#125;le&quot;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Google</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="查找子串"><a href="#查找子串" class="headerlink" title="查找子串"></a>查找子串</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">alias=&quot;GoogTech&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查找字符 T 或 h 的位置, 即返回第一个出现字符的 index</span></span><br><span class="line">echo `expr index &quot;$alias&quot; Tech`</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>注 : 脚本中使用的是<code>反引号</code> , 而非<code>单引号</code>.</li>
+</ul>
+<hr>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="读取数组"><a href="#读取数组" class="headerlink" title="读取数组"></a>读取数组</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 定义数组</span></span><br><span class="line">arr=(1 2 3 4 5 6)</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 添加数组元素</span></span><br><span class="line">arr[6]=7 </span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 打印数组中下标值为 0 和 5 的数组元素</span></span><br><span class="line">echo &quot;$&#123;arr[0]&#125;, $&#123;arr[5]&#125;&quot;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 打印数组中的所有的元素, 或使用 <span class="built_in">echo</span> <span class="variable">$&#123;arr[*]&#125;</span></span></span><br><span class="line">echo $&#123;arr[@]&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1, 6</span><br><span class="line">1 2 3 4 5 6 7</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="获取数组长度"><a href="#获取数组长度" class="headerlink" title="获取数组长度"></a>获取数组长度</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">arr=(a abc abcd abcde abcdef abcdefg)</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 获取数组中元素的个数, 或使用 <span class="comment">#arr[*]</span></span></span><br><span class="line">length1=$&#123;#arr[@]&#125;</span><br><span class="line">echo $&#123;length1&#125;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 获取数组中指定下标元素的长度</span></span><br><span class="line">length3=$&#123;#arr[5]&#125;</span><br><span class="line">echo $&#123;length3&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">6</span><br><span class="line">7</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h2 id="传参"><a href="#传参" class="headerlink" title="传参"></a>传参</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">echo &quot;The program file name: $0&quot;</span><br><span class="line"></span><br><span class="line">echo &quot;The first parm: $1&quot;</span><br><span class="line">echo &quot;The second parm: $2&quot;</span><br><span class="line">echo &quot;The third parm: $3&quot;</span><br><span class="line"></span><br><span class="line">echo &quot;the amount of parm: $#&quot;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 : </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> bash parmTest.sh a ab abc</span></span><br><span class="line">The program file name: parmTest.sh</span><br><span class="line">The first parm: a</span><br><span class="line">The second parm: ab</span><br><span class="line">The third parm: abc</span><br><span class="line">the amount of parm: 3</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><p>注意点 :</p>
+<ol>
+<li>表达式和运算符之间需要有空格.</li>
+<li>完整的表达式要被 <code>``</code> 包含.</li>
+</ol>
+<h3 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h3><p>假定变量 a 为 10, 变量 b 为 20.</p>
+<table>
+    <tbody>
+        <tr>
+            <th>
+                运算符</th>
+            <th>
+                说明</th>
+            <th>
+                举例</th>
+        </tr>
+        <tr>
+            <td>
+                +</td>
+            <td>
+                加法</td>
+            <td>
+                `expr $a + $b` 结果为&nbsp;30</td>
+        </tr>
+        <tr>
+            <td>
+                -</td>
+            <td>
+                减法</td>
+            <td>
+                `expr $a - $b` 结果为 -10</td>
+        </tr>
+        <tr>
+            <td>
+                *</td>
+            <td>
+                乘法</td>
+            <td>
+                `expr $a \* $b` 结果为 &nbsp;200</td>
+        </tr>
+        <tr>
+            <td>
+                /</td>
+            <td>
+                除法</td>
+            <td>
+                `expr $b / $a` 结果为&nbsp;2</td>
+        </tr>
+        <tr>
+            <td>
+                %</td>
+            <td>
+                取余</td>
+            <td>
+                `expr $b % $a` 结果为&nbsp;0</td>
+        </tr>
+        <tr>
+            <td>
+                =</td>
+            <td>
+                赋值</td>
+            <td>
+                a=$b 将把变量 b 的值赋给 a</td>
+        </tr>
+        <tr>
+            <td>
+                ==</td>
+            <td>
+                相等。用于比较两个数字，相同则返回 true</td>
+            <td>
+                [ $a == $b ] 返回&nbsp;false</td>
+        </tr>
+        <tr>
+            <td>
+                !=</td>
+            <td>
+                不相等。用于比较两个数字，不相同则返回 true</td>
+            <td>
+                [ $a != $b ] 返回 true</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul>
+<li>乘号 <code>*</code> 前面必须加反斜杠 <code>\</code> 转义符才能实现乘法运算.</li>
+</ul>
+<h3 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h3><p>假定变量 a 为 10, 变量 b 为 20.</p>
+<table>
+    <tbody>
+        <tr>
+            <th>
+                运算符</th>
+            <th>
+                说明</th>
+            <th>
+                举例</th>
+        </tr>
+        <tr>
+            <td>
+                -eq</td>
+            <td>
+                检测两个数是否相等, 相等返回 true</td>
+            <td>
+                [ $a -eq $b ] 返回&nbsp;false</td>
+        </tr>
+        <tr>
+            <td>
+                -ne</td>
+            <td>
+                检测两个数是否不相等, 不相等返回 true</td>
+            <td>
+                [ $a -ne $b ] 返回 true</td>
+        </tr>
+        <tr>
+            <td>
+                -gt</td>
+            <td>
+                检测左边的数是否大于右边的, 如果是则返回 true</td>
+            <td>
+                [ $a -gt $b ] 返回 false</td>
+        </tr>
+        <tr>
+            <td>
+                -lt</td>
+            <td>
+                检测左边的数是否小于右边的, 如果是则返回 true</td>
+            <td>
+                [ $a -lt $b ] 返回 true</td>
+        </tr>
+        <tr>
+            <td>
+                -ge</td>
+            <td>
+                检测左边的数是否大于等于右边的, 如果是则返回 true</td>
+            <td>
+                [ $a -ge $b ] 返回 false</td>
+        </tr>
+        <tr>
+            <td>
+                -le</td>
+            <td>
+                检测左边的数是否小于等于右边的, 如果是则返回 true</td>
+            <td>
+                [ $a -le $b ] 返回 true</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul>
+<li>关系运算符只支持数字, 不支持字符串.</li>
+</ul>
+<h3 id="布尔运算符"><a href="#布尔运算符" class="headerlink" title="布尔运算符"></a>布尔运算符</h3><p>假定变量 a 为 10, 变量 b 为 20.</p>
+<table>
+    <tbody>
+        <tr>
+            <th>
+                运算符</th>
+            <th>
+                说明</th>
+            <th>
+                举例</th>
+        </tr>
+        <tr>
+            <td>
+                !</td>
+            <td>
+                非运算, 表达式为 true 则返回 false, 否则返回 true</td>
+            <td>
+                [ ! false ] 返回 true</td>
+        </tr>
+        <tr>
+            <td>
+                -o</td>
+            <td>
+                或运算, 有一个表达式为 true 则返回 true.</td>
+            <td>
+                [ $a -lt 20 -o $b -gt 100 ] 返回&nbsp;true.</td>
+        </tr>
+        <tr>
+            <td>
+                -a</td>
+            <td>
+                与运算, 两个表达式都为 true 才返回 true.</td>
+            <td>
+                [ $a -lt 20 -a $b -gt 100 ] 返回&nbsp;false.</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><p>假定变量 a 为 10, 变量 b 为 20.</p>
+<table>
+    <tbody>
+        <tr>
+            <th>
+                运算符</th>
+            <th>
+                说明</th>
+            <th>
+                举例</th>
+        </tr>
+        <tr>
+            <td>
+                &amp;&amp;    </td>
+            <td>
+                逻辑的 AND </td>
+            <td>
+                [[ $a -lt 100 &amp;&amp; $b -gt 100 ]] 返回 false</td>
+        </tr>
+        <tr>
+            <td>
+                ||</td>
+            <td>
+                逻辑的 OR</td>
+            <td>
+                [[ $a -lt 100 || $b -gt 100 ]] 返回 true</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<h3 id="字符串运算符"><a href="#字符串运算符" class="headerlink" title="字符串运算符"></a>字符串运算符</h3><p>假定变量 a 为 “abc”, 变量 b 为 “efg”.</p>
+<table>
+    <tbody>
+        <tr>
+            <th>
+                运算符</th>
+            <th>
+                说明</th>
+            <th>
+                举例</th>
+        </tr>
+        <tr>
+            <td>
+                =</td>
+            <td>
+                检测两个字符串是否相等, 相等返回 true</td>
+            <td>
+                [ $a = $b ] 返回 false</td>
+        </tr>
+        <tr>
+            <td>
+                !=</td>
+            <td>
+                检测两个字符串是否不相等, 不相等返回 true</td>
+            <td>
+                [ $a != $b ] 返回&nbsp;true</td>
+        </tr>
+        <tr>
+            <td>
+                -z</td>
+            <td>
+                检测字符串长度是否为0, 为 0 返回 true</td>
+            <td>
+                [ -z $a ] 返回 false</td>
+        </tr>
+        <tr>
+            <td>
+                -n</td>
+            <td>
+                检测字符串长度是否不为 0, 不为 0 返回 true</td>
+            <td>
+                [ -n "$a" ] 返回 true</td>
+        </tr>
+        <tr>
+            <td>
+                $</td>
+            <td>
+                检测字符串是否为空, 不为空返回 true</td>
+            <td>
+                [ $a ] 返回&nbsp;true</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<h3 id="文件测试运算符"><a href="#文件测试运算符" class="headerlink" title="文件测试运算符"></a>文件测试运算符</h3><table>
+    <tbody>
+        <tr>
+            <th>
+                操作符</th>
+            <th>
+                说明</th>
+            <th>
+                举例</th>
+        </tr>
+        <tr>
+            <td>
+                -b file</td>
+            <td>
+                检测文件是否是块设备文件, 如果是, 则返回 true</td>
+            <td>
+                [ -b $file ] 返回 false</td>
+        </tr>
+        <tr>
+            <td>
+                -c file</td>
+            <td>
+                检测文件是否是字符设备文件, 如果是, 则返回 true</td>
+            <td>
+                [ -c $file ] 返回&nbsp;false</td>
+        </tr>
+        <tr>
+            <td>
+                -d file</td>
+            <td>
+                检测文件是否是目录, 如果是, 则返回 true</td>
+            <td>
+                [ -d $file ] 返回 false</td>
+        </tr>
+        <tr>
+            <td>
+                -f file</td>
+            <td>
+                检测文件是否是普通文件(既不是目录, 也不是设备文件), 如果是, 则返回 true</td>
+            <td>
+                [ -f $file ] 返回&nbsp;true</td>
+        </tr>
+        <tr>
+            <td>
+                -g file</td>
+            <td>
+                检测文件是否设置了 SGID 位, 如果是, 则返回 true</td>
+            <td>
+                [ -g $file ] 返回&nbsp;false</td>
+        </tr>
+        <tr>
+            <td>
+                -k file</td>
+            <td>
+                检测文件是否设置了粘着位(Sticky Bit), 如果是, 则返回 true</td>
+            <td>
+                [ -k $file ] 返回&nbsp;false</td>
+        </tr>
+        <tr>
+            <td>
+                -p file</td>
+            <td>
+                检测文件是否是有名管道, 如果是, 则返回 true.</td>
+            <td>
+                [ -p $file ] 返回&nbsp;false</td>
+        </tr>
+        <tr>
+            <td>
+                -u file</td>
+            <td>
+                检测文件是否设置了 SUID 位, 如果是, 则返回 true</td>
+            <td>
+                [ -u $file ] 返回&nbsp;false</td>
+        </tr>
+        <tr>
+            <td>
+                -r file</td>
+            <td>
+                检测文件是否可读, 如果是, 则返回 true</td>
+            <td>
+                [ -r $file ] 返回&nbsp;true</td>
+        </tr>
+        <tr>
+            <td>
+                -w file</td>
+            <td>
+                检测文件是否可写, 如果是, 则返回 true</td>
+            <td>
+                [ -w $file ] 返回&nbsp;true</td>
+        </tr>
+        <tr>
+            <td>
+                -x file</td>
+            <td>
+                检测文件是否可执行, 如果是, 则返回 true</td>
+            <td>
+                [ -x $file ] 返回&nbsp;true</td>
+        </tr>
+        <tr>
+            <td>
+                -s file</td>
+            <td>
+                检测文件是否为空(文件大小是否大于0), 不为空返回 true</td>
+            <td>
+                [ -s $file ] 返回&nbsp;true</td>
+        </tr>
+        <tr>
+            <td>
+                -e file</td>
+            <td>
+                检测文件(包括目录)是否存在, 如果是, 则返回 true</td>
+            <td>
+                [ -e $file ] 返回&nbsp;true</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<hr>
+<h2 id="printf-命令"><a href="#printf-命令" class="headerlink" title="printf 命令"></a>printf 命令</h2><p>printf 由 POSIX 标准所定义, 因此使用 printf 的脚本比使用 echo 移植性好.</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">printf format-string [arguments...]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>format-string</code> : 为格式控制字符串</li>
+<li><code>arguments</code> : 为参数列表</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">printf &quot;Hello World \n&quot;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello World</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="常用格式替代符"><a href="#常用格式替代符" class="headerlink" title="常用格式替代符"></a>常用格式替代符</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">printf &quot;%-10s %-8s %-4s\n&quot; Name Gender Weight</span><br><span class="line">printf &quot;%-10s %-8s %-4s\n&quot; Goog male 65.123</span><br><span class="line">printf &quot;%-10s %-8s %-4s\n&quot; Tech female 50.456</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Name       Gender   Weight</span><br><span class="line">Goog       male     65.123</span><br><span class="line">Tech       female   50.456</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>%s</code> : 输出字符串</p>
+</li>
+<li><p><code>%d</code> : 输出整型数字</p>
+</li>
+<li><p><code>%c</code> : 输出一个字符</p>
+</li>
+<li><p><code>%f</code> : 输出实数的小数形式</p>
+</li>
+<li><p><code>%-4.2f</code> : 指格式化为小数, 其中 <code>.2</code> 指保留 2 位小数</p>
+</li>
+<li><p><code>%-10s</code> : 指一个宽度为 10 个字符( <code>-</code> 表示左对齐, 没有则表示右对齐)</p>
+</li>
+</ul>
+<hr>
+<h2 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h2><h3 id="if"><a href="#if" class="headerlink" title="if"></a>if</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">a=1</span><br><span class="line">b=2</span><br><span class="line"></span><br><span class="line">if [ $a == $b ]</span><br><span class="line">then</span><br><span class="line">    echo &quot;a = b&quot;</span><br><span class="line">elif [ $a -gt $b ]</span><br><span class="line">then </span><br><span class="line">    echo &quot;a &gt; b&quot;</span><br><span class="line">elif [ $a -lt $b ]</span><br><span class="line">then </span><br><span class="line">    echo &quot;a &lt; b&quot;</span><br><span class="line">else </span><br><span class="line">    echo &quot;no result&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a &lt; b</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="for"><a href="#for" class="headerlink" title="for"></a>for</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 顺序打印当前列表中的数字</span></span><br><span class="line">for num in 1 2 3 4 5 6</span><br><span class="line">do </span><br><span class="line">    echo &quot;The number: $num&quot;</span><br><span class="line">done</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 顺序打印字符串中的字符</span></span><br><span class="line">for str in This is a string</span><br><span class="line">do </span><br><span class="line">    echo &quot;The string: $str&quot;</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">The number: 1</span><br><span class="line">The number: 2</span><br><span class="line">The number: 3</span><br><span class="line">The number: 4</span><br><span class="line">The number: 5</span><br><span class="line">The number: 6</span><br><span class="line">The string: This</span><br><span class="line">The string: is</span><br><span class="line">The string: a</span><br><span class="line">The string: string</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="while"><a href="#while" class="headerlink" title="while"></a>while</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">int=1</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">while(($</span><span class="bash">int&lt;=3))</span></span><br><span class="line">do</span><br><span class="line">    echo $&#123;int&#125;</span><br><span class="line">    let &quot;int++&quot;</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>let</code> : 此命令是 <code>bash</code> 中用于计算的工具, 用于执行一个或多个表达式, 变量计算中不需要加上 <code>$</code> 来表示变量. 如果表达式中包含了空格或其它特殊字符, 则必须引起来.</li>
+</ul>
+<h3 id="until"><a href="#until" class="headerlink" title="until"></a>until</h3><p>util 循环与 while 循环在处理方式上刚好相反.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">num = 1</span><br><span class="line"></span><br><span class="line">until [ $num -gt 3 ]</span><br><span class="line">do</span><br><span class="line">    echo $&#123;num&#125;</span><br><span class="line">   ((num++))</span><br><span class="line">done </span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="case"><a href="#case" class="headerlink" title="case"></a>case</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">echo &#x27;Please input a number: &#x27;</span><br><span class="line">read num</span><br><span class="line">case $num in </span><br><span class="line">    1) echo &#x27;The number you inputed: 1&#x27;</span><br><span class="line">    ;;</span><br><span class="line">    2) echo &#x27;The number you inputed: 2&#x27;</span><br><span class="line">    ;;</span><br><span class="line">    3) echo &#x27;The number you inputed: 3&#x27;</span><br><span class="line">    ;;</span><br><span class="line">    *) echo &#x27;You inputed others number.&#x27;</span><br><span class="line">    ;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ bash caseTest.sh </span><br><span class="line">Please input a number: </span><br><span class="line">2</span><br><span class="line">The number you inputed: 2</span><br><span class="line"></span><br><span class="line">$ bash caseTest.sh </span><br><span class="line">Please input a number: </span><br><span class="line">4</span><br><span class="line">You inputed others number.</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="break"><a href="#break" class="headerlink" title="break"></a>break</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">while :</span><br><span class="line">do </span><br><span class="line">    echo -n &quot;please input a number between 1 and 3: &quot;</span><br><span class="line">    read num</span><br><span class="line">    case $num in </span><br><span class="line">        1|2|3) echo &quot;the number you inputed: $&#123;num&#125;&quot;</span><br><span class="line">        ;;</span><br><span class="line">        *) echo &quot;you inputed others number and game over !&quot;</span><br><span class="line">            break</span><br><span class="line">        ;;</span><br><span class="line">    esac</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ bash breakTest.sh</span><br><span class="line">please input a number between 1 and 5: 1</span><br><span class="line">the number you inputed: 1</span><br><span class="line">please input a number between 1 and 5: 2</span><br><span class="line">the number you inputed: 2</span><br><span class="line">please input a number between 1 and 5: 3</span><br><span class="line">the number you inputed: 3</span><br><span class="line">please input a number between 1 and 5: 4</span><br><span class="line">you inputed others number and game over !</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">while :</span><br><span class="line">do </span><br><span class="line">    echo -n &quot;please input a number between 1 and 3: &quot;</span><br><span class="line">    read num</span><br><span class="line">    case $num in </span><br><span class="line">        1|2|3) echo &quot;the number you inputed: $&#123;num&#125;&quot;</span><br><span class="line">        ;;</span><br><span class="line">        *) echo &quot;you inputed others number and game over !&quot;</span><br><span class="line">            continue</span><br><span class="line">            echo &quot;This Line Never Be Executed !&quot;</span><br><span class="line">        ;;</span><br><span class="line">    esac</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ bash continueTest.sh</span><br><span class="line">please input a number between 1 and 3: 1</span><br><span class="line">the number you inputed: 1</span><br><span class="line">please input a number between 1 and 3: 2</span><br><span class="line">the number you inputed: 2</span><br><span class="line">please input a number between 1 and 3: 3</span><br><span class="line">the number you inputed: 3</span><br><span class="line">please input a number between 1 and 3: 4</span><br><span class="line">you inputed others number and game over !</span><br><span class="line">please input a number between 1 and 3: </span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[ function ] funname [()]</span><br><span class="line">&#123;</span><br><span class="line">	action;</span><br><span class="line">	[return int;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>function</code> 关键字可加可不加.</li>
+</ul>
+<h3 id="无参函数"><a href="#无参函数" class="headerlink" title="无参函数"></a>无参函数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">funcWithReturn() &#123;</span><br><span class="line">    echo &quot;Please input the first number: &quot;</span><br><span class="line">    read num1</span><br><span class="line">    echo &quot;Please input the second number: &quot;</span><br><span class="line">    read num2</span><br><span class="line">    return $(($num1+$num2))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">funcWithReturn</span><br><span class="line">echo &quot;The sum: $?&quot;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Please input the first number: </span><br><span class="line">1</span><br><span class="line">Please input the second number: </span><br><span class="line">2</span><br><span class="line">The sum: 3</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>$?</code>  : 用来获取调用函数的返回值.</li>
+</ul>
+<h3 id="函数参数"><a href="#函数参数" class="headerlink" title="函数参数"></a>函数参数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">funcWithParam() &#123;</span><br><span class="line">    echo &quot;The first parm: $1&quot;</span><br><span class="line">    echo &quot;The second parm: $2&quot;</span><br><span class="line">    echo &quot;The thrid parm: $3&quot;</span><br><span class="line">    echo &quot;the sixth parm: $&#123;6&#125;&quot;</span><br><span class="line">    echo &quot;The amount of parm: $#&quot;</span><br><span class="line">    echo &quot;All parms: $*&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">funcWithParam 10 9 8 7 6 5</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">The first parm: 10</span><br><span class="line">The second parm: 9</span><br><span class="line">The thrid parm: 8</span><br><span class="line">the sixth parm: 5</span><br><span class="line">The amount of parm: 6</span><br><span class="line">All parms: 10 9 8 7 6 5</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>当 n&gt;=10 时, 需要使用 <code>$&#123;n&#125;</code> 来获取参数.</li>
+</ul>
+<h3 id="处理参数的特殊字符"><a href="#处理参数的特殊字符" class="headerlink" title="处理参数的特殊字符"></a>处理参数的特殊字符</h3><table>
+    <tbody>
+        <tr>
+            <th>
+                参数处理</th>
+            <th>
+                说明</th>
+        </tr>
+        <tr>
+            <td>
+                $#</td>
+            <td>
+                传递到脚本或函数的参数个数</td>
+        </tr>
+        <tr>
+            <td>
+                $*</td>
+            <td>
+                以一个单字符串显示所有向脚本传递的参数</td>
+        </tr>
+        <tr>
+            <td>
+                $$</td>
+            <td>
+                脚本运行的当前进程ID号</td>
+        </tr>
+        <tr>
+            <td>
+                $!</td>
+            <td>
+                后台运行的最后一个进程的ID号</td>
+        </tr>
+        <tr>
+            <td>
+                $@</td>
+            <td>
+                与$*相同, 但是使用时加引号, 并在引号中返回每个参数</td>
+        </tr>
+        <tr>
+            <td>
+                $-</td>
+            <td>
+                显示Shell使用的当前选项, 与set命令功能相同</td>
+        </tr>
+        <tr>
+            <td>
+                $?</td>
+            <td>
+                显示最后命令的退出状态, 0表示没有错误, 其他任何值表明有错误</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<hr>
+<h2 id="输入-输出重定向"><a href="#输入-输出重定向" class="headerlink" title="输入/输出重定向"></a>输入/输出重定向</h2><h3 id="输出重定向"><a href="#输出重定向" class="headerlink" title="输出重定向"></a>输出重定向</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">echo &quot;echo string into user.txt file&quot; &gt; echo.txt</span><br></pre></td></tr></table></figure>
+
+<p>运行上述程序后, 该脚本首先会在当前目录下创建一个名为 <code>echo.txt</code> 的文件, 然后将字符串写入到该文件中, 文件中的内容如下所示 : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo string into user.txt file</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>&gt;</code>  : 该输入重定向将覆盖原文件中的内容, 若需要将新内容添加在文件的末尾, 则可以使用 <code>&gt;&gt;</code> 操作符, 实例如下所示.</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">echo &quot;echo new string into user.txt file&quot; &gt;&gt; echo.txt</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示( echo.txt ) : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo string into user.txt file</span><br><span class="line">echo new string into user.txt file</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="输入重定向"><a href="#输入重定向" class="headerlink" title="输入重定向"></a>输入重定向</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 统计 echo.txt 文件中的行数</span></span><br><span class="line">wc -l &lt; echo.txt</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="dev-null-文件"><a href="#dev-null-文件" class="headerlink" title="/dev/null 文件"></a>/dev/null 文件</h3><p>如果希望执行某个命令, 但不希望在屏幕上显示输出结果, 则可以将输出重定向到 <code>/dev/null</code> :</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">command</span> &gt; /dev/null</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 下述写法可以屏蔽 stdout 和 stderr</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">command</span> &gt; /dev/null 2&gt;&amp;1</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>/dev/null</code> : 它是一个特殊的文件, 写入到它的数据都会被丢弃, 故将命令重定向到它, 会起到 “禁止输出” 的效果哟.</li>
+</ul>
+<h3 id="重定向命令列表"><a href="#重定向命令列表" class="headerlink" title="重定向命令列表"></a>重定向命令列表</h3><table>
+    <tbody>
+        <tr>
+            <th style="width:129px;">
+                命令</th>
+            <th style="width:409px;">
+                说明</th>
+        </tr>
+        <tr>
+            <td>
+                command &gt; file</td>
+            <td>
+                将输出重定向到 file</td>
+        </tr>
+        <tr>
+            <td>
+                command &lt; file</td>
+            <td>
+                将输入重定向到 file</td>
+        </tr>
+        <tr>
+            <td>
+                command &gt;&gt; file</td>
+            <td>
+                将输出以追加的方式重定向到 file</td>
+        </tr>
+        <tr>
+            <td>
+                n &gt; file</td>
+            <td>
+                将文件描述符为 n 的文件重定向到 file</td>
+        </tr>
+        <tr>
+            <td>
+                n &gt;&gt; file</td>
+            <td>
+                将文件描述符为 n 的文件以追加的方式重定向到 file</td>
+        </tr>
+        <tr>
+            <td>
+                n &gt;&amp; m</td>
+            <td>
+                将输出文件 m 和 n 合并</td>
+        </tr>
+        <tr>
+            <td>
+                n &lt;&amp; m</td>
+            <td>
+                将输入文件 m 和 n 合并</td>
+        </tr>
+        <tr>
+            <td>
+                &lt;&lt; tag</td>
+            <td>
+                将开始标记 tag 和结束标记 tag 之间的内容作为输入</td>
+        </tr>
+    </tbody>
+</table>
+* `标准输入文件(stdin)` : stdin的文件描述符为0, Unix程序默认从stdin读取数据.
+* `标准输出文件(stdout)` : stdout的文件描述符为1, Unix程序默认向stdout输出数据.
+* `标准错误文件(stderr)` : stderr的文件描述符为2, Unix程序会向stderr流中写入错误信息.
+
+
+
+<hr>
+<h2 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h2><p>Shell 可以包含外部脚本, 进而可以很方便地封装一些公用的代码作为一个独立的文件.</p>
+<ol>
+<li>util.sh</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">funcWithReturn() &#123;</span><br><span class="line">    return $(($1+$2))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>test.sh</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"></span><br><span class="line">source ./util.sh</span><br><span class="line"></span><br><span class="line">funcWithReturn 1 2</span><br><span class="line"></span><br><span class="line">echo &quot;The sum: $?&quot;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The sum: 3</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>注 : 被包含文件不需要可执行权限.</li>
+</ul>
+<hr>
+<h2 id="基础练习题"><a href="#基础练习题" class="headerlink" title="基础练习题"></a>基础练习题</h2><ol>
+<li> 编写 shell 脚本, 用户输入整数, 如果大于等于0, 屏幕打印 “the test value is greater than 0”, 如果小于0, 屏幕打印 “the test value is less than 0”.</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Author: GoogTech</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Email: googtech@qq.com</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Date: 2021-06-27</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Site: https://shell.googtech.io</span> </span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 1. 编写 shell 脚本, 用户输入整数, 如果大于等于0,</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash">    屏幕打印 <span class="string">&quot;the test value is greater than 0&quot;</span>,</span></span><br><span class="line"><span class="meta">#</span><span class="bash">    如果小于0, 屏幕打印 <span class="string">&quot;the test value is less than 0&quot;</span>.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##</span></span> </span><br><span class="line"></span><br><span class="line">read -r -p &quot;Please input a number : &quot; num</span><br><span class="line">if ((num&gt;0))</span><br><span class="line">then</span><br><span class="line">    echo &quot;The test value is greater than 0.&quot;</span><br><span class="line">else</span><br><span class="line">    echo &quot;The test value is less than 0.&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 : </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ bash Test.sh </span><br><span class="line">Please input a number : 0</span><br><span class="line">The test value is less than 0.</span><br><span class="line"></span><br><span class="line">$ bash Test.sh </span><br><span class="line">Please input a number : 1</span><br><span class="line">The test value is greater than 0.</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/koalaman/shellcheck/wiki/SC2162">read without -r will mangle backslashes</a></li>
+</ul>
+<ol start="2">
+<li>编写脚本, 检查密码, 如果用户三次输入密码均错误, 则退出脚本.</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Author: GoogTech</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Email: googtech@qq.com</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Date: 2021-06-27</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Site: https://shell.googtech.io</span> </span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 2. 编写脚本, 检查密码, 如果用户三次输入密码均错误, 则退出脚本.</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##</span></span> </span><br><span class="line"></span><br><span class="line">COUNT=0</span><br><span class="line">NUMBER=3</span><br><span class="line">PASSWORD=GoogTech.IO</span><br><span class="line"></span><br><span class="line">while [ $COUNT -lt $NUMBER ]</span><br><span class="line">do </span><br><span class="line">read -r -p &quot;Please input your pwd: &quot; PWD</span><br><span class="line">COUNT=$((COUNT+1))</span><br><span class="line">if [ &quot;$PWD&quot; == $PASSWORD ]</span><br><span class="line">then</span><br><span class="line">    echo &quot;The password is corret.&quot;</span><br><span class="line">    exit</span><br><span class="line">else</span><br><span class="line">    echo &quot;The password is incorret.&quot;</span><br><span class="line">    continue</span><br><span class="line">fi</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ bash Test.sh </span><br><span class="line">Please input your pwd: GoogTech.io</span><br><span class="line">The password is incorret.</span><br><span class="line">Please input your pwd: GoogTech.Io</span><br><span class="line">The password is incorret.</span><br><span class="line">Please input your pwd: GoogTech.iO</span><br><span class="line">The password is incorret.</span><br><span class="line"></span><br><span class="line">$ bash Test.sh</span><br><span class="line">Please input your pwd: GoogTech.IO</span><br><span class="line">The password is corret.</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="3">
+<li>备份 /etc 目录, 备份的压缩包有时间标志.</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Author: GoogTech</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Date: 2021-06-27</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Email: googtech@qq.com</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Site: https://shell.googtech.io</span> </span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 3. 备份/etc目录, 备份的压缩包有时间标志.</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##</span></span> </span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 在根目录创建备份目录</span></span><br><span class="line">mkdir -p /backup</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 备份 etc/ 目录, 并在压缩包文件名中添加时间标志</span></span><br><span class="line">cd /</span><br><span class="line">tar czf /backup/etc_&quot;$(date +%F_%M)&quot;.tar.gz etc/</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ls -l /backup/</span><br><span class="line">total 508</span><br><span class="line">-rw-r--r-- 1 GoogTech 197121 519700 Jun 27 10:20 etc_2021-06-27_20.tar.gz</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/koalaman/shellcheck/wiki/SC2046">Quote this to prevent word splitting</a></li>
+</ul>
+<ol start="4">
+<li>尝试从文件读取数据前, 测试下文件 /etc/shadow 是否可读, 首先判断是否是存在, 且是一个文件, 如果不存在输出 “sorry, the file /etc/shadow  does not exist”. 如果存在判断是否可读, 如果可读, 打印文件的最后一行, 如果不可读, 输出 “sorry, I am unable to read the /etc/shadow file”.</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Author: GoogTech</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Date: 2021-06-27</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Email: googtech@qq.com</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Site: https://shell.googtech.io</span> </span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 4. 尝试从文件读取数据前, 测试下文件 /etc/shadow 是否可读,</span></span> </span><br><span class="line"><span class="meta">#</span><span class="bash">    首先判断是否是存在, 且是一个文件,</span> </span><br><span class="line"><span class="meta">#</span><span class="bash">    如果不存在输出 <span class="string">&quot;sorry, the file /etc/shadow  does not exist&quot;</span>.</span> </span><br><span class="line"><span class="meta">#</span><span class="bash">    如果存在判断是否可读, 如果可读, 打印文件的最后一行,</span></span><br><span class="line"><span class="meta">#</span><span class="bash">    如果不可读, 输出 <span class="string">&quot;sorry, I am unable to read the /etc/shadow file&quot;</span>.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##</span></span> </span><br><span class="line"></span><br><span class="line">DIRECTORY_PATH=&quot;/etc&quot;</span><br><span class="line">FILE_PATH=&quot;/etc/shadow&quot;</span><br><span class="line"></span><br><span class="line">if [ ! -d &quot;$DIRECTORY_PATH&quot; ]</span><br><span class="line">then</span><br><span class="line">    echo &quot;sorry, the file /etc/shadow does not exist.&quot;</span><br><span class="line">elif [ ! -r &quot;$FILE_PATH&quot; ]  </span><br><span class="line">then </span><br><span class="line">    echo &quot;sorry, I am unable to read the /etc/shadow file.&quot;</span><br><span class="line">else</span><br><span class="line">    tail -n 1 $FILE_PATH</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ echo &quot;echo string into the /etc/shadow file&quot; &gt;&gt; /etc/shadow</span><br><span class="line"></span><br><span class="line">$ cat /etc/shadow </span><br><span class="line">echo string into the /etc/shadow file</span><br><span class="line"></span><br><span class="line">$ bash Test.sh </span><br><span class="line">echo string into the /etc/shadow file</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="5">
+<li>创建一个 Shell 脚本, 它从用户那里接收 10 个数, 然后求出其总和、最大值及最小值.</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Author: GoogTech</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Date: 2021-06-27</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Email: googtech@qq.com</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Site: https://shell.googtech.io</span> </span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 5. 创建一个 Shell 脚本, 它从用户那里接收 10 个数,</span></span> </span><br><span class="line"><span class="meta">#</span><span class="bash">    然后求出其总和、最大值及最小值.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##</span></span> </span><br><span class="line"></span><br><span class="line">SUM=0</span><br><span class="line">COUNT=1</span><br><span class="line">NUMBER=10</span><br><span class="line"></span><br><span class="line">read -r -p &quot;Please input a number: &quot; NUM</span><br><span class="line">MIN=$&#123;NUM&#125;</span><br><span class="line">MAX=$&#123;NUM&#125;</span><br><span class="line">SUM=$((SUM+NUM))</span><br><span class="line"></span><br><span class="line">while [ $COUNT -lt $NUMBER ]</span><br><span class="line">do</span><br><span class="line">    read -r -p &quot;Please input a number: &quot; NUM</span><br><span class="line">    if((MAX &lt; NUM))</span><br><span class="line">    then </span><br><span class="line">        MAX=$&#123;NUM&#125;</span><br><span class="line">    fi</span><br><span class="line">    if((MIN &gt; NUM))</span><br><span class="line">    then</span><br><span class="line">        MIN=$&#123;NUM&#125;</span><br><span class="line">    fi</span><br><span class="line">    SUM=$((SUM+NUM))</span><br><span class="line">    COUNT=$((COUNT+1))</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">echo &quot;MIN=$MIN, MAX=$MAX, SUM=$SUM&quot;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Please input a number: 1</span><br><span class="line">Please input a number: 2</span><br><span class="line">Please input a number: 3</span><br><span class="line">Please input a number: 4</span><br><span class="line">Please input a number: 5</span><br><span class="line">Please input a number: 6</span><br><span class="line">Please input a number: 7</span><br><span class="line">Please input a number: 8</span><br><span class="line">Please input a number: 9</span><br><span class="line">Please input a number: 10</span><br><span class="line">MIN=1, MAX=10, SUM=55</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="6">
+<li>写一个 Shell 脚本, 检查给出的串是否为回文.</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Author: GoogTech</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Date: 2021-06-27</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Email: googtech@qq.com</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Site: https://shell.googtech.io</span> </span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 6. 写一个 Shell 脚本, 检查给出的串是否为回文.</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##</span></span> </span><br><span class="line"></span><br><span class="line">read -r -p &quot;Please input a string: &quot; INPUT</span><br><span class="line"></span><br><span class="line">len=$&#123;#INPUT&#125;</span><br><span class="line">count=$((len/2))</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 从左到中遍历字符串</span></span><br><span class="line">for i in $(seq &quot;$count&quot;)</span><br><span class="line">do</span><br><span class="line">    # 从右到中逐个获取字符串中的字符</span><br><span class="line">    lasti=$((len-i+1)) </span><br><span class="line">    # 从左到右, 从右到左依次比较字符串中的字符 </span><br><span class="line">    first=$(echo &quot;$INPUT&quot;|cut -c &quot;$i&quot;)</span><br><span class="line">    second=$(echo &quot;$INPUT&quot;|cut -c $lasti)</span><br><span class="line">    # 判断字符是否相等</span><br><span class="line">    if [ &quot;$first&quot; != &quot;$second&quot; ]</span><br><span class="line">    then</span><br><span class="line">        echo &quot;no, it&#x27;s not a palindrome.&quot;</span><br><span class="line">        exit</span><br><span class="line">    fi</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">echo &quot;yes, it&#x27;s a palindrome.&quot;</span><br></pre></td></tr></table></figure>
+<p>运行结果如下所示 :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Please input a string: GoogTech</span><br><span class="line">no, it&#x27;s not a palindrome.</span><br><span class="line"></span><br><span class="line">Please input a string: GooG</span><br><span class="line">yes, it&#x27;s a palindrome.</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>seq</code> : 此命令用于以指定增量从首数开始打印数字到尾数.</li>
+<li><code>cut</code> : 此命令用于在文件当中提取符合条件的列, <code>-c</code> 指定具体的字符.</li>
+</ul>
+<ol start="7">
+<li>求阶乘</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Author: GoogTech</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Date: 2021-06-27</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Email: googtech@qq.com</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> @Site: https://shell.googtech.io</span> </span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 7. 求阶乘</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##</span></span> </span><br><span class="line"></span><br><span class="line">SUM=1</span><br><span class="line"></span><br><span class="line">read -r -p &quot;Please input a bigger number than 0 bro: &quot; NUM</span><br><span class="line"></span><br><span class="line">for i in $(seq 1 &quot;$NUM&quot;)</span><br><span class="line">do</span><br><span class="line">    SUM=$((SUM*i))</span><br><span class="line">done </span><br><span class="line"></span><br><span class="line">echo &quot;The Sum: $&#123;SUM&#125;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Please input a bigger number than 0 bro: 5</span><br><span class="line">The Sum: 120</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="8">
+<li>打印九九乘法表</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!\Git\Git\bin\bash</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##</span></span></span><br><span class="line">    # @Author: GoogTech</span><br><span class="line">    # @Date: 2021-06-27</span><br><span class="line">    # @Email: googtech@qq.com</span><br><span class="line">    # @Site: https://shell.googtech.io</span><br><span class="line">    #</span><br><span class="line">    # 8. 打印九九乘法表</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##</span></span> </span><br><span class="line"></span><br><span class="line">for ((i=1;i&lt;=9;i++))</span><br><span class="line">do</span><br><span class="line">    for ((j=1;j&lt;=9;j++))</span><br><span class="line">    do</span><br><span class="line">        # 当 j 小于或等于 i 才输出哈</span><br><span class="line">        [ &quot;$&#123;j&#125;&quot; -le &quot;$&#123;i&#125;&quot; ] &amp;&amp; printf &quot;%s\t&quot; &quot;$&#123;j&#125;*$&#123;i&#125;=$((i*j))&quot;  </span><br><span class="line">    done</span><br><span class="line">    echo &quot;&quot;</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下所示 :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1*1=1</span><br><span class="line">1*2=2   2*2=4</span><br><span class="line">1*3=3   2*3=6   3*3=9</span><br><span class="line">1*4=4   2*4=8   3*4=12  4*4=16</span><br><span class="line">1*5=5   2*5=10  3*5=15  4*5=20  5*5=25</span><br><span class="line">1*6=6   2*6=12  3*6=18  4*6=24  5*6=30  6*6=36</span><br><span class="line">1*7=7   2*7=14  3*7=21  4*7=28  5*7=35  6*7=42  7*7=49</span><br><span class="line">1*8=8   2*8=16  3*8=24  4*8=32  5*8=40  6*8=48  7*8=56  8*8=64        </span><br><span class="line">1*9=9   2*9=18  3*9=27  4*9=36  5*9=45  6*9=54  7*9=63  8*9=72  9*9=81</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h2 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h2><blockquote>
+<p>runoob : <em><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-shell.html">https://www.runoob.com/linux/linux-shell.html</a></em></p>
+</blockquote>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>求知若饥, 虚心若愚, 愿你像一个🌻向日葵, 充满阳光, 积极向上 !</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:hi@goog.tech">GoogTech</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://goog.tech/blog/2021/06/26/quick-start-tutorial-for-shell-language-beginner/">https://goog.tech/blog/2021/06/26/quick-start-tutorial-for-shell-language-beginner/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/Shell/">Shell</a></div><div class="post_share"><div class="social-share" data-image="/blog/img/default-cover/11.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> Donate</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/blog/img/wechat-sponsor.png" target="_blank"><img class="post-qr-code-img" src="/blog/img/wechat-sponsor.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/2021/07/31/Summary-For-July-2021/"><img class="prev-cover" src="/blog/img/default-cover/28.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Summary For July 2021</div></div></a></div><div class="next-post pull-right"><a href="/blog/2021/06/19/data-structures-basic-questions/"><img class="next-cover" src="/blog/img/default-cover/3.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">数据结构基础练习题</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hello-Shell"><span class="toc-number">2.</span> <span class="toc-text">Hello Shell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-number">3.</span> <span class="toc-text">注释</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E8%A1%8C%E6%B3%A8%E9%87%8A"><span class="toc-number">3.1.</span> <span class="toc-text">单行注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%A1%8C%E6%B3%A8%E9%87%8A"><span class="toc-number">3.2.</span> <span class="toc-text">多行注释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#echo-%E5%91%BD%E4%BB%A4"><span class="toc-number">4.</span> <span class="toc-text">echo 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E6%99%AE%E9%80%9A%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">4.1.</span> <span class="toc-text">显示普通字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">4.2.</span> <span class="toc-text">显示转义字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E5%8F%98%E9%87%8F"><span class="toc-number">4.3.</span> <span class="toc-text">显示变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E7%BB%93%E6%9E%9C%E5%AE%9A%E5%90%91%E5%88%B0%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6"><span class="toc-number">4.4.</span> <span class="toc-text">显示结果定向到指定文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9A%84%E7%BB%93%E6%9E%9C"><span class="toc-number">4.5.</span> <span class="toc-text">显示命令执行的结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">5.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%8F%98%E9%87%8F"><span class="toc-number">5.1.</span> <span class="toc-text">使用变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AA%E8%AF%BB%E5%8F%98%E9%87%8F"><span class="toc-number">5.2.</span> <span class="toc-text">只读变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%8F%98%E9%87%8F"><span class="toc-number">5.3.</span> <span class="toc-text">删除变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">6.</span> <span class="toc-text">字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%BC%95%E5%8F%B7%E4%B8%8E%E5%8F%8C%E5%BC%95%E5%8F%B7"><span class="toc-number">6.1.</span> <span class="toc-text">单引号与双引号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%BC%E6%8E%A5%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">6.2.</span> <span class="toc-text">拼接字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6"><span class="toc-number">6.3.</span> <span class="toc-text">获取字符串长度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E5%8F%96%E5%AD%97%E4%B8%B2"><span class="toc-number">6.4.</span> <span class="toc-text">提取字串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E5%AD%90%E4%B8%B2"><span class="toc-number">6.5.</span> <span class="toc-text">查找子串</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">7.</span> <span class="toc-text">数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E6%95%B0%E7%BB%84"><span class="toc-number">7.1.</span> <span class="toc-text">读取数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%95%B0%E7%BB%84%E9%95%BF%E5%BA%A6"><span class="toc-number">7.2.</span> <span class="toc-text">获取数组长度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E5%8F%82"><span class="toc-number">8.</span> <span class="toc-text">传参</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">9.</span> <span class="toc-text">运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">9.1.</span> <span class="toc-text">算术运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">9.2.</span> <span class="toc-text">关系运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">9.3.</span> <span class="toc-text">布尔运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">9.4.</span> <span class="toc-text">逻辑运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">9.5.</span> <span class="toc-text">字符串运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%B5%8B%E8%AF%95%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">9.6.</span> <span class="toc-text">文件测试运算符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#printf-%E5%91%BD%E4%BB%A4"><span class="toc-number">10.</span> <span class="toc-text">printf 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">10.1.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%A0%BC%E5%BC%8F%E6%9B%BF%E4%BB%A3%E7%AC%A6"><span class="toc-number">10.2.</span> <span class="toc-text">常用格式替代符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-number">11.</span> <span class="toc-text">流程控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#if"><span class="toc-number">11.1.</span> <span class="toc-text">if</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for"><span class="toc-number">11.2.</span> <span class="toc-text">for</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#while"><span class="toc-number">11.3.</span> <span class="toc-text">while</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#until"><span class="toc-number">11.4.</span> <span class="toc-text">until</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#case"><span class="toc-number">11.5.</span> <span class="toc-text">case</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#break"><span class="toc-number">11.6.</span> <span class="toc-text">break</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#continue"><span class="toc-number">11.7.</span> <span class="toc-text">continue</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">12.</span> <span class="toc-text">函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95-1"><span class="toc-number">12.1.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E5%8F%82%E5%87%BD%E6%95%B0"><span class="toc-number">12.2.</span> <span class="toc-text">无参函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0"><span class="toc-number">12.3.</span> <span class="toc-text">函数参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E5%8F%82%E6%95%B0%E7%9A%84%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6"><span class="toc-number">12.4.</span> <span class="toc-text">处理参数的特殊字符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5-%E8%BE%93%E5%87%BA%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-number">13.</span> <span class="toc-text">输入&#x2F;输出重定向</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-number">13.1.</span> <span class="toc-text">输出重定向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-number">13.2.</span> <span class="toc-text">输入重定向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dev-null-%E6%96%87%E4%BB%B6"><span class="toc-number">13.3.</span> <span class="toc-text">&#x2F;dev&#x2F;null 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%AE%9A%E5%90%91%E5%91%BD%E4%BB%A4%E5%88%97%E8%A1%A8"><span class="toc-number">13.4.</span> <span class="toc-text">重定向命令列表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-number">14.</span> <span class="toc-text">文件包含</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">15.</span> <span class="toc-text">基础练习题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%B4%E8%B0%A2"><span class="toc-number">16.</span> <span class="toc-text">致谢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">17.</span> <span class="toc-text">总结</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2022 By GoogTech</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="/blog/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'cuhS73KNdoQ8SJpCFhaalYHe-gzGzoHsz',
+      appKey: 'bBxVEeuGBYAXa68aQv8mGUjn',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

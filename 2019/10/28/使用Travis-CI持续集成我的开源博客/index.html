@@ -1,0 +1,244 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>使用Travis CI持续集成我的开源博客 | GoogTech's Blog Site</title><meta name="keywords" content="CI"><meta name="author" content="GoogTech,hi@goog.tech"><meta name="copyright" content="GoogTech"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="学习笔记 : 使用 Travis CI 持续集成我的 Hexo 开源博客Travis CI for beginner The following content from : https:&#x2F;&#x2F;docs.travis-ci.com&#x2F;user&#x2F;for-beginners&#x2F;  What Is Continuous Integration (CI)?Continuous Integration is th">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Travis CI持续集成我的开源博客">
+<meta property="og:url" content="https://goog.tech/blog/2019/10/28/%E4%BD%BF%E7%94%A8Travis-CI%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E6%88%91%E7%9A%84%E5%BC%80%E6%BA%90%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:site_name" content="GoogTech&#39;s Blog Site">
+<meta property="og:description" content="学习笔记 : 使用 Travis CI 持续集成我的 Hexo 开源博客Travis CI for beginner The following content from : https:&#x2F;&#x2F;docs.travis-ci.com&#x2F;user&#x2F;for-beginners&#x2F;  What Is Continuous Integration (CI)?Continuous Integration is th">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://goog.tech/blog/img/default-cover/56.png">
+<meta property="article:published_time" content="2019-10-28T17:22:35.000Z">
+<meta property="article:modified_time" content="2022-01-05T03:09:17.800Z">
+<meta property="article:author" content="GoogTech">
+<meta property="article:tag" content="CI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://goog.tech/blog/img/default-cover/56.png"><link rel="shortcut icon" href="/blog/img/favicon.png"><link rel="canonical" href="https://goog.tech/blog/2019/10/28/%E4%BD%BF%E7%94%A8Travis-CI%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E6%88%91%E7%9A%84%E5%BC%80%E6%BA%90%E5%8D%9A%E5%AE%A2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?38cca3f22b1618b6439834b03516d7e7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-206511912-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-206511912-1');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: GoogTech","link":"Link: ","source":"Source: GoogTech's Blog Site","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '使用Travis CI持续集成我的开源博客',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-05 03:09:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/blog/atom.xml" title="GoogTech's Blog Site" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/43493852?v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/blog/archives/"><div class="headline">Articles</div><div class="length-num">202</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/tags/"><div class="headline">Tags</div><div class="length-num">81</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/blog/img/default-cover/56.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/blog/">GoogTech's Blog Site</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">使用Travis CI持续集成我的开源博客<a class="post-edit-link" href="https://github.com/GoogTech/blog/edit/HexoBackup/source/_posts/使用Travis-CI持续集成我的开源博客.md" title="Edited on" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2019-10-28T17:22:35.000Z" title="undefined 2019-10-28 17:22:35">2019-10-28</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">1.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>5min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="使用Travis CI持续集成我的开源博客"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/blog/2019/10/28/%E4%BD%BF%E7%94%A8Travis-CI%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E6%88%91%E7%9A%84%E5%BC%80%E6%BA%90%E5%8D%9A%E5%AE%A2/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/blog/2019/10/28/%E4%BD%BF%E7%94%A8Travis-CI%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E6%88%91%E7%9A%84%E5%BC%80%E6%BA%90%E5%8D%9A%E5%AE%A2/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="学习笔记-使用-Travis-CI-持续集成我的-Hexo-开源博客"><a href="#学习笔记-使用-Travis-CI-持续集成我的-Hexo-开源博客" class="headerlink" title="学习笔记 : 使用 Travis CI 持续集成我的 Hexo 开源博客"></a>学习笔记 : 使用 Travis CI 持续集成我的 Hexo 开源博客</h2><h3 id="Travis-CI-for-beginner"><a href="#Travis-CI-for-beginner" class="headerlink" title="Travis CI for beginner"></a>Travis CI for beginner</h3><blockquote>
+<p>The following content from : <a target="_blank" rel="noopener" href="https://docs.travis-ci.com/user/for-beginners/">https://docs.travis-ci.com/user/for-beginners/</a></p>
+</blockquote>
+<h4 id="What-Is-Continuous-Integration-CI"><a href="#What-Is-Continuous-Integration-CI" class="headerlink" title="What Is Continuous Integration (CI)?"></a>What Is Continuous Integration (CI)?</h4><p>Continuous Integration is the practice of merging in small code changes<br>frequently - rather than merging in a large change at the end of a development<br>cycle. The goal is to build healthier software by developing and testing in smaller<br>increments. This is where Travis CI comes in.</p>
+<p>As a continuous integration platform, Travis CI supports your development<br>process by automatically building and testing code changes, providing immediate<br>feedback on the success of the change. Travis CI can also automate other parts<br>of your development process by managing deployments and notifications.  </p>
+<h4 id="CI-Builds-and-Automation-Building-Testing-Deploying"><a href="#CI-Builds-and-Automation-Building-Testing-Deploying" class="headerlink" title="CI Builds and Automation: Building, Testing, Deploying"></a>CI Builds and Automation: Building, Testing, Deploying</h4><p>When you run a build, Travis CI clones your GitHub repository into a brand-new<br>virtual environment, and carries out a series of tasks to build and test your<br>code. If one or more of those tasks fail, the build is considered<br><a href="#breaking-the-build"><em>broken</em></a>. If none of the tasks fail, the build is<br>considered <a href="#breaking-the-build"><em>passed</em></a> and Travis CI can deploy your code<br>to a web server or application host.</p>
+<p>CI builds can also automate other parts of your delivery workflow. This means<br>you can have jobs depend on each other with <a href="/user/build-stages/">Build Stages</a>,<br>set up <a href="/user/notifications/">notifications</a>, prepare<br><a href="/user/deployment/">deployments</a> after builds and many other tasks.</p>
+<h4 id="Builds-Jobs-Stages-and-Phases"><a href="#Builds-Jobs-Stages-and-Phases" class="headerlink" title="Builds, Jobs, Stages and Phases"></a>Builds, Jobs, Stages and Phases</h4><p>In the Travis CI documentation, some common words have specific meanings:</p>
+<ul>
+<li><em>phase</em> - the <a href="/user/job-lifecycle/">sequential steps</a><br>of a job. For example, the <code>install</code> phase, comes before the <code>script</code> phase,<br>which comes before the optional <code>deploy</code> phase.</li>
+<li><em>job</em> - an automated process that clones your repository into a virtual<br>environment and then carries out a series of <em>phases</em> such as compiling your<br>code, running tests, etc. A job fails, if the return code of the <code>script</code> <em>phase</em><br>is non-zero.</li>
+<li><em>build</em> - a group of <em>jobs</em>. For example, a build might have two <em>jobs</em>, each<br>of which tests a project with a different version of a programming language.<br>A <em>build</em> finishes when all of its jobs are finished.</li>
+<li><em>stage</em> - a group of <em>jobs</em> that run in parallel as part of a sequential build<br>process composed of multiple <a href="/user/build-stages/">stages</a>.</li>
+</ul>
+<h4 id="Breaking-the-Build"><a href="#Breaking-the-Build" class="headerlink" title="Breaking the Build"></a>Breaking the Build</h4><p>The build is considered <em>broken</em>, when one or more of its jobs complete with a<br>state that is not <em>passed</em>:</p>
+<ul>
+<li><em>errored</em> - a command in the <code>before_install</code>, <code>install</code>, or <code>before_script</code><br>phase returned a non-zero exit code. The job stops immediately.</li>
+<li><em>failed</em> - a command in the <code>script</code> phase returned a non-zero exit code. The<br>job continues to run until it completes.</li>
+<li><em>canceled</em> - a user cancels the job before it completes.</li>
+</ul>
+<p>Our <a href="/user/common-build-problems/">Common Builds Problems</a> page is a good place<br>to start troubleshooting why your build is broken.</p>
+<h4 id="Infrastructure-and-Environment-Notes"><a href="#Infrastructure-and-Environment-Notes" class="headerlink" title="Infrastructure and Environment Notes"></a>Infrastructure and Environment Notes</h4><p>Travis CI offers a few different infrastructure environments, so you can select<br>the setup that suits your project best:</p>
+<ul>
+<li><em>Ubuntu Linux</em> - these Linux Ubuntu environments run inside full virtual machines, provide plenty of computational resources, and support the use of <code>sudo</code>, <code>setuid</code>, and <code>setgid</code>. Check out more information on the <a href="/user/reference/linux/">Ubuntu Linux Build Environment</a>.</li>
+<li><em>macOS</em> - uses one of several versions of the macOS operating system. This environment is useful for building projects that require the macOS software, such as projects written in Swift. It is not a requirement to use the macOS environment, if you develop on a macOS machine. Here you can find more details on the <a href="/user/reference/osx/">macOS Build Environment</a>.</li>
+<li><em>Windows</em> - currently Windows Server version 1803 is supported. If you want to know more about it, see the <a href="/user/reference/windows/">Windows Build Environment</a>.</li>
+</ul>
+<p>More details on our build environments are available in our <a href="/user/ci-environment/">CI Environment</a> documentation.</p>
+<blockquote>
+<p>🚀 Now that you’ve read the basics, head over to our <a href="/user/tutorial/">Tutorial</a> for details on setting up your first build!  Travis CI User Documentaiton : <a target="_blank" rel="noopener" href="https://docs.travis-ci.com/">https://docs.travis-ci.com/</a> and the open source address of docs: <a target="_blank" rel="noopener" href="https://github.com/travis-ci/docs-travis-ci-com">https://github.com/travis-ci/docs-travis-ci-com</a></p>
+</blockquote>
+<h3 id="Continuous-Ingration-with-my-Hexo-blog"><a href="#Continuous-Ingration-with-my-Hexo-blog" class="headerlink" title="Continuous Ingration with my Hexo blog"></a>Continuous Ingration with my Hexo blog</h3><p><em>将 Travis CI 持续集成到 Hexo blog 的基本步骤如下,详细信息请参考文章最下方的 <code>Reference</code></em></p>
+<ol>
+<li>创建 Travis CI 账户</li>
+<li>生成并配置 Access Token</li>
+<li>创建 .travis.yml 配置文件</li>
+<li>发布新博客( 测试是否成功集成 Travis CI )</li>
+</ol>
+<blockquote>
+<p>成功集成 Travis CI 后，往后每写完一篇博客文章后直接 pull 到远程仓库即可( 都已经集成 CI 了，就不要几篇几篇的一起 pull 啦~ )，既不需要再在本地执行将 Markdown 格式编写的博客文章生成 HTML 页面并部署到远程仓库的命令咯! 成功 pull 到远程仓库后，Travis CI 会先逐个测试你的 commit 是否会对 Hexo blog 运行环境造成影响，其后便尝试运行你所定义的脚本( hexo clean + hexo g + · · ·). . . 详情可参考我的 Travis CI 配置文件 : <a target="_blank" rel="noopener" href="https://github.com/YUbuntu0109/YUbuntu0109.github.io/blob/HexoBackup/.travis.yml">.travis.yml</a></p>
+</blockquote>
+<h3 id="Introduce-my-personal-blog"><a href="#Introduce-my-personal-blog" class="headerlink" title="Introduce my personal blog"></a>Introduce my personal blog</h3><p>⏳ <em>时间如梭~ 自己现在都已经大三了. 大二时我才开始拥抱 GitHub，并使用 Hexo 加 Github 搭建了一个属于自己的静态博客网站，继而从此养成了写编程学习笔记的好习惯. 此项目包含了我大一到大三所有的编程学习笔记 : 真心希望自己的这些日常学习笔记，心得，及项目能够帮助一些同学提高学习效率！往后无论是读研，还是踏入社会后，我都会将她视为伴我成长的伙伴，一直维护着她，这一切的一切都是为了能够写出更加优美的代码哟~ <a target="_blank" rel="noopener" href="https://github.com/YUbuntu0109/YUbuntu0109.github.io">https://github.com/YUbuntu0109/YUbuntu0109.github.io</a></em></p>
+<p><img src="%E4%BD%BF%E7%94%A8Travis-CI%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E6%88%91%E7%9A%84%E5%BC%80%E6%BA%90%E5%8D%9A%E5%AE%A2%5CTravis-CI-MyBlogWebsite-1.PNG" alt=" "></p>
+<p><img src="%E4%BD%BF%E7%94%A8Travis-CI%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E6%88%91%E7%9A%84%E5%BC%80%E6%BA%90%E5%8D%9A%E5%AE%A2%5CTravis-CI-MyBlogWebsite-2.PNG" alt=" "></p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9d056d5ba78e">Travis CI 持续集成 GitHub 个人博客</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2017/12/travis_ci_tutorial.html">持续集成服务 Travis CI 教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv2884489">使用 Travis CI 自动部署 Hexo 博客</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:hi@goog.tech">GoogTech</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://goog.tech/blog/2019/10/28/%E4%BD%BF%E7%94%A8Travis-CI%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E6%88%91%E7%9A%84%E5%BC%80%E6%BA%90%E5%8D%9A%E5%AE%A2/">https://goog.tech/blog/2019/10/28/使用Travis-CI持续集成我的开源博客/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/CI/">CI</a></div><div class="post_share"><div class="social-share" data-image="/blog/img/default-cover/56.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> Donate</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/blog/img/wechat-sponsor.png" target="_blank"><img class="post-qr-code-img" src="/blog/img/wechat-sponsor.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/2019/11/01/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BF%85%E5%A4%87%E7%A4%BE%E4%BA%A4%E5%B9%B3%E5%8F%B0%E4%B9%8BGitter/"><img class="prev-cover" src="/blog/img/default-cover/52.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">程序员必备社交平台之Gitter</div></div></a></div><div class="next-post pull-right"><a href="/blog/2019/10/21/Maven%E4%BE%9D%E8%B5%96%E7%BB%8F%E5%B8%B8%E5%AF%BC%E5%85%A5%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"><img class="next-cover" src="/blog/img/default-cover/44.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Maven依赖经常导入失败的解决方案</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%BD%BF%E7%94%A8-Travis-CI-%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E6%88%91%E7%9A%84-Hexo-%E5%BC%80%E6%BA%90%E5%8D%9A%E5%AE%A2"><span class="toc-number">1.</span> <span class="toc-text">学习笔记 : 使用 Travis CI 持续集成我的 Hexo 开源博客</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Travis-CI-for-beginner"><span class="toc-number">1.1.</span> <span class="toc-text">Travis CI for beginner</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#What-Is-Continuous-Integration-CI"><span class="toc-number">1.1.1.</span> <span class="toc-text">What Is Continuous Integration (CI)?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CI-Builds-and-Automation-Building-Testing-Deploying"><span class="toc-number">1.1.2.</span> <span class="toc-text">CI Builds and Automation: Building, Testing, Deploying</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Builds-Jobs-Stages-and-Phases"><span class="toc-number">1.1.3.</span> <span class="toc-text">Builds, Jobs, Stages and Phases</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Breaking-the-Build"><span class="toc-number">1.1.4.</span> <span class="toc-text">Breaking the Build</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Infrastructure-and-Environment-Notes"><span class="toc-number">1.1.5.</span> <span class="toc-text">Infrastructure and Environment Notes</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Continuous-Ingration-with-my-Hexo-blog"><span class="toc-number">1.2.</span> <span class="toc-text">Continuous Ingration with my Hexo blog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Introduce-my-personal-blog"><span class="toc-number">1.3.</span> <span class="toc-text">Introduce my personal blog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reference"><span class="toc-number">1.4.</span> <span class="toc-text">Reference</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2022 By GoogTech</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="/blog/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'cuhS73KNdoQ8SJpCFhaalYHe-gzGzoHsz',
+      appKey: 'bBxVEeuGBYAXa68aQv8mGUjn',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

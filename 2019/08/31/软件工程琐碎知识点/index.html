@@ -1,0 +1,424 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>软件工程琐碎知识点 | GoogTech's Blog Site</title><meta name="keywords" content="software engineering"><meta name="author" content="GoogTech,hi@goog.tech"><meta name="copyright" content="GoogTech"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="学习笔记 : 软件工程琐碎知识点以下摘自软件工程书籍中各个章节的习题,一些琐碎的知识点而已~ 软件工程概述 什么是软件 ?   答 : 计算机软件( Software )是指与计算机系统操作有关的程序,规程,规则及任何与之有关的数据和文档资料.   什么是软件危机 ?   答 : 西方计算机界的科学家把软件开发和维护过程中遇到的一系列严重问题统称为”软件危机”.   什么是软件工程 ? 构成软件工">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件工程琐碎知识点">
+<meta property="og:url" content="https://goog.tech/blog/2019/08/31/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
+<meta property="og:site_name" content="GoogTech&#39;s Blog Site">
+<meta property="og:description" content="学习笔记 : 软件工程琐碎知识点以下摘自软件工程书籍中各个章节的习题,一些琐碎的知识点而已~ 软件工程概述 什么是软件 ?   答 : 计算机软件( Software )是指与计算机系统操作有关的程序,规程,规则及任何与之有关的数据和文档资料.   什么是软件危机 ?   答 : 西方计算机界的科学家把软件开发和维护过程中遇到的一系列严重问题统称为”软件危机”.   什么是软件工程 ? 构成软件工">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://goog.tech/blog/img/default-cover/42.png">
+<meta property="article:published_time" content="2019-08-31T08:16:29.000Z">
+<meta property="article:modified_time" content="2022-01-05T03:09:17.972Z">
+<meta property="article:author" content="GoogTech">
+<meta property="article:tag" content="software engineering">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://goog.tech/blog/img/default-cover/42.png"><link rel="shortcut icon" href="/blog/img/favicon.png"><link rel="canonical" href="https://goog.tech/blog/2019/08/31/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?38cca3f22b1618b6439834b03516d7e7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-206511912-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-206511912-1');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: GoogTech","link":"Link: ","source":"Source: GoogTech's Blog Site","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '软件工程琐碎知识点',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-05 03:09:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/blog/atom.xml" title="GoogTech's Blog Site" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/43493852?v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/blog/archives/"><div class="headline">Articles</div><div class="length-num">202</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/tags/"><div class="headline">Tags</div><div class="length-num">81</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/blog/img/default-cover/42.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/blog/">GoogTech's Blog Site</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">软件工程琐碎知识点<a class="post-edit-link" href="https://github.com/GoogTech/blog/edit/HexoBackup/source/_posts/软件工程琐碎知识点.md" title="Edited on" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2019-08-31T08:16:29.000Z" title="undefined 2019-08-31 08:16:29">2019-08-31</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">2.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>6min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="软件工程琐碎知识点"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/blog/2019/08/31/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/blog/2019/08/31/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="学习笔记-软件工程琐碎知识点"><a href="#学习笔记-软件工程琐碎知识点" class="headerlink" title="学习笔记 : 软件工程琐碎知识点"></a>学习笔记 : 软件工程琐碎知识点</h2><p><em>以下摘自软件工程书籍中各个章节的习题,一些琐碎的知识点而已~</em></p>
+<h3 id="软件工程概述"><a href="#软件工程概述" class="headerlink" title="软件工程概述"></a>软件工程概述</h3><ol>
+<li>什么是软件 ?</li>
+</ol>
+<ul>
+<li>答 : 计算机软件( Software )是指与计算机系统操作有关的程序,规程,规则及任何与之有关的数据和文档资料.</li>
+</ul>
+<ol start="2">
+<li>什么是软件危机 ?</li>
+</ol>
+<ul>
+<li>答 : 西方计算机界的科学家把软件开发和维护过程中遇到的一系列严重问题统称为”软件危机”.</li>
+</ul>
+<ol start="3">
+<li>什么是软件工程 ? 构成软件工程的要素是什么 ?</li>
+</ol>
+<ul>
+<li>答 : 软件工程是指导计算机软件开发和维护的工程学科. 软件工程的方法,工具,过程构成了软件工程的三要素.</li>
+</ul>
+<h3 id="过程和声明周期的建模"><a href="#过程和声明周期的建模" class="headerlink" title="过程和声明周期的建模"></a>过程和声明周期的建模</h3><ol>
+<li>什么是软件周期生命周期模型 ? 有哪些主要模型 ?</li>
+</ol>
+<ul>
+<li>答 : 瀑布模型( waterfall model )也称为软件生命周期模型 : 从时间角度对软件开发和维护的复杂问题进行分解,把软件生存的漫长周期依次划分为若干个阶段,每个阶段有相对独立的任务,然后逐步完成每个阶段的任务. 主要软件开发模型有 : 瀑布模型,渐近模型,螺旋模型,增量式开发模型等. . .</li>
+</ul>
+<ol start="2">
+<li>什么是软件生存周期 ? 它有哪些活动 ? </li>
+</ol>
+<ul>
+<li>答 : 软件开发过程有时被称为软件生命周期,因为它从<code>概念</code>到<code>实现</code>,<code>交付</code>,<code>使用</code>和<code>维护</code>描述了软件产品的生命.</li>
+</ul>
+<h3 id="可行性研究"><a href="#可行性研究" class="headerlink" title="可行性研究"></a>可行性研究</h3><ol>
+<li>可行性研究的任务是什么 ? </li>
+</ol>
+<ul>
+<li>答 : 用最小的代价在尽可能短的时间内确定问题是否能够解决,是否有必要去解决</li>
+</ul>
+<ol start="2">
+<li>说明系统流程图的作用 ?</li>
+</ol>
+<ul>
+<li>答 : 系统分析员可直接在系统流程图上模拟出可以实现计算机处理的部分,可利用系统流程图来分析业务流程的合理性,这些都是系统流程图的作用</li>
+</ul>
+<h3 id="需求分析基础"><a href="#需求分析基础" class="headerlink" title="需求分析基础"></a>需求分析基础</h3><ol>
+<li>需求分析阶段的任务是什么 ? </li>
+</ol>
+<ul>
+<li>答 : 对软件进行需求分析,继而将软件功能和性能的总体概念描述为具体的规格说明书,而这种规格说明书正式开发软件的基础哟</li>
+</ul>
+<h3 id="面向数据流的分析方法"><a href="#面向数据流的分析方法" class="headerlink" title="面向数据流的分析方法"></a>面向数据流的分析方法</h3><ol>
+<li>什么是数据流图 ? 其作用是什么 ? 其中基本符号各表示什么含义 ?</li>
+</ol>
+<ul>
+<li>答 :  数据流图( Data Flow Diagram )是软件系统逻辑模型的一种图形表示. 其作用为描述数据在系统中的流动和处理的情况,具有直观,形象,容易理解等优点. 数据流用箭头表示,加工用圆表示,文件用直线段表示,数据流的源点和终点用长方形表示.</li>
+</ul>
+<ol start="2">
+<li>什么是数据词典 ? 其作用是什么 ? 它有哪些条目 ? </li>
+</ol>
+<ul>
+<li>答 : 数据字典( Data Dictionary )的作用与一般字典的作用一致,只不过它是用来对数据流图中出现的所有名字进行定义的,包括数据流,加工,文件等. 其作用为可以借助数据字典查出数据流图中每个名字的具体含义. 其包含的条目为<code>数据流</code>,<code>文件</code>,<code>数据项</code>,<code>加工</code>.</li>
+</ul>
+<h3 id="软件设计基础"><a href="#软件设计基础" class="headerlink" title="软件设计基础"></a>软件设计基础</h3><ol>
+<li>通常采用哪些措施来降低模块间的耦合度 ? </li>
+</ol>
+<ul>
+<li>答 : 一使用过程语句( 函数方式等 )调用其它模块,降低接口的复杂性. 二模块间传送的参数是数据. 三模块间共用的信息尽量少.</li>
+</ul>
+<ol start="2">
+<li>PDL是什么 ?</li>
+</ol>
+<ul>
+<li>答 : 过程设计语言( Process Design Language )又称伪程序( Pseudo Code ),它是一种混杂语言.</li>
+</ul>
+<ol start="3">
+<li>PAD是什么 ?</li>
+</ol>
+<ul>
+<li>答 : 问题分析图( Problem Analysis Diagram ),用二维树形结构的图来表示程序的控制流,将这种按”走树”规则翻译成程序代码比较容易.</li>
+</ul>
+<ol start="4">
+<li>什么是模块的作用范围 ?</li>
+</ol>
+<ul>
+<li>答 : 模块的作用范围是指这个模块内的一个判定的作用范围. 判定的作用范围是指所有受这个判定( 直接或间接 )影响的模块.</li>
+</ul>
+<h3 id="程序设计语言和编码"><a href="#程序设计语言和编码" class="headerlink" title="程序设计语言和编码"></a>程序设计语言和编码</h3><ol>
+<li>程序设计语言主要有哪几类 ?</li>
+</ol>
+<ul>
+<li>答 : 机器语言( 第一代语言 ),汇编语言( 第二代语言 ),高级语言 : 包含第三代既面向过程的语言,第四代既新型程序设计语言.</li>
+</ul>
+<ol start="2">
+<li>程序设计风格是什么 ? </li>
+</ol>
+<ul>
+<li>答 : 编程风格是在不影响性能的前提下,有效地编排和组织程序,以提高可读性和可维护性.</li>
+</ul>
+<h3 id="检验和测试方法"><a href="#检验和测试方法" class="headerlink" title="检验和测试方法"></a>检验和测试方法</h3><ol>
+<li>为什么要进行软件检测 ? 软件检测的主要手段有哪几种 ? </li>
+</ol>
+<ul>
+<li>答 : 若在软件投入生产运行之前,没有发现并纠正软件中的大部分差错,则这些错误迟早会在生产过程中暴露出来,那时不仅改正这些错误的代码更高,而且往往会造成很恶劣的后果哟. 软件检测的主要手段有 : 静态检查,动态检查,正确性证明</li>
+</ul>
+<ol start="2">
+<li>为什么要进行软件评审 ? </li>
+</ol>
+<ul>
+<li>答 : 软件评审综合了技术性和管理性措施,手续并不复杂,难度不是很大,所需开支也不高,但效果甚好哟~</li>
+</ul>
+<ol start="3">
+<li>软件测试的目的是什么 ? </li>
+</ol>
+<ul>
+<li>答 : 测试的目的是为了发现错误并而执行程序,只是在心理上被看做一种”破坏的步骤”</li>
+</ul>
+<ol start="4">
+<li>什么是黑盒测试法 ?</li>
+</ol>
+<ul>
+<li>答 : 如果产品具备的功能已经知道,则可以测试它的每一个功能是否都达到了预期的要求.</li>
+</ul>
+<ol start="5">
+<li>什么是白盒测试法 ?</li>
+</ol>
+<ul>
+<li>答 : 如果产品内部活动方式已经知道,则可以测试它的内部活动是否符合设计要求.</li>
+</ul>
+<h3 id="软件维护"><a href="#软件维护" class="headerlink" title="软件维护"></a>软件维护</h3><ol>
+<li>为什么要进行软件维护 ?</li>
+</ol>
+<ul>
+<li>答 : 因为计算机程序总是在变化 : 故障需要排除,改进的要加进去,而且优化工作也要做.</li>
+</ul>
+<ol start="2">
+<li>什么是软件的可维护性 ?</li>
+</ol>
+<ul>
+<li>答 : 可维护性是指维护人员为纠正软件系统出现的错误或缺陷,以及为满足新的要求而理解,修改和完善软件系统的难易程度.</li>
+</ul>
+<ol start="3">
+<li>软件维护的流程是 ? </li>
+</ol>
+<ul>
+<li>答 : 修改软件设计,复查,必要的代码修改,单元测试,整体测试,有效性测试和复审.</li>
+</ul>
+<h3 id="统一建模语言"><a href="#统一建模语言" class="headerlink" title="统一建模语言"></a>统一建模语言</h3><ol>
+<li>简述面向对象方法的特点 ?</li>
+</ol>
+<ul>
+<li>答 : 面向对象( Object Oriented). 面向对象方法的特点为 : 与人类习惯的思维方法一致,软件系统结构稳定,软件系统具有可复用性,软件系统易于维护.</li>
+</ul>
+<ol start="2">
+<li>类与对象的关系是什么 ?</li>
+</ol>
+<ul>
+<li>答 : 类是指具有相同属性和操作的对象集合,是对象的抽象.</li>
+</ul>
+<ol start="3">
+<li>UML有哪几部分组成 ?</li>
+</ol>
+<ul>
+<li>答 : 视图,图,模型元素,公共机制.</li>
+</ul>
+<h3 id="面向对象设计"><a href="#面向对象设计" class="headerlink" title="面向对象设计"></a>面向对象设计</h3><ol>
+<li>如何进行系统分解 ?</li>
+</ol>
+<ul>
+<li>答 : 可以将系统结构分为顶层,中间层和底层. 其中顶层为主控界面,中间层为业务处理子系统,底层为实体类与报表.</li>
+</ul>
+<ol start="2">
+<li>简述动态模型的构成 ? </li>
+</ol>
+<ul>
+<li>答 : 动态模型分为交互模型和状态模型,其中交互模型包括顺序图与协作图,状态图模型包括状态图和活动图.</li>
+</ul>
+<ol start="3">
+<li>顺序图中的消息分为哪几种类型 ?</li>
+</ol>
+<ul>
+<li>答 : 消息的类型包括简单消息,同步消息,异步消息和返回消息. 其中发送消息以实线箭头表示,返回消息以虚线箭头表示.</li>
+</ul>
+<h3 id="面向对象软件开发工具"><a href="#面向对象软件开发工具" class="headerlink" title="面向对象软件开发工具"></a>面向对象软件开发工具</h3><ol>
+<li>简述 Rational Rose 的特点 ?</li>
+</ol>
+<ul>
+<li>答 : 模型与代码高度一致,支持UML建模,可生成软件文档,可支持多种程序设计语言等特点.</li>
+</ul>
+<ol start="2">
+<li>什么是顺序图 ?</li>
+</ol>
+<ul>
+<li>答 : 顺序图用于描述对象之间的交互行为,注重消息的时间顺序,是一种交互图.</li>
+</ul>
+<ol start="3">
+<li>正向工程的概念是什么 ?</li>
+</ol>
+<ul>
+<li>答 : 正向工程( Forward Engineering )指从Rational Rose模型转换为某种特定语言代码的过程.</li>
+</ul>
+<ol start="4">
+<li>逆向工程的概念是什么 ?</li>
+</ol>
+<ul>
+<li>答 : 逆向工程( Reverse Engineering )指将某种特定语言转化为Rational Rose模型的过程.</li>
+</ul>
+<h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><ol>
+<li>什么是设计模式 ? 其目的是什么 ?</li>
+</ol>
+<ul>
+<li>答 : 设计模式( Design Pattern )是一套被反复使用、多数人知晓的、经过分类的、代码设计经验的总结. 其目的是为了代码可重用性、让代码更容易被他人理解、保证代码可靠性</li>
+</ul>
+<h3 id="敏捷开发"><a href="#敏捷开发" class="headerlink" title="敏捷开发"></a>敏捷开发</h3><ol>
+<li>什么是敏捷开发 ?</li>
+</ol>
+<ul>
+<li>答 : 敏捷开发( Aglie Development )是一种面临迅速变化的需求快速开发软件的能力.</li>
+</ul>
+<ol start="2">
+<li>什么是极限编程 ?</li>
+</ol>
+<ul>
+<li>答 : 极限编程( eXtreme Programming )是敏捷方法中最著名的一种方法. 它是由一系列简单却相互依赖的实践组成,这些实践结合在一起形成了一个胜于部分结合的整体.</li>
+</ul>
+<ol start="3">
+<li>什么是重构 ?</li>
+</ol>
+<ul>
+<li>答 : 重构( 名词 ) : 对软件内部结构的一种调整,目的是在不改变”软件之可观察行为”前提下提高其可理解性,降低其修改成本. 重构( 动词 ) : 使用一系列重构准则(手法),在不改变”软件之可观察行为”前提下,调整其结构.</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:hi@goog.tech">GoogTech</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://goog.tech/blog/2019/08/31/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9/">https://goog.tech/blog/2019/08/31/软件工程琐碎知识点/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/software-engineering/">software engineering</a></div><div class="post_share"><div class="social-share" data-image="/blog/img/default-cover/42.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> Donate</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/blog/img/wechat-sponsor.png" target="_blank"><img class="post-qr-code-img" src="/blog/img/wechat-sponsor.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/2019/08/31/%E8%AF%A6%E8%A7%A3Queue%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/"><img class="prev-cover" src="/blog/img/default-cover/23.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">详解Queue的实现方式及其应用</div></div></a></div><div class="next-post pull-right"><a href="/blog/2019/08/27/%E4%BD%BF%E7%94%A8MyBatis%E5%AE%8C%E6%88%90%E9%80%9A%E7%94%A8DAO%E5%92%8C%E9%80%9A%E7%94%A8Service/"><img class="next-cover" src="/blog/img/default-cover/18.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">使用MyBatis完成通用DAO和通用Service</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-number">1.</span> <span class="toc-text">学习笔记 : 软件工程琐碎知识点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">软件工程概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%87%E7%A8%8B%E5%92%8C%E5%A3%B0%E6%98%8E%E5%91%A8%E6%9C%9F%E7%9A%84%E5%BB%BA%E6%A8%A1"><span class="toc-number">1.2.</span> <span class="toc-text">过程和声明周期的建模</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E8%A1%8C%E6%80%A7%E7%A0%94%E7%A9%B6"><span class="toc-number">1.3.</span> <span class="toc-text">可行性研究</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80"><span class="toc-number">1.4.</span> <span class="toc-text">需求分析基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E6%95%B0%E6%8D%AE%E6%B5%81%E7%9A%84%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="toc-number">1.5.</span> <span class="toc-text">面向数据流的分析方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80"><span class="toc-number">1.6.</span> <span class="toc-text">软件设计基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80%E5%92%8C%E7%BC%96%E7%A0%81"><span class="toc-number">1.7.</span> <span class="toc-text">程序设计语言和编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E9%AA%8C%E5%92%8C%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95"><span class="toc-number">1.8.</span> <span class="toc-text">检验和测试方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E7%BB%B4%E6%8A%A4"><span class="toc-number">1.9.</span> <span class="toc-text">软件维护</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1%E8%AF%AD%E8%A8%80"><span class="toc-number">1.10.</span> <span class="toc-text">统一建模语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.11.</span> <span class="toc-text">面向对象设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7"><span class="toc-number">1.12.</span> <span class="toc-text">面向对象软件开发工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.13.</span> <span class="toc-text">设计模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91"><span class="toc-number">1.14.</span> <span class="toc-text">敏捷开发</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2022 By GoogTech</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="/blog/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'cuhS73KNdoQ8SJpCFhaalYHe-gzGzoHsz',
+      appKey: 'bBxVEeuGBYAXa68aQv8mGUjn',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

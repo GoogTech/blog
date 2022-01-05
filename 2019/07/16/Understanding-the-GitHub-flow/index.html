@@ -1,0 +1,226 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Understanding the GitHub flow | GoogTech's Blog Site</title><meta name="keywords" content="github_"><meta name="author" content="GoogTech,hi@goog.tech"><meta name="copyright" content="GoogTech"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="学习笔记 : GitHub工作流程GitHub流程(Git flow的简化版)是一种轻量级,基于分支的工作流程,支持定期进行部署的团队和项目. 本篇文章诠释了GitHub流程的工作原理及流程 . GitHub工作流程可以简单地分为以下步骤 :  第一步 : 根据需求,从master拉出新分支(不区分功能分支或补丁分支) . 第二步 : 新分支开发完成后需要合并,谈论时,就需要向master发起一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Understanding the GitHub flow">
+<meta property="og:url" content="https://goog.tech/blog/2019/07/16/Understanding-the-GitHub-flow/index.html">
+<meta property="og:site_name" content="GoogTech&#39;s Blog Site">
+<meta property="og:description" content="学习笔记 : GitHub工作流程GitHub流程(Git flow的简化版)是一种轻量级,基于分支的工作流程,支持定期进行部署的团队和项目. 本篇文章诠释了GitHub流程的工作原理及流程 . GitHub工作流程可以简单地分为以下步骤 :  第一步 : 根据需求,从master拉出新分支(不区分功能分支或补丁分支) . 第二步 : 新分支开发完成后需要合并,谈论时,就需要向master发起一个">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://goog.tech/blog/img/default-cover/11.png">
+<meta property="article:published_time" content="2019-07-16T07:45:10.000Z">
+<meta property="article:modified_time" content="2022-01-05T03:09:17.728Z">
+<meta property="article:author" content="GoogTech">
+<meta property="article:tag" content="github_">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://goog.tech/blog/img/default-cover/11.png"><link rel="shortcut icon" href="/blog/img/favicon.png"><link rel="canonical" href="https://goog.tech/blog/2019/07/16/Understanding-the-GitHub-flow/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?38cca3f22b1618b6439834b03516d7e7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-206511912-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-206511912-1');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: GoogTech","link":"Link: ","source":"Source: GoogTech's Blog Site","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Understanding the GitHub flow',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-05 03:09:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/blog/atom.xml" title="GoogTech's Blog Site" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/43493852?v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/blog/archives/"><div class="headline">Articles</div><div class="length-num">202</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/tags/"><div class="headline">Tags</div><div class="length-num">81</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/blog/img/default-cover/11.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/blog/">GoogTech's Blog Site</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Understanding the GitHub flow<a class="post-edit-link" href="https://github.com/GoogTech/blog/edit/HexoBackup/source/_posts/Understanding-the-GitHub-flow.md" title="Edited on" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2019-07-16T07:45:10.000Z" title="undefined 2019-07-16 07:45:10">2019-07-16</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">1.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>4min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Understanding the GitHub flow"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/blog/2019/07/16/Understanding-the-GitHub-flow/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/blog/2019/07/16/Understanding-the-GitHub-flow/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="学习笔记-GitHub工作流程"><a href="#学习笔记-GitHub工作流程" class="headerlink" title="学习笔记 : GitHub工作流程"></a>学习笔记 : GitHub工作流程</h2><p><em>GitHub流程(Git flow的简化版)是一种轻量级,基于分支的工作流程,支持定期进行部署的团队和项目. 本篇文章诠释了GitHub流程的工作原理及流程 .</em></p>
+<p><em>GitHub工作流程可以简单地分为以下步骤 :</em></p>
+<ol>
+<li><em>第一步 : 根据需求,从<code>master</code>拉出新分支(不区分功能分支或补丁分支) .</em></li>
+<li><em>第二步 : 新分支开发完成后需要合并,谈论时,就需要向<code>master</code>发起一个<code>pull request</code> (PR) .</em></li>
+<li><em>第三步 : <code>Pull Request</code>既是一个通知 : 让别人注意到你的请求,又是一种对话机制 : 让大家一起审核及讨论你的更改信息, 对话过程中可以不断修改提交信息并提交哟 .</em></li>
+<li><em>第四步 : 当<code>Pull Request</code>通过审核后,继而可以与<code>master</code>合并啦 ! 成功重新部署后,原来你创建的那个分支就可以删除咯(先部署再合并也可以哟) .</em></li>
+</ol>
+<p><em>A Successful Git Branching Model</em></p>
+<img src="/blog/2019/07/16/Understanding-the-GitHub-flow/A_successful_Git_branching_model.png" class="">
+
+
+
+<h3 id="Create-a-branch"><a href="#Create-a-branch" class="headerlink" title="Create a branch"></a>Create a branch</h3><img src="/blog/2019/07/16/Understanding-the-GitHub-flow/GitHubFlow-Create_a_branch.PNG" class="">
+<p><em>当你在一个项目上工作时,你会在任何特定时间都有一堆不同的功能或想法,既而分支可以帮助你管理其工作流程. 在项目中创建分支等同于创建一个可以尝试新想法的环境. 你在新建分支上所做的更改并不会影响<code>master</code>分支(主分支),因此你可以自由地进行实验和提交更改信息,并且在你准备好与你正在协作的人进行审核此分支前,其并不会与<code>master</code>分支合并,既而也不会污染到主分支哟 ~</em></p>
+<p><em>Tip : 分支是<code>Git</code>中的核心概念,整个GitHub流程都是基于它的. 注意点 : <code>master</code>分支中的任何内容始终都是可部署的. 因此,在处理或修复功能时,创建新分支是必要的操作,注意哟,分行名称应该是具有描述性的(如 : refactor-authentication,user-content-cache-key,make-retina-avatars),以便其他人理解正在进行的工作内容 .</em></p>
+<h3 id="Add-commits"><a href="#Add-commits" class="headerlink" title="Add commits"></a>Add commits</h3><img src="/blog/2019/07/16/Understanding-the-GitHub-flow/GitHubFlow-Add_commits.PNG" class="">
+<p><em>创建分支后,就可以对其进行更改咯. 无论何时添加,编辑或删除文件,你最终都需要进行提交并将它们添加到你的分支,添加提交的过程会为你创建一份透明的工作历史记录,以便其他人可以了解你已完成的工作. 每个提交都有一个关联的提交信息描述,该信息是解释为何进行特定更改的描述. 此外,每个提交都被视为一个单独的变更单位,既而如果发现程序错误或想决定改变开发方向,你都可以回滚其更改的信息哟 .</em></p>
+<p><em>Tip : 提交时的描述消息很重要,因为Git会跟踪你的更改,然后在将它们推送到服务器后将其显示提交的描述信息. 通过编写清晰的提交描述信息,可以更轻松地让其他人跟进并提供反馈信息 .</em></p>
+<h3 id="Open-a-Pull-Request"><a href="#Open-a-Pull-Request" class="headerlink" title="Open a Pull Request"></a>Open a Pull Request</h3><img src="/blog/2019/07/16/Understanding-the-GitHub-flow/GitHubFlow-Open_a_Pull_Request.PNG" class="">
+<p><em><code>Pull Requests</code>会启动有关你的提交的讨论. 任何人都可以确切地看到他们所接受的你的请求及将会合并哪些更改等信息. 你可以在开发过程中的任何时候使用拉取请求 : 如当你想要分享一些屏幕截图或一些想法,或遇到困难并需要帮助或建议时… 当你准备好想让某人审查你的工作时,可以通过在Pull Request消息中使用GitHub的<code>@mention</code>哟 ~</em></p>
+<p><em>Tip : <code>Pull Requests</code>对于贡献开源项目和管理对共享存储库的更改非常有帮助. 如果你使用的是<code>Fork＆Pull</code>模式 : 则<code>Pull Requests</code>提供了一种可以通知项目维护者你希望他们考虑的更改的方法. 如果你使用的是共享存储库模式 : 则<code>Pull Requests</code>会在合并到主分支之前帮助启动代码审查和有关建议更改的对话 .</em></p>
+<h3 id="Discuss-and-review-your-code"><a href="#Discuss-and-review-your-code" class="headerlink" title="Discuss and review your code"></a>Discuss and review your code</h3><img src="/blog/2019/07/16/Understanding-the-GitHub-flow/GitHubFlow-Discuss_and_review_your_code.PNG" class="">
+<p><em>一旦<code>Pull Request</code>开始,审核你的更改信息的人员或团队可能会有问题或意见,其原因可能是因为编码风格与项目编码风格规定不符等等等 .. <code>Pull Requests</code>后的这个审核与探讨的过程是非常有意义的,如果有人评论你忘了做某事或代码中有错误,你可以在分支中修复它并继续推送其更改信息. GitHub将在统一的Pull Request视图中显示你的新提交及你可能收到的任何其他反馈信息 .</em></p>
+<p><em>Tip : <code>Pull Request</code>的评论是用<code>Markdown</code>编写的,因此你可以嵌入图片和表情符号,或使用预先格式化的文本块哟 ~</em></p>
+<h3 id="Deploy"><a href="#Deploy" class="headerlink" title="Deploy"></a>Deploy</h3><img src="/blog/2019/07/16/Understanding-the-GitHub-flow/GitHubFlow-Deploy.PNG" class="">
+<p><em>(实际开发中所需步骤) 一旦你的<code>pull request</code>请求被检查并且分支通过测试,你就可以通过重新部署继而在生产中验证它们. 若你发现你的分支出现了错误,则可以通过将现有的主服务器部署到生产环境中来回滚它 .</em></p>
+<h3 id="Merge"><a href="#Merge" class="headerlink" title="Merge"></a>Merge</h3><img src="/blog/2019/07/16/Understanding-the-GitHub-flow/GitHubFlow-Merge.PNG" class="">
+<p><em>现在你的更改已在生产中得到验证,是时候将代码合并到主分支中了啦. 合并后,<code>Pull Requests</code>会保留代码更改的记录,且它们是可被搜索到的,所以任何人都可以随时回头来查看,理解当初做出决定的解释信息 .</em></p>
+<p><em>Tip : 通过将某些关键字合并到<code>Pull Request</code>的文本中,可以将<code>issues</code>与代码相关联. 合并<code>Pull Request</code>请求后,相关问题也将关闭. 例如 : 输入关键字<code>Closes #32</code>后将关闭存储库中的第32个<code>issue</code>. 更多信息请查看帮助文章 : <a target="_blank" rel="noopener" href="https://help.github.com/en/articles/closing-issues-using-keywords">https://help.github.com/en/articles/closing-issues-using-keywords</a></em></p>
+<p><em>🙂 refer to : <a target="_blank" rel="noopener" href="https://guides.github.com/introduction/flow/">https://guides.github.com/introduction/flow/</a></em></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:hi@goog.tech">GoogTech</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://goog.tech/blog/2019/07/16/Understanding-the-GitHub-flow/">https://goog.tech/blog/2019/07/16/Understanding-the-GitHub-flow/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/github/">github_</a></div><div class="post_share"><div class="social-share" data-image="/blog/img/default-cover/11.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> Donate</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/blog/img/wechat-sponsor.png" target="_blank"><img class="post-qr-code-img" src="/blog/img/wechat-sponsor.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/2019/07/17/%E5%B0%8F%E7%88%AC%E8%99%AB-JDBookCrawler-V3-0/"><img class="prev-cover" src="/blog/img/default-cover/50.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">小爬虫:JDBookCrawler-V3.0</div></div></a></div><div class="next-post pull-right"><a href="/blog/2019/07/15/%E5%B0%8F%E7%88%AC%E8%99%AB-JDBookCrawler-V2-0/"><img class="next-cover" src="/blog/img/default-cover/53.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">小爬虫:JDBookCrawler-V2.0</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/blog/2019/04/07/Back-up-the-Hexo-blog/" title="Back up the Hexo blog"><img class="cover" src="/blog/img/default-cover/12.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-04-07</div><div class="title">Back up the Hexo blog</div></div></a></div><div><a href="/blog/2019/08/08/Git-Commit-Message-规范/" title="Git Commit Message 规范"><img class="cover" src="/blog/img/default-cover/57.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-08-08</div><div class="title">Git Commit Message 规范</div></div></a></div><div><a href="/blog/2019/08/10/GitHub中emoji表情的含义及使用规范/" title="GitHub中emoji表情的含义及使用规范"><img class="cover" src="/blog/img/default-cover/3.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-08-10</div><div class="title">GitHub中emoji表情的含义及使用规范</div></div></a></div><div><a href="/blog/2019/07/29/How-to-create-a-pull-request-from-a-fork/" title="How to create a pull request from a fork"><img class="cover" src="/blog/img/default-cover/10.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-07-29</div><div class="title">How to create a pull request from a fork</div></div></a></div><div><a href="/blog/2019/11/03/my-growth-journey-of-github/" title="my growth journey of github"><img class="cover" src="/blog/img/default-cover/49.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-11-03</div><div class="title">my growth journey of github</div></div></a></div><div><a href="/blog/2019/08/08/为GitHub量身定制的浏览器插件/" title="为GitHub量身定制的浏览器插件"><img class="cover" src="/blog/img/default-cover/52.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-08-08</div><div class="title">为GitHub量身定制的浏览器插件</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-GitHub%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">学习笔记 : GitHub工作流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-branch"><span class="toc-number">1.1.</span> <span class="toc-text">Create a branch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-commits"><span class="toc-number">1.2.</span> <span class="toc-text">Add commits</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Open-a-Pull-Request"><span class="toc-number">1.3.</span> <span class="toc-text">Open a Pull Request</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Discuss-and-review-your-code"><span class="toc-number">1.4.</span> <span class="toc-text">Discuss and review your code</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy"><span class="toc-number">1.5.</span> <span class="toc-text">Deploy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Merge"><span class="toc-number">1.6.</span> <span class="toc-text">Merge</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2022 By GoogTech</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="/blog/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'cuhS73KNdoQ8SJpCFhaalYHe-gzGzoHsz',
+      appKey: 'bBxVEeuGBYAXa68aQv8mGUjn',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

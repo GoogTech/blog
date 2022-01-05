@@ -1,0 +1,274 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>vsblog : 一个采用vue及springboot开发的超简洁的个人博客系统 | GoogTech's Blog Site</title><meta name="keywords" content="Vue,Spring Boot"><meta name="author" content="GoogTech,hi@goog.tech"><meta name="copyright" content="GoogTech"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="README.md最近在学习前后端分离开发模式，为了总结进而写了这个小项目 : http:&#x2F;&#x2F;49.233.79.152:8080  账号: admin，密码: iblog.run ( 拜托不要删除我的数据，请另行创建文章后测试 )   github repo : https:&#x2F;&#x2F;github.com&#x2F;YUbuntu0109&#x2F;vsblog  技术前端 :   element-ui axios vu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vsblog : 一个采用vue及springboot开发的超简洁的个人博客系统">
+<meta property="og:url" content="https://goog.tech/blog/2020/06/21/vsblog-%E4%B8%80%E4%B8%AA%E9%87%87%E7%94%A8vue%E5%8F%8Aspringboot%E5%BC%80%E5%8F%91%E7%9A%84%E8%B6%85%E7%AE%80%E6%B4%81%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="GoogTech&#39;s Blog Site">
+<meta property="og:description" content="README.md最近在学习前后端分离开发模式，为了总结进而写了这个小项目 : http:&#x2F;&#x2F;49.233.79.152:8080  账号: admin，密码: iblog.run ( 拜托不要删除我的数据，请另行创建文章后测试 )   github repo : https:&#x2F;&#x2F;github.com&#x2F;YUbuntu0109&#x2F;vsblog  技术前端 :   element-ui axios vu">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://goog.tech/blog/img/default-cover/47.png">
+<meta property="article:published_time" content="2020-06-21T12:23:26.000Z">
+<meta property="article:modified_time" content="2022-01-05T03:09:17.788Z">
+<meta property="article:author" content="GoogTech">
+<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="Spring Boot">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://goog.tech/blog/img/default-cover/47.png"><link rel="shortcut icon" href="/blog/img/favicon.png"><link rel="canonical" href="https://goog.tech/blog/2020/06/21/vsblog-%E4%B8%80%E4%B8%AA%E9%87%87%E7%94%A8vue%E5%8F%8Aspringboot%E5%BC%80%E5%8F%91%E7%9A%84%E8%B6%85%E7%AE%80%E6%B4%81%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?38cca3f22b1618b6439834b03516d7e7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-206511912-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-206511912-1');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: GoogTech","link":"Link: ","source":"Source: GoogTech's Blog Site","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'vsblog : 一个采用vue及springboot开发的超简洁的个人博客系统',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-05 03:09:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/blog/atom.xml" title="GoogTech's Blog Site" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/43493852?v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/blog/archives/"><div class="headline">Articles</div><div class="length-num">202</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/tags/"><div class="headline">Tags</div><div class="length-num">81</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/blog/img/default-cover/47.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/blog/">GoogTech's Blog Site</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">vsblog : 一个采用vue及springboot开发的超简洁的个人博客系统<a class="post-edit-link" href="https://github.com/GoogTech/blog/edit/HexoBackup/source/_posts/vsblog-一个采用vue及springboot开发的超简洁的个人博客系统.md" title="Edited on" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2020-06-21T12:23:26.000Z" title="undefined 2020-06-21 12:23:26">2020-06-21</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">572</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>2min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="vsblog : 一个采用vue及springboot开发的超简洁的个人博客系统"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/blog/2020/06/21/vsblog-%E4%B8%80%E4%B8%AA%E9%87%87%E7%94%A8vue%E5%8F%8Aspringboot%E5%BC%80%E5%8F%91%E7%9A%84%E8%B6%85%E7%AE%80%E6%B4%81%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/blog/2020/06/21/vsblog-%E4%B8%80%E4%B8%AA%E9%87%87%E7%94%A8vue%E5%8F%8Aspringboot%E5%BC%80%E5%8F%91%E7%9A%84%E8%B6%85%E7%AE%80%E6%B4%81%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="README-md"><a href="#README-md" class="headerlink" title="README.md"></a>README.md</h2><p><em>最近在学习前后端分离开发模式，为了总结进而写了这个小项目 : <a target="_blank" rel="noopener" href="http://49.233.79.152:8080/">http://49.233.79.152:8080</a></em></p>
+<blockquote>
+<p>账号: <code>admin</code>，密码: <code>iblog.run</code> ( 拜托不要删除我的数据，请另行创建文章后测试 )</p>
+</blockquote>
+<blockquote>
+<p>github repo : <em><a target="_blank" rel="noopener" href="https://github.com/YUbuntu0109/vsblog">https://github.com/YUbuntu0109/vsblog</a></em></p>
+</blockquote>
+<h3 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h3><p><code>前端</code> : </p>
+<ul>
+<li>element-ui</li>
+<li>axios</li>
+<li>vue</li>
+</ul>
+<p><code>后端</code> : </p>
+<ul>
+<li>hibernate validatior</li>
+<li>mybatis plus</li>
+<li>springboot</li>
+<li>mysql</li>
+<li>shiro</li>
+<li>redis</li>
+<li>jwt</li>
+</ul>
+<h3 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h3><img src="/blog/2020/06/21/vsblog-%E4%B8%80%E4%B8%AA%E9%87%87%E7%94%A8vue%E5%8F%8Aspringboot%E5%BC%80%E5%8F%91%E7%9A%84%E8%B6%85%E7%AE%80%E6%B4%81%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/index-screenshot.png" class="">
+
+
+<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><ul>
+<li><input checked="" disabled="" type="checkbox"> 登录验证</li>
+<li><input checked="" disabled="" type="checkbox"> 文章展示</li>
+<li><input checked="" disabled="" type="checkbox"> 文章添加</li>
+<li><input checked="" disabled="" type="checkbox"> 文章删除</li>
+<li><input checked="" disabled="" type="checkbox"> 文章修改</li>
+<li><input checked="" disabled="" type="checkbox"> 文章查找</li>
+<li><input checked="" disabled="" type="checkbox"> 文章归档</li>
+<li><input checked="" disabled="" type="checkbox"> 页面特效</li>
+<li><input checked="" disabled="" type="checkbox"> 点击特效</li>
+<li><input disabled="" type="checkbox"> 文章分类</li>
+<li><input disabled="" type="checkbox"> 友链</li>
+<li><input disabled="" type="checkbox"> 留言</li>
+</ul>
+<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><blockquote>
+<p><em>以下是我在 <code>Ubuntu18.04</code> 远程服务器上部署 <code>vsblog</code> 的流程.</em></p>
+</blockquote>
+<ol>
+<li><p>安装 JDK</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> install jdk</span></span><br><span class="line">sudo apt install openjdk-8-jdk-headless</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> check</span></span><br><span class="line">java -version</span><br></pre></td></tr></table></figure></li>
+<li><p>安装 MySQL8.0+</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> the installation package as follows you need to download it</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> decompress the installation package</span></span><br><span class="line">sudo dpkg -i mysql-apt-config_0.8.10-1_all.deb</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> update installation package</span></span><br><span class="line">sudo apt update </span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> install mysql server</span></span><br><span class="line">sudo apt install mysql-server </span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> run mysql</span></span><br><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure></li>
+<li><p>安装 Redis</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> install redis server</span></span><br><span class="line">sudo apt-get install redis-server</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> check redis server status</span></span><br><span class="line">netstat -nlt|grep 6379</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">test</span></span></span><br><span class="line">redis-cli</span><br></pre></td></tr></table></figure></li>
+<li><p>导入 <code>vueblog.sql</code> 数据库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> mysql -u root -p &lt; vueblog.sql</span></span><br><span class="line">mysql -u root -p &lt; &#x27;the specified path of database file&#x27;</span><br></pre></td></tr></table></figure></li>
+<li><p>运行项目</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">kill</span> the specified server port:8080</span></span><br><span class="line">kill -9 $(netstat -nlp | grep :8080 | awk &#x27;&#123;print $7&#125;&#x27; | awk -F&quot;/&quot; &#x27;&#123; print $1 &#125;&#x27;)</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> run</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> nohup /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar /tmp/vueblog-0.0.1-SNAPSHOT.jar &gt; vsblog.file 2&gt;&amp;1 &amp;</span></span><br><span class="line">nuhup -jar vueblog-0.0.1-SNAPSHOT.jar &gt; vsblog.file 2&gt;&amp;1 &amp;</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">test</span></span></span><br><span class="line">http://ip:8080/</span><br></pre></td></tr></table></figure></li>
+<li><p>绑定域名</p>
+</li>
+</ol>
+<p><em>忽略端口号，例如 : <a target="_blank" rel="noopener" href="http://vue.iblog.run:8080/">http://vue.iblog.run:8080</a> -&gt; <a target="_blank" rel="noopener" href="http://vue.iblog.run/">http://vue.iblog.run</a></em></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> first you need install the nginx</span></span><br><span class="line">sudo apt install nginx</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> vim /etc/nginx/nginx.conf</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> such as the example configuraion be added as follows</span></span><br><span class="line">http&#123;</span><br><span class="line">    server&#123;</span><br><span class="line">	    listen  80;</span><br><span class="line">        server_name  vue.iblog.run; </span><br><span class="line">        location / &#123;</span><br><span class="line">		    proxy_pass  http://ip:8080;	</span><br><span class="line">	    &#125;            </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">. . .</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="keyword">then</span> check the default configuration file</span></span><br><span class="line">nginx -t</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> reload the nginx</span></span><br><span class="line">nginx -s reload</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">test</span></span></span><br><span class="line">http://vue.iblog.run</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><h4 id="若需本地运行该项目，请修改如下配置"><a href="#若需本地运行该项目，请修改如下配置" class="headerlink" title="若需本地运行该项目，请修改如下配置 :"></a>若需本地运行该项目，请修改如下配置 :</h4><ol>
+<li><p>前端 : <code>axios.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 自定义全局请求头(后台)</span></span><br><span class="line"><span class="comment">// axios.defaults.baseURL = &quot;http://49.233.79.152:8080&quot;</span></span><br><span class="line">axios.defaults.baseURL = <span class="string">&quot;http://localhost:8080&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>后端 : <code>application.yml</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">redis-manager:</span><br><span class="line">	<span class="comment">// host: 49.233.79.152:6379</span></span><br><span class="line">	host: <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">6379</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="该项目使用的-MySQL-的版本号为-8-0-11-如果你的数据库版本低于它，请修改如下配置"><a href="#该项目使用的-MySQL-的版本号为-8-0-11-如果你的数据库版本低于它，请修改如下配置" class="headerlink" title="该项目使用的 MySQL 的版本号为 8.0.11 ,如果你的数据库版本低于它，请修改如下配置 :"></a>该项目使用的 MySQL 的版本号为 <code>8.0.11</code> ,如果你的数据库版本低于它，请修改如下配置 :</h4><ol>
+<li><code>pom.xml</code> : 修改 mysql-connector-java 的版本</li>
+<li><code>application.yml</code> : 将 driver-class-name 修改为 com.mysql.jdbc.Driver</li>
+</ol>
+<blockquote>
+<p>详情请参考我的博文 : <a target="_blank" rel="noopener" href="https://ishacker.net/2019/03/14/JDBC-%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E5%88%86%E6%9E%90/">JDBC-常见错误分析</a></p>
+</blockquote>
+<h3 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/lenve/VBlog">VBlog</a></li>
+<li><a target="_blank" rel="noopener" href="https://space.bilibili.com/13491144">MarkerHub</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:hi@goog.tech">GoogTech</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://goog.tech/blog/2020/06/21/vsblog-%E4%B8%80%E4%B8%AA%E9%87%87%E7%94%A8vue%E5%8F%8Aspringboot%E5%BC%80%E5%8F%91%E7%9A%84%E8%B6%85%E7%AE%80%E6%B4%81%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/">https://goog.tech/blog/2020/06/21/vsblog-一个采用vue及springboot开发的超简洁的个人博客系统/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/Vue/">Vue</a><a class="post-meta__tags" href="/blog/tags/Spring-Boot/">Spring Boot</a></div><div class="post_share"><div class="social-share" data-image="/blog/img/default-cover/47.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> Donate</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/blog/img/wechat-sponsor.png" target="_blank"><img class="post-qr-code-img" src="/blog/img/wechat-sponsor.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/2020/06/21/error-java-net-SocketException-Permission-denied/"><img class="prev-cover" src="/blog/img/default-cover/42.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">error : java.net.SocketException: Permission denied</div></div></a></div><div class="next-post pull-right"><a href="/blog/2020/06/21/image-repo/"><img class="next-cover" src="/blog/img/default-cover/39.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">image repo</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/blog/2020/06/21/前后端分离项目的两种部署方案/" title="前后端分离项目的两种部署方案"><img class="cover" src="/blog/img/default-cover/24.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-21</div><div class="title">前后端分离项目的两种部署方案</div></div></a></div><div><a href="/blog/2019/07/25/A-simple-comment-component-for-Vue/" title="A simple comment component for Vue"><img class="cover" src="/blog/img/default-cover/23.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-07-25</div><div class="title">A simple comment component for Vue</div></div></a></div><div><a href="/blog/2019/07/19/Hi-Vue/" title="Hi Vue ~"><img class="cover" src="/blog/img/default-cover/7.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-07-19</div><div class="title">Hi Vue ~</div></div></a></div><div><a href="/blog/2019/07/21/Vue-js的数据响应式原理/" title="Vue.js的数据响应式原理"><img class="cover" src="/blog/img/default-cover/30.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-07-21</div><div class="title">Vue.js的数据响应式原理</div></div></a></div><div><a href="/blog/2019/07/20/Vue-js的生命周期/" title="Vue.js的生命周期"><img class="cover" src="/blog/img/default-cover/47.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-07-20</div><div class="title">Vue.js的生命周期</div></div></a></div><div><a href="/blog/2019/07/23/Vue-js的自定义指令与过滤器/" title="Vue.js的自定义指令与过滤器"><img class="cover" src="/blog/img/default-cover/33.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-07-23</div><div class="title">Vue.js的自定义指令与过滤器</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#README-md"><span class="toc-number">1.</span> <span class="toc-text">README.md</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF"><span class="toc-number">1.1.</span> <span class="toc-text">技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%AA%E5%9B%BE"><span class="toc-number">1.2.</span> <span class="toc-text">截图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD"><span class="toc-number">1.3.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2"><span class="toc-number">1.4.</span> <span class="toc-text">部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.5.</span> <span class="toc-text">注意事项</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8B%A5%E9%9C%80%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C%E8%AF%A5%E9%A1%B9%E7%9B%AE%EF%BC%8C%E8%AF%B7%E4%BF%AE%E6%94%B9%E5%A6%82%E4%B8%8B%E9%85%8D%E7%BD%AE"><span class="toc-number">1.5.1.</span> <span class="toc-text">若需本地运行该项目，请修改如下配置 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%A5%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8%E7%9A%84-MySQL-%E7%9A%84%E7%89%88%E6%9C%AC%E5%8F%B7%E4%B8%BA-8-0-11-%E5%A6%82%E6%9E%9C%E4%BD%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E7%89%88%E6%9C%AC%E4%BD%8E%E4%BA%8E%E5%AE%83%EF%BC%8C%E8%AF%B7%E4%BF%AE%E6%94%B9%E5%A6%82%E4%B8%8B%E9%85%8D%E7%BD%AE"><span class="toc-number">1.5.2.</span> <span class="toc-text">该项目使用的 MySQL 的版本号为 8.0.11 ,如果你的数据库版本低于它，请修改如下配置 :</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%B4%E8%B0%A2"><span class="toc-number">1.6.</span> <span class="toc-text">致谢</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2022 By GoogTech</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="/blog/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'cuhS73KNdoQ8SJpCFhaalYHe-gzGzoHsz',
+      appKey: 'bBxVEeuGBYAXa68aQv8mGUjn',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

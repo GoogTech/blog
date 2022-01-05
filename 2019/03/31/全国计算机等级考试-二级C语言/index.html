@@ -1,0 +1,209 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>全国计算机等级考试-二级C语言 | GoogTech's Blog Site</title><meta name="keywords" content="NCRE,C"><meta name="author" content="GoogTech,hi@goog.tech"><meta name="copyright" content="GoogTech"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="NCRE(National Computer Rank Examination) —— 二级C篇来来来,先欣赏一下昨天去看樱花时拍的风景,语文学的不好的我只能用超级美来形容啦啊哈哈哈 (づ｡◕ᴗᴗ◕｡)づ   敲黑板：二级考试的试题都是在往年的试卷中随机抽取的 ! 勿慌 ✧⁺⸜(●˙▾˙●)⸝⁺✧ OK ! 说直白一点,二级考试真是的傻白甜,毕竟考试范围都已经给你了,况且还有可能遇到原题呢...但">
+<meta property="og:type" content="article">
+<meta property="og:title" content="全国计算机等级考试-二级C语言">
+<meta property="og:url" content="https://goog.tech/blog/2019/03/31/%E5%85%A8%E5%9B%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AD%89%E7%BA%A7%E8%80%83%E8%AF%95-%E4%BA%8C%E7%BA%A7C%E8%AF%AD%E8%A8%80/index.html">
+<meta property="og:site_name" content="GoogTech&#39;s Blog Site">
+<meta property="og:description" content="NCRE(National Computer Rank Examination) —— 二级C篇来来来,先欣赏一下昨天去看樱花时拍的风景,语文学的不好的我只能用超级美来形容啦啊哈哈哈 (づ｡◕ᴗᴗ◕｡)づ   敲黑板：二级考试的试题都是在往年的试卷中随机抽取的 ! 勿慌 ✧⁺⸜(●˙▾˙●)⸝⁺✧ OK ! 说直白一点,二级考试真是的傻白甜,毕竟考试范围都已经给你了,况且还有可能遇到原题呢...但">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://goog.tech/blog/img/default-cover/1.png">
+<meta property="article:published_time" content="2019-03-31T09:45:04.000Z">
+<meta property="article:modified_time" content="2022-01-05T03:09:17.812Z">
+<meta property="article:author" content="GoogTech">
+<meta property="article:tag" content="NCRE">
+<meta property="article:tag" content="C">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://goog.tech/blog/img/default-cover/1.png"><link rel="shortcut icon" href="/blog/img/favicon.png"><link rel="canonical" href="https://goog.tech/blog/2019/03/31/%E5%85%A8%E5%9B%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AD%89%E7%BA%A7%E8%80%83%E8%AF%95-%E4%BA%8C%E7%BA%A7C%E8%AF%AD%E8%A8%80/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?38cca3f22b1618b6439834b03516d7e7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-206511912-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-206511912-1');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: GoogTech","link":"Link: ","source":"Source: GoogTech's Blog Site","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '全国计算机等级考试-二级C语言',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-05 03:09:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/blog/atom.xml" title="GoogTech's Blog Site" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/43493852?v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/blog/archives/"><div class="headline">Articles</div><div class="length-num">202</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/tags/"><div class="headline">Tags</div><div class="length-num">81</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/blog/img/default-cover/1.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/blog/">GoogTech's Blog Site</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">全国计算机等级考试-二级C语言<a class="post-edit-link" href="https://github.com/GoogTech/blog/edit/HexoBackup/source/_posts/全国计算机等级考试-二级C语言.md" title="Edited on" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2019-03-31T09:45:04.000Z" title="undefined 2019-03-31 09:45:04">2019-03-31</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">264</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>1min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="全国计算机等级考试-二级C语言"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/blog/2019/03/31/%E5%85%A8%E5%9B%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AD%89%E7%BA%A7%E8%80%83%E8%AF%95-%E4%BA%8C%E7%BA%A7C%E8%AF%AD%E8%A8%80/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/blog/2019/03/31/%E5%85%A8%E5%9B%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AD%89%E7%BA%A7%E8%80%83%E8%AF%95-%E4%BA%8C%E7%BA%A7C%E8%AF%AD%E8%A8%80/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="NCRE-National-Computer-Rank-Examination-——-二级C篇"><a href="#NCRE-National-Computer-Rank-Examination-——-二级C篇" class="headerlink" title="NCRE(National Computer Rank Examination) —— 二级C篇"></a>NCRE(National Computer Rank Examination) —— 二级<code>C</code>篇</h3><h4 id="来来来-先欣赏一下昨天去看樱花时拍的风景-语文学的不好的我只能用超级美来形容啦啊哈哈哈-づ｡◕ᴗᴗ◕｡-づ"><a href="#来来来-先欣赏一下昨天去看樱花时拍的风景-语文学的不好的我只能用超级美来形容啦啊哈哈哈-づ｡◕ᴗᴗ◕｡-づ" class="headerlink" title="来来来,先欣赏一下昨天去看樱花时拍的风景,语文学的不好的我只能用超级美来形容啦啊哈哈哈 (づ｡◕ᴗᴗ◕｡)づ"></a>来来来,先欣赏一下昨天去看樱花时拍的风景,语文学的不好的我只能用超级美来形容啦啊哈哈哈 (づ｡◕ᴗᴗ◕｡)づ</h4><ul>
+<li><img src="/blog/2019/03/31/%E5%85%A8%E5%9B%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AD%89%E7%BA%A7%E8%80%83%E8%AF%95-%E4%BA%8C%E7%BA%A7C%E8%AF%AD%E8%A8%80/Scenery.jpg" class=""></li>
+</ul>
+<p><strong><code>敲黑板：二级考试的试题都是在往年的试卷中随机抽取的 ! 勿慌 ✧⁺⸜(●˙▾˙●)⸝⁺✧</code></strong></p>
+<p><em><code>OK ! 说直白一点,二级考试真是的傻白甜,毕竟考试范围都已经给你了,况且还有可能遇到原题呢...</code></em><br><em><code>但是！但是！但是！过程很重要,相信这一切都是你走向春天的必经之路,大家千万不因傲慢而忽略了路边的风景 ！</code></em></p>
+<ul>
+<li><h4 id="下面是我考试前的一些练习题-阔以说将题目要求-运行结果-注意事项-易错点写的的非常的详细啦！-嘿嘿-大家阔以省下买试卷的钱咯-づ｡◕ᴗᴗ◕｡-づ"><a href="#下面是我考试前的一些练习题-阔以说将题目要求-运行结果-注意事项-易错点写的的非常的详细啦！-嘿嘿-大家阔以省下买试卷的钱咯-づ｡◕ᴗᴗ◕｡-づ" class="headerlink" title="下面是我考试前的一些练习题,阔以说将题目要求,运行结果,注意事项,易错点写的的非常的详细啦！( 嘿嘿,大家阔以省下买试卷的钱咯 (づ｡◕ᴗᴗ◕｡)づ )"></a>下面是我考试前的一些练习题,阔以说将<code>题目要求</code>,<code>运行结果</code>,<code>注意事项</code>,<code>易错点</code>写的的非常的详细啦！( 嘿嘿,大家阔以省下买试卷的钱咯 (づ｡◕ᴗᴗ◕｡)づ )</h4></li>
+<li><img src="/blog/2019/03/31/%E5%85%A8%E5%9B%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AD%89%E7%BA%A7%E8%80%83%E8%AF%95-%E4%BA%8C%E7%BA%A7C%E8%AF%AD%E8%A8%80/examination-paper.PNG" class=""></li>
+<li><p><strong>试卷及笔记的下载链接 :</strong> , <a target="_blank" rel="noopener" href="https://github.com/YUbuntu0109/NCRE">Good luck to you ~</a></p>
+</li>
+<li><p><strong>建议多多刷题哟,尽情体验C语言中<code>指针</code>与<code>数据结构及算法</code>的美吧 (っ•̀ω•́)っ✎⁾⁾</strong></p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:hi@goog.tech">GoogTech</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://goog.tech/blog/2019/03/31/%E5%85%A8%E5%9B%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AD%89%E7%BA%A7%E8%80%83%E8%AF%95-%E4%BA%8C%E7%BA%A7C%E8%AF%AD%E8%A8%80/">https://goog.tech/blog/2019/03/31/全国计算机等级考试-二级C语言/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/NCRE/">NCRE</a><a class="post-meta__tags" href="/blog/tags/C/">C</a></div><div class="post_share"><div class="social-share" data-image="/blog/img/default-cover/1.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> Donate</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/blog/img/wechat-sponsor.png" target="_blank"><img class="post-qr-code-img" src="/blog/img/wechat-sponsor.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/2019/03/31/%E5%85%A8%E5%9B%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AD%89%E7%BA%A7%E8%80%83%E8%AF%95-%E4%BA%8C%E7%BA%A7MySQL/"><img class="prev-cover" src="/blog/img/default-cover/42.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">全国计算机等级考试-二级MySQL</div></div></a></div><div class="next-post pull-right"><a href="/blog/2019/03/16/static-keyword/"><img class="next-cover" src="/blog/img/default-cover/18.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">static keyword</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/blog/2019/03/15/全国计算机等级考试-Java/" title="全国计算机等级考试-Java"><img class="cover" src="/blog/img/default-cover/1.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-03-15</div><div class="title">全国计算机等级考试-Java</div></div></a></div><div><a href="/blog/2019/03/31/全国计算机等级考试-三级数据库技术/" title="全国计算机等级考试-三级数据库技术"><img class="cover" src="/blog/img/default-cover/12.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-03-31</div><div class="title">全国计算机等级考试-三级数据库技术</div></div></a></div><div><a href="/blog/2019/03/31/全国计算机等级考试-二级MySQL/" title="全国计算机等级考试-二级MySQL"><img class="cover" src="/blog/img/default-cover/42.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-03-31</div><div class="title">全国计算机等级考试-二级MySQL</div></div></a></div><div><a href="/blog/2019/03/12/Data-structures-and-algorithm-analysis-in-C/" title="Data structures and algorithm analysis in C"><img class="cover" src="/blog/img/default-cover/35.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-03-12</div><div class="title">Data structures and algorithm analysis in C</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#NCRE-National-Computer-Rank-Examination-%E2%80%94%E2%80%94-%E4%BA%8C%E7%BA%A7C%E7%AF%87"><span class="toc-number">1.</span> <span class="toc-text">NCRE(National Computer Rank Examination) —— 二级C篇</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%A5%E6%9D%A5%E6%9D%A5-%E5%85%88%E6%AC%A3%E8%B5%8F%E4%B8%80%E4%B8%8B%E6%98%A8%E5%A4%A9%E5%8E%BB%E7%9C%8B%E6%A8%B1%E8%8A%B1%E6%97%B6%E6%8B%8D%E7%9A%84%E9%A3%8E%E6%99%AF-%E8%AF%AD%E6%96%87%E5%AD%A6%E7%9A%84%E4%B8%8D%E5%A5%BD%E7%9A%84%E6%88%91%E5%8F%AA%E8%83%BD%E7%94%A8%E8%B6%85%E7%BA%A7%E7%BE%8E%E6%9D%A5%E5%BD%A2%E5%AE%B9%E5%95%A6%E5%95%8A%E5%93%88%E5%93%88%E5%93%88-%E3%81%A5%EF%BD%A1%E2%97%95%E1%B4%97%E1%B4%97%E2%97%95%EF%BD%A1-%E3%81%A5"><span class="toc-number">1.1.</span> <span class="toc-text">来来来,先欣赏一下昨天去看樱花时拍的风景,语文学的不好的我只能用超级美来形容啦啊哈哈哈 (づ｡◕ᴗᴗ◕｡)づ</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8B%E9%9D%A2%E6%98%AF%E6%88%91%E8%80%83%E8%AF%95%E5%89%8D%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%83%E4%B9%A0%E9%A2%98-%E9%98%94%E4%BB%A5%E8%AF%B4%E5%B0%86%E9%A2%98%E7%9B%AE%E8%A6%81%E6%B1%82-%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-%E6%98%93%E9%94%99%E7%82%B9%E5%86%99%E7%9A%84%E7%9A%84%E9%9D%9E%E5%B8%B8%E7%9A%84%E8%AF%A6%E7%BB%86%E5%95%A6%EF%BC%81-%E5%98%BF%E5%98%BF-%E5%A4%A7%E5%AE%B6%E9%98%94%E4%BB%A5%E7%9C%81%E4%B8%8B%E4%B9%B0%E8%AF%95%E5%8D%B7%E7%9A%84%E9%92%B1%E5%92%AF-%E3%81%A5%EF%BD%A1%E2%97%95%E1%B4%97%E1%B4%97%E2%97%95%EF%BD%A1-%E3%81%A5"><span class="toc-number">1.2.</span> <span class="toc-text">下面是我考试前的一些练习题,阔以说将题目要求,运行结果,注意事项,易错点写的的非常的详细啦！( 嘿嘿,大家阔以省下买试卷的钱咯 (づ｡◕ᴗᴗ◕｡)づ )</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2022 By GoogTech</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="/blog/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'cuhS73KNdoQ8SJpCFhaalYHe-gzGzoHsz',
+      appKey: 'bBxVEeuGBYAXa68aQv8mGUjn',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

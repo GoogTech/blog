@@ -1,0 +1,286 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Spring Boot之Thymeleaf | GoogTech's Blog Site</title><meta name="keywords" content="Spring Boot"><meta name="author" content="GoogTech,hi@goog.tech"><meta name="copyright" content="GoogTech"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="学习笔记 : Thymeleaf的常用语法简介 : Thymeleaf是一种用于Web和独立环境的现代服务器端的Java模板引擎. Thymeleaf的主要目标是将优雅的自然模板带到开发工作流程中,并将HTML在浏览器中正确显示,并且可以作为静态原型,让开发团队能更容易地协作. Thymeleaf能够处理HTML,XML,JavaScript,CSS甚至纯文本 . 基础语法变量表达式 $&amp;#123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Boot之Thymeleaf">
+<meta property="og:url" content="https://goog.tech/blog/2019/06/27/Spring-Boot%E4%B9%8BThymeleaf/index.html">
+<meta property="og:site_name" content="GoogTech&#39;s Blog Site">
+<meta property="og:description" content="学习笔记 : Thymeleaf的常用语法简介 : Thymeleaf是一种用于Web和独立环境的现代服务器端的Java模板引擎. Thymeleaf的主要目标是将优雅的自然模板带到开发工作流程中,并将HTML在浏览器中正确显示,并且可以作为静态原型,让开发团队能更容易地协作. Thymeleaf能够处理HTML,XML,JavaScript,CSS甚至纯文本 . 基础语法变量表达式 $&amp;#123">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://goog.tech/blog/img/default-cover/19.png">
+<meta property="article:published_time" content="2019-06-27T11:34:09.000Z">
+<meta property="article:modified_time" content="2022-01-05T03:09:17.696Z">
+<meta property="article:author" content="GoogTech">
+<meta property="article:tag" content="Spring Boot">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://goog.tech/blog/img/default-cover/19.png"><link rel="shortcut icon" href="/blog/img/favicon.png"><link rel="canonical" href="https://goog.tech/blog/2019/06/27/Spring-Boot%E4%B9%8BThymeleaf/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?38cca3f22b1618b6439834b03516d7e7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-206511912-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-206511912-1');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: GoogTech","link":"Link: ","source":"Source: GoogTech's Blog Site","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Spring Boot之Thymeleaf',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-05 03:09:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/blog/atom.xml" title="GoogTech's Blog Site" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://avatars.githubusercontent.com/u/43493852?v=4" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/blog/archives/"><div class="headline">Articles</div><div class="length-num">202</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/tags/"><div class="headline">Tags</div><div class="length-num">81</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/blog/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/blog/img/default-cover/19.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/blog/">GoogTech's Blog Site</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/blog/comment/"><i class="fa-fw fas fa-comment-dots"></i><span> Comment</span></a></div><div class="menus_item"><a class="site-page" href="/blog/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Spring Boot之Thymeleaf<a class="post-edit-link" href="https://github.com/GoogTech/blog/edit/HexoBackup/source/_posts/Spring-Boot之Thymeleaf.md" title="Edited on" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2019-06-27T11:34:09.000Z" title="undefined 2019-06-27 11:34:09">2019-06-27</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">1.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>8min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Spring Boot之Thymeleaf"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/blog/2019/06/27/Spring-Boot%E4%B9%8BThymeleaf/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/blog/2019/06/27/Spring-Boot%E4%B9%8BThymeleaf/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="学习笔记-Thymeleaf的常用语法"><a href="#学习笔记-Thymeleaf的常用语法" class="headerlink" title="学习笔记 : Thymeleaf的常用语法"></a>学习笔记 : Thymeleaf的常用语法</h2><p><em>简介 : Thymeleaf是一种用于Web和独立环境的现代服务器端的Java模板引擎. Thymeleaf的主要目标是将优雅的自然模板带到开发工作流程中,并将HTML在浏览器中正确显示,并且可以作为静态原型,让开发团队能更容易地协作. Thymeleaf能够处理HTML,XML,JavaScript,CSS甚至纯文本 .</em></p>
+<h3 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h3><h4 id="变量表达式"><a href="#变量表达式" class="headerlink" title="变量表达式 ${}"></a>变量表达式 <code>$&#123;&#125;</code></h4><p><em>使用方法 : 直接使用<code>th:xx = &quot;$&#123;&#125;&quot;</code>获取对象属性</em></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">&quot;userForm&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;id&quot;</span> <span class="attr">name</span>=<span class="string">&quot;id&quot;</span> <span class="attr">th:value</span>=<span class="string">&quot;$&#123;user.id&#125;&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;username&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">th:value</span>=<span class="string">&quot;$&#123;user.username&#125;&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;password&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">th:value</span>=<span class="string">&quot;$&#123;user.password&#125;&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:text</span>=<span class="string">&quot;hello&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:text</span>=<span class="string">&quot;$&#123;user.username&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="选择变量表达式"><a href="#选择变量表达式" class="headerlink" title="选择变量表达式 *{}"></a>选择变量表达式 <code>*&#123;&#125;</code></h4><p><em>使用方法 : 首先通过<code>th:object</code>获取对象,然后使用<code>th:xx = &quot;*&#123;&#125;&quot;</code>获取对象属性</em></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">&quot;userForm&quot;</span> <span class="attr">th:object</span>=<span class="string">&quot;$&#123;user&#125;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;id&quot;</span> <span class="attr">name</span>=<span class="string">&quot;id&quot;</span> <span class="attr">th:value</span>=<span class="string">&quot;*&#123;id&#125;&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;username&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">th:value</span>=<span class="string">&quot;*&#123;username&#125;&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;password&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">th:value</span>=<span class="string">&quot;*&#123;password&#125;&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="链接表达式"><a href="#链接表达式" class="headerlink" title="链接表达式 @{}"></a>链接表达式 <code>@&#123;&#125;</code></h4><p><em>使用方法 : 通过链接表达式<code>@&#123;&#125;</code>直接拿到应用路径,然后拼接静态资源路径</em></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 访问项目路径下的user并传递id,name等参数 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">&quot;@&#123;~/user(id=1,name=demo)&#125;&quot;</span>&gt;</span>demo<span class="tag">&lt;/<span class="name">a</span>&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:src</span>=<span class="string">&quot;@&#123;/webjars/jquery/jquery.js&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">th:href</span>=<span class="string">&quot;@&#123;/webjars/bootstrap/css/bootstrap.css&#125;&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="片段表达式"><a href="#片段表达式" class="headerlink" title="片段表达式 ~{}"></a>片段表达式 <code>~&#123;&#125;</code></h4><ol>
+<li><em><code>~&#123;viewName&#125;</code> : 表示引入完整页面</em></li>
+<li><em><code>~&#123;viewName ::selector&#125;</code> : 表示在指定页面寻找片段,其中<code>selector</code>可为片段名、jquery选择器等</em></li>
+<li><em><code>~&#123;::selector&#125;</code> : 表示在当前页寻找</em></li>
+</ol>
+<p><em>使用方法 : 首先通过<code>th:fragment</code>定制片段,然后通过<code>th:replace</code>填写片段路径和片段名</em></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- /views/common/head.html--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span> <span class="attr">th:fragment</span>=<span class="string">&quot;static&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">th:src</span>=<span class="string">&quot;@&#123;/webjars/jquery/3.3.1/jquery.js&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- /views/your.html --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:replace</span>=<span class="string">&quot;~&#123;common/head::static&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><em>注意 : 由于默认拼接的路径为<code>spring.thymeleaf.prefix = classpath:/templates/</code>,所以在使用替换路径<code>th:replace</code>开头请勿添加斜杠,避免部署运行的时候出现路径报错 !</em></li>
+</ul>
+<h4 id="消息表达式-amp-35"><a href="#消息表达式-amp-35" class="headerlink" title="消息表达式 &amp;#35;{}"></a>消息表达式 <code>&amp;#35;&#123;&#125;</code></h4><p><em>即通常的国际化属性 : <code>&amp;#35;&#123;msg&#125;</code>,用于获取国际化语言翻译值</em></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">title</span> <span class="attr">th:text</span>=<span class="string">&quot;#&#123;user.title&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="其它表达式"><a href="#其它表达式" class="headerlink" title="其它表达式"></a>其它表达式</h4><p><em>在基础语法中,默认支持字符串连接、数学运算、布尔逻辑和三目运算等..</em></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> <span class="attr">th:value</span>=<span class="string">&quot;$&#123;&#x27;I am &#x27;+(user.name!=null?user.name:&#x27;NoBody&#x27;)&#125;&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="常用语法"><a href="#常用语法" class="headerlink" title="常用语法"></a>常用语法</h3><h4 id="迭代循环"><a href="#迭代循环" class="headerlink" title="迭代循环"></a>迭代循环</h4><p><em>想要遍历List集合很简单,配合<code>th:each</code>即可快速完成迭代</em></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:each</span>=<span class="string">&quot;user:$&#123;userList&#125;&quot;</span>&gt;</span></span><br><span class="line">    账号: <span class="tag">&lt;<span class="name">input</span> <span class="attr">th:value</span>=<span class="string">&quot;$&#123;user.username&#125;&quot;</span>/&gt;</span></span><br><span class="line">    密码: <span class="tag">&lt;<span class="name">input</span> <span class="attr">th:value</span>=<span class="string">&quot;$&#123;user.password&#125;&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><em>在集合的迭代过程还可以获取状态变量,只需在变量后面指定状态变量名即可,状态变量可用于获取集合的下标/序号、总数、是否为单数/偶数行、是否为第一个/最后一个</em></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:each</span>=<span class="string">&quot;user,stat:$&#123;userList&#125;&quot;</span> <span class="attr">th:class</span>=<span class="string">&quot;$&#123;stat.even&#125;?&#x27;even&#x27;:&#x27;odd&#x27;&quot;</span>&gt;</span></span><br><span class="line">    下标: <span class="tag">&lt;<span class="name">input</span> <span class="attr">th:value</span>=<span class="string">&quot;$&#123;stat.index&#125;&quot;</span>/&gt;</span></span><br><span class="line">    序号: <span class="tag">&lt;<span class="name">input</span> <span class="attr">th:value</span>=<span class="string">&quot;$&#123;stat.count&#125;&quot;</span>/&gt;</span></span><br><span class="line">    账号: <span class="tag">&lt;<span class="name">input</span> <span class="attr">th:value</span>=<span class="string">&quot;$&#123;user.username&#125;&quot;</span>/&gt;</span></span><br><span class="line">    密码: <span class="tag">&lt;<span class="name">input</span> <span class="attr">th:value</span>=<span class="string">&quot;$&#123;user.password&#125;&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><em>如果缺省状态变量名,则迭代器会默认帮我们生成以变量名开头的状态变量 xxStat</em></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:each</span>=<span class="string">&quot;user:$&#123;userList&#125;&quot;</span> <span class="attr">th:class</span>=<span class="string">&quot;$&#123;userStat.even&#125;?&#x27;even&#x27;:&#x27;odd&#x27;&quot;</span>&gt;</span></span><br><span class="line">    下标：<span class="tag">&lt;<span class="name">input</span> <span class="attr">th:value</span>=<span class="string">&quot;$&#123;userStat.index&#125;&quot;</span>/&gt;</span></span><br><span class="line">    序号：<span class="tag">&lt;<span class="name">input</span> <span class="attr">th:value</span>=<span class="string">&quot;$&#123;userStat.count&#125;&quot;</span>/&gt;</span></span><br><span class="line">    账号：<span class="tag">&lt;<span class="name">input</span> <span class="attr">th:value</span>=<span class="string">&quot;$&#123;user.username&#125;&quot;</span>/&gt;</span></span><br><span class="line">    密码：<span class="tag">&lt;<span class="name">input</span> <span class="attr">th:value</span>=<span class="string">&quot;$&#123;user.password&#125;&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h4><h5 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h5><p><em>其语法为 : <code>th:if</code>,通常用于动态页面的初始化</em></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:if</span>=<span class="string">&quot;$&#123;userList&#125;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>exist...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><em>如果想取反则可以使用<code>unless</code></em></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:unless</span>=<span class="string">&quot;$&#123;userList&#125;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>not exist...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="switch语句"><a href="#switch语句" class="headerlink" title="switch语句"></a>switch语句</h5><p><em>其语法中需要<code>th:switch</code>与<code>th:case</code>结合使用,通常用于动态页面的初始化</em></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">th:switch</span>=<span class="string">&quot;$&#123;num&#125;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">th:case</span>=<span class="string">&quot;1&quot;</span>&gt;</span>num=1<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">th:case</span>=<span class="string">&quot;2&quot;</span>&gt;</span>num=2<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">th:case</span>=<span class="string">&quot;3&quot;</span>&gt;</span>num=3<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">&lt;/div</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="日期格式化"><a href="#日期格式化" class="headerlink" title="日期格式化"></a>日期格式化</h4><p><em>使用默认的日期格式(toString方法)并不是我们预期的格式 : <code>Mon Dec 03 23:16:50 CST 2018</code></em></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">th:value</span>=<span class="string">&quot;$&#123;user.createTime&#125;&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p><em>此时可以通过时间工具类<code>&amp;#35;dates</code>来将日期进行格式化为 : <code>2018-12-03 23:16:50</code></em></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">th:value</span>=<span class="string">&quot;$&#123;#dates.format(user.createTime,&#x27;yyyy-MM-dd HH:mm:ss&#x27;)&#125;&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="内联写法"><a href="#内联写法" class="headerlink" title="内联写法"></a>内联写法</h4><ol>
+<li><em>内联写法 : 解决 JS无法获取服务端返回的变量的尴尬 ~</em></li>
+<li><em>使用方法 : 标准格式为: <code>[[$&#123;xx&#125;]]</code>,其可以读取服务端变量,也可以调用内置对象的方法.例如获取用户变量和应用路径:</em><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:inline</span>=<span class="string">&quot;javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> user = [[$&#123;user&#125;]];<span class="string">`</span></span></span><br><span class="line"><span class="string"><span class="javascript">    var APP_PATH = [[<span class="subst">$&#123;#request.getContextPath()&#125;</span>]];</span></span></span><br><span class="line"><span class="string"><span class="javascript">    var LANG_COUNTRY = [[<span class="subst">$&#123;#locale.getLanguage()+<span class="string">&#x27;_&#x27;</span>+#locale.getCountry()&#125;</span>]];</span></span></span><br><span class="line"><span class="string"><span class="javascript"></span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="内置对象"><a href="#内置对象" class="headerlink" title="内置对象"></a>内置对象</h3><h4 id="七大基础对象"><a href="#七大基础对象" class="headerlink" title="七大基础对象"></a>七大基础对象</h4><ol>
+<li><em><code>$&#123;&amp;#35;ctx&#125;</code> : 上下文对象,可用于获取其它内置对象</em></li>
+<li><em><code>$&#123;&amp;#35;vars&#125;</code> : 上下文变量</em></li>
+<li><em><code>$&#123;&amp;#35;locale&#125;</code> : 上下文区域设置</em></li>
+<li><em><code>$&#123;&amp;#35;request&#125;</code> : HttpServletRequest对象</em></li>
+<li><em><code>$&#123;&amp;#35;response&#125;</code> : HttpServletResponse对象</em></li>
+<li><em><code>$&#123;&amp;#35;session&#125;</code> : HttpSession对象</em></li>
+<li><em><code>$&#123;&amp;#35;servletContext&#125;</code> : ServletContext对象</em></li>
+</ol>
+<h4 id="常用的工具类"><a href="#常用的工具类" class="headerlink" title="常用的工具类"></a>常用的工具类</h4><ol>
+<li><em><code>&amp;#35;strings</code> :字符串工具类</em></li>
+<li><em><code>&amp;#35;lists</code> : List工具类</em></li>
+<li><em><code>&amp;#35;arrays</code> : 数组工具类</em></li>
+<li><em><code>&amp;#35;sets</code> : Set工具类</em></li>
+<li><em><code>&amp;#35;maps</code> : 常用Map方法</em></li>
+<li><em><code>&amp;#35;objects</code> : 一般对象类,通常用来判断非空</em></li>
+<li><em><code>&amp;#35;bools</code> : 常用的布尔方法</em></li>
+<li><em><code>&amp;#35;execInfo</code> : 获取页面模板的处理信息</em></li>
+<li><em><code>&amp;#35;messages</code> : 在变量表达式中获取外部消息的方法,与使用<code>&amp;#35;&#123;...&#125;</code>语法获取的方法相同</em></li>
+<li><em><code>&amp;#35;uris</code> : 转义部分URL / URI的方法</em></li>
+<li><em><code>&amp;#35;conversions</code> : 用于执行已配置的转换服务的方法</em></li>
+<li><em><code>&amp;#35;dates</code> : 时间操作和时间格式化等</em></li>
+<li><em><code>&amp;#35;calendars</code> : 用于更复杂时间的格式化</em></li>
+<li><em><code>&amp;#35;numbers</code> : 格式化数字对象的方法</em></li>
+<li><em><code>&amp;#35;aggregates</code> : 在数组或集合上创建聚合的方法</em></li>
+<li><em><code>&amp;#35;ids</code> : 处理可能重复的id属性的方法</em></li>
+</ol>
+<ul>
+<li><em>🙂thanks a lot : <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/908b48b10702">https://www.jianshu.com/p/908b48b10702</a></em></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:hi@goog.tech">GoogTech</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://goog.tech/blog/2019/06/27/Spring-Boot%E4%B9%8BThymeleaf/">https://goog.tech/blog/2019/06/27/Spring-Boot之Thymeleaf/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/Spring-Boot/">Spring Boot</a></div><div class="post_share"><div class="social-share" data-image="/blog/img/default-cover/19.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> Donate</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/blog/img/wechat-sponsor.png" target="_blank"><img class="post-qr-code-img" src="/blog/img/wechat-sponsor.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/2019/06/30/Spring-Boot%E9%A1%B9%E7%9B%AE-%E5%A5%BD%E5%8F%8B%E5%A4%87%E5%BF%98%E5%BD%95/"><img class="prev-cover" src="/blog/img/default-cover/33.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Spring Boot项目:好友备忘录</div></div></a></div><div class="next-post pull-right"><a href="/blog/2019/06/26/Spring-Boot%E4%B9%8B%E6%95%B4%E5%90%88%E8%A7%86%E5%9B%BE%E5%B1%82%E6%8A%80%E6%9C%AF/"><img class="next-cover" src="/blog/img/default-cover/44.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Spring Boot之整合视图层技术</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/blog/2019/06/23/Hi-Spring-Boot/" title="Hi Spring Boot ~"><img class="cover" src="/blog/img/default-cover/54.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-23</div><div class="title">Hi Spring Boot ~</div></div></a></div><div><a href="/blog/2019/06/26/Spring-Boot之基本Web开发/" title="Spring Boot之基本Web开发"><img class="cover" src="/blog/img/default-cover/25.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-26</div><div class="title">Spring Boot之基本Web开发</div></div></a></div><div><a href="/blog/2019/06/26/Spring-Boot之整合视图层技术/" title="Spring Boot之整合视图层技术"><img class="cover" src="/blog/img/default-cover/44.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-26</div><div class="title">Spring Boot之整合视图层技术</div></div></a></div><div><a href="/blog/2019/06/30/Spring-Boot之文件上传/" title="Spring Boot之文件上传与下载"><img class="cover" src="/blog/img/default-cover/33.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-30</div><div class="title">Spring Boot之文件上传与下载</div></div></a></div><div><a href="/blog/2019/06/30/Spring-Boot项目-好友备忘录/" title="Spring Boot项目:好友备忘录"><img class="cover" src="/blog/img/default-cover/33.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-06-30</div><div class="title">Spring Boot项目:好友备忘录</div></div></a></div><div><a href="/blog/2020/06/21/vsblog-一个采用vue及springboot开发的超简洁的个人博客系统/" title="vsblog : 一个采用vue及springboot开发的超简洁的个人博客系统"><img class="cover" src="/blog/img/default-cover/47.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-21</div><div class="title">vsblog : 一个采用vue及springboot开发的超简洁的个人博客系统</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Thymeleaf%E7%9A%84%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">学习笔记 : Thymeleaf的常用语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">基础语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.1.1.</span> <span class="toc-text">变量表达式 ${}</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E5%8F%98%E9%87%8F%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.1.2.</span> <span class="toc-text">选择变量表达式 *{}</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.1.3.</span> <span class="toc-text">链接表达式 @{}</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%87%E6%AE%B5%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.1.4.</span> <span class="toc-text">片段表达式 ~{}</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E8%A1%A8%E8%BE%BE%E5%BC%8F-amp-35"><span class="toc-number">1.1.5.</span> <span class="toc-text">消息表达式 &amp;#35;{}</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E5%AE%83%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.1.6.</span> <span class="toc-text">其它表达式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">常用语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%BE%AA%E7%8E%AF"><span class="toc-number">1.2.1.</span> <span class="toc-text">迭代循环</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD"><span class="toc-number">1.2.2.</span> <span class="toc-text">条件判断</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#if%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">if语句</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#switch%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">switch语句</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">1.2.3.</span> <span class="toc-text">日期格式化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E8%81%94%E5%86%99%E6%B3%95"><span class="toc-number">1.2.4.</span> <span class="toc-text">内联写法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.3.</span> <span class="toc-text">内置对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%83%E5%A4%A7%E5%9F%BA%E7%A1%80%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.3.1.</span> <span class="toc-text">七大基础对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="toc-number">1.3.2.</span> <span class="toc-text">常用的工具类</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2022 By GoogTech</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="/blog/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'cuhS73KNdoQ8SJpCFhaalYHe-gzGzoHsz',
+      appKey: 'bBxVEeuGBYAXa68aQv8mGUjn',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
